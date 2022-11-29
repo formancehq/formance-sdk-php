@@ -106,6 +106,16 @@ Class | Method | HTTP request | Description
 *ClientsApi* | [**updateClient**](docs/Api/ClientsApi.md#updateclient) | **PUT** /api/auth/clients/{clientId} | Update client
 *MappingApi* | [**getMapping**](docs/Api/MappingApi.md#getmapping) | **GET** /api/ledger/{ledger}/mapping | Get the mapping of a ledger.
 *MappingApi* | [**updateMapping**](docs/Api/MappingApi.md#updatemapping) | **PUT** /api/ledger/{ledger}/mapping | Update the mapping of a ledger.
+*PaymentsApi* | [**getAllConnectors**](docs/Api/PaymentsApi.md#getallconnectors) | **GET** /api/payments/connectors | Get all installed connectors
+*PaymentsApi* | [**getAllConnectorsConfigs**](docs/Api/PaymentsApi.md#getallconnectorsconfigs) | **GET** /api/payments/connectors/configs | Get all available connectors configs
+*PaymentsApi* | [**getConnectorTask**](docs/Api/PaymentsApi.md#getconnectortask) | **GET** /api/payments/connectors/{connector}/tasks/{taskId} | Read a specific task of the connector
+*PaymentsApi* | [**getPayment**](docs/Api/PaymentsApi.md#getpayment) | **GET** /api/payments/payments/{paymentId} | Returns a payment.
+*PaymentsApi* | [**installConnector**](docs/Api/PaymentsApi.md#installconnector) | **POST** /api/payments/connectors/{connector} | Install connector
+*PaymentsApi* | [**listConnectorTasks**](docs/Api/PaymentsApi.md#listconnectortasks) | **GET** /api/payments/connectors/{connector}/tasks | List connector tasks
+*PaymentsApi* | [**listPayments**](docs/Api/PaymentsApi.md#listpayments) | **GET** /api/payments/payments | Returns a list of payments.
+*PaymentsApi* | [**readConnectorConfig**](docs/Api/PaymentsApi.md#readconnectorconfig) | **GET** /api/payments/connectors/{connector}/config | Read connector config
+*PaymentsApi* | [**resetConnector**](docs/Api/PaymentsApi.md#resetconnector) | **POST** /api/payments/connectors/{connector}/reset | Reset connector
+*PaymentsApi* | [**uninstallConnector**](docs/Api/PaymentsApi.md#uninstallconnector) | **DELETE** /api/payments/connectors/{connector} | Uninstall connector
 *ScopesApi* | [**addTransientScope**](docs/Api/ScopesApi.md#addtransientscope) | **PUT** /api/auth/scopes/{scopeId}/transient/{transientScopeId} | Add a transient scope to a scope
 *ScopesApi* | [**createScope**](docs/Api/ScopesApi.md#createscope) | **POST** /api/auth/scopes | Create scope
 *ScopesApi* | [**deleteScope**](docs/Api/ScopesApi.md#deletescope) | **DELETE** /api/auth/scopes/{scopeId} | Delete scope
@@ -137,6 +147,7 @@ Class | Method | HTTP request | Description
 
 - [Account](docs/Model/Account.md)
 - [AccountWithVolumesAndBalances](docs/Model/AccountWithVolumesAndBalances.md)
+- [BankingCircleConfig](docs/Model/BankingCircleConfig.md)
 - [ChangeOneConfigSecretRequest](docs/Model/ChangeOneConfigSecretRequest.md)
 - [Client](docs/Model/Client.md)
 - [ClientAllOf](docs/Model/ClientAllOf.md)
@@ -146,6 +157,9 @@ Class | Method | HTTP request | Description
 - [ConfigInfo](docs/Model/ConfigInfo.md)
 - [ConfigInfoResponse](docs/Model/ConfigInfoResponse.md)
 - [ConfigUser](docs/Model/ConfigUser.md)
+- [ConnectorBaseInfo](docs/Model/ConnectorBaseInfo.md)
+- [ConnectorConfig](docs/Model/ConnectorConfig.md)
+- [ConnectorTask](docs/Model/ConnectorTask.md)
 - [Contract](docs/Model/Contract.md)
 - [CreateClientResponse](docs/Model/CreateClientResponse.md)
 - [CreateScopeResponse](docs/Model/CreateScopeResponse.md)
@@ -153,7 +167,9 @@ Class | Method | HTTP request | Description
 - [CreateTransaction400Response](docs/Model/CreateTransaction400Response.md)
 - [CreateTransaction409Response](docs/Model/CreateTransaction409Response.md)
 - [CreateTransactions400Response](docs/Model/CreateTransactions400Response.md)
+- [CurrencyCloudConfig](docs/Model/CurrencyCloudConfig.md)
 - [Cursor](docs/Model/Cursor.md)
+- [DummyPayConfig](docs/Model/DummyPayConfig.md)
 - [ErrorCode](docs/Model/ErrorCode.md)
 - [ErrorResponse](docs/Model/ErrorResponse.md)
 - [GetAccount200Response](docs/Model/GetAccount200Response.md)
@@ -166,6 +182,7 @@ Class | Method | HTTP request | Description
 - [GetManyConfigs200Response](docs/Model/GetManyConfigs200Response.md)
 - [GetManyConfigs200ResponseCursor](docs/Model/GetManyConfigs200ResponseCursor.md)
 - [GetManyConfigs200ResponseCursorAllOf](docs/Model/GetManyConfigs200ResponseCursorAllOf.md)
+- [GetPaymentResponse](docs/Model/GetPaymentResponse.md)
 - [GetTransaction400Response](docs/Model/GetTransaction400Response.md)
 - [GetTransaction404Response](docs/Model/GetTransaction404Response.md)
 - [LedgerStorage](docs/Model/LedgerStorage.md)
@@ -174,6 +191,11 @@ Class | Method | HTTP request | Description
 - [ListAccounts200ResponseCursorAllOf](docs/Model/ListAccounts200ResponseCursorAllOf.md)
 - [ListAccounts400Response](docs/Model/ListAccounts400Response.md)
 - [ListClientsResponse](docs/Model/ListClientsResponse.md)
+- [ListConnectorsConfigsResponse](docs/Model/ListConnectorsConfigsResponse.md)
+- [ListConnectorsConfigsResponseConnector](docs/Model/ListConnectorsConfigsResponseConnector.md)
+- [ListConnectorsConfigsResponseConnectorKey](docs/Model/ListConnectorsConfigsResponseConnectorKey.md)
+- [ListConnectorsResponse](docs/Model/ListConnectorsResponse.md)
+- [ListPaymentsResponse](docs/Model/ListPaymentsResponse.md)
 - [ListScopesResponse](docs/Model/ListScopesResponse.md)
 - [ListTransactions200Response](docs/Model/ListTransactions200Response.md)
 - [ListTransactions200ResponseCursor](docs/Model/ListTransactions200ResponseCursor.md)
@@ -181,6 +203,8 @@ Class | Method | HTTP request | Description
 - [ListUsersResponse](docs/Model/ListUsersResponse.md)
 - [Mapping](docs/Model/Mapping.md)
 - [MappingResponse](docs/Model/MappingResponse.md)
+- [ModulrConfig](docs/Model/ModulrConfig.md)
+- [Payment](docs/Model/Payment.md)
 - [PostTransaction](docs/Model/PostTransaction.md)
 - [PostTransactionScript](docs/Model/PostTransactionScript.md)
 - [Posting](docs/Model/Posting.md)
@@ -200,6 +224,8 @@ Class | Method | HTTP request | Description
 - [SecretOptions](docs/Model/SecretOptions.md)
 - [Stats](docs/Model/Stats.md)
 - [StatsResponse](docs/Model/StatsResponse.md)
+- [StripeConfig](docs/Model/StripeConfig.md)
+- [StripeTask](docs/Model/StripeTask.md)
 - [Transaction](docs/Model/Transaction.md)
 - [TransactionData](docs/Model/TransactionData.md)
 - [TransactionResponse](docs/Model/TransactionResponse.md)
@@ -209,6 +235,7 @@ Class | Method | HTTP request | Description
 - [Volume](docs/Model/Volume.md)
 - [WebhooksConfig](docs/Model/WebhooksConfig.md)
 - [WebhooksCursor](docs/Model/WebhooksCursor.md)
+- [WiseConfig](docs/Model/WiseConfig.md)
 
 ## Authorization
 
