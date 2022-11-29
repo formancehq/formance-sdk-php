@@ -7,6 +7,7 @@ docs/Api/AccountsApi.md
 docs/Api/BalancesApi.md
 docs/Api/ClientsApi.md
 docs/Api/MappingApi.md
+docs/Api/PaymentsApi.md
 docs/Api/ScopesApi.md
 docs/Api/ScriptApi.md
 docs/Api/SearchApi.md
@@ -17,6 +18,7 @@ docs/Api/UsersApi.md
 docs/Api/WebhooksApi.md
 docs/Model/Account.md
 docs/Model/AccountWithVolumesAndBalances.md
+docs/Model/BankingCircleConfig.md
 docs/Model/ChangeOneConfigSecretRequest.md
 docs/Model/Client.md
 docs/Model/ClientAllOf.md
@@ -26,6 +28,9 @@ docs/Model/Config.md
 docs/Model/ConfigInfo.md
 docs/Model/ConfigInfoResponse.md
 docs/Model/ConfigUser.md
+docs/Model/ConnectorBaseInfo.md
+docs/Model/ConnectorConfig.md
+docs/Model/ConnectorTask.md
 docs/Model/Contract.md
 docs/Model/CreateClientResponse.md
 docs/Model/CreateScopeResponse.md
@@ -33,7 +38,9 @@ docs/Model/CreateSecretResponse.md
 docs/Model/CreateTransaction400Response.md
 docs/Model/CreateTransaction409Response.md
 docs/Model/CreateTransactions400Response.md
+docs/Model/CurrencyCloudConfig.md
 docs/Model/Cursor.md
+docs/Model/DummyPayConfig.md
 docs/Model/ErrorCode.md
 docs/Model/ErrorResponse.md
 docs/Model/GetAccount200Response.md
@@ -46,6 +53,7 @@ docs/Model/GetBalancesAggregated400Response.md
 docs/Model/GetManyConfigs200Response.md
 docs/Model/GetManyConfigs200ResponseCursor.md
 docs/Model/GetManyConfigs200ResponseCursorAllOf.md
+docs/Model/GetPaymentResponse.md
 docs/Model/GetTransaction400Response.md
 docs/Model/GetTransaction404Response.md
 docs/Model/LedgerStorage.md
@@ -54,6 +62,11 @@ docs/Model/ListAccounts200ResponseCursor.md
 docs/Model/ListAccounts200ResponseCursorAllOf.md
 docs/Model/ListAccounts400Response.md
 docs/Model/ListClientsResponse.md
+docs/Model/ListConnectorsConfigsResponse.md
+docs/Model/ListConnectorsConfigsResponseConnector.md
+docs/Model/ListConnectorsConfigsResponseConnectorKey.md
+docs/Model/ListConnectorsResponse.md
+docs/Model/ListPaymentsResponse.md
 docs/Model/ListScopesResponse.md
 docs/Model/ListTransactions200Response.md
 docs/Model/ListTransactions200ResponseCursor.md
@@ -61,6 +74,8 @@ docs/Model/ListTransactions200ResponseCursorAllOf.md
 docs/Model/ListUsersResponse.md
 docs/Model/Mapping.md
 docs/Model/MappingResponse.md
+docs/Model/ModulrConfig.md
+docs/Model/Payment.md
 docs/Model/PostTransaction.md
 docs/Model/PostTransactionScript.md
 docs/Model/Posting.md
@@ -80,6 +95,8 @@ docs/Model/SecretAllOf.md
 docs/Model/SecretOptions.md
 docs/Model/Stats.md
 docs/Model/StatsResponse.md
+docs/Model/StripeConfig.md
+docs/Model/StripeTask.md
 docs/Model/Transaction.md
 docs/Model/TransactionData.md
 docs/Model/TransactionResponse.md
@@ -89,11 +106,13 @@ docs/Model/User.md
 docs/Model/Volume.md
 docs/Model/WebhooksConfig.md
 docs/Model/WebhooksCursor.md
+docs/Model/WiseConfig.md
 git_push.sh
 lib/Api/AccountsApi.php
 lib/Api/BalancesApi.php
 lib/Api/ClientsApi.php
 lib/Api/MappingApi.php
+lib/Api/PaymentsApi.php
 lib/Api/ScopesApi.php
 lib/Api/ScriptApi.php
 lib/Api/SearchApi.php
@@ -107,6 +126,7 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/Account.php
 lib/Model/AccountWithVolumesAndBalances.php
+lib/Model/BankingCircleConfig.php
 lib/Model/ChangeOneConfigSecretRequest.php
 lib/Model/Client.php
 lib/Model/ClientAllOf.php
@@ -116,6 +136,9 @@ lib/Model/Config.php
 lib/Model/ConfigInfo.php
 lib/Model/ConfigInfoResponse.php
 lib/Model/ConfigUser.php
+lib/Model/ConnectorBaseInfo.php
+lib/Model/ConnectorConfig.php
+lib/Model/ConnectorTask.php
 lib/Model/Contract.php
 lib/Model/CreateClientResponse.php
 lib/Model/CreateScopeResponse.php
@@ -123,7 +146,9 @@ lib/Model/CreateSecretResponse.php
 lib/Model/CreateTransaction400Response.php
 lib/Model/CreateTransaction409Response.php
 lib/Model/CreateTransactions400Response.php
+lib/Model/CurrencyCloudConfig.php
 lib/Model/Cursor.php
+lib/Model/DummyPayConfig.php
 lib/Model/ErrorCode.php
 lib/Model/ErrorResponse.php
 lib/Model/GetAccount200Response.php
@@ -136,6 +161,7 @@ lib/Model/GetBalancesAggregated400Response.php
 lib/Model/GetManyConfigs200Response.php
 lib/Model/GetManyConfigs200ResponseCursor.php
 lib/Model/GetManyConfigs200ResponseCursorAllOf.php
+lib/Model/GetPaymentResponse.php
 lib/Model/GetTransaction400Response.php
 lib/Model/GetTransaction404Response.php
 lib/Model/LedgerStorage.php
@@ -144,6 +170,11 @@ lib/Model/ListAccounts200ResponseCursor.php
 lib/Model/ListAccounts200ResponseCursorAllOf.php
 lib/Model/ListAccounts400Response.php
 lib/Model/ListClientsResponse.php
+lib/Model/ListConnectorsConfigsResponse.php
+lib/Model/ListConnectorsConfigsResponseConnector.php
+lib/Model/ListConnectorsConfigsResponseConnectorKey.php
+lib/Model/ListConnectorsResponse.php
+lib/Model/ListPaymentsResponse.php
 lib/Model/ListScopesResponse.php
 lib/Model/ListTransactions200Response.php
 lib/Model/ListTransactions200ResponseCursor.php
@@ -152,6 +183,8 @@ lib/Model/ListUsersResponse.php
 lib/Model/Mapping.php
 lib/Model/MappingResponse.php
 lib/Model/ModelInterface.php
+lib/Model/ModulrConfig.php
+lib/Model/Payment.php
 lib/Model/PostTransaction.php
 lib/Model/PostTransactionScript.php
 lib/Model/Posting.php
@@ -171,6 +204,8 @@ lib/Model/SecretAllOf.php
 lib/Model/SecretOptions.php
 lib/Model/Stats.php
 lib/Model/StatsResponse.php
+lib/Model/StripeConfig.php
+lib/Model/StripeTask.php
 lib/Model/Transaction.php
 lib/Model/TransactionData.php
 lib/Model/TransactionResponse.php
@@ -180,5 +215,6 @@ lib/Model/User.php
 lib/Model/Volume.php
 lib/Model/WebhooksConfig.php
 lib/Model/WebhooksCursor.php
+lib/Model/WiseConfig.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
