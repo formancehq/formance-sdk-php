@@ -10,12 +10,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**deleteOneConfig()**](WebhooksApi.md#deleteOneConfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config |
 | [**getManyConfigs()**](WebhooksApi.md#getManyConfigs) | **GET** /api/webhooks/configs | Get many configs |
 | [**insertOneConfig()**](WebhooksApi.md#insertOneConfig) | **POST** /api/webhooks/configs | Insert a new config |
+| [**testOneConfig()**](WebhooksApi.md#testOneConfig) | **GET** /api/webhooks/configs/{id}/test | Test one config |
 
 
 ## `activateOneConfig()`
 
 ```php
-activateOneConfig($id): \Formance\Model\GetManyConfigs200Response
+activateOneConfig($id): \Formance\Model\ConfigActivatedResponse
 ```
 
 Activate one config
@@ -55,7 +56,7 @@ try {
 
 ### Return type
 
-[**\Formance\Model\GetManyConfigs200Response**](../Model/GetManyConfigs200Response.md)
+[**\Formance\Model\ConfigActivatedResponse**](../Model/ConfigActivatedResponse.md)
 
 ### Authorization
 
@@ -73,12 +74,12 @@ try {
 ## `changeOneConfigSecret()`
 
 ```php
-changeOneConfigSecret($id, $change_one_config_secret_request): \Formance\Model\GetManyConfigs200Response
+changeOneConfigSecret($id, $change_one_config_secret_request): \Formance\Model\ConfigActivatedResponse
 ```
 
 Change the signing secret of a config
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
 
 ### Example
 
@@ -117,7 +118,7 @@ try {
 
 ### Return type
 
-[**\Formance\Model\GetManyConfigs200Response**](../Model/GetManyConfigs200Response.md)
+[**\Formance\Model\ConfigActivatedResponse**](../Model/ConfigActivatedResponse.md)
 
 ### Authorization
 
@@ -135,7 +136,7 @@ try {
 ## `deactivateOneConfig()`
 
 ```php
-deactivateOneConfig($id): \Formance\Model\GetManyConfigs200Response
+deactivateOneConfig($id): \Formance\Model\ConfigDeactivatedResponse
 ```
 
 Deactivate one config
@@ -175,7 +176,7 @@ try {
 
 ### Return type
 
-[**\Formance\Model\GetManyConfigs200Response**](../Model/GetManyConfigs200Response.md)
+[**\Formance\Model\ConfigDeactivatedResponse**](../Model/ConfigDeactivatedResponse.md)
 
 ### Authorization
 
@@ -312,12 +313,12 @@ try {
 ## `insertOneConfig()`
 
 ```php
-insertOneConfig($config_user): string
+insertOneConfig($config_user): \Formance\Model\ConfigActivatedResponse
 ```
 
 Insert a new config
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted.
+Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted.
 
 ### Example
 
@@ -354,7 +355,7 @@ try {
 
 ### Return type
 
-**string**
+[**\Formance\Model\ConfigActivatedResponse**](../Model/ConfigActivatedResponse.md)
 
 ### Authorization
 
@@ -363,7 +364,67 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: `text/plain`
+- **Accept**: `application/json`, `text/plain`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `testOneConfig()`
+
+```php
+testOneConfig($id): \Formance\Model\AttemptResponse
+```
+
+Test one config
+
+Test one config by sending a webhook to its endpoint.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: Authorization
+$config = Formance\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Formance\Api\WebhooksApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 4997257d-dfb6-445b-929c-cbe2ab182818; // string | Config ID
+
+try {
+    $result = $apiInstance->testOneConfig($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling WebhooksApi->testOneConfig: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Config ID | |
+
+### Return type
+
+[**\Formance\Model\AttemptResponse**](../Model/AttemptResponse.md)
+
+### Authorization
+
+[Authorization](../../README.md#Authorization)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

@@ -18,6 +18,8 @@ docs/Api/UsersApi.md
 docs/Api/WebhooksApi.md
 docs/Model/Account.md
 docs/Model/AccountWithVolumesAndBalances.md
+docs/Model/Attempt.md
+docs/Model/AttemptResponse.md
 docs/Model/BankingCircleConfig.md
 docs/Model/ChangeOneConfigSecretRequest.md
 docs/Model/Client.md
@@ -25,6 +27,10 @@ docs/Model/ClientAllOf.md
 docs/Model/ClientOptions.md
 docs/Model/ClientSecret.md
 docs/Model/Config.md
+docs/Model/ConfigActivated.md
+docs/Model/ConfigActivatedResponse.md
+docs/Model/ConfigDeactivated.md
+docs/Model/ConfigDeactivatedResponse.md
 docs/Model/ConfigInfo.md
 docs/Model/ConfigInfoResponse.md
 docs/Model/ConfigUser.md
@@ -104,7 +110,6 @@ docs/Model/Transactions.md
 docs/Model/TransactionsResponse.md
 docs/Model/User.md
 docs/Model/Volume.md
-docs/Model/WebhooksConfig.md
 docs/Model/WebhooksCursor.md
 docs/Model/WiseConfig.md
 git_push.sh
@@ -126,6 +131,8 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/Account.php
 lib/Model/AccountWithVolumesAndBalances.php
+lib/Model/Attempt.php
+lib/Model/AttemptResponse.php
 lib/Model/BankingCircleConfig.php
 lib/Model/ChangeOneConfigSecretRequest.php
 lib/Model/Client.php
@@ -133,6 +140,10 @@ lib/Model/ClientAllOf.php
 lib/Model/ClientOptions.php
 lib/Model/ClientSecret.php
 lib/Model/Config.php
+lib/Model/ConfigActivated.php
+lib/Model/ConfigActivatedResponse.php
+lib/Model/ConfigDeactivated.php
+lib/Model/ConfigDeactivatedResponse.php
 lib/Model/ConfigInfo.php
 lib/Model/ConfigInfoResponse.php
 lib/Model/ConfigUser.php
@@ -213,7 +224,6 @@ lib/Model/Transactions.php
 lib/Model/TransactionsResponse.php
 lib/Model/User.php
 lib/Model/Volume.php
-lib/Model/WebhooksConfig.php
 lib/Model/WebhooksCursor.php
 lib/Model/WiseConfig.php
 lib/ObjectSerializer.php
