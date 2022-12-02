@@ -77,7 +77,7 @@ void (empty response body)
 ## `countTransactions()`
 
 ```php
-countTransactions($ledger, $reference, $account, $source, $destination, $metadata)
+countTransactions($ledger, $reference, $account, $source, $destination, $start_time, $end_time, $metadata)
 ```
 
 Count the transactions from a ledger.
@@ -104,10 +104,12 @@ $reference = ref:001; // string | Filter transactions by reference field.
 $account = users:001; // string | Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
 $source = users:001; // string | Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
 $destination = users:001; // string | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+$start_time = 'start_time_example'; // string | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).
+$end_time = 'end_time_example'; // string | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).
 $metadata = metadata[key]=value1&metadata[a.nested.key]=value2; // object | Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
 
 try {
-    $apiInstance->countTransactions($ledger, $reference, $account, $source, $destination, $metadata);
+    $apiInstance->countTransactions($ledger, $reference, $account, $source, $destination, $start_time, $end_time, $metadata);
 } catch (Exception $e) {
     echo 'Exception when calling TransactionsApi->countTransactions: ', $e->getMessage(), PHP_EOL;
 }
@@ -122,6 +124,8 @@ try {
 | **account** | **string**| Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). | [optional] |
 | **source** | **string**| Filter transactions with postings involving given account at source (regular expression placed between ^ and $). | [optional] |
 | **destination** | **string**| Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | [optional] |
+| **start_time** | **string**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). | [optional] |
+| **end_time** | **string**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). | [optional] |
 | **metadata** | [**object**](../Model/.md)| Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional] |
 
 ### Return type
@@ -359,7 +363,7 @@ $source = users:001; // string | Filter transactions with postings involving giv
 $destination = users:001; // string | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
 $start_time = 'start_time_example'; // string | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).
 $end_time = 'end_time_example'; // string | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).
-$pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.
+$pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.
 $metadata = metadata[key]=value1&metadata[a.nested.key]=value2; // object | Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
 
 try {
@@ -383,7 +387,7 @@ try {
 | **destination** | **string**| Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | [optional] |
 | **start_time** | **string**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). | [optional] |
 | **end_time** | **string**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). | [optional] |
-| **pagination_token** | **string**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. | [optional] |
+| **pagination_token** | **string**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. | [optional] |
 | **metadata** | [**object**](../Model/.md)| Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional] |
 
 ### Return type

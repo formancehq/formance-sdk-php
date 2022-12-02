@@ -36,7 +36,7 @@ $apiInstance = new Formance\Api\BalancesApi(
 $ledger = ledger001; // string | Name of the ledger.
 $address = users:001; // string | Filter balances involving given account, either as source or destination.
 $after = users:003; // string | Pagination cursor, will return accounts after given address, in descending order.
-$pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+$pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results.
 
 try {
     $result = $apiInstance->getBalances($ledger, $address, $after, $pagination_token);
@@ -53,7 +53,7 @@ try {
 | **ledger** | **string**| Name of the ledger. | |
 | **address** | **string**| Filter balances involving given account, either as source or destination. | [optional] |
 | **after** | **string**| Pagination cursor, will return accounts after given address, in descending order. | [optional] |
-| **pagination_token** | **string**| Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. | [optional] |
+| **pagination_token** | **string**| Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. | [optional] |
 
 ### Return type
 
