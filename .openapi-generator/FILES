@@ -18,6 +18,8 @@ docs/Api/UsersApi.md
 docs/Api/WebhooksApi.md
 docs/Model/Account.md
 docs/Model/AccountWithVolumesAndBalances.md
+docs/Model/Attempt.md
+docs/Model/AttemptResponse.md
 docs/Model/BankingCircleConfig.md
 docs/Model/ChangeOneConfigSecretRequest.md
 docs/Model/Client.md
@@ -27,6 +29,7 @@ docs/Model/ClientSecret.md
 docs/Model/Config.md
 docs/Model/ConfigInfo.md
 docs/Model/ConfigInfoResponse.md
+docs/Model/ConfigResponse.md
 docs/Model/ConfigUser.md
 docs/Model/ConnectorBaseInfo.md
 docs/Model/ConnectorConfig.md
@@ -126,6 +129,8 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/Account.php
 lib/Model/AccountWithVolumesAndBalances.php
+lib/Model/Attempt.php
+lib/Model/AttemptResponse.php
 lib/Model/BankingCircleConfig.php
 lib/Model/ChangeOneConfigSecretRequest.php
 lib/Model/Client.php
@@ -135,6 +140,7 @@ lib/Model/ClientSecret.php
 lib/Model/Config.php
 lib/Model/ConfigInfo.php
 lib/Model/ConfigInfoResponse.php
+lib/Model/ConfigResponse.php
 lib/Model/ConfigUser.php
 lib/Model/ConnectorBaseInfo.php
 lib/Model/ConnectorConfig.php
