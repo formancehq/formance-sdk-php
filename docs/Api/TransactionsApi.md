@@ -144,7 +144,7 @@ void (empty response body)
 ## `createTransaction()`
 
 ```php
-createTransaction($ledger, $post_transaction, $preview): \Formance\Model\TransactionsResponse
+createTransaction($ledger, $transaction_data, $preview): \Formance\Model\TransactionsResponse
 ```
 
 Create a new transaction to a ledger.
@@ -167,11 +167,11 @@ $apiInstance = new Formance\Api\TransactionsApi(
     $config
 );
 $ledger = ledger001; // string | Name of the ledger.
-$post_transaction = new \Formance\Model\PostTransaction(); // \Formance\Model\PostTransaction | The request body must contain one of the following objects:   - `postings`: suitable for simple transactions   - `script`: enabling more complex transactions with Numscript
+$transaction_data = new \Formance\Model\TransactionData(); // \Formance\Model\TransactionData
 $preview = true; // bool | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
 
 try {
-    $result = $apiInstance->createTransaction($ledger, $post_transaction, $preview);
+    $result = $apiInstance->createTransaction($ledger, $transaction_data, $preview);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TransactionsApi->createTransaction: ', $e->getMessage(), PHP_EOL;
@@ -183,7 +183,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **ledger** | **string**| Name of the ledger. | |
-| **post_transaction** | [**\Formance\Model\PostTransaction**](../Model/PostTransaction.md)| The request body must contain one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript | |
+| **transaction_data** | [**\Formance\Model\TransactionData**](../Model/TransactionData.md)|  | |
 | **preview** | **bool**| Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker. | [optional] |
 
 ### Return type
@@ -354,9 +354,9 @@ $ledger = ledger001; // string | Name of the ledger.
 $page_size = 100; // int | The maximum number of results to return per page
 $after = 1234; // string | Pagination cursor, will return transactions after given txid (in descending order).
 $reference = ref:001; // string | Find transactions by reference field.
-$account = users:001; // string | Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
-$source = users:001; // string | Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
-$destination = users:001; // string | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+$account = users:001; // string | Find transactions with postings involving given account, either as source or destination.
+$source = users:001; // string | Find transactions with postings involving given account at source.
+$destination = users:001; // string | Find transactions with postings involving given account at destination.
 $start_time = 'start_time_example'; // string | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).
 $end_time = 'end_time_example'; // string | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).
 $pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.
@@ -378,9 +378,9 @@ try {
 | **page_size** | **int**| The maximum number of results to return per page | [optional] [default to 15] |
 | **after** | **string**| Pagination cursor, will return transactions after given txid (in descending order). | [optional] |
 | **reference** | **string**| Find transactions by reference field. | [optional] |
-| **account** | **string**| Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). | [optional] |
-| **source** | **string**| Filter transactions with postings involving given account at source (regular expression placed between ^ and $). | [optional] |
-| **destination** | **string**| Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | [optional] |
+| **account** | **string**| Find transactions with postings involving given account, either as source or destination. | [optional] |
+| **source** | **string**| Find transactions with postings involving given account at source. | [optional] |
+| **destination** | **string**| Find transactions with postings involving given account at destination. | [optional] |
 | **start_time** | **string**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). | [optional] |
 | **end_time** | **string**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). | [optional] |
 | **pagination_token** | **string**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. | [optional] |
