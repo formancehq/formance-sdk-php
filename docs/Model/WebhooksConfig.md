@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  | [optional]
 **endpoint** | **string** |  | [optional]
 **secret** | **string** |  | [optional]
 **event_types** | **string[]** |  | [optional]
