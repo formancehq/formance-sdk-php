@@ -4,6 +4,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**connectorsStripeTransfer()**](PaymentsApi.md#connectorsStripeTransfer) | **POST** /api/payments/connectors/stripe/transfer | Transfer funds between Stripe accounts |
 | [**getAllConnectors()**](PaymentsApi.md#getAllConnectors) | **GET** /api/payments/connectors | Get all installed connectors |
 | [**getAllConnectorsConfigs()**](PaymentsApi.md#getAllConnectorsConfigs) | **GET** /api/payments/connectors/configs | Get all available connectors configs |
 | [**getConnectorTask()**](PaymentsApi.md#getConnectorTask) | **GET** /api/payments/connectors/{connector}/tasks/{taskId} | Read a specific task of the connector |
@@ -15,6 +16,65 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**resetConnector()**](PaymentsApi.md#resetConnector) | **POST** /api/payments/connectors/{connector}/reset | Reset connector |
 | [**uninstallConnector()**](PaymentsApi.md#uninstallConnector) | **DELETE** /api/payments/connectors/{connector} | Uninstall connector |
 
+
+## `connectorsStripeTransfer()`
+
+```php
+connectorsStripeTransfer($stripe_transfer_request)
+```
+
+Transfer funds between Stripe accounts
+
+Execute a transfer between two Stripe accounts
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: Authorization
+$config = Formance\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Formance\Api\PaymentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$stripe_transfer_request = new \Formance\Model\StripeTransferRequest(); // \Formance\Model\StripeTransferRequest
+
+try {
+    $apiInstance->connectorsStripeTransfer($stripe_transfer_request);
+} catch (Exception $e) {
+    echo 'Exception when calling PaymentsApi->connectorsStripeTransfer: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **stripe_transfer_request** | [**\Formance\Model\StripeTransferRequest**](../Model/StripeTransferRequest.md)|  | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Authorization](../../README.md#Authorization)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `getAllConnectors()`
 

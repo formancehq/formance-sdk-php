@@ -18,6 +18,9 @@ docs/Api/UsersApi.md
 docs/Api/WebhooksApi.md
 docs/Model/Account.md
 docs/Model/AccountWithVolumesAndBalances.md
+docs/Model/AddMetadataToAccount409Response.md
+docs/Model/Attempt.md
+docs/Model/AttemptResponse.md
 docs/Model/BankingCircleConfig.md
 docs/Model/ChangeOneConfigSecretRequest.md
 docs/Model/Client.md
@@ -27,6 +30,7 @@ docs/Model/ClientSecret.md
 docs/Model/Config.md
 docs/Model/ConfigInfo.md
 docs/Model/ConfigInfoResponse.md
+docs/Model/ConfigResponse.md
 docs/Model/ConfigUser.md
 docs/Model/ConnectorBaseInfo.md
 docs/Model/ConnectorConfig.md
@@ -76,8 +80,6 @@ docs/Model/Mapping.md
 docs/Model/MappingResponse.md
 docs/Model/ModulrConfig.md
 docs/Model/Payment.md
-docs/Model/PostTransaction.md
-docs/Model/PostTransactionScript.md
 docs/Model/Posting.md
 docs/Model/Query.md
 docs/Model/ReadClientResponse.md
@@ -85,6 +87,7 @@ docs/Model/ReadUserResponse.md
 docs/Model/Response.md
 docs/Model/ResponseCursor.md
 docs/Model/ResponseCursorTotal.md
+docs/Model/RunScript400Response.md
 docs/Model/Scope.md
 docs/Model/ScopeAllOf.md
 docs/Model/ScopeOptions.md
@@ -97,6 +100,7 @@ docs/Model/Stats.md
 docs/Model/StatsResponse.md
 docs/Model/StripeConfig.md
 docs/Model/StripeTask.md
+docs/Model/StripeTransferRequest.md
 docs/Model/Transaction.md
 docs/Model/TransactionData.md
 docs/Model/TransactionResponse.md
@@ -126,6 +130,9 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/Account.php
 lib/Model/AccountWithVolumesAndBalances.php
+lib/Model/AddMetadataToAccount409Response.php
+lib/Model/Attempt.php
+lib/Model/AttemptResponse.php
 lib/Model/BankingCircleConfig.php
 lib/Model/ChangeOneConfigSecretRequest.php
 lib/Model/Client.php
@@ -135,6 +142,7 @@ lib/Model/ClientSecret.php
 lib/Model/Config.php
 lib/Model/ConfigInfo.php
 lib/Model/ConfigInfoResponse.php
+lib/Model/ConfigResponse.php
 lib/Model/ConfigUser.php
 lib/Model/ConnectorBaseInfo.php
 lib/Model/ConnectorConfig.php
@@ -185,8 +193,6 @@ lib/Model/MappingResponse.php
 lib/Model/ModelInterface.php
 lib/Model/ModulrConfig.php
 lib/Model/Payment.php
-lib/Model/PostTransaction.php
-lib/Model/PostTransactionScript.php
 lib/Model/Posting.php
 lib/Model/Query.php
 lib/Model/ReadClientResponse.php
@@ -194,6 +200,7 @@ lib/Model/ReadUserResponse.php
 lib/Model/Response.php
 lib/Model/ResponseCursor.php
 lib/Model/ResponseCursorTotal.php
+lib/Model/RunScript400Response.php
 lib/Model/Scope.php
 lib/Model/ScopeAllOf.php
 lib/Model/ScopeOptions.php
@@ -206,6 +213,7 @@ lib/Model/Stats.php
 lib/Model/StatsResponse.php
 lib/Model/StripeConfig.php
 lib/Model/StripeTask.php
+lib/Model/StripeTransferRequest.php
 lib/Model/Transaction.php
 lib/Model/TransactionData.php
 lib/Model/TransactionResponse.php
@@ -218,3 +226,9 @@ lib/Model/WebhooksCursor.php
 lib/Model/WiseConfig.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/AddMetadataToAccount409ResponseTest.php
+test/Model/AttemptResponseTest.php
+test/Model/AttemptTest.php
+test/Model/ConfigResponseTest.php
+test/Model/RunScript400ResponseTest.php
+test/Model/StripeTransferRequestTest.php
