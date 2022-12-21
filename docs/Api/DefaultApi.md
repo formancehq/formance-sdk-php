@@ -1,21 +1,19 @@
-# Formance\SearchApi
+# Formance\DefaultApi
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**search()**](SearchApi.md#search) | **POST** /api/search/ | Search |
+| [**getServerInfo()**](DefaultApi.md#getServerInfo) | **GET** /api/search/_info | Get server info |
 
 
-## `search()`
+## `getServerInfo()`
 
 ```php
-search($query): \Formance\Model\Response
+getServerInfo(): \Formance\Model\ServerInfo
 ```
 
-Search
-
-Search with Query
+Get server info
 
 ### Example
 
@@ -28,31 +26,28 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = Formance\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Formance\Api\SearchApi(
+$apiInstance = new Formance\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$query = new \Formance\Model\Query(); // \Formance\Model\Query
 
 try {
-    $result = $apiInstance->search($query);
+    $result = $apiInstance->getServerInfo();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SearchApi->search: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->getServerInfo: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **query** | [**\Formance\Model\Query**](../Model/Query.md)|  | |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Formance\Model\Response**](../Model/Response.md)
+[**\Formance\Model\ServerInfo**](../Model/ServerInfo.md)
 
 ### Authorization
 
@@ -60,7 +55,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

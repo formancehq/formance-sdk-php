@@ -1,6 +1,6 @@
 <?php
 /**
- * StatsApi
+ * DefaultApi
  * PHP version 7.4
  *
  * @category Class
@@ -41,14 +41,14 @@ use Formance\HeaderSelector;
 use Formance\ObjectSerializer;
 
 /**
- * StatsApi Class Doc Comment
+ * DefaultApi Class Doc Comment
  *
  * @category Class
  * @package  Formance
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class StatsApi
+class DefaultApi
 {
     /**
      * @var ClientInterface
@@ -72,7 +72,7 @@ class StatsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'readStats' => [
+        'getServerInfo' => [
             'application/json',
         ],
     ];
@@ -124,38 +124,36 @@ class StatsApi
     }
 
     /**
-     * Operation readStats
+     * Operation getServerInfo
      *
-     * Get Stats
+     * Get server info
      *
-     * @param  string $ledger name of the ledger (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readStats'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getServerInfo'] to see the possible values for this operation
      *
      * @throws \Formance\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Formance\Model\StatsResponse
+     * @return \Formance\Model\ServerInfo
      */
-    public function readStats($ledger, string $contentType = self::contentTypes['readStats'][0])
+    public function getServerInfo(string $contentType = self::contentTypes['getServerInfo'][0])
     {
-        list($response) = $this->readStatsWithHttpInfo($ledger, $contentType);
+        list($response) = $this->getServerInfoWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation readStatsWithHttpInfo
+     * Operation getServerInfoWithHttpInfo
      *
-     * Get Stats
+     * Get server info
      *
-     * @param  string $ledger name of the ledger (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readStats'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getServerInfo'] to see the possible values for this operation
      *
      * @throws \Formance\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Formance\Model\StatsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Formance\Model\ServerInfo, HTTP status code, HTTP response headers (array of strings)
      */
-    public function readStatsWithHttpInfo($ledger, string $contentType = self::contentTypes['readStats'][0])
+    public function getServerInfoWithHttpInfo(string $contentType = self::contentTypes['getServerInfo'][0])
     {
-        $request = $this->readStatsRequest($ledger, $contentType);
+        $request = $this->getServerInfoRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -194,23 +192,23 @@ class StatsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Formance\Model\StatsResponse' === '\SplFileObject') {
+                    if ('\Formance\Model\ServerInfo' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Formance\Model\StatsResponse' !== 'string') {
+                        if ('\Formance\Model\ServerInfo' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Formance\Model\StatsResponse', []),
+                        ObjectSerializer::deserialize($content, '\Formance\Model\ServerInfo', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Formance\Model\StatsResponse';
+            $returnType = '\Formance\Model\ServerInfo';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -231,7 +229,7 @@ class StatsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Formance\Model\StatsResponse',
+                        '\Formance\Model\ServerInfo',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -242,19 +240,18 @@ class StatsApi
     }
 
     /**
-     * Operation readStatsAsync
+     * Operation getServerInfoAsync
      *
-     * Get Stats
+     * Get server info
      *
-     * @param  string $ledger name of the ledger (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readStats'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getServerInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function readStatsAsync($ledger, string $contentType = self::contentTypes['readStats'][0])
+    public function getServerInfoAsync(string $contentType = self::contentTypes['getServerInfo'][0])
     {
-        return $this->readStatsAsyncWithHttpInfo($ledger, $contentType)
+        return $this->getServerInfoAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -263,20 +260,19 @@ class StatsApi
     }
 
     /**
-     * Operation readStatsAsyncWithHttpInfo
+     * Operation getServerInfoAsyncWithHttpInfo
      *
-     * Get Stats
+     * Get server info
      *
-     * @param  string $ledger name of the ledger (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readStats'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getServerInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function readStatsAsyncWithHttpInfo($ledger, string $contentType = self::contentTypes['readStats'][0])
+    public function getServerInfoAsyncWithHttpInfo(string $contentType = self::contentTypes['getServerInfo'][0])
     {
-        $returnType = '\Formance\Model\StatsResponse';
-        $request = $this->readStatsRequest($ledger, $contentType);
+        $returnType = '\Formance\Model\ServerInfo';
+        $request = $this->getServerInfoRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -315,26 +311,18 @@ class StatsApi
     }
 
     /**
-     * Create request for operation 'readStats'
+     * Create request for operation 'getServerInfo'
      *
-     * @param  string $ledger name of the ledger (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['readStats'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getServerInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function readStatsRequest($ledger, string $contentType = self::contentTypes['readStats'][0])
+    public function getServerInfoRequest(string $contentType = self::contentTypes['getServerInfo'][0])
     {
 
-        // verify the required parameter 'ledger' is set
-        if ($ledger === null || (is_array($ledger) && count($ledger) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $ledger when calling readStats'
-            );
-        }
 
-
-        $resourcePath = '/api/ledger/{ledger}/stats';
+        $resourcePath = '/api/search/_info';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -343,14 +331,6 @@ class StatsApi
 
 
 
-        // path params
-        if ($ledger !== null) {
-            $resourcePath = str_replace(
-                '{' . 'ledger' . '}',
-                ObjectSerializer::toPathValue($ledger),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(

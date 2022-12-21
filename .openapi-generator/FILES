@@ -6,6 +6,7 @@ composer.json
 docs/Api/AccountsApi.md
 docs/Api/BalancesApi.md
 docs/Api/ClientsApi.md
+docs/Api/DefaultApi.md
 docs/Api/MappingApi.md
 docs/Api/PaymentsApi.md
 docs/Api/ScopesApi.md
@@ -96,6 +97,7 @@ docs/Model/ScriptResult.md
 docs/Model/Secret.md
 docs/Model/SecretAllOf.md
 docs/Model/SecretOptions.md
+docs/Model/ServerInfo.md
 docs/Model/Stats.md
 docs/Model/StatsResponse.md
 docs/Model/StripeConfig.md
@@ -115,6 +117,7 @@ git_push.sh
 lib/Api/AccountsApi.php
 lib/Api/BalancesApi.php
 lib/Api/ClientsApi.php
+lib/Api/DefaultApi.php
 lib/Api/MappingApi.php
 lib/Api/PaymentsApi.php
 lib/Api/ScopesApi.php
@@ -209,6 +212,7 @@ lib/Model/ScriptResult.php
 lib/Model/Secret.php
 lib/Model/SecretAllOf.php
 lib/Model/SecretOptions.php
+lib/Model/ServerInfo.php
 lib/Model/Stats.php
 lib/Model/StatsResponse.php
 lib/Model/StripeConfig.php
@@ -226,9 +230,5 @@ lib/Model/WebhooksCursor.php
 lib/Model/WiseConfig.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/AddMetadataToAccount409ResponseTest.php
-test/Model/AttemptResponseTest.php
-test/Model/AttemptTest.php
-test/Model/ConfigResponseTest.php
-test/Model/RunScript400ResponseTest.php
-test/Model/StripeTransferRequestTest.php
+test/Api/DefaultApiTest.php
+test/Model/ServerInfoTest.php

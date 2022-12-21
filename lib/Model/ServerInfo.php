@@ -1,6 +1,6 @@
 <?php
 /**
- * ConfigInfo
+ * ServerInfo
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Formance\ObjectSerializer;
 
 /**
- * ConfigInfo Class Doc Comment
+ * ServerInfo Class Doc Comment
  *
  * @category Class
  * @package  Formance
@@ -41,7 +41,7 @@ use \Formance\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServerInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ConfigInfo';
+    protected static $openAPIModelName = 'ServerInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'config' => '\Formance\Model\Config',
-        'server' => 'string',
         'version' => 'string'
     ];
 
@@ -71,8 +69,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'config' => null,
-        'server' => null,
         'version' => null
     ];
 
@@ -82,9 +78,7 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'config' => false,
-		'server' => false,
-		'version' => false
+        'version' => false
     ];
 
     /**
@@ -173,8 +167,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'config' => 'config',
-        'server' => 'server',
         'version' => 'version'
     ];
 
@@ -184,8 +176,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'config' => 'setConfig',
-        'server' => 'setServer',
         'version' => 'setVersion'
     ];
 
@@ -195,8 +185,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'config' => 'getConfig',
-        'server' => 'getServer',
         'version' => 'getVersion'
     ];
 
@@ -257,8 +245,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('config', $data ?? [], null);
-        $this->setIfExists('server', $data ?? [], null);
         $this->setIfExists('version', $data ?? [], null);
     }
 
@@ -289,12 +275,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['config'] === null) {
-            $invalidProperties[] = "'config' can't be null";
-        }
-        if ($this->container['server'] === null) {
-            $invalidProperties[] = "'server' can't be null";
-        }
         if ($this->container['version'] === null) {
             $invalidProperties[] = "'version' can't be null";
         }
@@ -312,60 +292,6 @@ class ConfigInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets config
-     *
-     * @return \Formance\Model\Config
-     */
-    public function getConfig()
-    {
-        return $this->container['config'];
-    }
-
-    /**
-     * Sets config
-     *
-     * @param \Formance\Model\Config $config config
-     *
-     * @return self
-     */
-    public function setConfig($config)
-    {
-        if (is_null($config)) {
-            throw new \InvalidArgumentException('non-nullable config cannot be null');
-        }
-        $this->container['config'] = $config;
-
-        return $this;
-    }
-
-    /**
-     * Gets server
-     *
-     * @return string
-     */
-    public function getServer()
-    {
-        return $this->container['server'];
-    }
-
-    /**
-     * Sets server
-     *
-     * @param string $server server
-     *
-     * @return self
-     */
-    public function setServer($server)
-    {
-        if (is_null($server)) {
-            throw new \InvalidArgumentException('non-nullable server cannot be null');
-        }
-        $this->container['server'] = $server;
-
-        return $this;
-    }
 
     /**
      * Gets version
