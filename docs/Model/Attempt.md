@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  | [optional]
 **webhook_id** | **string** |  | [optional]
-**date** | **\DateTime** |  | [optional]
+**created_at** | **\DateTime** |  | [optional]
+**updated_at** | **\DateTime** |  | [optional]
 **config** | [**\Formance\Model\WebhooksConfig**](WebhooksConfig.md) |  | [optional]
 **payload** | **string** |  | [optional]
 **status_code** | **int** |  | [optional]
