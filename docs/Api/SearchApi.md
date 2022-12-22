@@ -10,7 +10,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `search()`
 
 ```php
-search($query)
+search($query): \Formance\Model\Response
 ```
 
 Search
@@ -37,7 +37,8 @@ $apiInstance = new Formance\Api\SearchApi(
 $query = new \Formance\Model\Query(); // \Formance\Model\Query
 
 try {
-    $apiInstance->search($query);
+    $result = $apiInstance->search($query);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SearchApi->search: ', $e->getMessage(), PHP_EOL;
 }
@@ -51,7 +52,7 @@ try {
 
 ### Return type
 
-void (empty response body)
+[**\Formance\Model\Response**](../Model/Response.md)
 
 ### Authorization
 
@@ -60,7 +61,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

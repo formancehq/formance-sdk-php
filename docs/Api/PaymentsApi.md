@@ -193,7 +193,7 @@ This endpoint does not need any parameter.
 ## `getConnectorTask()`
 
 ```php
-getConnectorTask($connector, $task_id): \Formance\Model\ConnectorTask
+getConnectorTask($connector, $task_id): \Formance\Model\ListConnectorTasks200ResponseInner
 ```
 
 Read a specific task of the connector
@@ -217,7 +217,7 @@ $apiInstance = new Formance\Api\PaymentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connector = 'connector_example'; // string | The connector code
+$connector = new \Formance\Model\Connectors(); // Connectors | The connector code
 $task_id = task1; // string | The task id
 
 try {
@@ -232,12 +232,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connector** | **string**| The connector code | |
+| **connector** | [**Connectors**](../Model/.md)| The connector code | |
 | **task_id** | **string**| The task id | |
 
 ### Return type
 
-[**\Formance\Model\ConnectorTask**](../Model/ConnectorTask.md)
+[**\Formance\Model\ListConnectorTasks200ResponseInner**](../Model/ListConnectorTasks200ResponseInner.md)
 
 ### Authorization
 
@@ -337,7 +337,7 @@ $apiInstance = new Formance\Api\PaymentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connector = 'connector_example'; // string | The connector code
+$connector = new \Formance\Model\Connectors(); // Connectors | The connector code
 $connector_config = new \Formance\Model\ConnectorConfig(); // \Formance\Model\ConnectorConfig
 
 try {
@@ -351,7 +351,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connector** | **string**| The connector code | |
+| **connector** | [**Connectors**](../Model/.md)| The connector code | |
 | **connector_config** | [**\Formance\Model\ConnectorConfig**](../Model/ConnectorConfig.md)|  | |
 
 ### Return type
@@ -374,7 +374,7 @@ void (empty response body)
 ## `listConnectorTasks()`
 
 ```php
-listConnectorTasks($connector): \Formance\Model\ConnectorTask[]
+listConnectorTasks($connector): \Formance\Model\ListConnectorTasks200ResponseInner[]
 ```
 
 List connector tasks
@@ -398,7 +398,7 @@ $apiInstance = new Formance\Api\PaymentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connector = 'connector_example'; // string | The connector code
+$connector = new \Formance\Model\Connectors(); // Connectors | The connector code
 
 try {
     $result = $apiInstance->listConnectorTasks($connector);
@@ -412,11 +412,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connector** | **string**| The connector code | |
+| **connector** | [**Connectors**](../Model/.md)| The connector code | |
 
 ### Return type
 
-[**\Formance\Model\ConnectorTask[]**](../Model/ConnectorTask.md)
+[**\Formance\Model\ListConnectorTasks200ResponseInner[]**](../Model/ListConnectorTasks200ResponseInner.md)
 
 ### Authorization
 
@@ -520,7 +520,7 @@ $apiInstance = new Formance\Api\PaymentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connector = 'connector_example'; // string | The connector code
+$connector = new \Formance\Model\Connectors(); // Connectors | The connector code
 
 try {
     $result = $apiInstance->readConnectorConfig($connector);
@@ -534,7 +534,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connector** | **string**| The connector code | |
+| **connector** | [**Connectors**](../Model/.md)| The connector code | |
 
 ### Return type
 
@@ -580,7 +580,7 @@ $apiInstance = new Formance\Api\PaymentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connector = 'connector_example'; // string | The connector code
+$connector = new \Formance\Model\Connectors(); // Connectors | The connector code
 
 try {
     $apiInstance->resetConnector($connector);
@@ -593,7 +593,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connector** | **string**| The connector code | |
+| **connector** | [**Connectors**](../Model/.md)| The connector code | |
 
 ### Return type
 
@@ -639,7 +639,7 @@ $apiInstance = new Formance\Api\PaymentsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$connector = 'connector_example'; // string | The connector code
+$connector = new \Formance\Model\Connectors(); // Connectors | The connector code
 
 try {
     $apiInstance->uninstallConnector($connector);
@@ -652,7 +652,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **connector** | **string**| The connector code | |
+| **connector** | [**Connectors**](../Model/.md)| The connector code | |
 
 ### Return type
 
