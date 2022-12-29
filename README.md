@@ -138,13 +138,13 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**revertTransaction**](docs/Api/TransactionsApi.md#reverttransaction) | **POST** /api/ledger/{ledger}/transactions/{txid}/revert | Revert a ledger transaction by its ID.
 *UsersApi* | [**listUsers**](docs/Api/UsersApi.md#listusers) | **GET** /api/auth/users | List users
 *UsersApi* | [**readUser**](docs/Api/UsersApi.md#readuser) | **GET** /api/auth/users/{userId} | Read user
-*WebhooksApi* | [**activateOneConfig**](docs/Api/WebhooksApi.md#activateoneconfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
-*WebhooksApi* | [**changeOneConfigSecret**](docs/Api/WebhooksApi.md#changeoneconfigsecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
-*WebhooksApi* | [**deactivateOneConfig**](docs/Api/WebhooksApi.md#deactivateoneconfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
-*WebhooksApi* | [**deleteOneConfig**](docs/Api/WebhooksApi.md#deleteoneconfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
+*WebhooksApi* | [**activateConfig**](docs/Api/WebhooksApi.md#activateconfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
+*WebhooksApi* | [**changeConfigSecret**](docs/Api/WebhooksApi.md#changeconfigsecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
+*WebhooksApi* | [**deactivateConfig**](docs/Api/WebhooksApi.md#deactivateconfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
+*WebhooksApi* | [**deleteConfig**](docs/Api/WebhooksApi.md#deleteconfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
 *WebhooksApi* | [**getManyConfigs**](docs/Api/WebhooksApi.md#getmanyconfigs) | **GET** /api/webhooks/configs | Get many configs
-*WebhooksApi* | [**insertOneConfig**](docs/Api/WebhooksApi.md#insertoneconfig) | **POST** /api/webhooks/configs | Insert a new config
-*WebhooksApi* | [**testOneConfig**](docs/Api/WebhooksApi.md#testoneconfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
+*WebhooksApi* | [**insertConfig**](docs/Api/WebhooksApi.md#insertconfig) | **POST** /api/webhooks/configs | Insert a new config
+*WebhooksApi* | [**testConfig**](docs/Api/WebhooksApi.md#testconfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
 
 ## Models
 
@@ -154,19 +154,19 @@ Class | Method | HTTP request | Description
 - [Attempt](docs/Model/Attempt.md)
 - [AttemptResponse](docs/Model/AttemptResponse.md)
 - [BankingCircleConfig](docs/Model/BankingCircleConfig.md)
-- [ChangeOneConfigSecretRequest](docs/Model/ChangeOneConfigSecretRequest.md)
 - [Client](docs/Model/Client.md)
 - [ClientAllOf](docs/Model/ClientAllOf.md)
 - [ClientOptions](docs/Model/ClientOptions.md)
 - [ClientSecret](docs/Model/ClientSecret.md)
 - [Config](docs/Model/Config.md)
+- [ConfigChangeSecret](docs/Model/ConfigChangeSecret.md)
 - [ConfigInfo](docs/Model/ConfigInfo.md)
 - [ConfigInfoResponse](docs/Model/ConfigInfoResponse.md)
 - [ConfigResponse](docs/Model/ConfigResponse.md)
 - [ConfigUser](docs/Model/ConfigUser.md)
+- [ConfigsResponse](docs/Model/ConfigsResponse.md)
 - [ConnectorBaseInfo](docs/Model/ConnectorBaseInfo.md)
 - [ConnectorConfig](docs/Model/ConnectorConfig.md)
-- [ConnectorTaskBase](docs/Model/ConnectorTaskBase.md)
 - [Connectors](docs/Model/Connectors.md)
 - [Contract](docs/Model/Contract.md)
 - [CreateClientResponse](docs/Model/CreateClientResponse.md)
@@ -187,9 +187,6 @@ Class | Method | HTTP request | Description
 - [GetBalances200ResponseCursorAllOf](docs/Model/GetBalances200ResponseCursorAllOf.md)
 - [GetBalancesAggregated200Response](docs/Model/GetBalancesAggregated200Response.md)
 - [GetBalancesAggregated400Response](docs/Model/GetBalancesAggregated400Response.md)
-- [GetManyConfigs200Response](docs/Model/GetManyConfigs200Response.md)
-- [GetManyConfigs200ResponseCursor](docs/Model/GetManyConfigs200ResponseCursor.md)
-- [GetManyConfigs200ResponseCursorAllOf](docs/Model/GetManyConfigs200ResponseCursorAllOf.md)
 - [GetPaymentResponse](docs/Model/GetPaymentResponse.md)
 - [GetTransaction400Response](docs/Model/GetTransaction400Response.md)
 - [GetTransaction404Response](docs/Model/GetTransaction404Response.md)
@@ -237,23 +234,17 @@ Class | Method | HTTP request | Description
 - [StripeTask](docs/Model/StripeTask.md)
 - [StripeTransferRequest](docs/Model/StripeTransferRequest.md)
 - [TaskDescriptorBankingCircle](docs/Model/TaskDescriptorBankingCircle.md)
-- [TaskDescriptorBankingCircleAllOf](docs/Model/TaskDescriptorBankingCircleAllOf.md)
-- [TaskDescriptorBankingCircleAllOfDescriptor](docs/Model/TaskDescriptorBankingCircleAllOfDescriptor.md)
+- [TaskDescriptorBankingCircleDescriptor](docs/Model/TaskDescriptorBankingCircleDescriptor.md)
 - [TaskDescriptorCurrencyCloud](docs/Model/TaskDescriptorCurrencyCloud.md)
-- [TaskDescriptorCurrencyCloudAllOf](docs/Model/TaskDescriptorCurrencyCloudAllOf.md)
-- [TaskDescriptorCurrencyCloudAllOfDescriptor](docs/Model/TaskDescriptorCurrencyCloudAllOfDescriptor.md)
+- [TaskDescriptorCurrencyCloudDescriptor](docs/Model/TaskDescriptorCurrencyCloudDescriptor.md)
 - [TaskDescriptorDummyPay](docs/Model/TaskDescriptorDummyPay.md)
-- [TaskDescriptorDummyPayAllOf](docs/Model/TaskDescriptorDummyPayAllOf.md)
-- [TaskDescriptorDummyPayAllOfDescriptor](docs/Model/TaskDescriptorDummyPayAllOfDescriptor.md)
+- [TaskDescriptorDummyPayDescriptor](docs/Model/TaskDescriptorDummyPayDescriptor.md)
 - [TaskDescriptorModulr](docs/Model/TaskDescriptorModulr.md)
-- [TaskDescriptorModulrAllOf](docs/Model/TaskDescriptorModulrAllOf.md)
-- [TaskDescriptorModulrAllOfDescriptor](docs/Model/TaskDescriptorModulrAllOfDescriptor.md)
+- [TaskDescriptorModulrDescriptor](docs/Model/TaskDescriptorModulrDescriptor.md)
 - [TaskDescriptorStripe](docs/Model/TaskDescriptorStripe.md)
-- [TaskDescriptorStripeAllOf](docs/Model/TaskDescriptorStripeAllOf.md)
-- [TaskDescriptorStripeAllOfDescriptor](docs/Model/TaskDescriptorStripeAllOfDescriptor.md)
+- [TaskDescriptorStripeDescriptor](docs/Model/TaskDescriptorStripeDescriptor.md)
 - [TaskDescriptorWise](docs/Model/TaskDescriptorWise.md)
-- [TaskDescriptorWiseAllOf](docs/Model/TaskDescriptorWiseAllOf.md)
-- [TaskDescriptorWiseAllOfDescriptor](docs/Model/TaskDescriptorWiseAllOfDescriptor.md)
+- [TaskDescriptorWiseDescriptor](docs/Model/TaskDescriptorWiseDescriptor.md)
 - [Transaction](docs/Model/Transaction.md)
 - [TransactionData](docs/Model/TransactionData.md)
 - [TransactionResponse](docs/Model/TransactionResponse.md)
@@ -291,5 +282,5 @@ support@formance.com
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.0.0-rc.1`
+- API version: `develop`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
