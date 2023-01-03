@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **status** | **string** | The task status | [optional]
 **error** | **string** | The error message if the task failed | [optional]
 **state** | **object** | The task state | [optional]
-**descriptor** | [**\Formance\Model\TaskDescriptorModulrAllOfDescriptor**](TaskDescriptorModulrAllOfDescriptor.md) |  | [optional]
+**descriptor** | [**\Formance\Model\TaskDescriptorModulrDescriptor**](TaskDescriptorModulrDescriptor.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
