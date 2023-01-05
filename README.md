@@ -104,7 +104,12 @@ Class | Method | HTTP request | Description
 *ClientsApi* | [**listClients**](docs/Api/ClientsApi.md#listclients) | **GET** /api/auth/clients | List clients
 *ClientsApi* | [**readClient**](docs/Api/ClientsApi.md#readclient) | **GET** /api/auth/clients/{clientId} | Read client
 *ClientsApi* | [**updateClient**](docs/Api/ClientsApi.md#updateclient) | **PUT** /api/auth/clients/{clientId} | Update client
-*DefaultApi* | [**getServerInfo**](docs/Api/DefaultApi.md#getserverinfo) | **GET** /api/search/_info | Get server info
+*DefaultApi* | [**createBalance**](docs/Api/DefaultApi.md#createbalance) | **POST** /api/wallets/wallets/{id}/balances | Create a balance
+*DefaultApi* | [**getBalance**](docs/Api/DefaultApi.md#getbalance) | **GET** /api/wallets/wallets/{id}/balances/{balanceName} | Get detailed balance
+*DefaultApi* | [**getServerInfo**](docs/Api/DefaultApi.md#getserverinfo) | **GET** /api/auth/_info | Get server info
+*DefaultApi* | [**listBalances**](docs/Api/DefaultApi.md#listbalances) | **GET** /api/wallets/wallets/{id}/balances | List balances of a wallet
+*DefaultApi* | [**searchgetServerInfo**](docs/Api/DefaultApi.md#searchgetserverinfo) | **GET** /api/search/_info | Get server info
+*DefaultApi* | [**walletsgetServerInfo**](docs/Api/DefaultApi.md#walletsgetserverinfo) | **GET** /api/wallets/_info | Get server info
 *MappingApi* | [**getMapping**](docs/Api/MappingApi.md#getmapping) | **GET** /api/ledger/{ledger}/mapping | Get the mapping of a ledger.
 *MappingApi* | [**updateMapping**](docs/Api/MappingApi.md#updatemapping) | **PUT** /api/ledger/{ledger}/mapping | Update the mapping of a ledger.
 *PaymentsApi* | [**connectorsStripeTransfer**](docs/Api/PaymentsApi.md#connectorsstripetransfer) | **POST** /api/payments/connectors/stripe/transfer | Transfer funds between Stripe accounts
@@ -138,13 +143,24 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**revertTransaction**](docs/Api/TransactionsApi.md#reverttransaction) | **POST** /api/ledger/{ledger}/transactions/{txid}/revert | Revert a ledger transaction by its ID.
 *UsersApi* | [**listUsers**](docs/Api/UsersApi.md#listusers) | **GET** /api/auth/users | List users
 *UsersApi* | [**readUser**](docs/Api/UsersApi.md#readuser) | **GET** /api/auth/users/{userId} | Read user
-*WebhooksApi* | [**activateOneConfig**](docs/Api/WebhooksApi.md#activateoneconfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
-*WebhooksApi* | [**changeOneConfigSecret**](docs/Api/WebhooksApi.md#changeoneconfigsecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
-*WebhooksApi* | [**deactivateOneConfig**](docs/Api/WebhooksApi.md#deactivateoneconfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
-*WebhooksApi* | [**deleteOneConfig**](docs/Api/WebhooksApi.md#deleteoneconfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
+*WalletsApi* | [**confirmHold**](docs/Api/WalletsApi.md#confirmhold) | **POST** /api/wallets/holds/{hold_id}/confirm | Confirm a hold
+*WalletsApi* | [**createWallet**](docs/Api/WalletsApi.md#createwallet) | **POST** /api/wallets/wallets | Create a new wallet
+*WalletsApi* | [**creditWallet**](docs/Api/WalletsApi.md#creditwallet) | **POST** /api/wallets/wallets/{id}/credit | Credit a wallet
+*WalletsApi* | [**debitWallet**](docs/Api/WalletsApi.md#debitwallet) | **POST** /api/wallets/wallets/{id}/debit | Debit a wallet
+*WalletsApi* | [**getHold**](docs/Api/WalletsApi.md#gethold) | **GET** /api/wallets/holds/{holdID} | Get a hold
+*WalletsApi* | [**getHolds**](docs/Api/WalletsApi.md#getholds) | **GET** /api/wallets/holds | Get all holds for a wallet
+*WalletsApi* | [**getTransactions**](docs/Api/WalletsApi.md#gettransactions) | **GET** /api/wallets/transactions | 
+*WalletsApi* | [**getWallet**](docs/Api/WalletsApi.md#getwallet) | **GET** /api/wallets/wallets/{id} | Get a wallet
+*WalletsApi* | [**listWallets**](docs/Api/WalletsApi.md#listwallets) | **GET** /api/wallets/wallets | List all wallets
+*WalletsApi* | [**updateWallet**](docs/Api/WalletsApi.md#updatewallet) | **PATCH** /api/wallets/wallets/{id} | Update a wallet
+*WalletsApi* | [**voidHold**](docs/Api/WalletsApi.md#voidhold) | **POST** /api/wallets/holds/{hold_id}/void | Cancel a hold
+*WebhooksApi* | [**activateConfig**](docs/Api/WebhooksApi.md#activateconfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
+*WebhooksApi* | [**changeConfigSecret**](docs/Api/WebhooksApi.md#changeconfigsecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
+*WebhooksApi* | [**deactivateConfig**](docs/Api/WebhooksApi.md#deactivateconfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
+*WebhooksApi* | [**deleteConfig**](docs/Api/WebhooksApi.md#deleteconfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
 *WebhooksApi* | [**getManyConfigs**](docs/Api/WebhooksApi.md#getmanyconfigs) | **GET** /api/webhooks/configs | Get many configs
-*WebhooksApi* | [**insertOneConfig**](docs/Api/WebhooksApi.md#insertoneconfig) | **POST** /api/webhooks/configs | Insert a new config
-*WebhooksApi* | [**testOneConfig**](docs/Api/WebhooksApi.md#testoneconfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
+*WebhooksApi* | [**insertConfig**](docs/Api/WebhooksApi.md#insertconfig) | **POST** /api/webhooks/configs | Insert a new config
+*WebhooksApi* | [**testConfig**](docs/Api/WebhooksApi.md#testconfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
 
 ## Models
 
@@ -153,51 +169,74 @@ Class | Method | HTTP request | Description
 - [AddMetadataToAccount409Response](docs/Model/AddMetadataToAccount409Response.md)
 - [Attempt](docs/Model/Attempt.md)
 - [AttemptResponse](docs/Model/AttemptResponse.md)
+- [Balance](docs/Model/Balance.md)
+- [BalanceWithAssets](docs/Model/BalanceWithAssets.md)
+- [BalanceWithAssetsAllOf](docs/Model/BalanceWithAssetsAllOf.md)
 - [BankingCircleConfig](docs/Model/BankingCircleConfig.md)
-- [ChangeOneConfigSecretRequest](docs/Model/ChangeOneConfigSecretRequest.md)
 - [Client](docs/Model/Client.md)
 - [ClientAllOf](docs/Model/ClientAllOf.md)
 - [ClientOptions](docs/Model/ClientOptions.md)
 - [ClientSecret](docs/Model/ClientSecret.md)
 - [Config](docs/Model/Config.md)
+- [ConfigChangeSecret](docs/Model/ConfigChangeSecret.md)
 - [ConfigInfo](docs/Model/ConfigInfo.md)
 - [ConfigInfoResponse](docs/Model/ConfigInfoResponse.md)
 - [ConfigResponse](docs/Model/ConfigResponse.md)
 - [ConfigUser](docs/Model/ConfigUser.md)
+- [ConfigsResponse](docs/Model/ConfigsResponse.md)
+- [ConfirmHoldRequest](docs/Model/ConfirmHoldRequest.md)
 - [ConnectorBaseInfo](docs/Model/ConnectorBaseInfo.md)
 - [ConnectorConfig](docs/Model/ConnectorConfig.md)
-- [ConnectorTaskBase](docs/Model/ConnectorTaskBase.md)
 - [Connectors](docs/Model/Connectors.md)
 - [Contract](docs/Model/Contract.md)
+- [CreateBalanceResponse](docs/Model/CreateBalanceResponse.md)
 - [CreateClientResponse](docs/Model/CreateClientResponse.md)
 - [CreateScopeResponse](docs/Model/CreateScopeResponse.md)
 - [CreateSecretResponse](docs/Model/CreateSecretResponse.md)
 - [CreateTransaction400Response](docs/Model/CreateTransaction400Response.md)
 - [CreateTransaction409Response](docs/Model/CreateTransaction409Response.md)
 - [CreateTransactions400Response](docs/Model/CreateTransactions400Response.md)
+- [CreateWalletRequest](docs/Model/CreateWalletRequest.md)
+- [CreateWalletResponse](docs/Model/CreateWalletResponse.md)
+- [CreditWalletRequest](docs/Model/CreditWalletRequest.md)
 - [CurrencyCloudConfig](docs/Model/CurrencyCloudConfig.md)
 - [Cursor](docs/Model/Cursor.md)
+- [DebitWalletRequest](docs/Model/DebitWalletRequest.md)
+- [DebitWalletResponse](docs/Model/DebitWalletResponse.md)
 - [DummyPayConfig](docs/Model/DummyPayConfig.md)
 - [ErrorCode](docs/Model/ErrorCode.md)
 - [ErrorResponse](docs/Model/ErrorResponse.md)
+- [ExpandedDebitHold](docs/Model/ExpandedDebitHold.md)
+- [ExpandedDebitHoldAllOf](docs/Model/ExpandedDebitHoldAllOf.md)
 - [GetAccount200Response](docs/Model/GetAccount200Response.md)
 - [GetAccount400Response](docs/Model/GetAccount400Response.md)
+- [GetBalanceResponse](docs/Model/GetBalanceResponse.md)
 - [GetBalances200Response](docs/Model/GetBalances200Response.md)
 - [GetBalances200ResponseCursor](docs/Model/GetBalances200ResponseCursor.md)
 - [GetBalances200ResponseCursorAllOf](docs/Model/GetBalances200ResponseCursorAllOf.md)
 - [GetBalancesAggregated200Response](docs/Model/GetBalancesAggregated200Response.md)
 - [GetBalancesAggregated400Response](docs/Model/GetBalancesAggregated400Response.md)
-- [GetManyConfigs200Response](docs/Model/GetManyConfigs200Response.md)
-- [GetManyConfigs200ResponseCursor](docs/Model/GetManyConfigs200ResponseCursor.md)
-- [GetManyConfigs200ResponseCursorAllOf](docs/Model/GetManyConfigs200ResponseCursorAllOf.md)
+- [GetHoldResponse](docs/Model/GetHoldResponse.md)
+- [GetHoldsResponse](docs/Model/GetHoldsResponse.md)
+- [GetHoldsResponseCursor](docs/Model/GetHoldsResponseCursor.md)
+- [GetHoldsResponseCursorAllOf](docs/Model/GetHoldsResponseCursorAllOf.md)
 - [GetPaymentResponse](docs/Model/GetPaymentResponse.md)
 - [GetTransaction400Response](docs/Model/GetTransaction400Response.md)
 - [GetTransaction404Response](docs/Model/GetTransaction404Response.md)
+- [GetTransactionsResponse](docs/Model/GetTransactionsResponse.md)
+- [GetTransactionsResponseCursor](docs/Model/GetTransactionsResponseCursor.md)
+- [GetTransactionsResponseCursorAllOf](docs/Model/GetTransactionsResponseCursorAllOf.md)
+- [GetWalletResponse](docs/Model/GetWalletResponse.md)
+- [Hold](docs/Model/Hold.md)
+- [LedgerAccountSubject](docs/Model/LedgerAccountSubject.md)
 - [LedgerStorage](docs/Model/LedgerStorage.md)
 - [ListAccounts200Response](docs/Model/ListAccounts200Response.md)
 - [ListAccounts200ResponseCursor](docs/Model/ListAccounts200ResponseCursor.md)
 - [ListAccounts200ResponseCursorAllOf](docs/Model/ListAccounts200ResponseCursorAllOf.md)
 - [ListAccounts400Response](docs/Model/ListAccounts400Response.md)
+- [ListBalancesResponse](docs/Model/ListBalancesResponse.md)
+- [ListBalancesResponseCursor](docs/Model/ListBalancesResponseCursor.md)
+- [ListBalancesResponseCursorAllOf](docs/Model/ListBalancesResponseCursorAllOf.md)
 - [ListClientsResponse](docs/Model/ListClientsResponse.md)
 - [ListConnectorTasks200ResponseInner](docs/Model/ListConnectorTasks200ResponseInner.md)
 - [ListConnectorsConfigsResponse](docs/Model/ListConnectorsConfigsResponse.md)
@@ -210,9 +249,13 @@ Class | Method | HTTP request | Description
 - [ListTransactions200ResponseCursor](docs/Model/ListTransactions200ResponseCursor.md)
 - [ListTransactions200ResponseCursorAllOf](docs/Model/ListTransactions200ResponseCursorAllOf.md)
 - [ListUsersResponse](docs/Model/ListUsersResponse.md)
+- [ListWalletsResponse](docs/Model/ListWalletsResponse.md)
+- [ListWalletsResponseCursor](docs/Model/ListWalletsResponseCursor.md)
+- [ListWalletsResponseCursorAllOf](docs/Model/ListWalletsResponseCursorAllOf.md)
 - [Mapping](docs/Model/Mapping.md)
 - [MappingResponse](docs/Model/MappingResponse.md)
 - [ModulrConfig](docs/Model/ModulrConfig.md)
+- [Monetary](docs/Model/Monetary.md)
 - [Payment](docs/Model/Payment.md)
 - [Posting](docs/Model/Posting.md)
 - [Query](docs/Model/Query.md)
@@ -236,31 +279,35 @@ Class | Method | HTTP request | Description
 - [StripeConfig](docs/Model/StripeConfig.md)
 - [StripeTask](docs/Model/StripeTask.md)
 - [StripeTransferRequest](docs/Model/StripeTransferRequest.md)
+- [Subject](docs/Model/Subject.md)
 - [TaskDescriptorBankingCircle](docs/Model/TaskDescriptorBankingCircle.md)
-- [TaskDescriptorBankingCircleAllOf](docs/Model/TaskDescriptorBankingCircleAllOf.md)
-- [TaskDescriptorBankingCircleAllOfDescriptor](docs/Model/TaskDescriptorBankingCircleAllOfDescriptor.md)
+- [TaskDescriptorBankingCircleDescriptor](docs/Model/TaskDescriptorBankingCircleDescriptor.md)
 - [TaskDescriptorCurrencyCloud](docs/Model/TaskDescriptorCurrencyCloud.md)
-- [TaskDescriptorCurrencyCloudAllOf](docs/Model/TaskDescriptorCurrencyCloudAllOf.md)
-- [TaskDescriptorCurrencyCloudAllOfDescriptor](docs/Model/TaskDescriptorCurrencyCloudAllOfDescriptor.md)
+- [TaskDescriptorCurrencyCloudDescriptor](docs/Model/TaskDescriptorCurrencyCloudDescriptor.md)
 - [TaskDescriptorDummyPay](docs/Model/TaskDescriptorDummyPay.md)
-- [TaskDescriptorDummyPayAllOf](docs/Model/TaskDescriptorDummyPayAllOf.md)
-- [TaskDescriptorDummyPayAllOfDescriptor](docs/Model/TaskDescriptorDummyPayAllOfDescriptor.md)
+- [TaskDescriptorDummyPayDescriptor](docs/Model/TaskDescriptorDummyPayDescriptor.md)
 - [TaskDescriptorModulr](docs/Model/TaskDescriptorModulr.md)
-- [TaskDescriptorModulrAllOf](docs/Model/TaskDescriptorModulrAllOf.md)
-- [TaskDescriptorModulrAllOfDescriptor](docs/Model/TaskDescriptorModulrAllOfDescriptor.md)
+- [TaskDescriptorModulrDescriptor](docs/Model/TaskDescriptorModulrDescriptor.md)
 - [TaskDescriptorStripe](docs/Model/TaskDescriptorStripe.md)
-- [TaskDescriptorStripeAllOf](docs/Model/TaskDescriptorStripeAllOf.md)
-- [TaskDescriptorStripeAllOfDescriptor](docs/Model/TaskDescriptorStripeAllOfDescriptor.md)
+- [TaskDescriptorStripeDescriptor](docs/Model/TaskDescriptorStripeDescriptor.md)
 - [TaskDescriptorWise](docs/Model/TaskDescriptorWise.md)
-- [TaskDescriptorWiseAllOf](docs/Model/TaskDescriptorWiseAllOf.md)
-- [TaskDescriptorWiseAllOfDescriptor](docs/Model/TaskDescriptorWiseAllOfDescriptor.md)
+- [TaskDescriptorWiseDescriptor](docs/Model/TaskDescriptorWiseDescriptor.md)
 - [Transaction](docs/Model/Transaction.md)
 - [TransactionData](docs/Model/TransactionData.md)
 - [TransactionResponse](docs/Model/TransactionResponse.md)
 - [Transactions](docs/Model/Transactions.md)
 - [TransactionsResponse](docs/Model/TransactionsResponse.md)
+- [UpdateWalletRequest](docs/Model/UpdateWalletRequest.md)
 - [User](docs/Model/User.md)
 - [Volume](docs/Model/Volume.md)
+- [Wallet](docs/Model/Wallet.md)
+- [WalletSubject](docs/Model/WalletSubject.md)
+- [WalletWithBalances](docs/Model/WalletWithBalances.md)
+- [WalletWithBalancesAllOf](docs/Model/WalletWithBalancesAllOf.md)
+- [WalletsCursor](docs/Model/WalletsCursor.md)
+- [WalletsPosting](docs/Model/WalletsPosting.md)
+- [WalletsTransaction](docs/Model/WalletsTransaction.md)
+- [WalletsVolume](docs/Model/WalletsVolume.md)
 - [WebhooksConfig](docs/Model/WebhooksConfig.md)
 - [WebhooksCursor](docs/Model/WebhooksCursor.md)
 - [WiseConfig](docs/Model/WiseConfig.md)
@@ -291,5 +338,5 @@ support@formance.com
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.0.0-rc.1`
+- API version: `develop`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

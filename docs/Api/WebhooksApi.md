@@ -4,22 +4,24 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**activateOneConfig()**](WebhooksApi.md#activateOneConfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config |
-| [**changeOneConfigSecret()**](WebhooksApi.md#changeOneConfigSecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config |
-| [**deactivateOneConfig()**](WebhooksApi.md#deactivateOneConfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config |
-| [**deleteOneConfig()**](WebhooksApi.md#deleteOneConfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config |
+| [**activateConfig()**](WebhooksApi.md#activateConfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config |
+| [**changeConfigSecret()**](WebhooksApi.md#changeConfigSecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config |
+| [**deactivateConfig()**](WebhooksApi.md#deactivateConfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config |
+| [**deleteConfig()**](WebhooksApi.md#deleteConfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config |
 | [**getManyConfigs()**](WebhooksApi.md#getManyConfigs) | **GET** /api/webhooks/configs | Get many configs |
-| [**insertOneConfig()**](WebhooksApi.md#insertOneConfig) | **POST** /api/webhooks/configs | Insert a new config |
-| [**testOneConfig()**](WebhooksApi.md#testOneConfig) | **GET** /api/webhooks/configs/{id}/test | Test one config |
+| [**insertConfig()**](WebhooksApi.md#insertConfig) | **POST** /api/webhooks/configs | Insert a new config |
+| [**testConfig()**](WebhooksApi.md#testConfig) | **GET** /api/webhooks/configs/{id}/test | Test one config |
 
 
-## `activateOneConfig()`
+## `activateConfig()`
 
 ```php
-activateOneConfig($id): \Formance\Model\ConfigResponse
+activateConfig($id): \Formance\Model\ConfigResponse
 ```
 
 Activate one config
+
+Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example
 
@@ -41,10 +43,10 @@ $apiInstance = new Formance\Api\WebhooksApi(
 $id = 4997257d-dfb6-445b-929c-cbe2ab182818; // string | Config ID
 
 try {
-    $result = $apiInstance->activateOneConfig($id);
+    $result = $apiInstance->activateConfig($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WebhooksApi->activateOneConfig: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WebhooksApi->activateConfig: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -71,15 +73,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `changeOneConfigSecret()`
+## `changeConfigSecret()`
 
 ```php
-changeOneConfigSecret($id, $change_one_config_secret_request): \Formance\Model\ConfigResponse
+changeConfigSecret($id, $config_change_secret): \Formance\Model\ConfigResponse
 ```
 
 Change the signing secret of a config
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
 
 ### Example
 
@@ -99,13 +101,13 @@ $apiInstance = new Formance\Api\WebhooksApi(
     $config
 );
 $id = 4997257d-dfb6-445b-929c-cbe2ab182818; // string | Config ID
-$change_one_config_secret_request = new \Formance\Model\ChangeOneConfigSecretRequest(); // \Formance\Model\ChangeOneConfigSecretRequest
+$config_change_secret = new \Formance\Model\ConfigChangeSecret(); // \Formance\Model\ConfigChangeSecret
 
 try {
-    $result = $apiInstance->changeOneConfigSecret($id, $change_one_config_secret_request);
+    $result = $apiInstance->changeConfigSecret($id, $config_change_secret);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WebhooksApi->changeOneConfigSecret: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WebhooksApi->changeConfigSecret: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -114,7 +116,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Config ID | |
-| **change_one_config_secret_request** | [**\Formance\Model\ChangeOneConfigSecretRequest**](../Model/ChangeOneConfigSecretRequest.md)|  | [optional] |
+| **config_change_secret** | [**\Formance\Model\ConfigChangeSecret**](../Model/ConfigChangeSecret.md)|  | [optional] |
 
 ### Return type
 
@@ -133,13 +135,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deactivateOneConfig()`
+## `deactivateConfig()`
 
 ```php
-deactivateOneConfig($id): \Formance\Model\ConfigResponse
+deactivateConfig($id): \Formance\Model\ConfigResponse
 ```
 
 Deactivate one config
+
+Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example
 
@@ -161,10 +165,10 @@ $apiInstance = new Formance\Api\WebhooksApi(
 $id = 4997257d-dfb6-445b-929c-cbe2ab182818; // string | Config ID
 
 try {
-    $result = $apiInstance->deactivateOneConfig($id);
+    $result = $apiInstance->deactivateConfig($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WebhooksApi->deactivateOneConfig: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WebhooksApi->deactivateConfig: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -191,13 +195,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deleteOneConfig()`
+## `deleteConfig()`
 
 ```php
-deleteOneConfig($id)
+deleteConfig($id)
 ```
 
 Delete one config
+
+Delete a webhooks config by ID.
 
 ### Example
 
@@ -219,9 +225,9 @@ $apiInstance = new Formance\Api\WebhooksApi(
 $id = 4997257d-dfb6-445b-929c-cbe2ab182818; // string | Config ID
 
 try {
-    $apiInstance->deleteOneConfig($id);
+    $apiInstance->deleteConfig($id);
 } catch (Exception $e) {
-    echo 'Exception when calling WebhooksApi->deleteOneConfig: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WebhooksApi->deleteConfig: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -251,7 +257,7 @@ void (empty response body)
 ## `getManyConfigs()`
 
 ```php
-getManyConfigs($id, $endpoint): \Formance\Model\GetManyConfigs200Response
+getManyConfigs($id, $endpoint): \Formance\Model\ConfigsResponse
 ```
 
 Get many configs
@@ -295,7 +301,7 @@ try {
 
 ### Return type
 
-[**\Formance\Model\GetManyConfigs200Response**](../Model/GetManyConfigs200Response.md)
+[**\Formance\Model\ConfigsResponse**](../Model/ConfigsResponse.md)
 
 ### Authorization
 
@@ -310,15 +316,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `insertOneConfig()`
+## `insertConfig()`
 
 ```php
-insertOneConfig($config_user): \Formance\Model\ConfigResponse
+insertConfig($config_user): \Formance\Model\ConfigResponse
 ```
 
 Insert a new config
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted.
+Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted.
 
 ### Example
 
@@ -340,10 +346,10 @@ $apiInstance = new Formance\Api\WebhooksApi(
 $config_user = new \Formance\Model\ConfigUser(); // \Formance\Model\ConfigUser
 
 try {
-    $result = $apiInstance->insertOneConfig($config_user);
+    $result = $apiInstance->insertConfig($config_user);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WebhooksApi->insertOneConfig: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WebhooksApi->insertConfig: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -370,15 +376,15 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `testOneConfig()`
+## `testConfig()`
 
 ```php
-testOneConfig($id): \Formance\Model\AttemptResponse
+testConfig($id): \Formance\Model\AttemptResponse
 ```
 
 Test one config
 
-Test one config by sending a webhook to its endpoint.
+Test a config by sending a webhook to its endpoint.
 
 ### Example
 
@@ -400,10 +406,10 @@ $apiInstance = new Formance\Api\WebhooksApi(
 $id = 4997257d-dfb6-445b-929c-cbe2ab182818; // string | Config ID
 
 try {
-    $result = $apiInstance->testOneConfig($id);
+    $result = $apiInstance->testConfig($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling WebhooksApi->testOneConfig: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling WebhooksApi->testConfig: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
