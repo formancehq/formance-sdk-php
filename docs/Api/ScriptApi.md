@@ -4,16 +4,18 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**runScript()**](ScriptApi.md#runScript) | **POST** /api/ledger/{ledger}/script | Execute a Numscript. |
+| [**runScript()**](ScriptApi.md#runScript) | **POST** /api/ledger/{ledger}/script | Execute a Numscript |
 
 
 ## `runScript()`
 
 ```php
-runScript($ledger, $script, $preview): \Formance\Model\ScriptResult
+runScript($ledger, $script, $preview): \Formance\Model\ScriptResponse
 ```
 
-Execute a Numscript.
+Execute a Numscript
+
+This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
 
 ### Example
 
@@ -54,7 +56,7 @@ try {
 
 ### Return type
 
-[**\Formance\Model\ScriptResult**](../Model/ScriptResult.md)
+[**\Formance\Model\ScriptResponse**](../Model/ScriptResponse.md)
 
 ### Authorization
 

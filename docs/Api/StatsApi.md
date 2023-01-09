@@ -4,7 +4,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**readStats()**](StatsApi.md#readStats) | **GET** /api/ledger/{ledger}/stats | Get Stats |
+| [**readStats()**](StatsApi.md#readStats) | **GET** /api/ledger/{ledger}/stats | Get statistics from a ledger |
 
 
 ## `readStats()`
@@ -13,9 +13,9 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 readStats($ledger): \Formance\Model\StatsResponse
 ```
 
-Get Stats
+Get statistics from a ledger
 
-Get ledger stats (aggregate metrics on accounts and transactions) The stats for account
+Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ### Example
 

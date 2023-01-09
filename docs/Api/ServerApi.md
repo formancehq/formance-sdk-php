@@ -4,7 +4,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getInfo()**](ServerApi.md#getInfo) | **GET** /api/ledger/_info | Show server information. |
+| [**getInfo()**](ServerApi.md#getInfo) | **GET** /api/ledger/_info | Show server information |
 
 
 ## `getInfo()`
@@ -13,7 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 getInfo(): \Formance\Model\ConfigInfoResponse
 ```
 
-Show server information.
+Show server information
 
 ### Example
 

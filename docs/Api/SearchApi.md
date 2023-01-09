@@ -15,7 +15,7 @@ search($query): \Formance\Model\Response
 
 Search
 
-Search with Query
+ElasticSearch query engine
 
 ### Example
 

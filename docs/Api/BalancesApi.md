@@ -11,7 +11,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `getBalances()`
 
 ```php
-getBalances($ledger, $address, $after, $pagination_token): \Formance\Model\GetBalances200Response
+getBalances($ledger, $address, $after, $cursor, $pagination_token): \Formance\Model\BalancesCursorResponse
 ```
 
 Get the balances from a ledger's account
@@ -36,10 +36,11 @@ $apiInstance = new Formance\Api\BalancesApi(
 $ledger = ledger001; // string | Name of the ledger.
 $address = users:001; // string | Filter balances involving given account, either as source or destination.
 $after = users:003; // string | Pagination cursor, will return accounts after given address, in descending order.
-$pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+$cursor = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+$pagination_token = aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==; // string | Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. Deprecated, please use `cursor` instead.
 
 try {
-    $result = $apiInstance->getBalances($ledger, $address, $after, $pagination_token);
+    $result = $apiInstance->getBalances($ledger, $address, $after, $cursor, $pagination_token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BalancesApi->getBalances: ', $e->getMessage(), PHP_EOL;
@@ -53,11 +54,12 @@ try {
 | **ledger** | **string**| Name of the ledger. | |
 | **address** | **string**| Filter balances involving given account, either as source or destination. | [optional] |
 | **after** | **string**| Pagination cursor, will return accounts after given address, in descending order. | [optional] |
-| **pagination_token** | **string**| Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. | [optional] |
+| **cursor** | **string**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. | [optional] |
+| **pagination_token** | **string**| Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. Deprecated, please use &#x60;cursor&#x60; instead. | [optional] |
 
 ### Return type
 
-[**\Formance\Model\GetBalances200Response**](../Model/GetBalances200Response.md)
+[**\Formance\Model\BalancesCursorResponse**](../Model/BalancesCursorResponse.md)
 
 ### Authorization
 
@@ -75,7 +77,7 @@ try {
 ## `getBalancesAggregated()`
 
 ```php
-getBalancesAggregated($ledger, $address): \Formance\Model\GetBalancesAggregated200Response
+getBalancesAggregated($ledger, $address): \Formance\Model\AggregateBalancesResponse
 ```
 
 Get the aggregated balances from selected accounts
@@ -117,7 +119,7 @@ try {
 
 ### Return type
 
-[**\Formance\Model\GetBalancesAggregated200Response**](../Model/GetBalancesAggregated200Response.md)
+[**\Formance\Model\AggregateBalancesResponse**](../Model/AggregateBalancesResponse.md)
 
 ### Authorization
 

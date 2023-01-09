@@ -12,6 +12,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**installConnector()**](PaymentsApi.md#installConnector) | **POST** /api/payments/connectors/{connector} | Install connector |
 | [**listConnectorTasks()**](PaymentsApi.md#listConnectorTasks) | **GET** /api/payments/connectors/{connector}/tasks | List connector tasks |
 | [**listPayments()**](PaymentsApi.md#listPayments) | **GET** /api/payments/payments | Returns a list of payments. |
+| [**paymentslistAccounts()**](PaymentsApi.md#paymentslistAccounts) | **GET** /api/payments/accounts | Returns a list of accounts. |
 | [**readConnectorConfig()**](PaymentsApi.md#readConnectorConfig) | **GET** /api/payments/connectors/{connector}/config | Read connector config |
 | [**resetConnector()**](PaymentsApi.md#resetConnector) | **POST** /api/payments/connectors/{connector}/reset | Reset connector |
 | [**uninstallConnector()**](PaymentsApi.md#uninstallConnector) | **DELETE** /api/payments/connectors/{connector} | Uninstall connector |
@@ -479,6 +480,68 @@ try {
 ### Return type
 
 [**\Formance\Model\ListPaymentsResponse**](../Model/ListPaymentsResponse.md)
+
+### Authorization
+
+[Authorization](../../README.md#Authorization)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `paymentslistAccounts()`
+
+```php
+paymentslistAccounts($limit, $skip, $sort): \Formance\Model\ListAccountsResponse
+```
+
+Returns a list of accounts.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: Authorization
+$config = Formance\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Formance\Api\PaymentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$limit = 10; // int | Limit the number of accounts to return, pagination can be achieved in conjunction with 'skip' parameter.
+$skip = 100; // int | How many accounts to skip, pagination can be achieved in conjunction with 'limit' parameter.
+$sort = status; // string[] | Field used to sort payments (Default is by date).
+
+try {
+    $result = $apiInstance->paymentslistAccounts($limit, $skip, $sort);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PaymentsApi->paymentslistAccounts: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| Limit the number of accounts to return, pagination can be achieved in conjunction with &#39;skip&#39; parameter. | [optional] |
+| **skip** | **int**| How many accounts to skip, pagination can be achieved in conjunction with &#39;limit&#39; parameter. | [optional] |
+| **sort** | [**string[]**](../Model/string.md)| Field used to sort payments (Default is by date). | [optional] |
+
+### Return type
+
+[**\Formance\Model\ListAccountsResponse**](../Model/ListAccountsResponse.md)
 
 ### Authorization
 

@@ -4,8 +4,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getMapping()**](MappingApi.md#getMapping) | **GET** /api/ledger/{ledger}/mapping | Get the mapping of a ledger. |
-| [**updateMapping()**](MappingApi.md#updateMapping) | **PUT** /api/ledger/{ledger}/mapping | Update the mapping of a ledger. |
+| [**getMapping()**](MappingApi.md#getMapping) | **GET** /api/ledger/{ledger}/mapping | Get the mapping of a ledger |
+| [**updateMapping()**](MappingApi.md#updateMapping) | **PUT** /api/ledger/{ledger}/mapping | Update the mapping of a ledger |
 
 
 ## `getMapping()`
@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 getMapping($ledger): \Formance\Model\MappingResponse
 ```
 
-Get the mapping of a ledger.
+Get the mapping of a ledger
 
 ### Example
 
@@ -72,7 +72,7 @@ try {
 updateMapping($ledger, $mapping): \Formance\Model\MappingResponse
 ```
 
-Update the mapping of a ledger.
+Update the mapping of a ledger
 
 ### Example
 
