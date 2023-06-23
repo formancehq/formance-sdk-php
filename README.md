@@ -1,295 +1,188 @@
-# OpenAPIClient-php
+# formance-sdk-php
 
-Open, modular foundation for unique payments flows
-
-# Introduction
-This API is documented in **OpenAPI format**.
-
-# Authentication
-Formance Stack offers one forms of authentication:
-  - OAuth2
-OAuth2 - an open protocol to allow secure authorization in a simple
-and standard method from web, mobile and desktop applications.
-<SecurityDefinitions />
-
-
-For more information, please visit [https://www.formance.com](https://www.formance.com).
-
-## Installation & Usage
-
-### Requirements
-
-PHP 7.4 and later.
-Should also work with PHP 8.0.
+<!-- Start SDK Installation -->
+## SDK Installation
 
 ### Composer
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+To install the SDK first add the below to your `composer.json` file:
 
 ```json
 {
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/formancehq/formance-sdk-php.git"
+    "repositories": [
+        {
+            "type": "github",
+            "url": "<UNSET>.git"
+        }
+    ],
+    "require": {
+        "formance-sdk-php": "*"
     }
-  ],
-  "require": {
-    "formancehq/formance-sdk-php": "*@dev"
-  }
 }
 ```
 
-Then run `composer install`
-
-### Manual Installation
-
-Download the files and include `autoload.php`:
-
-```php
-<?php
-require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
-```
-
-## Getting Started
-
-Please follow the [installation procedure](#installation--usage) and then run the following:
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-// Configure OAuth2 access token for authorization: Authorization
-$config = Formance\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new Formance\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$ledger = ledger001; // string | Name of the ledger.
-$address = users:001; // string | Exact address of the account. It must match the following regular expressions pattern: ``` ^\\w+(:\\w+)*$ ```
-$request_body = NULL; // array<string,mixed> | metadata
-
-try {
-    $apiInstance->addMetadataToAccount($ledger, $address, $request_body);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->addMetadataToAccount: ', $e->getMessage(), PHP_EOL;
-}
-
-```
-
-## API Endpoints
-
-All URIs are relative to *http://localhost*
-
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*AccountsApi* | [**addMetadataToAccount**](docs/Api/AccountsApi.md#addmetadatatoaccount) | **POST** /api/ledger/{ledger}/accounts/{address}/metadata | Add metadata to an account.
-*AccountsApi* | [**countAccounts**](docs/Api/AccountsApi.md#countaccounts) | **HEAD** /api/ledger/{ledger}/accounts | Count the accounts from a ledger.
-*AccountsApi* | [**getAccount**](docs/Api/AccountsApi.md#getaccount) | **GET** /api/ledger/{ledger}/accounts/{address} | Get account by its address.
-*AccountsApi* | [**listAccounts**](docs/Api/AccountsApi.md#listaccounts) | **GET** /api/ledger/{ledger}/accounts | List accounts from a ledger.
-*BalancesApi* | [**getBalances**](docs/Api/BalancesApi.md#getbalances) | **GET** /api/ledger/{ledger}/balances | Get the balances from a ledger&#39;s account
-*BalancesApi* | [**getBalancesAggregated**](docs/Api/BalancesApi.md#getbalancesaggregated) | **GET** /api/ledger/{ledger}/aggregate/balances | Get the aggregated balances from selected accounts
-*ClientsApi* | [**addScopeToClient**](docs/Api/ClientsApi.md#addscopetoclient) | **PUT** /api/auth/clients/{clientId}/scopes/{scopeId} | Add scope to client
-*ClientsApi* | [**createClient**](docs/Api/ClientsApi.md#createclient) | **POST** /api/auth/clients | Create client
-*ClientsApi* | [**createSecret**](docs/Api/ClientsApi.md#createsecret) | **POST** /api/auth/clients/{clientId}/secrets | Add a secret to a client
-*ClientsApi* | [**deleteClient**](docs/Api/ClientsApi.md#deleteclient) | **DELETE** /api/auth/clients/{clientId} | Delete client
-*ClientsApi* | [**deleteScopeFromClient**](docs/Api/ClientsApi.md#deletescopefromclient) | **DELETE** /api/auth/clients/{clientId}/scopes/{scopeId} | Delete scope from client
-*ClientsApi* | [**deleteSecret**](docs/Api/ClientsApi.md#deletesecret) | **DELETE** /api/auth/clients/{clientId}/secrets/{secretId} | Delete a secret from a client
-*ClientsApi* | [**listClients**](docs/Api/ClientsApi.md#listclients) | **GET** /api/auth/clients | List clients
-*ClientsApi* | [**readClient**](docs/Api/ClientsApi.md#readclient) | **GET** /api/auth/clients/{clientId} | Read client
-*ClientsApi* | [**updateClient**](docs/Api/ClientsApi.md#updateclient) | **PUT** /api/auth/clients/{clientId} | Update client
-*DefaultApi* | [**getServerInfo**](docs/Api/DefaultApi.md#getserverinfo) | **GET** /api/search/_info | Get server info
-*MappingApi* | [**getMapping**](docs/Api/MappingApi.md#getmapping) | **GET** /api/ledger/{ledger}/mapping | Get the mapping of a ledger.
-*MappingApi* | [**updateMapping**](docs/Api/MappingApi.md#updatemapping) | **PUT** /api/ledger/{ledger}/mapping | Update the mapping of a ledger.
-*PaymentsApi* | [**connectorsStripeTransfer**](docs/Api/PaymentsApi.md#connectorsstripetransfer) | **POST** /api/payments/connectors/stripe/transfer | Transfer funds between Stripe accounts
-*PaymentsApi* | [**getAllConnectors**](docs/Api/PaymentsApi.md#getallconnectors) | **GET** /api/payments/connectors | Get all installed connectors
-*PaymentsApi* | [**getAllConnectorsConfigs**](docs/Api/PaymentsApi.md#getallconnectorsconfigs) | **GET** /api/payments/connectors/configs | Get all available connectors configs
-*PaymentsApi* | [**getConnectorTask**](docs/Api/PaymentsApi.md#getconnectortask) | **GET** /api/payments/connectors/{connector}/tasks/{taskId} | Read a specific task of the connector
-*PaymentsApi* | [**getPayment**](docs/Api/PaymentsApi.md#getpayment) | **GET** /api/payments/payments/{paymentId} | Returns a payment.
-*PaymentsApi* | [**installConnector**](docs/Api/PaymentsApi.md#installconnector) | **POST** /api/payments/connectors/{connector} | Install connector
-*PaymentsApi* | [**listConnectorTasks**](docs/Api/PaymentsApi.md#listconnectortasks) | **GET** /api/payments/connectors/{connector}/tasks | List connector tasks
-*PaymentsApi* | [**listPayments**](docs/Api/PaymentsApi.md#listpayments) | **GET** /api/payments/payments | Returns a list of payments.
-*PaymentsApi* | [**readConnectorConfig**](docs/Api/PaymentsApi.md#readconnectorconfig) | **GET** /api/payments/connectors/{connector}/config | Read connector config
-*PaymentsApi* | [**resetConnector**](docs/Api/PaymentsApi.md#resetconnector) | **POST** /api/payments/connectors/{connector}/reset | Reset connector
-*PaymentsApi* | [**uninstallConnector**](docs/Api/PaymentsApi.md#uninstallconnector) | **DELETE** /api/payments/connectors/{connector} | Uninstall connector
-*ScopesApi* | [**addTransientScope**](docs/Api/ScopesApi.md#addtransientscope) | **PUT** /api/auth/scopes/{scopeId}/transient/{transientScopeId} | Add a transient scope to a scope
-*ScopesApi* | [**createScope**](docs/Api/ScopesApi.md#createscope) | **POST** /api/auth/scopes | Create scope
-*ScopesApi* | [**deleteScope**](docs/Api/ScopesApi.md#deletescope) | **DELETE** /api/auth/scopes/{scopeId} | Delete scope
-*ScopesApi* | [**deleteTransientScope**](docs/Api/ScopesApi.md#deletetransientscope) | **DELETE** /api/auth/scopes/{scopeId}/transient/{transientScopeId} | Delete a transient scope from a scope
-*ScopesApi* | [**listScopes**](docs/Api/ScopesApi.md#listscopes) | **GET** /api/auth/scopes | List scopes
-*ScopesApi* | [**readScope**](docs/Api/ScopesApi.md#readscope) | **GET** /api/auth/scopes/{scopeId} | Read scope
-*ScopesApi* | [**updateScope**](docs/Api/ScopesApi.md#updatescope) | **PUT** /api/auth/scopes/{scopeId} | Update scope
-*ScriptApi* | [**runScript**](docs/Api/ScriptApi.md#runscript) | **POST** /api/ledger/{ledger}/script | Execute a Numscript.
-*SearchApi* | [**search**](docs/Api/SearchApi.md#search) | **POST** /api/search/ | Search
-*ServerApi* | [**getInfo**](docs/Api/ServerApi.md#getinfo) | **GET** /api/ledger/_info | Show server information.
-*StatsApi* | [**readStats**](docs/Api/StatsApi.md#readstats) | **GET** /api/ledger/{ledger}/stats | Get Stats
-*TransactionsApi* | [**addMetadataOnTransaction**](docs/Api/TransactionsApi.md#addmetadataontransaction) | **POST** /api/ledger/{ledger}/transactions/{txid}/metadata | Set the metadata of a transaction by its ID.
-*TransactionsApi* | [**countTransactions**](docs/Api/TransactionsApi.md#counttransactions) | **HEAD** /api/ledger/{ledger}/transactions | Count the transactions from a ledger.
-*TransactionsApi* | [**createTransaction**](docs/Api/TransactionsApi.md#createtransaction) | **POST** /api/ledger/{ledger}/transactions | Create a new transaction to a ledger.
-*TransactionsApi* | [**createTransactions**](docs/Api/TransactionsApi.md#createtransactions) | **POST** /api/ledger/{ledger}/transactions/batch | Create a new batch of transactions to a ledger.
-*TransactionsApi* | [**getTransaction**](docs/Api/TransactionsApi.md#gettransaction) | **GET** /api/ledger/{ledger}/transactions/{txid} | Get transaction from a ledger by its ID.
-*TransactionsApi* | [**listTransactions**](docs/Api/TransactionsApi.md#listtransactions) | **GET** /api/ledger/{ledger}/transactions | List transactions from a ledger.
-*TransactionsApi* | [**revertTransaction**](docs/Api/TransactionsApi.md#reverttransaction) | **POST** /api/ledger/{ledger}/transactions/{txid}/revert | Revert a ledger transaction by its ID.
-*UsersApi* | [**listUsers**](docs/Api/UsersApi.md#listusers) | **GET** /api/auth/users | List users
-*UsersApi* | [**readUser**](docs/Api/UsersApi.md#readuser) | **GET** /api/auth/users/{userId} | Read user
-*WebhooksApi* | [**activateOneConfig**](docs/Api/WebhooksApi.md#activateoneconfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
-*WebhooksApi* | [**changeOneConfigSecret**](docs/Api/WebhooksApi.md#changeoneconfigsecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
-*WebhooksApi* | [**deactivateOneConfig**](docs/Api/WebhooksApi.md#deactivateoneconfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
-*WebhooksApi* | [**deleteOneConfig**](docs/Api/WebhooksApi.md#deleteoneconfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
-*WebhooksApi* | [**getManyConfigs**](docs/Api/WebhooksApi.md#getmanyconfigs) | **GET** /api/webhooks/configs | Get many configs
-*WebhooksApi* | [**insertOneConfig**](docs/Api/WebhooksApi.md#insertoneconfig) | **POST** /api/webhooks/configs | Insert a new config
-*WebhooksApi* | [**testOneConfig**](docs/Api/WebhooksApi.md#testoneconfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
-
-## Models
-
-- [Account](docs/Model/Account.md)
-- [AccountWithVolumesAndBalances](docs/Model/AccountWithVolumesAndBalances.md)
-- [AddMetadataToAccount409Response](docs/Model/AddMetadataToAccount409Response.md)
-- [Attempt](docs/Model/Attempt.md)
-- [AttemptResponse](docs/Model/AttemptResponse.md)
-- [BankingCircleConfig](docs/Model/BankingCircleConfig.md)
-- [ChangeOneConfigSecretRequest](docs/Model/ChangeOneConfigSecretRequest.md)
-- [Client](docs/Model/Client.md)
-- [ClientAllOf](docs/Model/ClientAllOf.md)
-- [ClientOptions](docs/Model/ClientOptions.md)
-- [ClientSecret](docs/Model/ClientSecret.md)
-- [Config](docs/Model/Config.md)
-- [ConfigInfo](docs/Model/ConfigInfo.md)
-- [ConfigInfoResponse](docs/Model/ConfigInfoResponse.md)
-- [ConfigResponse](docs/Model/ConfigResponse.md)
-- [ConfigUser](docs/Model/ConfigUser.md)
-- [ConnectorBaseInfo](docs/Model/ConnectorBaseInfo.md)
-- [ConnectorConfig](docs/Model/ConnectorConfig.md)
-- [ConnectorTaskBase](docs/Model/ConnectorTaskBase.md)
-- [Connectors](docs/Model/Connectors.md)
-- [Contract](docs/Model/Contract.md)
-- [CreateClientResponse](docs/Model/CreateClientResponse.md)
-- [CreateScopeResponse](docs/Model/CreateScopeResponse.md)
-- [CreateSecretResponse](docs/Model/CreateSecretResponse.md)
-- [CreateTransaction400Response](docs/Model/CreateTransaction400Response.md)
-- [CreateTransaction409Response](docs/Model/CreateTransaction409Response.md)
-- [CreateTransactions400Response](docs/Model/CreateTransactions400Response.md)
-- [CurrencyCloudConfig](docs/Model/CurrencyCloudConfig.md)
-- [Cursor](docs/Model/Cursor.md)
-- [DummyPayConfig](docs/Model/DummyPayConfig.md)
-- [ErrorCode](docs/Model/ErrorCode.md)
-- [ErrorResponse](docs/Model/ErrorResponse.md)
-- [GetAccount200Response](docs/Model/GetAccount200Response.md)
-- [GetAccount400Response](docs/Model/GetAccount400Response.md)
-- [GetBalances200Response](docs/Model/GetBalances200Response.md)
-- [GetBalances200ResponseCursor](docs/Model/GetBalances200ResponseCursor.md)
-- [GetBalances200ResponseCursorAllOf](docs/Model/GetBalances200ResponseCursorAllOf.md)
-- [GetBalancesAggregated200Response](docs/Model/GetBalancesAggregated200Response.md)
-- [GetBalancesAggregated400Response](docs/Model/GetBalancesAggregated400Response.md)
-- [GetManyConfigs200Response](docs/Model/GetManyConfigs200Response.md)
-- [GetManyConfigs200ResponseCursor](docs/Model/GetManyConfigs200ResponseCursor.md)
-- [GetManyConfigs200ResponseCursorAllOf](docs/Model/GetManyConfigs200ResponseCursorAllOf.md)
-- [GetPaymentResponse](docs/Model/GetPaymentResponse.md)
-- [GetTransaction400Response](docs/Model/GetTransaction400Response.md)
-- [GetTransaction404Response](docs/Model/GetTransaction404Response.md)
-- [LedgerStorage](docs/Model/LedgerStorage.md)
-- [ListAccounts200Response](docs/Model/ListAccounts200Response.md)
-- [ListAccounts200ResponseCursor](docs/Model/ListAccounts200ResponseCursor.md)
-- [ListAccounts200ResponseCursorAllOf](docs/Model/ListAccounts200ResponseCursorAllOf.md)
-- [ListAccounts400Response](docs/Model/ListAccounts400Response.md)
-- [ListClientsResponse](docs/Model/ListClientsResponse.md)
-- [ListConnectorTasks200ResponseInner](docs/Model/ListConnectorTasks200ResponseInner.md)
-- [ListConnectorsConfigsResponse](docs/Model/ListConnectorsConfigsResponse.md)
-- [ListConnectorsConfigsResponseConnector](docs/Model/ListConnectorsConfigsResponseConnector.md)
-- [ListConnectorsConfigsResponseConnectorKey](docs/Model/ListConnectorsConfigsResponseConnectorKey.md)
-- [ListConnectorsResponse](docs/Model/ListConnectorsResponse.md)
-- [ListPaymentsResponse](docs/Model/ListPaymentsResponse.md)
-- [ListScopesResponse](docs/Model/ListScopesResponse.md)
-- [ListTransactions200Response](docs/Model/ListTransactions200Response.md)
-- [ListTransactions200ResponseCursor](docs/Model/ListTransactions200ResponseCursor.md)
-- [ListTransactions200ResponseCursorAllOf](docs/Model/ListTransactions200ResponseCursorAllOf.md)
-- [ListUsersResponse](docs/Model/ListUsersResponse.md)
-- [Mapping](docs/Model/Mapping.md)
-- [MappingResponse](docs/Model/MappingResponse.md)
-- [ModulrConfig](docs/Model/ModulrConfig.md)
-- [Payment](docs/Model/Payment.md)
-- [Posting](docs/Model/Posting.md)
-- [Query](docs/Model/Query.md)
-- [ReadClientResponse](docs/Model/ReadClientResponse.md)
-- [ReadUserResponse](docs/Model/ReadUserResponse.md)
-- [Response](docs/Model/Response.md)
-- [ResponseCursor](docs/Model/ResponseCursor.md)
-- [ResponseCursorTotal](docs/Model/ResponseCursorTotal.md)
-- [RunScript400Response](docs/Model/RunScript400Response.md)
-- [Scope](docs/Model/Scope.md)
-- [ScopeAllOf](docs/Model/ScopeAllOf.md)
-- [ScopeOptions](docs/Model/ScopeOptions.md)
-- [Script](docs/Model/Script.md)
-- [ScriptResult](docs/Model/ScriptResult.md)
-- [Secret](docs/Model/Secret.md)
-- [SecretAllOf](docs/Model/SecretAllOf.md)
-- [SecretOptions](docs/Model/SecretOptions.md)
-- [ServerInfo](docs/Model/ServerInfo.md)
-- [Stats](docs/Model/Stats.md)
-- [StatsResponse](docs/Model/StatsResponse.md)
-- [StripeConfig](docs/Model/StripeConfig.md)
-- [StripeTask](docs/Model/StripeTask.md)
-- [StripeTransferRequest](docs/Model/StripeTransferRequest.md)
-- [TaskDescriptorBankingCircle](docs/Model/TaskDescriptorBankingCircle.md)
-- [TaskDescriptorBankingCircleAllOf](docs/Model/TaskDescriptorBankingCircleAllOf.md)
-- [TaskDescriptorBankingCircleAllOfDescriptor](docs/Model/TaskDescriptorBankingCircleAllOfDescriptor.md)
-- [TaskDescriptorCurrencyCloud](docs/Model/TaskDescriptorCurrencyCloud.md)
-- [TaskDescriptorCurrencyCloudAllOf](docs/Model/TaskDescriptorCurrencyCloudAllOf.md)
-- [TaskDescriptorCurrencyCloudAllOfDescriptor](docs/Model/TaskDescriptorCurrencyCloudAllOfDescriptor.md)
-- [TaskDescriptorDummyPay](docs/Model/TaskDescriptorDummyPay.md)
-- [TaskDescriptorDummyPayAllOf](docs/Model/TaskDescriptorDummyPayAllOf.md)
-- [TaskDescriptorDummyPayAllOfDescriptor](docs/Model/TaskDescriptorDummyPayAllOfDescriptor.md)
-- [TaskDescriptorModulr](docs/Model/TaskDescriptorModulr.md)
-- [TaskDescriptorModulrAllOf](docs/Model/TaskDescriptorModulrAllOf.md)
-- [TaskDescriptorModulrAllOfDescriptor](docs/Model/TaskDescriptorModulrAllOfDescriptor.md)
-- [TaskDescriptorStripe](docs/Model/TaskDescriptorStripe.md)
-- [TaskDescriptorStripeAllOf](docs/Model/TaskDescriptorStripeAllOf.md)
-- [TaskDescriptorStripeAllOfDescriptor](docs/Model/TaskDescriptorStripeAllOfDescriptor.md)
-- [TaskDescriptorWise](docs/Model/TaskDescriptorWise.md)
-- [TaskDescriptorWiseAllOf](docs/Model/TaskDescriptorWiseAllOf.md)
-- [TaskDescriptorWiseAllOfDescriptor](docs/Model/TaskDescriptorWiseAllOfDescriptor.md)
-- [Transaction](docs/Model/Transaction.md)
-- [TransactionData](docs/Model/TransactionData.md)
-- [TransactionResponse](docs/Model/TransactionResponse.md)
-- [Transactions](docs/Model/Transactions.md)
-- [TransactionsResponse](docs/Model/TransactionsResponse.md)
-- [User](docs/Model/User.md)
-- [Volume](docs/Model/Volume.md)
-- [WebhooksConfig](docs/Model/WebhooksConfig.md)
-- [WebhooksCursor](docs/Model/WebhooksCursor.md)
-- [WiseConfig](docs/Model/WiseConfig.md)
-
-## Authorization
-
-### Authorization
-
-- **Type**: `OAuth`
-- **Flow**: `application`
-- **Authorization URL**: ``
-- **Scopes**: N/A
-
-## Tests
-
-To run the tests, use:
+Then run the following command:
 
 ```bash
-composer install
-vendor/bin/phpunit
+composer update
 ```
+<!-- End SDK Installation -->
 
-## Author
+## SDK Example Usage
+<!-- Start SDK Example Usage -->
+```php
+<?php
 
-support@formance.com
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
 
-## About this package
+use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 
-This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+$sdk = SDK::builder()
+    ->build();
 
-- API version: `v1.0.0-rc.1`
-- Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
+try {
+    $response = $sdk->getVersions();
+
+    if ($response->getVersionsResponse !== null) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+<!-- End SDK Example Usage -->
+
+<!-- Start SDK Available Operations -->
+## Available Resources and Operations
+
+### [SDK](docs/sdks/sdk/README.md)
+
+* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+
+### [auth](docs/sdks/auth/README.md)
+
+* [addScopeToClient](docs/sdks/auth/README.md#addscopetoclient) - Add scope to client
+* [addTransientScope](docs/sdks/auth/README.md#addtransientscope) - Add a transient scope to a scope
+* [createClient](docs/sdks/auth/README.md#createclient) - Create client
+* [createScope](docs/sdks/auth/README.md#createscope) - Create scope
+* [createSecret](docs/sdks/auth/README.md#createsecret) - Add a secret to a client
+* [deleteClient](docs/sdks/auth/README.md#deleteclient) - Delete client
+* [deleteScope](docs/sdks/auth/README.md#deletescope) - Delete scope
+* [deleteScopeFromClient](docs/sdks/auth/README.md#deletescopefromclient) - Delete scope from client
+* [deleteSecret](docs/sdks/auth/README.md#deletesecret) - Delete a secret from a client
+* [deleteTransientScope](docs/sdks/auth/README.md#deletetransientscope) - Delete a transient scope from a scope
+* [getServerInfo](docs/sdks/auth/README.md#getserverinfo) - Get server info
+* [listClients](docs/sdks/auth/README.md#listclients) - List clients
+* [listScopes](docs/sdks/auth/README.md#listscopes) - List scopes
+* [listUsers](docs/sdks/auth/README.md#listusers) - List users
+* [readClient](docs/sdks/auth/README.md#readclient) - Read client
+* [readScope](docs/sdks/auth/README.md#readscope) - Read scope
+* [readUser](docs/sdks/auth/README.md#readuser) - Read user
+* [updateClient](docs/sdks/auth/README.md#updateclient) - Update client
+* [updateScope](docs/sdks/auth/README.md#updatescope) - Update scope
+
+### [ledger](docs/sdks/ledger/README.md)
+
+* [createTransactions](docs/sdks/ledger/README.md#createtransactions) - Create a new batch of transactions to a ledger
+* [addMetadataOnTransaction](docs/sdks/ledger/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
+* [addMetadataToAccount](docs/sdks/ledger/README.md#addmetadatatoaccount) - Add metadata to an account
+* [countAccounts](docs/sdks/ledger/README.md#countaccounts) - Count the accounts from a ledger
+* [countTransactions](docs/sdks/ledger/README.md#counttransactions) - Count the transactions from a ledger
+* [createTransaction](docs/sdks/ledger/README.md#createtransaction) - Create a new transaction to a ledger
+* [getAccount](docs/sdks/ledger/README.md#getaccount) - Get account by its address
+* [getBalances](docs/sdks/ledger/README.md#getbalances) - Get the balances from a ledger's account
+* [getBalancesAggregated](docs/sdks/ledger/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
+* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
+* [getLedgerInfo](docs/sdks/ledger/README.md#getledgerinfo) - Get information about a ledger
+* [getMapping](docs/sdks/ledger/README.md#getmapping) - Get the mapping of a ledger
+* [getTransaction](docs/sdks/ledger/README.md#gettransaction) - Get transaction from a ledger by its ID
+* [listAccounts](docs/sdks/ledger/README.md#listaccounts) - List accounts from a ledger
+* [listLogs](docs/sdks/ledger/README.md#listlogs) - List the logs from a ledger
+* [listTransactions](docs/sdks/ledger/README.md#listtransactions) - List transactions from a ledger
+* [readStats](docs/sdks/ledger/README.md#readstats) - Get statistics from a ledger
+* [revertTransaction](docs/sdks/ledger/README.md#reverttransaction) - Revert a ledger transaction by its ID
+* [~~runScript~~](docs/sdks/ledger/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
+* [updateMapping](docs/sdks/ledger/README.md#updatemapping) - Update the mapping of a ledger
+
+### [orchestration](docs/sdks/orchestration/README.md)
+
+* [cancelEvent](docs/sdks/orchestration/README.md#cancelevent) - Cancel a running workflow
+* [createWorkflow](docs/sdks/orchestration/README.md#createworkflow) - Create workflow
+* [getInstance](docs/sdks/orchestration/README.md#getinstance) - Get a workflow instance by id
+* [getInstanceHistory](docs/sdks/orchestration/README.md#getinstancehistory) - Get a workflow instance history by id
+* [getInstanceStageHistory](docs/sdks/orchestration/README.md#getinstancestagehistory) - Get a workflow instance stage history
+* [getWorkflow](docs/sdks/orchestration/README.md#getworkflow) - Get a flow by id
+* [listInstances](docs/sdks/orchestration/README.md#listinstances) - List instances of a workflow
+* [listWorkflows](docs/sdks/orchestration/README.md#listworkflows) - List registered workflows
+* [orchestrationgetServerInfo](docs/sdks/orchestration/README.md#orchestrationgetserverinfo) - Get server info
+* [runWorkflow](docs/sdks/orchestration/README.md#runworkflow) - Run workflow
+* [sendEvent](docs/sdks/orchestration/README.md#sendevent) - Send an event to a running workflow
+
+### [payments](docs/sdks/payments/README.md)
+
+* [connectorsStripeTransfer](docs/sdks/payments/README.md#connectorsstripetransfer) - Transfer funds between Stripe accounts
+* [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
+* [getConnectorTask](docs/sdks/payments/README.md#getconnectortask) - Read a specific task of the connector
+* [getPayment](docs/sdks/payments/README.md#getpayment) - Get a payment
+* [installConnector](docs/sdks/payments/README.md#installconnector) - Install a connector
+* [listAllConnectors](docs/sdks/payments/README.md#listallconnectors) - List all installed connectors
+* [listConfigsAvailableConnectors](docs/sdks/payments/README.md#listconfigsavailableconnectors) - List the configs of each available connector
+* [listConnectorTasks](docs/sdks/payments/README.md#listconnectortasks) - List tasks from a connector
+* [listConnectorsTransfers](docs/sdks/payments/README.md#listconnectorstransfers) - List transfers and their statuses
+* [listPayments](docs/sdks/payments/README.md#listpayments) - List payments
+* [paymentsgetServerInfo](docs/sdks/payments/README.md#paymentsgetserverinfo) - Get server info
+* [paymentslistAccounts](docs/sdks/payments/README.md#paymentslistaccounts) - List accounts
+* [readConnectorConfig](docs/sdks/payments/README.md#readconnectorconfig) - Read the config of a connector
+* [resetConnector](docs/sdks/payments/README.md#resetconnector) - Reset a connector
+* [uninstallConnector](docs/sdks/payments/README.md#uninstallconnector) - Uninstall a connector
+* [updateMetadata](docs/sdks/payments/README.md#updatemetadata) - Update metadata
+
+### [search](docs/sdks/search/README.md)
+
+* [search](docs/sdks/search/README.md#search) - Search
+* [searchgetServerInfo](docs/sdks/search/README.md#searchgetserverinfo) - Get server info
+
+### [wallets](docs/sdks/wallets/README.md)
+
+* [confirmHold](docs/sdks/wallets/README.md#confirmhold) - Confirm a hold
+* [createBalance](docs/sdks/wallets/README.md#createbalance) - Create a balance
+* [createWallet](docs/sdks/wallets/README.md#createwallet) - Create a new wallet
+* [creditWallet](docs/sdks/wallets/README.md#creditwallet) - Credit a wallet
+* [debitWallet](docs/sdks/wallets/README.md#debitwallet) - Debit a wallet
+* [getBalance](docs/sdks/wallets/README.md#getbalance) - Get detailed balance
+* [getHold](docs/sdks/wallets/README.md#gethold) - Get a hold
+* [getHolds](docs/sdks/wallets/README.md#getholds) - Get all holds for a wallet
+* [getTransactions](docs/sdks/wallets/README.md#gettransactions)
+* [getWallet](docs/sdks/wallets/README.md#getwallet) - Get a wallet
+* [getWalletSummary](docs/sdks/wallets/README.md#getwalletsummary) - Get wallet summary
+* [listBalances](docs/sdks/wallets/README.md#listbalances) - List balances of a wallet
+* [listWallets](docs/sdks/wallets/README.md#listwallets) - List all wallets
+* [updateWallet](docs/sdks/wallets/README.md#updatewallet) - Update a wallet
+* [voidHold](docs/sdks/wallets/README.md#voidhold) - Cancel a hold
+* [walletsgetServerInfo](docs/sdks/wallets/README.md#walletsgetserverinfo) - Get server info
+
+### [webhooks](docs/sdks/webhooks/README.md)
+
+* [activateConfig](docs/sdks/webhooks/README.md#activateconfig) - Activate one config
+* [changeConfigSecret](docs/sdks/webhooks/README.md#changeconfigsecret) - Change the signing secret of a config
+* [deactivateConfig](docs/sdks/webhooks/README.md#deactivateconfig) - Deactivate one config
+* [deleteConfig](docs/sdks/webhooks/README.md#deleteconfig) - Delete one config
+* [getManyConfigs](docs/sdks/webhooks/README.md#getmanyconfigs) - Get many configs
+* [insertConfig](docs/sdks/webhooks/README.md#insertconfig) - Insert a new config
+* [testConfig](docs/sdks/webhooks/README.md#testconfig) - Test one config
+<!-- End SDK Available Operations -->
+
+### Maturity
+
+This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
+to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
+looking for the latest version.
+
+### Contributions
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release !
+
+### SDK Created by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
