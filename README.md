@@ -5,26 +5,8 @@
 
 ### Composer
 
-To install the SDK first add the below to your `composer.json` file:
-
-```json
-{
-    "repositories": [
-        {
-            "type": "github",
-            "url": "<UNSET>.git"
-        }
-    ],
-    "require": {
-        "formance-sdk-php": "*"
-    }
-}
-```
-
-Then run the following command:
-
 ```bash
-composer update
+composer require "formance-sdk-php"
 ```
 <!-- End SDK Installation -->
 
