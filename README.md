@@ -6,7 +6,7 @@
 ### Composer
 
 ```bash
-composer require "formance-sdk-php"
+composer require "formancehq/formance-sdk-php"
 ```
 <!-- End SDK Installation -->
 
