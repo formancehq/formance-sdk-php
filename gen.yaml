@@ -4,7 +4,7 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 php:
-  version: v1.0.20230623-beta.1
+  version: v1.0.20230627
   maxMethodParams: 0
   namespace: formance\stack
   packageName: formance-sdk-php
