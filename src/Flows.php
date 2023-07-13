@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
-class Orchestration 
+class Flows 
 {
 
 	private SDKConfiguration $sdkConfiguration;
@@ -20,6 +20,46 @@ class Orchestration
 	{
 		$this->sdkConfiguration = $sdkConfig;
 	}
+	
+    /**
+     * Get server info
+     * 
+     * @return \formance\stack\Models\Operations\FlowsgetServerInfoResponse
+     */
+	public function flowsgetServerInfo(
+    ): \formance\stack\Models\Operations\FlowsgetServerInfoResponse
+    {
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/_info');
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
+        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s %s', $this->sdkConfiguration->language, $this->sdkConfiguration->sdkVersion, $this->sdkConfiguration->genVersion, $this->sdkConfiguration->openapiDocVersion);
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\FlowsgetServerInfoResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->serverInfo = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ServerInfo', 'json');
+            }
+        }
+        else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+            }
+        }
+
+        return $response;
+    }
 	
     /**
      * Cancel a running workflow
@@ -34,7 +74,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\CancelEventResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/abort', \formance\stack\Models\Operations\CancelEventRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/instances/{instanceID}/abort', \formance\stack\Models\Operations\CancelEventRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -74,7 +114,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\CreateWorkflowResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/workflows');
         
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, "request", "json");
@@ -120,7 +160,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\GetInstanceResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}', \formance\stack\Models\Operations\GetInstanceRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/instances/{instanceID}', \formance\stack\Models\Operations\GetInstanceRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
@@ -164,7 +204,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\GetInstanceHistoryResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/history', \formance\stack\Models\Operations\GetInstanceHistoryRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/instances/{instanceID}/history', \formance\stack\Models\Operations\GetInstanceHistoryRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
@@ -208,7 +248,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\GetInstanceStageHistoryResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/stages/{number}/history', \formance\stack\Models\Operations\GetInstanceStageHistoryRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/instances/{instanceID}/stages/{number}/history', \formance\stack\Models\Operations\GetInstanceStageHistoryRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
@@ -252,7 +292,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\GetWorkflowResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', \formance\stack\Models\Operations\GetWorkflowRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/workflows/{flowId}', \formance\stack\Models\Operations\GetWorkflowRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
@@ -296,7 +336,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\ListInstancesResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances');
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/instances');
         
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListInstancesRequest::class, $request, null));
@@ -339,7 +379,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\ListWorkflowsResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/workflows');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
@@ -371,46 +411,6 @@ class Orchestration
     }
 	
     /**
-     * Get server info
-     * 
-     * @return \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse
-     */
-	public function orchestrationgetServerInfo(
-    ): \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse
-    {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/_info');
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s %s', $this->sdkConfiguration->language, $this->sdkConfiguration->sdkVersion, $this->sdkConfiguration->genVersion, $this->sdkConfiguration->openapiDocVersion);
-        
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 200) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->serverInfo = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ServerInfo', 'json');
-            }
-        }
-        else {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
-            }
-        }
-
-        return $response;
-    }
-	
-    /**
      * Run workflow
      * 
      * Run workflow
@@ -423,7 +423,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\RunWorkflowResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{workflowID}/instances', \formance\stack\Models\Operations\RunWorkflowRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/workflows/{workflowID}/instances', \formance\stack\Models\Operations\RunWorkflowRequest::class, $request);
         
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
@@ -470,7 +470,7 @@ class Orchestration
     ): \formance\stack\Models\Operations\SendEventResponse
     {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/events', \formance\stack\Models\Operations\SendEventRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/Flows/instances/{instanceID}/events', \formance\stack\Models\Operations\SendEventRequest::class, $request);
         
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");

@@ -29,6 +29,7 @@ try {
     $request = new Query();
     $request->after = [
         'users:002',
+        'users:002',
     ];
     $request->cursor = 'YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=';
     $request->ledgers = [
@@ -36,12 +37,14 @@ try {
         'quickstart',
         'quickstart',
     ];
-    $request->pageSize = 716327;
+    $request->pageSize = 735194;
     $request->policy = 'OR';
     $request->raw = new QueryRaw();
     $request->sort = 'txid:asc';
-    $request->target = 'quibusdam';
+    $request->target = 'labore';
     $request->terms = [
+        'destination=central_bank1',
+        'destination=central_bank1',
         'destination=central_bank1',
         'destination=central_bank1',
     ];

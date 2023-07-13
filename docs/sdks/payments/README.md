@@ -96,7 +96,7 @@ try {
     $request->transferRequest->asset = 'USD';
     $request->transferRequest->destination = 'acct_1Gqj58KZcSIg2N2q';
     $request->transferRequest->source = 'acct_1Gqj58KZcSIg2N2q';
-    $request->connector = Connector::Stripe;
+    $request->connector = Connector::DummyPay;
 
     $response = $sdk->payments->connectorsTransfer($request);
 
@@ -143,7 +143,7 @@ $sdk = SDK::builder()
 try {
     $request = new GetConnectorTaskRequest();
     $request->connector = Connector::DummyPay;
-    $request->taskId = 'quidem';
+    $request->taskId = 'consequatur';
 
     $response = $sdk->payments->getConnectorTask($request);
 
@@ -188,7 +188,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetPaymentRequest();
-    $request->paymentId = 'molestias';
+    $request->paymentId = 'est';
 
     $response = $sdk->payments->getPayment($request);
 
@@ -234,11 +234,12 @@ $sdk = SDK::builder()
 
 try {
     $request = new InstallConnectorRequest();
-    $request->requestBody = new ModulrConfig();
-    $request->requestBody->apiKey = 'XXX';
-    $request->requestBody->apiSecret = 'XXX';
+    $request->requestBody = new BankingCircleConfig();
+    $request->requestBody->authorizationEndpoint = 'XXX';
     $request->requestBody->endpoint = 'XXX';
-    $request->connector = Connector::BankingCircle;
+    $request->requestBody->password = 'XXX';
+    $request->requestBody->username = 'XXX';
+    $request->connector = Connector::Stripe;
 
     $response = $sdk->payments->installConnector($request);
 
@@ -354,9 +355,9 @@ $sdk = SDK::builder()
 
 try {
     $request = new ListConnectorTasksRequest();
-    $request->connector = Connector::DummyPay;
+    $request->connector = Connector::Modulr;
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 508969;
+    $request->pageSize = 716327;
 
     $response = $sdk->payments->listConnectorTasks($request);
 
@@ -402,7 +403,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new ListConnectorsTransfersRequest();
-    $request->connector = Connector::Modulr;
+    $request->connector = Connector::BankingCircle;
 
     $response = $sdk->payments->listConnectorsTransfers($request);
 
@@ -448,9 +449,10 @@ $sdk = SDK::builder()
 try {
     $request = new ListPaymentsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 916723;
+    $request->pageSize = 289406;
     $request->sort = [
-        'repudiandae',
+        'qui',
+        'aliquid',
     ];
 
     $response = $sdk->payments->listPayments($request);
@@ -532,9 +534,11 @@ $sdk = SDK::builder()
 try {
     $request = new PaymentslistAccountsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 575947;
+    $request->pageSize = 586513;
     $request->sort = [
-        'itaque',
+        'perferendis',
+        'magni',
+        'assumenda',
     ];
 
     $response = $sdk->payments->paymentslistAccounts($request);
@@ -581,7 +585,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new ReadConnectorConfigRequest();
-    $request->connector = Connector::DummyPay;
+    $request->connector = Connector::Wise;
 
     $response = $sdk->payments->readConnectorConfig($request);
 
@@ -629,7 +633,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new ResetConnectorRequest();
-    $request->connector = Connector::DummyPay;
+    $request->connector = Connector::Stripe;
 
     $response = $sdk->payments->resetConnector($request);
 
@@ -722,8 +726,8 @@ $sdk = SDK::builder()
 try {
     $request = new UpdateMetadataRequest();
     $request->paymentMetadata = new PaymentMetadata();
-    $request->paymentMetadata->key = 'est';
-    $request->paymentId = 'quibusdam';
+    $request->paymentMetadata->key = 'dolorum';
+    $request->paymentId = 'excepturi';
 
     $response = $sdk->payments->updateMetadata($request);
 

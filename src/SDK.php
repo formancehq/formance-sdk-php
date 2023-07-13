@@ -37,9 +37,9 @@ class SDK
   	
 	public Auth $auth;
 	
-	public Ledger $ledger;
+	public Flows $flows;
 	
-	public Orchestration $orchestration;
+	public Ledger $ledger;
 	
 	public Payments $payments;
 	
@@ -70,9 +70,9 @@ class SDK
 		
 		$this->auth = new Auth($this->sdkConfiguration);
 		
-		$this->ledger = new Ledger($this->sdkConfiguration);
+		$this->flows = new Flows($this->sdkConfiguration);
 		
-		$this->orchestration = new Orchestration($this->sdkConfiguration);
+		$this->ledger = new Ledger($this->sdkConfiguration);
 		
 		$this->payments = new Payments($this->sdkConfiguration);
 		

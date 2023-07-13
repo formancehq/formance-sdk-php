@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 
-class OrchestrationgetServerInfoResponse
+class FlowsgetServerInfoResponse
 {
 	
     public string $contentType;

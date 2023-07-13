@@ -1,7 +1,8 @@
-# orchestration
+# flows
 
 ### Available Operations
 
+* [flowsgetServerInfo](#flowsgetserverinfo) - Get server info
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createWorkflow](#createworkflow) - Create workflow
 * [getInstance](#getinstance) - Get a workflow instance by id
@@ -10,9 +11,43 @@
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listWorkflows](#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
+
+## flowsgetServerInfo
+
+Get server info
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
+
+use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$sdk = SDK::builder()
+    ->build();
+
+try {
+    $response = $sdk->flows->flowsgetServerInfo();
+
+    if ($response->serverInfo !== null) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\FlowsgetServerInfoResponse](../../models/operations/FlowsgetServerInfoResponse.md)**
+
 
 ## cancelEvent
 
@@ -35,9 +70,9 @@ $sdk = SDK::builder()
 
 try {
     $request = new CancelEventRequest();
-    $request->instanceID = 'possimus';
+    $request->instanceID = 'dolorem';
 
-    $response = $sdk->orchestration->cancelEvent($request);
+    $response = $sdk->flows->cancelEvent($request);
 
     if ($response->statusCode === 200) {
         // handle response
@@ -80,17 +115,21 @@ $sdk = SDK::builder()
 
 try {
     $request = new CreateWorkflowRequest();
-    $request->name = 'Joyce Mueller';
+    $request->name = 'Rose Rolfson';
     $request->stages = [
         [
-            'voluptatibus' => 'vero',
-            'nihil' => 'praesentium',
-            'voluptatibus' => 'ipsa',
-            'omnis' => 'voluptate',
+            'excepturi' => 'accusantium',
+            'iure' => 'culpa',
+        ],
+        [
+            'sapiente' => 'architecto',
+            'mollitia' => 'dolorem',
+            'culpa' => 'consequuntur',
+            'repellat' => 'mollitia',
         ],
     ];
 
-    $response = $sdk->orchestration->createWorkflow($request);
+    $response = $sdk->flows->createWorkflow($request);
 
     if ($response->createWorkflowResponse !== null) {
         // handle response
@@ -133,9 +172,9 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetInstanceRequest();
-    $request->instanceID = 'cum';
+    $request->instanceID = 'occaecati';
 
-    $response = $sdk->orchestration->getInstance($request);
+    $response = $sdk->flows->getInstance($request);
 
     if ($response->getWorkflowInstanceResponse !== null) {
         // handle response
@@ -178,9 +217,9 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetInstanceHistoryRequest();
-    $request->instanceID = 'perferendis';
+    $request->instanceID = 'numquam';
 
-    $response = $sdk->orchestration->getInstanceHistory($request);
+    $response = $sdk->flows->getInstanceHistory($request);
 
     if ($response->getWorkflowInstanceHistoryResponse !== null) {
         // handle response
@@ -223,10 +262,10 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetInstanceStageHistoryRequest();
-    $request->instanceID = 'doloremque';
-    $request->number = 441711;
+    $request->instanceID = 'commodi';
+    $request->number = 466311;
 
-    $response = $sdk->orchestration->getInstanceStageHistory($request);
+    $response = $sdk->flows->getInstanceStageHistory($request);
 
     if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
         // handle response
@@ -269,9 +308,9 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetWorkflowRequest();
-    $request->flowId = 'ut';
+    $request->flowId = 'molestiae';
 
-    $response = $sdk->orchestration->getWorkflow($request);
+    $response = $sdk->flows->getWorkflow($request);
 
     if ($response->getWorkflowResponse !== null) {
         // handle response
@@ -315,9 +354,9 @@ $sdk = SDK::builder()
 try {
     $request = new ListInstancesRequest();
     $request->running = false;
-    $request->workflowID = 'maiores';
+    $request->workflowID = 'velit';
 
-    $response = $sdk->orchestration->listInstances($request);
+    $response = $sdk->flows->listInstances($request);
 
     if ($response->listRunsResponse !== null) {
         // handle response
@@ -358,7 +397,7 @@ $sdk = SDK::builder()
     ->build();
 
 try {
-    $response = $sdk->orchestration->listWorkflows();
+    $response = $sdk->flows->listWorkflows();
 
     if ($response->listWorkflowsResponse !== null) {
         // handle response
@@ -372,41 +411,6 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
-
-
-## orchestrationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-```php
-<?php
-
-declare(strict_types=1);
-require_once 'vendor/autoload.php';
-
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-
-$sdk = SDK::builder()
-    ->build();
-
-try {
-    $response = $sdk->orchestration->orchestrationgetServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Exception $e) {
-    // handle exception
-}
-```
-
-
-### Response
-
-**[?\formance\stack\Models\Operations\OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
 
 
 ## runWorkflow
@@ -431,12 +435,14 @@ $sdk = SDK::builder()
 try {
     $request = new RunWorkflowRequest();
     $request->requestBody = [
-        'corporis' => 'dolore',
+        'quia' => 'quis',
+        'vitae' => 'laborum',
+        'animi' => 'enim',
     ];
     $request->wait = false;
-    $request->workflowID = 'iusto';
+    $request->workflowID = 'odit';
 
-    $response = $sdk->orchestration->runWorkflow($request);
+    $response = $sdk->flows->runWorkflow($request);
 
     if ($response->runWorkflowResponse !== null) {
         // handle response
@@ -481,10 +487,10 @@ $sdk = SDK::builder()
 try {
     $request = new SendEventRequest();
     $request->requestBody = new SendEventRequestBody();
-    $request->requestBody->name = 'Maryann Hamill';
-    $request->instanceID = 'repudiandae';
+    $request->requestBody->name = 'Jimmy Wiegand';
+    $request->instanceID = 'possimus';
 
-    $response = $sdk->orchestration->sendEvent($request);
+    $response = $sdk->flows->sendEvent($request);
 
     if ($response->statusCode === 200) {
         // handle response
