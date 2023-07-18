@@ -12,10 +12,10 @@ namespace formance\stack\Models\Shared;
 /** The name of the connector. */
 enum Connector: string
 {
-    case Stripe = 'STRIPE';
-    case DummyPay = 'DUMMY-PAY';
-    case Wise = 'WISE';
-    case Modulr = 'MODULR';
-    case CurrencyCloud = 'CURRENCY-CLOUD';
-    case BankingCircle = 'BANKING-CIRCLE';
+    case STRIPE = 'STRIPE';
+    case DUMMY_PAY = 'DUMMY-PAY';
+    case WISE = 'WISE';
+    case MODULR = 'MODULR';
+    case CURRENCY_CLOUD = 'CURRENCY-CLOUD';
+    case BANKING_CIRCLE = 'BANKING-CIRCLE';
 }

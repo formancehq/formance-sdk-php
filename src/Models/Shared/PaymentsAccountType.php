@@ -11,6 +11,6 @@ namespace formance\stack\Models\Shared;
 
 enum PaymentsAccountType: string
 {
-    case Target = 'TARGET';
-    case Source = 'SOURCE';
+    case TARGET = 'TARGET';
+    case SOURCE = 'SOURCE';
 }

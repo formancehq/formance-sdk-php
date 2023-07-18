@@ -11,5 +11,5 @@ namespace formance\stack\Models\Shared;
 
 enum WalletsErrorResponseErrorCode: string
 {
-    case Validation = 'VALIDATION';
+    case VALIDATION = 'VALIDATION';
 }

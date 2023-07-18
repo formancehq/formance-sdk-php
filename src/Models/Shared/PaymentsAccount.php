@@ -35,8 +35,8 @@ class PaymentsAccount
 	{
 		$this->createdAt = new \DateTime();
 		$this->id = "";
-		$this->provider = \formance\stack\Models\Shared\Connector::Stripe;
+		$this->provider = \formance\stack\Models\Shared\Connector::STRIPE;
 		$this->reference = "";
-		$this->type = \formance\stack\Models\Shared\PaymentsAccountType::Target;
+		$this->type = \formance\stack\Models\Shared\PaymentsAccountType::TARGET;
 	}
 }
