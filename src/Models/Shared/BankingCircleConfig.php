@@ -23,6 +23,26 @@ class BankingCircleConfig
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $password;
     
+    /**
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+     * 
+     * 
+     * 
+     * @var ?string $pollingPeriod
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?string $pollingPeriod = null;
+    
+	#[\JMS\Serializer\Annotation\SerializedName('userCertificate')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $userCertificate;
+    
+	#[\JMS\Serializer\Annotation\SerializedName('userCertificateKey')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $userCertificateKey;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('username')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $username;
@@ -32,6 +52,9 @@ class BankingCircleConfig
 		$this->authorizationEndpoint = "";
 		$this->endpoint = "";
 		$this->password = "";
+		$this->pollingPeriod = null;
+		$this->userCertificate = "";
+		$this->userCertificateKey = "";
 		$this->username = "";
 	}
 }

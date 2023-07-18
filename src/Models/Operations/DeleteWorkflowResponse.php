@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 
-class FlowsgetServerInfoResponse
+class DeleteWorkflowResponse
 {
 	
     public string $contentType;
@@ -22,14 +22,6 @@ class FlowsgetServerInfoResponse
 	
     public ?\formance\stack\Models\Shared\Error $error = null;
     
-    /**
-     * Server information
-     * 
-     * @var ?\formance\stack\Models\Shared\ServerInfo $serverInfo
-     */
-	
-    public ?\formance\stack\Models\Shared\ServerInfo $serverInfo = null;
-    
 	
     public int $statusCode;
     
@@ -40,7 +32,6 @@ class FlowsgetServerInfoResponse
 	{
 		$this->contentType = "";
 		$this->error = null;
-		$this->serverInfo = null;
 		$this->statusCode = 0;
 		$this->rawResponse = null;
 	}

@@ -4,7 +4,7 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 php:
-  version: v1.0.20230718
+  version: v1.0.20230718.1
   description: Modular developer platform to build and operate complex money flows of any size and shape
   maxMethodParams: 0
   namespace: formance\stack

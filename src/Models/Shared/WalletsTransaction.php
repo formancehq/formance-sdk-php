@@ -38,10 +38,10 @@ class WalletsTransaction
     /**
      * $postings
      * 
-     * @var array<\formance\stack\Models\Shared\Posting> $postings
+     * @var array<\formance\stack\Models\Shared\WalletsPosting> $postings
      */
 	#[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\WalletsPosting>')]
     public array $postings;
     
     /**

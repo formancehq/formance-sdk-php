@@ -9,11 +9,19 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-class WiseConfig
+class MangoPayConfig
 {
 	#[\JMS\Serializer\Annotation\SerializedName('apiKey')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $apiKey;
+    
+	#[\JMS\Serializer\Annotation\SerializedName('clientID')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $clientID;
+    
+	#[\JMS\Serializer\Annotation\SerializedName('endpoint')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $endpoint;
     
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
@@ -30,6 +38,8 @@ class WiseConfig
 	public function __construct()
 	{
 		$this->apiKey = "";
+		$this->clientID = "";
+		$this->endpoint = "";
 		$this->pollingPeriod = null;
 	}
 }

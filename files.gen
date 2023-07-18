@@ -57,10 +57,11 @@ src/Models/Operations/UpdateClientRequest.php
 src/Models/Operations/UpdateClientResponse.php
 src/Models/Operations/UpdateScopeRequest.php
 src/Models/Operations/UpdateScopeResponse.php
-src/Models/Operations/FlowsgetServerInfoResponse.php
 src/Models/Operations/CancelEventRequest.php
 src/Models/Operations/CancelEventResponse.php
 src/Models/Operations/CreateWorkflowResponse.php
+src/Models/Operations/DeleteWorkflowRequest.php
+src/Models/Operations/DeleteWorkflowResponse.php
 src/Models/Operations/GetInstanceRequest.php
 src/Models/Operations/GetInstanceResponse.php
 src/Models/Operations/GetInstanceHistoryRequest.php
@@ -72,6 +73,7 @@ src/Models/Operations/GetWorkflowResponse.php
 src/Models/Operations/ListInstancesRequest.php
 src/Models/Operations/ListInstancesResponse.php
 src/Models/Operations/ListWorkflowsResponse.php
+src/Models/Operations/OrchestrationgetServerInfoResponse.php
 src/Models/Operations/RunWorkflowRequest.php
 src/Models/Operations/RunWorkflowResponse.php
 src/Models/Operations/SendEventRequestBody.php
@@ -333,6 +335,10 @@ src/Models/Shared/TaskModulrDescriptor.php
 src/Models/Shared/TaskModulr.php
 src/Models/Shared/TaskBankingCircleDescriptor.php
 src/Models/Shared/TaskBankingCircle.php
+src/Models/Shared/TaskMangoPayDescriptor.php
+src/Models/Shared/TaskMangoPay.php
+src/Models/Shared/TaskMoneycorpDescriptor.php
+src/Models/Shared/TaskMoneycorp.php
 src/Models/Shared/PaymentResponse.php
 src/Models/Shared/StripeConfig.php
 src/Models/Shared/DummyPayConfig.php
@@ -340,6 +346,8 @@ src/Models/Shared/WiseConfig.php
 src/Models/Shared/ModulrConfig.php
 src/Models/Shared/CurrencyCloudConfig.php
 src/Models/Shared/BankingCircleConfig.php
+src/Models/Shared/MangoPayConfig.php
+src/Models/Shared/MoneycorpConfig.php
 src/Models/Shared/ConnectorsResponseData.php
 src/Models/Shared/ConnectorsResponse.php
 src/Models/Shared/ConnectorsConfigsResponseDataConnectorKey.php
@@ -381,6 +389,7 @@ src/Models/Shared/GetTransactionsResponseCursor.php
 src/Models/Shared/GetTransactionsResponse.php
 src/Models/Shared/WalletsTransaction.php
 src/Models/Shared/WalletsVolume.php
+src/Models/Shared/WalletsPosting.php
 src/Models/Shared/GetWalletResponse.php
 src/Models/Shared/GetWalletSummaryResponse.php
 src/Models/Shared/ListBalancesResponseCursor.php

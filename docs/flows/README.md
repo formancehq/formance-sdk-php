@@ -2,46 +2,18 @@
 
 ### Available Operations
 
-* [flowsgetServerInfo](#flowsgetserverinfo) - Get server info
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createWorkflow](#createworkflow) - Create workflow
+* [deleteWorkflow](#deleteworkflow) - Delete a flow by id
 * [getInstance](#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listWorkflows](#listworkflows) - List registered workflows
+* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
-
-## flowsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-```php
-<?php
-
-declare(strict_types=1);
-require_once 'vendor/autoload.php';
-
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-
-$sdk = SDK::builder()
-    ->build();
-
-try {
-    $response = $sdk->flows->flowsgetServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Exception $e) {
-    // handle exception
-}
-```
 
 ## cancelEvent
 
@@ -121,6 +93,39 @@ try {
 }
 ```
 
+## deleteWorkflow
+
+Delete a flow by id
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
+
+use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+use \formance\stack\Models\Operations\DeleteWorkflowRequest;
+
+$sdk = SDK::builder()
+    ->build();
+
+try {
+    $request = new DeleteWorkflowRequest();
+    $request->flowId = 'occaecati';
+
+    $response = $sdk->flows->deleteWorkflow($request);
+
+    if ($response->statusCode === 200) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+
 ## getInstance
 
 Get a workflow instance by id
@@ -142,7 +147,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetInstanceRequest();
-    $request->instanceID = 'occaecati';
+    $request->instanceID = 'numquam';
 
     $response = $sdk->flows->getInstance($request);
 
@@ -175,7 +180,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetInstanceHistoryRequest();
-    $request->instanceID = 'numquam';
+    $request->instanceID = 'commodi';
 
     $response = $sdk->flows->getInstanceHistory($request);
 
@@ -208,8 +213,8 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetInstanceStageHistoryRequest();
-    $request->instanceID = 'commodi';
-    $request->number = 466311;
+    $request->instanceID = 'quam';
+    $request->number = 474697;
 
     $response = $sdk->flows->getInstanceStageHistory($request);
 
@@ -242,7 +247,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetWorkflowRequest();
-    $request->flowId = 'molestiae';
+    $request->flowId = 'velit';
 
     $response = $sdk->flows->getWorkflow($request);
 
@@ -276,7 +281,7 @@ $sdk = SDK::builder()
 try {
     $request = new ListInstancesRequest();
     $request->running = false;
-    $request->workflowID = 'velit';
+    $request->workflowID = 'error';
 
     $response = $sdk->flows->listInstances($request);
 
@@ -317,6 +322,35 @@ try {
 }
 ```
 
+## orchestrationgetServerInfo
+
+Get server info
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
+
+use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$sdk = SDK::builder()
+    ->build();
+
+try {
+    $response = $sdk->flows->orchestrationgetServerInfo();
+
+    if ($response->serverInfo !== null) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+
 ## runWorkflow
 
 Run workflow
@@ -339,12 +373,10 @@ $sdk = SDK::builder()
 try {
     $request = new RunWorkflowRequest();
     $request->requestBody = [
-        'quia' => 'quis',
-        'vitae' => 'laborum',
-        'animi' => 'enim',
+        'quis' => 'vitae',
     ];
     $request->wait = false;
-    $request->workflowID = 'odit';
+    $request->workflowID = 'laborum';
 
     $response = $sdk->flows->runWorkflow($request);
 
@@ -379,8 +411,8 @@ $sdk = SDK::builder()
 try {
     $request = new SendEventRequest();
     $request->requestBody = new SendEventRequestBody();
-    $request->requestBody->name = 'Jimmy Wiegand';
-    $request->instanceID = 'possimus';
+    $request->requestBody->name = 'Bill Conn';
+    $request->instanceID = 'tenetur';
 
     $response = $sdk->flows->sendEvent($request);
 

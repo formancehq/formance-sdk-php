@@ -38,46 +38,6 @@ class Flows
 	}
 	
     /**
-     * Get server info
-     * 
-     * @return \formance\stack\Models\Operations\FlowsgetServerInfoResponse
-     */
-	public function flowsgetServerInfo(
-    ): \formance\stack\Models\Operations\FlowsgetServerInfoResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/_info');
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\FlowsgetServerInfoResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 200) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->serverInfo = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ServerInfo', 'json');
-            }
-        }
-        else {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
-            }
-        }
-
-        return $response;
-    }
-	
-    /**
      * Cancel a running workflow
      * 
      * Cancel a running workflow
@@ -152,6 +112,46 @@ class Flows
                 $serializer = Utils\JSON::createSerializer();
                 $response->createWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\CreateWorkflowResponse', 'json');
             }
+        }
+        else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Delete a flow by id
+     * 
+     * Delete a flow by id
+     * 
+     * @param \formance\stack\Models\Operations\DeleteWorkflowRequest $request
+     * @return \formance\stack\Models\Operations\DeleteWorkflowResponse
+     */
+	public function deleteWorkflow(
+        \formance\stack\Models\Operations\DeleteWorkflowRequest $request,
+    ): \formance\stack\Models\Operations\DeleteWorkflowResponse
+    {
+        $baseUrl = $this->_serverUrl;
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', \formance\stack\Models\Operations\DeleteWorkflowRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        
+        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\DeleteWorkflowResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
         }
         else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -414,6 +414,46 @@ class Flows
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $response->listWorkflowsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListWorkflowsResponse', 'json');
+            }
+        }
+        else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Get server info
+     * 
+     * @return \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse
+     */
+	public function orchestrationgetServerInfo(
+    ): \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse
+    {
+        $baseUrl = $this->_serverUrl;
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/_info');
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
+        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        
+        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->serverInfo = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ServerInfo', 'json');
             }
         }
         else {

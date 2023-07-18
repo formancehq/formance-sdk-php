@@ -44,8 +44,7 @@ try {
     $request->asset = 'USD';
     $request->destination = 'acct_1Gqj58KZcSIg2N2q';
     $request->metadata = [
-        'provident' => 'necessitatibus',
-        'sint' => 'officia',
+        'eligendi' => 'sint',
     ];
 
     $response = $sdk->payments->connectorsStripeTransfer($request);
@@ -86,7 +85,7 @@ try {
     $request->transferRequest->asset = 'USD';
     $request->transferRequest->destination = 'acct_1Gqj58KZcSIg2N2q';
     $request->transferRequest->source = 'acct_1Gqj58KZcSIg2N2q';
-    $request->connector = Connector::DUMMY_PAY;
+    $request->connector = Connector::MODULR;
 
     $response = $sdk->payments->connectorsTransfer($request);
 
@@ -120,8 +119,8 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetConnectorTaskRequest();
-    $request->connector = Connector::BANKING_CIRCLE;
-    $request->taskId = 'a';
+    $request->connector = Connector::CURRENCY_CLOUD;
+    $request->taskId = 'necessitatibus';
 
     $response = $sdk->payments->getConnectorTask($request);
 
@@ -154,7 +153,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new GetPaymentRequest();
-    $request->paymentId = 'dolorum';
+    $request->paymentId = 'sint';
 
     $response = $sdk->payments->getPayment($request);
 
@@ -188,9 +187,15 @@ $sdk = SDK::builder()
 
 try {
     $request = new InstallConnectorRequest();
-    $request->requestBody = new WiseConfig();
-    $request->requestBody->apiKey = 'XXX';
-    $request->connector = Connector::WISE;
+    $request->requestBody = new BankingCircleConfig();
+    $request->requestBody->authorizationEndpoint = 'XXX';
+    $request->requestBody->endpoint = 'XXX';
+    $request->requestBody->password = 'XXX';
+    $request->requestBody->pollingPeriod = '60s';
+    $request->requestBody->userCertificate = 'XXX';
+    $request->requestBody->userCertificateKey = 'XXX';
+    $request->requestBody->username = 'XXX';
+    $request->connector = Connector::DUMMY_PAY;
 
     $response = $sdk->payments->installConnector($request);
 
@@ -282,9 +287,9 @@ $sdk = SDK::builder()
 
 try {
     $request = new ListConnectorTasksRequest();
-    $request->connector = Connector::BANKING_CIRCLE;
+    $request->connector = Connector::MONEYCORP;
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 978571;
+    $request->pageSize = 952749;
 
     $response = $sdk->payments->listConnectorTasks($request);
 
@@ -318,7 +323,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new ListConnectorsTransfersRequest();
-    $request->connector = Connector::CURRENCY_CLOUD;
+    $request->connector = Connector::BANKING_CIRCLE;
 
     $response = $sdk->payments->listConnectorsTransfers($request);
 
@@ -352,10 +357,10 @@ $sdk = SDK::builder()
 try {
     $request = new ListPaymentsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 116202;
+    $request->pageSize = 447125;
     $request->sort = [
-        'cumque',
-        'facere',
+        'illum',
+        'maiores',
     ];
 
     $response = $sdk->payments->listPayments($request);
@@ -419,10 +424,9 @@ $sdk = SDK::builder()
 try {
     $request = new PaymentslistAccountsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 411820;
+    $request->pageSize = 699479;
     $request->sort = [
-        'laborum',
-        'accusamus',
+        'magnam',
     ];
 
     $response = $sdk->payments->paymentslistAccounts($request);
@@ -457,7 +461,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new ReadConnectorConfigRequest();
-    $request->connector = Connector::DUMMY_PAY;
+    $request->connector = Connector::MANGOPAY;
 
     $response = $sdk->payments->readConnectorConfig($request);
 
@@ -493,7 +497,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new ResetConnectorRequest();
-    $request->connector = Connector::MODULR;
+    $request->connector = Connector::MANGOPAY;
 
     $response = $sdk->payments->resetConnector($request);
 
@@ -527,7 +531,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new UninstallConnectorRequest();
-    $request->connector = Connector::DUMMY_PAY;
+    $request->connector = Connector::MODULR;
 
     $response = $sdk->payments->uninstallConnector($request);
 
@@ -562,8 +566,8 @@ $sdk = SDK::builder()
 try {
     $request = new UpdateMetadataRequest();
     $request->paymentMetadata = new PaymentMetadata();
-    $request->paymentMetadata->key = 'accusamus';
-    $request->paymentId = 'delectus';
+    $request->paymentMetadata->key = 'aliquid';
+    $request->paymentId = 'laborum';
 
     $response = $sdk->payments->updateMetadata($request);
 

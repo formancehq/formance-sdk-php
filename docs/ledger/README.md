@@ -50,6 +50,7 @@ try {
     $request->transactions = new Transactions();
     $request->transactions->transactions = [
         new TransactionData(),
+        new TransactionData(),
     ];
     $request->ledger = 'ledger001';
 
@@ -85,7 +86,9 @@ $sdk = SDK::builder()
 try {
     $request = new AddMetadataOnTransactionRequest();
     $request->requestBody = [
-        'error' => 'temporibus',
+        'possimus' => 'aut',
+        'quasi' => 'error',
+        'temporibus' => 'laborum',
     ];
     $request->ledger = 'ledger001';
     $request->txid = 1234;
@@ -122,9 +125,7 @@ $sdk = SDK::builder()
 try {
     $request = new AddMetadataToAccountRequest();
     $request->requestBody = [
-        'quasi' => 'reiciendis',
-        'voluptatibus' => 'vero',
-        'nihil' => 'praesentium',
+        'reiciendis' => 'voluptatibus',
     ];
     $request->address = 'users:001';
     $request->ledger = 'ledger001';
@@ -163,10 +164,10 @@ try {
     $request->address = 'users:.+';
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'ipsa' => 'omnis',
-        'voluptate' => 'cum',
-        'perferendis' => 'doloremque',
-        'reprehenderit' => 'ut',
+        'nihil' => 'praesentium',
+        'voluptatibus' => 'ipsa',
+        'omnis' => 'voluptate',
+        'cum' => 'perferendis',
     ];
 
     $response = $sdk->ledger->countAccounts($request);
@@ -202,15 +203,15 @@ try {
     $request = new CountTransactionsRequest();
     $request->account = 'users:001';
     $request->destination = 'users:001';
-    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-08-22T09:14:02.538Z');
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-07-23T18:36:43.822Z');
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'dolore' => 'iusto',
-        'dicta' => 'harum',
+        'maiores' => 'dicta',
+        'corporis' => 'dolore',
     ];
     $request->reference = 'ref:001';
     $request->source = 'users:001';
-    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-02-13T15:01:52.114Z');
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-11-18T15:56:41.921Z');
 
     $response = $sdk->ledger->countTransactions($request);
 
@@ -248,8 +249,9 @@ try {
     $request = new CreateTransactionRequest();
     $request->postTransaction = new PostTransaction();
     $request->postTransaction->metadata = [
-        'repudiandae' => 'quae',
-        'ipsum' => 'quidem',
+        'enim' => 'accusamus',
+        'commodi' => 'repudiandae',
+        'quae' => 'ipsum',
     ];
     $request->postTransaction->postings = [
         new Posting(),
@@ -267,11 +269,11 @@ try {
     )
     ';
     $request->postTransaction->script->vars = [
-        'pariatur' => 'modi',
-        'praesentium' => 'rem',
-        'voluptates' => 'quasi',
+        'excepturi' => 'pariatur',
+        'modi' => 'praesentium',
+        'rem' => 'voluptates',
     ];
-    $request->postTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2021-04-10T08:07:33.561Z');
+    $request->postTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-01-29T18:39:33.469Z');
     $request->ledger = 'ledger001';
     $request->preview = true;
 
@@ -548,9 +550,11 @@ try {
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'itaque' => 'incidunt',
+        'veritatis' => 'itaque',
+        'incidunt' => 'enim',
+        'consequatur' => 'est',
     ];
-    $request->pageSize = 318569;
+    $request->pageSize = 842342;
     $request->paginationToken = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
 
     $response = $sdk->ledger->listAccounts($request);
@@ -586,11 +590,11 @@ try {
     $request = new ListLogsRequest();
     $request->after = '1234';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-05-02T09:29:06.042Z');
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-05-09T18:45:16.013Z');
     $request->ledger = 'ledger001';
-    $request->pageSize = 842342;
+    $request->pageSize = 716327;
     $request->paginationToken = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-05-09T18:45:16.013Z');
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-02-18T02:24:27.835Z');
 
     $response = $sdk->ledger->listLogs($request);
 
@@ -627,17 +631,17 @@ try {
     $request->after = '1234';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->destination = 'users:001';
-    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2021-04-26T18:54:54.344Z');
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-10-26T03:14:36.345Z');
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'modi' => 'qui',
-        'aliquid' => 'cupiditate',
+        'cupiditate' => 'quos',
+        'perferendis' => 'magni',
     ];
-    $request->pageSize = 552822;
+    $request->pageSize = 828940;
     $request->paginationToken = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->reference = 'ref:001';
     $request->source = 'users:001';
-    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-11-01T19:07:16.800Z');
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:sP', '2022-12-30T06:52:02.282Z');
 
     $response = $sdk->ledger->listTransactions($request);
 
@@ -744,10 +748,7 @@ try {
     $request = new RunScriptRequest();
     $request->script = new Script();
     $request->script->metadata = [
-        'ipsam' => 'alias',
-        'fugit' => 'dolorum',
-        'excepturi' => 'tempora',
-        'facilis' => 'tempore',
+        'dolorum' => 'excepturi',
     ];
     $request->script->plain = 'vars {
     account $user
@@ -759,8 +760,8 @@ try {
     ';
     $request->script->reference = 'order_1234';
     $request->script->vars = [
-        'delectus' => 'eum',
-        'non' => 'eligendi',
+        'facilis' => 'tempore',
+        'labore' => 'delectus',
     ];
     $request->ledger = 'ledger001';
     $request->preview = true;
@@ -800,7 +801,6 @@ try {
     $request = new UpdateMappingRequest();
     $request->mapping = new Mapping();
     $request->mapping->contracts = [
-        new Contract(),
         new Contract(),
         new Contract(),
     ];

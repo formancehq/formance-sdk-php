@@ -18,4 +18,6 @@ enum Connector: string
     case MODULR = 'MODULR';
     case CURRENCY_CLOUD = 'CURRENCY-CLOUD';
     case BANKING_CIRCLE = 'BANKING-CIRCLE';
+    case MANGOPAY = 'MANGOPAY';
+    case MONEYCORP = 'MONEYCORP';
 }
