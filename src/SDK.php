@@ -55,7 +55,7 @@ class SDK
 	private ?Models\Shared\Security $_security;
 	private string $_serverUrl;
 	private string $_language = 'php';
-	private string $_sdkVersion = 'v1.0.202307124';
+	private string $_sdkVersion = 'v1.0.20230724';
 	private string $_genVersion = '2.31.0';
 
 	/**
