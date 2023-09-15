@@ -708,6 +708,7 @@ $sdk = SDK::builder()
 
 try {
     $request = new RevertTransactionRequest();
+    $request->disableChecks = false;
     $request->ledger = 'ledger001';
     $request->txid = 1234;
 

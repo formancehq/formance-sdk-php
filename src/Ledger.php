@@ -785,6 +785,7 @@ class Ledger
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/revert', \formance\stack\Models\Operations\RevertTransactionRequest::class, $request);
         
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\RevertTransactionRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json;q=1, application/json;q=0';
         $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
         

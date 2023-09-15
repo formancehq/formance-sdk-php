@@ -12,6 +12,14 @@ use \formance\stack\Utils\SpeakeasyMetadata;
 class RevertTransactionRequest
 {
     /**
+     * Allow to disable balances checks
+     * 
+     * @var ?bool $disableChecks
+     */
+	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=disableChecks')]
+    public ?bool $disableChecks = null;
+    
+    /**
      * Name of the ledger.
      * 
      * @var string $ledger
@@ -29,6 +37,7 @@ class RevertTransactionRequest
     
 	public function __construct()
 	{
+		$this->disableChecks = null;
 		$this->ledger = "";
 		$this->txid = 0;
 	}
