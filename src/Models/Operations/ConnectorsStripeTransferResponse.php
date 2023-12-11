@@ -11,22 +11,37 @@ namespace formance\stack\Models\Operations;
 
 class ConnectorsStripeTransferResponse
 {
+    /**
+     * HTTP response content type for this operation
+     * 
+     * @var string $contentType
+     */
 	
     public string $contentType;
     
+    /**
+     * HTTP response status code for this operation
+     * 
+     * @var int $statusCode
+     */
 	
     public int $statusCode;
     
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     * 
+     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     */
 	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
     
     /**
      * OK
      * 
-     * @var ?array<string, mixed> $stripeTransferResponse
+     * @var ?\formance\stack\Models\Shared\StripeTransferResponse $stripeTransferResponse
      */
 	
-    public ?array $stripeTransferResponse = null;
+    public ?\formance\stack\Models\Shared\StripeTransferResponse $stripeTransferResponse = null;
     
 	public function __construct()
 	{

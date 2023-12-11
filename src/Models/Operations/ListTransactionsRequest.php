@@ -70,10 +70,10 @@ class ListTransactionsRequest
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      * 
-     * @var ?array<string, mixed> $metadata
+     * @var ?\formance\stack\Models\Operations\ListTransactionsMetadata $metadata
      */
 	#[SpeakeasyMetadata('queryParam:style=deepObject,explode=true,name=metadata')]
-    public ?array $metadata = null;
+    public ?ListTransactionsMetadata $metadata = null;
     
     /**
      * The maximum number of results to return per page.
@@ -95,7 +95,7 @@ class ListTransactionsRequest
      * 
      * 
      * @var ?string $paginationToken
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pagination_token')]
     public ?string $paginationToken = null;

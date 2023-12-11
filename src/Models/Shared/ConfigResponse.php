@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * ConfigResponse - Config created successfully.
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class ConfigResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('data')]

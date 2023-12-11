@@ -11,9 +11,26 @@ namespace formance\stack\Models\Shared;
 
 class PaymentsAccount
 {
+	#[\JMS\Serializer\Annotation\SerializedName('accountName')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $accountName;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
+    
+	#[\JMS\Serializer\Annotation\SerializedName('defaultAsset')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $defaultAsset;
+    
+    /**
+     * 
+     * @var string $defaultCurrency
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('defaultCurrency')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $defaultCurrency;
     
 	#[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
@@ -23,20 +40,28 @@ class PaymentsAccount
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\Connector>')]
     public Connector $provider;
     
+	#[\JMS\Serializer\Annotation\SerializedName('raw')]
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PaymentsAccountRaw')]
+    public PaymentsAccountRaw $raw;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('reference')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $reference;
     
 	#[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\PaymentsAccountType>')]
-    public PaymentsAccountType $type;
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $type;
     
 	public function __construct()
 	{
+		$this->accountName = "";
 		$this->createdAt = new \DateTime();
+		$this->defaultAsset = "";
+		$this->defaultCurrency = "";
 		$this->id = "";
-		$this->provider = \formance\stack\Models\Shared\Connector::STRIPE;
+		$this->provider = \formance\stack\Models\Shared\Connector::Stripe;
+		$this->raw = new \formance\stack\Models\Shared\PaymentsAccountRaw();
 		$this->reference = "";
-		$this->type = \formance\stack\Models\Shared\PaymentsAccountType::TARGET;
+		$this->type = "";
 	}
 }

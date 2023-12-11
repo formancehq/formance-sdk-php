@@ -9,16 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * PostTransaction - The request body must contain at least one of the following objects:
- * 
- *   - `postings`: suitable for simple transactions
- *   - `script`: enabling more complex transactions with Numscript
- * 
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class PostTransaction
 {
     /**

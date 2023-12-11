@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * WalletsErrorResponse - Error
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class WalletsErrorResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('errorCode')]
@@ -27,7 +21,7 @@ class WalletsErrorResponse
     
 	public function __construct()
 	{
-		$this->errorCode = \formance\stack\Models\Shared\WalletsErrorResponseErrorCode::VALIDATION;
+		$this->errorCode = \formance\stack\Models\Shared\WalletsErrorResponseErrorCode::Validation;
 		$this->errorMessage = "";
 	}
 }

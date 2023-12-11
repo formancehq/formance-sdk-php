@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack;
 
 /**
- * SDK - Open, modular foundation for unique payments flows
+ * SDK - Formance Stack API: Open, modular foundation for unique payments flows
  * 
  * 
  * # Introduction
@@ -31,15 +31,13 @@ class SDK
 	public const SERVERS = [
         /** local server */
 		'http://localhost',
-        /** sandbox server */
-		'https://{organization}.sandbox.formance.cloud',
 	];
   	
 	public Auth $auth;
 	
-	public Flows $flows;
-	
 	public Ledger $ledger;
+	
+	public Orchestration $orchestration;
 	
 	public Payments $payments;
 	
@@ -49,14 +47,7 @@ class SDK
 	
 	public Webhooks $webhooks;
 		
-	// SDK private variables namespaced with _ to avoid conflicts with API models
-	private ?\GuzzleHttp\ClientInterface $_defaultClient;
-	private ?\GuzzleHttp\ClientInterface $_securityClient;
-	private ?Models\Shared\Security $_security;
-	private string $_serverUrl;
-	private string $_language = 'php';
-	private string $_sdkVersion = 'v1.0.20230915';
-	private string $_genVersion = '2.31.0';
+	private SDKConfiguration $sdkConfiguration;
 
 	/**
 	 * Returns a new instance of the SDK builder used to configure and create the SDK instance.
@@ -69,101 +60,25 @@ class SDK
 	}
 
 	/**
-	 * @param \GuzzleHttp\ClientInterface|null $client	 
-	 * @param Models\Shared\Security|null $security
-	 * @param string $serverUrl
-	 * @param array<string, string>|null $params
+	 * @param SDKConfiguration $sdkConfiguration
 	 */
-	public function __construct(?\GuzzleHttp\ClientInterface $client, ?Models\Shared\Security $security, string $serverUrl, ?array $params)
+	public function __construct(SDKConfiguration $sdkConfiguration)
 	{
-		$this->_defaultClient = $client;
+		$this->sdkConfiguration = $sdkConfiguration;
 		
-		if ($this->_defaultClient === null) {
-			$this->_defaultClient = new \GuzzleHttp\Client([
-				'timeout' => 60,
-			]);
-		}
-
-		$this->_securityClient = null;
-		if ($security !== null) {
-			$this->_security = $security;
-			$this->_securityClient = Utils\Utils::configureSecurityClient($this->_defaultClient, $this->_security);
-		}
+		$this->auth = new Auth($this->sdkConfiguration);
 		
-		if ($this->_securityClient === null) {
-			$this->_securityClient = $this->_defaultClient;
-		}
-
-		if (!empty($serverUrl)) {
-			$this->_serverUrl = Utils\Utils::templateUrl($serverUrl, $params);
-		}
+		$this->ledger = new Ledger($this->sdkConfiguration);
 		
-		if (empty($this->_serverUrl)) {
-			$this->_serverUrl = $this::SERVERS[0];
-		}
+		$this->orchestration = new Orchestration($this->sdkConfiguration);
 		
-		$this->auth = new Auth(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
+		$this->payments = new Payments($this->sdkConfiguration);
 		
-		$this->flows = new Flows(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
+		$this->search = new Search($this->sdkConfiguration);
 		
-		$this->ledger = new Ledger(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
+		$this->wallets = new Wallets($this->sdkConfiguration);
 		
-		$this->payments = new Payments(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
-		
-		$this->search = new Search(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
-		
-		$this->wallets = new Wallets(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
-		
-		$this->webhooks = new Webhooks(
-			$this->_defaultClient,
-			$this->_securityClient,
-			$this->_serverUrl,
-			$this->_language,
-			$this->_sdkVersion,
-			$this->_genVersion
-		);
+		$this->webhooks = new Webhooks($this->sdkConfiguration);
 	}
 	
     /**
@@ -174,14 +89,14 @@ class SDK
 	public function getVersions(
     ): \formance\stack\Models\Operations\GetVersionsResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/versions');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
