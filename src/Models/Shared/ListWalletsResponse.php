@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * ListWalletsResponse - OK
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class ListWalletsResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('cursor')]

@@ -55,6 +55,16 @@ class UpdateClientRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $redirectUris = null;
     
+    /**
+     * $scopes
+     * 
+     * @var ?array<string> $scopes
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('scopes')]
+    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?array $scopes = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('trusted')]
     #[\JMS\Serializer\Annotation\Type('bool')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -68,6 +78,7 @@ class UpdateClientRequest
 		$this->postLogoutRedirectUris = null;
 		$this->public = null;
 		$this->redirectUris = null;
+		$this->scopes = null;
 		$this->trusted = null;
 	}
 }

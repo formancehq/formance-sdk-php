@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * RunWorkflowResponse - The workflow instance
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class RunWorkflowResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('data')]

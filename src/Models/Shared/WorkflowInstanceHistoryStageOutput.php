@@ -36,11 +36,6 @@ class WorkflowInstanceHistoryStageOutput
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityGetWalletOutput $getWallet = null;
     
-	#[\JMS\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ActivityRevertTransactionOutput')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?ActivityRevertTransactionOutput $revertTransaction = null;
-    
 	public function __construct()
 	{
 		$this->createTransaction = null;
@@ -48,6 +43,5 @@ class WorkflowInstanceHistoryStageOutput
 		$this->getAccount = null;
 		$this->getPayment = null;
 		$this->getWallet = null;
-		$this->revertTransaction = null;
 	}
 }

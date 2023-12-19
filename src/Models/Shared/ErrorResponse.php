@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * ErrorResponse - Error
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class ErrorResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('details')]
@@ -24,18 +18,16 @@ class ErrorResponse
     
 	#[\JMS\Serializer\Annotation\SerializedName('errorCode')]
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\ErrorsEnum>')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?ErrorsEnum $errorCode = null;
+    public ErrorsEnum $errorCode;
     
 	#[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
     #[\JMS\Serializer\Annotation\Type('string')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?string $errorMessage = null;
+    public string $errorMessage;
     
 	public function __construct()
 	{
 		$this->details = null;
-		$this->errorCode = null;
-		$this->errorMessage = null;
+		$this->errorCode = \formance\stack\Models\Shared\ErrorsEnum::Internal;
+		$this->errorMessage = "";
 	}
 }

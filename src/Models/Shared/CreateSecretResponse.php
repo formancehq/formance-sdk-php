@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * CreateSecretResponse - Created secret
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class CreateSecretResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('data')]

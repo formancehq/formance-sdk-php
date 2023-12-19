@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * WebhooksErrorResponse - Error
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class WebhooksErrorResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('details')]
@@ -33,7 +27,7 @@ class WebhooksErrorResponse
 	public function __construct()
 	{
 		$this->details = null;
-		$this->errorCode = \formance\stack\Models\Shared\WebhooksErrorsEnum::INTERNAL;
+		$this->errorCode = \formance\stack\Models\Shared\WebhooksErrorsEnum::Internal;
 		$this->errorMessage = "";
 	}
 }

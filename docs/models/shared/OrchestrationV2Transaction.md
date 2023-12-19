@@ -1,0 +1,12 @@
+# OrchestrationV2Transaction
+
+
+## Fields
+
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `id`                                                          | *int*                                                         | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `metadata`                                                    | array<string, *string*>                                       | :heavy_check_mark:                                            | N/A                                                           | [object Object]                                               |
+| `postings`                                                    | array<[V2Posting](../../models/shared/V2Posting.md)>          | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `reference`                                                   | *?string*                                                     | :heavy_minus_sign:                                            | N/A                                                           | ref:001                                                       |
+| `timestamp`                                                   | [\DateTime](https://www.php.net/manual/en/class.datetime.php) | :heavy_check_mark:                                            | N/A                                                           |                                                               |

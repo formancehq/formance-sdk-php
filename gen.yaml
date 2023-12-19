@@ -4,16 +4,14 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 features:
-  version: ""
   php:
-    core: 2.85.3
+    core: 2.89.0
     deprecations: 2.81.1
-    globalSecurity: 2.81.1
+    getRequestBodies: 2.81.1
     globalServerURLs: 2.82.0
     ignores: 2.81.1
 php:
-  version: v1.0.20230915
-  description: Modular developer platform to build and operate complex money flows of any size and shape
+  version: ""
   maxMethodParams: 0
   namespace: formance\stack
-  packageName: formancehq/formance-sdk-php
+  packageName: formance-sdk-php

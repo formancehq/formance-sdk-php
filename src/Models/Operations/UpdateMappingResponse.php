@@ -11,6 +11,11 @@ namespace formance\stack\Models\Operations;
 
 class UpdateMappingResponse
 {
+    /**
+     * HTTP response content type for this operation
+     * 
+     * @var string $contentType
+     */
 	
     public string $contentType;
     
@@ -30,9 +35,19 @@ class UpdateMappingResponse
 	
     public ?\formance\stack\Models\Shared\MappingResponse $mappingResponse = null;
     
+    /**
+     * HTTP response status code for this operation
+     * 
+     * @var int $statusCode
+     */
 	
     public int $statusCode;
     
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     * 
+     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     */
 	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
     

@@ -11,14 +11,7 @@ namespace formance\stack\Models\Shared;
 
 enum WebhooksErrorsEnum: string
 {
-    case INTERNAL = 'INTERNAL';
-    case INSUFFICIENT_FUND = 'INSUFFICIENT_FUND';
-    case VALIDATION = 'VALIDATION';
-    case CONFLICT = 'CONFLICT';
-    case NO_SCRIPT = 'NO_SCRIPT';
-    case COMPILATION_FAILED = 'COMPILATION_FAILED';
-    case METADATA_OVERRIDE = 'METADATA_OVERRIDE';
-    case NOT_FOUND = 'NOT_FOUND';
-    case CONTEXT_CANCELLED = 'CONTEXT_CANCELLED';
-    case STORE = 'STORE';
+    case Internal = 'INTERNAL';
+    case Validation = 'VALIDATION';
+    case NotFound = 'NOT_FOUND';
 }

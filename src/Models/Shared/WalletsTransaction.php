@@ -11,6 +11,10 @@ namespace formance\stack\Models\Shared;
 
 class WalletsTransaction
 {
+	#[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\JMS\Serializer\Annotation\Type('int')]
+    public int $id;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('ledger')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -38,10 +42,10 @@ class WalletsTransaction
     /**
      * $postings
      * 
-     * @var array<\formance\stack\Models\Shared\WalletsPosting> $postings
+     * @var array<\formance\stack\Models\Shared\Posting> $postings
      */
 	#[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\WalletsPosting>')]
+    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Posting>')]
     public array $postings;
     
     /**
@@ -63,12 +67,9 @@ class WalletsTransaction
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $timestamp;
     
-	#[\JMS\Serializer\Annotation\SerializedName('txid')]
-    #[\JMS\Serializer\Annotation\Type('int')]
-    public int $txid;
-    
 	public function __construct()
 	{
+		$this->id = 0;
 		$this->ledger = null;
 		$this->metadata = [];
 		$this->postCommitVolumes = null;
@@ -76,6 +77,5 @@ class WalletsTransaction
 		$this->preCommitVolumes = null;
 		$this->reference = null;
 		$this->timestamp = new \DateTime();
-		$this->txid = 0;
 	}
 }
