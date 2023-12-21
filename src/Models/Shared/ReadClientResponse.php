@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * ReadClientResponse - Retrieved client
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class ReadClientResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('data')]

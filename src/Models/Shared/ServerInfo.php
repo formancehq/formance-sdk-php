@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * ServerInfo - Server information
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class ServerInfo
 {
 	#[\JMS\Serializer\Annotation\SerializedName('version')]

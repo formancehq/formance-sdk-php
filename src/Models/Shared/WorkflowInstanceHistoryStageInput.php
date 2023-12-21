@@ -46,6 +46,11 @@ class WorkflowInstanceHistoryStageInput
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityGetWallet $getWallet = null;
     
+	#[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ActivityListWallets')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?ActivityListWallets $listWallets = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('RevertTransaction')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ActivityRevertTransaction')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -70,6 +75,7 @@ class WorkflowInstanceHistoryStageInput
 		$this->getAccount = null;
 		$this->getPayment = null;
 		$this->getWallet = null;
+		$this->listWallets = null;
 		$this->revertTransaction = null;
 		$this->stripeTransfer = null;
 		$this->voidHold = null;

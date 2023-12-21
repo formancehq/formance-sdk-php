@@ -11,8 +11,13 @@ namespace formance\stack\Models\Operations;
 use \formance\stack\Utils\SpeakeasyMetadata;
 class UpdateMetadataRequest
 {
+    /**
+     * $requestBody
+     * 
+     * @var array<string, string> $requestBody
+     */
 	#[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\PaymentMetadata $paymentMetadata;
+    public array $requestBody;
     
     /**
      * The payment ID.
@@ -24,7 +29,7 @@ class UpdateMetadataRequest
     
 	public function __construct()
 	{
-		$this->paymentMetadata = new \formance\stack\Models\Shared\PaymentMetadata();
+		$this->requestBody = [];
 		$this->paymentId = "";
 	}
 }

@@ -11,10 +11,11 @@ namespace formance\stack\Models\Shared;
 
 enum PaymentStatus: string
 {
-    case PENDING = 'PENDING';
-    case ACTIVE = 'ACTIVE';
-    case TERMINATED = 'TERMINATED';
-    case FAILED = 'FAILED';
-    case SUCCEEDED = 'SUCCEEDED';
-    case CANCELLED = 'CANCELLED';
+    case Pending = 'PENDING';
+    case Succeeded = 'SUCCEEDED';
+    case Cancelled = 'CANCELLED';
+    case Failed = 'FAILED';
+    case Expired = 'EXPIRED';
+    case Refunded = 'REFUNDED';
+    case Other = 'OTHER';
 }

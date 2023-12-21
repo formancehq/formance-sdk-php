@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * Error - General error
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class Error
 {
 	#[\JMS\Serializer\Annotation\SerializedName('errorCode')]
@@ -27,7 +21,7 @@ class Error
     
 	public function __construct()
 	{
-		$this->errorCode = \formance\stack\Models\Shared\ErrorErrorCode::VALIDATION;
+		$this->errorCode = \formance\stack\Models\Shared\ErrorErrorCode::Validation;
 		$this->errorMessage = "";
 	}
 }

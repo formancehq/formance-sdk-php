@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * ListUsersResponse - List of users
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class ListUsersResponse
 {
     /**

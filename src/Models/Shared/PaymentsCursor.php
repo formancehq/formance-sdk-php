@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * PaymentsCursor - OK
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class PaymentsCursor
 {
 	#[\JMS\Serializer\Annotation\SerializedName('cursor')]

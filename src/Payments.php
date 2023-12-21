@@ -11,70 +11,50 @@ namespace formance\stack;
 class Payments 
 {
 
-	// SDK private variables namespaced with _ to avoid conflicts with API models
-	private \GuzzleHttp\ClientInterface $_defaultClient;
-	private \GuzzleHttp\ClientInterface $_securityClient;
-	private string $_serverUrl;
-	private string $_language;
-	private string $_sdkVersion;
-	private string $_genVersion;	
+	private SDKConfiguration $sdkConfiguration;
 
 	/**
-	 * @param \GuzzleHttp\ClientInterface $defaultClient
-	 * @param \GuzzleHttp\ClientInterface $securityClient
-	 * @param string $serverUrl
-	 * @param string $language
-	 * @param string $sdkVersion
-	 * @param string $genVersion
+	 * @param SDKConfiguration $sdkConfig
 	 */
-	public function __construct(\GuzzleHttp\ClientInterface $defaultClient, \GuzzleHttp\ClientInterface $securityClient, string $serverUrl, string $language, string $sdkVersion, string $genVersion)
+	public function __construct(SDKConfiguration $sdkConfig)
 	{
-		$this->_defaultClient = $defaultClient;
-		$this->_securityClient = $securityClient;
-		$this->_serverUrl = $serverUrl;
-		$this->_language = $language;
-		$this->_sdkVersion = $sdkVersion;
-		$this->_genVersion = $genVersion;
+		$this->sdkConfiguration = $sdkConfig;
 	}
 	
     /**
-     * Transfer funds between Stripe accounts
+     * Add an account to a pool
      * 
-     * Execute a transfer between two Stripe accounts.
+     * Add an account to a pool
      * 
-     * @param \formance\stack\Models\Shared\StripeTransferRequest $request
-     * @return \formance\stack\Models\Operations\ConnectorsStripeTransferResponse
+     * @param \formance\stack\Models\Operations\AddAccountToPoolRequest $request
+     * @return \formance\stack\Models\Operations\AddAccountToPoolResponse
      */
-	public function connectorsStripeTransfer(
-        \formance\stack\Models\Shared\StripeTransferRequest $request,
-    ): \formance\stack\Models\Operations\ConnectorsStripeTransferResponse
+	public function addAccountToPool(
+        \formance\stack\Models\Operations\AddAccountToPoolRequest $request,
+    ): \formance\stack\Models\Operations\AddAccountToPoolResponse
     {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/stripe/transfers');
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/accounts', \formance\stack\Models\Operations\AddAccountToPoolRequest::class, $request);
         
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, "addAccountToPoolRequest", "json");
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $response = new \formance\stack\Models\Operations\ConnectorsStripeTransferResponse();
+        $response = new \formance\stack\Models\Operations\AddAccountToPoolResponse();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
         
-        if ($httpResponse->getStatusCode() === 200) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->stripeTransferResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'array<string, mixed>', 'json');
-            }
+        if ($httpResponse->getStatusCode() === 204) {
         }
 
         return $response;
@@ -92,7 +72,7 @@ class Payments
         \formance\stack\Models\Operations\ConnectorsTransferRequest $request,
     ): \formance\stack\Models\Operations\ConnectorsTransferResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/transfers', \formance\stack\Models\Operations\ConnectorsTransferRequest::class, $request);
         
         $options = ['http_errors' => false];
@@ -102,9 +82,9 @@ class Payments
         }
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -124,29 +104,383 @@ class Payments
     }
 	
     /**
+     * Create a BankAccount in Payments and on the PSP
+     * 
+     * Create a bank account in Payments and on the PSP.
+     * 
+     * @param \formance\stack\Models\Shared\BankAccountRequest $request
+     * @return \formance\stack\Models\Operations\CreateBankAccountResponse
+     */
+	public function createBankAccount(
+        \formance\stack\Models\Shared\BankAccountRequest $request,
+    ): \formance\stack\Models\Operations\CreateBankAccountResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts');
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\CreateBankAccountResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->bankAccountResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\BankAccountResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Create a payment
+     * 
+     * Create a payment
+     * 
+     * @param \formance\stack\Models\Shared\PaymentRequest $request
+     * @return \formance\stack\Models\Operations\CreatePaymentResponse
+     */
+	public function createPayment(
+        \formance\stack\Models\Shared\PaymentRequest $request,
+    ): \formance\stack\Models\Operations\CreatePaymentResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments');
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\CreatePaymentResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->paymentResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PaymentResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Create a Pool
+     * 
+     * Create a Pool
+     * 
+     * @param \formance\stack\Models\Shared\PoolRequest $request
+     * @return \formance\stack\Models\Operations\CreatePoolResponse
+     */
+	public function createPool(
+        \formance\stack\Models\Shared\PoolRequest $request,
+    ): \formance\stack\Models\Operations\CreatePoolResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools');
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\CreatePoolResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->poolResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PoolResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Create a TransferInitiation
+     * 
+     * Create a transfer initiation
+     * 
+     * @param \formance\stack\Models\Shared\TransferInitiationRequest $request
+     * @return \formance\stack\Models\Operations\CreateTransferInitiationResponse
+     */
+	public function createTransferInitiation(
+        \formance\stack\Models\Shared\TransferInitiationRequest $request,
+    ): \formance\stack\Models\Operations\CreateTransferInitiationResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations');
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\CreateTransferInitiationResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->transferInitiationResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\TransferInitiationResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Delete a Pool
+     * 
+     * Delete a pool by its id.
+     * 
+     * @param \formance\stack\Models\Operations\DeletePoolRequest $request
+     * @return \formance\stack\Models\Operations\DeletePoolResponse
+     */
+	public function deletePool(
+        ?\formance\stack\Models\Operations\DeletePoolRequest $request,
+    ): \formance\stack\Models\Operations\DeletePoolResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}', \formance\stack\Models\Operations\DeletePoolRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\DeletePoolResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Delete a transfer initiation
+     * 
+     * Delete a transfer initiation by its id.
+     * 
+     * @param \formance\stack\Models\Operations\DeleteTransferInitiationRequest $request
+     * @return \formance\stack\Models\Operations\DeleteTransferInitiationResponse
+     */
+	public function deleteTransferInitiation(
+        ?\formance\stack\Models\Operations\DeleteTransferInitiationRequest $request,
+    ): \formance\stack\Models\Operations\DeleteTransferInitiationResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}', \formance\stack\Models\Operations\DeleteTransferInitiationRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\DeleteTransferInitiationResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Get account balances
+     * 
+     * @param \formance\stack\Models\Operations\GetAccountBalancesRequest $request
+     * @return \formance\stack\Models\Operations\GetAccountBalancesResponse
+     */
+	public function getAccountBalances(
+        ?\formance\stack\Models\Operations\GetAccountBalancesRequest $request,
+    ): \formance\stack\Models\Operations\GetAccountBalancesResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts/{accountId}/balances', \formance\stack\Models\Operations\GetAccountBalancesRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\GetAccountBalancesRequest::class, $request, null));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\GetAccountBalancesResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->balancesCursor = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\BalancesCursor', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Get a bank account created by user on Formance
+     * 
+     * @param \formance\stack\Models\Operations\GetBankAccountRequest $request
+     * @return \formance\stack\Models\Operations\GetBankAccountResponse
+     */
+	public function getBankAccount(
+        ?\formance\stack\Models\Operations\GetBankAccountRequest $request,
+    ): \formance\stack\Models\Operations\GetBankAccountResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}', \formance\stack\Models\Operations\GetBankAccountRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\GetBankAccountResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->bankAccountResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\BankAccountResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * Read a specific task of the connector
      * 
      * Get a specific task associated to the connector.
      * 
      * @param \formance\stack\Models\Operations\GetConnectorTaskRequest $request
      * @return \formance\stack\Models\Operations\GetConnectorTaskResponse
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	public function getConnectorTask(
-        \formance\stack\Models\Operations\GetConnectorTaskRequest $request,
+        ?\formance\stack\Models\Operations\GetConnectorTaskRequest $request,
     ): \formance\stack\Models\Operations\GetConnectorTaskResponse
     {
-        $baseUrl = $this->_serverUrl;
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+        
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/tasks/{taskId}', \formance\stack\Models\Operations\GetConnectorTaskRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $response = new \formance\stack\Models\Operations\GetConnectorTaskResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->taskResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\TaskResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Read a specific task of the connector
+     * 
+     * Get a specific task associated to the connector.
+     * 
+     * @param \formance\stack\Models\Operations\GetConnectorTaskV1Request $request
+     * @return \formance\stack\Models\Operations\GetConnectorTaskV1Response
+     */
+	public function getConnectorTaskV1(
+        ?\formance\stack\Models\Operations\GetConnectorTaskV1Request $request,
+    ): \formance\stack\Models\Operations\GetConnectorTaskV1Response
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}', \formance\stack\Models\Operations\GetConnectorTaskV1Request::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\GetConnectorTaskV1Response();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
@@ -168,17 +502,17 @@ class Payments
      * @return \formance\stack\Models\Operations\GetPaymentResponse
      */
 	public function getPayment(
-        \formance\stack\Models\Operations\GetPaymentRequest $request,
+        ?\formance\stack\Models\Operations\GetPaymentRequest $request,
     ): \formance\stack\Models\Operations\GetPaymentResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments/{paymentId}', \formance\stack\Models\Operations\GetPaymentRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -198,6 +532,115 @@ class Payments
     }
 	
     /**
+     * Get a Pool
+     * 
+     * @param \formance\stack\Models\Operations\GetPoolRequest $request
+     * @return \formance\stack\Models\Operations\GetPoolResponse
+     */
+	public function getPool(
+        ?\formance\stack\Models\Operations\GetPoolRequest $request,
+    ): \formance\stack\Models\Operations\GetPoolResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}', \formance\stack\Models\Operations\GetPoolRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\GetPoolResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->poolResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PoolResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Get pool balances
+     * 
+     * @param \formance\stack\Models\Operations\GetPoolBalancesRequest $request
+     * @return \formance\stack\Models\Operations\GetPoolBalancesResponse
+     */
+	public function getPoolBalances(
+        ?\formance\stack\Models\Operations\GetPoolBalancesRequest $request,
+    ): \formance\stack\Models\Operations\GetPoolBalancesResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/balances', \formance\stack\Models\Operations\GetPoolBalancesRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\GetPoolBalancesRequest::class, $request, null));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\GetPoolBalancesResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->poolBalancesResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PoolBalancesResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Get a transfer initiation
+     * 
+     * @param \formance\stack\Models\Operations\GetTransferInitiationRequest $request
+     * @return \formance\stack\Models\Operations\GetTransferInitiationResponse
+     */
+	public function getTransferInitiation(
+        ?\formance\stack\Models\Operations\GetTransferInitiationRequest $request,
+    ): \formance\stack\Models\Operations\GetTransferInitiationResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}', \formance\stack\Models\Operations\GetTransferInitiationRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\GetTransferInitiationResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->transferInitiationResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\TransferInitiationResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * Install a connector
      * 
      * Install a connector by its name and config.
@@ -209,7 +652,7 @@ class Payments
         \formance\stack\Models\Operations\InstallConnectorRequest $request,
     ): \formance\stack\Models\Operations\InstallConnectorResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}', \formance\stack\Models\Operations\InstallConnectorRequest::class, $request);
         
         $options = ['http_errors' => false];
@@ -218,10 +661,10 @@ class Payments
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -230,7 +673,11 @@ class Payments
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
         
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($httpResponse->getStatusCode() === 201) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->connectorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConnectorResponse', 'json');
+            }
         }
 
         return $response;
@@ -246,14 +693,14 @@ class Payments
 	public function listAllConnectors(
     ): \formance\stack\Models\Operations\ListAllConnectorsResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -273,6 +720,45 @@ class Payments
     }
 	
     /**
+     * List bank accounts created by user on Formance
+     * 
+     * List all bank accounts created by user on Formance.
+     * 
+     * @param \formance\stack\Models\Operations\ListBankAccountsRequest $request
+     * @return \formance\stack\Models\Operations\ListBankAccountsResponse
+     */
+	public function listBankAccounts(
+        ?\formance\stack\Models\Operations\ListBankAccountsRequest $request,
+    ): \formance\stack\Models\Operations\ListBankAccountsResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts');
+        
+        $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListBankAccountsRequest::class, $request, null));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\ListBankAccountsResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->bankAccountsCursor = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\BankAccountsCursor', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * List the configs of each available connector
      * 
      * List the configs of each available connector.
@@ -282,14 +768,14 @@ class Payments
 	public function listConfigsAvailableConnectors(
     ): \formance\stack\Models\Operations\ListConfigsAvailableConnectorsResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/configs');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -315,20 +801,23 @@ class Payments
      * 
      * @param \formance\stack\Models\Operations\ListConnectorTasksRequest $request
      * @return \formance\stack\Models\Operations\ListConnectorTasksResponse
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	public function listConnectorTasks(
-        \formance\stack\Models\Operations\ListConnectorTasksRequest $request,
+        ?\formance\stack\Models\Operations\ListConnectorTasksRequest $request,
     ): \formance\stack\Models\Operations\ListConnectorTasksResponse
     {
-        $baseUrl = $this->_serverUrl;
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+        
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/tasks', \formance\stack\Models\Operations\ListConnectorTasksRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListConnectorTasksRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -348,29 +837,30 @@ class Payments
     }
 	
     /**
-     * List transfers and their statuses
+     * List tasks from a connector
      * 
-     * List transfers
+     * List all tasks associated with this connector.
      * 
-     * @param \formance\stack\Models\Operations\ListConnectorsTransfersRequest $request
-     * @return \formance\stack\Models\Operations\ListConnectorsTransfersResponse
+     * @param \formance\stack\Models\Operations\ListConnectorTasksV1Request $request
+     * @return \formance\stack\Models\Operations\ListConnectorTasksV1Response
      */
-	public function listConnectorsTransfers(
-        \formance\stack\Models\Operations\ListConnectorsTransfersRequest $request,
-    ): \formance\stack\Models\Operations\ListConnectorsTransfersResponse
+	public function listConnectorTasksV1(
+        ?\formance\stack\Models\Operations\ListConnectorTasksV1Request $request,
+    ): \formance\stack\Models\Operations\ListConnectorTasksV1Response
     {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/transfers', \formance\stack\Models\Operations\ListConnectorsTransfersRequest::class, $request);
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/tasks', \formance\stack\Models\Operations\ListConnectorTasksV1Request::class, $request);
         
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListConnectorTasksV1Request::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $response = new \formance\stack\Models\Operations\ListConnectorsTransfersResponse();
+        $response = new \formance\stack\Models\Operations\ListConnectorTasksV1Response();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
@@ -378,7 +868,7 @@ class Payments
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->transfersResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\TransfersResponse', 'json');
+                $response->tasksCursor = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\TasksCursor', 'json');
             }
         }
 
@@ -392,18 +882,18 @@ class Payments
      * @return \formance\stack\Models\Operations\ListPaymentsResponse
      */
 	public function listPayments(
-        \formance\stack\Models\Operations\ListPaymentsRequest $request,
+        ?\formance\stack\Models\Operations\ListPaymentsRequest $request,
     ): \formance\stack\Models\Operations\ListPaymentsResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments');
         
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListPaymentsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -423,6 +913,116 @@ class Payments
     }
 	
     /**
+     * List Pools
+     * 
+     * @param \formance\stack\Models\Operations\ListPoolsRequest $request
+     * @return \formance\stack\Models\Operations\ListPoolsResponse
+     */
+	public function listPools(
+        ?\formance\stack\Models\Operations\ListPoolsRequest $request,
+    ): \formance\stack\Models\Operations\ListPoolsResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools');
+        
+        $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListPoolsRequest::class, $request, null));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\ListPoolsResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->poolsCursor = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PoolsCursor', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * List Transfer Initiations
+     * 
+     * @param \formance\stack\Models\Operations\ListTransferInitiationsRequest $request
+     * @return \formance\stack\Models\Operations\ListTransferInitiationsResponse
+     */
+	public function listTransferInitiations(
+        ?\formance\stack\Models\Operations\ListTransferInitiationsRequest $request,
+    ): \formance\stack\Models\Operations\ListTransferInitiationsResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations');
+        
+        $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListTransferInitiationsRequest::class, $request, null));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\ListTransferInitiationsResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->transferInitiationsCursor = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\TransferInitiationsCursor', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Get an account
+     * 
+     * @param \formance\stack\Models\Operations\PaymentsgetAccountRequest $request
+     * @return \formance\stack\Models\Operations\PaymentsgetAccountResponse
+     */
+	public function paymentsgetAccount(
+        ?\formance\stack\Models\Operations\PaymentsgetAccountRequest $request,
+    ): \formance\stack\Models\Operations\PaymentsgetAccountResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts/{accountId}', \formance\stack\Models\Operations\PaymentsgetAccountRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\PaymentsgetAccountResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->paymentsAccountResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PaymentsAccountResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * Get server info
      * 
      * @return \formance\stack\Models\Operations\PaymentsgetServerInfoResponse
@@ -430,14 +1030,14 @@ class Payments
 	public function paymentsgetServerInfo(
     ): \formance\stack\Models\Operations\PaymentsgetServerInfoResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/_info');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -463,18 +1063,18 @@ class Payments
      * @return \formance\stack\Models\Operations\PaymentslistAccountsResponse
      */
 	public function paymentslistAccounts(
-        \formance\stack\Models\Operations\PaymentslistAccountsRequest $request,
+        ?\formance\stack\Models\Operations\PaymentslistAccountsRequest $request,
     ): \formance\stack\Models\Operations\PaymentslistAccountsResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
         
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\PaymentslistAccountsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -500,19 +1100,22 @@ class Payments
      * 
      * @param \formance\stack\Models\Operations\ReadConnectorConfigRequest $request
      * @return \formance\stack\Models\Operations\ReadConnectorConfigResponse
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	public function readConnectorConfig(
-        \formance\stack\Models\Operations\ReadConnectorConfigRequest $request,
+        ?\formance\stack\Models\Operations\ReadConnectorConfigRequest $request,
     ): \formance\stack\Models\Operations\ReadConnectorConfigResponse
     {
-        $baseUrl = $this->_serverUrl;
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+        
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/config', \formance\stack\Models\Operations\ReadConnectorConfigRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -532,6 +1135,78 @@ class Payments
     }
 	
     /**
+     * Read the config of a connector
+     * 
+     * Read connector config
+     * 
+     * @param \formance\stack\Models\Operations\ReadConnectorConfigV1Request $request
+     * @return \formance\stack\Models\Operations\ReadConnectorConfigV1Response
+     */
+	public function readConnectorConfigV1(
+        ?\formance\stack\Models\Operations\ReadConnectorConfigV1Request $request,
+    ): \formance\stack\Models\Operations\ReadConnectorConfigV1Response
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/config', \formance\stack\Models\Operations\ReadConnectorConfigV1Request::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\ReadConnectorConfigV1Response();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->connectorConfigResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConnectorConfigResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Remove an account from a pool
+     * 
+     * Remove an account from a pool by its id.
+     * 
+     * @param \formance\stack\Models\Operations\RemoveAccountFromPoolRequest $request
+     * @return \formance\stack\Models\Operations\RemoveAccountFromPoolResponse
+     */
+	public function removeAccountFromPool(
+        ?\formance\stack\Models\Operations\RemoveAccountFromPoolRequest $request,
+    ): \formance\stack\Models\Operations\RemoveAccountFromPoolResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/accounts/{accountId}', \formance\stack\Models\Operations\RemoveAccountFromPoolRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\RemoveAccountFromPoolResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
      * Reset a connector
      * 
      * Reset a connector by its name.
@@ -540,23 +1215,135 @@ class Payments
      * 
      * @param \formance\stack\Models\Operations\ResetConnectorRequest $request
      * @return \formance\stack\Models\Operations\ResetConnectorResponse
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	public function resetConnector(
-        \formance\stack\Models\Operations\ResetConnectorRequest $request,
+        ?\formance\stack\Models\Operations\ResetConnectorRequest $request,
     ): \formance\stack\Models\Operations\ResetConnectorResponse
     {
-        $baseUrl = $this->_serverUrl;
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+        
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/reset', \formance\stack\Models\Operations\ResetConnectorRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $response = new \formance\stack\Models\Operations\ResetConnectorResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Reset a connector
+     * 
+     * Reset a connector by its name.
+     * It will remove the connector and ALL PAYMENTS generated with it.
+     * 
+     * 
+     * @param \formance\stack\Models\Operations\ResetConnectorV1Request $request
+     * @return \formance\stack\Models\Operations\ResetConnectorV1Response
+     */
+	public function resetConnectorV1(
+        ?\formance\stack\Models\Operations\ResetConnectorV1Request $request,
+    ): \formance\stack\Models\Operations\ResetConnectorV1Response
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/reset', \formance\stack\Models\Operations\ResetConnectorV1Request::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\ResetConnectorV1Response();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Retry a failed transfer initiation
+     * 
+     * Retry a failed transfer initiation
+     * 
+     * @param \formance\stack\Models\Operations\RetryTransferInitiationRequest $request
+     * @return \formance\stack\Models\Operations\RetryTransferInitiationResponse
+     */
+	public function retryTransferInitiation(
+        ?\formance\stack\Models\Operations\RetryTransferInitiationRequest $request,
+    ): \formance\stack\Models\Operations\RetryTransferInitiationResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/retry', \formance\stack\Models\Operations\RetryTransferInitiationRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\RetryTransferInitiationResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Update the status of a transfer initiation
+     * 
+     * Update a transfer initiation status
+     * 
+     * @param \formance\stack\Models\Operations\UdpateTransferInitiationStatusRequest $request
+     * @return \formance\stack\Models\Operations\UdpateTransferInitiationStatusResponse
+     */
+	public function udpateTransferInitiationStatus(
+        \formance\stack\Models\Operations\UdpateTransferInitiationStatusRequest $request,
+    ): \formance\stack\Models\Operations\UdpateTransferInitiationStatusResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/status', \formance\stack\Models\Operations\UdpateTransferInitiationStatusRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "updateTransferInitiationStatusRequest", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\UdpateTransferInitiationStatusResponse();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
@@ -574,23 +1361,99 @@ class Payments
      * 
      * @param \formance\stack\Models\Operations\UninstallConnectorRequest $request
      * @return \formance\stack\Models\Operations\UninstallConnectorResponse
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	public function uninstallConnector(
-        \formance\stack\Models\Operations\UninstallConnectorRequest $request,
+        ?\formance\stack\Models\Operations\UninstallConnectorRequest $request,
     ): \formance\stack\Models\Operations\UninstallConnectorResponse
     {
-        $baseUrl = $this->_serverUrl;
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+        
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}', \formance\stack\Models\Operations\UninstallConnectorRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $response = new \formance\stack\Models\Operations\UninstallConnectorResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Uninstall a connector
+     * 
+     * Uninstall a connector by its name.
+     * 
+     * @param \formance\stack\Models\Operations\UninstallConnectorV1Request $request
+     * @return \formance\stack\Models\Operations\UninstallConnectorV1Response
+     */
+	public function uninstallConnectorV1(
+        ?\formance\stack\Models\Operations\UninstallConnectorV1Request $request,
+    ): \formance\stack\Models\Operations\UninstallConnectorV1Response
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}', \formance\stack\Models\Operations\UninstallConnectorV1Request::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\UninstallConnectorV1Response();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Update the config of a connector
+     * 
+     * Update connector config
+     * 
+     * @param \formance\stack\Models\Operations\UpdateConnectorConfigV1Request $request
+     * @return \formance\stack\Models\Operations\UpdateConnectorConfigV1Response
+     */
+	public function updateConnectorConfigV1(
+        \formance\stack\Models\Operations\UpdateConnectorConfigV1Request $request,
+    ): \formance\stack\Models\Operations\UpdateConnectorConfigV1Response
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/config', \formance\stack\Models\Operations\UpdateConnectorConfigV1Request::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $response = new \formance\stack\Models\Operations\UpdateConnectorConfigV1Response();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
@@ -611,19 +1474,19 @@ class Payments
         \formance\stack\Models\Operations\UpdateMetadataRequest $request,
     ): \formance\stack\Models\Operations\UpdateMetadataResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments/{paymentId}/metadata', \formance\stack\Models\Operations\UpdateMetadataRequest::class, $request);
         
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "paymentMetadata", "json");
+        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('PATCH', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('PATCH', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 

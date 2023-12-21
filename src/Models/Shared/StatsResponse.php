@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * StatsResponse - OK
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class StatsResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('data')]

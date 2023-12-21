@@ -11,6 +11,7 @@ namespace formance\stack\Models\Shared;
 
 enum ErrorErrorCode: string
 {
-    case VALIDATION = 'VALIDATION';
-    case NOT_FOUND = 'NOT_FOUND';
+    case Validation = 'VALIDATION';
+    case NotFound = 'NOT_FOUND';
+    case Internal = 'INTERNAL';
 }

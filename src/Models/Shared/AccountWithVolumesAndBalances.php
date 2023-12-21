@@ -43,10 +43,10 @@ class AccountWithVolumesAndBalances
     /**
      * $volumes
      * 
-     * @var ?array<string, array<string, int>> $volumes
+     * @var ?array<string, \formance\stack\Models\Shared\Volume> $volumes
      */
 	#[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, int>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, formance\stack\Models\Shared\Volume>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $volumes = null;
     

@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * CreateWalletResponse - Wallet created
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class CreateWalletResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('data')]

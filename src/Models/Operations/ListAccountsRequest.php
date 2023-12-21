@@ -36,16 +36,6 @@ class ListAccountsRequest
     public ?int $balance = null;
     
     /**
-     * Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, equal or not.
-     * 
-     * 
-     * 
-     * @var ?\formance\stack\Models\Operations\ListAccountsBalanceOperator $balanceOperator
-     */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=balanceOperator')]
-    public ?ListAccountsBalanceOperator $balanceOperator = null;
-    
-    /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * 
      * Set to the value of next for the next page of results.
@@ -94,7 +84,7 @@ class ListAccountsRequest
      * 
      * 
      * @var ?string $paginationToken
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
 	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pagination_token')]
     public ?string $paginationToken = null;
@@ -104,7 +94,6 @@ class ListAccountsRequest
 		$this->address = null;
 		$this->after = null;
 		$this->balance = null;
-		$this->balanceOperator = null;
 		$this->cursor = null;
 		$this->ledger = "";
 		$this->metadata = null;

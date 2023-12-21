@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * Response - Success
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class Response
 {
 	#[\JMS\Serializer\Annotation\SerializedName('cursor')]

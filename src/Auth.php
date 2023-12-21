@@ -11,97 +11,15 @@ namespace formance\stack;
 class Auth 
 {
 
-	// SDK private variables namespaced with _ to avoid conflicts with API models
-	private \GuzzleHttp\ClientInterface $_defaultClient;
-	private \GuzzleHttp\ClientInterface $_securityClient;
-	private string $_serverUrl;
-	private string $_language;
-	private string $_sdkVersion;
-	private string $_genVersion;	
+	private SDKConfiguration $sdkConfiguration;
 
 	/**
-	 * @param \GuzzleHttp\ClientInterface $defaultClient
-	 * @param \GuzzleHttp\ClientInterface $securityClient
-	 * @param string $serverUrl
-	 * @param string $language
-	 * @param string $sdkVersion
-	 * @param string $genVersion
+	 * @param SDKConfiguration $sdkConfig
 	 */
-	public function __construct(\GuzzleHttp\ClientInterface $defaultClient, \GuzzleHttp\ClientInterface $securityClient, string $serverUrl, string $language, string $sdkVersion, string $genVersion)
+	public function __construct(SDKConfiguration $sdkConfig)
 	{
-		$this->_defaultClient = $defaultClient;
-		$this->_securityClient = $securityClient;
-		$this->_serverUrl = $serverUrl;
-		$this->_language = $language;
-		$this->_sdkVersion = $sdkVersion;
-		$this->_genVersion = $genVersion;
+		$this->sdkConfiguration = $sdkConfig;
 	}
-	
-    /**
-     * Add scope to client
-     * 
-     * @param \formance\stack\Models\Operations\AddScopeToClientRequest $request
-     * @return \formance\stack\Models\Operations\AddScopeToClientResponse
-     */
-	public function addScopeToClient(
-        \formance\stack\Models\Operations\AddScopeToClientRequest $request,
-    ): \formance\stack\Models\Operations\AddScopeToClientResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/scopes/{scopeId}', \formance\stack\Models\Operations\AddScopeToClientRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('PUT', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\AddScopeToClientResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 204) {
-        }
-
-        return $response;
-    }
-	
-    /**
-     * Add a transient scope to a scope
-     * 
-     * Add a transient scope to a scope
-     * 
-     * @param \formance\stack\Models\Operations\AddTransientScopeRequest $request
-     * @return \formance\stack\Models\Operations\AddTransientScopeResponse
-     */
-	public function addTransientScope(
-        \formance\stack\Models\Operations\AddTransientScopeRequest $request,
-    ): \formance\stack\Models\Operations\AddTransientScopeResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes/{scopeId}/transient/{transientScopeId}', \formance\stack\Models\Operations\AddTransientScopeRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('PUT', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\AddTransientScopeResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 204) {
-        }
-
-        return $response;
-    }
 	
     /**
      * Create client
@@ -110,19 +28,21 @@ class Auth
      * @return \formance\stack\Models\Operations\CreateClientResponse
      */
 	public function createClient(
-        \formance\stack\Models\Shared\CreateClientRequest $request,
+        ?\formance\stack\Models\Shared\CreateClientRequest $request,
     ): \formance\stack\Models\Operations\CreateClientResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, "request", "json");
-        $options = array_merge_recursive($options, $body);
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
+        }
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -142,65 +62,27 @@ class Auth
     }
 	
     /**
-     * Create scope
-     * 
-     * Create scope
-     * 
-     * @param \formance\stack\Models\Shared\CreateScopeRequest $request
-     * @return \formance\stack\Models\Operations\CreateScopeResponse
-     */
-	public function createScope(
-        \formance\stack\Models\Shared\CreateScopeRequest $request,
-    ): \formance\stack\Models\Operations\CreateScopeResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes');
-        
-        $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
-        $options = array_merge_recursive($options, $body);
-        $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\CreateScopeResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 201) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->createScopeResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\CreateScopeResponse', 'json');
-            }
-        }
-
-        return $response;
-    }
-	
-    /**
      * Add a secret to a client
      * 
      * @param \formance\stack\Models\Operations\CreateSecretRequest $request
      * @return \formance\stack\Models\Operations\CreateSecretResponse
      */
 	public function createSecret(
-        \formance\stack\Models\Operations\CreateSecretRequest $request,
+        ?\formance\stack\Models\Operations\CreateSecretRequest $request,
     ): \formance\stack\Models\Operations\CreateSecretResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', \formance\stack\Models\Operations\CreateSecretRequest::class, $request);
         
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, "createSecretRequest", "json");
-        $options = array_merge_recursive($options, $body);
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
+        }
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('POST', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('POST', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -226,87 +108,21 @@ class Auth
      * @return \formance\stack\Models\Operations\DeleteClientResponse
      */
 	public function deleteClient(
-        \formance\stack\Models\Operations\DeleteClientRequest $request,
+        ?\formance\stack\Models\Operations\DeleteClientRequest $request,
     ): \formance\stack\Models\Operations\DeleteClientResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', \formance\stack\Models\Operations\DeleteClientRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $response = new \formance\stack\Models\Operations\DeleteClientResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 204) {
-        }
-
-        return $response;
-    }
-	
-    /**
-     * Delete scope
-     * 
-     * Delete scope
-     * 
-     * @param \formance\stack\Models\Operations\DeleteScopeRequest $request
-     * @return \formance\stack\Models\Operations\DeleteScopeResponse
-     */
-	public function deleteScope(
-        \formance\stack\Models\Operations\DeleteScopeRequest $request,
-    ): \formance\stack\Models\Operations\DeleteScopeResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes/{scopeId}', \formance\stack\Models\Operations\DeleteScopeRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\DeleteScopeResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 204) {
-        }
-
-        return $response;
-    }
-	
-    /**
-     * Delete scope from client
-     * 
-     * @param \formance\stack\Models\Operations\DeleteScopeFromClientRequest $request
-     * @return \formance\stack\Models\Operations\DeleteScopeFromClientResponse
-     */
-	public function deleteScopeFromClient(
-        \formance\stack\Models\Operations\DeleteScopeFromClientRequest $request,
-    ): \formance\stack\Models\Operations\DeleteScopeFromClientResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/scopes/{scopeId}', \formance\stack\Models\Operations\DeleteScopeFromClientRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\DeleteScopeFromClientResponse();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
@@ -324,55 +140,21 @@ class Auth
      * @return \formance\stack\Models\Operations\DeleteSecretResponse
      */
 	public function deleteSecret(
-        \formance\stack\Models\Operations\DeleteSecretRequest $request,
+        ?\formance\stack\Models\Operations\DeleteSecretRequest $request,
     ): \formance\stack\Models\Operations\DeleteSecretResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', \formance\stack\Models\Operations\DeleteSecretRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('DELETE', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $response = new \formance\stack\Models\Operations\DeleteSecretResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 204) {
-        }
-
-        return $response;
-    }
-	
-    /**
-     * Delete a transient scope from a scope
-     * 
-     * Delete a transient scope from a scope
-     * 
-     * @param \formance\stack\Models\Operations\DeleteTransientScopeRequest $request
-     * @return \formance\stack\Models\Operations\DeleteTransientScopeResponse
-     */
-	public function deleteTransientScope(
-        \formance\stack\Models\Operations\DeleteTransientScopeRequest $request,
-    ): \formance\stack\Models\Operations\DeleteTransientScopeResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes/{scopeId}/transient/{transientScopeId}', \formance\stack\Models\Operations\DeleteTransientScopeRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('DELETE', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\DeleteTransientScopeResponse();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
@@ -391,14 +173,14 @@ class Auth
 	public function getServerInfo(
     ): \formance\stack\Models\Operations\GetServerInfoResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/_info');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -425,14 +207,14 @@ class Auth
 	public function listClients(
     ): \formance\stack\Models\Operations\ListClientsResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -452,42 +234,6 @@ class Auth
     }
 	
     /**
-     * List scopes
-     * 
-     * List Scopes
-     * 
-     * @return \formance\stack\Models\Operations\ListScopesResponse
-     */
-	public function listScopes(
-    ): \formance\stack\Models\Operations\ListScopesResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes');
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\ListScopesResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 200) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->listScopesResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListScopesResponse', 'json');
-            }
-        }
-
-        return $response;
-    }
-	
-    /**
      * List users
      * 
      * List users
@@ -497,14 +243,14 @@ class Auth
 	public function listUsers(
     ): \formance\stack\Models\Operations\ListUsersResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users');
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -530,17 +276,17 @@ class Auth
      * @return \formance\stack\Models\Operations\ReadClientResponse
      */
 	public function readClient(
-        \formance\stack\Models\Operations\ReadClientRequest $request,
+        ?\formance\stack\Models\Operations\ReadClientRequest $request,
     ): \formance\stack\Models\Operations\ReadClientResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', \formance\stack\Models\Operations\ReadClientRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -560,44 +306,6 @@ class Auth
     }
 	
     /**
-     * Read scope
-     * 
-     * Read scope
-     * 
-     * @param \formance\stack\Models\Operations\ReadScopeRequest $request
-     * @return \formance\stack\Models\Operations\ReadScopeResponse
-     */
-	public function readScope(
-        \formance\stack\Models\Operations\ReadScopeRequest $request,
-    ): \formance\stack\Models\Operations\ReadScopeResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes/{scopeId}', \formance\stack\Models\Operations\ReadScopeRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\ReadScopeResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 200) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->readScopeResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ReadScopeResponse', 'json');
-            }
-        }
-
-        return $response;
-    }
-	
-    /**
      * Read user
      * 
      * Read user
@@ -606,17 +314,17 @@ class Auth
      * @return \formance\stack\Models\Operations\ReadUserResponse
      */
 	public function readUser(
-        \formance\stack\Models\Operations\ReadUserRequest $request,
+        ?\formance\stack\Models\Operations\ReadUserRequest $request,
     ): \formance\stack\Models\Operations\ReadUserResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', \formance\stack\Models\Operations\ReadUserRequest::class, $request);
         
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('GET', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('GET', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -642,19 +350,21 @@ class Auth
      * @return \formance\stack\Models\Operations\UpdateClientResponse
      */
 	public function updateClient(
-        \formance\stack\Models\Operations\UpdateClientRequest $request,
+        ?\formance\stack\Models\Operations\UpdateClientRequest $request,
     ): \formance\stack\Models\Operations\UpdateClientResponse
     {
-        $baseUrl = $this->_serverUrl;
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', \formance\stack\Models\Operations\UpdateClientRequest::class, $request);
         
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, "updateClientRequest", "json");
-        $options = array_merge_recursive($options, $body);
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
+        }
         $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
-        $httpResponse = $this->_securityClient->request('PUT', $url, $options);
+        $httpResponse = $this->sdkConfiguration->defaultClient->request('PUT', $url, $options);
         
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
@@ -667,46 +377,6 @@ class Auth
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $response->updateClientResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\UpdateClientResponse', 'json');
-            }
-        }
-
-        return $response;
-    }
-	
-    /**
-     * Update scope
-     * 
-     * Update scope
-     * 
-     * @param \formance\stack\Models\Operations\UpdateScopeRequest $request
-     * @return \formance\stack\Models\Operations\UpdateScopeResponse
-     */
-	public function updateScope(
-        \formance\stack\Models\Operations\UpdateScopeRequest $request,
-    ): \formance\stack\Models\Operations\UpdateScopeResponse
-    {
-        $baseUrl = $this->_serverUrl;
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/scopes/{scopeId}', \formance\stack\Models\Operations\UpdateScopeRequest::class, $request);
-        
-        $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "updateScopeRequest", "json");
-        $options = array_merge_recursive($options, $body);
-        $options['headers']['Accept'] = 'application/json';
-        $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
-        
-        $httpResponse = $this->_securityClient->request('PUT', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $response = new \formance\stack\Models\Operations\UpdateScopeResponse();
-        $response->statusCode = $httpResponse->getStatusCode();
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 200) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = Utils\JSON::createSerializer();
-                $response->updateScopeResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\UpdateScopeResponse', 'json');
             }
         }
 

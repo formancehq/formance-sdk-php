@@ -36,6 +36,11 @@ class WorkflowInstanceHistoryStageOutput
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityGetWalletOutput $getWallet = null;
     
+	#[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationListWalletsResponse')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?OrchestrationListWalletsResponse $listWallets = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('RevertTransaction')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ActivityRevertTransactionOutput')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -48,6 +53,7 @@ class WorkflowInstanceHistoryStageOutput
 		$this->getAccount = null;
 		$this->getPayment = null;
 		$this->getWallet = null;
+		$this->listWallets = null;
 		$this->revertTransaction = null;
 	}
 }

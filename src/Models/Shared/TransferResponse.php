@@ -9,12 +9,6 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-/**
- * TransferResponse - OK
- * 
- * @package formance\stack\Models\Shared
- * @access public
- */
 class TransferResponse
 {
 	#[\JMS\Serializer\Annotation\SerializedName('id')]

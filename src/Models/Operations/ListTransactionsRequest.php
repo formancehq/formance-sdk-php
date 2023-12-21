@@ -86,21 +86,6 @@ class ListTransactionsRequest
     public ?int $pageSize = null;
     
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
-     * 
-     * Set to the value of next for the next page of results.
-     * Set to the value of previous for the previous page of results.
-     * No other parameters can be set when this parameter is set.
-     * Deprecated, please use `cursor` instead.
-     * 
-     * 
-     * @var ?string $paginationToken
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
-     */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pagination_token')]
-    public ?string $paginationToken = null;
-    
-    /**
      * Find transactions by reference field.
      * 
      * @var ?string $reference
@@ -137,7 +122,6 @@ class ListTransactionsRequest
 		$this->ledger = "";
 		$this->metadata = null;
 		$this->pageSize = null;
-		$this->paginationToken = null;
 		$this->reference = null;
 		$this->source = null;
 		$this->startTime = null;
