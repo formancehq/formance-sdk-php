@@ -15,9 +15,14 @@ class PolicyRequest
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledgerName;
     
+    /**
+     * $ledgerQuery
+     * 
+     * @var array<string, mixed> $ledgerQuery
+     */
 	#[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
-    #[\JMS\Serializer\Annotation\Type('string')]
-    public string $ledgerQuery;
+    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $ledgerQuery;
     
 	#[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
@@ -30,7 +35,7 @@ class PolicyRequest
 	public function __construct()
 	{
 		$this->ledgerName = "";
-		$this->ledgerQuery = "";
+		$this->ledgerQuery = [];
 		$this->name = "";
 		$this->paymentsPoolID = "";
 	}

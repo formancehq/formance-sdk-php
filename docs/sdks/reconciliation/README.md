@@ -33,7 +33,9 @@ $sdk = SDK::builder()
 try {
     $request = new PolicyRequest();
     $request->ledgerName = 'default';
-    $request->ledgerQuery = '{"$match": {"metadata[reconciliation]": "pool:main"}}';
+    $request->ledgerQuery = [
+        'relationships' => 'string',
+    ];
     $request->name = 'XXX';
     $request->paymentsPoolID = 'XXX';
 

@@ -11,7 +11,7 @@ features:
     globalServerURLs: 2.82.0
     ignores: 2.81.1
 php:
-  version: v2.0.0-beta.2
+  version: v2.0.0-beta.4
   maxMethodParams: 0
   namespace: formance\stack
   packageName: formance-sdk-php

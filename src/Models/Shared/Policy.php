@@ -23,9 +23,14 @@ class Policy
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledgerName;
     
+    /**
+     * $ledgerQuery
+     * 
+     * @var array<string, mixed> $ledgerQuery
+     */
 	#[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
-    #[\JMS\Serializer\Annotation\Type('string')]
-    public string $ledgerQuery;
+    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $ledgerQuery;
     
 	#[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
@@ -40,7 +45,7 @@ class Policy
 		$this->createdAt = new \DateTime();
 		$this->id = "";
 		$this->ledgerName = "";
-		$this->ledgerQuery = "";
+		$this->ledgerQuery = [];
 		$this->name = "";
 		$this->paymentsPoolID = "";
 	}
