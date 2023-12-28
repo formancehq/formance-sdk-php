@@ -52,9 +52,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\CancelEventRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -96,9 +101,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Shared\TriggerData;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -145,9 +155,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Shared\CreateWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -194,9 +209,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\DeleteTriggerRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -238,9 +258,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\DeleteWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -282,9 +307,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetInstanceRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -326,9 +356,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetInstanceHistoryRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -370,9 +405,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetInstanceStageHistoryRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -415,9 +455,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -459,9 +504,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ListInstancesRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -504,8 +554,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -538,9 +593,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ListTriggersOccurrencesRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -582,8 +642,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -616,8 +681,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -650,9 +720,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ReadTriggerRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -694,9 +769,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\RunWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -742,10 +822,15 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\SendEventRequest;
 use \formance\stack\Models\Operations\SendEventRequestBody;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -789,9 +874,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\TestTriggerRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -836,9 +926,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2CancelEventRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -880,9 +975,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Shared\V2TriggerData;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -929,9 +1029,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Shared\V2CreateWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -978,9 +1083,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2DeleteTriggerRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1022,9 +1132,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2DeleteWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1066,9 +1181,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2GetInstanceRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1110,9 +1230,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2GetInstanceHistoryRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1154,9 +1279,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1199,8 +1329,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1233,9 +1368,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2GetWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1277,9 +1417,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2ListInstancesRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1322,8 +1467,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1356,9 +1506,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1400,8 +1555,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1434,9 +1594,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2ReadTriggerRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1478,9 +1643,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2RunWorkflowRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -1526,10 +1696,15 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\V2SendEventRequest;
 use \formance\stack\Models\Operations\V2SendEventRequestBody;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {

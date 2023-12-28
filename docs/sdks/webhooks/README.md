@@ -24,9 +24,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ActivateConfigRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -72,10 +77,15 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ChangeConfigSecretRequest;
 use \formance\stack\Models\Shared\ConfigChangeSecret;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -119,9 +129,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\DeactivateConfigRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -163,9 +178,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\DeleteConfigRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -207,9 +227,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetManyConfigsRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -261,9 +286,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Shared\ConfigUser;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -309,9 +339,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\TestConfigRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {

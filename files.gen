@@ -661,6 +661,7 @@ src/Models/Shared/AttemptResponse.php
 src/Models/Shared/Attempt.php
 src/Models/Shared/GetVersionsResponse.php
 src/Models/Shared/Version.php
+src/Models/Shared/Security.php
 USAGE.md
 docs/models/operations/CreateClientResponse.md
 docs/models/operations/CreateSecretRequest.md
@@ -1296,6 +1297,7 @@ docs/models/shared/AttemptResponse.md
 docs/models/shared/Attempt.md
 docs/models/shared/GetVersionsResponse.md
 docs/models/shared/Version.md
+docs/models/shared/Security.md
 docs/sdks/sdk/README.md
 docs/sdks/auth/README.md
 docs/sdks/ledger/README.md

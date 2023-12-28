@@ -24,14 +24,14 @@ class TransferInitiationPayments
     public string $paymentID;
     
 	#[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\PaymentStatus>')]
-    public PaymentStatus $status;
+    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\TransferInitiationStatus>')]
+    public TransferInitiationStatus $status;
     
 	public function __construct()
 	{
 		$this->createdAt = new \DateTime();
 		$this->error = "";
 		$this->paymentID = "";
-		$this->status = \formance\stack\Models\Shared\PaymentStatus::Pending;
+		$this->status = \formance\stack\Models\Shared\TransferInitiationStatus::WaitingForValidation;
 	}
 }

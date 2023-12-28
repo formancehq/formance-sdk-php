@@ -25,15 +25,22 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Shared\PolicyRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
     $request = new PolicyRequest();
     $request->ledgerName = 'default';
-    $request->ledgerQuery = '{"$match": {"metadata[reconciliation]": "pool:main"}}';
+    $request->ledgerQuery = [
+        'relationships' => 'string',
+    ];
     $request->name = 'XXX';
     $request->paymentsPoolID = 'XXX';
 
@@ -72,9 +79,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\DeletePolicyRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -116,9 +128,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetPolicyRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -160,9 +177,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\GetReconciliationRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -204,9 +226,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ListPoliciesRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -249,9 +276,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ListReconciliationsRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -294,10 +326,15 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
 use \formance\stack\Models\Operations\ReconcileRequest;
 use \formance\stack\Models\Shared\ReconciliationRequest;
 
+$security = new Security();
+$security->authorization = '';
+
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -342,8 +379,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {

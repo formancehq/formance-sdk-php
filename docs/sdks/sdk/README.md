@@ -34,8 +34,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {
@@ -66,8 +71,13 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use \formance\stack\SDK;
+use \formance\stack\Models\Shared\Security;
+
+$security = new Security();
+$security->authorization = '';
 
 $sdk = SDK::builder()
+    ->setSecurity($security)
     ->build();
 
 try {

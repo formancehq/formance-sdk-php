@@ -51,8 +51,14 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use formance\stack\SDK;
+use formance\stack\Models\Shared\Security;
 
-$sdk = SDK::builder()->build();
+$security = new Security();
+$security->authorization = '';
+
+$sdk = SDK::builder()
+    ->setSecurity($security)
+    ->build();
 
 try {
     $response = $sdk->sdk->getVersions();
