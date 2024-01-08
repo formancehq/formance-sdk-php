@@ -1,24 +1,22 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```php
 <?php
 
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use formance\stack\SDK;
-use formance\stack\Models\Shared\Security;
+use formance\stack;
+use formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
+$sdk = stack\SDK::builder()
     ->setSecurity($security)
     ->build();
 
 try {
-    $response = $sdk->sdk->getVersions();
+    $response = $sdk->getVersions();
 
     if ($response->getVersionsResponse !== null) {
         // handle response
@@ -28,4 +26,4 @@ try {
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

@@ -1,5 +1,5 @@
 # Payments
-(*payments*)
+
 
 ### Available Operations
 
@@ -55,23 +55,20 @@ Add an account to a pool
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\AddAccountToPoolRequest;
-use \formance\stack\Models\Shared\AddAccountToPoolRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new AddAccountToPoolRequest();
-    $request->addAccountToPoolRequest = new AddAccountToPoolRequest();
+        $request = new Operations\AddAccountToPoolRequest();
+    $request->addAccountToPoolRequest = new Shared\AddAccountToPoolRequest();
     $request->addAccountToPoolRequest->accountID = 'string';
-    $request->poolId = 'string';
+    $request->poolId = 'string';;
 
     $response = $sdk->payments->addAccountToPool($request);
 
@@ -87,12 +84,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\AddAccountToPoolRequest](../../models/operations/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\AddAccountToPoolRequest](../../Models/Operations/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\AddAccountToPoolResponse](../../models/operations/AddAccountToPoolResponse.md)**
+**[?\formance\stack\Models\Operations\AddAccountToPoolResponse](../../Models/Operations/AddAccountToPoolResponse.md)**
 
 
 ## connectorsTransfer
@@ -107,27 +104,23 @@ Execute a transfer between two accounts.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ConnectorsTransferRequest;
-use \formance\stack\Models\Shared\TransferRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ConnectorsTransferRequest();
-    $request->transferRequest = new TransferRequest();
+        $request = new Operations\ConnectorsTransferRequest();
+    $request->transferRequest = new Shared\TransferRequest();
     $request->transferRequest->amount = 100;
     $request->transferRequest->asset = 'USD';
     $request->transferRequest->destination = 'acct_1Gqj58KZcSIg2N2q';
     $request->transferRequest->source = 'acct_1Gqj58KZcSIg2N2q';
-    $request->connector = Connector::CurrencyCloud;
+    $request->connector = Shared\Connector::CurrencyCloud;;
 
     $response = $sdk->payments->connectorsTransfer($request);
 
@@ -143,12 +136,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\ConnectorsTransferRequest](../../models/operations/ConnectorsTransferRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\ConnectorsTransferRequest](../../Models/Operations/ConnectorsTransferRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ConnectorsTransferResponse](../../models/operations/ConnectorsTransferResponse.md)**
+**[?\formance\stack\Models\Operations\ConnectorsTransferResponse](../../Models/Operations/ConnectorsTransferResponse.md)**
 
 
 ## createBankAccount
@@ -163,19 +156,16 @@ Create a bank account in Payments and on the PSP.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\BankAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new BankAccountRequest();
+        $request = new Shared\BankAccountRequest();
     $request->accountNumber = 'string';
     $request->connectorID = 'string';
     $request->country = 'GB';
@@ -184,7 +174,7 @@ try {
         'Manganese' => 'string',
     ];
     $request->name = 'My account';
-    $request->swiftBicCode = 'string';
+    $request->swiftBicCode = 'string';;
 
     $response = $sdk->payments->createBankAccount($request);
 
@@ -200,12 +190,12 @@ try {
 
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `$request`                                                                                    | [\formance\stack\Models\Shared\BankAccountRequest](../../models/shared/BankAccountRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `$request`                                                                                    | [\formance\stack\Models\Shared\BankAccountRequest](../../Models/Shared/BankAccountRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateBankAccountResponse](../../models/operations/CreateBankAccountResponse.md)**
+**[?\formance\stack\Models\Operations\CreateBankAccountResponse](../../Models/Operations/CreateBankAccountResponse.md)**
 
 
 ## createPayment
@@ -220,32 +210,26 @@ Create a payment
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\PaymentRequest;
-use \formance\stack\Models\Shared\PaymentScheme;
-use \formance\stack\Models\Shared\PaymentStatus;
-use \formance\stack\Models\Shared\PaymentType;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new PaymentRequest();
+        $request = new Shared\PaymentRequest();
     $request->amount = 100;
     $request->asset = 'USD';
     $request->connectorID = 'string';
-    $request->createdAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-11-09T02:12:55.787Z');
+    $request->createdAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-11-09T01:03:21.153Z');
     $request->destinationAccountID = 'string';
     $request->reference = 'string';
-    $request->scheme = PaymentScheme::GooglePay;
+    $request->scheme = Shared\PaymentScheme::GooglePay;
     $request->sourceAccountID = 'string';
-    $request->status = PaymentStatus::Refunded;
-    $request->type = PaymentType::Transfer;
+    $request->status = Shared\PaymentStatus::Refunded;
+    $request->type = Shared\PaymentType::Transfer;;
 
     $response = $sdk->payments->createPayment($request);
 
@@ -261,12 +245,12 @@ try {
 
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `$request`                                                                            | [\formance\stack\Models\Shared\PaymentRequest](../../models/shared/PaymentRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `$request`                                                                            | [\formance\stack\Models\Shared\PaymentRequest](../../Models/Shared/PaymentRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreatePaymentResponse](../../models/operations/CreatePaymentResponse.md)**
+**[?\formance\stack\Models\Operations\CreatePaymentResponse](../../Models/Operations/CreatePaymentResponse.md)**
 
 
 ## createPool
@@ -281,23 +265,20 @@ Create a Pool
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\PoolRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new PoolRequest();
+        $request = new Shared\PoolRequest();
     $request->accountIDs = [
         'string',
     ];
-    $request->name = 'string';
+    $request->name = 'string';;
 
     $response = $sdk->payments->createPool($request);
 
@@ -313,12 +294,12 @@ try {
 
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$request`                                                                      | [\formance\stack\Models\Shared\PoolRequest](../../models/shared/PoolRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `$request`                                                                      | [\formance\stack\Models\Shared\PoolRequest](../../Models/Shared/PoolRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreatePoolResponse](../../models/operations/CreatePoolResponse.md)**
+**[?\formance\stack\Models\Operations\CreatePoolResponse](../../Models/Operations/CreatePoolResponse.md)**
 
 
 ## createTransferInitiation
@@ -333,21 +314,16 @@ Create a transfer initiation
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\TransferInitiationRequest;
-use \formance\stack\Models\Shared\Connector;
-use \formance\stack\Models\Shared\TransferInitiationRequestType;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new TransferInitiationRequest();
+        $request = new Shared\TransferInitiationRequest();
     $request->amount = 256698;
     $request->asset = 'USD';
     $request->connectorID = 'string';
@@ -356,12 +332,12 @@ try {
     $request->metadata = [
         'deposit' => 'string',
     ];
-    $request->provider = Connector::BankingCircle;
+    $request->provider = Shared\Connector::BankingCircle;
     $request->reference = 'XXX';
-    $request->scheduledAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-05-20T04:11:30.978Z');
+    $request->scheduledAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-05-20T07:14:32.431Z');
     $request->sourceAccountID = 'string';
-    $request->type = TransferInitiationRequestType::Payout;
-    $request->validated = false;
+    $request->type = Shared\TransferInitiationRequestType::Payout;
+    $request->validated = false;;
 
     $response = $sdk->payments->createTransferInitiation($request);
 
@@ -377,12 +353,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Shared\TransferInitiationRequest](../../models/shared/TransferInitiationRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Shared\TransferInitiationRequest](../../Models/Shared/TransferInitiationRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateTransferInitiationResponse](../../models/operations/CreateTransferInitiationResponse.md)**
+**[?\formance\stack\Models\Operations\CreateTransferInitiationResponse](../../Models/Operations/CreateTransferInitiationResponse.md)**
 
 
 ## deletePool
@@ -397,20 +373,18 @@ Delete a pool by its id.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeletePoolRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeletePoolRequest();
-    $request->poolId = 'string';
+        $request = new Operations\DeletePoolRequest();
+    $request->poolId = 'string';;
 
     $response = $sdk->payments->deletePool($request);
 
@@ -426,12 +400,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\DeletePoolRequest](../../models/operations/DeletePoolRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\DeletePoolRequest](../../Models/Operations/DeletePoolRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeletePoolResponse](../../models/operations/DeletePoolResponse.md)**
+**[?\formance\stack\Models\Operations\DeletePoolResponse](../../Models/Operations/DeletePoolResponse.md)**
 
 
 ## deleteTransferInitiation
@@ -446,20 +420,18 @@ Delete a transfer initiation by its id.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeleteTransferInitiationRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeleteTransferInitiationRequest();
-    $request->transferId = 'string';
+        $request = new Operations\DeleteTransferInitiationRequest();
+    $request->transferId = 'string';;
 
     $response = $sdk->payments->deleteTransferInitiation($request);
 
@@ -475,12 +447,12 @@ try {
 
 | Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                      | [\formance\stack\Models\Operations\DeleteTransferInitiationRequest](../../models/operations/DeleteTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
+| `$request`                                                                                                                      | [\formance\stack\Models\Operations\DeleteTransferInitiationRequest](../../Models/Operations/DeleteTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteTransferInitiationResponse](../../models/operations/DeleteTransferInitiationResponse.md)**
+**[?\formance\stack\Models\Operations\DeleteTransferInitiationResponse](../../Models/Operations/DeleteTransferInitiationResponse.md)**
 
 
 ## getAccountBalances
@@ -495,29 +467,27 @@ Get account balances
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetAccountBalancesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetAccountBalancesRequest();
+        $request = new Operations\GetAccountBalancesRequest();
     $request->accountId = 'string';
     $request->asset = 'string';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->from = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-02-04T20:25:30.152Z');
+    $request->from = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-02-05T05:11:20.042Z');
     $request->limit = 743236;
     $request->pageSize = 125462;
     $request->sort = [
         'string',
     ];
-    $request->to = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-07-14T20:40:51.017Z');
+    $request->to = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-07-15T08:57:06.406Z');;
 
     $response = $sdk->payments->getAccountBalances($request);
 
@@ -533,12 +503,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetAccountBalancesRequest](../../models/operations/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetAccountBalancesRequest](../../Models/Operations/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetAccountBalancesResponse](../../models/operations/GetAccountBalancesResponse.md)**
+**[?\formance\stack\Models\Operations\GetAccountBalancesResponse](../../Models/Operations/GetAccountBalancesResponse.md)**
 
 
 ## getBankAccount
@@ -553,20 +523,18 @@ Get a bank account created by user on Formance
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetBankAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetBankAccountRequest();
-    $request->bankAccountId = 'string';
+        $request = new Operations\GetBankAccountRequest();
+    $request->bankAccountId = 'string';;
 
     $response = $sdk->payments->getBankAccount($request);
 
@@ -582,12 +550,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetBankAccountRequest](../../models/operations/GetBankAccountRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetBankAccountRequest](../../Models/Operations/GetBankAccountRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetBankAccountResponse](../../models/operations/GetBankAccountResponse.md)**
+**[?\formance\stack\Models\Operations\GetBankAccountResponse](../../Models/Operations/GetBankAccountResponse.md)**
 
 
 ## ~~getConnectorTask~~
@@ -604,22 +572,19 @@ Get a specific task associated to the connector.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetConnectorTaskRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetConnectorTaskRequest();
-    $request->connector = Connector::Atlar;
-    $request->taskId = 'string';
+        $request = new Operations\GetConnectorTaskRequest();
+    $request->connector = Shared\Connector::Atlar;
+    $request->taskId = 'string';;
 
     $response = $sdk->payments->getConnectorTask($request);
 
@@ -635,12 +600,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\GetConnectorTaskRequest](../../models/operations/GetConnectorTaskRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\GetConnectorTaskRequest](../../Models/Operations/GetConnectorTaskRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetConnectorTaskResponse](../../models/operations/GetConnectorTaskResponse.md)**
+**[?\formance\stack\Models\Operations\GetConnectorTaskResponse](../../Models/Operations/GetConnectorTaskResponse.md)**
 
 
 ## getConnectorTaskV1
@@ -655,23 +620,20 @@ Get a specific task associated to the connector.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetConnectorTaskV1Request;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetConnectorTaskV1Request();
-    $request->connector = Connector::CurrencyCloud;
+        $request = new Operations\GetConnectorTaskV1Request();
+    $request->connector = Shared\Connector::CurrencyCloud;
     $request->connectorId = 'string';
-    $request->taskId = 'string';
+    $request->taskId = 'string';;
 
     $response = $sdk->payments->getConnectorTaskV1($request);
 
@@ -687,12 +649,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetConnectorTaskV1Request](../../models/operations/GetConnectorTaskV1Request.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetConnectorTaskV1Request](../../Models/Operations/GetConnectorTaskV1Request.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetConnectorTaskV1Response](../../models/operations/GetConnectorTaskV1Response.md)**
+**[?\formance\stack\Models\Operations\GetConnectorTaskV1Response](../../Models/Operations/GetConnectorTaskV1Response.md)**
 
 
 ## getPayment
@@ -707,20 +669,18 @@ Get a payment
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetPaymentRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetPaymentRequest();
-    $request->paymentId = 'string';
+        $request = new Operations\GetPaymentRequest();
+    $request->paymentId = 'string';;
 
     $response = $sdk->payments->getPayment($request);
 
@@ -736,12 +696,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\GetPaymentRequest](../../models/operations/GetPaymentRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\GetPaymentRequest](../../Models/Operations/GetPaymentRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetPaymentResponse](../../models/operations/GetPaymentResponse.md)**
+**[?\formance\stack\Models\Operations\GetPaymentResponse](../../Models/Operations/GetPaymentResponse.md)**
 
 
 ## getPool
@@ -756,20 +716,18 @@ Get a Pool
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetPoolRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetPoolRequest();
-    $request->poolId = 'string';
+        $request = new Operations\GetPoolRequest();
+    $request->poolId = 'string';;
 
     $response = $sdk->payments->getPool($request);
 
@@ -785,12 +743,12 @@ try {
 
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `$request`                                                                                    | [\formance\stack\Models\Operations\GetPoolRequest](../../models/operations/GetPoolRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `$request`                                                                                    | [\formance\stack\Models\Operations\GetPoolRequest](../../Models/Operations/GetPoolRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetPoolResponse](../../models/operations/GetPoolResponse.md)**
+**[?\formance\stack\Models\Operations\GetPoolResponse](../../Models/Operations/GetPoolResponse.md)**
 
 
 ## getPoolBalances
@@ -805,21 +763,19 @@ Get pool balances
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetPoolBalancesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetPoolBalancesRequest();
-    $request->at = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-05-04T19:57:32.195Z');
-    $request->poolId = 'string';
+        $request = new Operations\GetPoolBalancesRequest();
+    $request->at = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-05-05T06:40:23.018Z');
+    $request->poolId = 'string';;
 
     $response = $sdk->payments->getPoolBalances($request);
 
@@ -835,12 +791,12 @@ try {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\GetPoolBalancesRequest](../../models/operations/GetPoolBalancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `$request`                                                                                                    | [\formance\stack\Models\Operations\GetPoolBalancesRequest](../../Models/Operations/GetPoolBalancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetPoolBalancesResponse](../../models/operations/GetPoolBalancesResponse.md)**
+**[?\formance\stack\Models\Operations\GetPoolBalancesResponse](../../Models/Operations/GetPoolBalancesResponse.md)**
 
 
 ## getTransferInitiation
@@ -855,20 +811,18 @@ Get a transfer initiation
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetTransferInitiationRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetTransferInitiationRequest();
-    $request->transferId = 'string';
+        $request = new Operations\GetTransferInitiationRequest();
+    $request->transferId = 'string';;
 
     $response = $sdk->payments->getTransferInitiation($request);
 
@@ -884,12 +838,12 @@ try {
 
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                | [\formance\stack\Models\Operations\GetTransferInitiationRequest](../../models/operations/GetTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| `$request`                                                                                                                | [\formance\stack\Models\Operations\GetTransferInitiationRequest](../../Models/Operations/GetTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetTransferInitiationResponse](../../models/operations/GetTransferInitiationResponse.md)**
+**[?\formance\stack\Models\Operations\GetTransferInitiationResponse](../../Models/Operations/GetTransferInitiationResponse.md)**
 
 
 ## installConnector
@@ -904,22 +858,19 @@ Install a connector by its name and config.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\InstallConnectorRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new InstallConnectorRequest();
+        $request = new Operations\InstallConnectorRequest();
     $request->requestBody = 'string';
-    $request->connector = Connector::Wise;
+    $request->connector = Shared\Connector::Wise;;
 
     $response = $sdk->payments->installConnector($request);
 
@@ -935,12 +886,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\InstallConnectorRequest](../../models/operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\InstallConnectorRequest](../../Models/Operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\InstallConnectorResponse](../../models/operations/InstallConnectorResponse.md)**
+**[?\formance\stack\Models\Operations\InstallConnectorResponse](../../Models/Operations/InstallConnectorResponse.md)**
 
 
 ## listAllConnectors
@@ -955,15 +906,13 @@ List all installed connectors.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->payments->listAllConnectors();
@@ -979,7 +928,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListAllConnectorsResponse](../../models/operations/ListAllConnectorsResponse.md)**
+**[?\formance\stack\Models\Operations\ListAllConnectorsResponse](../../Models/Operations/ListAllConnectorsResponse.md)**
 
 
 ## listBankAccounts
@@ -994,24 +943,22 @@ List all bank accounts created by user on Formance.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListBankAccountsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListBankAccountsRequest();
+        $request = new Operations\ListBankAccountsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 578999;
     $request->sort = [
         'string',
-    ];
+    ];;
 
     $response = $sdk->payments->listBankAccounts($request);
 
@@ -1027,12 +974,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\ListBankAccountsRequest](../../models/operations/ListBankAccountsRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\ListBankAccountsRequest](../../Models/Operations/ListBankAccountsRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListBankAccountsResponse](../../models/operations/ListBankAccountsResponse.md)**
+**[?\formance\stack\Models\Operations\ListBankAccountsResponse](../../Models/Operations/ListBankAccountsResponse.md)**
 
 
 ## listConfigsAvailableConnectors
@@ -1047,15 +994,13 @@ List the configs of each available connector.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->payments->listConfigsAvailableConnectors();
@@ -1071,7 +1016,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListConfigsAvailableConnectorsResponse](../../models/operations/ListConfigsAvailableConnectorsResponse.md)**
+**[?\formance\stack\Models\Operations\ListConfigsAvailableConnectorsResponse](../../Models/Operations/ListConfigsAvailableConnectorsResponse.md)**
 
 
 ## ~~listConnectorTasks~~
@@ -1088,23 +1033,20 @@ List all tasks associated with this connector.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListConnectorTasksRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListConnectorTasksRequest();
-    $request->connector = Connector::Wise;
+        $request = new Operations\ListConnectorTasksRequest();
+    $request->connector = Shared\Connector::Wise;
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 501686;
+    $request->pageSize = 501686;;
 
     $response = $sdk->payments->listConnectorTasks($request);
 
@@ -1120,12 +1062,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\ListConnectorTasksRequest](../../models/operations/ListConnectorTasksRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\ListConnectorTasksRequest](../../Models/Operations/ListConnectorTasksRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListConnectorTasksResponse](../../models/operations/ListConnectorTasksResponse.md)**
+**[?\formance\stack\Models\Operations\ListConnectorTasksResponse](../../Models/Operations/ListConnectorTasksResponse.md)**
 
 
 ## listConnectorTasksV1
@@ -1140,24 +1082,21 @@ List all tasks associated with this connector.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListConnectorTasksV1Request;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListConnectorTasksV1Request();
-    $request->connector = Connector::BankingCircle;
+        $request = new Operations\ListConnectorTasksV1Request();
+    $request->connector = Shared\Connector::BankingCircle;
     $request->connectorId = 'string';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 442673;
+    $request->pageSize = 442673;;
 
     $response = $sdk->payments->listConnectorTasksV1($request);
 
@@ -1173,12 +1112,12 @@ try {
 
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                              | [\formance\stack\Models\Operations\ListConnectorTasksV1Request](../../models/operations/ListConnectorTasksV1Request.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| `$request`                                                                                                              | [\formance\stack\Models\Operations\ListConnectorTasksV1Request](../../Models/Operations/ListConnectorTasksV1Request.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListConnectorTasksV1Response](../../models/operations/ListConnectorTasksV1Response.md)**
+**[?\formance\stack\Models\Operations\ListConnectorTasksV1Response](../../Models/Operations/ListConnectorTasksV1Response.md)**
 
 
 ## listPayments
@@ -1193,24 +1132,22 @@ List payments
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListPaymentsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListPaymentsRequest();
+        $request = new Operations\ListPaymentsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 13778;
     $request->sort = [
         'string',
-    ];
+    ];;
 
     $response = $sdk->payments->listPayments($request);
 
@@ -1226,12 +1163,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\ListPaymentsRequest](../../models/operations/ListPaymentsRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\ListPaymentsRequest](../../Models/Operations/ListPaymentsRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListPaymentsResponse](../../models/operations/ListPaymentsResponse.md)**
+**[?\formance\stack\Models\Operations\ListPaymentsResponse](../../Models/Operations/ListPaymentsResponse.md)**
 
 
 ## listPools
@@ -1246,25 +1183,23 @@ List Pools
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListPoolsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListPoolsRequest();
+        $request = new Operations\ListPoolsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 567687;
     $request->query = 'string';
     $request->sort = [
         'string',
-    ];
+    ];;
 
     $response = $sdk->payments->listPools($request);
 
@@ -1280,12 +1215,12 @@ try {
 
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                        | [\formance\stack\Models\Operations\ListPoolsRequest](../../models/operations/ListPoolsRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `$request`                                                                                        | [\formance\stack\Models\Operations\ListPoolsRequest](../../Models/Operations/ListPoolsRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListPoolsResponse](../../models/operations/ListPoolsResponse.md)**
+**[?\formance\stack\Models\Operations\ListPoolsResponse](../../Models/Operations/ListPoolsResponse.md)**
 
 
 ## listTransferInitiations
@@ -1300,25 +1235,23 @@ List Transfer Initiations
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListTransferInitiationsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListTransferInitiationsRequest();
+        $request = new Operations\ListTransferInitiationsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 706689;
     $request->query = 'string';
     $request->sort = [
         'string',
-    ];
+    ];;
 
     $response = $sdk->payments->listTransferInitiations($request);
 
@@ -1334,12 +1267,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\ListTransferInitiationsRequest](../../models/operations/ListTransferInitiationsRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\ListTransferInitiationsRequest](../../Models/Operations/ListTransferInitiationsRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListTransferInitiationsResponse](../../models/operations/ListTransferInitiationsResponse.md)**
+**[?\formance\stack\Models\Operations\ListTransferInitiationsResponse](../../Models/Operations/ListTransferInitiationsResponse.md)**
 
 
 ## paymentsgetAccount
@@ -1354,20 +1287,18 @@ Get an account
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\PaymentsgetAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new PaymentsgetAccountRequest();
-    $request->accountId = 'string';
+        $request = new Operations\PaymentsgetAccountRequest();
+    $request->accountId = 'string';;
 
     $response = $sdk->payments->paymentsgetAccount($request);
 
@@ -1383,12 +1314,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\PaymentsgetAccountRequest](../../models/operations/PaymentsgetAccountRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\PaymentsgetAccountRequest](../../Models/Operations/PaymentsgetAccountRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\PaymentsgetAccountResponse](../../models/operations/PaymentsgetAccountResponse.md)**
+**[?\formance\stack\Models\Operations\PaymentsgetAccountResponse](../../Models/Operations/PaymentsgetAccountResponse.md)**
 
 
 ## paymentsgetServerInfo
@@ -1403,15 +1334,13 @@ Get server info
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->payments->paymentsgetServerInfo();
@@ -1427,7 +1356,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\PaymentsgetServerInfoResponse](../../models/operations/PaymentsgetServerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\PaymentsgetServerInfoResponse](../../Models/Operations/PaymentsgetServerInfoResponse.md)**
 
 
 ## paymentslistAccounts
@@ -1442,24 +1371,22 @@ List accounts
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\PaymentslistAccountsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new PaymentslistAccountsRequest();
+        $request = new Operations\PaymentslistAccountsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 227071;
     $request->sort = [
         'string',
-    ];
+    ];;
 
     $response = $sdk->payments->paymentslistAccounts($request);
 
@@ -1475,12 +1402,12 @@ try {
 
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                              | [\formance\stack\Models\Operations\PaymentslistAccountsRequest](../../models/operations/PaymentslistAccountsRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| `$request`                                                                                                              | [\formance\stack\Models\Operations\PaymentslistAccountsRequest](../../Models/Operations/PaymentslistAccountsRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\PaymentslistAccountsResponse](../../models/operations/PaymentslistAccountsResponse.md)**
+**[?\formance\stack\Models\Operations\PaymentslistAccountsResponse](../../Models/Operations/PaymentslistAccountsResponse.md)**
 
 
 ## ~~readConnectorConfig~~
@@ -1497,21 +1424,18 @@ Read connector config
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ReadConnectorConfigRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ReadConnectorConfigRequest();
-    $request->connector = Connector::Adyen;
+        $request = new Operations\ReadConnectorConfigRequest();
+    $request->connector = Shared\Connector::Adyen;;
 
     $response = $sdk->payments->readConnectorConfig($request);
 
@@ -1527,12 +1451,12 @@ try {
 
 | Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                            | [\formance\stack\Models\Operations\ReadConnectorConfigRequest](../../models/operations/ReadConnectorConfigRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| `$request`                                                                                                            | [\formance\stack\Models\Operations\ReadConnectorConfigRequest](../../Models/Operations/ReadConnectorConfigRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadConnectorConfigResponse](../../models/operations/ReadConnectorConfigResponse.md)**
+**[?\formance\stack\Models\Operations\ReadConnectorConfigResponse](../../Models/Operations/ReadConnectorConfigResponse.md)**
 
 
 ## readConnectorConfigV1
@@ -1547,22 +1471,19 @@ Read connector config
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ReadConnectorConfigV1Request;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ReadConnectorConfigV1Request();
-    $request->connector = Connector::CurrencyCloud;
-    $request->connectorId = 'string';
+        $request = new Operations\ReadConnectorConfigV1Request();
+    $request->connector = Shared\Connector::CurrencyCloud;
+    $request->connectorId = 'string';;
 
     $response = $sdk->payments->readConnectorConfigV1($request);
 
@@ -1578,12 +1499,12 @@ try {
 
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                | [\formance\stack\Models\Operations\ReadConnectorConfigV1Request](../../models/operations/ReadConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| `$request`                                                                                                                | [\formance\stack\Models\Operations\ReadConnectorConfigV1Request](../../Models/Operations/ReadConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadConnectorConfigV1Response](../../models/operations/ReadConnectorConfigV1Response.md)**
+**[?\formance\stack\Models\Operations\ReadConnectorConfigV1Response](../../Models/Operations/ReadConnectorConfigV1Response.md)**
 
 
 ## removeAccountFromPool
@@ -1598,21 +1519,19 @@ Remove an account from a pool by its id.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\RemoveAccountFromPoolRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new RemoveAccountFromPoolRequest();
+        $request = new Operations\RemoveAccountFromPoolRequest();
     $request->accountId = 'string';
-    $request->poolId = 'string';
+    $request->poolId = 'string';;
 
     $response = $sdk->payments->removeAccountFromPool($request);
 
@@ -1628,12 +1547,12 @@ try {
 
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                | [\formance\stack\Models\Operations\RemoveAccountFromPoolRequest](../../models/operations/RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| `$request`                                                                                                                | [\formance\stack\Models\Operations\RemoveAccountFromPoolRequest](../../Models/Operations/RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\RemoveAccountFromPoolResponse](../../models/operations/RemoveAccountFromPoolResponse.md)**
+**[?\formance\stack\Models\Operations\RemoveAccountFromPoolResponse](../../Models/Operations/RemoveAccountFromPoolResponse.md)**
 
 
 ## ~~resetConnector~~
@@ -1652,21 +1571,18 @@ It will remove the connector and ALL PAYMENTS generated with it.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ResetConnectorRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ResetConnectorRequest();
-    $request->connector = Connector::Moneycorp;
+        $request = new Operations\ResetConnectorRequest();
+    $request->connector = Shared\Connector::Moneycorp;;
 
     $response = $sdk->payments->resetConnector($request);
 
@@ -1682,12 +1598,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\ResetConnectorRequest](../../models/operations/ResetConnectorRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\ResetConnectorRequest](../../Models/Operations/ResetConnectorRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ResetConnectorResponse](../../models/operations/ResetConnectorResponse.md)**
+**[?\formance\stack\Models\Operations\ResetConnectorResponse](../../Models/Operations/ResetConnectorResponse.md)**
 
 
 ## resetConnectorV1
@@ -1704,22 +1620,19 @@ It will remove the connector and ALL PAYMENTS generated with it.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ResetConnectorV1Request;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ResetConnectorV1Request();
-    $request->connector = Connector::Adyen;
-    $request->connectorId = 'string';
+        $request = new Operations\ResetConnectorV1Request();
+    $request->connector = Shared\Connector::Adyen;
+    $request->connectorId = 'string';;
 
     $response = $sdk->payments->resetConnectorV1($request);
 
@@ -1735,12 +1648,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\ResetConnectorV1Request](../../models/operations/ResetConnectorV1Request.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\ResetConnectorV1Request](../../Models/Operations/ResetConnectorV1Request.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ResetConnectorV1Response](../../models/operations/ResetConnectorV1Response.md)**
+**[?\formance\stack\Models\Operations\ResetConnectorV1Response](../../Models/Operations/ResetConnectorV1Response.md)**
 
 
 ## retryTransferInitiation
@@ -1755,20 +1668,18 @@ Retry a failed transfer initiation
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\RetryTransferInitiationRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new RetryTransferInitiationRequest();
-    $request->transferId = 'string';
+        $request = new Operations\RetryTransferInitiationRequest();
+    $request->transferId = 'string';;
 
     $response = $sdk->payments->retryTransferInitiation($request);
 
@@ -1784,12 +1695,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\RetryTransferInitiationRequest](../../models/operations/RetryTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\RetryTransferInitiationRequest](../../Models/Operations/RetryTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\RetryTransferInitiationResponse](../../models/operations/RetryTransferInitiationResponse.md)**
+**[?\formance\stack\Models\Operations\RetryTransferInitiationResponse](../../Models/Operations/RetryTransferInitiationResponse.md)**
 
 
 ## udpateTransferInitiationStatus
@@ -1804,24 +1715,20 @@ Update a transfer initiation status
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UdpateTransferInitiationStatusRequest;
-use \formance\stack\Models\Shared\UpdateTransferInitiationStatusRequest;
-use \formance\stack\Models\Shared\UpdateTransferInitiationStatusRequestStatus;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UdpateTransferInitiationStatusRequest();
-    $request->updateTransferInitiationStatusRequest = new UpdateTransferInitiationStatusRequest();
-    $request->updateTransferInitiationStatusRequest->status = UpdateTransferInitiationStatusRequestStatus::Validated;
-    $request->transferId = 'string';
+        $request = new Operations\UdpateTransferInitiationStatusRequest();
+    $request->updateTransferInitiationStatusRequest = new Shared\UpdateTransferInitiationStatusRequest();
+    $request->updateTransferInitiationStatusRequest->status = Shared\Status::Validated;
+    $request->transferId = 'string';;
 
     $response = $sdk->payments->udpateTransferInitiationStatus($request);
 
@@ -1837,12 +1744,12 @@ try {
 
 | Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                                  | [\formance\stack\Models\Operations\UdpateTransferInitiationStatusRequest](../../models/operations/UdpateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
+| `$request`                                                                                                                                  | [\formance\stack\Models\Operations\UdpateTransferInitiationStatusRequest](../../Models/Operations/UdpateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UdpateTransferInitiationStatusResponse](../../models/operations/UdpateTransferInitiationStatusResponse.md)**
+**[?\formance\stack\Models\Operations\UdpateTransferInitiationStatusResponse](../../Models/Operations/UdpateTransferInitiationStatusResponse.md)**
 
 
 ## ~~uninstallConnector~~
@@ -1859,21 +1766,18 @@ Uninstall a connector by its name.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UninstallConnectorRequest;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UninstallConnectorRequest();
-    $request->connector = Connector::Wise;
+        $request = new Operations\UninstallConnectorRequest();
+    $request->connector = Shared\Connector::Wise;;
 
     $response = $sdk->payments->uninstallConnector($request);
 
@@ -1889,12 +1793,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\UninstallConnectorRequest](../../models/operations/UninstallConnectorRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\UninstallConnectorRequest](../../Models/Operations/UninstallConnectorRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UninstallConnectorResponse](../../models/operations/UninstallConnectorResponse.md)**
+**[?\formance\stack\Models\Operations\UninstallConnectorResponse](../../Models/Operations/UninstallConnectorResponse.md)**
 
 
 ## uninstallConnectorV1
@@ -1909,22 +1813,19 @@ Uninstall a connector by its name.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UninstallConnectorV1Request;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UninstallConnectorV1Request();
-    $request->connector = Connector::Adyen;
-    $request->connectorId = 'string';
+        $request = new Operations\UninstallConnectorV1Request();
+    $request->connector = Shared\Connector::Adyen;
+    $request->connectorId = 'string';;
 
     $response = $sdk->payments->uninstallConnectorV1($request);
 
@@ -1940,12 +1841,12 @@ try {
 
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                              | [\formance\stack\Models\Operations\UninstallConnectorV1Request](../../models/operations/UninstallConnectorV1Request.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| `$request`                                                                                                              | [\formance\stack\Models\Operations\UninstallConnectorV1Request](../../Models/Operations/UninstallConnectorV1Request.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UninstallConnectorV1Response](../../models/operations/UninstallConnectorV1Response.md)**
+**[?\formance\stack\Models\Operations\UninstallConnectorV1Response](../../Models/Operations/UninstallConnectorV1Response.md)**
 
 
 ## updateConnectorConfigV1
@@ -1960,23 +1861,20 @@ Update connector config
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UpdateConnectorConfigV1Request;
-use \formance\stack\Models\Shared\Connector;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UpdateConnectorConfigV1Request();
+        $request = new Operations\UpdateConnectorConfigV1Request();
     $request->requestBody = 'string';
-    $request->connector = Connector::Stripe;
-    $request->connectorId = 'string';
+    $request->connector = Shared\Connector::Stripe;
+    $request->connectorId = 'string';;
 
     $response = $sdk->payments->updateConnectorConfigV1($request);
 
@@ -1992,12 +1890,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\UpdateConnectorConfigV1Request](../../models/operations/UpdateConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\UpdateConnectorConfigV1Request](../../Models/Operations/UpdateConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UpdateConnectorConfigV1Response](../../models/operations/UpdateConnectorConfigV1Response.md)**
+**[?\formance\stack\Models\Operations\UpdateConnectorConfigV1Response](../../Models/Operations/UpdateConnectorConfigV1Response.md)**
 
 
 ## updateMetadata
@@ -2012,23 +1910,21 @@ Update metadata
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UpdateMetadataRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UpdateMetadataRequest();
+        $request = new Operations\UpdateMetadataRequest();
     $request->requestBody = [
         'synthesizing' => 'string',
     ];
-    $request->paymentId = 'string';
+    $request->paymentId = 'string';;
 
     $response = $sdk->payments->updateMetadata($request);
 
@@ -2044,10 +1940,10 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\UpdateMetadataRequest](../../models/operations/UpdateMetadataRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\UpdateMetadataRequest](../../Models/Operations/UpdateMetadataRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UpdateMetadataResponse](../../models/operations/UpdateMetadataResponse.md)**
+**[?\formance\stack\Models\Operations\UpdateMetadataResponse](../../Models/Operations/UpdateMetadataResponse.md)**
 

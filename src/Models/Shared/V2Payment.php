@@ -62,8 +62,8 @@ class V2Payment
     public string $reference;
     
 	#[\JMS\Serializer\Annotation\SerializedName('scheme')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\V2PaymentScheme>')]
-    public V2PaymentScheme $scheme;
+    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\Scheme>')]
+    public Scheme $scheme;
     
 	#[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
     #[\JMS\Serializer\Annotation\Type('string')]
@@ -90,7 +90,7 @@ class V2Payment
 		$this->provider = null;
 		$this->raw = new \formance\stack\Models\Shared\V2PaymentRaw();
 		$this->reference = "";
-		$this->scheme = \formance\stack\Models\Shared\V2PaymentScheme::Visa;
+		$this->scheme = \formance\stack\Models\Shared\Scheme::Visa;
 		$this->sourceAccountID = "";
 		$this->status = \formance\stack\Models\Shared\V2PaymentStatus::Pending;
 		$this->type = \formance\stack\Models\Shared\V2PaymentType::PayIn;

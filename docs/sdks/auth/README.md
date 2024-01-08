@@ -1,5 +1,5 @@
 # Auth
-(*auth*)
+
 
 ### Available Operations
 
@@ -26,19 +26,16 @@ Create client
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\CreateClientRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateClientRequest();
+        $request = new Shared\CreateClientRequest();
     $request->description = 'Managed optimizing help-desk';
     $request->metadata = [
         'pessimistic' => 'string',
@@ -54,7 +51,7 @@ try {
     $request->scopes = [
         'string',
     ];
-    $request->trusted = false;
+    $request->trusted = false;;
 
     $response = $sdk->auth->createClient($request);
 
@@ -70,12 +67,12 @@ try {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Shared\CreateClientRequest](../../models/shared/CreateClientRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$request`                                                                                      | [\formance\stack\Models\Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateClientResponse](../../models/operations/CreateClientResponse.md)**
+**[?\formance\stack\Models\Operations\CreateClientResponse](../../Models/Operations/CreateClientResponse.md)**
 
 
 ## createSecret
@@ -90,26 +87,23 @@ Add a secret to a client
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CreateSecretRequest;
-use \formance\stack\Models\Shared\CreateSecretRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateSecretRequest();
-    $request->createSecretRequest = new CreateSecretRequest();
+        $request = new Operations\CreateSecretRequest();
+    $request->createSecretRequest = new Shared\CreateSecretRequest();
     $request->createSecretRequest->metadata = [
         'architecture' => 'string',
     ];
     $request->createSecretRequest->name = 'string';
-    $request->clientId = 'string';
+    $request->clientId = 'string';;
 
     $response = $sdk->auth->createSecret($request);
 
@@ -125,12 +119,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\CreateSecretRequest](../../models/operations/CreateSecretRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\CreateSecretRequest](../../Models/Operations/CreateSecretRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateSecretResponse](../../models/operations/CreateSecretResponse.md)**
+**[?\formance\stack\Models\Operations\CreateSecretResponse](../../Models/Operations/CreateSecretResponse.md)**
 
 
 ## deleteClient
@@ -145,20 +139,18 @@ Delete client
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeleteClientRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeleteClientRequest();
-    $request->clientId = 'string';
+        $request = new Operations\DeleteClientRequest();
+    $request->clientId = 'string';;
 
     $response = $sdk->auth->deleteClient($request);
 
@@ -174,12 +166,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteClientRequest](../../models/operations/DeleteClientRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteClientRequest](../../Models/Operations/DeleteClientRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteClientResponse](../../models/operations/DeleteClientResponse.md)**
+**[?\formance\stack\Models\Operations\DeleteClientResponse](../../Models/Operations/DeleteClientResponse.md)**
 
 
 ## deleteSecret
@@ -194,21 +186,19 @@ Delete a secret from a client
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeleteSecretRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeleteSecretRequest();
+        $request = new Operations\DeleteSecretRequest();
     $request->clientId = 'string';
-    $request->secretId = 'string';
+    $request->secretId = 'string';;
 
     $response = $sdk->auth->deleteSecret($request);
 
@@ -224,12 +214,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteSecretRequest](../../models/operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteSecretRequest](../../Models/Operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteSecretResponse](../../models/operations/DeleteSecretResponse.md)**
+**[?\formance\stack\Models\Operations\DeleteSecretResponse](../../Models/Operations/DeleteSecretResponse.md)**
 
 
 ## getServerInfo
@@ -244,15 +234,13 @@ Get server info
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->auth->getServerInfo();
@@ -268,7 +256,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetServerInfoResponse](../../models/operations/GetServerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\GetServerInfoResponse](../../Models/Operations/GetServerInfoResponse.md)**
 
 
 ## listClients
@@ -283,15 +271,13 @@ List clients
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->auth->listClients();
@@ -307,7 +293,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListClientsResponse](../../models/operations/ListClientsResponse.md)**
+**[?\formance\stack\Models\Operations\ListClientsResponse](../../Models/Operations/ListClientsResponse.md)**
 
 
 ## listUsers
@@ -322,15 +308,13 @@ List users
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->auth->listUsers();
@@ -346,7 +330,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListUsersResponse](../../models/operations/ListUsersResponse.md)**
+**[?\formance\stack\Models\Operations\ListUsersResponse](../../Models/Operations/ListUsersResponse.md)**
 
 
 ## readClient
@@ -361,20 +345,18 @@ Read client
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ReadClientRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ReadClientRequest();
-    $request->clientId = 'string';
+        $request = new Operations\ReadClientRequest();
+    $request->clientId = 'string';;
 
     $response = $sdk->auth->readClient($request);
 
@@ -390,12 +372,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\ReadClientRequest](../../models/operations/ReadClientRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\ReadClientRequest](../../Models/Operations/ReadClientRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadClientResponse](../../models/operations/ReadClientResponse.md)**
+**[?\formance\stack\Models\Operations\ReadClientResponse](../../Models/Operations/ReadClientResponse.md)**
 
 
 ## readUser
@@ -410,20 +392,18 @@ Read user
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ReadUserRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ReadUserRequest();
-    $request->userId = 'string';
+        $request = new Operations\ReadUserRequest();
+    $request->userId = 'string';;
 
     $response = $sdk->auth->readUser($request);
 
@@ -439,12 +419,12 @@ try {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Operations\ReadUserRequest](../../models/operations/ReadUserRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$request`                                                                                      | [\formance\stack\Models\Operations\ReadUserRequest](../../Models/Operations/ReadUserRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadUserResponse](../../models/operations/ReadUserResponse.md)**
+**[?\formance\stack\Models\Operations\ReadUserResponse](../../Models/Operations/ReadUserResponse.md)**
 
 
 ## updateClient
@@ -459,21 +439,18 @@ Update client
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UpdateClientRequest;
-use \formance\stack\Models\Shared\UpdateClientRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UpdateClientRequest();
-    $request->updateClientRequest = new UpdateClientRequest();
+        $request = new Operations\UpdateClientRequest();
+    $request->updateClientRequest = new Shared\UpdateClientRequest();
     $request->updateClientRequest->description = 'Secured static model';
     $request->updateClientRequest->metadata = [
         'Bentley' => 'string',
@@ -490,7 +467,7 @@ try {
         'string',
     ];
     $request->updateClientRequest->trusted = false;
-    $request->clientId = 'string';
+    $request->clientId = 'string';;
 
     $response = $sdk->auth->updateClient($request);
 
@@ -506,10 +483,10 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\UpdateClientRequest](../../models/operations/UpdateClientRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\UpdateClientRequest](../../Models/Operations/UpdateClientRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UpdateClientResponse](../../models/operations/UpdateClientResponse.md)**
+**[?\formance\stack\Models\Operations\UpdateClientResponse](../../Models/Operations/UpdateClientResponse.md)**
 

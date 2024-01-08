@@ -1,5 +1,5 @@
 # Ledger
-(*ledger*)
+
 
 ### Available Operations
 
@@ -57,27 +57,22 @@ Create a new batch of transactions to a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CreateTransactionsRequest;
-use \formance\stack\Models\Shared\Transactions;
-use \formance\stack\Models\Shared\TransactionData;
-use \formance\stack\Models\Shared\Posting;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateTransactionsRequest();
-    $request->transactions = new Transactions();
+        $request = new Operations\CreateTransactionsRequest();
+    $request->transactions = new Shared\Transactions();
     $request->transactions->transactions = [
-        new TransactionData(),
+        new Shared\TransactionData(),
     ];
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->createTransactions($request);
 
@@ -93,12 +88,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\CreateTransactionsRequest](../../models/operations/CreateTransactionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\CreateTransactionsRequest](../../Models/Operations/CreateTransactionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateTransactionsResponse](../../models/operations/CreateTransactionsResponse.md)**
+**[?\formance\stack\Models\Operations\CreateTransactionsResponse](../../Models/Operations/CreateTransactionsResponse.md)**
 
 
 ## addMetadataOnTransaction
@@ -113,24 +108,22 @@ Set the metadata of a transaction by its ID
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\AddMetadataOnTransactionRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new AddMetadataOnTransactionRequest();
+        $request = new Operations\AddMetadataOnTransactionRequest();
     $request->requestBody = [
         'withdrawal' => 'string',
     ];
     $request->ledger = 'ledger001';
-    $request->txid = 1234;
+    $request->txid = 1234;;
 
     $response = $sdk->ledger->addMetadataOnTransaction($request);
 
@@ -146,12 +139,12 @@ try {
 
 | Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                      | [\formance\stack\Models\Operations\AddMetadataOnTransactionRequest](../../models/operations/AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
+| `$request`                                                                                                                      | [\formance\stack\Models\Operations\AddMetadataOnTransactionRequest](../../Models/Operations/AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\AddMetadataOnTransactionResponse](../../models/operations/AddMetadataOnTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\AddMetadataOnTransactionResponse](../../Models/Operations/AddMetadataOnTransactionResponse.md)**
 
 
 ## addMetadataToAccount
@@ -166,24 +159,22 @@ Add metadata to an account
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\AddMetadataToAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new AddMetadataToAccountRequest();
+        $request = new Operations\AddMetadataToAccountRequest();
     $request->requestBody = [
         'Oriental' => 'string',
     ];
     $request->address = 'users:001';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->addMetadataToAccount($request);
 
@@ -199,12 +190,12 @@ try {
 
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                              | [\formance\stack\Models\Operations\AddMetadataToAccountRequest](../../models/operations/AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| `$request`                                                                                                              | [\formance\stack\Models\Operations\AddMetadataToAccountRequest](../../Models/Operations/AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\AddMetadataToAccountResponse](../../models/operations/AddMetadataToAccountResponse.md)**
+**[?\formance\stack\Models\Operations\AddMetadataToAccountResponse](../../Models/Operations/AddMetadataToAccountResponse.md)**
 
 
 ## countAccounts
@@ -219,24 +210,22 @@ Count the accounts from a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CountAccountsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CountAccountsRequest();
+        $request = new Operations\CountAccountsRequest();
     $request->address = 'users:.+';
     $request->ledger = 'ledger001';
     $request->metadata = [
         'Electronic' => 'string',
-    ];
+    ];;
 
     $response = $sdk->ledger->countAccounts($request);
 
@@ -252,12 +241,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\CountAccountsRequest](../../models/operations/CountAccountsRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\CountAccountsRequest](../../Models/Operations/CountAccountsRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CountAccountsResponse](../../models/operations/CountAccountsResponse.md)**
+**[?\formance\stack\Models\Operations\CountAccountsResponse](../../Models/Operations/CountAccountsResponse.md)**
 
 
 ## countTransactions
@@ -272,28 +261,25 @@ Count the transactions from a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CountTransactionsRequest;
-use \formance\stack\Models\Operations\CountTransactionsMetadata;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CountTransactionsRequest();
+        $request = new Operations\CountTransactionsRequest();
     $request->account = 'users:001';
     $request->destination = 'users:001';
-    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-07-20T09:59:27.603Z');
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-07-20T14:23:01.272Z');
     $request->ledger = 'ledger001';
-    $request->metadata = new CountTransactionsMetadata();
+    $request->metadata = new Operations\Metadata();
     $request->reference = 'ref:001';
     $request->source = 'users:001';
-    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-09-27T00:52:47.091Z');
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-09-26T22:46:35.189Z');;
 
     $response = $sdk->ledger->countTransactions($request);
 
@@ -309,12 +295,12 @@ try {
 
 | Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                        | [\formance\stack\Models\Operations\CountTransactionsRequest](../../models/operations/CountTransactionsRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| `$request`                                                                                                        | [\formance\stack\Models\Operations\CountTransactionsRequest](../../Models/Operations/CountTransactionsRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CountTransactionsResponse](../../models/operations/CountTransactionsResponse.md)**
+**[?\formance\stack\Models\Operations\CountTransactionsResponse](../../Models/Operations/CountTransactionsResponse.md)**
 
 
 ## createTransaction
@@ -329,31 +315,26 @@ Create a new transaction to a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CreateTransactionRequest;
-use \formance\stack\Models\Shared\PostTransaction;
-use \formance\stack\Models\Shared\Posting;
-use \formance\stack\Models\Shared\PostTransactionScript;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateTransactionRequest();
-    $request->postTransaction = new PostTransaction();
+        $request = new Operations\CreateTransactionRequest();
+    $request->postTransaction = new Shared\PostTransaction();
     $request->postTransaction->metadata = [
         'before' => 'string',
     ];
     $request->postTransaction->postings = [
-        new Posting(),
+        new Shared\Posting(),
     ];
     $request->postTransaction->reference = 'ref:001';
-    $request->postTransaction->script = new PostTransactionScript();
+    $request->postTransaction->script = new Shared\PostTransactionScript();
     $request->postTransaction->script->plain = 'vars {
     account $user
     }
@@ -365,9 +346,9 @@ try {
     $request->postTransaction->script->vars = [
         'zowie' => 'string',
     ];
-    $request->postTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-10-30T13:28:51.192Z');
+    $request->postTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-10-30T20:06:44.554Z');
     $request->ledger = 'ledger001';
-    $request->preview = true;
+    $request->preview = true;;
 
     $response = $sdk->ledger->createTransaction($request);
 
@@ -383,12 +364,12 @@ try {
 
 | Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                        | [\formance\stack\Models\Operations\CreateTransactionRequest](../../models/operations/CreateTransactionRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| `$request`                                                                                                        | [\formance\stack\Models\Operations\CreateTransactionRequest](../../Models/Operations/CreateTransactionRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateTransactionResponse](../../models/operations/CreateTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\CreateTransactionResponse](../../Models/Operations/CreateTransactionResponse.md)**
 
 
 ## getAccount
@@ -403,21 +384,19 @@ Get account by its address
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetAccountRequest();
+        $request = new Operations\GetAccountRequest();
     $request->address = 'users:001';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->getAccount($request);
 
@@ -433,12 +412,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\GetAccountRequest](../../models/operations/GetAccountRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\GetAccountRequest](../../Models/Operations/GetAccountRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetAccountResponse](../../models/operations/GetAccountResponse.md)**
+**[?\formance\stack\Models\Operations\GetAccountResponse](../../Models/Operations/GetAccountResponse.md)**
 
 
 ## getBalances
@@ -453,23 +432,21 @@ Get the balances from a ledger's account
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetBalancesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetBalancesRequest();
+        $request = new Operations\GetBalancesRequest();
     $request->address = 'users:001';
     $request->after = 'users:003';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->getBalances($request);
 
@@ -485,12 +462,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\GetBalancesRequest](../../models/operations/GetBalancesRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\GetBalancesRequest](../../Models/Operations/GetBalancesRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetBalancesResponse](../../models/operations/GetBalancesResponse.md)**
+**[?\formance\stack\Models\Operations\GetBalancesResponse](../../Models/Operations/GetBalancesResponse.md)**
 
 
 ## getBalancesAggregated
@@ -505,21 +482,19 @@ Get the aggregated balances from selected accounts
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetBalancesAggregatedRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetBalancesAggregatedRequest();
+        $request = new Operations\GetBalancesAggregatedRequest();
     $request->address = 'users:001';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->getBalancesAggregated($request);
 
@@ -535,12 +510,12 @@ try {
 
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                | [\formance\stack\Models\Operations\GetBalancesAggregatedRequest](../../models/operations/GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| `$request`                                                                                                                | [\formance\stack\Models\Operations\GetBalancesAggregatedRequest](../../Models/Operations/GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetBalancesAggregatedResponse](../../models/operations/GetBalancesAggregatedResponse.md)**
+**[?\formance\stack\Models\Operations\GetBalancesAggregatedResponse](../../Models/Operations/GetBalancesAggregatedResponse.md)**
 
 
 ## getInfo
@@ -555,15 +530,13 @@ Show server information
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->ledger->getInfo();
@@ -579,7 +552,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInfoResponse](../../models/operations/GetInfoResponse.md)**
+**[?\formance\stack\Models\Operations\GetInfoResponse](../../Models/Operations/GetInfoResponse.md)**
 
 
 ## getLedgerInfo
@@ -594,20 +567,18 @@ Get information about a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetLedgerInfoRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetLedgerInfoRequest();
-    $request->ledger = 'ledger001';
+        $request = new Operations\GetLedgerInfoRequest();
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->getLedgerInfo($request);
 
@@ -623,12 +594,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\GetLedgerInfoRequest](../../models/operations/GetLedgerInfoRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\GetLedgerInfoRequest](../../Models/Operations/GetLedgerInfoRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetLedgerInfoResponse](../../models/operations/GetLedgerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\GetLedgerInfoResponse](../../Models/Operations/GetLedgerInfoResponse.md)**
 
 
 ## getMapping
@@ -643,20 +614,18 @@ Get the mapping of a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetMappingRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetMappingRequest();
-    $request->ledger = 'ledger001';
+        $request = new Operations\GetMappingRequest();
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->getMapping($request);
 
@@ -672,12 +641,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\GetMappingRequest](../../models/operations/GetMappingRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\GetMappingRequest](../../Models/Operations/GetMappingRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetMappingResponse](../../models/operations/GetMappingResponse.md)**
+**[?\formance\stack\Models\Operations\GetMappingResponse](../../Models/Operations/GetMappingResponse.md)**
 
 
 ## getTransaction
@@ -692,21 +661,19 @@ Get transaction from a ledger by its ID
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetTransactionRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetTransactionRequest();
+        $request = new Operations\GetTransactionRequest();
     $request->ledger = 'ledger001';
-    $request->txid = 1234;
+    $request->txid = 1234;;
 
     $response = $sdk->ledger->getTransaction($request);
 
@@ -722,12 +689,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetTransactionRequest](../../models/operations/GetTransactionRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetTransactionRequest](../../Models/Operations/GetTransactionRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetTransactionResponse](../../models/operations/GetTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\GetTransactionResponse](../../Models/Operations/GetTransactionResponse.md)**
 
 
 ## listAccounts
@@ -742,19 +709,17 @@ List accounts from a ledger, sorted by address in descending order.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListAccountsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListAccountsRequest();
+        $request = new Operations\ListAccountsRequest();
     $request->address = 'users:.+';
     $request->after = 'users:003';
     $request->balance = 2400;
@@ -764,7 +729,7 @@ try {
         'glistening' => 'string',
     ];
     $request->pageSize = 412291;
-    $request->paginationToken = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
+    $request->paginationToken = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';;
 
     $response = $sdk->ledger->listAccounts($request);
 
@@ -780,12 +745,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\ListAccountsRequest](../../models/operations/ListAccountsRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\ListAccountsRequest](../../Models/Operations/ListAccountsRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListAccountsResponse](../../models/operations/ListAccountsResponse.md)**
+**[?\formance\stack\Models\Operations\ListAccountsResponse](../../Models/Operations/ListAccountsResponse.md)**
 
 
 ## listLogs
@@ -800,25 +765,23 @@ List the logs from a ledger, sorted by ID in descending order.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListLogsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListLogsRequest();
+        $request = new Operations\ListLogsRequest();
     $request->after = '1234';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-09-04T05:10:40.788Z');
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-09-04T18:34:28.222Z');
     $request->ledger = 'ledger001';
     $request->pageSize = 657242;
-    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-11-03T02:36:34.808Z');
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-11-03T09:19:08.045Z');;
 
     $response = $sdk->ledger->listLogs($request);
 
@@ -834,12 +797,12 @@ try {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Operations\ListLogsRequest](../../models/operations/ListLogsRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$request`                                                                                      | [\formance\stack\Models\Operations\ListLogsRequest](../../Models/Operations/ListLogsRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListLogsResponse](../../models/operations/ListLogsResponse.md)**
+**[?\formance\stack\Models\Operations\ListLogsResponse](../../Models/Operations/ListLogsResponse.md)**
 
 
 ## listTransactions
@@ -854,24 +817,22 @@ List transactions from a ledger, sorted by txid in descending order.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListTransactionsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListTransactionsRequest();
+        $request = new Operations\ListTransactionsRequest();
     $request->account = 'users:001';
     $request->after = '1234';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->destination = 'users:001';
-    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-09-08T16:09:19.098Z');
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-09-09T05:38:58.239Z');
     $request->ledger = 'ledger001';
     $request->metadata = [
         'South' => 'string',
@@ -879,7 +840,7 @@ try {
     $request->pageSize = 459510;
     $request->reference = 'ref:001';
     $request->source = 'users:001';
-    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-03-19T18:05:01.432Z');
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-03-19T19:47:16.501Z');;
 
     $response = $sdk->ledger->listTransactions($request);
 
@@ -895,12 +856,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\ListTransactionsRequest](../../models/operations/ListTransactionsRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\ListTransactionsRequest](../../Models/Operations/ListTransactionsRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListTransactionsResponse](../../models/operations/ListTransactionsResponse.md)**
+**[?\formance\stack\Models\Operations\ListTransactionsResponse](../../Models/Operations/ListTransactionsResponse.md)**
 
 
 ## readStats
@@ -916,20 +877,18 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ReadStatsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ReadStatsRequest();
-    $request->ledger = 'ledger001';
+        $request = new Operations\ReadStatsRequest();
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->readStats($request);
 
@@ -945,12 +904,12 @@ try {
 
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                        | [\formance\stack\Models\Operations\ReadStatsRequest](../../models/operations/ReadStatsRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `$request`                                                                                        | [\formance\stack\Models\Operations\ReadStatsRequest](../../Models/Operations/ReadStatsRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadStatsResponse](../../models/operations/ReadStatsResponse.md)**
+**[?\formance\stack\Models\Operations\ReadStatsResponse](../../Models/Operations/ReadStatsResponse.md)**
 
 
 ## revertTransaction
@@ -965,22 +924,20 @@ Revert a ledger transaction by its ID
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\RevertTransactionRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new RevertTransactionRequest();
+        $request = new Operations\RevertTransactionRequest();
     $request->disableChecks = false;
     $request->ledger = 'ledger001';
-    $request->txid = 1234;
+    $request->txid = 1234;;
 
     $response = $sdk->ledger->revertTransaction($request);
 
@@ -996,12 +953,12 @@ try {
 
 | Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                        | [\formance\stack\Models\Operations\RevertTransactionRequest](../../models/operations/RevertTransactionRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| `$request`                                                                                                        | [\formance\stack\Models\Operations\RevertTransactionRequest](../../Models/Operations/RevertTransactionRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\RevertTransactionResponse](../../models/operations/RevertTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\RevertTransactionResponse](../../Models/Operations/RevertTransactionResponse.md)**
 
 
 ## ~~runScript~~
@@ -1019,21 +976,18 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\RunScriptRequest;
-use \formance\stack\Models\Shared\Script;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new RunScriptRequest();
-    $request->script = new Script();
+        $request = new Operations\RunScriptRequest();
+    $request->script = new Shared\Script();
     $request->script->metadata = [
         'Azerbaijan' => 'string',
     ];
@@ -1050,7 +1004,7 @@ try {
         'Mercury' => 'string',
     ];
     $request->ledger = 'ledger001';
-    $request->preview = true;
+    $request->preview = true;;
 
     $response = $sdk->ledger->runScript($request);
 
@@ -1066,12 +1020,12 @@ try {
 
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                        | [\formance\stack\Models\Operations\RunScriptRequest](../../models/operations/RunScriptRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `$request`                                                                                        | [\formance\stack\Models\Operations\RunScriptRequest](../../Models/Operations/RunScriptRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\RunScriptResponse](../../models/operations/RunScriptResponse.md)**
+**[?\formance\stack\Models\Operations\RunScriptResponse](../../Models/Operations/RunScriptResponse.md)**
 
 
 ## updateMapping
@@ -1086,27 +1040,22 @@ Update the mapping of a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UpdateMappingRequest;
-use \formance\stack\Models\Shared\Mapping;
-use \formance\stack\Models\Shared\Contract;
-use \formance\stack\Models\Shared\ContractExpr;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UpdateMappingRequest();
-    $request->mapping = new Mapping();
+        $request = new Operations\UpdateMappingRequest();
+    $request->mapping = new Shared\Mapping();
     $request->mapping->contracts = [
-        new Contract(),
+        new Shared\Contract(),
     ];
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->updateMapping($request);
 
@@ -1122,12 +1071,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\UpdateMappingRequest](../../models/operations/UpdateMappingRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\UpdateMappingRequest](../../Models/Operations/UpdateMappingRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UpdateMappingResponse](../../models/operations/UpdateMappingResponse.md)**
+**[?\formance\stack\Models\Operations\UpdateMappingResponse](../../Models/Operations/UpdateMappingResponse.md)**
 
 
 ## v2AddMetadataOnTransaction
@@ -1142,26 +1091,24 @@ Set the metadata of a transaction by its ID
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2AddMetadataOnTransactionRequest();
+        $request = new Operations\V2AddMetadataOnTransactionRequest();
     $request->idempotencyKey = 'string';
     $request->requestBody = [
         'nor' => 'string',
     ];
     $request->dryRun = true;
     $request->id = 1234;
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2AddMetadataOnTransaction($request);
 
@@ -1177,12 +1124,12 @@ try {
 
 | Parameter                                                                                                                           | Type                                                                                                                                | Required                                                                                                                            | Description                                                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                          | [\formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest](../../models/operations/V2AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                                                  | The request object to use for the request.                                                                                          |
+| `$request`                                                                                                                          | [\formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest](../../Models/Operations/V2AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                                                  | The request object to use for the request.                                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2AddMetadataOnTransactionResponse](../../models/operations/V2AddMetadataOnTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\V2AddMetadataOnTransactionResponse](../../Models/Operations/V2AddMetadataOnTransactionResponse.md)**
 
 
 ## v2AddMetadataToAccount
@@ -1197,26 +1144,24 @@ Add metadata to an account
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2AddMetadataToAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2AddMetadataToAccountRequest();
+        $request = new Operations\V2AddMetadataToAccountRequest();
     $request->idempotencyKey = 'string';
     $request->requestBody = [
         'South' => 'string',
     ];
     $request->address = 'users:001';
     $request->dryRun = true;
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2AddMetadataToAccount($request);
 
@@ -1232,12 +1177,12 @@ try {
 
 | Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
 | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                  | [\formance\stack\Models\Operations\V2AddMetadataToAccountRequest](../../models/operations/V2AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                                                          | The request object to use for the request.                                                                                  |
+| `$request`                                                                                                                  | [\formance\stack\Models\Operations\V2AddMetadataToAccountRequest](../../Models/Operations/V2AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                                                          | The request object to use for the request.                                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2AddMetadataToAccountResponse](../../models/operations/V2AddMetadataToAccountResponse.md)**
+**[?\formance\stack\Models\Operations\V2AddMetadataToAccountResponse](../../Models/Operations/V2AddMetadataToAccountResponse.md)**
 
 
 ## v2CountAccounts
@@ -1252,24 +1197,22 @@ Count the accounts from a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2CountAccountsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CountAccountsRequest();
+        $request = new Operations\V2CountAccountsRequest();
     $request->requestBody = [
         'Marketing' => 'string',
     ];
     $request->ledger = 'ledger001';
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-04-03T20:08:51.272Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-04-04T06:10:56.689Z');;
 
     $response = $sdk->ledger->v2CountAccounts($request);
 
@@ -1285,12 +1228,12 @@ try {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2CountAccountsRequest](../../models/operations/V2CountAccountsRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2CountAccountsRequest](../../Models/Operations/V2CountAccountsRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CountAccountsResponse](../../models/operations/V2CountAccountsResponse.md)**
+**[?\formance\stack\Models\Operations\V2CountAccountsResponse](../../Models/Operations/V2CountAccountsResponse.md)**
 
 
 ## v2CountTransactions
@@ -1305,24 +1248,22 @@ Count the transactions from a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2CountTransactionsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CountTransactionsRequest();
+        $request = new Operations\V2CountTransactionsRequest();
     $request->requestBody = [
         'East' => 'string',
     ];
     $request->ledger = 'ledger001';
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-02-22T17:35:03.479Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-23T10:44:24.304Z');;
 
     $response = $sdk->ledger->v2CountTransactions($request);
 
@@ -1338,12 +1279,12 @@ try {
 
 | Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                            | [\formance\stack\Models\Operations\V2CountTransactionsRequest](../../models/operations/V2CountTransactionsRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| `$request`                                                                                                            | [\formance\stack\Models\Operations\V2CountTransactionsRequest](../../Models/Operations/V2CountTransactionsRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CountTransactionsResponse](../../models/operations/V2CountTransactionsResponse.md)**
+**[?\formance\stack\Models\Operations\V2CountTransactionsResponse](../../Models/Operations/V2CountTransactionsResponse.md)**
 
 
 ## v2CreateBulk
@@ -1358,23 +1299,21 @@ Bulk request
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2CreateBulkRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CreateBulkRequest();
+        $request = new Operations\V2CreateBulkRequest();
     $request->requestBody = [
         'string',
     ];
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2CreateBulk($request);
 
@@ -1390,12 +1329,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\V2CreateBulkRequest](../../models/operations/V2CreateBulkRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\V2CreateBulkRequest](../../Models/Operations/V2CreateBulkRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateBulkResponse](../../models/operations/V2CreateBulkResponse.md)**
+**[?\formance\stack\Models\Operations\V2CreateBulkResponse](../../Models/Operations/V2CreateBulkResponse.md)**
 
 
 ## v2CreateLedger
@@ -1410,23 +1349,20 @@ Create a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2CreateLedgerRequest;
-use \formance\stack\Models\Shared\V2CreateLedgerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CreateLedgerRequest();
-    $request->v2CreateLedgerRequest = new V2CreateLedgerRequest();
+        $request = new Operations\V2CreateLedgerRequest();
+    $request->v2CreateLedgerRequest = new Shared\V2CreateLedgerRequest();
     $request->v2CreateLedgerRequest->bucket = 'string';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2CreateLedger($request);
 
@@ -1442,12 +1378,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\V2CreateLedgerRequest](../../models/operations/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\V2CreateLedgerRequest](../../Models/Operations/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateLedgerResponse](../../models/operations/V2CreateLedgerResponse.md)**
+**[?\formance\stack\Models\Operations\V2CreateLedgerResponse](../../Models/Operations/V2CreateLedgerResponse.md)**
 
 
 ## v2CreateTransaction
@@ -1462,32 +1398,27 @@ Create a new transaction to a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2CreateTransactionRequest;
-use \formance\stack\Models\Shared\V2PostTransaction;
-use \formance\stack\Models\Shared\V2Posting;
-use \formance\stack\Models\Shared\V2PostTransactionScript;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CreateTransactionRequest();
+        $request = new Operations\V2CreateTransactionRequest();
     $request->idempotencyKey = 'string';
-    $request->v2PostTransaction = new V2PostTransaction();
+    $request->v2PostTransaction = new Shared\V2PostTransaction();
     $request->v2PostTransaction->metadata = [
         'Gasoline' => 'string',
     ];
     $request->v2PostTransaction->postings = [
-        new V2Posting(),
+        new Shared\V2Posting(),
     ];
     $request->v2PostTransaction->reference = 'ref:001';
-    $request->v2PostTransaction->script = new V2PostTransactionScript();
+    $request->v2PostTransaction->script = new Shared\V2PostTransactionScript();
     $request->v2PostTransaction->script->plain = 'vars {
     account $user
     }
@@ -1499,9 +1430,9 @@ try {
     $request->v2PostTransaction->script->vars = [
         'gauge' => 'string',
     ];
-    $request->v2PostTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-01-05T23:14:09.883Z');
+    $request->v2PostTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-01-06T15:20:41.892Z');
     $request->dryRun = true;
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2CreateTransaction($request);
 
@@ -1517,12 +1448,12 @@ try {
 
 | Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                            | [\formance\stack\Models\Operations\V2CreateTransactionRequest](../../models/operations/V2CreateTransactionRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| `$request`                                                                                                            | [\formance\stack\Models\Operations\V2CreateTransactionRequest](../../Models/Operations/V2CreateTransactionRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateTransactionResponse](../../models/operations/V2CreateTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\V2CreateTransactionResponse](../../Models/Operations/V2CreateTransactionResponse.md)**
 
 
 ## v2DeleteAccountMetadata
@@ -1537,22 +1468,20 @@ Delete metadata by key
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2DeleteAccountMetadataRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2DeleteAccountMetadataRequest();
+        $request = new Operations\V2DeleteAccountMetadataRequest();
     $request->address = '3680 Emile Grove';
     $request->key = 'foo';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2DeleteAccountMetadata($request);
 
@@ -1568,12 +1497,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\V2DeleteAccountMetadataRequest](../../models/operations/V2DeleteAccountMetadataRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\V2DeleteAccountMetadataRequest](../../Models/Operations/V2DeleteAccountMetadataRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2DeleteAccountMetadataResponse](../../models/operations/V2DeleteAccountMetadataResponse.md)**
+**[?\formance\stack\Models\Operations\V2DeleteAccountMetadataResponse](../../Models/Operations/V2DeleteAccountMetadataResponse.md)**
 
 
 ## v2DeleteTransactionMetadata
@@ -1588,22 +1517,20 @@ Delete metadata by key
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2DeleteTransactionMetadataRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2DeleteTransactionMetadataRequest();
+        $request = new Operations\V2DeleteTransactionMetadataRequest();
     $request->id = 1234;
     $request->key = 'foo';
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2DeleteTransactionMetadata($request);
 
@@ -1619,12 +1546,12 @@ try {
 
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                            | [\formance\stack\Models\Operations\V2DeleteTransactionMetadataRequest](../../models/operations/V2DeleteTransactionMetadataRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
+| `$request`                                                                                                                            | [\formance\stack\Models\Operations\V2DeleteTransactionMetadataRequest](../../Models/Operations/V2DeleteTransactionMetadataRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2DeleteTransactionMetadataResponse](../../models/operations/V2DeleteTransactionMetadataResponse.md)**
+**[?\formance\stack\Models\Operations\V2DeleteTransactionMetadataResponse](../../Models/Operations/V2DeleteTransactionMetadataResponse.md)**
 
 
 ## v2GetAccount
@@ -1639,23 +1566,21 @@ Get account by its address
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetAccountRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetAccountRequest();
+        $request = new Operations\V2GetAccountRequest();
     $request->address = 'users:001';
     $request->expand = 'string';
     $request->ledger = 'ledger001';
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-01-12T20:26:58.224Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-01-12T20:42:33.400Z');;
 
     $response = $sdk->ledger->v2GetAccount($request);
 
@@ -1671,12 +1596,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\V2GetAccountRequest](../../models/operations/V2GetAccountRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\V2GetAccountRequest](../../Models/Operations/V2GetAccountRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetAccountResponse](../../models/operations/V2GetAccountResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetAccountResponse](../../Models/Operations/V2GetAccountResponse.md)**
 
 
 ## v2GetBalancesAggregated
@@ -1691,24 +1616,22 @@ Get the aggregated balances from selected accounts
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetBalancesAggregatedRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetBalancesAggregatedRequest();
+        $request = new Operations\V2GetBalancesAggregatedRequest();
     $request->requestBody = [
         'rehouse' => 'string',
     ];
     $request->ledger = 'ledger001';
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-02-28T20:13:17.714Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-29T13:30:40.635Z');;
 
     $response = $sdk->ledger->v2GetBalancesAggregated($request);
 
@@ -1724,12 +1647,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\V2GetBalancesAggregatedRequest](../../models/operations/V2GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\V2GetBalancesAggregatedRequest](../../Models/Operations/V2GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetBalancesAggregatedResponse](../../models/operations/V2GetBalancesAggregatedResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetBalancesAggregatedResponse](../../Models/Operations/V2GetBalancesAggregatedResponse.md)**
 
 
 ## v2GetInfo
@@ -1744,15 +1667,13 @@ Show server information
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->ledger->v2GetInfo();
@@ -1768,7 +1689,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInfoResponse](../../models/operations/V2GetInfoResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetInfoResponse](../../Models/Operations/V2GetInfoResponse.md)**
 
 
 ## v2GetLedger
@@ -1783,20 +1704,18 @@ Get a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetLedgerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetLedgerRequest();
-    $request->ledger = 'ledger001';
+        $request = new Operations\V2GetLedgerRequest();
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2GetLedger($request);
 
@@ -1812,12 +1731,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\V2GetLedgerRequest](../../models/operations/V2GetLedgerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\V2GetLedgerRequest](../../Models/Operations/V2GetLedgerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetLedgerResponse](../../models/operations/V2GetLedgerResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetLedgerResponse](../../Models/Operations/V2GetLedgerResponse.md)**
 
 
 ## v2GetLedgerInfo
@@ -1832,20 +1751,18 @@ Get information about a ledger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetLedgerInfoRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetLedgerInfoRequest();
-    $request->ledger = 'ledger001';
+        $request = new Operations\V2GetLedgerInfoRequest();
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2GetLedgerInfo($request);
 
@@ -1861,12 +1778,12 @@ try {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2GetLedgerInfoRequest](../../models/operations/V2GetLedgerInfoRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2GetLedgerInfoRequest](../../Models/Operations/V2GetLedgerInfoRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetLedgerInfoResponse](../../models/operations/V2GetLedgerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetLedgerInfoResponse](../../Models/Operations/V2GetLedgerInfoResponse.md)**
 
 
 ## v2GetTransaction
@@ -1881,23 +1798,21 @@ Get transaction from a ledger by its ID
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetTransactionRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetTransactionRequest();
+        $request = new Operations\V2GetTransactionRequest();
     $request->expand = 'string';
     $request->id = 1234;
     $request->ledger = 'ledger001';
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-04-11T23:27:08.038Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-04-12T09:39:55.552Z');;
 
     $response = $sdk->ledger->v2GetTransaction($request);
 
@@ -1913,12 +1828,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\V2GetTransactionRequest](../../models/operations/V2GetTransactionRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\V2GetTransactionRequest](../../Models/Operations/V2GetTransactionRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetTransactionResponse](../../models/operations/V2GetTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetTransactionResponse](../../Models/Operations/V2GetTransactionResponse.md)**
 
 
 ## v2ListAccounts
@@ -1933,19 +1848,17 @@ List accounts from a ledger, sorted by address in descending order.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ListAccountsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ListAccountsRequest();
+        $request = new Operations\V2ListAccountsRequest();
     $request->requestBody = [
         'Bend' => 'string',
     ];
@@ -1953,7 +1866,7 @@ try {
     $request->expand = 'string';
     $request->ledger = 'ledger001';
     $request->pageSize = 390193;
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-02-16T05:59:47.760Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-16T23:00:37.064Z');;
 
     $response = $sdk->ledger->v2ListAccounts($request);
 
@@ -1969,12 +1882,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\V2ListAccountsRequest](../../models/operations/V2ListAccountsRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\V2ListAccountsRequest](../../Models/Operations/V2ListAccountsRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListAccountsResponse](../../models/operations/V2ListAccountsResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListAccountsResponse](../../Models/Operations/V2ListAccountsResponse.md)**
 
 
 ## v2ListLedgers
@@ -1989,21 +1902,19 @@ List ledgers
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ListLedgersRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ListLedgersRequest();
+        $request = new Operations\V2ListLedgersRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 748636;
+    $request->pageSize = 748636;;
 
     $response = $sdk->ledger->v2ListLedgers($request);
 
@@ -2019,12 +1930,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2ListLedgersRequest](../../models/operations/V2ListLedgersRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\V2ListLedgersRequest](../../Models/Operations/V2ListLedgersRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListLedgersResponse](../../models/operations/V2ListLedgersResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListLedgersResponse](../../Models/Operations/V2ListLedgersResponse.md)**
 
 
 ## v2ListLogs
@@ -2039,26 +1950,24 @@ List the logs from a ledger, sorted by ID in descending order.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ListLogsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ListLogsRequest();
+        $request = new Operations\V2ListLogsRequest();
     $request->requestBody = [
         'parse' => 'string',
     ];
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->ledger = 'ledger001';
     $request->pageSize = 578671;
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-03-08T10:39:01.809Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-03-08T20:06:24.496Z');;
 
     $response = $sdk->ledger->v2ListLogs($request);
 
@@ -2074,12 +1983,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\V2ListLogsRequest](../../models/operations/V2ListLogsRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\V2ListLogsRequest](../../Models/Operations/V2ListLogsRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListLogsResponse](../../models/operations/V2ListLogsResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListLogsResponse](../../Models/Operations/V2ListLogsResponse.md)**
 
 
 ## v2ListTransactions
@@ -2094,19 +2003,17 @@ List transactions from a ledger, sorted by id in descending order.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ListTransactionsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ListTransactionsRequest();
+        $request = new Operations\V2ListTransactionsRequest();
     $request->requestBody = [
         'Assurance' => 'string',
     ];
@@ -2114,7 +2021,7 @@ try {
     $request->expand = 'string';
     $request->ledger = 'ledger001';
     $request->pageSize = 167393;
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-12-22T17:13:32.377Z');
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-12-23T01:01:19.968Z');;
 
     $response = $sdk->ledger->v2ListTransactions($request);
 
@@ -2130,12 +2037,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\V2ListTransactionsRequest](../../models/operations/V2ListTransactionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\V2ListTransactionsRequest](../../Models/Operations/V2ListTransactionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListTransactionsResponse](../../models/operations/V2ListTransactionsResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListTransactionsResponse](../../Models/Operations/V2ListTransactionsResponse.md)**
 
 
 ## v2ReadStats
@@ -2151,20 +2058,18 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ReadStatsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ReadStatsRequest();
-    $request->ledger = 'ledger001';
+        $request = new Operations\V2ReadStatsRequest();
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2ReadStats($request);
 
@@ -2180,12 +2085,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\V2ReadStatsRequest](../../models/operations/V2ReadStatsRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\V2ReadStatsRequest](../../Models/Operations/V2ReadStatsRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ReadStatsResponse](../../models/operations/V2ReadStatsResponse.md)**
+**[?\formance\stack\Models\Operations\V2ReadStatsResponse](../../Models/Operations/V2ReadStatsResponse.md)**
 
 
 ## v2RevertTransaction
@@ -2200,22 +2105,20 @@ Revert a ledger transaction by its ID
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2RevertTransactionRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2RevertTransactionRequest();
+        $request = new Operations\V2RevertTransactionRequest();
     $request->force = false;
     $request->id = 1234;
-    $request->ledger = 'ledger001';
+    $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2RevertTransaction($request);
 
@@ -2231,10 +2134,10 @@ try {
 
 | Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                            | [\formance\stack\Models\Operations\V2RevertTransactionRequest](../../models/operations/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| `$request`                                                                                                            | [\formance\stack\Models\Operations\V2RevertTransactionRequest](../../Models/Operations/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2RevertTransactionResponse](../../models/operations/V2RevertTransactionResponse.md)**
+**[?\formance\stack\Models\Operations\V2RevertTransactionResponse](../../Models/Operations/V2RevertTransactionResponse.md)**
 

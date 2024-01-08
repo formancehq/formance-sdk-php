@@ -63,8 +63,8 @@ class Payment
     public ?Connector $provider = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PaymentRaw')]
-    public PaymentRaw $raw;
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Raw')]
+    public Raw $raw;
     
 	#[\JMS\Serializer\Annotation\SerializedName('reference')]
     #[\JMS\Serializer\Annotation\Type('string')]
@@ -98,7 +98,7 @@ class Payment
 		$this->initialAmount = 0;
 		$this->metadata = [];
 		$this->provider = null;
-		$this->raw = new \formance\stack\Models\Shared\PaymentRaw();
+		$this->raw = new \formance\stack\Models\Shared\Raw();
 		$this->reference = "";
 		$this->scheme = \formance\stack\Models\Shared\PaymentScheme::Unknown;
 		$this->sourceAccountID = "";

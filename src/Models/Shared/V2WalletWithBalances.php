@@ -12,8 +12,8 @@ namespace formance\stack\Models\Shared;
 class V2WalletWithBalances
 {
 	#[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2WalletWithBalancesBalances')]
-    public V2WalletWithBalancesBalances $balances;
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Balances')]
+    public Balances $balances;
     
 	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
@@ -47,7 +47,7 @@ class V2WalletWithBalances
     
 	public function __construct()
 	{
-		$this->balances = new \formance\stack\Models\Shared\V2WalletWithBalancesBalances();
+		$this->balances = new \formance\stack\Models\Shared\Balances();
 		$this->createdAt = new \DateTime();
 		$this->id = "";
 		$this->ledger = "";

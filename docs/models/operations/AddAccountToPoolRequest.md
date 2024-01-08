@@ -1,9 +1,0 @@
-# AddAccountToPoolRequest
-
-
-## Fields
-
-| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `addAccountToPoolRequest`                                                                               | [\formance\stack\Models\Shared\AddAccountToPoolRequest](../../models/shared/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
-| `poolId`                                                                                                | *string*                                                                                                | :heavy_check_mark:                                                                                      | The pool ID.                                                                                            |

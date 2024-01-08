@@ -17,12 +17,12 @@ class Contract
     public ?string $account = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('expr')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ContractExpr')]
-    public ContractExpr $expr;
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Expr')]
+    public Expr $expr;
     
 	public function __construct()
 	{
 		$this->account = null;
-		$this->expr = new \formance\stack\Models\Shared\ContractExpr();
+		$this->expr = new \formance\stack\Models\Shared\Expr();
 	}
 }

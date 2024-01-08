@@ -1,5 +1,5 @@
 # Webhooks
-(*webhooks*)
+
 
 ### Available Operations
 
@@ -23,20 +23,18 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ActivateConfigRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ActivateConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';
+        $request = new Operations\ActivateConfigRequest();
+    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
 
     $response = $sdk->webhooks->activateConfig($request);
 
@@ -52,12 +50,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\ActivateConfigRequest](../../models/operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\ActivateConfigRequest](../../Models/Operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ActivateConfigResponse](../../models/operations/ActivateConfigResponse.md)**
+**[?\formance\stack\Models\Operations\ActivateConfigResponse](../../Models/Operations/ActivateConfigResponse.md)**
 
 
 ## changeConfigSecret
@@ -76,23 +74,20 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ChangeConfigSecretRequest;
-use \formance\stack\Models\Shared\ConfigChangeSecret;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ChangeConfigSecretRequest();
-    $request->configChangeSecret = new ConfigChangeSecret();
+        $request = new Operations\ChangeConfigSecretRequest();
+    $request->configChangeSecret = new Shared\ConfigChangeSecret();
     $request->configChangeSecret->secret = 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3';
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';
+    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
 
     $response = $sdk->webhooks->changeConfigSecret($request);
 
@@ -108,12 +103,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\ChangeConfigSecretRequest](../../models/operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\ChangeConfigSecretRequest](../../Models/Operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ChangeConfigSecretResponse](../../models/operations/ChangeConfigSecretResponse.md)**
+**[?\formance\stack\Models\Operations\ChangeConfigSecretResponse](../../Models/Operations/ChangeConfigSecretResponse.md)**
 
 
 ## deactivateConfig
@@ -128,20 +123,18 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeactivateConfigRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeactivateConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';
+        $request = new Operations\DeactivateConfigRequest();
+    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
 
     $response = $sdk->webhooks->deactivateConfig($request);
 
@@ -157,12 +150,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\DeactivateConfigRequest](../../models/operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\DeactivateConfigRequest](../../Models/Operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeactivateConfigResponse](../../models/operations/DeactivateConfigResponse.md)**
+**[?\formance\stack\Models\Operations\DeactivateConfigResponse](../../Models/Operations/DeactivateConfigResponse.md)**
 
 
 ## deleteConfig
@@ -177,20 +170,18 @@ Delete a webhooks config by ID.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeleteConfigRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeleteConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';
+        $request = new Operations\DeleteConfigRequest();
+    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
 
     $response = $sdk->webhooks->deleteConfig($request);
 
@@ -206,12 +197,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteConfigRequest](../../models/operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteConfigRequest](../../Models/Operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteConfigResponse](../../models/operations/DeleteConfigResponse.md)**
+**[?\formance\stack\Models\Operations\DeleteConfigResponse](../../Models/Operations/DeleteConfigResponse.md)**
 
 
 ## getManyConfigs
@@ -226,21 +217,19 @@ Sorted by updated date descending
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetManyConfigsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetManyConfigsRequest();
+        $request = new Operations\GetManyConfigsRequest();
     $request->endpoint = 'https://example.com';
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';
+    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
 
     $response = $sdk->webhooks->getManyConfigs($request);
 
@@ -256,12 +245,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetManyConfigsRequest](../../models/operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetManyConfigsRequest](../../Models/Operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetManyConfigsResponse](../../models/operations/GetManyConfigsResponse.md)**
+**[?\formance\stack\Models\Operations\GetManyConfigsResponse](../../Models/Operations/GetManyConfigsResponse.md)**
 
 
 ## insertConfig
@@ -285,24 +274,21 @@ All eventTypes are converted to lower-case when inserted.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\ConfigUser;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ConfigUser();
+        $request = new Shared\ConfigUser();
     $request->endpoint = 'https://example.com';
     $request->eventTypes = [
         'TYPE1',
     ];
-    $request->secret = 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3';
+    $request->secret = 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3';;
 
     $response = $sdk->webhooks->insertConfig($request);
 
@@ -318,12 +304,12 @@ try {
 
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `$request`                                                                    | [\formance\stack\Models\Shared\ConfigUser](../../models/shared/ConfigUser.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `$request`                                                                    | [\formance\stack\Models\Shared\ConfigUser](../../Models/Shared/ConfigUser.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\InsertConfigResponse](../../models/operations/InsertConfigResponse.md)**
+**[?\formance\stack\Models\Operations\InsertConfigResponse](../../Models/Operations/InsertConfigResponse.md)**
 
 
 ## testConfig
@@ -338,20 +324,18 @@ Test a config by sending a webhook to its endpoint.
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\TestConfigRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new TestConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';
+        $request = new Operations\TestConfigRequest();
+    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
 
     $response = $sdk->webhooks->testConfig($request);
 
@@ -367,10 +351,10 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\TestConfigRequest](../../models/operations/TestConfigRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\TestConfigRequest](../../Models/Operations/TestConfigRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\TestConfigResponse](../../models/operations/TestConfigResponse.md)**
+**[?\formance\stack\Models\Operations\TestConfigResponse](../../Models/Operations/TestConfigResponse.md)**
 

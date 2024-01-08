@@ -12,11 +12,11 @@ namespace formance\stack\Models\Shared;
 class UpdateTransferInitiationStatusRequest
 {
 	#[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\UpdateTransferInitiationStatusRequestStatus>')]
-    public UpdateTransferInitiationStatusRequestStatus $status;
+    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\Status>')]
+    public Status $status;
     
 	public function __construct()
 	{
-		$this->status = \formance\stack\Models\Shared\UpdateTransferInitiationStatusRequestStatus::WaitingForValidation;
+		$this->status = \formance\stack\Models\Shared\Status::WaitingForValidation;
 	}
 }

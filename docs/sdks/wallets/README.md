@@ -1,5 +1,5 @@
 # Wallets
-(*wallets*)
+
 
 ### Available Operations
 
@@ -32,24 +32,21 @@ Confirm a hold
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ConfirmHoldRequest;
-use \formance\stack\Models\Shared\ConfirmHoldRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ConfirmHoldRequest();
-    $request->confirmHoldRequest = new ConfirmHoldRequest();
+        $request = new Operations\ConfirmHoldRequest();
+    $request->confirmHoldRequest = new Shared\ConfirmHoldRequest();
     $request->confirmHoldRequest->amount = 100;
     $request->confirmHoldRequest->final = true;
-    $request->holdId = 'string';
+    $request->holdId = 'string';;
 
     $response = $sdk->wallets->confirmHold($request);
 
@@ -65,12 +62,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\ConfirmHoldRequest](../../models/operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\ConfirmHoldRequest](../../Models/Operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ConfirmHoldResponse](../../models/operations/ConfirmHoldResponse.md)**
+**[?\formance\stack\Models\Operations\ConfirmHoldResponse](../../Models/Operations/ConfirmHoldResponse.md)**
 
 
 ## createBalance
@@ -85,25 +82,22 @@ Create a balance
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CreateBalanceRequest;
-use \formance\stack\Models\Shared\CreateBalanceRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateBalanceRequest();
-    $request->createBalanceRequest = new CreateBalanceRequest();
-    $request->createBalanceRequest->expiresAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-03-08T09:54:54.366Z');
+        $request = new Operations\CreateBalanceRequest();
+    $request->createBalanceRequest = new Shared\CreateBalanceRequest();
+    $request->createBalanceRequest->expiresAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-03-08T03:22:14.635Z');
     $request->createBalanceRequest->name = 'string';
     $request->createBalanceRequest->priority = 851262;
-    $request->id = '<ID>';
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->createBalance($request);
 
@@ -119,12 +113,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\CreateBalanceRequest](../../models/operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\CreateBalanceRequest](../../Models/Operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateBalanceResponse](../../models/operations/CreateBalanceResponse.md)**
+**[?\formance\stack\Models\Operations\CreateBalanceResponse](../../Models/Operations/CreateBalanceResponse.md)**
 
 
 ## createWallet
@@ -139,23 +133,20 @@ Create a new wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\CreateWalletRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateWalletRequest();
+        $request = new Shared\CreateWalletRequest();
     $request->metadata = [
         'array' => 'string',
     ];
-    $request->name = 'string';
+    $request->name = 'string';;
 
     $response = $sdk->wallets->createWallet($request);
 
@@ -171,12 +162,12 @@ try {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Shared\CreateWalletRequest](../../models/shared/CreateWalletRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$request`                                                                                      | [\formance\stack\Models\Shared\CreateWalletRequest](../../Models/Shared/CreateWalletRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateWalletResponse](../../models/operations/CreateWalletResponse.md)**
+**[?\formance\stack\Models\Operations\CreateWalletResponse](../../Models/Operations/CreateWalletResponse.md)**
 
 
 ## creditWallet
@@ -191,23 +182,19 @@ Credit a wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CreditWalletRequest;
-use \formance\stack\Models\Shared\CreditWalletRequest;
-use \formance\stack\Models\Shared\Monetary;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreditWalletRequest();
-    $request->creditWalletRequest = new CreditWalletRequest();
-    $request->creditWalletRequest->amount = new Monetary();
+        $request = new Operations\CreditWalletRequest();
+    $request->creditWalletRequest = new Shared\CreditWalletRequest();
+    $request->creditWalletRequest->amount = new Shared\Monetary();
     $request->creditWalletRequest->amount->amount = 201874;
     $request->creditWalletRequest->amount->asset = 'string';
     $request->creditWalletRequest->balance = 'string';
@@ -218,7 +205,7 @@ try {
     $request->creditWalletRequest->sources = [
         'string',
     ];
-    $request->id = '<ID>';
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->creditWallet($request);
 
@@ -234,12 +221,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\CreditWalletRequest](../../models/operations/CreditWalletRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\CreditWalletRequest](../../Models/Operations/CreditWalletRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreditWalletResponse](../../models/operations/CreditWalletResponse.md)**
+**[?\formance\stack\Models\Operations\CreditWalletResponse](../../Models/Operations/CreditWalletResponse.md)**
 
 
 ## debitWallet
@@ -254,23 +241,19 @@ Debit a wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DebitWalletRequest;
-use \formance\stack\Models\Shared\DebitWalletRequest;
-use \formance\stack\Models\Shared\Monetary;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DebitWalletRequest();
-    $request->debitWalletRequest = new DebitWalletRequest();
-    $request->debitWalletRequest->amount = new Monetary();
+        $request = new Operations\DebitWalletRequest();
+    $request->debitWalletRequest = new Shared\DebitWalletRequest();
+    $request->debitWalletRequest->amount = new Shared\Monetary();
     $request->debitWalletRequest->amount->amount = 245256;
     $request->debitWalletRequest->amount->asset = 'string';
     $request->debitWalletRequest->balances = [
@@ -282,7 +265,7 @@ try {
         'Tasty' => 'string',
     ];
     $request->debitWalletRequest->pending = false;
-    $request->id = '<ID>';
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->debitWallet($request);
 
@@ -298,12 +281,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\DebitWalletRequest](../../models/operations/DebitWalletRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\DebitWalletRequest](../../Models/Operations/DebitWalletRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DebitWalletResponse](../../models/operations/DebitWalletResponse.md)**
+**[?\formance\stack\Models\Operations\DebitWalletResponse](../../Models/Operations/DebitWalletResponse.md)**
 
 
 ## getBalance
@@ -318,21 +301,19 @@ Get detailed balance
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetBalanceRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetBalanceRequest();
+        $request = new Operations\GetBalanceRequest();
     $request->balanceName = 'string';
-    $request->id = '<ID>';
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->getBalance($request);
 
@@ -348,12 +329,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\GetBalanceRequest](../../models/operations/GetBalanceRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Operations\GetBalanceRequest](../../Models/Operations/GetBalanceRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetBalanceResponse](../../models/operations/GetBalanceResponse.md)**
+**[?\formance\stack\Models\Operations\GetBalanceResponse](../../Models/Operations/GetBalanceResponse.md)**
 
 
 ## getHold
@@ -368,20 +349,18 @@ Get a hold
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetHoldRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetHoldRequest();
-    $request->holdID = 'string';
+        $request = new Operations\GetHoldRequest();
+    $request->holdID = 'string';;
 
     $response = $sdk->wallets->getHold($request);
 
@@ -397,12 +376,12 @@ try {
 
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `$request`                                                                                    | [\formance\stack\Models\Operations\GetHoldRequest](../../models/operations/GetHoldRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `$request`                                                                                    | [\formance\stack\Models\Operations\GetHoldRequest](../../Models/Operations/GetHoldRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetHoldResponse](../../models/operations/GetHoldResponse.md)**
+**[?\formance\stack\Models\Operations\GetHoldResponse](../../Models/Operations/GetHoldResponse.md)**
 
 
 ## getHolds
@@ -417,25 +396,23 @@ Get all holds for a wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetHoldsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetHoldsRequest();
+        $request = new Operations\GetHoldsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->metadata = [
         'Engineer' => 'string',
     ];
     $request->pageSize = 766481;
-    $request->walletID = 'string';
+    $request->walletID = 'string';;
 
     $response = $sdk->wallets->getHolds($request);
 
@@ -451,12 +428,12 @@ try {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Operations\GetHoldsRequest](../../models/operations/GetHoldsRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$request`                                                                                      | [\formance\stack\Models\Operations\GetHoldsRequest](../../Models/Operations/GetHoldsRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetHoldsResponse](../../models/operations/GetHoldsResponse.md)**
+**[?\formance\stack\Models\Operations\GetHoldsResponse](../../Models/Operations/GetHoldsResponse.md)**
 
 
 ## getTransactions
@@ -469,22 +446,20 @@ try {
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetTransactionsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetTransactionsRequest();
+        $request = new Operations\GetTransactionsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 680555;
-    $request->walletID = 'string';
+    $request->walletID = 'string';;
 
     $response = $sdk->wallets->getTransactions($request);
 
@@ -500,12 +475,12 @@ try {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\GetTransactionsRequest](../../models/operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `$request`                                                                                                    | [\formance\stack\Models\Operations\GetTransactionsRequest](../../Models/Operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetTransactionsResponse](../../models/operations/GetTransactionsResponse.md)**
+**[?\formance\stack\Models\Operations\GetTransactionsResponse](../../Models/Operations/GetTransactionsResponse.md)**
 
 
 ## getWallet
@@ -520,20 +495,18 @@ Get a wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetWalletRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetWalletRequest();
-    $request->id = '<ID>';
+        $request = new Operations\GetWalletRequest();
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->getWallet($request);
 
@@ -549,12 +522,12 @@ try {
 
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                        | [\formance\stack\Models\Operations\GetWalletRequest](../../models/operations/GetWalletRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `$request`                                                                                        | [\formance\stack\Models\Operations\GetWalletRequest](../../Models/Operations/GetWalletRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetWalletResponse](../../models/operations/GetWalletResponse.md)**
+**[?\formance\stack\Models\Operations\GetWalletResponse](../../Models/Operations/GetWalletResponse.md)**
 
 
 ## getWalletSummary
@@ -569,20 +542,18 @@ Get wallet summary
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetWalletSummaryRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetWalletSummaryRequest();
-    $request->id = '<ID>';
+        $request = new Operations\GetWalletSummaryRequest();
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->getWalletSummary($request);
 
@@ -598,12 +569,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\GetWalletSummaryRequest](../../models/operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\GetWalletSummaryRequest](../../Models/Operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetWalletSummaryResponse](../../models/operations/GetWalletSummaryResponse.md)**
+**[?\formance\stack\Models\Operations\GetWalletSummaryResponse](../../Models/Operations/GetWalletSummaryResponse.md)**
 
 
 ## listBalances
@@ -618,20 +589,18 @@ List balances of a wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListBalancesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListBalancesRequest();
-    $request->id = '<ID>';
+        $request = new Operations\ListBalancesRequest();
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->listBalances($request);
 
@@ -647,12 +616,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\ListBalancesRequest](../../models/operations/ListBalancesRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\ListBalancesRequest](../../Models/Operations/ListBalancesRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListBalancesResponse](../../models/operations/ListBalancesResponse.md)**
+**[?\formance\stack\Models\Operations\ListBalancesResponse](../../Models/Operations/ListBalancesResponse.md)**
 
 
 ## listWallets
@@ -667,25 +636,23 @@ List all wallets
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListWalletsRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListWalletsRequest();
+        $request = new Operations\ListWalletsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->metadata = [
         'Auto' => 'string',
     ];
     $request->name = 'string';
-    $request->pageSize = 677327;
+    $request->pageSize = 677327;;
 
     $response = $sdk->wallets->listWallets($request);
 
@@ -701,12 +668,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\ListWalletsRequest](../../models/operations/ListWalletsRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\ListWalletsRequest](../../Models/Operations/ListWalletsRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListWalletsResponse](../../models/operations/ListWalletsResponse.md)**
+**[?\formance\stack\Models\Operations\ListWalletsResponse](../../Models/Operations/ListWalletsResponse.md)**
 
 
 ## updateWallet
@@ -721,25 +688,22 @@ Update a wallet
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\UpdateWalletRequest;
-use \formance\stack\Models\Operations\UpdateWalletRequestBody;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new UpdateWalletRequest();
-    $request->requestBody = new UpdateWalletRequestBody();
+        $request = new Operations\UpdateWalletRequest();
+    $request->requestBody = new Operations\UpdateWalletRequestBody();
     $request->requestBody->metadata = [
         'override' => 'string',
     ];
-    $request->id = '<ID>';
+    $request->id = '<ID>';;
 
     $response = $sdk->wallets->updateWallet($request);
 
@@ -755,12 +719,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\UpdateWalletRequest](../../models/operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\UpdateWalletRequest](../../Models/Operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UpdateWalletResponse](../../models/operations/UpdateWalletResponse.md)**
+**[?\formance\stack\Models\Operations\UpdateWalletResponse](../../Models/Operations/UpdateWalletResponse.md)**
 
 
 ## voidHold
@@ -775,20 +739,18 @@ Cancel a hold
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\VoidHoldRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new VoidHoldRequest();
-    $request->holdId = 'string';
+        $request = new Operations\VoidHoldRequest();
+    $request->holdId = 'string';;
 
     $response = $sdk->wallets->voidHold($request);
 
@@ -804,12 +766,12 @@ try {
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Operations\VoidHoldRequest](../../models/operations/VoidHoldRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$request`                                                                                      | [\formance\stack\Models\Operations\VoidHoldRequest](../../Models/Operations/VoidHoldRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\VoidHoldResponse](../../models/operations/VoidHoldResponse.md)**
+**[?\formance\stack\Models\Operations\VoidHoldResponse](../../Models/Operations/VoidHoldResponse.md)**
 
 
 ## walletsgetServerInfo
@@ -824,15 +786,13 @@ Get server info
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->wallets->walletsgetServerInfo();
@@ -848,5 +808,5 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\WalletsgetServerInfoResponse](../../models/operations/WalletsgetServerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\WalletsgetServerInfoResponse](../../Models/Operations/WalletsgetServerInfoResponse.md)**
 

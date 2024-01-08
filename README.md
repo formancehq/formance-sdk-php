@@ -2,6 +2,9 @@
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+    </a>
 </div>
 
 
@@ -12,10 +15,11 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
-<!-- Start SDK Installation -->
-# SDK Installation
 
-## Composer
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+### Composer
 
 To install the SDK first add the below to your `composer.json` file:
 
@@ -38,11 +42,12 @@ Then run the following command:
 ```bash
 composer update
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
 
+### Example
 
 ```php
 <?php
@@ -50,18 +55,18 @@ composer update
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use formance\stack\SDK;
-use formance\stack\Models\Shared\Security;
+use formance\stack;
+use formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
+$sdk = stack\SDK::builder()
     ->setSecurity($security)
     ->build();
 
 try {
-    $response = $sdk->sdk->getVersions();
+    $response = $sdk->getVersions();
 
     if ($response->getVersionsResponse !== null) {
         // handle response
@@ -71,17 +76,17 @@ try {
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
-# Available Resources and Operations
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
 
-## [SDK](docs/sdks/sdk/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 * [getApiAuthWellKnownOpenidConfiguration](docs/sdks/sdk/README.md#getapiauthwellknownopenidconfiguration)
 
-## [auth](docs/sdks/auth/README.md)
+### [Auth](docs/sdks/auth/README.md)
 
 * [createClient](docs/sdks/auth/README.md#createclient) - Create client
 * [createSecret](docs/sdks/auth/README.md#createsecret) - Add a secret to a client
@@ -94,7 +99,7 @@ try {
 * [readUser](docs/sdks/auth/README.md#readuser) - Read user
 * [updateClient](docs/sdks/auth/README.md#updateclient) - Update client
 
-## [ledger](docs/sdks/ledger/README.md)
+### [Ledger](docs/sdks/ledger/README.md)
 
 * [createTransactions](docs/sdks/ledger/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledger/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -138,7 +143,7 @@ try {
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
 
-## [orchestration](docs/sdks/orchestration/README.md)
+### [Orchestration](docs/sdks/orchestration/README.md)
 
 * [cancelEvent](docs/sdks/orchestration/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestration/README.md#createtrigger) - Create trigger
@@ -176,7 +181,7 @@ try {
 * [v2RunWorkflow](docs/sdks/orchestration/README.md#v2runworkflow) - Run workflow
 * [v2SendEvent](docs/sdks/orchestration/README.md#v2sendevent) - Send an event to a running workflow
 
-## [payments](docs/sdks/payments/README.md)
+### [Payments](docs/sdks/payments/README.md)
 
 * [addAccountToPool](docs/sdks/payments/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
@@ -218,7 +223,7 @@ try {
 * [updateConnectorConfigV1](docs/sdks/payments/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/payments/README.md#updatemetadata) - Update metadata
 
-## [reconciliation](docs/sdks/reconciliation/README.md)
+### [Reconciliation](docs/sdks/reconciliation/README.md)
 
 * [createPolicy](docs/sdks/reconciliation/README.md#createpolicy) - Create a policy
 * [deletePolicy](docs/sdks/reconciliation/README.md#deletepolicy) - Delete a policy
@@ -229,12 +234,12 @@ try {
 * [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/reconciliation/README.md#reconciliationgetserverinfo) - Get server info
 
-## [search](docs/sdks/search/README.md)
+### [Search](docs/sdks/search/README.md)
 
 * [search](docs/sdks/search/README.md#search) - Search
 * [searchgetServerInfo](docs/sdks/search/README.md#searchgetserverinfo) - Get server info
 
-## [wallets](docs/sdks/wallets/README.md)
+### [Wallets](docs/sdks/wallets/README.md)
 
 * [confirmHold](docs/sdks/wallets/README.md#confirmhold) - Confirm a hold
 * [createBalance](docs/sdks/wallets/README.md#createbalance) - Create a balance
@@ -253,7 +258,7 @@ try {
 * [voidHold](docs/sdks/wallets/README.md#voidhold) - Cancel a hold
 * [walletsgetServerInfo](docs/sdks/wallets/README.md#walletsgetserverinfo) - Get server info
 
-## [webhooks](docs/sdks/webhooks/README.md)
+### [Webhooks](docs/sdks/webhooks/README.md)
 
 * [activateConfig](docs/sdks/webhooks/README.md#activateconfig) - Activate one config
 * [changeConfigSecret](docs/sdks/webhooks/README.md#changeconfigsecret) - Change the signing secret of a config
@@ -262,13 +267,28 @@ try {
 * [getManyConfigs](docs/sdks/webhooks/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/webhooks/README.md#insertconfig) - Insert a new config
 * [testConfig](docs/sdks/webhooks/README.md#testconfig) - Test one config
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Dev Containers -->
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `http://localhost` | None |
 
 
 
-<!-- End Dev Containers -->
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+<!-- End Server Selection [server] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

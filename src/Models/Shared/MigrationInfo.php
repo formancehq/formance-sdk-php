@@ -22,9 +22,9 @@ class MigrationInfo
     public ?string $name = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\MigrationInfoState>')]
+    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\State>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?MigrationInfoState $state = null;
+    public ?State $state = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('version')]
     #[\JMS\Serializer\Annotation\Type('int')]

@@ -42,9 +42,9 @@ class ResponseCursor
     public ?string $previous = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('total')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ResponseCursorTotal')]
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Total')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?ResponseCursorTotal $total = null;
+    public ?Total $total = null;
     
 	public function __construct()
 	{

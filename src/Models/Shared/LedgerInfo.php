@@ -17,9 +17,9 @@ class LedgerInfo
     public ?string $name = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('storage')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\LedgerInfoStorage')]
+    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Storage')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?LedgerInfoStorage $storage = null;
+    public ?Storage $storage = null;
     
 	public function __construct()
 	{

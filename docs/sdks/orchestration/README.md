@@ -1,5 +1,5 @@
 # Orchestration
-(*orchestration*)
+
 
 ### Available Operations
 
@@ -51,20 +51,18 @@ Cancel a running workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\CancelEventRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CancelEventRequest();
-    $request->instanceID = 'string';
+        $request = new Operations\CancelEventRequest();
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->cancelEvent($request);
 
@@ -80,12 +78,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\CancelEventRequest](../../models/operations/CancelEventRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\CancelEventRequest](../../Models/Operations/CancelEventRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CancelEventResponse](../../models/operations/CancelEventResponse.md)**
+**[?\formance\stack\Models\Operations\CancelEventResponse](../../Models/Operations/CancelEventResponse.md)**
 
 
 ## createTrigger
@@ -100,25 +98,22 @@ Create trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\TriggerData;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new TriggerData();
+        $request = new Shared\TriggerData();
     $request->event = 'string';
     $request->filter = 'string';
     $request->vars = [
         'paradigms' => 'string',
     ];
-    $request->workflowID = 'string';
+    $request->workflowID = 'string';;
 
     $response = $sdk->orchestration->createTrigger($request);
 
@@ -134,12 +129,12 @@ try {
 
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$request`                                                                      | [\formance\stack\Models\Shared\TriggerData](../../models/shared/TriggerData.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `$request`                                                                      | [\formance\stack\Models\Shared\TriggerData](../../Models/Shared/TriggerData.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateTriggerResponse](../../models/operations/CreateTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\CreateTriggerResponse](../../Models/Operations/CreateTriggerResponse.md)**
 
 
 ## createWorkflow
@@ -154,25 +149,22 @@ Create a workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\CreateWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new CreateWorkflowRequest();
+        $request = new Shared\CreateWorkflowRequest();
     $request->name = 'string';
     $request->stages = [
         [
             'why' => 'string',
         ],
-    ];
+    ];;
 
     $response = $sdk->orchestration->createWorkflow($request);
 
@@ -188,12 +180,12 @@ try {
 
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Shared\CreateWorkflowRequest](../../models/shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$request`                                                                                          | [\formance\stack\Models\Shared\CreateWorkflowRequest](../../Models/Shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateWorkflowResponse](../../models/operations/CreateWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\CreateWorkflowResponse](../../Models/Operations/CreateWorkflowResponse.md)**
 
 
 ## deleteTrigger
@@ -208,20 +200,18 @@ Read trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeleteTriggerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeleteTriggerRequest();
-    $request->triggerID = 'string';
+        $request = new Operations\DeleteTriggerRequest();
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->deleteTrigger($request);
 
@@ -237,12 +227,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\DeleteTriggerRequest](../../models/operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\DeleteTriggerRequest](../../Models/Operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteTriggerResponse](../../models/operations/DeleteTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\DeleteTriggerResponse](../../Models/Operations/DeleteTriggerResponse.md)**
 
 
 ## deleteWorkflow
@@ -257,20 +247,18 @@ Delete a flow by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\DeleteWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new DeleteWorkflowRequest();
-    $request->flowId = 'string';
+        $request = new Operations\DeleteWorkflowRequest();
+    $request->flowId = 'string';;
 
     $response = $sdk->orchestration->deleteWorkflow($request);
 
@@ -286,12 +274,12 @@ try {
 
 | Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\DeleteWorkflowRequest](../../models/operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `$request`                                                                                                  | [\formance\stack\Models\Operations\DeleteWorkflowRequest](../../Models/Operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteWorkflowResponse](../../models/operations/DeleteWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\DeleteWorkflowResponse](../../Models/Operations/DeleteWorkflowResponse.md)**
 
 
 ## getInstance
@@ -306,20 +294,18 @@ Get a workflow instance by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetInstanceRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetInstanceRequest();
-    $request->instanceID = 'string';
+        $request = new Operations\GetInstanceRequest();
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->getInstance($request);
 
@@ -335,12 +321,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\GetInstanceRequest](../../models/operations/GetInstanceRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\GetInstanceRequest](../../Models/Operations/GetInstanceRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInstanceResponse](../../models/operations/GetInstanceResponse.md)**
+**[?\formance\stack\Models\Operations\GetInstanceResponse](../../Models/Operations/GetInstanceResponse.md)**
 
 
 ## getInstanceHistory
@@ -355,20 +341,18 @@ Get a workflow instance history by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetInstanceHistoryRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetInstanceHistoryRequest();
-    $request->instanceID = 'string';
+        $request = new Operations\GetInstanceHistoryRequest();
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->getInstanceHistory($request);
 
@@ -384,12 +368,12 @@ try {
 
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetInstanceHistoryRequest](../../models/operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetInstanceHistoryRequest](../../Models/Operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInstanceHistoryResponse](../../models/operations/GetInstanceHistoryResponse.md)**
+**[?\formance\stack\Models\Operations\GetInstanceHistoryResponse](../../Models/Operations/GetInstanceHistoryResponse.md)**
 
 
 ## getInstanceStageHistory
@@ -404,21 +388,19 @@ Get a workflow instance stage history
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetInstanceStageHistoryRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetInstanceStageHistoryRequest();
+        $request = new Operations\GetInstanceStageHistoryRequest();
     $request->instanceID = 'string';
-    $request->number = 600636;
+    $request->number = 600636;;
 
     $response = $sdk->orchestration->getInstanceStageHistory($request);
 
@@ -434,12 +416,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\GetInstanceStageHistoryRequest](../../models/operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\GetInstanceStageHistoryRequest](../../Models/Operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInstanceStageHistoryResponse](../../models/operations/GetInstanceStageHistoryResponse.md)**
+**[?\formance\stack\Models\Operations\GetInstanceStageHistoryResponse](../../Models/Operations/GetInstanceStageHistoryResponse.md)**
 
 
 ## getWorkflow
@@ -454,20 +436,18 @@ Get a flow by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\GetWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new GetWorkflowRequest();
-    $request->flowId = 'string';
+        $request = new Operations\GetWorkflowRequest();
+    $request->flowId = 'string';;
 
     $response = $sdk->orchestration->getWorkflow($request);
 
@@ -483,12 +463,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\GetWorkflowRequest](../../models/operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\GetWorkflowRequest](../../Models/Operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetWorkflowResponse](../../models/operations/GetWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\GetWorkflowResponse](../../Models/Operations/GetWorkflowResponse.md)**
 
 
 ## listInstances
@@ -503,21 +483,19 @@ List instances of a workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListInstancesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListInstancesRequest();
+        $request = new Operations\ListInstancesRequest();
     $request->running = false;
-    $request->workflowID = 'string';
+    $request->workflowID = 'string';;
 
     $response = $sdk->orchestration->listInstances($request);
 
@@ -533,12 +511,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\ListInstancesRequest](../../models/operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\ListInstancesRequest](../../Models/Operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListInstancesResponse](../../models/operations/ListInstancesResponse.md)**
+**[?\formance\stack\Models\Operations\ListInstancesResponse](../../Models/Operations/ListInstancesResponse.md)**
 
 
 ## listTriggers
@@ -553,15 +531,13 @@ List triggers
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->orchestration->listTriggers();
@@ -577,7 +553,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListTriggersResponse](../../models/operations/ListTriggersResponse.md)**
+**[?\formance\stack\Models\Operations\ListTriggersResponse](../../Models/Operations/ListTriggersResponse.md)**
 
 
 ## listTriggersOccurrences
@@ -592,20 +568,18 @@ List triggers occurrences
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ListTriggersOccurrencesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ListTriggersOccurrencesRequest();
-    $request->triggerID = 'string';
+        $request = new Operations\ListTriggersOccurrencesRequest();
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->listTriggersOccurrences($request);
 
@@ -621,12 +595,12 @@ try {
 
 | Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\ListTriggersOccurrencesRequest](../../models/operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| `$request`                                                                                                                    | [\formance\stack\Models\Operations\ListTriggersOccurrencesRequest](../../Models/Operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListTriggersOccurrencesResponse](../../models/operations/ListTriggersOccurrencesResponse.md)**
+**[?\formance\stack\Models\Operations\ListTriggersOccurrencesResponse](../../Models/Operations/ListTriggersOccurrencesResponse.md)**
 
 
 ## listWorkflows
@@ -641,15 +615,13 @@ List registered workflows
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->orchestration->listWorkflows();
@@ -665,7 +637,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
+**[?\formance\stack\Models\Operations\ListWorkflowsResponse](../../Models/Operations/ListWorkflowsResponse.md)**
 
 
 ## orchestrationgetServerInfo
@@ -680,15 +652,13 @@ Get server info
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->orchestration->orchestrationgetServerInfo();
@@ -704,7 +674,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\OrchestrationgetServerInfoResponse](../../Models/Operations/OrchestrationgetServerInfoResponse.md)**
 
 
 ## readTrigger
@@ -719,20 +689,18 @@ Read trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\ReadTriggerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new ReadTriggerRequest();
-    $request->triggerID = 'string';
+        $request = new Operations\ReadTriggerRequest();
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->readTrigger($request);
 
@@ -748,12 +716,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\ReadTriggerRequest](../../models/operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\ReadTriggerRequest](../../Models/Operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadTriggerResponse](../../models/operations/ReadTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\ReadTriggerResponse](../../Models/Operations/ReadTriggerResponse.md)**
 
 
 ## runWorkflow
@@ -768,24 +736,22 @@ Run workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\RunWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new RunWorkflowRequest();
+        $request = new Operations\RunWorkflowRequest();
     $request->requestBody = [
         'off' => 'string',
     ];
     $request->wait = false;
-    $request->workflowID = 'string';
+    $request->workflowID = 'string';;
 
     $response = $sdk->orchestration->runWorkflow($request);
 
@@ -801,12 +767,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\RunWorkflowRequest](../../models/operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\RunWorkflowRequest](../../Models/Operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\RunWorkflowResponse](../../models/operations/RunWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\RunWorkflowResponse](../../Models/Operations/RunWorkflowResponse.md)**
 
 
 ## sendEvent
@@ -821,23 +787,20 @@ Send an event to a running workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\SendEventRequest;
-use \formance\stack\Models\Operations\SendEventRequestBody;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new SendEventRequest();
-    $request->requestBody = new SendEventRequestBody();
+        $request = new Operations\SendEventRequest();
+    $request->requestBody = new Operations\SendEventRequestBody();
     $request->requestBody->name = 'string';
-    $request->instanceID = 'string';
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->sendEvent($request);
 
@@ -853,12 +816,12 @@ try {
 
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                        | [\formance\stack\Models\Operations\SendEventRequest](../../models/operations/SendEventRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `$request`                                                                                        | [\formance\stack\Models\Operations\SendEventRequest](../../Models/Operations/SendEventRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\SendEventResponse](../../models/operations/SendEventResponse.md)**
+**[?\formance\stack\Models\Operations\SendEventResponse](../../Models/Operations/SendEventResponse.md)**
 
 
 ## testTrigger
@@ -873,23 +836,21 @@ Test trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\TestTriggerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new TestTriggerRequest();
+        $request = new Operations\TestTriggerRequest();
     $request->requestBody = [
         'bluetooth' => 'string',
     ];
-    $request->triggerID = 'string';
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->testTrigger($request);
 
@@ -905,12 +866,12 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\TestTriggerRequest](../../models/operations/TestTriggerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\TestTriggerRequest](../../Models/Operations/TestTriggerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\TestTriggerResponse](../../models/operations/TestTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\TestTriggerResponse](../../Models/Operations/TestTriggerResponse.md)**
 
 
 ## v2CancelEvent
@@ -925,20 +886,18 @@ Cancel a running workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2CancelEventRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CancelEventRequest();
-    $request->instanceID = 'string';
+        $request = new Operations\V2CancelEventRequest();
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->v2CancelEvent($request);
 
@@ -954,12 +913,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2CancelEventRequest](../../models/operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\V2CancelEventRequest](../../Models/Operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CancelEventResponse](../../models/operations/V2CancelEventResponse.md)**
+**[?\formance\stack\Models\Operations\V2CancelEventResponse](../../Models/Operations/V2CancelEventResponse.md)**
 
 
 ## v2CreateTrigger
@@ -974,25 +933,22 @@ Create trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\V2TriggerData;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2TriggerData();
+        $request = new Shared\V2TriggerData();
     $request->event = 'string';
     $request->filter = 'string';
     $request->vars = [
         'primary' => 'string',
     ];
-    $request->workflowID = 'string';
+    $request->workflowID = 'string';;
 
     $response = $sdk->orchestration->v2CreateTrigger($request);
 
@@ -1008,12 +964,12 @@ try {
 
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `$request`                                                                          | [\formance\stack\Models\Shared\V2TriggerData](../../models/shared/V2TriggerData.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `$request`                                                                          | [\formance\stack\Models\Shared\V2TriggerData](../../Models/Shared/V2TriggerData.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateTriggerResponse](../../models/operations/V2CreateTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\V2CreateTriggerResponse](../../Models/Operations/V2CreateTriggerResponse.md)**
 
 
 ## v2CreateWorkflow
@@ -1028,25 +984,22 @@ Create a workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Shared\V2CreateWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2CreateWorkflowRequest();
+        $request = new Shared\V2CreateWorkflowRequest();
     $request->name = 'string';
     $request->stages = [
         [
             'system' => 'string',
         ],
-    ];
+    ];;
 
     $response = $sdk->orchestration->v2CreateWorkflow($request);
 
@@ -1062,12 +1015,12 @@ try {
 
 | Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Shared\V2CreateWorkflowRequest](../../models/shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$request`                                                                                              | [\formance\stack\Models\Shared\V2CreateWorkflowRequest](../../Models/Shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateWorkflowResponse](../../models/operations/V2CreateWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\V2CreateWorkflowResponse](../../Models/Operations/V2CreateWorkflowResponse.md)**
 
 
 ## v2DeleteTrigger
@@ -1082,20 +1035,18 @@ Read trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2DeleteTriggerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2DeleteTriggerRequest();
-    $request->triggerID = 'string';
+        $request = new Operations\V2DeleteTriggerRequest();
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->v2DeleteTrigger($request);
 
@@ -1111,12 +1062,12 @@ try {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2DeleteTriggerRequest](../../models/operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2DeleteTriggerRequest](../../Models/Operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2DeleteTriggerResponse](../../models/operations/V2DeleteTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\V2DeleteTriggerResponse](../../Models/Operations/V2DeleteTriggerResponse.md)**
 
 
 ## v2DeleteWorkflow
@@ -1131,20 +1082,18 @@ Delete a flow by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2DeleteWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2DeleteWorkflowRequest();
-    $request->flowId = 'string';
+        $request = new Operations\V2DeleteWorkflowRequest();
+    $request->flowId = 'string';;
 
     $response = $sdk->orchestration->v2DeleteWorkflow($request);
 
@@ -1160,12 +1109,12 @@ try {
 
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\V2DeleteWorkflowRequest](../../models/operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$request`                                                                                                      | [\formance\stack\Models\Operations\V2DeleteWorkflowRequest](../../Models/Operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2DeleteWorkflowResponse](../../models/operations/V2DeleteWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\V2DeleteWorkflowResponse](../../Models/Operations/V2DeleteWorkflowResponse.md)**
 
 
 ## v2GetInstance
@@ -1180,20 +1129,18 @@ Get a workflow instance by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetInstanceRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetInstanceRequest();
-    $request->instanceID = 'string';
+        $request = new Operations\V2GetInstanceRequest();
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->v2GetInstance($request);
 
@@ -1209,12 +1156,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2GetInstanceRequest](../../models/operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\V2GetInstanceRequest](../../Models/Operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInstanceResponse](../../models/operations/V2GetInstanceResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetInstanceResponse](../../Models/Operations/V2GetInstanceResponse.md)**
 
 
 ## v2GetInstanceHistory
@@ -1229,20 +1176,18 @@ Get a workflow instance history by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetInstanceHistoryRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetInstanceHistoryRequest();
-    $request->instanceID = 'string';
+        $request = new Operations\V2GetInstanceHistoryRequest();
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->v2GetInstanceHistory($request);
 
@@ -1258,12 +1203,12 @@ try {
 
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                              | [\formance\stack\Models\Operations\V2GetInstanceHistoryRequest](../../models/operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| `$request`                                                                                                              | [\formance\stack\Models\Operations\V2GetInstanceHistoryRequest](../../Models/Operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInstanceHistoryResponse](../../models/operations/V2GetInstanceHistoryResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetInstanceHistoryResponse](../../Models/Operations/V2GetInstanceHistoryResponse.md)**
 
 
 ## v2GetInstanceStageHistory
@@ -1278,21 +1223,19 @@ Get a workflow instance stage history
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetInstanceStageHistoryRequest();
+        $request = new Operations\V2GetInstanceStageHistoryRequest();
     $request->instanceID = 'string';
-    $request->number = 465454;
+    $request->number = 465454;;
 
     $response = $sdk->orchestration->v2GetInstanceStageHistory($request);
 
@@ -1308,12 +1251,12 @@ try {
 
 | Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                        | [\formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest](../../models/operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
+| `$request`                                                                                                                        | [\formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest](../../Models/Operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse](../../models/operations/V2GetInstanceStageHistoryResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse](../../Models/Operations/V2GetInstanceStageHistoryResponse.md)**
 
 
 ## v2GetServerInfo
@@ -1328,15 +1271,13 @@ Get server info
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->orchestration->v2GetServerInfo();
@@ -1352,7 +1293,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetServerInfoResponse](../../models/operations/V2GetServerInfoResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetServerInfoResponse](../../Models/Operations/V2GetServerInfoResponse.md)**
 
 
 ## v2GetWorkflow
@@ -1367,20 +1308,18 @@ Get a flow by id
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2GetWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2GetWorkflowRequest();
-    $request->flowId = 'string';
+        $request = new Operations\V2GetWorkflowRequest();
+    $request->flowId = 'string';;
 
     $response = $sdk->orchestration->v2GetWorkflow($request);
 
@@ -1396,12 +1335,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2GetWorkflowRequest](../../models/operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\V2GetWorkflowRequest](../../Models/Operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetWorkflowResponse](../../models/operations/V2GetWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\V2GetWorkflowResponse](../../Models/Operations/V2GetWorkflowResponse.md)**
 
 
 ## v2ListInstances
@@ -1416,21 +1355,19 @@ List instances of a workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ListInstancesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ListInstancesRequest();
+        $request = new Operations\V2ListInstancesRequest();
     $request->running = false;
-    $request->workflowID = 'string';
+    $request->workflowID = 'string';;
 
     $response = $sdk->orchestration->v2ListInstances($request);
 
@@ -1446,12 +1383,12 @@ try {
 
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2ListInstancesRequest](../../models/operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2ListInstancesRequest](../../Models/Operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListInstancesResponse](../../models/operations/V2ListInstancesResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListInstancesResponse](../../Models/Operations/V2ListInstancesResponse.md)**
 
 
 ## v2ListTriggers
@@ -1466,15 +1403,13 @@ List triggers
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->orchestration->v2ListTriggers();
@@ -1490,7 +1425,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListTriggersResponse](../../models/operations/V2ListTriggersResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListTriggersResponse](../../Models/Operations/V2ListTriggersResponse.md)**
 
 
 ## v2ListTriggersOccurrences
@@ -1505,20 +1440,18 @@ List triggers occurrences
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ListTriggersOccurrencesRequest();
-    $request->triggerID = 'string';
+        $request = new Operations\V2ListTriggersOccurrencesRequest();
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->v2ListTriggersOccurrences($request);
 
@@ -1534,12 +1467,12 @@ try {
 
 | Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                        | [\formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest](../../models/operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
+| `$request`                                                                                                                        | [\formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest](../../Models/Operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse](../../models/operations/V2ListTriggersOccurrencesResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse](../../Models/Operations/V2ListTriggersOccurrencesResponse.md)**
 
 
 ## v2ListWorkflows
@@ -1554,15 +1487,13 @@ List registered workflows
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
+use \formance\stack;
+use \formance\stack\Models\Shared;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->orchestration->v2ListWorkflows();
@@ -1578,7 +1509,7 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListWorkflowsResponse](../../models/operations/V2ListWorkflowsResponse.md)**
+**[?\formance\stack\Models\Operations\V2ListWorkflowsResponse](../../Models/Operations/V2ListWorkflowsResponse.md)**
 
 
 ## v2ReadTrigger
@@ -1593,20 +1524,18 @@ Read trigger
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2ReadTriggerRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2ReadTriggerRequest();
-    $request->triggerID = 'string';
+        $request = new Operations\V2ReadTriggerRequest();
+    $request->triggerID = 'string';;
 
     $response = $sdk->orchestration->v2ReadTrigger($request);
 
@@ -1622,12 +1551,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2ReadTriggerRequest](../../models/operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\V2ReadTriggerRequest](../../Models/Operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ReadTriggerResponse](../../models/operations/V2ReadTriggerResponse.md)**
+**[?\formance\stack\Models\Operations\V2ReadTriggerResponse](../../Models/Operations/V2ReadTriggerResponse.md)**
 
 
 ## v2RunWorkflow
@@ -1642,24 +1571,22 @@ Run workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2RunWorkflowRequest;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2RunWorkflowRequest();
+        $request = new Operations\V2RunWorkflowRequest();
     $request->requestBody = [
         'Wooden' => 'string',
     ];
     $request->wait = false;
-    $request->workflowID = 'string';
+    $request->workflowID = 'string';;
 
     $response = $sdk->orchestration->v2RunWorkflow($request);
 
@@ -1675,12 +1602,12 @@ try {
 
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2RunWorkflowRequest](../../models/operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$request`                                                                                                | [\formance\stack\Models\Operations\V2RunWorkflowRequest](../../Models/Operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2RunWorkflowResponse](../../models/operations/V2RunWorkflowResponse.md)**
+**[?\formance\stack\Models\Operations\V2RunWorkflowResponse](../../Models/Operations/V2RunWorkflowResponse.md)**
 
 
 ## v2SendEvent
@@ -1695,23 +1622,20 @@ Send an event to a running workflow
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
-use \formance\stack\SDK;
-use \formance\stack\Models\Shared\Security;
-use \formance\stack\Models\Operations\V2SendEventRequest;
-use \formance\stack\Models\Operations\V2SendEventRequestBody;
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
-$security = new Security();
-$security->authorization = '';
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
 
-$sdk = SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new V2SendEventRequest();
-    $request->requestBody = new V2SendEventRequestBody();
+        $request = new Operations\V2SendEventRequest();
+    $request->requestBody = new Operations\V2SendEventRequestBody();
     $request->requestBody->name = 'string';
-    $request->instanceID = 'string';
+    $request->instanceID = 'string';;
 
     $response = $sdk->orchestration->v2SendEvent($request);
 
@@ -1727,10 +1651,10 @@ try {
 
 | Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\V2SendEventRequest](../../models/operations/V2SendEventRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
+| `$request`                                                                                            | [\formance\stack\Models\Operations\V2SendEventRequest](../../Models/Operations/V2SendEventRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2SendEventResponse](../../models/operations/V2SendEventResponse.md)**
+**[?\formance\stack\Models\Operations\V2SendEventResponse](../../Models/Operations/V2SendEventResponse.md)**
 
