@@ -7,7 +7,6 @@
 * [createSecret](#createsecret) - Add a secret to a client
 * [deleteClient](#deleteclient) - Delete client
 * [deleteSecret](#deletesecret) - Delete a secret from a client
-* [getServerInfo](#getserverinfo) - Get server info
 * [listClients](#listclients) - List clients
 * [listUsers](#listusers) - List users
 * [readClient](#readclient) - Read client
@@ -220,43 +219,6 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\DeleteSecretResponse](../../Models/Operations/DeleteSecretResponse.md)**
-
-
-## getServerInfo
-
-Get server info
-
-### Example Usage
-
-```php
-<?php
-
-declare(strict_types=1);
-require_once 'vendor/autoload.php';
-
-use \formance\stack;
-use \formance\stack\Models\Shared;
-
-$security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
-
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->auth->getServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Exception $e) {
-    // handle exception
-}
-```
-
-
-### Response
-
-**[?\formance\stack\Models\Operations\GetServerInfoResponse](../../Models/Operations/GetServerInfoResponse.md)**
 
 
 ## listClients

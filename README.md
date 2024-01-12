@@ -92,7 +92,6 @@ try {
 * [createSecret](docs/sdks/auth/README.md#createsecret) - Add a secret to a client
 * [deleteClient](docs/sdks/auth/README.md#deleteclient) - Delete client
 * [deleteSecret](docs/sdks/auth/README.md#deletesecret) - Delete a secret from a client
-* [getServerInfo](docs/sdks/auth/README.md#getserverinfo) - Get server info
 * [listClients](docs/sdks/auth/README.md#listclients) - List clients
 * [listUsers](docs/sdks/auth/README.md#listusers) - List users
 * [readClient](docs/sdks/auth/README.md#readclient) - Read client

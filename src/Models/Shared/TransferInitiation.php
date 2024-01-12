@@ -58,6 +58,16 @@ class TransferInitiation
     public string $reference;
     
     /**
+     * $relatedAdjustments
+     * 
+     * @var ?array<\formance\stack\Models\Shared\TransferInitiationAdjusments> $relatedAdjustments
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('relatedAdjustments')]
+    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\TransferInitiationAdjusments>')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?array $relatedAdjustments = null;
+    
+    /**
      * $relatedPayments
      * 
      * @var ?array<\formance\stack\Models\Shared\TransferInitiationPayments> $relatedPayments
@@ -83,10 +93,6 @@ class TransferInitiation
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\TransferInitiationType>')]
     public TransferInitiationType $type;
     
-	#[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
-    public \DateTime $updatedAt;
-    
 	public function __construct()
 	{
 		$this->amount = 0;
@@ -99,11 +105,11 @@ class TransferInitiation
 		$this->id = "";
 		$this->metadata = null;
 		$this->reference = "";
+		$this->relatedAdjustments = null;
 		$this->relatedPayments = null;
 		$this->scheduledAt = new \DateTime();
 		$this->sourceAccountID = "";
 		$this->status = \formance\stack\Models\Shared\TransferInitiationStatus::WaitingForValidation;
 		$this->type = \formance\stack\Models\Shared\TransferInitiationType::Transfer;
-		$this->updatedAt = new \DateTime();
 	}
 }

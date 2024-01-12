@@ -17,4 +17,5 @@ enum TransferInitiationStatus: string
     case Failed = 'FAILED';
     case Rejected = 'REJECTED';
     case Validated = 'VALIDATED';
+    case Retried = 'RETRIED';
 }
