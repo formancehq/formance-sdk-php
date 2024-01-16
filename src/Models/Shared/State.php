@@ -11,6 +11,6 @@ namespace formance\stack\Models\Shared;
 
 enum State: string
 {
-    case ToDo = 'to do';
-    case Done = 'done';
+    case ToDo = 'TO DO';
+    case Done = 'DONE';
 }
