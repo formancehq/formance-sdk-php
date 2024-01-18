@@ -288,6 +288,7 @@ try {
     $request->eventTypes = [
         'TYPE1',
     ];
+    $request->name = 'customer_payment';
     $request->secret = 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3';;
 
     $response = $sdk->webhooks->insertConfig($request);

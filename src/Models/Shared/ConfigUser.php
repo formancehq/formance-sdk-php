@@ -24,6 +24,11 @@ class ConfigUser
     #[\JMS\Serializer\Annotation\Type('array<string>')]
     public array $eventTypes;
     
+	#[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?string $name = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('secret')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -33,6 +38,7 @@ class ConfigUser
 	{
 		$this->endpoint = "";
 		$this->eventTypes = [];
+		$this->name = null;
 		$this->secret = null;
 	}
 }
