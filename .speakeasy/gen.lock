@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
-id: dc4a351d-255b-4dbc-a2b9-dca1b4fed3df
+id: 9028eeba-b824-4dee-a4c8-7d435707c48e
 management:
-  docChecksum: bf3929cd2ca1ce376006df43bc2705f2
-  docVersion: v2.0.0-beta.10
+  docChecksum: 59f508b388b2e40561de26a8dcd854b9
+  docVersion: v2.0.0-beta.11
   speakeasyVersion: internal
-  generationVersion: 2.234.1
-  releaseVersion: v2.0.0-beta.10
-  configChecksum: 3d26e1b23c4f4d2d7b41e8a4540fafca
+  generationVersion: 2.237.2
+  releaseVersion: v2.0.0-beta.11
+  configChecksum: 31b723f2f6e2dc1159101cea0cbe03b6
 features:
   php:
     core: 3.3.0
     deprecations: 2.81.1
     getRequestBodies: 2.81.1
-    globalSecurity: 2.81.2
+    globalSecurity: 2.81.3
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
