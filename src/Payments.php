@@ -1384,6 +1384,47 @@ class Payments
     }
 	
     /**
+     * Reverse a transfer initiation
+     * 
+     * Reverse transfer initiation
+     * 
+     * @param \formance\stack\Models\Operations\ReverseTransferInitiationRequest $request
+     * @return \formance\stack\Models\Operations\ReverseTransferInitiationResponse
+     */
+	public function reverseTransferInitiation(
+        \formance\stack\Models\Operations\ReverseTransferInitiationRequest $request,
+    ): \formance\stack\Models\Operations\ReverseTransferInitiationResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/reverse', \formance\stack\Models\Operations\ReverseTransferInitiationRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "reverseTransferInitiationRequest", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\ReverseTransferInitiationResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
      * Update the status of a transfer initiation
      * 
      * Update a transfer initiation status

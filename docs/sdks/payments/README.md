@@ -37,6 +37,7 @@
 * [~~resetConnector~~](#resetconnector) - Reset a connector :warning: **Deprecated**
 * [resetConnectorV1](#resetconnectorv1) - Reset a connector
 * [retryTransferInitiation](#retrytransferinitiation) - Retry a failed transfer initiation
+* [reverseTransferInitiation](#reversetransferinitiation) - Reverse a transfer initiation
 * [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
@@ -1701,6 +1702,61 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\RetryTransferInitiationResponse](../../Models/Operations/RetryTransferInitiationResponse.md)**
+
+
+## reverseTransferInitiation
+
+Reverse transfer initiation
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
+
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
+
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
+
+try {
+        $request = new Operations\ReverseTransferInitiationRequest();
+    $request->reverseTransferInitiationRequest = new Shared\ReverseTransferInitiationRequest();
+    $request->reverseTransferInitiationRequest->amount = 327549;
+    $request->reverseTransferInitiationRequest->asset = 'USD';
+    $request->reverseTransferInitiationRequest->description = 'Streamlined high-level local area network';
+    $request->reverseTransferInitiationRequest->metadata = [
+        'sky' => 'string',
+    ];
+    $request->reverseTransferInitiationRequest->reference = 'XXX';
+    $request->transferId = 'string';;
+
+    $response = $sdk->payments->reverseTransferInitiation($request);
+
+    if ($response->statusCode === 200) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                        | [\formance\stack\Models\Operations\ReverseTransferInitiationRequest](../../Models/Operations/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\ReverseTransferInitiationResponse](../../Models/Operations/ReverseTransferInitiationResponse.md)**
 
 
 ## udpateTransferInitiationStatus

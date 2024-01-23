@@ -43,6 +43,10 @@ class TransferInitiation
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
     
+	#[\JMS\Serializer\Annotation\SerializedName('initialAmount')]
+    #[\JMS\Serializer\Annotation\Type('int')]
+    public int $initialAmount;
+    
     /**
      * $metadata
      * 
@@ -103,6 +107,7 @@ class TransferInitiation
 		$this->destinationAccountID = "";
 		$this->error = "";
 		$this->id = "";
+		$this->initialAmount = 0;
 		$this->metadata = null;
 		$this->reference = "";
 		$this->relatedAdjustments = null;

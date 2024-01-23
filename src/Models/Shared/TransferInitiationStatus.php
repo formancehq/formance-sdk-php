@@ -17,5 +17,10 @@ enum TransferInitiationStatus: string
     case Failed = 'FAILED';
     case Rejected = 'REJECTED';
     case Validated = 'VALIDATED';
-    case Retried = 'RETRIED';
+    case AskRetried = 'ASK_RETRIED';
+    case AskReversed = 'ASK_REVERSED';
+    case ReverseProcessing = 'REVERSE_PROCESSING';
+    case ReverseFailed = 'REVERSE_FAILED';
+    case PartiallyReversed = 'PARTIALLY_REVERSED';
+    case Reversed = 'REVERSED';
 }

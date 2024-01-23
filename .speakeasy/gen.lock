@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 493aeb7a-504f-40d3-85fe-7cdf173ce866
+id: dd32f955-f4df-473f-85cb-e495262bf0d1
 management:
-  docChecksum: 62528734db388452295a3642ad792516
-  docVersion: v2.0.0-beta.12
+  docChecksum: e3879c02fea2e4914c9d924447572b5d
+  docVersion: v2.0.0-beta.13
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-beta.12
-  configChecksum: d046d888779aa3f3b8ec6e70d608adc2
+  releaseVersion: v2.0.0-beta.13
+  configChecksum: 1276087a226322ef7c657c6d02f57f33
 features:
   php:
     core: 3.3.0
@@ -267,6 +267,8 @@ generatedFiles:
   - src/Models/Operations/ResetConnectorV1Response.php
   - src/Models/Operations/RetryTransferInitiationRequest.php
   - src/Models/Operations/RetryTransferInitiationResponse.php
+  - src/Models/Operations/ReverseTransferInitiationRequest.php
+  - src/Models/Operations/ReverseTransferInitiationResponse.php
   - src/Models/Operations/UdpateTransferInitiationStatusRequest.php
   - src/Models/Operations/UdpateTransferInitiationStatusResponse.php
   - src/Models/Operations/UninstallConnectorRequest.php
@@ -627,6 +629,7 @@ generatedFiles:
   - src/Models/Shared/Cursor.php
   - src/Models/Shared/AccountsCursor.php
   - src/Models/Shared/ConnectorConfigResponse.php
+  - src/Models/Shared/ReverseTransferInitiationRequest.php
   - src/Models/Shared/Status.php
   - src/Models/Shared/UpdateTransferInitiationStatusRequest.php
   - src/Models/Shared/ReconciliationErrorResponse.php
@@ -902,6 +905,8 @@ generatedFiles:
   - docs/Models/Operations/ResetConnectorV1Response.md
   - docs/Models/Operations/RetryTransferInitiationRequest.md
   - docs/Models/Operations/RetryTransferInitiationResponse.md
+  - docs/Models/Operations/ReverseTransferInitiationRequest.md
+  - docs/Models/Operations/ReverseTransferInitiationResponse.md
   - docs/Models/Operations/UdpateTransferInitiationStatusRequest.md
   - docs/Models/Operations/UdpateTransferInitiationStatusResponse.md
   - docs/Models/Operations/UninstallConnectorRequest.md
@@ -1262,6 +1267,7 @@ generatedFiles:
   - docs/Models/Shared/Cursor.md
   - docs/Models/Shared/AccountsCursor.md
   - docs/Models/Shared/ConnectorConfigResponse.md
+  - docs/Models/Shared/ReverseTransferInitiationRequest.md
   - docs/Models/Shared/Status.md
   - docs/Models/Shared/UpdateTransferInitiationStatusRequest.md
   - docs/Models/Shared/ReconciliationErrorResponse.md
