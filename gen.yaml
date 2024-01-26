@@ -8,7 +8,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 php:
-  version: v2.0.0-beta.15
+  version: v2.0.0-beta.16
   imports:
     option: openapi
     paths:
