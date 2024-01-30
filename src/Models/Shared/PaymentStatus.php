@@ -17,5 +17,9 @@ enum PaymentStatus: string
     case Failed = 'FAILED';
     case Expired = 'EXPIRED';
     case Refunded = 'REFUNDED';
+    case RefundedFailure = 'REFUNDED_FAILURE';
+    case Dispute = 'DISPUTE';
+    case DisputeWon = 'DISPUTE_WON';
+    case DisputeLost = 'DISPUTE_LOST';
     case Other = 'OTHER';
 }

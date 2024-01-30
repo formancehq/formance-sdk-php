@@ -229,7 +229,7 @@ try {
     $request->reference = 'string';
     $request->scheme = Shared\PaymentScheme::GooglePay;
     $request->sourceAccountID = 'string';
-    $request->status = Shared\PaymentStatus::Refunded;
+    $request->status = Shared\PaymentStatus::DisputeWon;
     $request->type = Shared\PaymentType::Transfer;;
 
     $response = $sdk->payments->createPayment($request);
