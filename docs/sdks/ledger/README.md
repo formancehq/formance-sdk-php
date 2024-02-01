@@ -494,7 +494,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetBalancesAggregatedRequest();
     $request->address = 'users:001';
-    $request->ledger = 'ledger001';;
+    $request->ledger = 'ledger001';
+    $request->useInsertionDate = false;;
 
     $response = $sdk->ledger->getBalancesAggregated($request);
 
@@ -1631,7 +1632,8 @@ try {
         'rehouse' => 'string',
     ];
     $request->ledger = 'ledger001';
-    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-29T13:30:40.635Z');;
+    $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-29T13:30:40.635Z');
+    $request->useInsertionDate = false;;
 
     $response = $sdk->ledger->v2GetBalancesAggregated($request);
 

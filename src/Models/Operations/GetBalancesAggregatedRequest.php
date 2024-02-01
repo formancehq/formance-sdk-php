@@ -27,9 +27,18 @@ class GetBalancesAggregatedRequest
 	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
     
+    /**
+     * Use insertion date instead of effective date
+     * 
+     * @var ?bool $useInsertionDate
+     */
+	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=use_insertion_date')]
+    public ?bool $useInsertionDate = null;
+    
 	public function __construct()
 	{
 		$this->address = null;
 		$this->ledger = "";
+		$this->useInsertionDate = null;
 	}
 }

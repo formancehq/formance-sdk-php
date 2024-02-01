@@ -52,6 +52,10 @@ class BankAccount
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
     
+	#[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    public string $name;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('provider')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -72,6 +76,7 @@ class BankAccount
 		$this->iban = null;
 		$this->id = "";
 		$this->metadata = null;
+		$this->name = "";
 		$this->provider = null;
 		$this->swiftBicCode = null;
 	}
