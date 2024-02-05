@@ -11,6 +11,7 @@
 * [createTransferInitiation](#createtransferinitiation) - Create a TransferInitiation
 * [deletePool](#deletepool) - Delete a Pool
 * [deleteTransferInitiation](#deletetransferinitiation) - Delete a transfer initiation
+* [forwardBankAccount](#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
@@ -454,6 +455,55 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\DeleteTransferInitiationResponse](../../Models/Operations/DeleteTransferInitiationResponse.md)**
+
+
+## forwardBankAccount
+
+Forward a bank account to a connector
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
+
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
+
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
+
+try {
+        $request = new Operations\ForwardBankAccountRequest();
+    $request->forwardBankAccountRequest = new Shared\ForwardBankAccountRequest();
+    $request->forwardBankAccountRequest->connectorID = 'string';
+    $request->bankAccountId = 'string';;
+
+    $response = $sdk->payments->forwardBankAccount($request);
+
+    if ($response->bankAccountResponse !== null) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                          | [\formance\stack\Models\Operations\ForwardBankAccountRequest](../../Models/Operations/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\ForwardBankAccountResponse](../../Models/Operations/ForwardBankAccountResponse.md)**
 
 
 ## getAccountBalances

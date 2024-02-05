@@ -21,6 +21,16 @@ class BankAccount
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $accountNumber = null;
     
+    /**
+     * $adjustments
+     * 
+     * @var ?array<\formance\stack\Models\Shared\BankAccountAdjustment> $adjustments
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('adjustments')]
+    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\BankAccountAdjustment>')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?array $adjustments = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('connectorID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $connectorID;
@@ -70,6 +80,7 @@ class BankAccount
 	{
 		$this->accountID = null;
 		$this->accountNumber = null;
+		$this->adjustments = null;
 		$this->connectorID = "";
 		$this->country = "";
 		$this->createdAt = new \DateTime();

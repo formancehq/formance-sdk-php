@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 6beb7f27-8f2a-4197-8224-4b323be795e3
+id: 0245e79c-2f73-4edc-8289-7aa4992e61d2
 management:
-  docChecksum: 7dfe7c153410dab21130617af7d17ee2
-  docVersion: v2.0.0-rc.2
+  docChecksum: 25f7693c65559e6fd8db6433caadba98
+  docVersion: v2.0.0-rc.3
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.2
-  configChecksum: b8b7dd8acc6a839cfc9c49e10d177e99
+  releaseVersion: v2.0.0-rc.3
+  configChecksum: 8962d9712867c1393321e0eebad98dab
 features:
   php:
     core: 3.3.0
@@ -218,6 +218,8 @@ generatedFiles:
   - src/Models/Operations/DeletePoolResponse.php
   - src/Models/Operations/DeleteTransferInitiationRequest.php
   - src/Models/Operations/DeleteTransferInitiationResponse.php
+  - src/Models/Operations/ForwardBankAccountRequest.php
+  - src/Models/Operations/ForwardBankAccountResponse.php
   - src/Models/Operations/GetAccountBalancesRequest.php
   - src/Models/Operations/GetAccountBalancesResponse.php
   - src/Models/Operations/GetBankAccountRequest.php
@@ -577,6 +579,7 @@ generatedFiles:
   - src/Models/Shared/TransferRequest.php
   - src/Models/Shared/BankAccountResponse.php
   - src/Models/Shared/BankAccount.php
+  - src/Models/Shared/BankAccountAdjustment.php
   - src/Models/Shared/BankAccountRequest.php
   - src/Models/Shared/PaymentResponse.php
   - src/Models/Shared/Raw.php
@@ -598,6 +601,7 @@ generatedFiles:
   - src/Models/Shared/TransferInitiationAdjusments.php
   - src/Models/Shared/TransferInitiationRequestType.php
   - src/Models/Shared/TransferInitiationRequest.php
+  - src/Models/Shared/ForwardBankAccountRequest.php
   - src/Models/Shared/BalancesCursorCursor.php
   - src/Models/Shared/BalancesCursor.php
   - src/Models/Shared/AccountBalance.php
@@ -856,6 +860,8 @@ generatedFiles:
   - docs/Models/Operations/DeletePoolResponse.md
   - docs/Models/Operations/DeleteTransferInitiationRequest.md
   - docs/Models/Operations/DeleteTransferInitiationResponse.md
+  - docs/Models/Operations/ForwardBankAccountRequest.md
+  - docs/Models/Operations/ForwardBankAccountResponse.md
   - docs/Models/Operations/GetAccountBalancesRequest.md
   - docs/Models/Operations/GetAccountBalancesResponse.md
   - docs/Models/Operations/GetBankAccountRequest.md
@@ -1215,6 +1221,7 @@ generatedFiles:
   - docs/Models/Shared/TransferRequest.md
   - docs/Models/Shared/BankAccountResponse.md
   - docs/Models/Shared/BankAccount.md
+  - docs/Models/Shared/BankAccountAdjustment.md
   - docs/Models/Shared/BankAccountRequest.md
   - docs/Models/Shared/PaymentResponse.md
   - docs/Models/Shared/Raw.md
@@ -1236,6 +1243,7 @@ generatedFiles:
   - docs/Models/Shared/TransferInitiationAdjusments.md
   - docs/Models/Shared/TransferInitiationRequestType.md
   - docs/Models/Shared/TransferInitiationRequest.md
+  - docs/Models/Shared/ForwardBankAccountRequest.md
   - docs/Models/Shared/BalancesCursorCursor.md
   - docs/Models/Shared/BalancesCursor.md
   - docs/Models/Shared/AccountBalance.md

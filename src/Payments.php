@@ -360,6 +360,49 @@ class Payments
     }
 	
     /**
+     * Forward a bank account to a connector
+     * 
+     * @param \formance\stack\Models\Operations\ForwardBankAccountRequest $request
+     * @return \formance\stack\Models\Operations\ForwardBankAccountResponse
+     */
+	public function forwardBankAccount(
+        \formance\stack\Models\Operations\ForwardBankAccountRequest $request,
+    ): \formance\stack\Models\Operations\ForwardBankAccountResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}/forward', \formance\stack\Models\Operations\ForwardBankAccountRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "forwardBankAccountRequest", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\ForwardBankAccountResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->bankAccountResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\BankAccountResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * Get account balances
      * 
      * @param \formance\stack\Models\Operations\GetAccountBalancesRequest $request

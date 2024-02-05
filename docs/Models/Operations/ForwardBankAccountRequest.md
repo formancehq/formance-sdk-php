@@ -1,0 +1,9 @@
+# ForwardBankAccountRequest
+
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `forwardBankAccountRequest`                                                                                 | [\formance\stack\Models\Shared\ForwardBankAccountRequest](../../Models/Shared/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `bankAccountId`                                                                                             | *string*                                                                                                    | :heavy_check_mark:                                                                                          | The bank account ID.                                                                                        |
