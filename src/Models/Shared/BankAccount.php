@@ -21,16 +21,6 @@ class BankAccount
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $accountNumber = null;
     
-    /**
-     * $adjustments
-     * 
-     * @var ?array<\formance\stack\Models\Shared\BankAccountAdjustment> $adjustments
-     */
-	#[\JMS\Serializer\Annotation\SerializedName('adjustments')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\BankAccountAdjustment>')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?array $adjustments = null;
-    
 	#[\JMS\Serializer\Annotation\SerializedName('connectorID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $connectorID;
@@ -71,6 +61,16 @@ class BankAccount
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $provider = null;
     
+    /**
+     * $relatedAccounts
+     * 
+     * @var ?array<\formance\stack\Models\Shared\BankAccountRelatedAccounts> $relatedAccounts
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('relatedAccounts')]
+    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\BankAccountRelatedAccounts>')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?array $relatedAccounts = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
@@ -80,7 +80,6 @@ class BankAccount
 	{
 		$this->accountID = null;
 		$this->accountNumber = null;
-		$this->adjustments = null;
 		$this->connectorID = "";
 		$this->country = "";
 		$this->createdAt = new \DateTime();
@@ -89,6 +88,7 @@ class BankAccount
 		$this->metadata = null;
 		$this->name = "";
 		$this->provider = null;
+		$this->relatedAccounts = null;
 		$this->swiftBicCode = null;
 	}
 }

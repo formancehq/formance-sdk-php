@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 61f0d579-cefb-413f-875f-4c03337c76f5
+id: 43f20b74-9d05-4af3-9648-557bb9610df4
 management:
-  docChecksum: 5d24de084aa582df481914f9765a2d91
-  docVersion: v2.0.0-rc.4
+  docChecksum: 9498362bd3de88c7492796ec40c09297
+  docVersion: v2.0.0-rc.7
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.4
-  configChecksum: f082178615459f04dce4e71b94551428
+  releaseVersion: v2.0.0-rc.7
+  configChecksum: a649034f5cab45f215b4a8934906ec32
 features:
   php:
     core: 3.3.0
@@ -277,6 +277,8 @@ generatedFiles:
   - src/Models/Operations/UninstallConnectorResponse.php
   - src/Models/Operations/UninstallConnectorV1Request.php
   - src/Models/Operations/UninstallConnectorV1Response.php
+  - src/Models/Operations/UpdateBankAccountMetadataRequest.php
+  - src/Models/Operations/UpdateBankAccountMetadataResponse.php
   - src/Models/Operations/UpdateConnectorConfigV1Request.php
   - src/Models/Operations/UpdateConnectorConfigV1Response.php
   - src/Models/Operations/UpdateMetadataRequest.php
@@ -579,7 +581,7 @@ generatedFiles:
   - src/Models/Shared/TransferRequest.php
   - src/Models/Shared/BankAccountResponse.php
   - src/Models/Shared/BankAccount.php
-  - src/Models/Shared/BankAccountAdjustment.php
+  - src/Models/Shared/BankAccountRelatedAccounts.php
   - src/Models/Shared/BankAccountRequest.php
   - src/Models/Shared/PaymentResponse.php
   - src/Models/Shared/Raw.php
@@ -636,6 +638,7 @@ generatedFiles:
   - src/Models/Shared/ReverseTransferInitiationRequest.php
   - src/Models/Shared/Status.php
   - src/Models/Shared/UpdateTransferInitiationStatusRequest.php
+  - src/Models/Shared/UpdateBankAccountMetadataRequest.php
   - src/Models/Shared/ReconciliationErrorResponse.php
   - src/Models/Shared/PolicyResponse.php
   - src/Models/Shared/Policy.php
@@ -919,6 +922,8 @@ generatedFiles:
   - docs/Models/Operations/UninstallConnectorResponse.md
   - docs/Models/Operations/UninstallConnectorV1Request.md
   - docs/Models/Operations/UninstallConnectorV1Response.md
+  - docs/Models/Operations/UpdateBankAccountMetadataRequest.md
+  - docs/Models/Operations/UpdateBankAccountMetadataResponse.md
   - docs/Models/Operations/UpdateConnectorConfigV1Request.md
   - docs/Models/Operations/UpdateConnectorConfigV1Response.md
   - docs/Models/Operations/UpdateMetadataRequest.md
@@ -1221,7 +1226,7 @@ generatedFiles:
   - docs/Models/Shared/TransferRequest.md
   - docs/Models/Shared/BankAccountResponse.md
   - docs/Models/Shared/BankAccount.md
-  - docs/Models/Shared/BankAccountAdjustment.md
+  - docs/Models/Shared/BankAccountRelatedAccounts.md
   - docs/Models/Shared/BankAccountRequest.md
   - docs/Models/Shared/PaymentResponse.md
   - docs/Models/Shared/Raw.md
@@ -1278,6 +1283,7 @@ generatedFiles:
   - docs/Models/Shared/ReverseTransferInitiationRequest.md
   - docs/Models/Shared/Status.md
   - docs/Models/Shared/UpdateTransferInitiationStatusRequest.md
+  - docs/Models/Shared/UpdateBankAccountMetadataRequest.md
   - docs/Models/Shared/ReconciliationErrorResponse.md
   - docs/Models/Shared/PolicyResponse.md
   - docs/Models/Shared/Policy.md

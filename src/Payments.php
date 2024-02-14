@@ -1584,6 +1584,45 @@ class Payments
     }
 	
     /**
+     * Update metadata of a bank account
+     * 
+     * @param \formance\stack\Models\Operations\UpdateBankAccountMetadataRequest $request
+     * @return \formance\stack\Models\Operations\UpdateBankAccountMetadataResponse
+     */
+	public function updateBankAccountMetadata(
+        \formance\stack\Models\Operations\UpdateBankAccountMetadataRequest $request,
+    ): \formance\stack\Models\Operations\UpdateBankAccountMetadataResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}/metadata', \formance\stack\Models\Operations\UpdateBankAccountMetadataRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "updateBankAccountMetadataRequest", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('PATCH', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\UpdateBankAccountMetadataResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+
+        return $response;
+    }
+	
+    /**
      * Update the config of a connector
      * 
      * Update connector config

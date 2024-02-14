@@ -28,7 +28,7 @@ class GetBalancesRequest
     public ?string $after = null;
     
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      * 
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
@@ -48,11 +48,22 @@ class GetBalancesRequest
 	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
     
+    /**
+     * The maximum number of results to return per page.
+     * 
+     * 
+     * 
+     * @var ?int $pageSize
+     */
+	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
+    public ?int $pageSize = null;
+    
 	public function __construct()
 	{
 		$this->address = null;
 		$this->after = null;
 		$this->cursor = null;
 		$this->ledger = "";
+		$this->pageSize = null;
 	}
 }

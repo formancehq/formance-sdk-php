@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
-class BankAccountAdjustment
+class BankAccountRelatedAccounts
 {
 	#[\JMS\Serializer\Annotation\SerializedName('accountID')]
     #[\JMS\Serializer\Annotation\Type('string')]

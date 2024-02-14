@@ -42,6 +42,7 @@
 * [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
+* [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
 
@@ -1953,6 +1954,57 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\UninstallConnectorV1Response](../../Models/Operations/UninstallConnectorV1Response.md)**
+
+
+## updateBankAccountMetadata
+
+Update metadata of a bank account
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+require_once 'vendor/autoload.php';
+
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
+
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
+
+try {
+        $request = new Operations\UpdateBankAccountMetadataRequest();
+    $request->updateBankAccountMetadataRequest = new Shared\UpdateBankAccountMetadataRequest();
+    $request->updateBankAccountMetadataRequest->metadata = [
+        'West' => 'string',
+    ];
+    $request->bankAccountId = 'string';;
+
+    $response = $sdk->payments->updateBankAccountMetadata($request);
+
+    if ($response->statusCode === 200) {
+        // handle response
+    }
+} catch (Exception $e) {
+    // handle exception
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                        | [\formance\stack\Models\Operations\UpdateBankAccountMetadataRequest](../../Models/Operations/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\UpdateBankAccountMetadataResponse](../../Models/Operations/UpdateBankAccountMetadataResponse.md)**
 
 
 ## updateConnectorConfigV1

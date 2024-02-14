@@ -446,7 +446,8 @@ try {
     $request->address = 'users:001';
     $request->after = 'users:003';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->ledger = 'ledger001';;
+    $request->ledger = 'ledger001';
+    $request->pageSize = 755286;;
 
     $response = $sdk->ledger->getBalances($request);
 

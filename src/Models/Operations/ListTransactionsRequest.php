@@ -28,7 +28,7 @@ class ListTransactionsRequest
     public ?string $after = null;
     
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      * 
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
