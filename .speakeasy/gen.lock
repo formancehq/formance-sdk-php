@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 284915a8-36ca-43b4-ab65-99690026a813
+id: 3cbec8ed-3f0c-4fcf-b7b4-bbca3fe803aa
 management:
-  docChecksum: e1a7bce7b75c699649b82b3f3d80360c
-  docVersion: v2.0.0-rc.12
+  docChecksum: be1b6cb9027ca13c1457e0857448bae8
+  docVersion: v2.0.0-rc.13
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.12
-  configChecksum: 43b87a56b67e8ba509227d0f9ee8763a
+  releaseVersion: v2.0.0-rc.13
+  configChecksum: 7a41f683e7295f6234184f9b1e5f1434
 features:
   php:
     core: 3.3.0
