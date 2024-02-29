@@ -15,6 +15,11 @@ class V2TriggerOccurrence
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $date;
     
+	#[\JMS\Serializer\Annotation\SerializedName('error')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?string $error = null;
+    
     /**
      * $event
      * 
@@ -30,18 +35,21 @@ class V2TriggerOccurrence
     
 	#[\JMS\Serializer\Annotation\SerializedName('workflowInstance')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2WorkflowInstance')]
-    public V2WorkflowInstance $workflowInstance;
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?V2WorkflowInstance $workflowInstance = null;
     
 	#[\JMS\Serializer\Annotation\SerializedName('workflowInstanceID')]
     #[\JMS\Serializer\Annotation\Type('string')]
-    public string $workflowInstanceID;
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?string $workflowInstanceID = null;
     
 	public function __construct()
 	{
 		$this->date = new \DateTime();
+		$this->error = null;
 		$this->event = [];
 		$this->triggerID = "";
-		$this->workflowInstance = new \formance\stack\Models\Shared\V2WorkflowInstance();
-		$this->workflowInstanceID = "";
+		$this->workflowInstance = null;
+		$this->workflowInstanceID = null;
 	}
 }
