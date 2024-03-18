@@ -21,4 +21,4 @@ php:
   maxMethodParams: 0
   namespace: formance\stack
   outputModelSuffix: output
-  packageName: formance-sdk-php
+  packageName: formance/formance-sdk
