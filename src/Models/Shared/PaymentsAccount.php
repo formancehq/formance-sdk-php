@@ -59,6 +59,11 @@ class PaymentsAccount
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $pools = null;
     
+	#[\JMS\Serializer\Annotation\SerializedName('provider')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?string $provider = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('raw')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PaymentsAccountRaw')]
     public PaymentsAccountRaw $raw;
@@ -81,6 +86,7 @@ class PaymentsAccount
 		$this->id = "";
 		$this->metadata = [];
 		$this->pools = null;
+		$this->provider = null;
 		$this->raw = new \formance\stack\Models\Shared\PaymentsAccountRaw();
 		$this->reference = "";
 		$this->type = "";

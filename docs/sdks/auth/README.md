@@ -23,7 +23,8 @@ Create client
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -37,18 +38,18 @@ try {
         $request = new Shared\CreateClientRequest();
     $request->description = 'Managed optimizing help-desk';
     $request->metadata = [
-        'pessimistic' => 'string',
+        'pessimistic' => '<value>',
     ];
-    $request->name = 'string';
+    $request->name = '<value>';
     $request->postLogoutRedirectUris = [
-        'string',
+        '<value>',
     ];
     $request->public = false;
     $request->redirectUris = [
-        'string',
+        '<value>',
     ];
     $request->scopes = [
-        'string',
+        '<value>',
     ];
     $request->trusted = false;;
 
@@ -57,7 +58,7 @@ try {
     if ($response->createClientResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -84,7 +85,8 @@ Add a secret to a client
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -99,17 +101,17 @@ try {
         $request = new Operations\CreateSecretRequest();
     $request->createSecretRequest = new Shared\CreateSecretRequest();
     $request->createSecretRequest->metadata = [
-        'architecture' => 'string',
+        'architecture' => '<value>',
     ];
-    $request->createSecretRequest->name = 'string';
-    $request->clientId = 'string';;
+    $request->createSecretRequest->name = '<value>';
+    $request->clientId = '<value>';;
 
     $response = $sdk->auth->createSecret($request);
 
     if ($response->createSecretResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -136,7 +138,8 @@ Delete client
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -149,14 +152,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteClientRequest();
-    $request->clientId = 'string';;
+    $request->clientId = '<value>';;
 
     $response = $sdk->auth->deleteClient($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -183,7 +186,8 @@ Delete a secret from a client
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -196,15 +200,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteSecretRequest();
-    $request->clientId = 'string';
-    $request->secretId = 'string';;
+    $request->clientId = '<value>';
+    $request->secretId = '<value>';;
 
     $response = $sdk->auth->deleteSecret($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -231,7 +235,8 @@ List clients
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -247,7 +252,7 @@ try {
     if ($response->listClientsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -268,7 +273,8 @@ List users
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -284,7 +290,7 @@ try {
     if ($response->listUsersResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -305,7 +311,8 @@ Read client
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -318,14 +325,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ReadClientRequest();
-    $request->clientId = 'string';;
+    $request->clientId = '<value>';;
 
     $response = $sdk->auth->readClient($request);
 
     if ($response->readClientResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -352,7 +359,8 @@ Read user
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -365,14 +373,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ReadUserRequest();
-    $request->userId = 'string';;
+    $request->userId = '<value>';;
 
     $response = $sdk->auth->readUser($request);
 
     if ($response->readUserResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -399,7 +407,8 @@ Update client
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -415,28 +424,28 @@ try {
     $request->updateClientRequest = new Shared\UpdateClientRequest();
     $request->updateClientRequest->description = 'Secured static model';
     $request->updateClientRequest->metadata = [
-        'Bentley' => 'string',
+        'Bentley' => '<value>',
     ];
-    $request->updateClientRequest->name = 'string';
+    $request->updateClientRequest->name = '<value>';
     $request->updateClientRequest->postLogoutRedirectUris = [
-        'string',
+        '<value>',
     ];
     $request->updateClientRequest->public = false;
     $request->updateClientRequest->redirectUris = [
-        'string',
+        '<value>',
     ];
     $request->updateClientRequest->scopes = [
-        'string',
+        '<value>',
     ];
     $request->updateClientRequest->trusted = false;
-    $request->clientId = 'string';;
+    $request->clientId = '<value>';;
 
     $response = $sdk->auth->updateClient($request);
 
     if ($response->updateClientResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

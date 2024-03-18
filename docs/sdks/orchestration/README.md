@@ -49,7 +49,8 @@ Cancel a running workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -62,14 +63,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\CancelEventRequest();
-    $request->instanceID = 'string';;
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->cancelEvent($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -96,7 +97,8 @@ Create trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -108,19 +110,19 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Shared\TriggerData();
-    $request->event = 'string';
-    $request->filter = 'string';
+    $request->event = '<value>';
+    $request->filter = '<value>';
     $request->vars = [
-        'paradigms' => 'string',
+        'paradigms' => '<value>',
     ];
-    $request->workflowID = 'string';;
+    $request->workflowID = '<value>';;
 
     $response = $sdk->orchestration->createTrigger($request);
 
     if ($response->createTriggerResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -147,7 +149,8 @@ Create a workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -159,10 +162,10 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Shared\CreateWorkflowRequest();
-    $request->name = 'string';
+    $request->name = '<value>';
     $request->stages = [
         [
-            'why' => 'string',
+            'why' => '<value>',
         ],
     ];;
 
@@ -171,7 +174,7 @@ try {
     if ($response->createWorkflowResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -198,7 +201,8 @@ Read trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -211,14 +215,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteTriggerRequest();
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->deleteTrigger($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -245,7 +249,8 @@ Delete a flow by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -258,14 +263,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteWorkflowRequest();
-    $request->flowId = 'string';;
+    $request->flowId = '<value>';;
 
     $response = $sdk->orchestration->deleteWorkflow($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -292,7 +297,8 @@ Get a workflow instance by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -305,14 +311,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetInstanceRequest();
-    $request->instanceID = 'string';;
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->getInstance($request);
 
     if ($response->getWorkflowInstanceResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -339,7 +345,8 @@ Get a workflow instance history by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -352,14 +359,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetInstanceHistoryRequest();
-    $request->instanceID = 'string';;
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->getInstanceHistory($request);
 
     if ($response->getWorkflowInstanceHistoryResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -386,7 +393,8 @@ Get a workflow instance stage history
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -399,7 +407,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetInstanceStageHistoryRequest();
-    $request->instanceID = 'string';
+    $request->instanceID = '<value>';
     $request->number = 600636;;
 
     $response = $sdk->orchestration->getInstanceStageHistory($request);
@@ -407,7 +415,7 @@ try {
     if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -434,7 +442,8 @@ Get a flow by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -447,14 +456,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetWorkflowRequest();
-    $request->flowId = 'string';;
+    $request->flowId = '<value>';;
 
     $response = $sdk->orchestration->getWorkflow($request);
 
     if ($response->getWorkflowResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -481,7 +490,8 @@ List instances of a workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -495,14 +505,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListInstancesRequest();
     $request->running = false;
-    $request->workflowID = 'string';;
+    $request->workflowID = '<value>';;
 
     $response = $sdk->orchestration->listInstances($request);
 
     if ($response->listRunsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -529,7 +539,8 @@ List triggers
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -545,7 +556,7 @@ try {
     if ($response->listTriggersResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -566,7 +577,8 @@ List triggers occurrences
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -579,14 +591,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ListTriggersOccurrencesRequest();
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->listTriggersOccurrences($request);
 
     if ($response->listTriggersOccurrencesResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -613,7 +625,8 @@ List registered workflows
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -629,7 +642,7 @@ try {
     if ($response->listWorkflowsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -650,7 +663,8 @@ Get server info
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -666,7 +680,7 @@ try {
     if ($response->serverInfo !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -687,7 +701,8 @@ Read trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -700,14 +715,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ReadTriggerRequest();
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->readTrigger($request);
 
     if ($response->readTriggerResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -734,7 +749,8 @@ Run workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -748,17 +764,17 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\RunWorkflowRequest();
     $request->requestBody = [
-        'off' => 'string',
+        'off' => '<value>',
     ];
     $request->wait = false;
-    $request->workflowID = 'string';;
+    $request->workflowID = '<value>';;
 
     $response = $sdk->orchestration->runWorkflow($request);
 
     if ($response->runWorkflowResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -785,7 +801,8 @@ Send an event to a running workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -799,15 +816,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\SendEventRequest();
     $request->requestBody = new Operations\SendEventRequestBody();
-    $request->requestBody->name = 'string';
-    $request->instanceID = 'string';;
+    $request->requestBody->name = '<value>';
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->sendEvent($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -834,7 +851,8 @@ Test trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -848,16 +866,16 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\TestTriggerRequest();
     $request->requestBody = [
-        'bluetooth' => 'string',
+        'bluetooth' => '<value>',
     ];
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->testTrigger($request);
 
     if ($response->v2TestTriggerResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -884,7 +902,8 @@ Cancel a running workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -897,14 +916,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2CancelEventRequest();
-    $request->instanceID = 'string';;
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->v2CancelEvent($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -931,7 +950,8 @@ Create trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -943,19 +963,19 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Shared\V2TriggerData();
-    $request->event = 'string';
-    $request->filter = 'string';
+    $request->event = '<value>';
+    $request->filter = '<value>';
     $request->vars = [
-        'primary' => 'string',
+        'primary' => '<value>',
     ];
-    $request->workflowID = 'string';;
+    $request->workflowID = '<value>';;
 
     $response = $sdk->orchestration->v2CreateTrigger($request);
 
     if ($response->v2CreateTriggerResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -982,7 +1002,8 @@ Create a workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -994,10 +1015,10 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Shared\V2CreateWorkflowRequest();
-    $request->name = 'string';
+    $request->name = '<value>';
     $request->stages = [
         [
-            'system' => 'string',
+            'system' => '<value>',
         ],
     ];;
 
@@ -1006,7 +1027,7 @@ try {
     if ($response->v2CreateWorkflowResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1033,7 +1054,8 @@ Read trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1046,14 +1068,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2DeleteTriggerRequest();
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->v2DeleteTrigger($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1080,7 +1102,8 @@ Delete a flow by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1093,14 +1116,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2DeleteWorkflowRequest();
-    $request->flowId = 'string';;
+    $request->flowId = '<value>';;
 
     $response = $sdk->orchestration->v2DeleteWorkflow($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1127,7 +1150,8 @@ Get a workflow instance by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1140,14 +1164,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetInstanceRequest();
-    $request->instanceID = 'string';;
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->v2GetInstance($request);
 
     if ($response->v2GetWorkflowInstanceResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1174,7 +1198,8 @@ Get a workflow instance history by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1187,14 +1212,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetInstanceHistoryRequest();
-    $request->instanceID = 'string';;
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->v2GetInstanceHistory($request);
 
     if ($response->v2GetWorkflowInstanceHistoryResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1221,7 +1246,8 @@ Get a workflow instance stage history
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1234,7 +1260,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetInstanceStageHistoryRequest();
-    $request->instanceID = 'string';
+    $request->instanceID = '<value>';
     $request->number = 465454;;
 
     $response = $sdk->orchestration->v2GetInstanceStageHistory($request);
@@ -1242,7 +1268,7 @@ try {
     if ($response->v2GetWorkflowInstanceHistoryStageResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1269,7 +1295,8 @@ Get server info
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1285,7 +1312,7 @@ try {
     if ($response->v2ServerInfo !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1306,7 +1333,8 @@ Get a flow by id
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1319,14 +1347,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetWorkflowRequest();
-    $request->flowId = 'string';;
+    $request->flowId = '<value>';;
 
     $response = $sdk->orchestration->v2GetWorkflow($request);
 
     if ($response->v2GetWorkflowResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1353,7 +1381,8 @@ List instances of a workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1367,14 +1396,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListInstancesRequest();
     $request->running = false;
-    $request->workflowID = 'string';;
+    $request->workflowID = '<value>';;
 
     $response = $sdk->orchestration->v2ListInstances($request);
 
     if ($response->v2ListRunsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1401,7 +1430,8 @@ List triggers
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1417,7 +1447,7 @@ try {
     if ($response->v2ListTriggersResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1438,7 +1468,8 @@ List triggers occurrences
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1451,14 +1482,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2ListTriggersOccurrencesRequest();
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->v2ListTriggersOccurrences($request);
 
     if ($response->v2ListTriggersOccurrencesResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1485,7 +1516,8 @@ List registered workflows
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1501,7 +1533,7 @@ try {
     if ($response->v2ListWorkflowsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1522,7 +1554,8 @@ Read trigger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1535,14 +1568,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2ReadTriggerRequest();
-    $request->triggerID = 'string';;
+    $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->v2ReadTrigger($request);
 
     if ($response->v2ReadTriggerResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1569,7 +1602,8 @@ Run workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1583,17 +1617,17 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2RunWorkflowRequest();
     $request->requestBody = [
-        'Wooden' => 'string',
+        'Wooden' => '<value>',
     ];
     $request->wait = false;
-    $request->workflowID = 'string';;
+    $request->workflowID = '<value>';;
 
     $response = $sdk->orchestration->v2RunWorkflow($request);
 
     if ($response->v2RunWorkflowResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1620,7 +1654,8 @@ Send an event to a running workflow
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1634,15 +1669,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2SendEventRequest();
     $request->requestBody = new Operations\V2SendEventRequestBody();
-    $request->requestBody->name = 'string';
-    $request->instanceID = 'string';;
+    $request->requestBody->name = '<value>';
+    $request->instanceID = '<value>';;
 
     $response = $sdk->orchestration->v2SendEvent($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

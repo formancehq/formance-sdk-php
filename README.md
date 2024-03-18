@@ -21,26 +21,8 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 
 ### Composer
 
-To install the SDK first add the below to your `composer.json` file:
-
-```json
-{
-    "repositories": [
-        {
-            "type": "github",
-            "url": "<UNSET>.git"
-        }
-    ],
-    "require": {
-        "formance-sdk-php": "*"
-    }
-}
-```
-
-Then run the following command:
-
 ```bash
-composer update
+composer require "formance-sdk-php"
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -53,7 +35,8 @@ composer update
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Shared;
@@ -71,7 +54,7 @@ try {
     if ($response->getVersionsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 

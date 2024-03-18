@@ -22,7 +22,8 @@ Create a policy
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -36,7 +37,7 @@ try {
         $request = new Shared\PolicyRequest();
     $request->ledgerName = 'default';
     $request->ledgerQuery = [
-        'relationships' => 'string',
+        'relationships' => '<value>',
     ];
     $request->name = 'XXX';
     $request->paymentsPoolID = 'XXX';;
@@ -46,7 +47,7 @@ try {
     if ($response->policyResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -73,7 +74,8 @@ Delete a policy by its id.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -86,14 +88,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeletePolicyRequest();
-    $request->policyID = 'string';;
+    $request->policyID = '<value>';;
 
     $response = $sdk->reconciliation->deletePolicy($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -120,7 +122,8 @@ Get a policy
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -133,14 +136,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetPolicyRequest();
-    $request->policyID = 'string';;
+    $request->policyID = '<value>';;
 
     $response = $sdk->reconciliation->getPolicy($request);
 
     if ($response->policyResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -167,7 +170,8 @@ Get a reconciliation
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -180,14 +184,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetReconciliationRequest();
-    $request->reconciliationID = 'string';;
+    $request->reconciliationID = '<value>';;
 
     $response = $sdk->reconciliation->getReconciliation($request);
 
     if ($response->reconciliationResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -214,7 +218,8 @@ List policies
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -235,7 +240,7 @@ try {
     if ($response->policiesCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -262,7 +267,8 @@ List reconciliations
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -283,7 +289,7 @@ try {
     if ($response->reconciliationsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -310,7 +316,8 @@ Reconcile using a policy
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -326,14 +333,14 @@ try {
     $request->reconciliationRequest = new Shared\ReconciliationRequest();
     $request->reconciliationRequest->reconciledAtLedger = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-01-01T00:00:00.000Z');
     $request->reconciliationRequest->reconciledAtPayments = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-01-01T00:00:00.000Z');
-    $request->policyID = 'string';;
+    $request->policyID = '<value>';;
 
     $response = $sdk->reconciliation->reconcile($request);
 
     if ($response->reconciliationResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -360,7 +367,8 @@ Get server info
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -376,7 +384,7 @@ try {
     if ($response->serverInfo !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

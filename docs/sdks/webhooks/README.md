@@ -21,7 +21,8 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -41,7 +42,7 @@ try {
     if ($response->configResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -72,7 +73,8 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -94,7 +96,7 @@ try {
     if ($response->configResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -121,7 +123,8 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -141,7 +144,7 @@ try {
     if ($response->configResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -168,7 +171,8 @@ Delete a webhooks config by ID.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -188,7 +192,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -215,7 +219,8 @@ Sorted by updated date descending
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -236,7 +241,7 @@ try {
     if ($response->configsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -272,7 +277,8 @@ All eventTypes are converted to lower-case when inserted.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -296,7 +302,7 @@ try {
     if ($response->configResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -323,7 +329,8 @@ Test a config by sending a webhook to its endpoint.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -343,7 +350,7 @@ try {
     if ($response->attemptResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

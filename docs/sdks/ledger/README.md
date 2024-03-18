@@ -55,7 +55,8 @@ Create a new batch of transactions to a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -79,7 +80,7 @@ try {
     if ($response->transactionsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -106,7 +107,8 @@ Set the metadata of a transaction by its ID
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -120,7 +122,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\AddMetadataOnTransactionRequest();
     $request->requestBody = [
-        'withdrawal' => 'string',
+        'withdrawal' => '<value>',
     ];
     $request->ledger = 'ledger001';
     $request->txid = 1234;;
@@ -130,7 +132,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -157,7 +159,8 @@ Add metadata to an account
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -171,7 +174,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\AddMetadataToAccountRequest();
     $request->requestBody = [
-        'Oriental' => 'string',
+        'Oriental' => '<value>',
     ];
     $request->address = 'users:001';
     $request->ledger = 'ledger001';;
@@ -181,7 +184,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -208,7 +211,8 @@ Count the accounts from a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -224,7 +228,7 @@ try {
     $request->address = 'users:.+';
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'Electronic' => 'string',
+        'Electronic' => '<value>',
     ];;
 
     $response = $sdk->ledger->countAccounts($request);
@@ -232,7 +236,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -259,7 +263,8 @@ Count the transactions from a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -286,7 +291,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -313,7 +318,8 @@ Create a new transaction to a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -328,7 +334,7 @@ try {
         $request = new Operations\CreateTransactionRequest();
     $request->postTransaction = new Shared\PostTransaction();
     $request->postTransaction->metadata = [
-        'before' => 'string',
+        'before' => '<value>',
     ];
     $request->postTransaction->postings = [
         new Shared\Posting(),
@@ -344,7 +350,7 @@ try {
     )
     ';
     $request->postTransaction->script->vars = [
-        'zowie' => 'string',
+        'zowie' => '<value>',
     ];
     $request->postTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-10-30T20:06:44.554Z');
     $request->ledger = 'ledger001';
@@ -355,7 +361,7 @@ try {
     if ($response->transactionsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -382,7 +388,8 @@ Get account by its address
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -403,7 +410,7 @@ try {
     if ($response->accountResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -430,7 +437,8 @@ Get the balances from a ledger's account
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -454,7 +462,7 @@ try {
     if ($response->balancesCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -481,7 +489,8 @@ Get the aggregated balances from selected accounts
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -503,7 +512,7 @@ try {
     if ($response->aggregateBalancesResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -530,7 +539,8 @@ Show server information
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -546,7 +556,7 @@ try {
     if ($response->configInfoResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -567,7 +577,8 @@ Get information about a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -587,7 +598,7 @@ try {
     if ($response->ledgerInfoResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -614,7 +625,8 @@ Get the mapping of a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -634,7 +646,7 @@ try {
     if ($response->mappingResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -661,7 +673,8 @@ Get transaction from a ledger by its ID
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -682,7 +695,7 @@ try {
     if ($response->transactionResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -709,7 +722,8 @@ List accounts from a ledger, sorted by address in descending order.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -728,7 +742,7 @@ try {
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'glistening' => 'string',
+        'glistening' => '<value>',
     ];
     $request->pageSize = 412291;
     $request->paginationToken = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';;
@@ -738,7 +752,7 @@ try {
     if ($response->accountsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -765,7 +779,8 @@ List the logs from a ledger, sorted by ID in descending order.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -790,7 +805,7 @@ try {
     if ($response->logsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -817,7 +832,8 @@ List transactions from a ledger, sorted by txid in descending order.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -837,7 +853,7 @@ try {
     $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-09-09T05:38:58.239Z');
     $request->ledger = 'ledger001';
     $request->metadata = [
-        'South' => 'string',
+        'South' => '<value>',
     ];
     $request->pageSize = 459510;
     $request->reference = 'ref:001';
@@ -849,7 +865,7 @@ try {
     if ($response->transactionsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -877,7 +893,8 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -897,7 +914,7 @@ try {
     if ($response->statsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -924,7 +941,8 @@ Revert a ledger transaction by its ID
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -946,7 +964,7 @@ try {
     if ($response->transactionResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -976,7 +994,8 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -991,7 +1010,7 @@ try {
         $request = new Operations\RunScriptRequest();
     $request->script = new Shared\Script();
     $request->script->metadata = [
-        'Azerbaijan' => 'string',
+        'Azerbaijan' => '<value>',
     ];
     $request->script->plain = 'vars {
     account $user
@@ -1003,7 +1022,7 @@ try {
     ';
     $request->script->reference = 'order_1234';
     $request->script->vars = [
-        'Mercury' => 'string',
+        'Mercury' => '<value>',
     ];
     $request->ledger = 'ledger001';
     $request->preview = true;;
@@ -1013,7 +1032,7 @@ try {
     if ($response->scriptResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1040,7 +1059,8 @@ Update the mapping of a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1064,7 +1084,7 @@ try {
     if ($response->mappingResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1091,7 +1111,8 @@ Set the metadata of a transaction by its ID
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1104,9 +1125,9 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2AddMetadataOnTransactionRequest();
-    $request->idempotencyKey = 'string';
+    $request->idempotencyKey = '<value>';
     $request->requestBody = [
-        'nor' => 'string',
+        'nor' => '<value>',
     ];
     $request->dryRun = true;
     $request->id = 1234;
@@ -1117,7 +1138,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1144,7 +1165,8 @@ Add metadata to an account
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1157,9 +1179,9 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2AddMetadataToAccountRequest();
-    $request->idempotencyKey = 'string';
+    $request->idempotencyKey = '<value>';
     $request->requestBody = [
-        'South' => 'string',
+        'South' => '<value>',
     ];
     $request->address = 'users:001';
     $request->dryRun = true;
@@ -1170,7 +1192,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1197,7 +1219,8 @@ Count the accounts from a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1211,7 +1234,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2CountAccountsRequest();
     $request->requestBody = [
-        'Marketing' => 'string',
+        'Marketing' => '<value>',
     ];
     $request->ledger = 'ledger001';
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-04-04T06:10:56.689Z');;
@@ -1221,7 +1244,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1248,7 +1271,8 @@ Count the transactions from a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1262,7 +1286,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2CountTransactionsRequest();
     $request->requestBody = [
-        'East' => 'string',
+        'East' => '<value>',
     ];
     $request->ledger = 'ledger001';
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-23T10:44:24.304Z');;
@@ -1272,7 +1296,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1299,7 +1323,8 @@ Bulk request
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1313,7 +1338,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2CreateBulkRequest();
     $request->requestBody = [
-        'string',
+        '<value>',
     ];
     $request->ledger = 'ledger001';;
 
@@ -1322,7 +1347,7 @@ try {
     if ($response->v2BulkResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1349,7 +1374,8 @@ Create a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1363,7 +1389,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2CreateLedgerRequest();
     $request->v2CreateLedgerRequest = new Shared\V2CreateLedgerRequest();
-    $request->v2CreateLedgerRequest->bucket = 'string';
+    $request->v2CreateLedgerRequest->bucket = '<value>';
     $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2CreateLedger($request);
@@ -1371,7 +1397,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1398,7 +1424,8 @@ Create a new transaction to a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1411,10 +1438,10 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2CreateTransactionRequest();
-    $request->idempotencyKey = 'string';
+    $request->idempotencyKey = '<value>';
     $request->v2PostTransaction = new Shared\V2PostTransaction();
     $request->v2PostTransaction->metadata = [
-        'Gasoline' => 'string',
+        'Gasoline' => '<value>',
     ];
     $request->v2PostTransaction->postings = [
         new Shared\V2Posting(),
@@ -1430,7 +1457,7 @@ try {
     )
     ';
     $request->v2PostTransaction->script->vars = [
-        'gauge' => 'string',
+        'gauge' => '<value>',
     ];
     $request->v2PostTransaction->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-01-06T15:20:41.892Z');
     $request->dryRun = true;
@@ -1441,7 +1468,7 @@ try {
     if ($response->v2CreateTransactionResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1468,7 +1495,8 @@ Delete metadata by key
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1490,7 +1518,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1517,7 +1545,8 @@ Delete metadata by key
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1539,7 +1568,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1566,7 +1595,8 @@ Get account by its address
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1580,7 +1610,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2GetAccountRequest();
     $request->address = 'users:001';
-    $request->expand = 'string';
+    $request->expand = '<value>';
     $request->ledger = 'ledger001';
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-01-12T20:42:33.400Z');;
 
@@ -1589,7 +1619,7 @@ try {
     if ($response->v2AccountResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1616,7 +1646,8 @@ Get the aggregated balances from selected accounts
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1630,7 +1661,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2GetBalancesAggregatedRequest();
     $request->requestBody = [
-        'rehouse' => 'string',
+        'rehouse' => '<value>',
     ];
     $request->ledger = 'ledger001';
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-29T13:30:40.635Z');
@@ -1641,7 +1672,7 @@ try {
     if ($response->v2AggregateBalancesResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1668,7 +1699,8 @@ Show server information
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1684,7 +1716,7 @@ try {
     if ($response->v2ConfigInfoResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1705,7 +1737,8 @@ Get a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1725,7 +1758,7 @@ try {
     if ($response->v2Ledger !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1752,7 +1785,8 @@ Get information about a ledger
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1772,7 +1806,7 @@ try {
     if ($response->v2LedgerInfoResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1799,7 +1833,8 @@ Get transaction from a ledger by its ID
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1812,7 +1847,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetTransactionRequest();
-    $request->expand = 'string';
+    $request->expand = '<value>';
     $request->id = 1234;
     $request->ledger = 'ledger001';
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-04-12T09:39:55.552Z');;
@@ -1822,7 +1857,7 @@ try {
     if ($response->v2GetTransactionResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1849,7 +1884,8 @@ List accounts from a ledger, sorted by address in descending order.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1863,10 +1899,10 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListAccountsRequest();
     $request->requestBody = [
-        'Bend' => 'string',
+        'Bend' => '<value>',
     ];
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->expand = 'string';
+    $request->expand = '<value>';
     $request->ledger = 'ledger001';
     $request->pageSize = 390193;
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-02-16T23:00:37.064Z');;
@@ -1876,7 +1912,7 @@ try {
     if ($response->v2AccountsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1903,7 +1939,8 @@ List ledgers
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1924,7 +1961,7 @@ try {
     if ($response->v2LedgerListResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1951,7 +1988,8 @@ List the logs from a ledger, sorted by ID in descending order.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1965,7 +2003,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListLogsRequest();
     $request->requestBody = [
-        'parse' => 'string',
+        'parse' => '<value>',
     ];
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->ledger = 'ledger001';
@@ -1977,7 +2015,7 @@ try {
     if ($response->v2LogsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -2004,7 +2042,8 @@ List transactions from a ledger, sorted by id in descending order.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -2018,10 +2057,10 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListTransactionsRequest();
     $request->requestBody = [
-        'Assurance' => 'string',
+        'Assurance' => '<value>',
     ];
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->expand = 'string';
+    $request->expand = '<value>';
     $request->ledger = 'ledger001';
     $request->pageSize = 167393;
     $request->pit = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-12-23T01:01:19.968Z');;
@@ -2031,7 +2070,7 @@ try {
     if ($response->v2TransactionsCursorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -2059,7 +2098,8 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -2079,7 +2119,7 @@ try {
     if ($response->v2StatsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -2106,7 +2146,8 @@ Revert a ledger transaction by its ID
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -2128,7 +2169,7 @@ try {
     if ($response->v2RevertTransactionResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

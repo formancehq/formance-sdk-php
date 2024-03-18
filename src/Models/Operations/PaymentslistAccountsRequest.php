@@ -12,6 +12,14 @@ use \formance\stack\Utils\SpeakeasyMetadata;
 class PaymentslistAccountsRequest
 {
     /**
+     * $requestBody
+     * 
+     * @var ?array<string, mixed> $requestBody
+     */
+	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody = null;
+    
+    /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * 
      * Set to the value of next for the next page of results.
@@ -44,6 +52,7 @@ class PaymentslistAccountsRequest
     
 	public function __construct()
 	{
+		$this->requestBody = null;
 		$this->cursor = null;
 		$this->pageSize = null;
 		$this->sort = null;

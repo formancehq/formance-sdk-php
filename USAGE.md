@@ -3,7 +3,8 @@
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Shared;
@@ -21,7 +22,7 @@ try {
     if ($response->getVersionsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 

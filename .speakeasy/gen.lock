@@ -1,18 +1,22 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 5e9a79dbe7142aa90188e21ea54c7198
-  docVersion: v2.0.0-rc.15
-  speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.15
-  configChecksum: dabedd8abcd87e7088ac7e23661b7bcf
+  docChecksum: 254f15d23bfd21d49b8db8ecb44639be
+  docVersion: v2.0.0-rc.16
+  speakeasyVersion: 1.209.3
+  generationVersion: 2.281.2
+  releaseVersion: 2.0.1
+  configChecksum: 0e4e6f5f0fff81858573702fbce75cb8
+  repoURL: https://github.com/formancehq/formance-sdk-php.git
+  repoSubDirectory: .
+  installationURL: https://github.com/formancehq/formance-sdk-php
+  published: true
 features:
   php:
-    core: 3.3.0
+    core: 3.3.3
     deprecations: 2.81.1
     getRequestBodies: 2.81.1
-    globalSecurity: 2.81.3
+    globalSecurity: 2.81.5
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
@@ -30,6 +34,7 @@ generatedFiles:
   - src/SDKBuilder.php
   - composer.json
   - phpstan.neon
+  - rector.php
   - src/Utils/EnumHandler.php
   - src/Utils/FormMetadata.php
   - src/Utils/Headers.php
