@@ -16,7 +16,8 @@ ElasticSearch query engine
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -39,7 +40,7 @@ try {
     $request->policy = 'OR';
     $request->raw = new Shared\QueryRaw();
     $request->sort = 'id:asc';
-    $request->target = 'string';
+    $request->target = '<value>';
     $request->terms = [
         'destination=central_bank1',
     ];;
@@ -49,7 +50,7 @@ try {
     if ($response->response !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -76,7 +77,8 @@ Get server info
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -92,7 +94,7 @@ try {
     if ($response->serverInfo !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

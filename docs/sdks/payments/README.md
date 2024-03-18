@@ -56,7 +56,8 @@ Add an account to a pool
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -70,15 +71,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\AddAccountToPoolRequest();
     $request->addAccountToPoolRequest = new Shared\AddAccountToPoolRequest();
-    $request->addAccountToPoolRequest->accountID = 'string';
-    $request->poolId = 'string';;
+    $request->addAccountToPoolRequest->accountID = '<value>';
+    $request->poolId = '<value>';;
 
     $response = $sdk->payments->addAccountToPool($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -105,7 +106,8 @@ Execute a transfer between two accounts.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -130,7 +132,7 @@ try {
     if ($response->transferResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -157,7 +159,8 @@ Create a bank account in Payments and on the PSP.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -169,22 +172,22 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Shared\BankAccountRequest();
-    $request->accountNumber = 'string';
-    $request->connectorID = 'string';
+    $request->accountNumber = '<value>';
+    $request->connectorID = '<value>';
     $request->country = 'GB';
     $request->iban = 'HU80500236840980904027018003';
     $request->metadata = [
-        'Manganese' => 'string',
+        'Manganese' => '<value>',
     ];
     $request->name = 'My account';
-    $request->swiftBicCode = 'string';;
+    $request->swiftBicCode = '<value>';;
 
     $response = $sdk->payments->createBankAccount($request);
 
     if ($response->bankAccountResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -211,7 +214,8 @@ Create a payment
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -225,12 +229,12 @@ try {
         $request = new Shared\PaymentRequest();
     $request->amount = 100;
     $request->asset = 'USD';
-    $request->connectorID = 'string';
+    $request->connectorID = '<value>';
     $request->createdAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-11-09T01:03:21.153Z');
-    $request->destinationAccountID = 'string';
-    $request->reference = 'string';
+    $request->destinationAccountID = '<value>';
+    $request->reference = '<value>';
     $request->scheme = Shared\PaymentScheme::GooglePay;
-    $request->sourceAccountID = 'string';
+    $request->sourceAccountID = '<value>';
     $request->status = Shared\PaymentStatus::DisputeWon;
     $request->type = Shared\PaymentType::Transfer;;
 
@@ -239,7 +243,7 @@ try {
     if ($response->paymentResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -266,7 +270,8 @@ Create a Pool
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -279,16 +284,16 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Shared\PoolRequest();
     $request->accountIDs = [
-        'string',
+        '<value>',
     ];
-    $request->name = 'string';;
+    $request->name = '<value>';;
 
     $response = $sdk->payments->createPool($request);
 
     if ($response->poolResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -315,7 +320,8 @@ Create a transfer initiation
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -329,16 +335,16 @@ try {
         $request = new Shared\TransferInitiationRequest();
     $request->amount = 256698;
     $request->asset = 'USD';
-    $request->connectorID = 'string';
+    $request->connectorID = '<value>';
     $request->description = 'Multi-tiered incremental methodology';
-    $request->destinationAccountID = 'string';
+    $request->destinationAccountID = '<value>';
     $request->metadata = [
-        'deposit' => 'string',
+        'deposit' => '<value>',
     ];
     $request->provider = Shared\Connector::BankingCircle;
     $request->reference = 'XXX';
     $request->scheduledAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-05-20T07:14:32.431Z');
-    $request->sourceAccountID = 'string';
+    $request->sourceAccountID = '<value>';
     $request->type = Shared\TransferInitiationRequestType::Payout;
     $request->validated = false;;
 
@@ -347,7 +353,7 @@ try {
     if ($response->transferInitiationResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -374,7 +380,8 @@ Delete a pool by its id.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -387,14 +394,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeletePoolRequest();
-    $request->poolId = 'string';;
+    $request->poolId = '<value>';;
 
     $response = $sdk->payments->deletePool($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -421,7 +428,8 @@ Delete a transfer initiation by its id.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -434,14 +442,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteTransferInitiationRequest();
-    $request->transferId = 'string';;
+    $request->transferId = '<value>';;
 
     $response = $sdk->payments->deleteTransferInitiation($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -468,7 +476,8 @@ Forward a bank account to a connector
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -482,15 +491,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ForwardBankAccountRequest();
     $request->forwardBankAccountRequest = new Shared\ForwardBankAccountRequest();
-    $request->forwardBankAccountRequest->connectorID = 'string';
-    $request->bankAccountId = 'string';;
+    $request->forwardBankAccountRequest->connectorID = '<value>';
+    $request->bankAccountId = '<value>';;
 
     $response = $sdk->payments->forwardBankAccount($request);
 
     if ($response->bankAccountResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -517,7 +526,8 @@ Get account balances
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -530,14 +540,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetAccountBalancesRequest();
-    $request->accountId = 'string';
-    $request->asset = 'string';
+    $request->accountId = '<value>';
+    $request->asset = '<value>';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->from = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-02-05T05:11:20.042Z');
     $request->limit = 743236;
     $request->pageSize = 125462;
     $request->sort = [
-        'string',
+        '<value>',
     ];
     $request->to = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-07-15T08:57:06.406Z');;
 
@@ -546,7 +556,7 @@ try {
     if ($response->balancesCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -573,7 +583,8 @@ Get a bank account created by user on Formance
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -586,14 +597,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetBankAccountRequest();
-    $request->bankAccountId = 'string';;
+    $request->bankAccountId = '<value>';;
 
     $response = $sdk->payments->getBankAccount($request);
 
     if ($response->bankAccountResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -622,7 +633,8 @@ Get a specific task associated to the connector.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -636,14 +648,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetConnectorTaskRequest();
     $request->connector = Shared\Connector::Atlar;
-    $request->taskId = 'string';;
+    $request->taskId = '<value>';;
 
     $response = $sdk->payments->getConnectorTask($request);
 
     if ($response->taskResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -670,7 +682,8 @@ Get a specific task associated to the connector.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -684,15 +697,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetConnectorTaskV1Request();
     $request->connector = Shared\Connector::CurrencyCloud;
-    $request->connectorId = 'string';
-    $request->taskId = 'string';;
+    $request->connectorId = '<value>';
+    $request->taskId = '<value>';;
 
     $response = $sdk->payments->getConnectorTaskV1($request);
 
     if ($response->taskResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -719,7 +732,8 @@ Get a payment
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -732,14 +746,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetPaymentRequest();
-    $request->paymentId = 'string';;
+    $request->paymentId = '<value>';;
 
     $response = $sdk->payments->getPayment($request);
 
     if ($response->paymentResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -766,7 +780,8 @@ Get a Pool
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -779,14 +794,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetPoolRequest();
-    $request->poolId = 'string';;
+    $request->poolId = '<value>';;
 
     $response = $sdk->payments->getPool($request);
 
     if ($response->poolResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -813,7 +828,8 @@ Get pool balances
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -827,14 +843,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetPoolBalancesRequest();
     $request->at = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-05-05T06:40:23.018Z');
-    $request->poolId = 'string';;
+    $request->poolId = '<value>';;
 
     $response = $sdk->payments->getPoolBalances($request);
 
     if ($response->poolBalancesResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -861,7 +877,8 @@ Get a transfer initiation
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -874,14 +891,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetTransferInitiationRequest();
-    $request->transferId = 'string';;
+    $request->transferId = '<value>';;
 
     $response = $sdk->payments->getTransferInitiation($request);
 
     if ($response->transferInitiationResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -908,7 +925,8 @@ Install a connector by its name and config.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -921,7 +939,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\InstallConnectorRequest();
-    $request->requestBody = 'string';
+    $request->requestBody = '<value>';
     $request->connector = Shared\Connector::Wise;;
 
     $response = $sdk->payments->installConnector($request);
@@ -929,7 +947,7 @@ try {
     if ($response->connectorResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -956,7 +974,8 @@ List all installed connectors.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -972,7 +991,7 @@ try {
     if ($response->connectorsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -993,7 +1012,8 @@ List all bank accounts created by user on Formance.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1009,7 +1029,7 @@ try {
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 578999;
     $request->sort = [
-        'string',
+        '<value>',
     ];;
 
     $response = $sdk->payments->listBankAccounts($request);
@@ -1017,7 +1037,7 @@ try {
     if ($response->bankAccountsCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1044,7 +1064,8 @@ List the configs of each available connector.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1060,7 +1081,7 @@ try {
     if ($response->connectorsConfigsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1083,7 +1104,8 @@ List all tasks associated with this connector.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1105,7 +1127,7 @@ try {
     if ($response->tasksCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1132,7 +1154,8 @@ List all tasks associated with this connector.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1146,7 +1169,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListConnectorTasksV1Request();
     $request->connector = Shared\Connector::BankingCircle;
-    $request->connectorId = 'string';
+    $request->connectorId = '<value>';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 442673;;
 
@@ -1155,7 +1178,7 @@ try {
     if ($response->tasksCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1182,7 +1205,8 @@ List payments
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1198,7 +1222,7 @@ try {
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 13778;
     $request->sort = [
-        'string',
+        '<value>',
     ];;
 
     $response = $sdk->payments->listPayments($request);
@@ -1206,7 +1230,7 @@ try {
     if ($response->paymentsCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1233,7 +1257,8 @@ List Pools
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1248,9 +1273,9 @@ try {
         $request = new Operations\ListPoolsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 567687;
-    $request->query = 'string';
+    $request->query = '<value>';
     $request->sort = [
-        'string',
+        '<value>',
     ];;
 
     $response = $sdk->payments->listPools($request);
@@ -1258,7 +1283,7 @@ try {
     if ($response->poolsCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1285,7 +1310,8 @@ List Transfer Initiations
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1300,9 +1326,9 @@ try {
         $request = new Operations\ListTransferInitiationsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 706689;
-    $request->query = 'string';
+    $request->query = '<value>';
     $request->sort = [
-        'string',
+        '<value>',
     ];;
 
     $response = $sdk->payments->listTransferInitiations($request);
@@ -1310,7 +1336,7 @@ try {
     if ($response->transferInitiationsCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1337,7 +1363,8 @@ Get an account
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1350,14 +1377,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\PaymentsgetAccountRequest();
-    $request->accountId = 'string';;
+    $request->accountId = '<value>';;
 
     $response = $sdk->payments->paymentsgetAccount($request);
 
     if ($response->paymentsAccountResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1384,7 +1411,8 @@ Get server info
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1400,7 +1428,7 @@ try {
     if ($response->serverInfo !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1421,7 +1449,8 @@ List accounts
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1434,10 +1463,13 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\PaymentslistAccountsRequest();
+    $request->requestBody = [
+        'Rustic' => '<value>',
+    ];
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 227071;
+    $request->pageSize = 954763;
     $request->sort = [
-        'string',
+        '<value>',
     ];;
 
     $response = $sdk->payments->paymentslistAccounts($request);
@@ -1445,7 +1477,7 @@ try {
     if ($response->accountsCursor !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1474,7 +1506,8 @@ Read connector config
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1494,7 +1527,7 @@ try {
     if ($response->connectorConfigResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1521,7 +1554,8 @@ Read connector config
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1535,14 +1569,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ReadConnectorConfigV1Request();
     $request->connector = Shared\Connector::CurrencyCloud;
-    $request->connectorId = 'string';;
+    $request->connectorId = '<value>';;
 
     $response = $sdk->payments->readConnectorConfigV1($request);
 
     if ($response->connectorConfigResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1569,7 +1603,8 @@ Remove an account from a pool by its id.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1582,15 +1617,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\RemoveAccountFromPoolRequest();
-    $request->accountId = 'string';
-    $request->poolId = 'string';;
+    $request->accountId = '<value>';
+    $request->poolId = '<value>';;
 
     $response = $sdk->payments->removeAccountFromPool($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1621,7 +1656,8 @@ It will remove the connector and ALL PAYMENTS generated with it.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1641,7 +1677,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1670,7 +1706,8 @@ It will remove the connector and ALL PAYMENTS generated with it.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1684,14 +1721,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ResetConnectorV1Request();
     $request->connector = Shared\Connector::Adyen;
-    $request->connectorId = 'string';;
+    $request->connectorId = '<value>';;
 
     $response = $sdk->payments->resetConnectorV1($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1718,7 +1755,8 @@ Retry a failed transfer initiation
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1731,14 +1769,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\RetryTransferInitiationRequest();
-    $request->transferId = 'string';;
+    $request->transferId = '<value>';;
 
     $response = $sdk->payments->retryTransferInitiation($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1765,7 +1803,8 @@ Reverse transfer initiation
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1783,17 +1822,17 @@ try {
     $request->reverseTransferInitiationRequest->asset = 'USD';
     $request->reverseTransferInitiationRequest->description = 'Streamlined high-level local area network';
     $request->reverseTransferInitiationRequest->metadata = [
-        'sky' => 'string',
+        'sky' => '<value>',
     ];
     $request->reverseTransferInitiationRequest->reference = 'XXX';
-    $request->transferId = 'string';;
+    $request->transferId = '<value>';;
 
     $response = $sdk->payments->reverseTransferInitiation($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1820,7 +1859,8 @@ Update a transfer initiation status
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1835,14 +1875,14 @@ try {
         $request = new Operations\UdpateTransferInitiationStatusRequest();
     $request->updateTransferInitiationStatusRequest = new Shared\UpdateTransferInitiationStatusRequest();
     $request->updateTransferInitiationStatusRequest->status = Shared\Status::Validated;
-    $request->transferId = 'string';;
+    $request->transferId = '<value>';;
 
     $response = $sdk->payments->udpateTransferInitiationStatus($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1871,7 +1911,8 @@ Uninstall a connector by its name.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1891,7 +1932,7 @@ try {
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1918,7 +1959,8 @@ Uninstall a connector by its name.
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1932,14 +1974,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\UninstallConnectorV1Request();
     $request->connector = Shared\Connector::Adyen;
-    $request->connectorId = 'string';;
+    $request->connectorId = '<value>';;
 
     $response = $sdk->payments->uninstallConnectorV1($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -1966,7 +2008,8 @@ Update metadata of a bank account
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -1981,16 +2024,16 @@ try {
         $request = new Operations\UpdateBankAccountMetadataRequest();
     $request->updateBankAccountMetadataRequest = new Shared\UpdateBankAccountMetadataRequest();
     $request->updateBankAccountMetadataRequest->metadata = [
-        'West' => 'string',
+        'West' => '<value>',
     ];
-    $request->bankAccountId = 'string';;
+    $request->bankAccountId = '<value>';;
 
     $response = $sdk->payments->updateBankAccountMetadata($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -2017,7 +2060,8 @@ Update connector config
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -2030,16 +2074,16 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\UpdateConnectorConfigV1Request();
-    $request->requestBody = 'string';
+    $request->requestBody = '<value>';
     $request->connector = Shared\Connector::Stripe;
-    $request->connectorId = 'string';;
+    $request->connectorId = '<value>';;
 
     $response = $sdk->payments->updateConnectorConfigV1($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -2066,7 +2110,8 @@ Update metadata
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -2080,16 +2125,16 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\UpdateMetadataRequest();
     $request->requestBody = [
-        'synthesizing' => 'string',
+        'synthesizing' => '<value>',
     ];
-    $request->paymentId = 'string';;
+    $request->paymentId = '<value>';;
 
     $response = $sdk->payments->updateMetadata($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
