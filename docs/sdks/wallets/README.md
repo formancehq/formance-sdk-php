@@ -30,7 +30,8 @@ Confirm a hold
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -46,14 +47,14 @@ try {
     $request->confirmHoldRequest = new Shared\ConfirmHoldRequest();
     $request->confirmHoldRequest->amount = 100;
     $request->confirmHoldRequest->final = true;
-    $request->holdId = 'string';;
+    $request->holdId = '<value>';;
 
     $response = $sdk->wallets->confirmHold($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -80,7 +81,8 @@ Create a balance
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -95,16 +97,16 @@ try {
         $request = new Operations\CreateBalanceRequest();
     $request->createBalanceRequest = new Shared\CreateBalanceRequest();
     $request->createBalanceRequest->expiresAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-03-08T03:22:14.635Z');
-    $request->createBalanceRequest->name = 'string';
+    $request->createBalanceRequest->name = '<value>';
     $request->createBalanceRequest->priority = 851262;
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->createBalance($request);
 
     if ($response->createBalanceResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -131,7 +133,8 @@ Create a new wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -144,16 +147,16 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Shared\CreateWalletRequest();
     $request->metadata = [
-        'array' => 'string',
+        'array' => '<value>',
     ];
-    $request->name = 'string';;
+    $request->name = '<value>';;
 
     $response = $sdk->wallets->createWallet($request);
 
     if ($response->createWalletResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -180,7 +183,8 @@ Credit a wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -196,23 +200,23 @@ try {
     $request->creditWalletRequest = new Shared\CreditWalletRequest();
     $request->creditWalletRequest->amount = new Shared\Monetary();
     $request->creditWalletRequest->amount->amount = 201874;
-    $request->creditWalletRequest->amount->asset = 'string';
-    $request->creditWalletRequest->balance = 'string';
+    $request->creditWalletRequest->amount->asset = '<value>';
+    $request->creditWalletRequest->balance = '<value>';
     $request->creditWalletRequest->metadata = [
-        'South' => 'string',
+        'South' => '<value>',
     ];
-    $request->creditWalletRequest->reference = 'string';
+    $request->creditWalletRequest->reference = '<value>';
     $request->creditWalletRequest->sources = [
-        'string',
+        '<value>',
     ];
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->creditWallet($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -239,7 +243,8 @@ Debit a wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -255,24 +260,24 @@ try {
     $request->debitWalletRequest = new Shared\DebitWalletRequest();
     $request->debitWalletRequest->amount = new Shared\Monetary();
     $request->debitWalletRequest->amount->amount = 245256;
-    $request->debitWalletRequest->amount->asset = 'string';
+    $request->debitWalletRequest->amount->asset = '<value>';
     $request->debitWalletRequest->balances = [
-        'string',
+        '<value>',
     ];
     $request->debitWalletRequest->description = 'Enhanced regional synergy';
-    $request->debitWalletRequest->destination = 'string';
+    $request->debitWalletRequest->destination = '<value>';
     $request->debitWalletRequest->metadata = [
-        'Tasty' => 'string',
+        'Tasty' => '<value>',
     ];
     $request->debitWalletRequest->pending = false;
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->debitWallet($request);
 
     if ($response->debitWalletResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -299,7 +304,8 @@ Get detailed balance
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -312,15 +318,15 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetBalanceRequest();
-    $request->balanceName = 'string';
-    $request->id = '<ID>';;
+    $request->balanceName = '<value>';
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->getBalance($request);
 
     if ($response->getBalanceResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -347,7 +353,8 @@ Get a hold
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -360,14 +367,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetHoldRequest();
-    $request->holdID = 'string';;
+    $request->holdID = '<value>';;
 
     $response = $sdk->wallets->getHold($request);
 
     if ($response->getHoldResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -394,7 +401,8 @@ Get all holds for a wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -409,17 +417,17 @@ try {
         $request = new Operations\GetHoldsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->metadata = [
-        'Engineer' => 'string',
+        'Engineer' => '<value>',
     ];
     $request->pageSize = 766481;
-    $request->walletID = 'string';;
+    $request->walletID = '<value>';;
 
     $response = $sdk->wallets->getHolds($request);
 
     if ($response->getHoldsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -444,7 +452,8 @@ try {
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -459,14 +468,14 @@ try {
         $request = new Operations\GetTransactionsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 680555;
-    $request->walletID = 'string';;
+    $request->walletID = '<value>';;
 
     $response = $sdk->wallets->getTransactions($request);
 
     if ($response->getTransactionsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -493,7 +502,8 @@ Get a wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -506,14 +516,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetWalletRequest();
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->getWallet($request);
 
     if ($response->getWalletResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -540,7 +550,8 @@ Get wallet summary
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -553,14 +564,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetWalletSummaryRequest();
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->getWalletSummary($request);
 
     if ($response->getWalletSummaryResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -587,7 +598,8 @@ List balances of a wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -600,14 +612,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ListBalancesRequest();
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->listBalances($request);
 
     if ($response->listBalancesResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -634,7 +646,8 @@ List all wallets
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -649,9 +662,9 @@ try {
         $request = new Operations\ListWalletsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->metadata = [
-        'Auto' => 'string',
+        'Auto' => '<value>',
     ];
-    $request->name = 'string';
+    $request->name = '<value>';
     $request->pageSize = 677327;;
 
     $response = $sdk->wallets->listWallets($request);
@@ -659,7 +672,7 @@ try {
     if ($response->listWalletsResponse !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -686,7 +699,8 @@ Update a wallet
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -701,16 +715,16 @@ try {
         $request = new Operations\UpdateWalletRequest();
     $request->requestBody = new Operations\UpdateWalletRequestBody();
     $request->requestBody->metadata = [
-        'override' => 'string',
+        'override' => '<value>',
     ];
-    $request->id = '<ID>';;
+    $request->id = '<id>';;
 
     $response = $sdk->wallets->updateWallet($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -737,7 +751,8 @@ Cancel a hold
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -750,14 +765,14 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\VoidHoldRequest();
-    $request->holdId = 'string';;
+    $request->holdId = '<value>';;
 
     $response = $sdk->wallets->voidHold($request);
 
     if ($response->statusCode === 200) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```
@@ -784,7 +799,8 @@ Get server info
 <?php
 
 declare(strict_types=1);
-require_once 'vendor/autoload.php';
+
+require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
@@ -800,7 +816,7 @@ try {
     if ($response->serverInfo !== null) {
         // handle response
     }
-} catch (Exception $e) {
+} catch (Throwable $e) {
     // handle exception
 }
 ```

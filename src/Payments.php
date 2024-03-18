@@ -1167,6 +1167,10 @@ class Payments
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
         
         $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
+        }
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\PaymentslistAccountsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
