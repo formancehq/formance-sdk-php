@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 php:
-  version: 2.0.1
+  version: 2.0.2
   imports:
     option: openapi
     paths:

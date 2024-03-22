@@ -48,6 +48,11 @@ class CreditWalletRequest
     #[\JMS\Serializer\Annotation\Type('array<mixed>')]
     public array $sources;
     
+	#[\JMS\Serializer\Annotation\SerializedName('timestamp')]
+    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?\DateTime $timestamp = null;
+    
 	public function __construct()
 	{
 		$this->amount = new \formance\stack\Models\Shared\Monetary();
@@ -55,5 +60,6 @@ class CreditWalletRequest
 		$this->metadata = [];
 		$this->reference = null;
 		$this->sources = [];
+		$this->timestamp = null;
 	}
 }

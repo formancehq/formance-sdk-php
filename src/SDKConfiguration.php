@@ -16,10 +16,10 @@ class SDKConfiguration
 	public string $serverUrl = '';
 	public int $serverIndex = 0;
 	public string $language = 'php';
-	public string $openapiDocVersion = 'v2.0.0-rc.16';
-	public string $sdkVersion = '2.0.1';
-	public string $genVersion = '2.281.2';
-	public string $userAgent = 'speakeasy-sdk/php 2.0.1 2.281.2 v2.0.0-rc.16 formance/formance-sdk';
+	public string $openapiDocVersion = 'v2.0.0-rc.18';
+	public string $sdkVersion = '2.0.2';
+	public string $genVersion = '2.286.7';
+	public string $userAgent = 'speakeasy-sdk/php 2.0.2 2.286.7 v2.0.0-rc.18 formance/formance-sdk';
 	
 
 	public function getServerUrl(): string
