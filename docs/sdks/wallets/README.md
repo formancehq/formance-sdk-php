@@ -209,6 +209,7 @@ try {
     $request->creditWalletRequest->sources = [
         '<value>',
     ];
+    $request->creditWalletRequest->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-02-18T14:18:33.341Z');
     $request->id = '<id>';;
 
     $response = $sdk->wallets->creditWallet($request);
@@ -270,6 +271,7 @@ try {
         'Tasty' => '<value>',
     ];
     $request->debitWalletRequest->pending = false;
+    $request->debitWalletRequest->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-09-08T00:42:47.855Z');
     $request->id = '<id>';;
 
     $response = $sdk->wallets->debitWallet($request);

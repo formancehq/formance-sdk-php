@@ -54,6 +54,16 @@ class DebitWalletRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?bool $pending = null;
     
+    /**
+     * cannot be used in conjunction with `pending` property
+     * 
+     * @var ?\DateTime $timestamp
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('timestamp')]
+    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?\DateTime $timestamp = null;
+    
 	public function __construct()
 	{
 		$this->amount = new \formance\stack\Models\Shared\Monetary();
@@ -62,5 +72,6 @@ class DebitWalletRequest
 		$this->destination = null;
 		$this->metadata = [];
 		$this->pending = null;
+		$this->timestamp = null;
 	}
 }

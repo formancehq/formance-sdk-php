@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 254f15d23bfd21d49b8db8ecb44639be
-  docVersion: v2.0.0-rc.16
-  speakeasyVersion: 1.209.3
-  generationVersion: 2.281.2
-  releaseVersion: 2.0.1
-  configChecksum: 51340c1be12734f8935580eb0ab84978
+  docChecksum: b48bcb11c6ebfbb0f797aef5364a5064
+  docVersion: v2.0.0-rc.18
+  speakeasyVersion: 1.219.2
+  generationVersion: 2.286.7
+  releaseVersion: 2.0.2
+  configChecksum: bf2938da2e35180d8d6b75afc3764b17
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -16,7 +16,7 @@ features:
     core: 3.3.3
     deprecations: 2.81.1
     getRequestBodies: 2.81.1
-    globalSecurity: 2.81.5
+    globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
