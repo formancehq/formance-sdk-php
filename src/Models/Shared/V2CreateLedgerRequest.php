@@ -16,8 +16,19 @@ class V2CreateLedgerRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $bucket = null;
     
+    /**
+     * $metadata
+     * 
+     * @var ?array<string, string> $metadata
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?array $metadata = null;
+    
 	public function __construct()
 	{
 		$this->bucket = null;
+		$this->metadata = null;
 	}
 }

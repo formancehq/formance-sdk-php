@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 
-class V2GetLedgerResponse
+class GetOIDCWellKnownsResponse
 {
     /**
      * HTTP response content type for this operation
@@ -35,28 +35,10 @@ class V2GetLedgerResponse
 	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
     
-    /**
-     * Error
-     * 
-     * @var ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse
-     */
-	
-    public ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse = null;
-    
-    /**
-     * OK
-     * 
-     * @var ?\formance\stack\Models\Shared\V2GetLedgerResponse $v2GetLedgerResponse
-     */
-	
-    public ?\formance\stack\Models\Shared\V2GetLedgerResponse $v2GetLedgerResponse = null;
-    
 	public function __construct()
 	{
 		$this->contentType = "";
 		$this->statusCode = 0;
 		$this->rawResponse = null;
-		$this->v2ErrorResponse = null;
-		$this->v2GetLedgerResponse = null;
 	}
 }

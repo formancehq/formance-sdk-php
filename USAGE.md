@@ -17,9 +17,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 try {
-    $response = $sdk->getVersions();
+    $response = $sdk->getOIDCWellKnowns();
 
-    if ($response->getVersionsResponse !== null) {
+    if ($response->statusCode === 200) {
         // handle response
     }
 } catch (Throwable $e) {

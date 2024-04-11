@@ -32,7 +32,7 @@ class GetBalancesAggregatedRequest
      * 
      * @var ?bool $useInsertionDate
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=use_insertion_date')]
+	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=useInsertionDate')]
     public ?bool $useInsertionDate = null;
     
 	public function __construct()

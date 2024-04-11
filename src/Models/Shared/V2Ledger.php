@@ -19,6 +19,16 @@ class V2Ledger
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $bucket;
     
+    /**
+     * $metadata
+     * 
+     * @var ?array<string, string> $metadata
+     */
+	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?array $metadata = null;
+    
 	#[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
@@ -27,6 +37,7 @@ class V2Ledger
 	{
 		$this->addedAt = new \DateTime();
 		$this->bucket = "";
+		$this->metadata = null;
 		$this->name = "";
 	}
 }

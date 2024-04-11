@@ -49,9 +49,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 try {
-    $response = $sdk->getVersions();
+    $response = $sdk->getOIDCWellKnowns();
 
-    if ($response->getVersionsResponse !== null) {
+    if ($response->statusCode === 200) {
         // handle response
     }
 } catch (Throwable $e) {
@@ -66,8 +66,8 @@ try {
 
 ### [SDK](docs/sdks/sdk/README.md)
 
+* [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
-* [getApiAuthWellKnownOpenidConfiguration](docs/sdks/sdk/README.md#getapiauthwellknownopenidconfiguration)
 
 ### [Auth](docs/sdks/auth/README.md)
 
@@ -111,6 +111,7 @@ try {
 * [v2CreateLedger](docs/sdks/ledger/README.md#v2createledger) - Create a ledger
 * [v2CreateTransaction](docs/sdks/ledger/README.md#v2createtransaction) - Create a new transaction to a ledger
 * [v2DeleteAccountMetadata](docs/sdks/ledger/README.md#v2deleteaccountmetadata) - Delete metadata by key
+* [v2DeleteLedgerMetadata](docs/sdks/ledger/README.md#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](docs/sdks/ledger/README.md#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](docs/sdks/ledger/README.md#v2getaccount) - Get account by its address
 * [v2GetBalancesAggregated](docs/sdks/ledger/README.md#v2getbalancesaggregated) - Get the aggregated balances from selected accounts
@@ -124,6 +125,7 @@ try {
 * [v2ListTransactions](docs/sdks/ledger/README.md#v2listtransactions) - List transactions from a ledger
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
+* [v2UpdateLedgerMetadata](docs/sdks/ledger/README.md#v2updateledgermetadata) - Update ledger metadata
 
 ### [Orchestration](docs/sdks/orchestration/README.md)
 

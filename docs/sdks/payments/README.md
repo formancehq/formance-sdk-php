@@ -125,7 +125,7 @@ try {
     $request->transferRequest->asset = 'USD';
     $request->transferRequest->destination = 'acct_1Gqj58KZcSIg2N2q';
     $request->transferRequest->source = 'acct_1Gqj58KZcSIg2N2q';
-    $request->connector = Shared\Connector::CurrencyCloud;;
+    $request->connector = Shared\Connector::BankingCircle;;
 
     $response = $sdk->payments->connectorsTransfer($request);
 
@@ -341,7 +341,7 @@ try {
     $request->metadata = [
         'deposit' => '<value>',
     ];
-    $request->provider = Shared\Connector::BankingCircle;
+    $request->provider = Shared\Connector::Mangopay;
     $request->reference = 'XXX';
     $request->scheduledAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-05-20T07:14:32.431Z');
     $request->sourceAccountID = '<value>';
@@ -647,7 +647,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetConnectorTaskRequest();
-    $request->connector = Shared\Connector::Atlar;
+    $request->connector = Shared\Connector::Adyen;
     $request->taskId = '<value>';;
 
     $response = $sdk->payments->getConnectorTask($request);
@@ -696,7 +696,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetConnectorTaskV1Request();
-    $request->connector = Shared\Connector::CurrencyCloud;
+    $request->connector = Shared\Connector::BankingCircle;
     $request->connectorId = '<value>';
     $request->taskId = '<value>';;
 
@@ -1118,7 +1118,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ListConnectorTasksRequest();
-    $request->connector = Shared\Connector::Wise;
+    $request->connector = Shared\Connector::Modulr;
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->pageSize = 501686;;
 
@@ -1520,7 +1520,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ReadConnectorConfigRequest();
-    $request->connector = Shared\Connector::Adyen;;
+    $request->connector = Shared\Connector::Generic;;
 
     $response = $sdk->payments->readConnectorConfig($request);
 
@@ -1670,7 +1670,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ResetConnectorRequest();
-    $request->connector = Shared\Connector::Moneycorp;;
+    $request->connector = Shared\Connector::Atlar;;
 
     $response = $sdk->payments->resetConnector($request);
 
@@ -1720,7 +1720,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ResetConnectorV1Request();
-    $request->connector = Shared\Connector::Adyen;
+    $request->connector = Shared\Connector::Generic;
     $request->connectorId = '<value>';;
 
     $response = $sdk->payments->resetConnectorV1($request);
@@ -1925,7 +1925,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\UninstallConnectorRequest();
-    $request->connector = Shared\Connector::Wise;;
+    $request->connector = Shared\Connector::Modulr;;
 
     $response = $sdk->payments->uninstallConnector($request);
 
@@ -1973,7 +1973,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\UninstallConnectorV1Request();
-    $request->connector = Shared\Connector::Adyen;
+    $request->connector = Shared\Connector::Generic;
     $request->connectorId = '<value>';;
 
     $response = $sdk->payments->uninstallConnectorV1($request);

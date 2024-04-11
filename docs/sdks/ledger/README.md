@@ -31,6 +31,7 @@
 * [v2CreateLedger](#v2createledger) - Create a ledger
 * [v2CreateTransaction](#v2createtransaction) - Create a new transaction to a ledger
 * [v2DeleteAccountMetadata](#v2deleteaccountmetadata) - Delete metadata by key
+* [v2DeleteLedgerMetadata](#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](#v2getaccount) - Get account by its address
 * [v2GetBalancesAggregated](#v2getbalancesaggregated) - Get the aggregated balances from selected accounts
@@ -44,6 +45,7 @@
 * [v2ListTransactions](#v2listtransactions) - List transactions from a ledger
 * [v2ReadStats](#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](#v2reverttransaction) - Revert a ledger transaction by its ID
+* [v2UpdateLedgerMetadata](#v2updateledgermetadata) - Update ledger metadata
 
 ## createTransactions
 
@@ -1390,6 +1392,9 @@ try {
         $request = new Operations\V2CreateLedgerRequest();
     $request->v2CreateLedgerRequest = new Shared\V2CreateLedgerRequest();
     $request->v2CreateLedgerRequest->bucket = '<value>';
+    $request->v2CreateLedgerRequest->metadata = [
+        'whoa' => '<value>',
+    ];
     $request->ledger = 'ledger001';;
 
     $response = $sdk->ledger->v2CreateLedger($request);
@@ -1533,6 +1538,55 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\V2DeleteAccountMetadataResponse](../../Models/Operations/V2DeleteAccountMetadataResponse.md)**
+
+
+## v2DeleteLedgerMetadata
+
+Delete ledger metadata by key
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
+
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
+
+try {
+        $request = new Operations\V2DeleteLedgerMetadataRequest();
+    $request->key = 'foo';
+    $request->ledger = 'ledger001';;
+
+    $response = $sdk->ledger->v2DeleteLedgerMetadata($request);
+
+    if ($response->statusCode === 200) {
+        // handle response
+    }
+} catch (Throwable $e) {
+    // handle exception
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                  | [\formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest](../../Models/Operations/V2DeleteLedgerMetadataRequest.md) | :heavy_check_mark:                                                                                                          | The request object to use for the request.                                                                                  |
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse](../../Models/Operations/V2DeleteLedgerMetadataResponse.md)**
 
 
 ## v2DeleteTransactionMetadata
@@ -1755,7 +1809,7 @@ try {
 
     $response = $sdk->ledger->v2GetLedger($request);
 
-    if ($response->v2Ledger !== null) {
+    if ($response->v2GetLedgerResponse !== null) {
         // handle response
     }
 } catch (Throwable $e) {
@@ -2160,6 +2214,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2RevertTransactionRequest();
+    $request->atEffectiveDate = false;
     $request->force = false;
     $request->id = 1234;
     $request->ledger = 'ledger001';;
@@ -2184,4 +2239,55 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\V2RevertTransactionResponse](../../Models/Operations/V2RevertTransactionResponse.md)**
+
+
+## v2UpdateLedgerMetadata
+
+Update ledger metadata
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
+
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
+
+try {
+        $request = new Operations\V2UpdateLedgerMetadataRequest();
+    $request->requestBody = [
+        'Borders' => '<value>',
+    ];
+    $request->ledger = 'ledger001';;
+
+    $response = $sdk->ledger->v2UpdateLedgerMetadata($request);
+
+    if ($response->statusCode === 200) {
+        // handle response
+    }
+} catch (Throwable $e) {
+    // handle exception
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                  | [\formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest](../../Models/Operations/V2UpdateLedgerMetadataRequest.md) | :heavy_check_mark:                                                                                                          | The request object to use for the request.                                                                                  |
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse](../../Models/Operations/V2UpdateLedgerMetadataResponse.md)**
 

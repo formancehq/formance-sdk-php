@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: b48bcb11c6ebfbb0f797aef5364a5064
-  docVersion: v2.0.0-rc.18
-  speakeasyVersion: 1.219.2
-  generationVersion: 2.286.7
-  releaseVersion: 2.0.2
-  configChecksum: bf2938da2e35180d8d6b75afc3764b17
+  docChecksum: 1c0c06fbfb1fa7dfd4a7da5ce409a49e
+  docVersion: v2.0.0-rc.20
+  speakeasyVersion: 1.246.1
+  generationVersion: 2.302.1
+  releaseVersion: 2.0.3
+  configChecksum: 53a05745d9480811bbca59683d05e8e2
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -51,8 +51,8 @@ generatedFiles:
   - src/Utils/SecurityMetadata.php
   - src/Utils/SpeakeasyMetadata.php
   - src/Utils/Utils.php
+  - src/Models/Operations/GetOIDCWellKnownsResponse.php
   - src/Models/Operations/GetVersionsResponse.php
-  - src/Models/Operations/GetApiAuthWellKnownOpenidConfigurationResponse.php
   - src/Models/Operations/CreateClientResponse.php
   - src/Models/Operations/CreateSecretRequest.php
   - src/Models/Operations/CreateSecretResponse.php
@@ -124,6 +124,8 @@ generatedFiles:
   - src/Models/Operations/V2CreateTransactionResponse.php
   - src/Models/Operations/V2DeleteAccountMetadataRequest.php
   - src/Models/Operations/V2DeleteAccountMetadataResponse.php
+  - src/Models/Operations/V2DeleteLedgerMetadataRequest.php
+  - src/Models/Operations/V2DeleteLedgerMetadataResponse.php
   - src/Models/Operations/V2DeleteTransactionMetadataRequest.php
   - src/Models/Operations/V2DeleteTransactionMetadataResponse.php
   - src/Models/Operations/V2GetAccountRequest.php
@@ -149,6 +151,8 @@ generatedFiles:
   - src/Models/Operations/V2ReadStatsResponse.php
   - src/Models/Operations/V2RevertTransactionRequest.php
   - src/Models/Operations/V2RevertTransactionResponse.php
+  - src/Models/Operations/V2UpdateLedgerMetadataRequest.php
+  - src/Models/Operations/V2UpdateLedgerMetadataResponse.php
   - src/Models/Operations/CancelEventRequest.php
   - src/Models/Operations/CancelEventResponse.php
   - src/Models/Operations/CreateTriggerResponse.php
@@ -420,6 +424,7 @@ generatedFiles:
   - src/Models/Shared/V2Volume.php
   - src/Models/Shared/V2AggregateBalancesResponse.php
   - src/Models/Shared/V2ConfigInfoResponse.php
+  - src/Models/Shared/V2GetLedgerResponse.php
   - src/Models/Shared/V2Ledger.php
   - src/Models/Shared/V2LedgerInfoResponse.php
   - src/Models/Shared/V2LedgerInfoStorage.php
@@ -696,8 +701,8 @@ generatedFiles:
   - src/Models/Shared/AttemptResponse.php
   - src/Models/Shared/Attempt.php
   - src/Models/Shared/Security.php
+  - docs/Models/Operations/GetOIDCWellKnownsResponse.md
   - docs/Models/Operations/GetVersionsResponse.md
-  - docs/Models/Operations/GetApiAuthWellKnownOpenidConfigurationResponse.md
   - docs/Models/Operations/CreateClientResponse.md
   - docs/Models/Operations/CreateSecretRequest.md
   - docs/Models/Operations/CreateSecretResponse.md
@@ -769,6 +774,8 @@ generatedFiles:
   - docs/Models/Operations/V2CreateTransactionResponse.md
   - docs/Models/Operations/V2DeleteAccountMetadataRequest.md
   - docs/Models/Operations/V2DeleteAccountMetadataResponse.md
+  - docs/Models/Operations/V2DeleteLedgerMetadataRequest.md
+  - docs/Models/Operations/V2DeleteLedgerMetadataResponse.md
   - docs/Models/Operations/V2DeleteTransactionMetadataRequest.md
   - docs/Models/Operations/V2DeleteTransactionMetadataResponse.md
   - docs/Models/Operations/V2GetAccountRequest.md
@@ -794,6 +801,8 @@ generatedFiles:
   - docs/Models/Operations/V2ReadStatsResponse.md
   - docs/Models/Operations/V2RevertTransactionRequest.md
   - docs/Models/Operations/V2RevertTransactionResponse.md
+  - docs/Models/Operations/V2UpdateLedgerMetadataRequest.md
+  - docs/Models/Operations/V2UpdateLedgerMetadataResponse.md
   - docs/Models/Operations/CancelEventRequest.md
   - docs/Models/Operations/CancelEventResponse.md
   - docs/Models/Operations/CreateTriggerResponse.md
@@ -1065,6 +1074,7 @@ generatedFiles:
   - docs/Models/Shared/V2Volume.md
   - docs/Models/Shared/V2AggregateBalancesResponse.md
   - docs/Models/Shared/V2ConfigInfoResponse.md
+  - docs/Models/Shared/V2GetLedgerResponse.md
   - docs/Models/Shared/V2Ledger.md
   - docs/Models/Shared/V2LedgerInfoResponse.md
   - docs/Models/Shared/V2LedgerInfoStorage.md
