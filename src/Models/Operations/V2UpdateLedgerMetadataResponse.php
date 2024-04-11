@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 
-class GetApiAuthWellKnownOpenidConfigurationResponse
+class V2UpdateLedgerMetadataResponse
 {
     /**
      * HTTP response content type for this operation
@@ -35,10 +35,19 @@ class GetApiAuthWellKnownOpenidConfigurationResponse
 	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
     
+    /**
+     * Error
+     * 
+     * @var ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse
+     */
+	
+    public ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse = null;
+    
 	public function __construct()
 	{
 		$this->contentType = "";
 		$this->statusCode = 0;
 		$this->rawResponse = null;
+		$this->v2ErrorResponse = null;
 	}
 }

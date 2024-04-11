@@ -1311,6 +1311,46 @@ class Ledger
     }
 	
     /**
+     * Delete ledger metadata by key
+     * 
+     * @param \formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest $request
+     * @return \formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse
+     */
+	public function v2DeleteLedgerMetadata(
+        ?\formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest $request,
+    ): \formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata/{key}', \formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
+        }
+        else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->v2ErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * Delete metadata by key
      * 
      * Delete metadata by key
@@ -1519,7 +1559,7 @@ class Ledger
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Ledger = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Ledger', 'json');
+                $response->v2GetLedgerResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetLedgerResponse', 'json');
             }
         }
         else {
@@ -1900,6 +1940,50 @@ class Ledger
                 $serializer = Utils\JSON::createSerializer();
                 $response->v2RevertTransactionResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2RevertTransactionResponse', 'json');
             }
+        }
+        else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->v2ErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
+     * Update ledger metadata
+     * 
+     * @param \formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest $request
+     * @return \formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse
+     */
+	public function v2UpdateLedgerMetadata(
+        ?\formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest $request,
+    ): \formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata', \formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
+        }
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 204) {
         }
         else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {

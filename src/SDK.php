@@ -85,6 +85,38 @@ class SDK
 	}
 	
     /**
+     * Retrieve OpenID connect well-knowns.
+     * 
+     * @return \formance\stack\Models\Operations\GetOIDCWellKnownsResponse
+     */
+	public function getOIDCWellKnowns(
+    ): \formance\stack\Models\Operations\GetOIDCWellKnownsResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
+        
+        $options = ['http_errors' => false];
+        $options['headers']['Accept'] = '*/*';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\GetOIDCWellKnownsResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+        }
+
+        return $response;
+    }
+	
+    /**
      * Show stack version information
      * 
      * @return \formance\stack\Models\Operations\GetVersionsResponse
@@ -115,38 +147,6 @@ class SDK
                 $serializer = Utils\JSON::createSerializer();
                 $response->getVersionsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\GetVersionsResponse', 'json');
             }
-        }
-
-        return $response;
-    }
-	
-    /**
-     * getApiAuthWellKnownOpenidConfiguration
-     * 
-     * @return \formance\stack\Models\Operations\GetApiAuthWellKnownOpenidConfigurationResponse
-     */
-	public function getApiAuthWellKnownOpenidConfiguration(
-    ): \formance\stack\Models\Operations\GetApiAuthWellKnownOpenidConfigurationResponse
-    {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
-        
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetApiAuthWellKnownOpenidConfigurationResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        
-        if ($httpResponse->getStatusCode() === 200) {
         }
 
         return $response;

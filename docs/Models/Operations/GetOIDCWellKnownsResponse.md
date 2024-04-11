@@ -1,4 +1,4 @@
-# V2GetLedgerResponse
+# GetOIDCWellKnownsResponse
 
 
 ## Fields
@@ -8,5 +8,3 @@
 | `contentType`                                                                                                | *string*                                                                                                     | :heavy_check_mark:                                                                                           | HTTP response content type for this operation                                                                |
 | `statusCode`                                                                                                 | *int*                                                                                                        | :heavy_check_mark:                                                                                           | HTTP response status code for this operation                                                                 |
 | `rawResponse`                                                                                                | [\Psr\Http\Message\ResponseInterface](https://www.php-fig.org/psr/psr-7/#33-psrhttpmessageresponseinterface) | :heavy_check_mark:                                                                                           | Raw HTTP response; suitable for custom response parsing                                                      |
-| `v2ErrorResponse`                                                                                            | [?\formance\stack\Models\Shared\V2ErrorResponse](../../Models/Shared/V2ErrorResponse.md)                     | :heavy_minus_sign:                                                                                           | Error                                                                                                        |
-| `v2GetLedgerResponse`                                                                                        | [?\formance\stack\Models\Shared\V2GetLedgerResponse](../../Models/Shared/V2GetLedgerResponse.md)             | :heavy_minus_sign:                                                                                           | OK                                                                                                           |

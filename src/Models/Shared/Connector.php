@@ -21,4 +21,5 @@ enum Connector: string
     case Moneycorp = 'MONEYCORP';
     case Atlar = 'ATLAR';
     case Adyen = 'ADYEN';
+    case Generic = 'GENERIC';
 }

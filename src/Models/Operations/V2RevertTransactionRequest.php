@@ -12,6 +12,14 @@ use \formance\stack\Utils\SpeakeasyMetadata;
 class V2RevertTransactionRequest
 {
     /**
+     * Revert transaction at effective date of the original tx
+     * 
+     * @var ?bool $atEffectiveDate
+     */
+	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=atEffectiveDate')]
+    public ?bool $atEffectiveDate = null;
+    
+    /**
      * Force revert
      * 
      * @var ?bool $force
@@ -37,6 +45,7 @@ class V2RevertTransactionRequest
     
 	public function __construct()
 	{
+		$this->atEffectiveDate = null;
 		$this->force = null;
 		$this->id = 0;
 		$this->ledger = "";

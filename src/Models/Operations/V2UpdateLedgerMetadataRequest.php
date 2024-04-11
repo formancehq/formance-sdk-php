@@ -9,12 +9,12 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 use \formance\stack\Utils\SpeakeasyMetadata;
-class V2GetBalancesAggregatedRequest
+class V2UpdateLedgerMetadataRequest
 {
     /**
      * $requestBody
      * 
-     * @var ?array<string, mixed> $requestBody
+     * @var ?array<string, string> $requestBody
      */
 	#[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?array $requestBody = null;
@@ -27,22 +27,9 @@ class V2GetBalancesAggregatedRequest
 	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
     
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pit,dateTimeFormat=Y-m-d\TH:i:s.up')]
-    public ?\DateTime $pit = null;
-    
-    /**
-     * Use insertion date instead of effective date
-     * 
-     * @var ?bool $useInsertionDate
-     */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=useInsertionDate')]
-    public ?bool $useInsertionDate = null;
-    
 	public function __construct()
 	{
 		$this->requestBody = null;
 		$this->ledger = "";
-		$this->pit = null;
-		$this->useInsertionDate = null;
 	}
 }
