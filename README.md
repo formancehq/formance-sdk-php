@@ -119,6 +119,7 @@ try {
 * [v2GetLedger](docs/sdks/ledger/README.md#v2getledger) - Get a ledger
 * [v2GetLedgerInfo](docs/sdks/ledger/README.md#v2getledgerinfo) - Get information about a ledger
 * [v2GetTransaction](docs/sdks/ledger/README.md#v2gettransaction) - Get transaction from a ledger by its ID
+* [v2GetVolumesWithBalances](docs/sdks/ledger/README.md#v2getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [v2ListAccounts](docs/sdks/ledger/README.md#v2listaccounts) - List accounts from a ledger
 * [v2ListLedgers](docs/sdks/ledger/README.md#v2listledgers) - List ledgers
 * [v2ListLogs](docs/sdks/ledger/README.md#v2listlogs) - List the logs from a ledger
