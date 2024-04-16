@@ -1662,6 +1662,55 @@ class Ledger
     }
 	
     /**
+     * Get list of volumes with balances for (account/asset)
+     * 
+     * @param \formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest $request
+     * @return \formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse
+     */
+	public function v2GetVolumesWithBalances(
+        ?\formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest $request,
+    ): \formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/volumes', \formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest::class, $request);
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
+        }
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest::class, $request, null));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->v2VolumesWithBalanceCursorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2VolumesWithBalanceCursorResponse', 'json');
+            }
+        }
+        else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->v2ErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * List accounts from a ledger
      * 
      * List accounts from a ledger, sorted by address in descending order.

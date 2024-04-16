@@ -39,6 +39,7 @@
 * [v2GetLedger](#v2getledger) - Get a ledger
 * [v2GetLedgerInfo](#v2getledgerinfo) - Get information about a ledger
 * [v2GetTransaction](#v2gettransaction) - Get transaction from a ledger by its ID
+* [v2GetVolumesWithBalances](#v2getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [v2ListAccounts](#v2listaccounts) - List accounts from a ledger
 * [v2ListLedgers](#v2listledgers) - List ledgers
 * [v2ListLogs](#v2listlogs) - List the logs from a ledger
@@ -1926,6 +1927,63 @@ try {
 ### Response
 
 **[?\formance\stack\Models\Operations\V2GetTransactionResponse](../../Models/Operations/V2GetTransactionResponse.md)**
+
+
+## v2GetVolumesWithBalances
+
+Get list of volumes with balances for (account/asset)
+
+### Example Usage
+
+```php
+<?php
+
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use \formance\stack;
+use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
+
+$security = new Shared\Security();
+$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
+
+try {
+        $request = new Operations\V2GetVolumesWithBalancesRequest();
+    $request->requestBody = [
+        'transition' => '<value>',
+    ];
+    $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
+    $request->endTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-11-29T04:00:36.732Z');
+    $request->groupBy = 424820;
+    $request->insertionDate = false;
+    $request->ledger = 'ledger001';
+    $request->pageSize = 89226;
+    $request->startTime = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-08-03T06:24:15.183Z');;
+
+    $response = $sdk->ledger->v2GetVolumesWithBalances($request);
+
+    if ($response->v2VolumesWithBalanceCursorResponse !== null) {
+        // handle response
+    }
+} catch (Throwable $e) {
+    // handle exception
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                      | [\formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest](../../Models/Operations/V2GetVolumesWithBalancesRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
+
+
+### Response
+
+**[?\formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse](../../Models/Operations/V2GetVolumesWithBalancesResponse.md)**
 
 
 ## v2ListAccounts

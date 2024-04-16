@@ -29,3 +29,13 @@ Based on:
 - [php v2.0.3] .
 ### Releases
 - [Composer v2.0.3] https://packagist.org/packages/formance/formance-sdk#v2.0.3 - .
+
+## 2024-04-16 00:06:02
+### Changes
+Based on:
+- OpenAPI Doc v2.0.0-rc.22 
+- Speakeasy CLI 1.253.1 (2.306.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.0.4] .
+### Releases
+- [Composer v2.0.4] https://packagist.org/packages/formance/formance-sdk#v2.0.4 - .

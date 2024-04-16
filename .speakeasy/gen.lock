@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 1c0c06fbfb1fa7dfd4a7da5ce409a49e
-  docVersion: v2.0.0-rc.20
-  speakeasyVersion: 1.246.1
-  generationVersion: 2.302.1
-  releaseVersion: 2.0.3
-  configChecksum: 53a05745d9480811bbca59683d05e8e2
+  docChecksum: 68e0f776ba164f3551b4b29494444ee0
+  docVersion: v2.0.0-rc.22
+  speakeasyVersion: 1.253.1
+  generationVersion: 2.306.0
+  releaseVersion: 2.0.4
+  configChecksum: c586e9dfb47ae7647e8ae1a4d8883d64
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -139,6 +139,8 @@ generatedFiles:
   - src/Models/Operations/V2GetLedgerInfoResponse.php
   - src/Models/Operations/V2GetTransactionRequest.php
   - src/Models/Operations/V2GetTransactionResponse.php
+  - src/Models/Operations/V2GetVolumesWithBalancesRequest.php
+  - src/Models/Operations/V2GetVolumesWithBalancesResponse.php
   - src/Models/Operations/V2ListAccountsRequest.php
   - src/Models/Operations/V2ListAccountsResponse.php
   - src/Models/Operations/V2ListLedgersRequest.php
@@ -433,6 +435,9 @@ generatedFiles:
   - src/Models/Shared/V2MigrationInfo.php
   - src/Models/Shared/V2GetTransactionResponse.php
   - src/Models/Shared/V2ExpandedTransaction.php
+  - src/Models/Shared/V2VolumesWithBalanceCursorResponseCursor.php
+  - src/Models/Shared/V2VolumesWithBalanceCursorResponse.php
+  - src/Models/Shared/V2VolumesWithBalance.php
   - src/Models/Shared/V2AccountsCursorResponseCursor.php
   - src/Models/Shared/V2AccountsCursorResponse.php
   - src/Models/Shared/V2LedgerListResponseCursor.php
@@ -789,6 +794,8 @@ generatedFiles:
   - docs/Models/Operations/V2GetLedgerInfoResponse.md
   - docs/Models/Operations/V2GetTransactionRequest.md
   - docs/Models/Operations/V2GetTransactionResponse.md
+  - docs/Models/Operations/V2GetVolumesWithBalancesRequest.md
+  - docs/Models/Operations/V2GetVolumesWithBalancesResponse.md
   - docs/Models/Operations/V2ListAccountsRequest.md
   - docs/Models/Operations/V2ListAccountsResponse.md
   - docs/Models/Operations/V2ListLedgersRequest.md
@@ -1083,6 +1090,9 @@ generatedFiles:
   - docs/Models/Shared/V2MigrationInfo.md
   - docs/Models/Shared/V2GetTransactionResponse.md
   - docs/Models/Shared/V2ExpandedTransaction.md
+  - docs/Models/Shared/V2VolumesWithBalanceCursorResponseCursor.md
+  - docs/Models/Shared/V2VolumesWithBalanceCursorResponse.md
+  - docs/Models/Shared/V2VolumesWithBalance.md
   - docs/Models/Shared/V2AccountsCursorResponseCursor.md
   - docs/Models/Shared/V2AccountsCursorResponse.md
   - docs/Models/Shared/V2LedgerListResponseCursor.md
