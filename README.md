@@ -42,7 +42,7 @@ use formance\stack;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()
     ->setSecurity($security)
@@ -170,6 +170,7 @@ try {
 
 * [addAccountToPool](docs/sdks/payments/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
+* [createAccount](docs/sdks/payments/README.md#createaccount) - Create an account
 * [createBankAccount](docs/sdks/payments/README.md#createbankaccount) - Create a BankAccount in Payments and on the PSP
 * [createPayment](docs/sdks/payments/README.md#createpayment) - Create a payment
 * [createPool](docs/sdks/payments/README.md#createpool) - Create a Pool
