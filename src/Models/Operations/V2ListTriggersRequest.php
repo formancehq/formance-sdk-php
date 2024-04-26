@@ -9,10 +9,10 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 use \formance\stack\Utils\SpeakeasyMetadata;
-class ListPaymentsRequest
+class V2ListTriggersRequest
 {
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests.
      * 
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
@@ -34,29 +34,9 @@ class ListPaymentsRequest
 	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
     
-    /**
-     * Filters used to filter resources.
-     * 
-     * 
-     * 
-     * @var ?string $query
-     */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
-    public ?string $query = null;
-    
-    /**
-     * Fields used to sort payments (default is date:desc).
-     * 
-     * @var ?array<string> $sort
-     */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
-    public ?array $sort = null;
-    
 	public function __construct()
 	{
 		$this->cursor = null;
 		$this->pageSize = null;
-		$this->query = null;
-		$this->sort = null;
 	}
 }

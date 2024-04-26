@@ -38,7 +38,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -89,7 +89,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -140,7 +140,7 @@ use \formance\stack;
 use \formance\stack\Models\Shared;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -191,7 +191,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -252,7 +252,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -314,7 +314,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -363,7 +363,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -411,7 +411,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -462,7 +462,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -512,7 +512,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -560,7 +560,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -608,7 +608,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -656,7 +656,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -709,7 +709,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -761,7 +761,7 @@ use \formance\stack\Models\Shared;
 use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -808,7 +808,7 @@ use \formance\stack;
 use \formance\stack\Models\Shared;
 
 $security = new Shared\Security();
-$security->authorization = 'Bearer <YOUR_ACCESS_TOKEN_HERE>';
+$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 

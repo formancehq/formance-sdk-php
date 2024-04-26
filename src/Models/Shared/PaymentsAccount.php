@@ -73,8 +73,8 @@ class PaymentsAccount
     public string $reference;
     
 	#[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('string')]
-    public string $type;
+    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\AccountType>')]
+    public AccountType $type;
     
 	public function __construct()
 	{
@@ -89,6 +89,6 @@ class PaymentsAccount
 		$this->provider = null;
 		$this->raw = new \formance\stack\Models\Shared\PaymentsAccountRaw();
 		$this->reference = "";
-		$this->type = "";
+		$this->type = \formance\stack\Models\Shared\AccountType::Unknown;
 	}
 }

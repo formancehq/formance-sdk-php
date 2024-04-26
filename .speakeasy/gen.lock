@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 68e0f776ba164f3551b4b29494444ee0
-  docVersion: v2.0.0-rc.22
-  speakeasyVersion: 1.253.1
-  generationVersion: 2.306.0
-  releaseVersion: 2.0.4
-  configChecksum: c586e9dfb47ae7647e8ae1a4d8883d64
+  docChecksum: f82424cbd31992df4c912ba2ffe8f66c
+  docVersion: v2.0.0-rc.24
+  speakeasyVersion: 1.274.1
+  generationVersion: 2.314.0
+  releaseVersion: 2.0.5
+  configChecksum: 3281c2418aa7b7ae2190fed055623d33
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -206,9 +206,11 @@ generatedFiles:
   - src/Models/Operations/V2GetWorkflowResponse.php
   - src/Models/Operations/V2ListInstancesRequest.php
   - src/Models/Operations/V2ListInstancesResponse.php
+  - src/Models/Operations/V2ListTriggersRequest.php
   - src/Models/Operations/V2ListTriggersResponse.php
   - src/Models/Operations/V2ListTriggersOccurrencesRequest.php
   - src/Models/Operations/V2ListTriggersOccurrencesResponse.php
+  - src/Models/Operations/V2ListWorkflowsRequest.php
   - src/Models/Operations/V2ListWorkflowsResponse.php
   - src/Models/Operations/V2ReadTriggerRequest.php
   - src/Models/Operations/V2ReadTriggerResponse.php
@@ -221,6 +223,7 @@ generatedFiles:
   - src/Models/Operations/AddAccountToPoolResponse.php
   - src/Models/Operations/ConnectorsTransferRequest.php
   - src/Models/Operations/ConnectorsTransferResponse.php
+  - src/Models/Operations/CreateAccountResponse.php
   - src/Models/Operations/CreateBankAccountResponse.php
   - src/Models/Operations/CreatePaymentResponse.php
   - src/Models/Operations/CreatePoolResponse.php
@@ -594,6 +597,11 @@ generatedFiles:
   - src/Models/Shared/TransferResponse.php
   - src/Models/Shared/Connector.php
   - src/Models/Shared/TransferRequest.php
+  - src/Models/Shared/PaymentsAccountResponse.php
+  - src/Models/Shared/PaymentsAccountRaw.php
+  - src/Models/Shared/PaymentsAccount.php
+  - src/Models/Shared/AccountType.php
+  - src/Models/Shared/AccountRequest.php
   - src/Models/Shared/BankAccountResponse.php
   - src/Models/Shared/BankAccount.php
   - src/Models/Shared/BankAccountRelatedAccounts.php
@@ -644,9 +652,6 @@ generatedFiles:
   - src/Models/Shared/PoolsCursor.php
   - src/Models/Shared/TransferInitiationsCursorCursor.php
   - src/Models/Shared/TransferInitiationsCursor.php
-  - src/Models/Shared/PaymentsAccountResponse.php
-  - src/Models/Shared/PaymentsAccountRaw.php
-  - src/Models/Shared/PaymentsAccount.php
   - src/Models/Shared/Cursor.php
   - src/Models/Shared/AccountsCursor.php
   - src/Models/Shared/ConnectorConfigResponse.php
@@ -861,9 +866,11 @@ generatedFiles:
   - docs/Models/Operations/V2GetWorkflowResponse.md
   - docs/Models/Operations/V2ListInstancesRequest.md
   - docs/Models/Operations/V2ListInstancesResponse.md
+  - docs/Models/Operations/V2ListTriggersRequest.md
   - docs/Models/Operations/V2ListTriggersResponse.md
   - docs/Models/Operations/V2ListTriggersOccurrencesRequest.md
   - docs/Models/Operations/V2ListTriggersOccurrencesResponse.md
+  - docs/Models/Operations/V2ListWorkflowsRequest.md
   - docs/Models/Operations/V2ListWorkflowsResponse.md
   - docs/Models/Operations/V2ReadTriggerRequest.md
   - docs/Models/Operations/V2ReadTriggerResponse.md
@@ -876,6 +883,7 @@ generatedFiles:
   - docs/Models/Operations/AddAccountToPoolResponse.md
   - docs/Models/Operations/ConnectorsTransferRequest.md
   - docs/Models/Operations/ConnectorsTransferResponse.md
+  - docs/Models/Operations/CreateAccountResponse.md
   - docs/Models/Operations/CreateBankAccountResponse.md
   - docs/Models/Operations/CreatePaymentResponse.md
   - docs/Models/Operations/CreatePoolResponse.md
@@ -1249,6 +1257,11 @@ generatedFiles:
   - docs/Models/Shared/TransferResponse.md
   - docs/Models/Shared/Connector.md
   - docs/Models/Shared/TransferRequest.md
+  - docs/Models/Shared/PaymentsAccountResponse.md
+  - docs/Models/Shared/PaymentsAccountRaw.md
+  - docs/Models/Shared/PaymentsAccount.md
+  - docs/Models/Shared/AccountType.md
+  - docs/Models/Shared/AccountRequest.md
   - docs/Models/Shared/BankAccountResponse.md
   - docs/Models/Shared/BankAccount.md
   - docs/Models/Shared/BankAccountRelatedAccounts.md
@@ -1299,9 +1312,6 @@ generatedFiles:
   - docs/Models/Shared/PoolsCursor.md
   - docs/Models/Shared/TransferInitiationsCursorCursor.md
   - docs/Models/Shared/TransferInitiationsCursor.md
-  - docs/Models/Shared/PaymentsAccountResponse.md
-  - docs/Models/Shared/PaymentsAccountRaw.md
-  - docs/Models/Shared/PaymentsAccount.md
   - docs/Models/Shared/Cursor.md
   - docs/Models/Shared/AccountsCursor.md
   - docs/Models/Shared/ConnectorConfigResponse.md

@@ -108,6 +108,51 @@ class Payments
     }
 	
     /**
+     * Create an account
+     * 
+     * Create an account
+     * 
+     * @param \formance\stack\Models\Shared\AccountRequest $request
+     * @return \formance\stack\Models\Operations\CreateAccountResponse
+     */
+	public function createAccount(
+        \formance\stack\Models\Shared\AccountRequest $request,
+    ): \formance\stack\Models\Operations\CreateAccountResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
+        
+        $options = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $options = array_merge_recursive($options, $body);
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        
+        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+        
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+
+        $response = new \formance\stack\Models\Operations\CreateAccountResponse();
+        $response->statusCode = $statusCode;
+        $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
+        
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->paymentsAccountResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\PaymentsAccountResponse', 'json');
+            }
+        }
+
+        return $response;
+    }
+	
+    /**
      * Create a BankAccount in Payments and on the PSP
      * 
      * Create a bank account in Payments and on the PSP.

@@ -1351,15 +1351,18 @@ class Orchestration
      * 
      * List triggers
      * 
+     * @param \formance\stack\Models\Operations\V2ListTriggersRequest $request
      * @return \formance\stack\Models\Operations\V2ListTriggersResponse
      */
 	public function v2ListTriggers(
+        ?\formance\stack\Models\Operations\V2ListTriggersRequest $request,
     ): \formance\stack\Models\Operations\V2ListTriggersResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
         
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListTriggersRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
@@ -1406,6 +1409,7 @@ class Orchestration
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/occurrences', \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest::class, $request);
         
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
@@ -1441,15 +1445,18 @@ class Orchestration
      * 
      * List registered workflows
      * 
+     * @param \formance\stack\Models\Operations\V2ListWorkflowsRequest $request
      * @return \formance\stack\Models\Operations\V2ListWorkflowsResponse
      */
 	public function v2ListWorkflows(
+        ?\formance\stack\Models\Operations\V2ListWorkflowsRequest $request,
     ): \formance\stack\Models\Operations\V2ListWorkflowsResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
         
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListWorkflowsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         
