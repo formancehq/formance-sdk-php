@@ -483,15 +483,18 @@ class Orchestration
      * 
      * List triggers
      * 
+     * @param \formance\stack\Models\Operations\ListTriggersRequest $request
      * @return \formance\stack\Models\Operations\ListTriggersResponse
      */
 	public function listTriggers(
+        ?\formance\stack\Models\Operations\ListTriggersRequest $request,
     ): \formance\stack\Models\Operations\ListTriggersResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
         
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListTriggersRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         

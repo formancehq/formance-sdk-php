@@ -112,6 +112,7 @@ try {
         $request = new Shared\TriggerData();
     $request->event = '<value>';
     $request->filter = '<value>';
+    $request->name = '<value>';
     $request->vars = [
         'paradigms' => '<value>',
     ];
@@ -544,6 +545,7 @@ require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -551,7 +553,10 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $response = $sdk->orchestration->listTriggers();
+        $request = new Operations\ListTriggersRequest();
+    $request->name = '<value>';;
+
+    $response = $sdk->orchestration->listTriggers($request);
 
     if ($response->listTriggersResponse !== null) {
         // handle response
@@ -560,6 +565,12 @@ try {
     // handle exception
 }
 ```
+
+### Parameters
+
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\ListTriggersRequest](../../Models/Operations/ListTriggersRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
@@ -965,6 +976,7 @@ try {
         $request = new Shared\V2TriggerData();
     $request->event = '<value>';
     $request->filter = '<value>';
+    $request->name = '<value>';
     $request->vars = [
         'primary' => '<value>',
     ];
@@ -1447,6 +1459,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListTriggersRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
+    $request->name = '<value>';
     $request->pageSize = 877214;;
 
     $response = $sdk->orchestration->v2ListTriggers($request);

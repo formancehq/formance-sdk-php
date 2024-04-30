@@ -25,6 +25,14 @@ class V2ListTriggersRequest
     public ?string $cursor = null;
     
     /**
+     * search by name
+     * 
+     * @var ?string $name
+     */
+	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name')]
+    public ?string $name = null;
+    
+    /**
      * The maximum number of results to return per page.
      * 
      * 
@@ -37,6 +45,7 @@ class V2ListTriggersRequest
 	public function __construct()
 	{
 		$this->cursor = null;
+		$this->name = null;
 		$this->pageSize = null;
 	}
 }
