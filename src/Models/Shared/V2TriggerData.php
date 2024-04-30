@@ -20,6 +20,11 @@ class V2TriggerData
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $filter = null;
     
+	#[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\JMS\Serializer\Annotation\Type('string')]
+    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    public ?string $name = null;
+    
     /**
      * $vars
      * 
@@ -38,6 +43,7 @@ class V2TriggerData
 	{
 		$this->event = "";
 		$this->filter = null;
+		$this->name = null;
 		$this->vars = null;
 		$this->workflowID = "";
 	}

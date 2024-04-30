@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: f82424cbd31992df4c912ba2ffe8f66c
-  docVersion: v2.0.0-rc.24
-  speakeasyVersion: 1.274.1
-  generationVersion: 2.314.0
-  releaseVersion: 2.0.5
-  configChecksum: 3281c2418aa7b7ae2190fed055623d33
+  docChecksum: de4ce37109543835d271fd330d36d4f0
+  docVersion: v2.0.0-rc.26
+  speakeasyVersion: 1.277.0
+  generationVersion: 2.317.0
+  releaseVersion: 2.0.6
+  configChecksum: 2bb2cf5ec8321855230978479e9d3d4b
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -173,6 +173,7 @@ generatedFiles:
   - src/Models/Operations/GetWorkflowResponse.php
   - src/Models/Operations/ListInstancesRequest.php
   - src/Models/Operations/ListInstancesResponse.php
+  - src/Models/Operations/ListTriggersRequest.php
   - src/Models/Operations/ListTriggersResponse.php
   - src/Models/Operations/ListTriggersOccurrencesRequest.php
   - src/Models/Operations/ListTriggersOccurrencesResponse.php
@@ -833,6 +834,7 @@ generatedFiles:
   - docs/Models/Operations/GetWorkflowResponse.md
   - docs/Models/Operations/ListInstancesRequest.md
   - docs/Models/Operations/ListInstancesResponse.md
+  - docs/Models/Operations/ListTriggersRequest.md
   - docs/Models/Operations/ListTriggersResponse.md
   - docs/Models/Operations/ListTriggersOccurrencesRequest.md
   - docs/Models/Operations/ListTriggersOccurrencesResponse.md
