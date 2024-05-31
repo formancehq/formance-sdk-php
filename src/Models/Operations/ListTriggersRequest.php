@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class ListTriggersRequest
 {
     /**
      * search by name
-     * 
+     *
      * @var ?string $name
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name')]
     public ?string $name = null;
-    
-	public function __construct()
-	{
-		$this->name = null;
-	}
+
+    public function __construct()
+    {
+        $this->name = null;
+    }
 }

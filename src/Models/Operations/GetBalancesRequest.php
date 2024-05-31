@@ -8,62 +8,62 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class GetBalancesRequest
 {
     /**
      * Filter balances involving given account, either as source or destination.
-     * 
+     *
      * @var ?string $address
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
     public ?string $address = null;
-    
+
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
-     * 
+     *
      * @var ?string $after
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=after')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=after')]
     public ?string $after = null;
-    
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
-     * 
+     *
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
      * No other parameters can be set when this parameter is set.
-     * 
-     * 
+     *
+     *
      * @var ?string $cursor
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
     public ?string $cursor = null;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
+
     /**
      * The maximum number of results to return per page.
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * @var ?int $pageSize
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
-    
-	public function __construct()
-	{
-		$this->address = null;
-		$this->after = null;
-		$this->cursor = null;
-		$this->ledger = "";
-		$this->pageSize = null;
-	}
+
+    public function __construct()
+    {
+        $this->address = null;
+        $this->after = null;
+        $this->cursor = null;
+        $this->ledger = '';
+        $this->pageSize = null;
+    }
 }

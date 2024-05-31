@@ -8,40 +8,36 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
-class Orchestration 
+class Orchestration
 {
+    private SDKConfiguration $sdkConfiguration;
 
-	private SDKConfiguration $sdkConfiguration;
+    /**
+     * @param  SDKConfiguration  $sdkConfig
+     */
+    public function __construct(SDKConfiguration $sdkConfig)
+    {
+        $this->sdkConfiguration = $sdkConfig;
+    }
 
-	/**
-	 * @param SDKConfiguration $sdkConfig
-	 */
-	public function __construct(SDKConfiguration $sdkConfig)
-	{
-		$this->sdkConfiguration = $sdkConfig;
-	}
-	
     /**
      * Cancel a running workflow
-     * 
+     *
      * Cancel a running workflow
-     * 
-     * @param \formance\stack\Models\Operations\CancelEventRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\CancelEventRequest  $request
      * @return \formance\stack\Models\Operations\CancelEventResponse
      */
-	public function cancelEvent(
+    public function cancelEvent(
         ?\formance\stack\Models\Operations\CancelEventRequest $request,
-    ): \formance\stack\Models\Operations\CancelEventResponse
-    {
+    ): \formance\stack\Models\Operations\CancelEventResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/abort', \formance\stack\Models\Operations\CancelEventRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -50,44 +46,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Create trigger
-     * 
+     *
      * Create trigger
-     * 
-     * @param \formance\stack\Models\Shared\TriggerData $request
+     *
+     * @param  \formance\stack\Models\Shared\TriggerData  $request
      * @return \formance\stack\Models\Operations\CreateTriggerResponse
      */
-	public function createTrigger(
+    public function createTrigger(
         ?\formance\stack\Models\Shared\TriggerData $request,
-    ): \formance\stack\Models\Operations\CreateTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\CreateTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -96,48 +87,43 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->createTriggerResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\CreateTriggerResponse', 'json');
+                $response->createTriggerResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\CreateTriggerResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Create workflow
-     * 
+     *
      * Create a workflow
-     * 
-     * @param \formance\stack\Models\Shared\CreateWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Shared\CreateWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\CreateWorkflowResponse
      */
-	public function createWorkflow(
+    public function createWorkflow(
         ?\formance\stack\Models\Shared\CreateWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\CreateWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\CreateWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -146,44 +132,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->createWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\CreateWorkflowResponse', 'json');
+                $response->createWorkflowResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\CreateWorkflowResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Delete trigger
-     * 
+     *
      * Read trigger
-     * 
-     * @param \formance\stack\Models\Operations\DeleteTriggerRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\DeleteTriggerRequest  $request
      * @return \formance\stack\Models\Operations\DeleteTriggerResponse
      */
-	public function deleteTrigger(
+    public function deleteTrigger(
         ?\formance\stack\Models\Operations\DeleteTriggerRequest $request,
-    ): \formance\stack\Models\Operations\DeleteTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\DeleteTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}', \formance\stack\Models\Operations\DeleteTriggerRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -192,40 +173,35 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Delete a flow by id
-     * 
+     *
      * Delete a flow by id
-     * 
-     * @param \formance\stack\Models\Operations\DeleteWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\DeleteWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\DeleteWorkflowResponse
      */
-	public function deleteWorkflow(
+    public function deleteWorkflow(
         ?\formance\stack\Models\Operations\DeleteWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\DeleteWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\DeleteWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', \formance\stack\Models\Operations\DeleteWorkflowRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -234,40 +210,35 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a workflow instance by id
-     * 
+     *
      * Get a workflow instance by id
-     * 
-     * @param \formance\stack\Models\Operations\GetInstanceRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\GetInstanceRequest  $request
      * @return \formance\stack\Models\Operations\GetInstanceResponse
      */
-	public function getInstance(
+    public function getInstance(
         ?\formance\stack\Models\Operations\GetInstanceRequest $request,
-    ): \formance\stack\Models\Operations\GetInstanceResponse
-    {
+    ): \formance\stack\Models\Operations\GetInstanceResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}', \formance\stack\Models\Operations\GetInstanceRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -276,44 +247,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->getWorkflowInstanceResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowInstanceResponse', 'json');
+                $response->getWorkflowInstanceResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowInstanceResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a workflow instance history by id
-     * 
+     *
      * Get a workflow instance history by id
-     * 
-     * @param \formance\stack\Models\Operations\GetInstanceHistoryRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\GetInstanceHistoryRequest  $request
      * @return \formance\stack\Models\Operations\GetInstanceHistoryResponse
      */
-	public function getInstanceHistory(
+    public function getInstanceHistory(
         ?\formance\stack\Models\Operations\GetInstanceHistoryRequest $request,
-    ): \formance\stack\Models\Operations\GetInstanceHistoryResponse
-    {
+    ): \formance\stack\Models\Operations\GetInstanceHistoryResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/history', \formance\stack\Models\Operations\GetInstanceHistoryRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -322,44 +288,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->getWorkflowInstanceHistoryResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowInstanceHistoryResponse', 'json');
+                $response->getWorkflowInstanceHistoryResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowInstanceHistoryResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a workflow instance stage history
-     * 
+     *
      * Get a workflow instance stage history
-     * 
-     * @param \formance\stack\Models\Operations\GetInstanceStageHistoryRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\GetInstanceStageHistoryRequest  $request
      * @return \formance\stack\Models\Operations\GetInstanceStageHistoryResponse
      */
-	public function getInstanceStageHistory(
+    public function getInstanceStageHistory(
         ?\formance\stack\Models\Operations\GetInstanceStageHistoryRequest $request,
-    ): \formance\stack\Models\Operations\GetInstanceStageHistoryResponse
-    {
+    ): \formance\stack\Models\Operations\GetInstanceStageHistoryResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/stages/{number}/history', \formance\stack\Models\Operations\GetInstanceStageHistoryRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -368,44 +329,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->getWorkflowInstanceHistoryStageResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowInstanceHistoryStageResponse', 'json');
+                $response->getWorkflowInstanceHistoryStageResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowInstanceHistoryStageResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a flow by id
-     * 
+     *
      * Get a flow by id
-     * 
-     * @param \formance\stack\Models\Operations\GetWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\GetWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\GetWorkflowResponse
      */
-	public function getWorkflow(
+    public function getWorkflow(
         ?\formance\stack\Models\Operations\GetWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\GetWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\GetWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', \formance\stack\Models\Operations\GetWorkflowRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -414,45 +370,40 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->getWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowResponse', 'json');
+                $response->getWorkflowResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\GetWorkflowResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List instances of a workflow
-     * 
+     *
      * List instances of a workflow
-     * 
-     * @param \formance\stack\Models\Operations\ListInstancesRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ListInstancesRequest  $request
      * @return \formance\stack\Models\Operations\ListInstancesResponse
      */
-	public function listInstances(
+    public function listInstances(
         ?\formance\stack\Models\Operations\ListInstancesRequest $request,
-    ): \formance\stack\Models\Operations\ListInstancesResponse
-    {
+    ): \formance\stack\Models\Operations\ListInstancesResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances');
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListInstancesRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -461,45 +412,40 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->listRunsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListRunsResponse', 'json');
+                $response->listRunsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ListRunsResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List triggers
-     * 
+     *
      * List triggers
-     * 
-     * @param \formance\stack\Models\Operations\ListTriggersRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ListTriggersRequest  $request
      * @return \formance\stack\Models\Operations\ListTriggersResponse
      */
-	public function listTriggers(
+    public function listTriggers(
         ?\formance\stack\Models\Operations\ListTriggersRequest $request,
-    ): \formance\stack\Models\Operations\ListTriggersResponse
-    {
+    ): \formance\stack\Models\Operations\ListTriggersResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListTriggersRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -508,44 +454,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->listTriggersResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListTriggersResponse', 'json');
+                $response->listTriggersResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ListTriggersResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List triggers occurrences
-     * 
+     *
      * List triggers occurrences
-     * 
-     * @param \formance\stack\Models\Operations\ListTriggersOccurrencesRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ListTriggersOccurrencesRequest  $request
      * @return \formance\stack\Models\Operations\ListTriggersOccurrencesResponse
      */
-	public function listTriggersOccurrences(
+    public function listTriggersOccurrences(
         ?\formance\stack\Models\Operations\ListTriggersOccurrencesRequest $request,
-    ): \formance\stack\Models\Operations\ListTriggersOccurrencesResponse
-    {
+    ): \formance\stack\Models\Operations\ListTriggersOccurrencesResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}/occurrences', \formance\stack\Models\Operations\ListTriggersOccurrencesRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -554,42 +495,37 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->listTriggersOccurrencesResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListTriggersOccurrencesResponse', 'json');
+                $response->listTriggersOccurrencesResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ListTriggersOccurrencesResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List registered workflows
-     * 
+     *
      * List registered workflows
-     * 
+     *
      * @return \formance\stack\Models\Operations\ListWorkflowsResponse
      */
-	public function listWorkflows(
-    ): \formance\stack\Models\Operations\ListWorkflowsResponse
-    {
+    public function listWorkflows(
+    ): \formance\stack\Models\Operations\ListWorkflowsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -598,40 +534,35 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->listWorkflowsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListWorkflowsResponse', 'json');
+                $response->listWorkflowsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ListWorkflowsResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get server info
-     * 
+     *
      * @return \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse
      */
-	public function orchestrationgetServerInfo(
-    ): \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse
-    {
+    public function orchestrationgetServerInfo(
+    ): \formance\stack\Models\Operations\OrchestrationgetServerInfoResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/_info');
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -640,44 +571,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->serverInfo = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ServerInfo', 'json');
+                $response->serverInfo = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ServerInfo', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Read trigger
-     * 
+     *
      * Read trigger
-     * 
-     * @param \formance\stack\Models\Operations\ReadTriggerRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ReadTriggerRequest  $request
      * @return \formance\stack\Models\Operations\ReadTriggerResponse
      */
-	public function readTrigger(
+    public function readTrigger(
         ?\formance\stack\Models\Operations\ReadTriggerRequest $request,
-    ): \formance\stack\Models\Operations\ReadTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\ReadTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}', \formance\stack\Models\Operations\ReadTriggerRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -686,49 +612,44 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->readTriggerResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ReadTriggerResponse', 'json');
+                $response->readTriggerResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ReadTriggerResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Run workflow
-     * 
+     *
      * Run workflow
-     * 
-     * @param \formance\stack\Models\Operations\RunWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\RunWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\RunWorkflowResponse
      */
-	public function runWorkflow(
+    public function runWorkflow(
         ?\formance\stack\Models\Operations\RunWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\RunWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\RunWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{workflowID}/instances', \formance\stack\Models\Operations\RunWorkflowRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\RunWorkflowRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -737,48 +658,43 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->runWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\RunWorkflowResponse', 'json');
+                $response->runWorkflowResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\RunWorkflowResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Send an event to a running workflow
-     * 
+     *
      * Send an event to a running workflow
-     * 
-     * @param \formance\stack\Models\Operations\SendEventRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\SendEventRequest  $request
      * @return \formance\stack\Models\Operations\SendEventResponse
      */
-	public function sendEvent(
+    public function sendEvent(
         ?\formance\stack\Models\Operations\SendEventRequest $request,
-    ): \formance\stack\Models\Operations\SendEventResponse
-    {
+    ): \formance\stack\Models\Operations\SendEventResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/events', \formance\stack\Models\Operations\SendEventRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -787,44 +703,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
+                $response->error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Test trigger
-     * 
+     *
      * Test trigger
-     * 
-     * @param \formance\stack\Models\Operations\TestTriggerRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\TestTriggerRequest  $request
      * @return \formance\stack\Models\Operations\TestTriggerResponse
      */
-	public function testTrigger(
+    public function testTrigger(
         ?\formance\stack\Models\Operations\TestTriggerRequest $request,
-    ): \formance\stack\Models\Operations\TestTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\TestTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/test', \formance\stack\Models\Operations\TestTriggerRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -833,44 +744,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2TestTriggerResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2TestTriggerResponse', 'json');
+                $response->v2TestTriggerResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2TestTriggerResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Cancel a running workflow
-     * 
+     *
      * Cancel a running workflow
-     * 
-     * @param \formance\stack\Models\Operations\V2CancelEventRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2CancelEventRequest  $request
      * @return \formance\stack\Models\Operations\V2CancelEventResponse
      */
-	public function v2CancelEvent(
+    public function v2CancelEvent(
         ?\formance\stack\Models\Operations\V2CancelEventRequest $request,
-    ): \formance\stack\Models\Operations\V2CancelEventResponse
-    {
+    ): \formance\stack\Models\Operations\V2CancelEventResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/abort', \formance\stack\Models\Operations\V2CancelEventRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -879,44 +785,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Create trigger
-     * 
+     *
      * Create trigger
-     * 
-     * @param \formance\stack\Models\Shared\V2TriggerData $request
+     *
+     * @param  \formance\stack\Models\Shared\V2TriggerData  $request
      * @return \formance\stack\Models\Operations\V2CreateTriggerResponse
      */
-	public function v2CreateTrigger(
+    public function v2CreateTrigger(
         ?\formance\stack\Models\Shared\V2TriggerData $request,
-    ): \formance\stack\Models\Operations\V2CreateTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\V2CreateTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -925,48 +826,43 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2CreateTriggerResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2CreateTriggerResponse', 'json');
+                $response->v2CreateTriggerResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2CreateTriggerResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Create workflow
-     * 
+     *
      * Create a workflow
-     * 
-     * @param \formance\stack\Models\Shared\V2CreateWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Shared\V2CreateWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\V2CreateWorkflowResponse
      */
-	public function v2CreateWorkflow(
+    public function v2CreateWorkflow(
         ?\formance\stack\Models\Shared\V2CreateWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\V2CreateWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\V2CreateWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -975,44 +871,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2CreateWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2CreateWorkflowResponse', 'json');
+                $response->v2CreateWorkflowResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2CreateWorkflowResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Delete trigger
-     * 
+     *
      * Read trigger
-     * 
-     * @param \formance\stack\Models\Operations\V2DeleteTriggerRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2DeleteTriggerRequest  $request
      * @return \formance\stack\Models\Operations\V2DeleteTriggerResponse
      */
-	public function v2DeleteTrigger(
+    public function v2DeleteTrigger(
         ?\formance\stack\Models\Operations\V2DeleteTriggerRequest $request,
-    ): \formance\stack\Models\Operations\V2DeleteTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\V2DeleteTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', \formance\stack\Models\Operations\V2DeleteTriggerRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1021,40 +912,35 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Delete a flow by id
-     * 
+     *
      * Delete a flow by id
-     * 
-     * @param \formance\stack\Models\Operations\V2DeleteWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2DeleteWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\V2DeleteWorkflowResponse
      */
-	public function v2DeleteWorkflow(
+    public function v2DeleteWorkflow(
         ?\formance\stack\Models\Operations\V2DeleteWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\V2DeleteWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\V2DeleteWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', \formance\stack\Models\Operations\V2DeleteWorkflowRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1063,40 +949,35 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a workflow instance by id
-     * 
+     *
      * Get a workflow instance by id
-     * 
-     * @param \formance\stack\Models\Operations\V2GetInstanceRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2GetInstanceRequest  $request
      * @return \formance\stack\Models\Operations\V2GetInstanceResponse
      */
-	public function v2GetInstance(
+    public function v2GetInstance(
         ?\formance\stack\Models\Operations\V2GetInstanceRequest $request,
-    ): \formance\stack\Models\Operations\V2GetInstanceResponse
-    {
+    ): \formance\stack\Models\Operations\V2GetInstanceResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}', \formance\stack\Models\Operations\V2GetInstanceRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1105,44 +986,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2GetWorkflowInstanceResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowInstanceResponse', 'json');
+                $response->v2GetWorkflowInstanceResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowInstanceResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a workflow instance history by id
-     * 
+     *
      * Get a workflow instance history by id
-     * 
-     * @param \formance\stack\Models\Operations\V2GetInstanceHistoryRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2GetInstanceHistoryRequest  $request
      * @return \formance\stack\Models\Operations\V2GetInstanceHistoryResponse
      */
-	public function v2GetInstanceHistory(
+    public function v2GetInstanceHistory(
         ?\formance\stack\Models\Operations\V2GetInstanceHistoryRequest $request,
-    ): \formance\stack\Models\Operations\V2GetInstanceHistoryResponse
-    {
+    ): \formance\stack\Models\Operations\V2GetInstanceHistoryResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/history', \formance\stack\Models\Operations\V2GetInstanceHistoryRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1151,44 +1027,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2GetWorkflowInstanceHistoryResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowInstanceHistoryResponse', 'json');
+                $response->v2GetWorkflowInstanceHistoryResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowInstanceHistoryResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a workflow instance stage history
-     * 
+     *
      * Get a workflow instance stage history
-     * 
-     * @param \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest  $request
      * @return \formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse
      */
-	public function v2GetInstanceStageHistory(
+    public function v2GetInstanceStageHistory(
         ?\formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest $request,
-    ): \formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse
-    {
+    ): \formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/stages/{number}/history', \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1197,40 +1068,35 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2GetWorkflowInstanceHistoryStageResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowInstanceHistoryStageResponse', 'json');
+                $response->v2GetWorkflowInstanceHistoryStageResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowInstanceHistoryStageResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get server info
-     * 
+     *
      * @return \formance\stack\Models\Operations\V2GetServerInfoResponse
      */
-	public function v2GetServerInfo(
-    ): \formance\stack\Models\Operations\V2GetServerInfoResponse
-    {
+    public function v2GetServerInfo(
+    ): \formance\stack\Models\Operations\V2GetServerInfoResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/_info');
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1239,44 +1105,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ServerInfo = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ServerInfo', 'json');
+                $response->v2ServerInfo = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ServerInfo', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get a flow by id
-     * 
+     *
      * Get a flow by id
-     * 
-     * @param \formance\stack\Models\Operations\V2GetWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2GetWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\V2GetWorkflowResponse
      */
-	public function v2GetWorkflow(
+    public function v2GetWorkflow(
         ?\formance\stack\Models\Operations\V2GetWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\V2GetWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\V2GetWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', \formance\stack\Models\Operations\V2GetWorkflowRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1285,45 +1146,40 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2GetWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowResponse', 'json');
+                $response->v2GetWorkflowResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetWorkflowResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List instances of a workflow
-     * 
+     *
      * List instances of a workflow
-     * 
-     * @param \formance\stack\Models\Operations\V2ListInstancesRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2ListInstancesRequest  $request
      * @return \formance\stack\Models\Operations\V2ListInstancesResponse
      */
-	public function v2ListInstances(
+    public function v2ListInstances(
         ?\formance\stack\Models\Operations\V2ListInstancesRequest $request,
-    ): \formance\stack\Models\Operations\V2ListInstancesResponse
-    {
+    ): \formance\stack\Models\Operations\V2ListInstancesResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances');
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListInstancesRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1332,45 +1188,40 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ListRunsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListRunsResponse', 'json');
+                $response->v2ListRunsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListRunsResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List triggers
-     * 
+     *
      * List triggers
-     * 
-     * @param \formance\stack\Models\Operations\V2ListTriggersRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2ListTriggersRequest  $request
      * @return \formance\stack\Models\Operations\V2ListTriggersResponse
      */
-	public function v2ListTriggers(
+    public function v2ListTriggers(
         ?\formance\stack\Models\Operations\V2ListTriggersRequest $request,
-    ): \formance\stack\Models\Operations\V2ListTriggersResponse
-    {
+    ): \formance\stack\Models\Operations\V2ListTriggersResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListTriggersRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1379,45 +1230,40 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ListTriggersResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListTriggersResponse', 'json');
+                $response->v2ListTriggersResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListTriggersResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List triggers occurrences
-     * 
+     *
      * List triggers occurrences
-     * 
-     * @param \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest  $request
      * @return \formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse
      */
-	public function v2ListTriggersOccurrences(
+    public function v2ListTriggersOccurrences(
         ?\formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest $request,
-    ): \formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse
-    {
+    ): \formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/occurrences', \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1426,45 +1272,40 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ListTriggersOccurrencesResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListTriggersOccurrencesResponse', 'json');
+                $response->v2ListTriggersOccurrencesResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListTriggersOccurrencesResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List registered workflows
-     * 
+     *
      * List registered workflows
-     * 
-     * @param \formance\stack\Models\Operations\V2ListWorkflowsRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2ListWorkflowsRequest  $request
      * @return \formance\stack\Models\Operations\V2ListWorkflowsResponse
      */
-	public function v2ListWorkflows(
+    public function v2ListWorkflows(
         ?\formance\stack\Models\Operations\V2ListWorkflowsRequest $request,
-    ): \formance\stack\Models\Operations\V2ListWorkflowsResponse
-    {
+    ): \formance\stack\Models\Operations\V2ListWorkflowsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListWorkflowsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1473,44 +1314,39 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ListWorkflowsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListWorkflowsResponse', 'json');
+                $response->v2ListWorkflowsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ListWorkflowsResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Read trigger
-     * 
+     *
      * Read trigger
-     * 
-     * @param \formance\stack\Models\Operations\V2ReadTriggerRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2ReadTriggerRequest  $request
      * @return \formance\stack\Models\Operations\V2ReadTriggerResponse
      */
-	public function v2ReadTrigger(
+    public function v2ReadTrigger(
         ?\formance\stack\Models\Operations\V2ReadTriggerRequest $request,
-    ): \formance\stack\Models\Operations\V2ReadTriggerResponse
-    {
+    ): \formance\stack\Models\Operations\V2ReadTriggerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', \formance\stack\Models\Operations\V2ReadTriggerRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1519,49 +1355,44 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ReadTriggerResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2ReadTriggerResponse', 'json');
+                $response->v2ReadTriggerResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ReadTriggerResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Run workflow
-     * 
+     *
      * Run workflow
-     * 
-     * @param \formance\stack\Models\Operations\V2RunWorkflowRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2RunWorkflowRequest  $request
      * @return \formance\stack\Models\Operations\V2RunWorkflowResponse
      */
-	public function v2RunWorkflow(
+    public function v2RunWorkflow(
         ?\formance\stack\Models\Operations\V2RunWorkflowRequest $request,
-    ): \formance\stack\Models\Operations\V2RunWorkflowResponse
-    {
+    ): \formance\stack\Models\Operations\V2RunWorkflowResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{workflowID}/instances', \formance\stack\Models\Operations\V2RunWorkflowRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2RunWorkflowRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1570,48 +1401,43 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2RunWorkflowResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2RunWorkflowResponse', 'json');
+                $response->v2RunWorkflowResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2RunWorkflowResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Send an event to a running workflow
-     * 
+     *
      * Send an event to a running workflow
-     * 
-     * @param \formance\stack\Models\Operations\V2SendEventRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\V2SendEventRequest  $request
      * @return \formance\stack\Models\Operations\V2SendEventResponse
      */
-	public function v2SendEvent(
+    public function v2SendEvent(
         ?\formance\stack\Models\Operations\V2SendEventRequest $request,
-    ): \formance\stack\Models\Operations\V2SendEventResponse
-    {
+    ): \formance\stack\Models\Operations\V2SendEventResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/events', \formance\stack\Models\Operations\V2SendEventRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "requestBody", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -1620,13 +1446,11 @@ class Orchestration
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2Error = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
+                $response->v2Error = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2Error', 'json');
             }
         }
 

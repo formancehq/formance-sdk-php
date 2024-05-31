@@ -8,28 +8,28 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class GetInstanceStageHistoryRequest
 {
     /**
      * The instance id
-     * 
+     *
      * @var string $instanceID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=instanceID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=instanceID')]
     public string $instanceID;
-    
+
     /**
      * The stage number
-     * 
+     *
      * @var int $number
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=number')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=number')]
     public int $number;
-    
-	public function __construct()
-	{
-		$this->instanceID = "";
-		$this->number = 0;
-	}
+
+    public function __construct()
+    {
+        $this->instanceID = '';
+        $this->number = 0;
+    }
 }

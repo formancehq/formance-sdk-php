@@ -11,13 +11,13 @@ namespace formance\stack\Models\Shared;
 
 class V2ActivityListWallets
 {
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $name = null;
-    
-	public function __construct()
-	{
-		$this->name = null;
-	}
+
+    public function __construct()
+    {
+        $this->name = null;
+    }
 }

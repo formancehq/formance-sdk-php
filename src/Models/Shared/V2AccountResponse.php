@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class V2AccountResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2Account')]
     public V2Account $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\V2Account();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\V2Account();
+    }
 }

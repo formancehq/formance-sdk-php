@@ -11,32 +11,32 @@ namespace formance\stack\Models\Shared;
 
 class PolicyRequest
 {
-	#[\JMS\Serializer\Annotation\SerializedName('ledgerName')]
+    #[\JMS\Serializer\Annotation\SerializedName('ledgerName')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledgerName;
-    
+
     /**
      * $ledgerQuery
-     * 
+     *
      * @var array<string, mixed> $ledgerQuery
      */
-	#[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
+    #[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     public array $ledgerQuery;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('paymentsPoolID')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('paymentsPoolID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $paymentsPoolID;
-    
-	public function __construct()
-	{
-		$this->ledgerName = "";
-		$this->ledgerQuery = [];
-		$this->name = "";
-		$this->paymentsPoolID = "";
-	}
+
+    public function __construct()
+    {
+        $this->ledgerName = '';
+        $this->ledgerQuery = [];
+        $this->name = '';
+        $this->paymentsPoolID = '';
+    }
 }

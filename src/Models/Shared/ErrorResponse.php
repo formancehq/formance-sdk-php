@@ -11,23 +11,23 @@ namespace formance\stack\Models\Shared;
 
 class ErrorResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('details')]
+    #[\JMS\Serializer\Annotation\SerializedName('details')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $details = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('errorCode')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\ErrorsEnum>')]
     public ErrorsEnum $errorCode;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $errorMessage;
-    
-	public function __construct()
-	{
-		$this->details = null;
-		$this->errorCode = \formance\stack\Models\Shared\ErrorsEnum::Internal;
-		$this->errorMessage = "";
-	}
+
+    public function __construct()
+    {
+        $this->details = null;
+        $this->errorCode = \formance\stack\Models\Shared\ErrorsEnum::Internal;
+        $this->errorMessage = '';
+    }
 }

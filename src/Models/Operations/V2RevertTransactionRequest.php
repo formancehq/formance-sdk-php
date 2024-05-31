@@ -8,46 +8,46 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class V2RevertTransactionRequest
 {
     /**
      * Revert transaction at effective date of the original tx
-     * 
+     *
      * @var ?bool $atEffectiveDate
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=atEffectiveDate')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=atEffectiveDate')]
     public ?bool $atEffectiveDate = null;
-    
+
     /**
      * Force revert
-     * 
+     *
      * @var ?bool $force
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
     public ?bool $force = null;
-    
+
     /**
      * Transaction ID.
-     * 
+     *
      * @var int $id
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public int $id;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
-	public function __construct()
-	{
-		$this->atEffectiveDate = null;
-		$this->force = null;
-		$this->id = 0;
-		$this->ledger = "";
-	}
+
+    public function __construct()
+    {
+        $this->atEffectiveDate = null;
+        $this->force = null;
+        $this->id = 0;
+        $this->ledger = '';
+    }
 }

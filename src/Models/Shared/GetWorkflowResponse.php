@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class GetWorkflowResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Workflow')]
     public Workflow $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\Workflow();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\Workflow();
+    }
 }

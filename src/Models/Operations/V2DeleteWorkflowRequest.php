@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class V2DeleteWorkflowRequest
 {
     /**
      * The flow id
-     * 
+     *
      * @var string $flowId
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=flowId')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=flowId')]
     public string $flowId;
-    
-	public function __construct()
-	{
-		$this->flowId = "";
-	}
+
+    public function __construct()
+    {
+        $this->flowId = '';
+    }
 }

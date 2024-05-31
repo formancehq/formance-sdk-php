@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class ConfigChangeSecret
 {
-	#[\JMS\Serializer\Annotation\SerializedName('secret')]
+    #[\JMS\Serializer\Annotation\SerializedName('secret')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $secret;
-    
-	public function __construct()
-	{
-		$this->secret = "";
-	}
+
+    public function __construct()
+    {
+        $this->secret = '';
+    }
 }

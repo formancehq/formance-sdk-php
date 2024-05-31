@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class WalletWithBalancesBalances
 {
-	#[\JMS\Serializer\Annotation\SerializedName('main')]
+    #[\JMS\Serializer\Annotation\SerializedName('main')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\AssetHolder')]
     public AssetHolder $main;
-    
-	public function __construct()
-	{
-		$this->main = new \formance\stack\Models\Shared\AssetHolder();
-	}
+
+    public function __construct()
+    {
+        $this->main = new \formance\stack\Models\Shared\AssetHolder();
+    }
 }

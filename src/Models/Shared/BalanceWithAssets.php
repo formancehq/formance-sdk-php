@@ -13,32 +13,32 @@ class BalanceWithAssets
 {
     /**
      * $assets
-     * 
+     *
      * @var array<string, int> $assets
      */
-	#[\JMS\Serializer\Annotation\SerializedName('assets')]
+    #[\JMS\Serializer\Annotation\SerializedName('assets')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $assets;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('expiresAt')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('expiresAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $expiresAt = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('priority')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('priority')]
     #[\JMS\Serializer\Annotation\Type('int')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?int $priority = null;
-    
-	public function __construct()
-	{
-		$this->assets = [];
-		$this->expiresAt = null;
-		$this->name = "";
-		$this->priority = null;
-	}
+
+    public function __construct()
+    {
+        $this->assets = [];
+        $this->expiresAt = null;
+        $this->name = '';
+        $this->priority = null;
+    }
 }

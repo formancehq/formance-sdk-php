@@ -421,8 +421,8 @@ try {
     $request->metadata = [
         'Engineer' => '<value>',
     ];
-    $request->pageSize = 766481;
-    $request->walletID = '<value>';;
+    $request->pageSize = 100;
+    $request->walletID = 'wallet1';;
 
     $response = $sdk->wallets->getHolds($request);
 
@@ -469,8 +469,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetTransactionsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 680555;
-    $request->walletID = '<value>';;
+    $request->pageSize = 100;
+    $request->walletID = 'wallet1';;
 
     $response = $sdk->wallets->getTransactions($request);
 
@@ -666,8 +666,8 @@ try {
     $request->metadata = [
         'Auto' => '<value>',
     ];
-    $request->name = '<value>';
-    $request->pageSize = 677327;;
+    $request->name = 'wallet1';
+    $request->pageSize = 100;;
 
     $response = $sdk->wallets->listWallets($request);
 

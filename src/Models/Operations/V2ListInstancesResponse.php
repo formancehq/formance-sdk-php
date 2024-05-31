@@ -13,50 +13,45 @@ class V2ListInstancesResponse
 {
     /**
      * HTTP response content type for this operation
-     * 
+     *
      * @var string $contentType
      */
-	
     public string $contentType;
-    
+
     /**
      * HTTP response status code for this operation
-     * 
+     *
      * @var int $statusCode
      */
-	
     public int $statusCode;
-    
+
     /**
      * Raw HTTP response; suitable for custom response parsing
-     * 
+     *
      * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
      */
-	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-    
+
     /**
      * General error
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\V2Error $v2Error
      */
-	
     public ?\formance\stack\Models\Shared\V2Error $v2Error = null;
-    
+
     /**
      * List of workflow instances
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\V2ListRunsResponse $v2ListRunsResponse
      */
-	
     public ?\formance\stack\Models\Shared\V2ListRunsResponse $v2ListRunsResponse = null;
-    
-	public function __construct()
-	{
-		$this->contentType = "";
-		$this->statusCode = 0;
-		$this->rawResponse = null;
-		$this->v2Error = null;
-		$this->v2ListRunsResponse = null;
-	}
+
+    public function __construct()
+    {
+        $this->contentType = '';
+        $this->statusCode = 0;
+        $this->rawResponse = null;
+        $this->v2Error = null;
+        $this->v2ListRunsResponse = null;
+    }
 }

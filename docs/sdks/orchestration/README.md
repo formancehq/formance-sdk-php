@@ -63,7 +63,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\CancelEventRequest();
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->cancelEvent($request);
 
@@ -264,7 +264,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteWorkflowRequest();
-    $request->flowId = '<value>';;
+    $request->flowId = 'xxx';;
 
     $response = $sdk->orchestration->deleteWorkflow($request);
 
@@ -312,7 +312,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetInstanceRequest();
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->getInstance($request);
 
@@ -360,7 +360,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetInstanceHistoryRequest();
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->getInstanceHistory($request);
 
@@ -408,8 +408,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetInstanceStageHistoryRequest();
-    $request->instanceID = '<value>';
-    $request->number = 600636;;
+    $request->instanceID = 'xxx';
+    $request->number = 0;;
 
     $response = $sdk->orchestration->getInstanceStageHistory($request);
 
@@ -457,7 +457,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetWorkflowRequest();
-    $request->flowId = '<value>';;
+    $request->flowId = 'xxx';;
 
     $response = $sdk->orchestration->getWorkflow($request);
 
@@ -505,8 +505,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\ListInstancesRequest();
-    $request->running = false;
-    $request->workflowID = '<value>';;
+    $request->running = true;
+    $request->workflowID = 'xxx';;
 
     $response = $sdk->orchestration->listInstances($request);
 
@@ -778,7 +778,7 @@ try {
         'off' => '<value>',
     ];
     $request->wait = false;
-    $request->workflowID = '<value>';;
+    $request->workflowID = 'xxx';;
 
     $response = $sdk->orchestration->runWorkflow($request);
 
@@ -828,7 +828,7 @@ try {
         $request = new Operations\SendEventRequest();
     $request->requestBody = new Operations\SendEventRequestBody();
     $request->requestBody->name = '<value>';
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->sendEvent($request);
 
@@ -927,7 +927,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2CancelEventRequest();
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->v2CancelEvent($request);
 
@@ -1128,7 +1128,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2DeleteWorkflowRequest();
-    $request->flowId = '<value>';;
+    $request->flowId = 'xxx';;
 
     $response = $sdk->orchestration->v2DeleteWorkflow($request);
 
@@ -1176,7 +1176,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetInstanceRequest();
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->v2GetInstance($request);
 
@@ -1224,7 +1224,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetInstanceHistoryRequest();
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->v2GetInstanceHistory($request);
 
@@ -1272,8 +1272,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetInstanceStageHistoryRequest();
-    $request->instanceID = '<value>';
-    $request->number = 465454;;
+    $request->instanceID = 'xxx';
+    $request->number = 0;;
 
     $response = $sdk->orchestration->v2GetInstanceStageHistory($request);
 
@@ -1359,7 +1359,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\V2GetWorkflowRequest();
-    $request->flowId = '<value>';;
+    $request->flowId = 'xxx';;
 
     $response = $sdk->orchestration->v2GetWorkflow($request);
 
@@ -1408,9 +1408,9 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListInstancesRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 437740;
-    $request->running = false;
-    $request->workflowID = '<value>';;
+    $request->pageSize = 100;
+    $request->running = true;
+    $request->workflowID = 'xxx';;
 
     $response = $sdk->orchestration->v2ListInstances($request);
 
@@ -1460,7 +1460,7 @@ try {
         $request = new Operations\V2ListTriggersRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->name = '<value>';
-    $request->pageSize = 877214;;
+    $request->pageSize = 100;;
 
     $response = $sdk->orchestration->v2ListTriggers($request);
 
@@ -1509,7 +1509,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListTriggersOccurrencesRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 934225;
+    $request->pageSize = 100;
     $request->triggerID = '<value>';;
 
     $response = $sdk->orchestration->v2ListTriggersOccurrences($request);
@@ -1559,7 +1559,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\V2ListWorkflowsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 196850;;
+    $request->pageSize = 100;;
 
     $response = $sdk->orchestration->v2ListWorkflows($request);
 
@@ -1659,7 +1659,7 @@ try {
         'Wooden' => '<value>',
     ];
     $request->wait = false;
-    $request->workflowID = '<value>';;
+    $request->workflowID = 'xxx';;
 
     $response = $sdk->orchestration->v2RunWorkflow($request);
 
@@ -1709,7 +1709,7 @@ try {
         $request = new Operations\V2SendEventRequest();
     $request->requestBody = new Operations\V2SendEventRequestBody();
     $request->requestBody->name = '<value>';
-    $request->instanceID = '<value>';;
+    $request->instanceID = 'xxx';;
 
     $response = $sdk->orchestration->v2SendEvent($request);
 

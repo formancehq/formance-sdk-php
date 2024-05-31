@@ -11,12 +11,12 @@ namespace formance\stack\Models\Operations;
 
 class SendEventRequestBody
 {
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	public function __construct()
-	{
-		$this->name = "";
-	}
+
+    public function __construct()
+    {
+        $this->name = '';
+    }
 }

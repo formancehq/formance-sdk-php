@@ -11,84 +11,84 @@ namespace formance\stack\Models\Shared;
 
 class BankAccount
 {
-	#[\JMS\Serializer\Annotation\SerializedName('accountID')]
+    #[\JMS\Serializer\Annotation\SerializedName('accountID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $accountID = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $accountNumber = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $connectorID;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('country')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('country')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $country;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('iban')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('iban')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $iban = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
-    
+
     /**
      * $metadata
-     * 
+     *
      * @var ?array<string, string> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('provider')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('provider')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $provider = null;
-    
+
     /**
      * $relatedAccounts
-     * 
+     *
      * @var ?array<\formance\stack\Models\Shared\BankAccountRelatedAccounts> $relatedAccounts
      */
-	#[\JMS\Serializer\Annotation\SerializedName('relatedAccounts')]
+    #[\JMS\Serializer\Annotation\SerializedName('relatedAccounts')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\BankAccountRelatedAccounts>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $relatedAccounts = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $swiftBicCode = null;
-    
-	public function __construct()
-	{
-		$this->accountID = null;
-		$this->accountNumber = null;
-		$this->connectorID = "";
-		$this->country = "";
-		$this->createdAt = new \DateTime();
-		$this->iban = null;
-		$this->id = "";
-		$this->metadata = null;
-		$this->name = "";
-		$this->provider = null;
-		$this->relatedAccounts = null;
-		$this->swiftBicCode = null;
-	}
+
+    public function __construct()
+    {
+        $this->accountID = null;
+        $this->accountNumber = null;
+        $this->connectorID = '';
+        $this->country = '';
+        $this->createdAt = new \DateTime();
+        $this->iban = null;
+        $this->id = '';
+        $this->metadata = null;
+        $this->name = '';
+        $this->provider = null;
+        $this->relatedAccounts = null;
+        $this->swiftBicCode = null;
+    }
 }

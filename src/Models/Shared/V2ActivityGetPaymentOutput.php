@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class V2ActivityGetPaymentOutput
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2Payment')]
     public V2Payment $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\V2Payment();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\V2Payment();
+    }
 }

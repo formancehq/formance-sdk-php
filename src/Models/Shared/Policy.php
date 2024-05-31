@@ -11,42 +11,42 @@ namespace formance\stack\Models\Shared;
 
 class Policy
 {
-	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('ledgerName')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('ledgerName')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledgerName;
-    
+
     /**
      * $ledgerQuery
-     * 
+     *
      * @var array<string, mixed> $ledgerQuery
      */
-	#[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
+    #[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     public array $ledgerQuery;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('paymentsPoolID')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('paymentsPoolID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $paymentsPoolID;
-    
-	public function __construct()
-	{
-		$this->createdAt = new \DateTime();
-		$this->id = "";
-		$this->ledgerName = "";
-		$this->ledgerQuery = [];
-		$this->name = "";
-		$this->paymentsPoolID = "";
-	}
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->id = '';
+        $this->ledgerName = '';
+        $this->ledgerQuery = [];
+        $this->name = '';
+        $this->paymentsPoolID = '';
+    }
 }

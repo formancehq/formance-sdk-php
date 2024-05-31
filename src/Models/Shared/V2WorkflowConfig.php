@@ -11,23 +11,23 @@ namespace formance\stack\Models\Shared;
 
 class V2WorkflowConfig
 {
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $name = null;
-    
+
     /**
      * $stages
-     * 
+     *
      * @var array<array<string, mixed>> $stages
      */
-	#[\JMS\Serializer\Annotation\SerializedName('stages')]
+    #[\JMS\Serializer\Annotation\SerializedName('stages')]
     #[\JMS\Serializer\Annotation\Type('array<array<string, mixed>>')]
     public array $stages;
-    
-	public function __construct()
-	{
-		$this->name = null;
-		$this->stages = [];
-	}
+
+    public function __construct()
+    {
+        $this->name = null;
+        $this->stages = [];
+    }
 }

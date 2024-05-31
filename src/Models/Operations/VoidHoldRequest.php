@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class VoidHoldRequest
 {
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
     public string $holdId;
-    
-	public function __construct()
-	{
-		$this->holdId = "";
-	}
+
+    public function __construct()
+    {
+        $this->holdId = '';
+    }
 }

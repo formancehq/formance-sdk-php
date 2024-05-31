@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class ListWalletsResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('cursor')]
+    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ListWalletsResponseCursor')]
     public ListWalletsResponseCursor $cursor;
-    
-	public function __construct()
-	{
-		$this->cursor = new \formance\stack\Models\Shared\ListWalletsResponseCursor();
-	}
+
+    public function __construct()
+    {
+        $this->cursor = new \formance\stack\Models\Shared\ListWalletsResponseCursor();
+    }
 }

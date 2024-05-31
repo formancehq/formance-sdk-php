@@ -13,50 +13,45 @@ class GetHoldsResponse
 {
     /**
      * HTTP response content type for this operation
-     * 
+     *
      * @var string $contentType
      */
-	
     public string $contentType;
-    
+
     /**
      * Holds
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\GetHoldsResponse $getHoldsResponse
      */
-	
     public ?\formance\stack\Models\Shared\GetHoldsResponse $getHoldsResponse = null;
-    
+
     /**
      * HTTP response status code for this operation
-     * 
+     *
      * @var int $statusCode
      */
-	
     public int $statusCode;
-    
+
     /**
      * Raw HTTP response; suitable for custom response parsing
-     * 
+     *
      * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
      */
-	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-    
+
     /**
      * Error
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\WalletsErrorResponse $walletsErrorResponse
      */
-	
     public ?\formance\stack\Models\Shared\WalletsErrorResponse $walletsErrorResponse = null;
-    
-	public function __construct()
-	{
-		$this->contentType = "";
-		$this->getHoldsResponse = null;
-		$this->statusCode = 0;
-		$this->rawResponse = null;
-		$this->walletsErrorResponse = null;
-	}
+
+    public function __construct()
+    {
+        $this->contentType = '';
+        $this->getHoldsResponse = null;
+        $this->statusCode = 0;
+        $this->rawResponse = null;
+        $this->walletsErrorResponse = null;
+    }
 }

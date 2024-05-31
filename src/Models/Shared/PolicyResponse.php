@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class PolicyResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Policy')]
     public Policy $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\Policy();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\Policy();
+    }
 }

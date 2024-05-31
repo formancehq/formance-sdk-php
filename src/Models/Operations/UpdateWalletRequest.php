@@ -8,18 +8,18 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateWalletRequest
 {
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateWalletRequestBody $requestBody = null;
-    
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public string $id;
-    
-	public function __construct()
-	{
-		$this->requestBody = null;
-		$this->id = "";
-	}
+
+    public function __construct()
+    {
+        $this->requestBody = null;
+        $this->id = '';
+    }
 }

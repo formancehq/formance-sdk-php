@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class ListBalancesRequest
 {
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public string $id;
-    
-	public function __construct()
-	{
-		$this->id = "";
-	}
+
+    public function __construct()
+    {
+        $this->id = '';
+    }
 }

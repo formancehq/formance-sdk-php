@@ -13,50 +13,45 @@ class ListWalletsResponse
 {
     /**
      * HTTP response content type for this operation
-     * 
+     *
      * @var string $contentType
      */
-	
     public string $contentType;
-    
+
     /**
      * OK
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\ListWalletsResponse $listWalletsResponse
      */
-	
     public ?\formance\stack\Models\Shared\ListWalletsResponse $listWalletsResponse = null;
-    
+
     /**
      * HTTP response status code for this operation
-     * 
+     *
      * @var int $statusCode
      */
-	
     public int $statusCode;
-    
+
     /**
      * Raw HTTP response; suitable for custom response parsing
-     * 
+     *
      * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
      */
-	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-    
+
     /**
      * OK
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\WalletsErrorResponse $walletsErrorResponse
      */
-	
     public ?\formance\stack\Models\Shared\WalletsErrorResponse $walletsErrorResponse = null;
-    
-	public function __construct()
-	{
-		$this->contentType = "";
-		$this->listWalletsResponse = null;
-		$this->statusCode = 0;
-		$this->rawResponse = null;
-		$this->walletsErrorResponse = null;
-	}
+
+    public function __construct()
+    {
+        $this->contentType = '';
+        $this->listWalletsResponse = null;
+        $this->statusCode = 0;
+        $this->rawResponse = null;
+        $this->walletsErrorResponse = null;
+    }
 }

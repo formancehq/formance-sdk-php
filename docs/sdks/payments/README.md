@@ -73,7 +73,7 @@ try {
         $request = new Operations\AddAccountToPoolRequest();
     $request->addAccountToPoolRequest = new Shared\AddAccountToPoolRequest();
     $request->addAccountToPoolRequest->accountID = '<value>';
-    $request->poolId = '<value>';;
+    $request->poolId = 'XXX';;
 
     $response = $sdk->payments->addAccountToPool($request);
 
@@ -450,7 +450,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeletePoolRequest();
-    $request->poolId = '<value>';;
+    $request->poolId = 'XXX';;
 
     $response = $sdk->payments->deletePool($request);
 
@@ -498,7 +498,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeleteTransferInitiationRequest();
-    $request->transferId = '<value>';;
+    $request->transferId = 'XXX';;
 
     $response = $sdk->payments->deleteTransferInitiation($request);
 
@@ -548,7 +548,7 @@ try {
         $request = new Operations\ForwardBankAccountRequest();
     $request->forwardBankAccountRequest = new Shared\ForwardBankAccountRequest();
     $request->forwardBankAccountRequest->connectorID = '<value>';
-    $request->bankAccountId = '<value>';;
+    $request->bankAccountId = 'XXX';;
 
     $response = $sdk->payments->forwardBankAccount($request);
 
@@ -596,16 +596,16 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetAccountBalancesRequest();
-    $request->accountId = '<value>';
+    $request->accountId = 'XXX';
     $request->asset = '<value>';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
     $request->from = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-02-05T05:11:20.042Z');
     $request->limit = 743236;
-    $request->pageSize = 125462;
+    $request->pageSize = 100;
     $request->sort = [
         '<value>',
     ];
-    $request->to = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-07-15T08:57:06.406Z');;
+    $request->to = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-05-18T12:09:40.608Z');;
 
     $response = $sdk->payments->getAccountBalances($request);
 
@@ -653,7 +653,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetBankAccountRequest();
-    $request->bankAccountId = '<value>';;
+    $request->bankAccountId = 'XXX';;
 
     $response = $sdk->payments->getBankAccount($request);
 
@@ -704,7 +704,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetConnectorTaskRequest();
     $request->connector = Shared\Connector::Adyen;
-    $request->taskId = '<value>';;
+    $request->taskId = 'task1';;
 
     $response = $sdk->payments->getConnectorTask($request);
 
@@ -753,8 +753,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetConnectorTaskV1Request();
     $request->connector = Shared\Connector::BankingCircle;
-    $request->connectorId = '<value>';
-    $request->taskId = '<value>';;
+    $request->connectorId = 'XXX';
+    $request->taskId = 'task1';;
 
     $response = $sdk->payments->getConnectorTaskV1($request);
 
@@ -802,7 +802,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetPaymentRequest();
-    $request->paymentId = '<value>';;
+    $request->paymentId = 'XXX';;
 
     $response = $sdk->payments->getPayment($request);
 
@@ -850,7 +850,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetPoolRequest();
-    $request->poolId = '<value>';;
+    $request->poolId = 'XXX';;
 
     $response = $sdk->payments->getPool($request);
 
@@ -899,7 +899,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\GetPoolBalancesRequest();
     $request->at = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2023-05-05T06:40:23.018Z');
-    $request->poolId = '<value>';;
+    $request->poolId = 'XXX';;
 
     $response = $sdk->payments->getPoolBalances($request);
 
@@ -947,7 +947,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetTransferInitiationRequest();
-    $request->transferId = '<value>';;
+    $request->transferId = 'XXX';;
 
     $response = $sdk->payments->getTransferInitiation($request);
 
@@ -1083,7 +1083,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListBankAccountsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 578999;
+    $request->pageSize = 100;
     $request->sort = [
         '<value>',
     ];;
@@ -1176,7 +1176,7 @@ try {
         $request = new Operations\ListConnectorTasksRequest();
     $request->connector = Shared\Connector::Modulr;
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 501686;;
+    $request->pageSize = 100;;
 
     $response = $sdk->payments->listConnectorTasks($request);
 
@@ -1225,9 +1225,9 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListConnectorTasksV1Request();
     $request->connector = Shared\Connector::BankingCircle;
-    $request->connectorId = '<value>';
+    $request->connectorId = 'XXX';
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 442673;;
+    $request->pageSize = 100;;
 
     $response = $sdk->payments->listConnectorTasksV1($request);
 
@@ -1276,7 +1276,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListPaymentsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 13778;
+    $request->pageSize = 100;
     $request->query = '<value>';
     $request->sort = [
         '<value>',
@@ -1329,7 +1329,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListPoolsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 567687;
+    $request->pageSize = 100;
     $request->query = '<value>';
     $request->sort = [
         '<value>',
@@ -1382,7 +1382,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListTransferInitiationsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 706689;
+    $request->pageSize = 100;
     $request->query = '<value>';
     $request->sort = [
         '<value>',
@@ -1434,7 +1434,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\PaymentsgetAccountRequest();
-    $request->accountId = '<value>';;
+    $request->accountId = 'XXX';;
 
     $response = $sdk->payments->paymentsgetAccount($request);
 
@@ -1524,7 +1524,8 @@ try {
         'Rustic' => '<value>',
     ];
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 954763;
+    $request->pageSize = 100;
+    $request->query = '<value>';
     $request->sort = [
         '<value>',
     ];;
@@ -1626,7 +1627,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ReadConnectorConfigV1Request();
     $request->connector = Shared\Connector::CurrencyCloud;
-    $request->connectorId = '<value>';;
+    $request->connectorId = 'XXX';;
 
     $response = $sdk->payments->readConnectorConfigV1($request);
 
@@ -1674,8 +1675,8 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\RemoveAccountFromPoolRequest();
-    $request->accountId = '<value>';
-    $request->poolId = '<value>';;
+    $request->accountId = 'XXX';
+    $request->poolId = 'XXX';;
 
     $response = $sdk->payments->removeAccountFromPool($request);
 
@@ -1778,7 +1779,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ResetConnectorV1Request();
     $request->connector = Shared\Connector::Generic;
-    $request->connectorId = '<value>';;
+    $request->connectorId = 'XXX';;
 
     $response = $sdk->payments->resetConnectorV1($request);
 
@@ -1826,7 +1827,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\RetryTransferInitiationRequest();
-    $request->transferId = '<value>';;
+    $request->transferId = 'XXX';;
 
     $response = $sdk->payments->retryTransferInitiation($request);
 
@@ -1882,7 +1883,7 @@ try {
         'sky' => '<value>',
     ];
     $request->reverseTransferInitiationRequest->reference = 'XXX';
-    $request->transferId = '<value>';;
+    $request->transferId = 'XXX';;
 
     $response = $sdk->payments->reverseTransferInitiation($request);
 
@@ -1932,7 +1933,7 @@ try {
         $request = new Operations\UdpateTransferInitiationStatusRequest();
     $request->updateTransferInitiationStatusRequest = new Shared\UpdateTransferInitiationStatusRequest();
     $request->updateTransferInitiationStatusRequest->status = Shared\Status::Validated;
-    $request->transferId = '<value>';;
+    $request->transferId = 'XXX';;
 
     $response = $sdk->payments->udpateTransferInitiationStatus($request);
 
@@ -2031,7 +2032,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\UninstallConnectorV1Request();
     $request->connector = Shared\Connector::Generic;
-    $request->connectorId = '<value>';;
+    $request->connectorId = 'XXX';;
 
     $response = $sdk->payments->uninstallConnectorV1($request);
 
@@ -2083,7 +2084,7 @@ try {
     $request->updateBankAccountMetadataRequest->metadata = [
         'West' => '<value>',
     ];
-    $request->bankAccountId = '<value>';;
+    $request->bankAccountId = 'XXX';;
 
     $response = $sdk->payments->updateBankAccountMetadata($request);
 
@@ -2133,7 +2134,7 @@ try {
         $request = new Operations\UpdateConnectorConfigV1Request();
     $request->requestBody = '<value>';
     $request->connector = Shared\Connector::Stripe;
-    $request->connectorId = '<value>';;
+    $request->connectorId = 'XXX';;
 
     $response = $sdk->payments->updateConnectorConfigV1($request);
 
@@ -2184,7 +2185,7 @@ try {
     $request->requestBody = [
         'synthesizing' => '<value>',
     ];
-    $request->paymentId = '<value>';;
+    $request->paymentId = 'XXX';;
 
     $response = $sdk->payments->updateMetadata($request);
 

@@ -13,15 +13,15 @@ class ListTriggersResponse
 {
     /**
      * $data
-     * 
+     *
      * @var array<\formance\stack\Models\Shared\Trigger> $data
      */
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Trigger>')]
     public array $data;
-    
-	public function __construct()
-	{
-		$this->data = [];
-	}
+
+    public function __construct()
+    {
+        $this->data = [];
+    }
 }

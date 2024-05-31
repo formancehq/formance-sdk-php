@@ -8,37 +8,37 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class V2RunWorkflowRequest
 {
     /**
      * $requestBody
-     * 
+     *
      * @var ?array<string, string> $requestBody
      */
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?array $requestBody = null;
-    
+
     /**
      * Wait end of the workflow before return
-     * 
+     *
      * @var ?bool $wait
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=wait')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=wait')]
     public ?bool $wait = null;
-    
+
     /**
      * The flow id
-     * 
+     *
      * @var string $workflowID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=workflowID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=workflowID')]
     public string $workflowID;
-    
-	public function __construct()
-	{
-		$this->requestBody = null;
-		$this->wait = null;
-		$this->workflowID = "";
-	}
+
+    public function __construct()
+    {
+        $this->requestBody = null;
+        $this->wait = null;
+        $this->workflowID = '';
+    }
 }

@@ -13,44 +13,44 @@ class V2PostTransaction
 {
     /**
      * $metadata
-     * 
+     *
      * @var array<string, string> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
-    
+
     /**
      * $postings
-     * 
+     *
      * @var ?array<\formance\stack\Models\Shared\V2Posting> $postings
      */
-	#[\JMS\Serializer\Annotation\SerializedName('postings')]
+    #[\JMS\Serializer\Annotation\SerializedName('postings')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2Posting>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postings = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('reference')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('reference')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('script')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('script')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2PostTransactionScript')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2PostTransactionScript $script = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('timestamp')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $timestamp = null;
-    
-	public function __construct()
-	{
-		$this->metadata = [];
-		$this->postings = null;
-		$this->reference = null;
-		$this->script = null;
-		$this->timestamp = null;
-	}
+
+    public function __construct()
+    {
+        $this->metadata = [];
+        $this->postings = null;
+        $this->reference = null;
+        $this->script = null;
+        $this->timestamp = null;
+    }
 }

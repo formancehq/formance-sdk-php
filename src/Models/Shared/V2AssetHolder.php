@@ -13,15 +13,15 @@ class V2AssetHolder
 {
     /**
      * $assets
-     * 
+     *
      * @var array<string, int> $assets
      */
-	#[\JMS\Serializer\Annotation\SerializedName('assets')]
+    #[\JMS\Serializer\Annotation\SerializedName('assets')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $assets;
-    
-	public function __construct()
-	{
-		$this->assets = [];
-	}
+
+    public function __construct()
+    {
+        $this->assets = [];
+    }
 }

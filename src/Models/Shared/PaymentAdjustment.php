@@ -11,32 +11,32 @@ namespace formance\stack\Models\Shared;
 
 class PaymentAdjustment
 {
-	#[\JMS\Serializer\Annotation\SerializedName('amount')]
+    #[\JMS\Serializer\Annotation\SerializedName('amount')]
     #[\JMS\Serializer\Annotation\Type('int')]
     public int $amount;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('raw')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('raw')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PaymentAdjustmentRaw')]
     public PaymentAdjustmentRaw $raw;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('reference')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('reference')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $reference;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('status')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('status')]
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\PaymentStatus>')]
     public PaymentStatus $status;
-    
-	public function __construct()
-	{
-		$this->amount = 0;
-		$this->createdAt = new \DateTime();
-		$this->raw = new \formance\stack\Models\Shared\PaymentAdjustmentRaw();
-		$this->reference = "";
-		$this->status = \formance\stack\Models\Shared\PaymentStatus::Pending;
-	}
+
+    public function __construct()
+    {
+        $this->amount = 0;
+        $this->createdAt = new \DateTime();
+        $this->raw = new \formance\stack\Models\Shared\PaymentAdjustmentRaw();
+        $this->reference = '';
+        $this->status = \formance\stack\Models\Shared\PaymentStatus::Pending;
+    }
 }

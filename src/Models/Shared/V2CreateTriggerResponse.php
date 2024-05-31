@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class V2CreateTriggerResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2Trigger')]
     public V2Trigger $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\V2Trigger();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\V2Trigger();
+    }
 }

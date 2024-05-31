@@ -11,19 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class V2ActivityDebitWallet
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2DebitWalletRequest')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2DebitWalletRequest $data = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $id = null;
-    
-	public function __construct()
-	{
-		$this->data = null;
-		$this->id = null;
-	}
+
+    public function __construct()
+    {
+        $this->data = null;
+        $this->id = null;
+    }
 }

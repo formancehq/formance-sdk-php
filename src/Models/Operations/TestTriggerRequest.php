@@ -8,28 +8,28 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class TestTriggerRequest
 {
     /**
      * $requestBody
-     * 
+     *
      * @var ?array<string, mixed> $requestBody
      */
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?array $requestBody = null;
-    
+
     /**
      * The trigger id
-     * 
+     *
      * @var string $triggerID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
     public string $triggerID;
-    
-	public function __construct()
-	{
-		$this->requestBody = null;
-		$this->triggerID = "";
-	}
+
+    public function __construct()
+    {
+        $this->requestBody = null;
+        $this->triggerID = '';
+    }
 }

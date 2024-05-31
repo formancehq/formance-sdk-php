@@ -13,35 +13,35 @@ class V2Log
 {
     /**
      * $data
-     * 
+     *
      * @var array<string, mixed> $data
      */
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     public array $data;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('date')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('date')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $date;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('hash')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('hash')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $hash;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('int')]
     public int $id;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('type')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('type')]
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\V2LogType>')]
     public V2LogType $type;
-    
-	public function __construct()
-	{
-		$this->data = [];
-		$this->date = new \DateTime();
-		$this->hash = "";
-		$this->id = 0;
-		$this->type = \formance\stack\Models\Shared\V2LogType::NewTransaction;
-	}
+
+    public function __construct()
+    {
+        $this->data = [];
+        $this->date = new \DateTime();
+        $this->hash = '';
+        $this->id = 0;
+        $this->type = \formance\stack\Models\Shared\V2LogType::NewTransaction;
+    }
 }

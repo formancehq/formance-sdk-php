@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class Config
 {
-	#[\JMS\Serializer\Annotation\SerializedName('storage')]
+    #[\JMS\Serializer\Annotation\SerializedName('storage')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\LedgerStorage')]
     public LedgerStorage $storage;
-    
-	public function __construct()
-	{
-		$this->storage = new \formance\stack\Models\Shared\LedgerStorage();
-	}
+
+    public function __construct()
+    {
+        $this->storage = new \formance\stack\Models\Shared\LedgerStorage();
+    }
 }

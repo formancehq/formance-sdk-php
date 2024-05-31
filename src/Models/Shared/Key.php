@@ -11,17 +11,17 @@ namespace formance\stack\Models\Shared;
 
 class Key
 {
-	#[\JMS\Serializer\Annotation\SerializedName('dataType')]
+    #[\JMS\Serializer\Annotation\SerializedName('dataType')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $dataType;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('required')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('required')]
     #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $required;
-    
-	public function __construct()
-	{
-		$this->dataType = "";
-		$this->required = false;
-	}
+
+    public function __construct()
+    {
+        $this->dataType = '';
+        $this->required = false;
+    }
 }

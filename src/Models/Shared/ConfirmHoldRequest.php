@@ -13,27 +13,27 @@ class ConfirmHoldRequest
 {
     /**
      * Define the amount to transfer.
-     * 
+     *
      * @var ?int $amount
      */
-	#[\JMS\Serializer\Annotation\SerializedName('amount')]
+    #[\JMS\Serializer\Annotation\SerializedName('amount')]
     #[\JMS\Serializer\Annotation\Type('int')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?int $amount = null;
-    
+
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
-     * 
+     *
      * @var ?bool $final
      */
-	#[\JMS\Serializer\Annotation\SerializedName('final')]
+    #[\JMS\Serializer\Annotation\SerializedName('final')]
     #[\JMS\Serializer\Annotation\Type('bool')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?bool $final = null;
-    
-	public function __construct()
-	{
-		$this->amount = null;
-		$this->final = null;
-	}
+
+    public function __construct()
+    {
+        $this->amount = null;
+        $this->final = null;
+    }
 }

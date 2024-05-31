@@ -8,42 +8,38 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
-class Auth 
+class Auth
 {
+    private SDKConfiguration $sdkConfiguration;
 
-	private SDKConfiguration $sdkConfiguration;
+    /**
+     * @param  SDKConfiguration  $sdkConfig
+     */
+    public function __construct(SDKConfiguration $sdkConfig)
+    {
+        $this->sdkConfiguration = $sdkConfig;
+    }
 
-	/**
-	 * @param SDKConfiguration $sdkConfig
-	 */
-	public function __construct(SDKConfiguration $sdkConfig)
-	{
-		$this->sdkConfiguration = $sdkConfig;
-	}
-	
     /**
      * Create client
-     * 
-     * @param \formance\stack\Models\Shared\CreateClientRequest $request
+     *
+     * @param  \formance\stack\Models\Shared\CreateClientRequest  $request
      * @return \formance\stack\Models\Operations\CreateClientResponse
      */
-	public function createClient(
+    public function createClient(
         ?\formance\stack\Models\Shared\CreateClientRequest $request,
-    ): \formance\stack\Models\Operations\CreateClientResponse
-    {
+    ): \formance\stack\Models\Operations\CreateClientResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -52,40 +48,36 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->createClientResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\CreateClientResponse', 'json');
+                $response->createClientResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\CreateClientResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Add a secret to a client
-     * 
-     * @param \formance\stack\Models\Operations\CreateSecretRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\CreateSecretRequest  $request
      * @return \formance\stack\Models\Operations\CreateSecretResponse
      */
-	public function createSecret(
+    public function createSecret(
         ?\formance\stack\Models\Operations\CreateSecretRequest $request,
-    ): \formance\stack\Models\Operations\CreateSecretResponse
-    {
+    ): \formance\stack\Models\Operations\CreateSecretResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', \formance\stack\Models\Operations\CreateSecretRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "createSecretRequest", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'createSecretRequest', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -94,36 +86,32 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->createSecretResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\CreateSecretResponse', 'json');
+                $response->createSecretResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\CreateSecretResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Delete client
-     * 
-     * @param \formance\stack\Models\Operations\DeleteClientRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\DeleteClientRequest  $request
      * @return \formance\stack\Models\Operations\DeleteClientResponse
      */
-	public function deleteClient(
+    public function deleteClient(
         ?\formance\stack\Models\Operations\DeleteClientRequest $request,
-    ): \formance\stack\Models\Operations\DeleteClientResponse
-    {
+    ): \formance\stack\Models\Operations\DeleteClientResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', \formance\stack\Models\Operations\DeleteClientRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -132,32 +120,28 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
         }
 
         return $response;
     }
-	
+
     /**
      * Delete a secret from a client
-     * 
-     * @param \formance\stack\Models\Operations\DeleteSecretRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\DeleteSecretRequest  $request
      * @return \formance\stack\Models\Operations\DeleteSecretResponse
      */
-	public function deleteSecret(
+    public function deleteSecret(
         ?\formance\stack\Models\Operations\DeleteSecretRequest $request,
-    ): \formance\stack\Models\Operations\DeleteSecretResponse
-    {
+    ): \formance\stack\Models\Operations\DeleteSecretResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', \formance\stack\Models\Operations\DeleteSecretRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -166,30 +150,26 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 204) {
         }
 
         return $response;
     }
-	
+
     /**
      * List clients
-     * 
+     *
      * @return \formance\stack\Models\Operations\ListClientsResponse
      */
-	public function listClients(
-    ): \formance\stack\Models\Operations\ListClientsResponse
-    {
+    public function listClients(
+    ): \formance\stack\Models\Operations\ListClientsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -198,36 +178,32 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->listClientsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListClientsResponse', 'json');
+                $response->listClientsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ListClientsResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * List users
-     * 
+     *
      * List users
-     * 
+     *
      * @return \formance\stack\Models\Operations\ListUsersResponse
      */
-	public function listUsers(
-    ): \formance\stack\Models\Operations\ListUsersResponse
-    {
+    public function listUsers(
+    ): \formance\stack\Models\Operations\ListUsersResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users');
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -236,36 +212,32 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->listUsersResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ListUsersResponse', 'json');
+                $response->listUsersResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ListUsersResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Read client
-     * 
-     * @param \formance\stack\Models\Operations\ReadClientRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ReadClientRequest  $request
      * @return \formance\stack\Models\Operations\ReadClientResponse
      */
-	public function readClient(
+    public function readClient(
         ?\formance\stack\Models\Operations\ReadClientRequest $request,
-    ): \formance\stack\Models\Operations\ReadClientResponse
-    {
+    ): \formance\stack\Models\Operations\ReadClientResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', \formance\stack\Models\Operations\ReadClientRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -274,38 +246,34 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->readClientResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ReadClientResponse', 'json');
+                $response->readClientResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ReadClientResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Read user
-     * 
+     *
      * Read user
-     * 
-     * @param \formance\stack\Models\Operations\ReadUserRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ReadUserRequest  $request
      * @return \formance\stack\Models\Operations\ReadUserResponse
      */
-	public function readUser(
+    public function readUser(
         ?\formance\stack\Models\Operations\ReadUserRequest $request,
-    ): \formance\stack\Models\Operations\ReadUserResponse
-    {
+    ): \formance\stack\Models\Operations\ReadUserResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', \formance\stack\Models\Operations\ReadUserRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -314,40 +282,36 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->readUserResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ReadUserResponse', 'json');
+                $response->readUserResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ReadUserResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Update client
-     * 
-     * @param \formance\stack\Models\Operations\UpdateClientRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\UpdateClientRequest  $request
      * @return \formance\stack\Models\Operations\UpdateClientResponse
      */
-	public function updateClient(
+    public function updateClient(
         ?\formance\stack\Models\Operations\UpdateClientRequest $request,
-    ): \formance\stack\Models\Operations\UpdateClientResponse
-    {
+    ): \formance\stack\Models\Operations\UpdateClientResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', \formance\stack\Models\Operations\UpdateClientRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "updateClientRequest", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'updateClientRequest', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -356,11 +320,10 @@ class Auth
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->updateClientResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\UpdateClientResponse', 'json');
+                $response->updateClientResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\UpdateClientResponse', 'json');
             }
         }
 
