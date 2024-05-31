@@ -13,15 +13,15 @@ class UpdateWalletRequestBody
 {
     /**
      * Custom metadata to attach to this wallet.
-     * 
+     *
      * @var array<string, string> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
-    
-	public function __construct()
-	{
-		$this->metadata = [];
-	}
+
+    public function __construct()
+    {
+        $this->metadata = [];
+    }
 }

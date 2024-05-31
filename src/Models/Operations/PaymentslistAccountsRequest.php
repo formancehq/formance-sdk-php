@@ -8,53 +8,64 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class PaymentslistAccountsRequest
 {
     /**
      * $requestBody
-     * 
+     *
      * @var ?array<string, mixed> $requestBody
      */
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?array $requestBody = null;
-    
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
-     * 
+     *
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
      * No other parameters can be set when this parameter is set.
-     * 
-     * 
+     *
+     *
      * @var ?string $cursor
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
     public ?string $cursor = null;
-    
+
     /**
      * The maximum number of results to return per page.
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * @var ?int $pageSize
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
-    
+
+    /**
+     * Filters used to filter resources.
+     *
+     *
+     *
+     * @var ?string $query
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
+    public ?string $query = null;
+
     /**
      * Fields used to sort payments (default is date:desc).
-     * 
+     *
      * @var ?array<string> $sort
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
     public ?array $sort = null;
-    
-	public function __construct()
-	{
-		$this->requestBody = null;
-		$this->cursor = null;
-		$this->pageSize = null;
-		$this->sort = null;
-	}
+
+    public function __construct()
+    {
+        $this->requestBody = null;
+        $this->cursor = null;
+        $this->pageSize = null;
+        $this->query = null;
+        $this->sort = null;
+    }
 }

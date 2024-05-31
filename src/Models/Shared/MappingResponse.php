@@ -11,13 +11,13 @@ namespace formance\stack\Models\Shared;
 
 class MappingResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Mapping')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Mapping $data = null;
-    
-	public function __construct()
-	{
-		$this->data = null;
-	}
+
+    public function __construct()
+    {
+        $this->data = null;
+    }
 }

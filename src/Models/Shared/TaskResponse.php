@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class TaskResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('mixed')]
     public mixed $data;
-    
-	public function __construct()
-	{
-		$this->data = null;
-	}
+
+    public function __construct()
+    {
+        $this->data = null;
+    }
 }

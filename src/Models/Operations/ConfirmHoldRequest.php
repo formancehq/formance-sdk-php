@@ -8,18 +8,18 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class ConfirmHoldRequest
 {
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?\formance\stack\Models\Shared\ConfirmHoldRequest $confirmHoldRequest = null;
-    
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
+
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
     public string $holdId;
-    
-	public function __construct()
-	{
-		$this->confirmHoldRequest = null;
-		$this->holdId = "";
-	}
+
+    public function __construct()
+    {
+        $this->confirmHoldRequest = null;
+        $this->holdId = '';
+    }
 }

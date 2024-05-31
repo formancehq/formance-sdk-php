@@ -13,15 +13,15 @@ class Transactions
 {
     /**
      * $transactions
-     * 
+     *
      * @var array<\formance\stack\Models\Shared\TransactionData> $transactions
      */
-	#[\JMS\Serializer\Annotation\SerializedName('transactions')]
+    #[\JMS\Serializer\Annotation\SerializedName('transactions')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\TransactionData>')]
     public array $transactions;
-    
-	public function __construct()
-	{
-		$this->transactions = [];
-	}
+
+    public function __construct()
+    {
+        $this->transactions = [];
+    }
 }

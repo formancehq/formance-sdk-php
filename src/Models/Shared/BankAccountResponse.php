@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class BankAccountResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\BankAccount')]
     public BankAccount $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\BankAccount();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\BankAccount();
+    }
 }

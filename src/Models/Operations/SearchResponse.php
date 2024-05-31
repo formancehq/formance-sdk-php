@@ -13,41 +13,37 @@ class SearchResponse
 {
     /**
      * HTTP response content type for this operation
-     * 
+     *
      * @var string $contentType
      */
-	
     public string $contentType;
-    
+
     /**
      * Success
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\Response $response
      */
-	
     public ?\formance\stack\Models\Shared\Response $response = null;
-    
+
     /**
      * HTTP response status code for this operation
-     * 
+     *
      * @var int $statusCode
      */
-	
     public int $statusCode;
-    
+
     /**
      * Raw HTTP response; suitable for custom response parsing
-     * 
+     *
      * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
      */
-	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-    
-	public function __construct()
-	{
-		$this->contentType = "";
-		$this->response = null;
-		$this->statusCode = 0;
-		$this->rawResponse = null;
-	}
+
+    public function __construct()
+    {
+        $this->contentType = '';
+        $this->response = null;
+        $this->statusCode = 0;
+        $this->rawResponse = null;
+    }
 }

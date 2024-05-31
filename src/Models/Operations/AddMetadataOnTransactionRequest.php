@@ -8,37 +8,37 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class AddMetadataOnTransactionRequest
 {
     /**
      * metadata
-     * 
+     *
      * @var ?array<string, mixed> $requestBody
      */
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?array $requestBody = null;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
+
     /**
      * Transaction ID.
-     * 
+     *
      * @var int $txid
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
     public int $txid;
-    
-	public function __construct()
-	{
-		$this->requestBody = null;
-		$this->ledger = "";
-		$this->txid = 0;
-	}
+
+    public function __construct()
+    {
+        $this->requestBody = null;
+        $this->ledger = '';
+        $this->txid = 0;
+    }
 }

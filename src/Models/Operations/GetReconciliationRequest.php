@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class GetReconciliationRequest
 {
     /**
      * The reconciliation ID.
-     * 
+     *
      * @var string $reconciliationID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=reconciliationID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=reconciliationID')]
     public string $reconciliationID;
-    
-	public function __construct()
-	{
-		$this->reconciliationID = "";
-	}
+
+    public function __construct()
+    {
+        $this->reconciliationID = '';
+    }
 }

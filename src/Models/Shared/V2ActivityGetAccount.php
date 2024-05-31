@@ -11,17 +11,17 @@ namespace formance\stack\Models\Shared;
 
 class V2ActivityGetAccount
 {
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('ledger')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledger;
-    
-	public function __construct()
-	{
-		$this->id = "";
-		$this->ledger = "";
-	}
+
+    public function __construct()
+    {
+        $this->id = '';
+        $this->ledger = '';
+    }
 }

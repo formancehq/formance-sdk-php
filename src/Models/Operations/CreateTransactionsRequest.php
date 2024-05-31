@@ -8,23 +8,23 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class CreateTransactionsRequest
 {
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public \formance\stack\Models\Shared\Transactions $transactions;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
-	public function __construct()
-	{
-		$this->transactions = new \formance\stack\Models\Shared\Transactions();
-		$this->ledger = "";
-	}
+
+    public function __construct()
+    {
+        $this->transactions = new \formance\stack\Models\Shared\Transactions();
+        $this->ledger = '';
+    }
 }

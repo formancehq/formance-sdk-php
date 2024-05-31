@@ -8,37 +8,37 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class V2DeleteAccountMetadataRequest
 {
     /**
      * Account address
-     * 
+     *
      * @var string $address
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=address')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=address')]
     public string $address;
-    
+
     /**
      * The key to remove.
-     * 
+     *
      * @var string $key
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=key')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=key')]
     public string $key;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
-	public function __construct()
-	{
-		$this->address = "";
-		$this->key = "";
-		$this->ledger = "";
-	}
+
+    public function __construct()
+    {
+        $this->address = '';
+        $this->key = '';
+        $this->ledger = '';
+    }
 }

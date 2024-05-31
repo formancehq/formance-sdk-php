@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class TransactionResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Transaction')]
     public Transaction $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\Transaction();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\Transaction();
+    }
 }

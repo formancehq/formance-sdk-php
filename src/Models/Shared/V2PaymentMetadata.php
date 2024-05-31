@@ -11,13 +11,13 @@ namespace formance\stack\Models\Shared;
 
 class V2PaymentMetadata
 {
-	#[\JMS\Serializer\Annotation\SerializedName('key')]
+    #[\JMS\Serializer\Annotation\SerializedName('key')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $key = null;
-    
-	public function __construct()
-	{
-		$this->key = null;
-	}
+
+    public function __construct()
+    {
+        $this->key = null;
+    }
 }

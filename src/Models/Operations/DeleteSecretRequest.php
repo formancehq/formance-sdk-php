@@ -8,28 +8,28 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class DeleteSecretRequest
 {
     /**
      * Client ID
-     * 
+     *
      * @var string $clientId
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=clientId')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=clientId')]
     public string $clientId;
-    
+
     /**
      * Secret ID
-     * 
+     *
      * @var string $secretId
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=secretId')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=secretId')]
     public string $secretId;
-    
-	public function __construct()
-	{
-		$this->clientId = "";
-		$this->secretId = "";
-	}
+
+    public function __construct()
+    {
+        $this->clientId = '';
+        $this->secretId = '';
+    }
 }

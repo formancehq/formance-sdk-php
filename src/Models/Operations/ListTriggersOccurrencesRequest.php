@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class ListTriggersOccurrencesRequest
 {
     /**
      * The trigger id
-     * 
+     *
      * @var string $triggerID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
     public string $triggerID;
-    
-	public function __construct()
-	{
-		$this->triggerID = "";
-	}
+
+    public function __construct()
+    {
+        $this->triggerID = '';
+    }
 }

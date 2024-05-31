@@ -8,60 +8,60 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class V2AddMetadataToAccountRequest
 {
     /**
      * Use an idempotency key
-     * 
+     *
      * @var ?string $idempotencyKey
      */
-	#[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
     public ?string $idempotencyKey = null;
-    
+
     /**
      * metadata
-     * 
+     *
      * @var array<string, string> $requestBody
      */
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public array $requestBody;
-    
+
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
-     * 
+     *
      * ```
      * ^\w+(:\w+)*$
      * ```
-     * 
-     * 
+     *
+     *
      * @var string $address
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=address')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=address')]
     public string $address;
-    
+
     /**
      * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
-     * 
+     *
      * @var ?bool $dryRun
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
     public ?bool $dryRun = null;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
-	public function __construct()
-	{
-		$this->idempotencyKey = null;
-		$this->requestBody = [];
-		$this->address = "";
-		$this->dryRun = null;
-		$this->ledger = "";
-	}
+
+    public function __construct()
+    {
+        $this->idempotencyKey = null;
+        $this->requestBody = [];
+        $this->address = '';
+        $this->dryRun = null;
+        $this->ledger = '';
+    }
 }

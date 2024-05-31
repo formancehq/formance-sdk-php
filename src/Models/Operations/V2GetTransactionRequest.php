@@ -8,36 +8,36 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class V2GetTransactionRequest
 {
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
     public ?string $expand = null;
-    
+
     /**
      * Transaction ID.
-     * 
+     *
      * @var int $id
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public int $id;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pit,dateTimeFormat=Y-m-d\TH:i:s.up')]
+
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pit,dateTimeFormat=Y-m-d\TH:i:s.up')]
     public ?\DateTime $pit = null;
-    
-	public function __construct()
-	{
-		$this->expand = null;
-		$this->id = 0;
-		$this->ledger = "";
-		$this->pit = null;
-	}
+
+    public function __construct()
+    {
+        $this->expand = null;
+        $this->id = 0;
+        $this->ledger = '';
+        $this->pit = null;
+    }
 }

@@ -13,50 +13,45 @@ class GetPolicyResponse
 {
     /**
      * HTTP response content type for this operation
-     * 
+     *
      * @var string $contentType
      */
-	
     public string $contentType;
-    
+
     /**
      * OK
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\PolicyResponse $policyResponse
      */
-	
     public ?\formance\stack\Models\Shared\PolicyResponse $policyResponse = null;
-    
+
     /**
      * HTTP response status code for this operation
-     * 
+     *
      * @var int $statusCode
      */
-	
     public int $statusCode;
-    
+
     /**
      * Raw HTTP response; suitable for custom response parsing
-     * 
+     *
      * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
      */
-	
     public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-    
+
     /**
      * Error response
-     * 
+     *
      * @var ?\formance\stack\Models\Shared\ReconciliationErrorResponse $reconciliationErrorResponse
      */
-	
     public ?\formance\stack\Models\Shared\ReconciliationErrorResponse $reconciliationErrorResponse = null;
-    
-	public function __construct()
-	{
-		$this->contentType = "";
-		$this->policyResponse = null;
-		$this->statusCode = 0;
-		$this->rawResponse = null;
-		$this->reconciliationErrorResponse = null;
-	}
+
+    public function __construct()
+    {
+        $this->contentType = '';
+        $this->policyResponse = null;
+        $this->statusCode = 0;
+        $this->rawResponse = null;
+        $this->reconciliationErrorResponse = null;
+    }
 }

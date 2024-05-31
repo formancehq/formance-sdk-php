@@ -13,25 +13,25 @@ class Pool
 {
     /**
      * $accounts
-     * 
+     *
      * @var array<string> $accounts
      */
-	#[\JMS\Serializer\Annotation\SerializedName('accounts')]
+    #[\JMS\Serializer\Annotation\SerializedName('accounts')]
     #[\JMS\Serializer\Annotation\Type('array<string>')]
     public array $accounts;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	public function __construct()
-	{
-		$this->accounts = [];
-		$this->id = "";
-		$this->name = "";
-	}
+
+    public function __construct()
+    {
+        $this->accounts = [];
+        $this->id = '';
+        $this->name = '';
+    }
 }

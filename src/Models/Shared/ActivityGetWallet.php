@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class ActivityGetWallet
 {
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
-    
-	public function __construct()
-	{
-		$this->id = "";
-	}
+
+    public function __construct()
+    {
+        $this->id = '';
+    }
 }

@@ -11,25 +11,25 @@ namespace formance\stack\Models\Shared;
 
 class User
 {
-	#[\JMS\Serializer\Annotation\SerializedName('email')]
+    #[\JMS\Serializer\Annotation\SerializedName('email')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $email = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $id = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('subject')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('subject')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $subject = null;
-    
-	public function __construct()
-	{
-		$this->email = null;
-		$this->id = null;
-		$this->subject = null;
-	}
+
+    public function __construct()
+    {
+        $this->email = null;
+        $this->id = null;
+        $this->subject = null;
+    }
 }

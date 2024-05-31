@@ -11,16 +11,13 @@ namespace formance\stack\Models\Shared;
 
 /**
  * V2ActivityStripeTransferMetadata - A set of key/value pairs that you can attach to a transfer object.
- * 
+ *
  * It can be useful for storing additional information about the transfer in a structured format.
- * 
- * 
- * @package formance\stack\Models\Shared
- * @access public
+ *
  */
 class V2ActivityStripeTransferMetadata
 {
-	public function __construct()
-	{
-	}
+    public function __construct()
+    {
+    }
 }

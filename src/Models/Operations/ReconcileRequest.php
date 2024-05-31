@@ -8,23 +8,23 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class ReconcileRequest
 {
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public \formance\stack\Models\Shared\ReconciliationRequest $reconciliationRequest;
-    
+
     /**
      * The policy ID.
-     * 
+     *
      * @var string $policyID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=policyID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=policyID')]
     public string $policyID;
-    
-	public function __construct()
-	{
-		$this->reconciliationRequest = new \formance\stack\Models\Shared\ReconciliationRequest();
-		$this->policyID = "";
-	}
+
+    public function __construct()
+    {
+        $this->reconciliationRequest = new \formance\stack\Models\Shared\ReconciliationRequest();
+        $this->policyID = '';
+    }
 }

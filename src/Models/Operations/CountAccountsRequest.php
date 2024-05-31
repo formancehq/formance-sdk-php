@@ -8,37 +8,37 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class CountAccountsRequest
 {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
-     * 
+     *
      * @var ?string $address
      */
-	#[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
     public ?string $address = null;
-    
+
     /**
      * Name of the ledger.
-     * 
+     *
      * @var string $ledger
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-    
+
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2
-     * 
+     *
      * @var ?array<string, mixed> $metadata
      */
-	#[SpeakeasyMetadata('queryParam:style=deepObject,explode=true,name=metadata')]
+    #[SpeakeasyMetadata('queryParam:style=deepObject,explode=true,name=metadata')]
     public ?array $metadata = null;
-    
-	public function __construct()
-	{
-		$this->address = null;
-		$this->ledger = "";
-		$this->metadata = null;
-	}
+
+    public function __construct()
+    {
+        $this->address = null;
+        $this->ledger = '';
+        $this->metadata = null;
+    }
 }

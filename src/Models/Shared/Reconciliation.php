@@ -11,73 +11,73 @@ namespace formance\stack\Models\Shared;
 
 class Reconciliation
 {
-	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
-    
+
     /**
      * $driftBalances
-     * 
+     *
      * @var array<string, int> $driftBalances
      */
-	#[\JMS\Serializer\Annotation\SerializedName('driftBalances')]
+    #[\JMS\Serializer\Annotation\SerializedName('driftBalances')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $driftBalances;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('error')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('error')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $error = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('id')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('id')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
-    
+
     /**
      * $ledgerBalances
-     * 
+     *
      * @var array<string, int> $ledgerBalances
      */
-	#[\JMS\Serializer\Annotation\SerializedName('ledgerBalances')]
+    #[\JMS\Serializer\Annotation\SerializedName('ledgerBalances')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $ledgerBalances;
-    
+
     /**
      * $paymentsBalances
-     * 
+     *
      * @var array<string, int> $paymentsBalances
      */
-	#[\JMS\Serializer\Annotation\SerializedName('paymentsBalances')]
+    #[\JMS\Serializer\Annotation\SerializedName('paymentsBalances')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $paymentsBalances;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('policyID')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('policyID')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $policyID;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $reconciledAtLedger;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $reconciledAtPayments;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('status')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('status')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $status;
-    
-	public function __construct()
-	{
-		$this->createdAt = new \DateTime();
-		$this->driftBalances = [];
-		$this->error = null;
-		$this->id = "";
-		$this->ledgerBalances = [];
-		$this->paymentsBalances = [];
-		$this->policyID = "";
-		$this->reconciledAtLedger = new \DateTime();
-		$this->reconciledAtPayments = new \DateTime();
-		$this->status = "";
-	}
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->driftBalances = [];
+        $this->error = null;
+        $this->id = '';
+        $this->ledgerBalances = [];
+        $this->paymentsBalances = [];
+        $this->policyID = '';
+        $this->reconciledAtLedger = new \DateTime();
+        $this->reconciledAtPayments = new \DateTime();
+        $this->status = '';
+    }
 }

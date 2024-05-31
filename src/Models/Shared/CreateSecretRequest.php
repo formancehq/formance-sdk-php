@@ -13,21 +13,21 @@ class CreateSecretRequest
 {
     /**
      * $metadata
-     * 
+     *
      * @var ?array<string, mixed> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	public function __construct()
-	{
-		$this->metadata = null;
-		$this->name = "";
-	}
+
+    public function __construct()
+    {
+        $this->metadata = null;
+        $this->name = '';
+    }
 }

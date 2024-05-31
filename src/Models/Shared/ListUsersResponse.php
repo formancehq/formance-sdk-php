@@ -13,16 +13,16 @@ class ListUsersResponse
 {
     /**
      * $data
-     * 
+     *
      * @var ?array<\formance\stack\Models\Shared\User> $data
      */
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\User>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $data = null;
-    
-	public function __construct()
-	{
-		$this->data = null;
-	}
+
+    public function __construct()
+    {
+        $this->data = null;
+    }
 }

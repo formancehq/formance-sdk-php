@@ -13,15 +13,15 @@ class PoolBalances
 {
     /**
      * $balances
-     * 
+     *
      * @var array<\formance\stack\Models\Shared\PoolBalance> $balances
      */
-	#[\JMS\Serializer\Annotation\SerializedName('balances')]
+    #[\JMS\Serializer\Annotation\SerializedName('balances')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\PoolBalance>')]
     public array $balances;
-    
-	public function __construct()
-	{
-		$this->balances = [];
-	}
+
+    public function __construct()
+    {
+        $this->balances = [];
+    }
 }

@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class ActivityDebitWalletOutput
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Hold')]
     public Hold $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\Hold();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\Hold();
+    }
 }

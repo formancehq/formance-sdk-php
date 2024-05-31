@@ -88,7 +88,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\DeletePolicyRequest();
-    $request->policyID = '<value>';;
+    $request->policyID = 'XXX';;
 
     $response = $sdk->reconciliation->deletePolicy($request);
 
@@ -136,7 +136,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetPolicyRequest();
-    $request->policyID = '<value>';;
+    $request->policyID = 'XXX';;
 
     $response = $sdk->reconciliation->getPolicy($request);
 
@@ -184,7 +184,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\GetReconciliationRequest();
-    $request->reconciliationID = '<value>';;
+    $request->reconciliationID = 'XXX';;
 
     $response = $sdk->reconciliation->getReconciliation($request);
 
@@ -233,7 +233,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListPoliciesRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 520028;;
+    $request->pageSize = 100;;
 
     $response = $sdk->reconciliation->listPolicies($request);
 
@@ -282,7 +282,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
         $request = new Operations\ListReconciliationsRequest();
     $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 954636;;
+    $request->pageSize = 100;;
 
     $response = $sdk->reconciliation->listReconciliations($request);
 
@@ -333,7 +333,7 @@ try {
     $request->reconciliationRequest = new Shared\ReconciliationRequest();
     $request->reconciliationRequest->reconciledAtLedger = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-01-01T00:00:00.000Z');
     $request->reconciliationRequest->reconciledAtPayments = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2021-01-01T00:00:00.000Z');
-    $request->policyID = '<value>';;
+    $request->policyID = 'XXX';;
 
     $response = $sdk->reconciliation->reconcile($request);
 

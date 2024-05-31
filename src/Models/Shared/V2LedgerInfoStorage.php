@@ -13,16 +13,16 @@ class V2LedgerInfoStorage
 {
     /**
      * $migrations
-     * 
+     *
      * @var ?array<\formance\stack\Models\Shared\V2MigrationInfo> $migrations
      */
-	#[\JMS\Serializer\Annotation\SerializedName('migrations')]
+    #[\JMS\Serializer\Annotation\SerializedName('migrations')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2MigrationInfo>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $migrations = null;
-    
-	public function __construct()
-	{
-		$this->migrations = null;
-	}
+
+    public function __construct()
+    {
+        $this->migrations = null;
+    }
 }

@@ -11,7 +11,7 @@ namespace formance\stack\Models\Shared;
 
 class V2PaymentRaw
 {
-	public function __construct()
-	{
-	}
+    public function __construct()
+    {
+    }
 }

@@ -11,31 +11,31 @@ namespace formance\stack\Models\Shared;
 
 class ScriptResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('details')]
+    #[\JMS\Serializer\Annotation\SerializedName('details')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $details = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('errorCode')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
     #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\ErrorsEnum>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ErrorsEnum $errorCode = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $errorMessage = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('transaction')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('transaction')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Transaction')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Transaction $transaction = null;
-    
-	public function __construct()
-	{
-		$this->details = null;
-		$this->errorCode = null;
-		$this->errorMessage = null;
-		$this->transaction = null;
-	}
+
+    public function __construct()
+    {
+        $this->details = null;
+        $this->errorCode = null;
+        $this->errorMessage = null;
+        $this->transaction = null;
+    }
 }

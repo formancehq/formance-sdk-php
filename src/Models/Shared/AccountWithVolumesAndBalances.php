@@ -11,51 +11,51 @@ namespace formance\stack\Models\Shared;
 
 class AccountWithVolumesAndBalances
 {
-	#[\JMS\Serializer\Annotation\SerializedName('address')]
+    #[\JMS\Serializer\Annotation\SerializedName('address')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $address;
-    
+
     /**
      * $balances
-     * 
+     *
      * @var ?array<string, int> $balances
      */
-	#[\JMS\Serializer\Annotation\SerializedName('balances')]
+    #[\JMS\Serializer\Annotation\SerializedName('balances')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $balances = null;
-    
+
     /**
      * $metadata
-     * 
+     *
      * @var ?array<string, mixed> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('type')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('type')]
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $type = null;
-    
+
     /**
      * $volumes
-     * 
+     *
      * @var ?array<string, \formance\stack\Models\Shared\Volume> $volumes
      */
-	#[\JMS\Serializer\Annotation\SerializedName('volumes')]
+    #[\JMS\Serializer\Annotation\SerializedName('volumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, formance\stack\Models\Shared\Volume>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $volumes = null;
-    
-	public function __construct()
-	{
-		$this->address = "";
-		$this->balances = null;
-		$this->metadata = null;
-		$this->type = null;
-		$this->volumes = null;
-	}
+
+    public function __construct()
+    {
+        $this->address = '';
+        $this->balances = null;
+        $this->metadata = null;
+        $this->type = null;
+        $this->volumes = null;
+    }
 }

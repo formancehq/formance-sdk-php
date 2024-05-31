@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class V2TransactionsCursorResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('cursor')]
+    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2TransactionsCursorResponseCursor')]
     public V2TransactionsCursorResponseCursor $cursor;
-    
-	public function __construct()
-	{
-		$this->cursor = new \formance\stack\Models\Shared\V2TransactionsCursorResponseCursor();
-	}
+
+    public function __construct()
+    {
+        $this->cursor = new \formance\stack\Models\Shared\V2TransactionsCursorResponseCursor();
+    }
 }

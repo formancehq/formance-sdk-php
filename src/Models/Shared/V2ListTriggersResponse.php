@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class V2ListTriggersResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('cursor')]
+    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ListTriggersResponseCursor')]
     public V2ListTriggersResponseCursor $cursor;
-    
-	public function __construct()
-	{
-		$this->cursor = new \formance\stack\Models\Shared\V2ListTriggersResponseCursor();
-	}
+
+    public function __construct()
+    {
+        $this->cursor = new \formance\stack\Models\Shared\V2ListTriggersResponseCursor();
+    }
 }

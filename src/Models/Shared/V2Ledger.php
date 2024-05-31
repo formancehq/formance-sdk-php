@@ -11,33 +11,33 @@ namespace formance\stack\Models\Shared;
 
 class V2Ledger
 {
-	#[\JMS\Serializer\Annotation\SerializedName('addedAt')]
+    #[\JMS\Serializer\Annotation\SerializedName('addedAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $addedAt;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('bucket')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('bucket')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $bucket;
-    
+
     /**
      * $metadata
-     * 
+     *
      * @var ?array<string, string> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	public function __construct()
-	{
-		$this->addedAt = new \DateTime();
-		$this->bucket = "";
-		$this->metadata = null;
-		$this->name = "";
-	}
+
+    public function __construct()
+    {
+        $this->addedAt = new \DateTime();
+        $this->bucket = '';
+        $this->metadata = null;
+        $this->name = '';
+    }
 }

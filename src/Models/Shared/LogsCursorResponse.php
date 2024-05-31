@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class LogsCursorResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('cursor')]
+    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\LogsCursorResponseCursor')]
     public LogsCursorResponseCursor $cursor;
-    
-	public function __construct()
-	{
-		$this->cursor = new \formance\stack\Models\Shared\LogsCursorResponseCursor();
-	}
+
+    public function __construct()
+    {
+        $this->cursor = new \formance\stack\Models\Shared\LogsCursorResponseCursor();
+    }
 }

@@ -11,7 +11,7 @@ namespace formance\stack\Models\Shared;
 
 class QueryRaw
 {
-	public function __construct()
-	{
-	}
+    public function __construct()
+    {
+    }
 }

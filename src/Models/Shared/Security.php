@@ -8,14 +8,14 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Shared;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class Security
 {
-	#[SpeakeasyMetadata('security:scheme=true,type=oauth2,name=Authorization')]
+    #[SpeakeasyMetadata('security:scheme=true,type=oauth2,name=Authorization')]
     public string $authorization;
-    
-	public function __construct()
-	{
-		$this->authorization = "";
-	}
+
+    public function __construct()
+    {
+        $this->authorization = '';
+    }
 }

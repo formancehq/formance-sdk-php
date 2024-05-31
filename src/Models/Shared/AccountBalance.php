@@ -11,42 +11,42 @@ namespace formance\stack\Models\Shared;
 
 class AccountBalance
 {
-	#[\JMS\Serializer\Annotation\SerializedName('accountId')]
+    #[\JMS\Serializer\Annotation\SerializedName('accountId')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $accountId;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('asset')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('asset')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $asset;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('balance')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('balance')]
     #[\JMS\Serializer\Annotation\Type('int')]
     public int $balance;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
-    
+
     /**
-     * 
+     *
      * @var string $currency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-	#[\JMS\Serializer\Annotation\SerializedName('currency')]
+    #[\JMS\Serializer\Annotation\SerializedName('currency')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $currency;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('lastUpdatedAt')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('lastUpdatedAt')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $lastUpdatedAt;
-    
-	public function __construct()
-	{
-		$this->accountId = "";
-		$this->asset = "";
-		$this->balance = 0;
-		$this->createdAt = new \DateTime();
-		$this->currency = "";
-		$this->lastUpdatedAt = new \DateTime();
-	}
+
+    public function __construct()
+    {
+        $this->accountId = '';
+        $this->asset = '';
+        $this->balance = 0;
+        $this->createdAt = new \DateTime();
+        $this->currency = '';
+        $this->lastUpdatedAt = new \DateTime();
+    }
 }

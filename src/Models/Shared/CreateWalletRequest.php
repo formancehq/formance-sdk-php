@@ -13,20 +13,20 @@ class CreateWalletRequest
 {
     /**
      * Custom metadata to attach to this wallet.
-     * 
+     *
      * @var array<string, string> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('name')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('name')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
-    
-	public function __construct()
-	{
-		$this->metadata = [];
-		$this->name = "";
-	}
+
+    public function __construct()
+    {
+        $this->metadata = [];
+        $this->name = '';
+    }
 }

@@ -8,40 +8,36 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
-class Webhooks 
+class Webhooks
 {
+    private SDKConfiguration $sdkConfiguration;
 
-	private SDKConfiguration $sdkConfiguration;
+    /**
+     * @param  SDKConfiguration  $sdkConfig
+     */
+    public function __construct(SDKConfiguration $sdkConfig)
+    {
+        $this->sdkConfiguration = $sdkConfig;
+    }
 
-	/**
-	 * @param SDKConfiguration $sdkConfig
-	 */
-	public function __construct(SDKConfiguration $sdkConfig)
-	{
-		$this->sdkConfiguration = $sdkConfig;
-	}
-	
     /**
      * Activate one config
-     * 
+     *
      * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
-     * 
-     * @param \formance\stack\Models\Operations\ActivateConfigRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\ActivateConfigRequest  $request
      * @return \formance\stack\Models\Operations\ActivateConfigResponse
      */
-	public function activateConfig(
+    public function activateConfig(
         ?\formance\stack\Models\Operations\ActivateConfigRequest $request,
-    ): \formance\stack\Models\Operations\ActivateConfigResponse
-    {
+    ): \formance\stack\Models\Operations\ActivateConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/activate', \formance\stack\Models\Operations\ActivateConfigRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -50,52 +46,47 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Change the signing secret of a config
-     * 
+     *
      * Change the signing secret of the endpoint of a webhooks config.
-     * 
+     *
      * If not passed or empty, a secret is automatically generated.
      * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-     * 
-     * 
-     * @param \formance\stack\Models\Operations\ChangeConfigSecretRequest $request
+     *
+     *
+     * @param  \formance\stack\Models\Operations\ChangeConfigSecretRequest  $request
      * @return \formance\stack\Models\Operations\ChangeConfigSecretResponse
      */
-	public function changeConfigSecret(
+    public function changeConfigSecret(
         ?\formance\stack\Models\Operations\ChangeConfigSecretRequest $request,
-    ): \formance\stack\Models\Operations\ChangeConfigSecretResponse
-    {
+    ): \formance\stack\Models\Operations\ChangeConfigSecretResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/secret/change', \formance\stack\Models\Operations\ChangeConfigSecretRequest::class, $request);
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "configChangeSecret", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'configChangeSecret', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -104,44 +95,39 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Deactivate one config
-     * 
+     *
      * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
-     * 
-     * @param \formance\stack\Models\Operations\DeactivateConfigRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\DeactivateConfigRequest  $request
      * @return \formance\stack\Models\Operations\DeactivateConfigResponse
      */
-	public function deactivateConfig(
+    public function deactivateConfig(
         ?\formance\stack\Models\Operations\DeactivateConfigRequest $request,
-    ): \formance\stack\Models\Operations\DeactivateConfigResponse
-    {
+    ): \formance\stack\Models\Operations\DeactivateConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/deactivate', \formance\stack\Models\Operations\DeactivateConfigRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -150,44 +136,39 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Delete one config
-     * 
+     *
      * Delete a webhooks config by ID.
-     * 
-     * @param \formance\stack\Models\Operations\DeleteConfigRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\DeleteConfigRequest  $request
      * @return \formance\stack\Models\Operations\DeleteConfigResponse
      */
-	public function deleteConfig(
+    public function deleteConfig(
         ?\formance\stack\Models\Operations\DeleteConfigRequest $request,
-    ): \formance\stack\Models\Operations\DeleteConfigResponse
-    {
+    ): \formance\stack\Models\Operations\DeleteConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}', \formance\stack\Models\Operations\DeleteConfigRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -196,41 +177,36 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Get many configs
-     * 
+     *
      * Sorted by updated date descending
-     * 
-     * @param \formance\stack\Models\Operations\GetManyConfigsRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\GetManyConfigsRequest  $request
      * @return \formance\stack\Models\Operations\GetManyConfigsResponse
      */
-	public function getManyConfigs(
+    public function getManyConfigs(
         ?\formance\stack\Models\Operations\GetManyConfigsRequest $request,
-    ): \formance\stack\Models\Operations\GetManyConfigsResponse
-    {
+    ): \formance\stack\Models\Operations\GetManyConfigsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
-        
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\GetManyConfigsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -239,58 +215,53 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configsResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigsResponse', 'json');
+                $response->configsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigsResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Insert a new config
-     * 
+     *
      * Insert a new webhooks config.
-     * 
+     *
      * The endpoint should be a valid https URL and be unique.
-     * 
+     *
      * The secret is the endpoint's verification secret.
      * If not passed or empty, a secret is automatically generated.
      * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-     * 
+     *
      * All eventTypes are converted to lower-case when inserted.
-     * 
-     * 
-     * @param \formance\stack\Models\Shared\ConfigUser $request
+     *
+     *
+     * @param  \formance\stack\Models\Shared\ConfigUser  $request
      * @return \formance\stack\Models\Operations\InsertConfigResponse
      */
-	public function insertConfig(
+    public function insertConfig(
         \formance\stack\Models\Shared\ConfigUser $request,
-    ): \formance\stack\Models\Operations\InsertConfigResponse
-    {
+    ): \formance\stack\Models\Operations\InsertConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
-        
         $options = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, "request", "json");
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -299,44 +270,39 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 
         return $response;
     }
-	
+
     /**
      * Test one config
-     * 
+     *
      * Test a config by sending a webhook to its endpoint.
-     * 
-     * @param \formance\stack\Models\Operations\TestConfigRequest $request
+     *
+     * @param  \formance\stack\Models\Operations\TestConfigRequest  $request
      * @return \formance\stack\Models\Operations\TestConfigResponse
      */
-	public function testConfig(
+    public function testConfig(
         ?\formance\stack\Models\Operations\TestConfigRequest $request,
-    ): \formance\stack\Models\Operations\TestConfigResponse
-    {
+    ): \formance\stack\Models\Operations\TestConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/test', \formance\stack\Models\Operations\TestConfigRequest::class, $request);
-        
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        
+
         $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
-        
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
@@ -345,17 +311,15 @@ class Webhooks
         $response->statusCode = $statusCode;
         $response->contentType = $contentType;
         $response->rawResponse = $httpResponse;
-        
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->attemptResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\AttemptResponse', 'json');
+                $response->attemptResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\AttemptResponse', 'json');
             }
-        }
-        else {
+        } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
             }
         }
 

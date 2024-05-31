@@ -11,37 +11,37 @@ namespace formance\stack\Models\Shared;
 
 class ReverseTransferInitiationRequest
 {
-	#[\JMS\Serializer\Annotation\SerializedName('amount')]
+    #[\JMS\Serializer\Annotation\SerializedName('amount')]
     #[\JMS\Serializer\Annotation\Type('int')]
     public int $amount;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('asset')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('asset')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $asset;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('description')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('description')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $description;
-    
+
     /**
      * $metadata
-     * 
+     *
      * @var array<string, string> $metadata
      */
-	#[\JMS\Serializer\Annotation\SerializedName('metadata')]
+    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('reference')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('reference')]
     #[\JMS\Serializer\Annotation\Type('string')]
     public string $reference;
-    
-	public function __construct()
-	{
-		$this->amount = 0;
-		$this->asset = "";
-		$this->description = "";
-		$this->metadata = [];
-		$this->reference = "";
-	}
+
+    public function __construct()
+    {
+        $this->amount = 0;
+        $this->asset = '';
+        $this->description = '';
+        $this->metadata = [];
+        $this->reference = '';
+    }
 }

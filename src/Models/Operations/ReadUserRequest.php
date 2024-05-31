@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class ReadUserRequest
 {
     /**
      * User ID
-     * 
+     *
      * @var string $userId
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=userId')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=userId')]
     public string $userId;
-    
-	public function __construct()
-	{
-		$this->userId = "";
-	}
+
+    public function __construct()
+    {
+        $this->userId = '';
+    }
 }

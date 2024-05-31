@@ -11,17 +11,17 @@ namespace formance\stack\Models\Shared;
 
 class ReconciliationRequest
 {
-	#[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
+    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $reconciledAtLedger;
-    
-	#[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
+
+    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
     #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $reconciledAtPayments;
-    
-	public function __construct()
-	{
-		$this->reconciledAtLedger = new \DateTime();
-		$this->reconciledAtPayments = new \DateTime();
-	}
+
+    public function __construct()
+    {
+        $this->reconciledAtLedger = new \DateTime();
+        $this->reconciledAtPayments = new \DateTime();
+    }
 }

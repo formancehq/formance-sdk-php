@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class AccountResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\AccountWithVolumesAndBalances')]
     public AccountWithVolumesAndBalances $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\AccountWithVolumesAndBalances();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\AccountWithVolumesAndBalances();
+    }
 }

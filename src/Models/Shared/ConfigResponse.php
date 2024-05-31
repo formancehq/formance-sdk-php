@@ -11,12 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class ConfigResponse
 {
-	#[\JMS\Serializer\Annotation\SerializedName('data')]
+    #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\WebhooksConfig')]
     public WebhooksConfig $data;
-    
-	public function __construct()
-	{
-		$this->data = new \formance\stack\Models\Shared\WebhooksConfig();
-	}
+
+    public function __construct()
+    {
+        $this->data = new \formance\stack\Models\Shared\WebhooksConfig();
+    }
 }

@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class DeletePolicyRequest
 {
     /**
      * The policy ID.
-     * 
+     *
      * @var string $policyID
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=policyID')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=policyID')]
     public string $policyID;
-    
-	public function __construct()
-	{
-		$this->policyID = "";
-	}
+
+    public function __construct()
+    {
+        $this->policyID = '';
+    }
 }

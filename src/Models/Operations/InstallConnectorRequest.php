@@ -8,23 +8,23 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use \formance\stack\Utils\SpeakeasyMetadata;
+use formance\stack\Utils\SpeakeasyMetadata;
 class InstallConnectorRequest
 {
-	#[SpeakeasyMetadata('request:mediaType=application/json')]
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
     public mixed $requestBody;
-    
+
     /**
      * The name of the connector.
-     * 
+     *
      * @var \formance\stack\Models\Shared\Connector $connector
      */
-	#[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
     public \formance\stack\Models\Shared\Connector $connector;
-    
-	public function __construct()
-	{
-		$this->requestBody = null;
-		$this->connector = \formance\stack\Models\Shared\Connector::Stripe;
-	}
+
+    public function __construct()
+    {
+        $this->requestBody = null;
+        $this->connector = \formance\stack\Models\Shared\Connector::Stripe;
+    }
 }

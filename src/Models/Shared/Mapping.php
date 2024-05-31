@@ -13,15 +13,15 @@ class Mapping
 {
     /**
      * $contracts
-     * 
+     *
      * @var array<\formance\stack\Models\Shared\Contract> $contracts
      */
-	#[\JMS\Serializer\Annotation\SerializedName('contracts')]
+    #[\JMS\Serializer\Annotation\SerializedName('contracts')]
     #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Contract>')]
     public array $contracts;
-    
-	public function __construct()
-	{
-		$this->contracts = [];
-	}
+
+    public function __construct()
+    {
+        $this->contracts = [];
+    }
 }

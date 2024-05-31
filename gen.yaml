@@ -12,7 +12,8 @@ generation:
   comments: {}
   telemetryEnabled: false
 php:
-  version: 2.0.6
+  version: 2.1.0
+  flattenGlobalSecurity: true
   imports:
     option: openapi
     paths:
