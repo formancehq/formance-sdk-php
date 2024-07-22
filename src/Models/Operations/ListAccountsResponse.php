@@ -26,7 +26,7 @@ class ListAccountsResponse
     public string $contentType;
 
     /**
-     * Error
+     * Not found
      *
      * @var ?\formance\stack\Models\Shared\ErrorResponse $errorResponse
      */

@@ -24,6 +24,9 @@ class ListWalletsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
     public ?string $cursor = null;
 
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
+    public ?string $expand = null;
+
     /**
      * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
      *
@@ -51,6 +54,7 @@ class ListWalletsRequest
     public function __construct()
     {
         $this->cursor = null;
+        $this->expand = null;
         $this->metadata = null;
         $this->name = null;
         $this->pageSize = null;
