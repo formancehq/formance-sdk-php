@@ -14,10 +14,10 @@ class OrchestrationListWalletsResponseCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\Wallet> $data
+     * @var array<\formance\stack\Models\Shared\OrchestrationWallet> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Wallet>')]
+    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\OrchestrationWallet>')]
     public array $data;
 
     #[\JMS\Serializer\Annotation\SerializedName('hasMore')]

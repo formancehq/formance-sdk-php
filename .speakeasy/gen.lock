@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: e567423a9ded9ae8d147cb079b72d691
-  docVersion: v2.0.0-rc.31
-  speakeasyVersion: 1.299.3
-  generationVersion: 2.338.7
-  releaseVersion: 2.1.0
-  configChecksum: ed36eb71accfa543f60868193ebed917
+  docChecksum: b490ac2541da61a0ac7ae9eaf933e4ca
+  docVersion: v2.0.3
+  speakeasyVersion: 1.344.1
+  generationVersion: 2.376.2
+  releaseVersion: 2.1.1
+  configChecksum: e29b774e8d29a832744b171433f631fd
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
   published: true
 features:
   php:
-    core: 3.3.4
+    core: 3.3.8
     deprecations: 2.81.1
     getRequestBodies: 2.81.1
     globalSecurity: 2.81.6
@@ -478,7 +478,7 @@ generatedFiles:
   - src/Models/Shared/OrchestrationTransaction.php
   - src/Models/Shared/OrchestrationListWalletsResponseCursor.php
   - src/Models/Shared/OrchestrationListWalletsResponse.php
-  - src/Models/Shared/Wallet.php
+  - src/Models/Shared/OrchestrationWallet.php
   - src/Models/Shared/ActivityGetWalletOutput.php
   - src/Models/Shared/WalletWithBalancesBalances.php
   - src/Models/Shared/WalletWithBalances.php
@@ -511,7 +511,7 @@ generatedFiles:
   - src/Models/Shared/DebitWalletRequest.php
   - src/Models/Shared/Monetary.php
   - src/Models/Shared/ActivityCreditWallet.php
-  - src/Models/Shared/CreditWalletRequest.php
+  - src/Models/Shared/OrchestrationCreditWalletRequest.php
   - src/Models/Shared/ActivityCreateTransaction.php
   - src/Models/Shared/OrchestrationPostTransactionScript.php
   - src/Models/Shared/OrchestrationPostTransaction.php
@@ -689,7 +689,10 @@ generatedFiles:
   - src/Models/Shared/Balance.php
   - src/Models/Shared/CreateBalanceRequest.php
   - src/Models/Shared/CreateWalletResponse.php
+  - src/Models/Shared/WalletBalances.php
+  - src/Models/Shared/Wallet.php
   - src/Models/Shared/CreateWalletRequest.php
+  - src/Models/Shared/CreditWalletRequest.php
   - src/Models/Shared/DebitWalletResponse.php
   - src/Models/Shared/GetBalanceResponse.php
   - src/Models/Shared/BalanceWithAssets.php
@@ -1143,7 +1146,7 @@ generatedFiles:
   - docs/Models/Shared/OrchestrationTransaction.md
   - docs/Models/Shared/OrchestrationListWalletsResponseCursor.md
   - docs/Models/Shared/OrchestrationListWalletsResponse.md
-  - docs/Models/Shared/Wallet.md
+  - docs/Models/Shared/OrchestrationWallet.md
   - docs/Models/Shared/ActivityGetWalletOutput.md
   - docs/Models/Shared/WalletWithBalancesBalances.md
   - docs/Models/Shared/WalletWithBalances.md
@@ -1176,7 +1179,7 @@ generatedFiles:
   - docs/Models/Shared/DebitWalletRequest.md
   - docs/Models/Shared/Monetary.md
   - docs/Models/Shared/ActivityCreditWallet.md
-  - docs/Models/Shared/CreditWalletRequest.md
+  - docs/Models/Shared/OrchestrationCreditWalletRequest.md
   - docs/Models/Shared/ActivityCreateTransaction.md
   - docs/Models/Shared/OrchestrationPostTransactionScript.md
   - docs/Models/Shared/OrchestrationPostTransaction.md
@@ -1354,7 +1357,10 @@ generatedFiles:
   - docs/Models/Shared/Balance.md
   - docs/Models/Shared/CreateBalanceRequest.md
   - docs/Models/Shared/CreateWalletResponse.md
+  - docs/Models/Shared/WalletBalances.md
+  - docs/Models/Shared/Wallet.md
   - docs/Models/Shared/CreateWalletRequest.md
+  - docs/Models/Shared/CreditWalletRequest.md
   - docs/Models/Shared/DebitWalletResponse.md
   - docs/Models/Shared/GetBalanceResponse.md
   - docs/Models/Shared/BalanceWithAssets.md
@@ -1394,3 +1400,4 @@ generatedFiles:
   - docs/sdks/webhooks/README.md
   - USAGE.md
   - .gitattributes
+  - CONTRIBUTING.md
