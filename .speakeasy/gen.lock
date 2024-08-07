@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: b490ac2541da61a0ac7ae9eaf933e4ca
-  docVersion: v2.0.3
-  speakeasyVersion: 1.346.0
-  generationVersion: 2.379.3
-  releaseVersion: 2.1.2
-  configChecksum: e30c2f16bc5982c80de214c823a19a3f
+  docChecksum: ce7ade45ab46c0be01f2b9f40d460d3a
+  docVersion: v2.0.9
+  speakeasyVersion: 1.355.0
+  generationVersion: 2.387.0
+  releaseVersion: 2.1.3
+  configChecksum: 68ac3e7a43225b913bab202e771e356f
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -16,7 +16,7 @@ features:
     core: 3.3.10
     deprecations: 2.81.1
     getRequestBodies: 2.81.1
-    globalSecurity: 2.81.6
+    globalSecurity: 2.81.7
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.1
     groups: 2.81.2
@@ -320,6 +320,7 @@ generatedFiles:
   - src/Models/Operations/ConfirmHoldResponse.php
   - src/Models/Operations/CreateBalanceRequest.php
   - src/Models/Operations/CreateBalanceResponse.php
+  - src/Models/Operations/CreateWalletRequest.php
   - src/Models/Operations/CreateWalletResponse.php
   - src/Models/Operations/CreditWalletRequest.php
   - src/Models/Operations/CreditWalletResponse.php
@@ -988,6 +989,7 @@ generatedFiles:
   - docs/Models/Operations/ConfirmHoldResponse.md
   - docs/Models/Operations/CreateBalanceRequest.md
   - docs/Models/Operations/CreateBalanceResponse.md
+  - docs/Models/Operations/CreateWalletRequest.md
   - docs/Models/Operations/CreateWalletResponse.md
   - docs/Models/Operations/CreditWalletRequest.md
   - docs/Models/Operations/CreditWalletResponse.md
