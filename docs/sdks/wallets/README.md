@@ -47,6 +47,7 @@ try {
     $request->confirmHoldRequest = new Shared\ConfirmHoldRequest();
     $request->confirmHoldRequest->amount = 100;
     $request->confirmHoldRequest->final = true;
+    $request->idempotencyKey = '<value>';
     $request->holdId = '<value>';;
 
     $response = $sdk->wallets->confirmHold($request);
@@ -99,6 +100,7 @@ try {
     $request->createBalanceRequest->expiresAt = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-03-08T03:22:14.635Z');
     $request->createBalanceRequest->name = '<value>';
     $request->createBalanceRequest->priority = 851262;
+    $request->idempotencyKey = '<value>';
     $request->id = '<id>';;
 
     $response = $sdk->wallets->createBalance($request);
@@ -138,6 +140,7 @@ require 'vendor/autoload.php';
 
 use \formance\stack;
 use \formance\stack\Models\Shared;
+use \formance\stack\Models\Operations;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -145,11 +148,13 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\CreateWalletRequest();
-    $request->metadata = [
+        $request = new Operations\CreateWalletRequest();
+    $request->createWalletRequest = new Shared\CreateWalletRequest();
+    $request->createWalletRequest->metadata = [
         'array' => '<value>',
     ];
-    $request->name = '<value>';;
+    $request->createWalletRequest->name = '<value>';
+    $request->idempotencyKey = '<value>';;
 
     $response = $sdk->wallets->createWallet($request);
 
@@ -163,9 +168,9 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Shared\CreateWalletRequest](../../Models/Shared/CreateWalletRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                              | [\formance\stack\Models\Operations\CreateWalletRequest](../../Models/Operations/CreateWalletRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 
 ### Response
@@ -210,6 +215,7 @@ try {
         '<value>',
     ];
     $request->creditWalletRequest->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2022-02-18T14:18:33.341Z');
+    $request->idempotencyKey = '<value>';
     $request->id = '<id>';;
 
     $response = $sdk->wallets->creditWallet($request);
@@ -272,6 +278,7 @@ try {
     ];
     $request->debitWalletRequest->pending = false;
     $request->debitWalletRequest->timestamp = DateTime::createFromFormat('Y-m-d\TH:i:s+', '2024-09-08T00:42:47.855Z');
+    $request->idempotencyKey = '<value>';
     $request->id = '<id>';;
 
     $response = $sdk->wallets->debitWallet($request);
@@ -716,6 +723,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\UpdateWalletRequest();
+    $request->idempotencyKey = '<value>';
     $request->requestBody = new Operations\UpdateWalletRequestBody();
     $request->requestBody->metadata = [
         'override' => '<value>',
@@ -768,6 +776,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
         $request = new Operations\VoidHoldRequest();
+    $request->idempotencyKey = '<value>';
     $request->holdId = '<value>';;
 
     $response = $sdk->wallets->voidHold($request);
