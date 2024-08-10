@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class V2TestTriggerResponse
 {
+    /**
+     *
+     * @var V2TriggerTest $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2TriggerTest')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2TriggerTest')]
     public V2TriggerTest $data;
 
-    public function __construct()
+    /**
+     * @param  ?V2TriggerTest  $data
+     */
+    public function __construct(?V2TriggerTest $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\V2TriggerTest();
+        $this->data = $data;
     }
 }

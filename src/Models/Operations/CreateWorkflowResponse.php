@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class CreateWorkflowResponse
 {
     /**
@@ -21,16 +21,9 @@ class CreateWorkflowResponse
     /**
      * Created workflow
      *
-     * @var ?\formance\stack\Models\Shared\CreateWorkflowResponse $createWorkflowResponse
+     * @var ?Shared\CreateWorkflowResponse $createWorkflowResponse
      */
-    public ?\formance\stack\Models\Shared\CreateWorkflowResponse $createWorkflowResponse = null;
-
-    /**
-     * General error
-     *
-     * @var ?\formance\stack\Models\Shared\Error $error
-     */
-    public ?\formance\stack\Models\Shared\Error $error = null;
+    public ?Shared\CreateWorkflowResponse $createWorkflowResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,16 +35,21 @@ class CreateWorkflowResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\CreateWorkflowResponse  $createWorkflowResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\CreateWorkflowResponse $createWorkflowResponse = null)
     {
-        $this->contentType = '';
-        $this->createWorkflowResponse = null;
-        $this->error = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->createWorkflowResponse = $createWorkflowResponse;
     }
 }

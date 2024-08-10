@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ConfigInfoResponse
 {
+    /**
+     *
+     * @var ConfigInfo $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ConfigInfo')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConfigInfo')]
     public ConfigInfo $data;
 
-    public function __construct()
+    /**
+     * @param  ?ConfigInfo  $data
+     */
+    public function __construct(?ConfigInfo $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\ConfigInfo();
+        $this->data = $data;
     }
 }

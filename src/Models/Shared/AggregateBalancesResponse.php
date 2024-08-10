@@ -20,8 +20,11 @@ class AggregateBalancesResponse
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, int>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

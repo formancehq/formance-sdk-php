@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class AccountsCursor
 {
+    /**
+     *
+     * @var Cursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Cursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Cursor')]
     public Cursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?Cursor  $cursor
+     */
+    public function __construct(?Cursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\Cursor();
+        $this->cursor = $cursor;
     }
 }

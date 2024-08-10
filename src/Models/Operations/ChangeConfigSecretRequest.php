@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ChangeConfigSecretRequest
 {
+    /**
+     *
+     * @var ?Shared\ConfigChangeSecret $configChangeSecret
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Shared\ConfigChangeSecret $configChangeSecret = null;
+    public ?Shared\ConfigChangeSecret $configChangeSecret = null;
 
     /**
      * Config ID
@@ -22,9 +27,13 @@ class ChangeConfigSecretRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public string $id;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     * @param  ?Shared\ConfigChangeSecret  $configChangeSecret
+     */
+    public function __construct(?string $id = null, ?Shared\ConfigChangeSecret $configChangeSecret = null)
     {
-        $this->configChangeSecret = null;
-        $this->id = '';
+        $this->id = $id;
+        $this->configChangeSecret = $configChangeSecret;
     }
 }

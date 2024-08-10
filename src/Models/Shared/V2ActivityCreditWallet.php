@@ -11,19 +11,30 @@ namespace formance\stack\Models\Shared;
 
 class V2ActivityCreditWallet
 {
+    /**
+     *
+     * @var ?V2CreditWalletRequest $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2CreditWalletRequest')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2CreditWalletRequest')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2CreditWalletRequest $data = null;
 
+    /**
+     *
+     * @var ?string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $id = null;
 
-    public function __construct()
+    /**
+     * @param  ?V2CreditWalletRequest  $data
+     * @param  ?string  $id
+     */
+    public function __construct(?V2CreditWalletRequest $data = null, ?string $id = null)
     {
-        $this->data = null;
-        $this->id = null;
+        $this->data = $data;
+        $this->id = $id;
     }
 }

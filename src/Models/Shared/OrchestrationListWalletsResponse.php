@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class OrchestrationListWalletsResponse
 {
+    /**
+     *
+     * @var OrchestrationListWalletsResponseCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationListWalletsResponseCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponseCursor')]
     public OrchestrationListWalletsResponseCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?OrchestrationListWalletsResponseCursor  $cursor
+     */
+    public function __construct(?OrchestrationListWalletsResponseCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\OrchestrationListWalletsResponseCursor();
+        $this->cursor = $cursor;
     }
 }

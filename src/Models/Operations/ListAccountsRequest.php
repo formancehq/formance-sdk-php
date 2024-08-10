@@ -89,15 +89,25 @@ class ListAccountsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pagination_token')]
     public ?string $paginationToken = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?string  $address
+     * @param  ?string  $after
+     * @param  ?int  $balance
+     * @param  ?string  $cursor
+     * @param  ?array<string, mixed>  $metadata
+     * @param  ?int  $pageSize
+     * @param  ?string  $paginationToken
+     */
+    public function __construct(?string $ledger = null, ?string $address = null, ?string $after = null, ?int $balance = null, ?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $paginationToken = null)
     {
-        $this->address = null;
-        $this->after = null;
-        $this->balance = null;
-        $this->cursor = null;
-        $this->ledger = '';
-        $this->metadata = null;
-        $this->pageSize = null;
-        $this->paginationToken = null;
+        $this->ledger = $ledger;
+        $this->address = $address;
+        $this->after = $after;
+        $this->balance = $balance;
+        $this->cursor = $cursor;
+        $this->metadata = $metadata;
+        $this->pageSize = $pageSize;
+        $this->paginationToken = $paginationToken;
     }
 }

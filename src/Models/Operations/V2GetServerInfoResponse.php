@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class V2GetServerInfoResponse
 {
     /**
@@ -28,30 +28,28 @@ class V2GetServerInfoResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-
-    /**
-     * General error
-     *
-     * @var ?\formance\stack\Models\Shared\V2Error $v2Error
-     */
-    public ?\formance\stack\Models\Shared\V2Error $v2Error = null;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
      * Server information
      *
-     * @var ?\formance\stack\Models\Shared\V2ServerInfo $v2ServerInfo
+     * @var ?Shared\V2ServerInfo $v2ServerInfo
      */
-    public ?\formance\stack\Models\Shared\V2ServerInfo $v2ServerInfo = null;
+    public ?Shared\V2ServerInfo $v2ServerInfo = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\V2ServerInfo  $v2ServerInfo
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2ServerInfo $v2ServerInfo = null)
     {
-        $this->contentType = '';
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->v2Error = null;
-        $this->v2ServerInfo = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->v2ServerInfo = $v2ServerInfo;
     }
 }

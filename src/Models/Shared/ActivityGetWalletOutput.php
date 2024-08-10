@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ActivityGetWalletOutput
 {
+    /**
+     *
+     * @var WalletWithBalances $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\WalletWithBalances')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletWithBalances')]
     public WalletWithBalances $data;
 
-    public function __construct()
+    /**
+     * @param  ?WalletWithBalances  $data
+     */
+    public function __construct(?WalletWithBalances $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\WalletWithBalances();
+        $this->data = $data;
     }
 }

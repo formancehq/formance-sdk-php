@@ -60,12 +60,19 @@ class PaymentslistAccountsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
     public ?array $sort = null;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, mixed>  $requestBody
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     * @param  ?string  $query
+     * @param  ?array<string>  $sort
+     */
+    public function __construct(?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null, ?string $query = null, ?array $sort = null)
     {
-        $this->requestBody = null;
-        $this->cursor = null;
-        $this->pageSize = null;
-        $this->query = null;
-        $this->sort = null;
+        $this->requestBody = $requestBody;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
+        $this->query = $query;
+        $this->sort = $sort;
     }
 }

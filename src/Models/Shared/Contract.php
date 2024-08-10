@@ -11,18 +11,29 @@ namespace formance\stack\Models\Shared;
 
 class Contract
 {
+    /**
+     *
+     * @var ?string $account
+     */
     #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $account = null;
 
+    /**
+     *
+     * @var Expr $expr
+     */
     #[\JMS\Serializer\Annotation\SerializedName('expr')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Expr')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Expr')]
     public Expr $expr;
 
-    public function __construct()
+    /**
+     * @param  ?Expr  $expr
+     * @param  ?string  $account
+     */
+    public function __construct(?Expr $expr = null, ?string $account = null)
     {
-        $this->account = null;
-        $this->expr = new \formance\stack\Models\Shared\Expr();
+        $this->expr = $expr;
+        $this->account = $account;
     }
 }

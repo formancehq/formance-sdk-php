@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ActivityGetAccountOutput
 {
+    /**
+     *
+     * @var OrchestrationAccount $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationAccount')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationAccount')]
     public OrchestrationAccount $data;
 
-    public function __construct()
+    /**
+     * @param  ?OrchestrationAccount  $data
+     */
+    public function __construct(?OrchestrationAccount $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\OrchestrationAccount();
+        $this->data = $data;
     }
 }

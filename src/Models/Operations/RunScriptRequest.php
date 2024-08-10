@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class RunScriptRequest
 {
+    /**
+     *
+     * @var Shared\Script $script
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\Script $script;
+    public Shared\Script $script;
 
     /**
      * Name of the ledger.
@@ -30,10 +35,15 @@ class RunScriptRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=preview')]
     public ?bool $preview = null;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\Script  $script
+     * @param  ?string  $ledger
+     * @param  ?bool  $preview
+     */
+    public function __construct(?Shared\Script $script = null, ?string $ledger = null, ?bool $preview = null)
     {
-        $this->script = new \formance\stack\Models\Shared\Script();
-        $this->ledger = '';
-        $this->preview = null;
+        $this->script = $script;
+        $this->ledger = $ledger;
+        $this->preview = $preview;
     }
 }

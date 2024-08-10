@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ReconciliationResponse
 {
+    /**
+     *
+     * @var Reconciliation $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Reconciliation')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Reconciliation')]
     public Reconciliation $data;
 
-    public function __construct()
+    /**
+     * @param  ?Reconciliation  $data
+     */
+    public function __construct(?Reconciliation $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\Reconciliation();
+        $this->data = $data;
     }
 }

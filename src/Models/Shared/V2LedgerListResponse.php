@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class V2LedgerListResponse
 {
+    /**
+     *
+     * @var V2LedgerListResponseCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2LedgerListResponseCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerListResponseCursor')]
     public V2LedgerListResponseCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?V2LedgerListResponseCursor  $cursor
+     */
+    public function __construct(?V2LedgerListResponseCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\V2LedgerListResponseCursor();
+        $this->cursor = $cursor;
     }
 }

@@ -17,6 +17,7 @@ namespace formance\stack\Models\Shared;
  */
 class V2ActivityStripeTransferMetadata
 {
+
     public function __construct()
     {
     }

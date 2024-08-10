@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class Reconciliation
 {
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
     /**
@@ -24,13 +27,19 @@ class Reconciliation
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $driftBalances;
 
+    /**
+     *
+     * @var ?string $error
+     */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $error = null;
 
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
     /**
@@ -51,33 +60,57 @@ class Reconciliation
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $paymentsBalances;
 
+    /**
+     *
+     * @var string $policyID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('policyID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $policyID;
 
+    /**
+     *
+     * @var \DateTime $reconciledAtLedger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $reconciledAtLedger;
 
+    /**
+     *
+     * @var \DateTime $reconciledAtPayments
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $reconciledAtPayments;
 
+    /**
+     *
+     * @var string $status
+     */
     #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $status;
 
-    public function __construct()
+    /**
+     * @param  ?\DateTime  $createdAt
+     * @param  ?array<string, int>  $driftBalances
+     * @param  ?string  $id
+     * @param  ?array<string, int>  $ledgerBalances
+     * @param  ?array<string, int>  $paymentsBalances
+     * @param  ?string  $policyID
+     * @param  ?\DateTime  $reconciledAtLedger
+     * @param  ?\DateTime  $reconciledAtPayments
+     * @param  ?string  $status
+     * @param  ?string  $error
+     */
+    public function __construct(?\DateTime $createdAt = null, ?array $driftBalances = null, ?string $id = null, ?array $ledgerBalances = null, ?array $paymentsBalances = null, ?string $policyID = null, ?\DateTime $reconciledAtLedger = null, ?\DateTime $reconciledAtPayments = null, ?string $status = null, ?string $error = null)
     {
-        $this->createdAt = new \DateTime();
-        $this->driftBalances = [];
-        $this->error = null;
-        $this->id = '';
-        $this->ledgerBalances = [];
-        $this->paymentsBalances = [];
-        $this->policyID = '';
-        $this->reconciledAtLedger = new \DateTime();
-        $this->reconciledAtPayments = new \DateTime();
-        $this->status = '';
+        $this->createdAt = $createdAt;
+        $this->driftBalances = $driftBalances;
+        $this->id = $id;
+        $this->ledgerBalances = $ledgerBalances;
+        $this->paymentsBalances = $paymentsBalances;
+        $this->policyID = $policyID;
+        $this->reconciledAtLedger = $reconciledAtLedger;
+        $this->reconciledAtPayments = $reconciledAtPayments;
+        $this->status = $status;
+        $this->error = $error;
     }
 }

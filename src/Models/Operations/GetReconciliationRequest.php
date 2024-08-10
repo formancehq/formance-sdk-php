@@ -19,8 +19,11 @@ class GetReconciliationRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=reconciliationID')]
     public string $reconciliationID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $reconciliationID
+     */
+    public function __construct(?string $reconciliationID = null)
     {
-        $this->reconciliationID = '';
+        $this->reconciliationID = $reconciliationID;
     }
 }

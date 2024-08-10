@@ -32,9 +32,13 @@ class GetAccountRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?string  $address
+     * @param  ?string  $ledger
+     */
+    public function __construct(?string $address = null, ?string $ledger = null)
     {
-        $this->address = '';
-        $this->ledger = '';
+        $this->address = $address;
+        $this->ledger = $ledger;
     }
 }

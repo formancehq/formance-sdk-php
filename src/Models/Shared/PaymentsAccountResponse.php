@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class PaymentsAccountResponse
 {
+    /**
+     *
+     * @var PaymentsAccount $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PaymentsAccount')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsAccount')]
     public PaymentsAccount $data;
 
-    public function __construct()
+    /**
+     * @param  ?PaymentsAccount  $data
+     */
+    public function __construct(?PaymentsAccount $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\PaymentsAccount();
+        $this->data = $data;
     }
 }

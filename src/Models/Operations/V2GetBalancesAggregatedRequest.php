@@ -27,6 +27,10 @@ class V2GetBalancesAggregatedRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
+    /**
+     *
+     * @var ?\DateTime $pit
+     */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pit,dateTimeFormat=Y-m-d\TH:i:s.up')]
     public ?\DateTime $pit = null;
 
@@ -38,11 +42,17 @@ class V2GetBalancesAggregatedRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=useInsertionDate')]
     public ?bool $useInsertionDate = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?array<string, mixed>  $requestBody
+     * @param  ?\DateTime  $pit
+     * @param  ?bool  $useInsertionDate
+     */
+    public function __construct(?string $ledger = null, ?array $requestBody = null, ?\DateTime $pit = null, ?bool $useInsertionDate = null)
     {
-        $this->requestBody = null;
-        $this->ledger = '';
-        $this->pit = null;
-        $this->useInsertionDate = null;
+        $this->ledger = $ledger;
+        $this->requestBody = $requestBody;
+        $this->pit = $pit;
+        $this->useInsertionDate = $useInsertionDate;
     }
 }

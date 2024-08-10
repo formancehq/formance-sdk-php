@@ -12,6 +12,7 @@ namespace formance\stack\Models\Operations;
 /** Metadata - Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. */
 class Metadata
 {
+
     public function __construct()
     {
     }

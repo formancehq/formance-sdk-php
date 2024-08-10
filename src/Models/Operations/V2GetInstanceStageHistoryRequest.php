@@ -27,9 +27,13 @@ class V2GetInstanceStageHistoryRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=number')]
     public int $number;
 
-    public function __construct()
+    /**
+     * @param  ?string  $instanceID
+     * @param  ?int  $number
+     */
+    public function __construct(?string $instanceID = null, ?int $number = null)
     {
-        $this->instanceID = '';
-        $this->number = 0;
+        $this->instanceID = $instanceID;
+        $this->number = $number;
     }
 }

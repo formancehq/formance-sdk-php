@@ -11,13 +11,20 @@ namespace formance\stack\Models\Shared;
 
 class V2LedgerInfoResponse
 {
+    /**
+     *
+     * @var ?V2LedgerInfo $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2LedgerInfo')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfo')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2LedgerInfo $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?V2LedgerInfo  $data
+     */
+    public function __construct(?V2LedgerInfo $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

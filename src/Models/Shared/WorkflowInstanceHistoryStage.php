@@ -11,62 +11,106 @@ namespace formance\stack\Models\Shared;
 
 class WorkflowInstanceHistoryStage
 {
+    /**
+     *
+     * @var int $attempt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('attempt')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $attempt;
 
+    /**
+     *
+     * @var ?string $error
+     */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $error = null;
 
+    /**
+     *
+     * @var WorkflowInstanceHistoryStageInput $input
+     */
     #[\JMS\Serializer\Annotation\SerializedName('input')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\WorkflowInstanceHistoryStageInput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageInput')]
     public WorkflowInstanceHistoryStageInput $input;
 
+    /**
+     *
+     * @var ?string $lastFailure
+     */
     #[\JMS\Serializer\Annotation\SerializedName('lastFailure')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $lastFailure = null;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
+    /**
+     *
+     * @var ?\DateTime $nextExecution
+     */
     #[\JMS\Serializer\Annotation\SerializedName('nextExecution')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $nextExecution = null;
 
+    /**
+     *
+     * @var ?WorkflowInstanceHistoryStageOutput $output
+     */
     #[\JMS\Serializer\Annotation\SerializedName('output')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?WorkflowInstanceHistoryStageOutput $output = null;
 
+    /**
+     *
+     * @var \DateTime $startedAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('startedAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $startedAt;
 
+    /**
+     *
+     * @var bool $terminated
+     */
     #[\JMS\Serializer\Annotation\SerializedName('terminated')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $terminated;
 
+    /**
+     *
+     * @var ?\DateTime $terminatedAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $terminatedAt = null;
 
-    public function __construct()
+    /**
+     * @param  ?int  $attempt
+     * @param  ?WorkflowInstanceHistoryStageInput  $input
+     * @param  ?string  $name
+     * @param  ?\DateTime  $startedAt
+     * @param  ?bool  $terminated
+     * @param  ?string  $error
+     * @param  ?string  $lastFailure
+     * @param  ?\DateTime  $nextExecution
+     * @param  ?WorkflowInstanceHistoryStageOutput  $output
+     * @param  ?\DateTime  $terminatedAt
+     */
+    public function __construct(?int $attempt = null, ?WorkflowInstanceHistoryStageInput $input = null, ?string $name = null, ?\DateTime $startedAt = null, ?bool $terminated = null, ?string $error = null, ?string $lastFailure = null, ?\DateTime $nextExecution = null, ?WorkflowInstanceHistoryStageOutput $output = null, ?\DateTime $terminatedAt = null)
     {
-        $this->attempt = 0;
-        $this->error = null;
-        $this->input = new \formance\stack\Models\Shared\WorkflowInstanceHistoryStageInput();
-        $this->lastFailure = null;
-        $this->name = '';
-        $this->nextExecution = null;
-        $this->output = null;
-        $this->startedAt = new \DateTime();
-        $this->terminated = false;
-        $this->terminatedAt = null;
+        $this->attempt = $attempt;
+        $this->input = $input;
+        $this->name = $name;
+        $this->startedAt = $startedAt;
+        $this->terminated = $terminated;
+        $this->error = $error;
+        $this->lastFailure = $lastFailure;
+        $this->nextExecution = $nextExecution;
+        $this->output = $output;
+        $this->terminatedAt = $terminatedAt;
     }
 }

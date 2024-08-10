@@ -23,31 +23,47 @@ class OrchestrationV2Transaction
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Shared\V2Posting> $postings
+     * @var array<V2Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
     public array $postings;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
+    /**
+     *
+     * @var \DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $timestamp;
 
+    /**
+     *
+     * @var int $txid
+     */
     #[\JMS\Serializer\Annotation\SerializedName('txid')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $txid;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<V2Posting>  $postings
+     * @param  ?\DateTime  $timestamp
+     * @param  ?int  $txid
+     * @param  ?string  $reference
+     */
+    public function __construct(?array $metadata = null, ?array $postings = null, ?\DateTime $timestamp = null, ?int $txid = null, ?string $reference = null)
     {
-        $this->metadata = [];
-        $this->postings = [];
-        $this->reference = null;
-        $this->timestamp = new \DateTime();
-        $this->txid = 0;
+        $this->metadata = $metadata;
+        $this->postings = $postings;
+        $this->timestamp = $timestamp;
+        $this->txid = $txid;
+        $this->reference = $reference;
     }
 }

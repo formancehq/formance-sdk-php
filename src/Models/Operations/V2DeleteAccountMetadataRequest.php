@@ -35,10 +35,15 @@ class V2DeleteAccountMetadataRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?string  $address
+     * @param  ?string  $key
+     * @param  ?string  $ledger
+     */
+    public function __construct(?string $address = null, ?string $key = null, ?string $ledger = null)
     {
-        $this->address = '';
-        $this->key = '';
-        $this->ledger = '';
+        $this->address = $address;
+        $this->key = $key;
+        $this->ledger = $ledger;
     }
 }

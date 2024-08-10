@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class PoolsCursor
 {
+    /**
+     *
+     * @var PoolsCursorCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PoolsCursorCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoolsCursorCursor')]
     public PoolsCursorCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?PoolsCursorCursor  $cursor
+     */
+    public function __construct(?PoolsCursorCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\PoolsCursorCursor();
+        $this->cursor = $cursor;
     }
 }

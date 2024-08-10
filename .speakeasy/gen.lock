@@ -3,10 +3,10 @@ id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
   docChecksum: ce7ade45ab46c0be01f2b9f40d460d3a
   docVersion: v2.0.9
-  speakeasyVersion: 1.358.0
-  generationVersion: 2.390.6
-  releaseVersion: 2.1.3
-  configChecksum: 68ac3e7a43225b913bab202e771e356f
+  speakeasyVersion: 1.360.0
+  generationVersion: 2.392.0
+  releaseVersion: 2.2.0
+  configChecksum: e4be6569f6f41625cf97bc037ed57d56
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -15,12 +15,15 @@ features:
   php:
     core: 3.3.10
     deprecations: 2.81.1
+    errors: 0.1.0
     getRequestBodies: 2.81.1
     globalSecurity: 2.81.7
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
+    responseFormat: 0.1.0
+    unions: 0.1.0
 generatedFiles:
   - src/SDKConfiguration.php
   - src/Auth.php
@@ -35,8 +38,13 @@ generatedFiles:
   - src/SDKBuilder.php
   - composer.json
   - phpstan.neon
+  - phpunit.xml
   - pint.json
   - rector.php
+  - src/Utils/DateHandler.php
+  - src/Utils/DateTimeHandler.php
+  - src/Utils/DefaultResponse.php
+  - src/Utils/DefaultStream.php
   - src/Utils/EnumHandler.php
   - src/Utils/FormMetadata.php
   - src/Utils/Headers.php
@@ -45,6 +53,7 @@ generatedFiles:
   - src/Utils/MultipartMetadata.php
   - src/Utils/ParamsMetadata.php
   - src/Utils/PathParameters.php
+  - src/Utils/PhpDocTypeParser.php
   - src/Utils/QueryParameters.php
   - src/Utils/RequestBodies.php
   - src/Utils/RequestMetadata.php
@@ -52,7 +61,9 @@ generatedFiles:
   - src/Utils/SecurityClient.php
   - src/Utils/SecurityMetadata.php
   - src/Utils/SpeakeasyMetadata.php
+  - src/Utils/UnionHandler.php
   - src/Utils/Utils.php
+  - src/Models/Errors/SDKException.php
   - src/Models/Operations/GetOIDCWellKnownsResponse.php
   - src/Models/Operations/GetVersionsResponse.php
   - src/Models/Operations/CreateClientResponse.php
@@ -381,7 +392,6 @@ generatedFiles:
   - src/Models/Shared/Transaction.php
   - src/Models/Shared/Volume.php
   - src/Models/Shared/Posting.php
-  - src/Models/Shared/ErrorResponse.php
   - src/Models/Shared/ErrorsEnum.php
   - src/Models/Shared/Transactions.php
   - src/Models/Shared/TransactionData.php
@@ -419,15 +429,27 @@ generatedFiles:
   - src/Models/Shared/Stats.php
   - src/Models/Shared/ScriptResponse.php
   - src/Models/Shared/Script.php
-  - src/Models/Shared/V2ErrorResponse.php
   - src/Models/Shared/V2ErrorsEnum.php
   - src/Models/Shared/V2BulkResponse.php
-  - src/Models/Shared/V2CreateLedgerRequest.php
-  - src/Models/Shared/V2CreateTransactionResponse.php
+  - src/Models/Shared/V2BulkElementResultErrorSchemas.php
+  - src/Models/Shared/V2BulkElementResultDeleteMetadataSchemas.php
+  - src/Models/Shared/V2BulkElementResultRevertTransactionSchemas.php
+  - src/Models/Shared/Schemas.php
+  - src/Models/Shared/V2BulkElementResultCreateTransactionSchemas.php
   - src/Models/Shared/V2Transaction.php
   - src/Models/Shared/V2Posting.php
+  - src/Models/Shared/V2BulkElementCreateTransaction.php
   - src/Models/Shared/V2PostTransactionScript.php
   - src/Models/Shared/V2PostTransaction.php
+  - src/Models/Shared/V2BulkElementAddMetadataData.php
+  - src/Models/Shared/V2BulkElementAddMetadata.php
+  - src/Models/Shared/V2TargetType.php
+  - src/Models/Shared/V2BulkElementRevertTransactionData.php
+  - src/Models/Shared/V2BulkElementRevertTransaction.php
+  - src/Models/Shared/V2BulkElementDeleteMetadataData.php
+  - src/Models/Shared/V2BulkElementDeleteMetadata.php
+  - src/Models/Shared/V2CreateLedgerRequest.php
+  - src/Models/Shared/V2CreateTransactionResponse.php
   - src/Models/Shared/V2AccountResponse.php
   - src/Models/Shared/V2Account.php
   - src/Models/Shared/V2Volume.php
@@ -458,8 +480,6 @@ generatedFiles:
   - src/Models/Shared/V2StatsResponse.php
   - src/Models/Shared/V2Stats.php
   - src/Models/Shared/V2RevertTransactionResponse.php
-  - src/Models/Shared/ErrorCode.php
-  - src/Models/Shared/Error.php
   - src/Models/Shared/CreateTriggerResponse.php
   - src/Models/Shared/Trigger.php
   - src/Models/Shared/TriggerData.php
@@ -472,6 +492,20 @@ generatedFiles:
   - src/Models/Shared/StageStatus.php
   - src/Models/Shared/GetWorkflowInstanceHistoryResponse.php
   - src/Models/Shared/WorkflowInstanceHistory.php
+  - src/Models/Shared/StageSend.php
+  - src/Models/Shared/StageSendSource.php
+  - src/Models/Shared/StageSendSourceWallet.php
+  - src/Models/Shared/StageSendSourcePayment.php
+  - src/Models/Shared/StageSendSourceAccount.php
+  - src/Models/Shared/StageSendDestination.php
+  - src/Models/Shared/StageSendDestinationWallet.php
+  - src/Models/Shared/StageSendDestinationPayment.php
+  - src/Models/Shared/StageSendDestinationAccount.php
+  - src/Models/Shared/Monetary.php
+  - src/Models/Shared/StageDelay.php
+  - src/Models/Shared/StageWaitEvent.php
+  - src/Models/Shared/Update.php
+  - src/Models/Shared/UpdateAccount.php
   - src/Models/Shared/GetWorkflowInstanceHistoryStageResponse.php
   - src/Models/Shared/WorkflowInstanceHistoryStage.php
   - src/Models/Shared/WorkflowInstanceHistoryStageOutput.php
@@ -498,6 +532,8 @@ generatedFiles:
   - src/Models/Shared/OrchestrationAccount.php
   - src/Models/Shared/ActivityDebitWalletOutput.php
   - src/Models/Shared/Hold.php
+  - src/Models/Shared/LedgerAccountSubject.php
+  - src/Models/Shared/WalletSubject.php
   - src/Models/Shared/ActivityCreateTransactionOutput.php
   - src/Models/Shared/WorkflowInstanceHistoryStageInput.php
   - src/Models/Shared/ActivityVoidHold.php
@@ -510,7 +546,6 @@ generatedFiles:
   - src/Models/Shared/ActivityGetAccount.php
   - src/Models/Shared/ActivityDebitWallet.php
   - src/Models/Shared/DebitWalletRequest.php
-  - src/Models/Shared/Monetary.php
   - src/Models/Shared/ActivityCreditWallet.php
   - src/Models/Shared/OrchestrationCreditWalletRequest.php
   - src/Models/Shared/ActivityCreateTransaction.php
@@ -531,8 +566,6 @@ generatedFiles:
   - src/Models/Shared/Filter.php
   - src/Models/Shared/Variables.php
   - src/Models/Shared/V2TriggerTest.php
-  - src/Models/Shared/V2ErrorErrorCode.php
-  - src/Models/Shared/V2Error.php
   - src/Models/Shared/V2CreateTriggerResponse.php
   - src/Models/Shared/V2Trigger.php
   - src/Models/Shared/V2TriggerData.php
@@ -545,6 +578,20 @@ generatedFiles:
   - src/Models/Shared/V2StageStatus.php
   - src/Models/Shared/V2GetWorkflowInstanceHistoryResponse.php
   - src/Models/Shared/V2WorkflowInstanceHistory.php
+  - src/Models/Shared/V2StageSend.php
+  - src/Models/Shared/V2StageSendSource.php
+  - src/Models/Shared/V2StageSendSourceWallet.php
+  - src/Models/Shared/V2StageSendSourcePayment.php
+  - src/Models/Shared/V2StageSendSourceAccount.php
+  - src/Models/Shared/V2StageSendDestination.php
+  - src/Models/Shared/V2StageSendDestinationWallet.php
+  - src/Models/Shared/V2StageSendDestinationPayment.php
+  - src/Models/Shared/V2StageSendDestinationAccount.php
+  - src/Models/Shared/V2Monetary.php
+  - src/Models/Shared/V2StageDelay.php
+  - src/Models/Shared/V2StageWaitEvent.php
+  - src/Models/Shared/V2Update.php
+  - src/Models/Shared/V2UpdateAccount.php
   - src/Models/Shared/V2GetWorkflowInstanceHistoryStageResponse.php
   - src/Models/Shared/V2WorkflowInstanceHistoryStage.php
   - src/Models/Shared/V2WorkflowInstanceHistoryStageOutput.php
@@ -568,6 +615,8 @@ generatedFiles:
   - src/Models/Shared/V2ActivityGetAccountOutput.php
   - src/Models/Shared/V2ActivityDebitWalletOutput.php
   - src/Models/Shared/V2Hold.php
+  - src/Models/Shared/V2LedgerAccountSubject.php
+  - src/Models/Shared/V2WalletSubject.php
   - src/Models/Shared/V2ActivityCreateTransactionOutput.php
   - src/Models/Shared/OrchestrationV2Transaction.php
   - src/Models/Shared/V2WorkflowInstanceHistoryStageInput.php
@@ -580,7 +629,6 @@ generatedFiles:
   - src/Models/Shared/V2ActivityGetAccount.php
   - src/Models/Shared/V2ActivityDebitWallet.php
   - src/Models/Shared/V2DebitWalletRequest.php
-  - src/Models/Shared/V2Monetary.php
   - src/Models/Shared/V2ActivityCreditWallet.php
   - src/Models/Shared/V2CreditWalletRequest.php
   - src/Models/Shared/V2ActivityCreateTransaction.php
@@ -599,7 +647,6 @@ generatedFiles:
   - src/Models/Shared/V2ListWorkflowsResponse.php
   - src/Models/Shared/V2ReadTriggerResponse.php
   - src/Models/Shared/V2RunWorkflowResponse.php
-  - src/Models/Shared/PaymentsErrorResponse.php
   - src/Models/Shared/PaymentsErrorsEnum.php
   - src/Models/Shared/AddAccountToPoolRequest.php
   - src/Models/Shared/TransferResponse.php
@@ -639,11 +686,46 @@ generatedFiles:
   - src/Models/Shared/BalancesCursor.php
   - src/Models/Shared/AccountBalance.php
   - src/Models/Shared/TaskResponse.php
+  - src/Models/Shared/TaskStripeDescriptor.php
+  - src/Models/Shared/TaskStripeState.php
+  - src/Models/Shared/TaskStripe.php
+  - src/Models/Shared/TaskWiseDescriptor.php
+  - src/Models/Shared/TaskWiseState.php
+  - src/Models/Shared/TaskWise.php
+  - src/Models/Shared/TaskCurrencyCloudDescriptor.php
+  - src/Models/Shared/TaskCurrencyCloudState.php
+  - src/Models/Shared/TaskCurrencyCloud.php
+  - src/Models/Shared/TaskDummyPayDescriptor.php
+  - src/Models/Shared/TaskDummyPayState.php
+  - src/Models/Shared/TaskDummyPay.php
+  - src/Models/Shared/TaskModulrDescriptor.php
+  - src/Models/Shared/TaskModulrState.php
+  - src/Models/Shared/TaskModulr.php
+  - src/Models/Shared/Descriptor.php
+  - src/Models/Shared/TaskBankingCircleState.php
+  - src/Models/Shared/TaskBankingCircle.php
+  - src/Models/Shared/TaskMangoPayDescriptor.php
+  - src/Models/Shared/TaskMangoPayState.php
+  - src/Models/Shared/TaskMangoPay.php
+  - src/Models/Shared/TaskMoneycorpDescriptor.php
+  - src/Models/Shared/TaskMoneycorpState.php
+  - src/Models/Shared/TaskMoneycorp.php
   - src/Models/Shared/PoolBalancesResponse.php
   - src/Models/Shared/PoolBalances.php
   - src/Models/Shared/PoolBalance.php
   - src/Models/Shared/Data.php
   - src/Models/Shared/ConnectorResponse.php
+  - src/Models/Shared/StripeConfig.php
+  - src/Models/Shared/DummyPayConfig.php
+  - src/Models/Shared/WiseConfig.php
+  - src/Models/Shared/ModulrConfig.php
+  - src/Models/Shared/CurrencyCloudConfig.php
+  - src/Models/Shared/BankingCircleConfig.php
+  - src/Models/Shared/MangoPayConfig.php
+  - src/Models/Shared/MoneycorpConfig.php
+  - src/Models/Shared/AtlarConfig.php
+  - src/Models/Shared/AdyenConfig.php
+  - src/Models/Shared/GenericConfig.php
   - src/Models/Shared/ConnectorsResponseData.php
   - src/Models/Shared/ConnectorsResponse.php
   - src/Models/Shared/BankAccountsCursorCursor.php
@@ -667,7 +749,6 @@ generatedFiles:
   - src/Models/Shared/Status.php
   - src/Models/Shared/UpdateTransferInitiationStatusRequest.php
   - src/Models/Shared/UpdateBankAccountMetadataRequest.php
-  - src/Models/Shared/ReconciliationErrorResponse.php
   - src/Models/Shared/PolicyResponse.php
   - src/Models/Shared/Policy.php
   - src/Models/Shared/PolicyRequest.php
@@ -683,8 +764,6 @@ generatedFiles:
   - src/Models/Shared/Response.php
   - src/Models/Shared/QueryRaw.php
   - src/Models/Shared/Query.php
-  - src/Models/Shared/WalletsErrorResponseErrorCode.php
-  - src/Models/Shared/WalletsErrorResponse.php
   - src/Models/Shared/ConfirmHoldRequest.php
   - src/Models/Shared/CreateBalanceResponse.php
   - src/Models/Shared/Balance.php
@@ -711,10 +790,9 @@ generatedFiles:
   - src/Models/Shared/ListBalancesResponse.php
   - src/Models/Shared/ListWalletsResponseCursor.php
   - src/Models/Shared/ListWalletsResponse.php
-  - src/Models/Shared/WebhooksErrorResponse.php
-  - src/Models/Shared/WebhooksErrorsEnum.php
   - src/Models/Shared/ConfigResponse.php
   - src/Models/Shared/WebhooksConfig.php
+  - src/Models/Shared/WebhooksErrorsEnum.php
   - src/Models/Shared/ConfigChangeSecret.php
   - src/Models/Shared/ConfigsResponseCursor.php
   - src/Models/Shared/ConfigsResponse.php
@@ -722,6 +800,17 @@ generatedFiles:
   - src/Models/Shared/AttemptResponse.php
   - src/Models/Shared/Attempt.php
   - src/Models/Shared/Security.php
+  - src/Models/Errors/ErrorResponse.php
+  - src/Models/Errors/V2ErrorResponse.php
+  - src/Models/Errors/ErrorCode.php
+  - src/Models/Errors/Error.php
+  - src/Models/Errors/SchemasErrorCode.php
+  - src/Models/Errors/V2Error.php
+  - src/Models/Errors/PaymentsErrorResponse.php
+  - src/Models/Errors/ReconciliationErrorResponse.php
+  - src/Models/Errors/SchemasWalletsErrorResponseErrorCode.php
+  - src/Models/Errors/WalletsErrorResponse.php
+  - src/Models/Errors/WebhooksErrorResponse.php
   - docs/Models/Operations/GetOIDCWellKnownsResponse.md
   - docs/Models/Operations/GetVersionsResponse.md
   - docs/Models/Operations/CreateClientResponse.md
@@ -1050,7 +1139,6 @@ generatedFiles:
   - docs/Models/Shared/Transaction.md
   - docs/Models/Shared/Volume.md
   - docs/Models/Shared/Posting.md
-  - docs/Models/Shared/ErrorResponse.md
   - docs/Models/Shared/ErrorsEnum.md
   - docs/Models/Shared/Transactions.md
   - docs/Models/Shared/TransactionData.md
@@ -1088,15 +1176,30 @@ generatedFiles:
   - docs/Models/Shared/Stats.md
   - docs/Models/Shared/ScriptResponse.md
   - docs/Models/Shared/Script.md
-  - docs/Models/Shared/V2ErrorResponse.md
   - docs/Models/Shared/V2ErrorsEnum.md
   - docs/Models/Shared/V2BulkResponse.md
-  - docs/Models/Shared/V2CreateLedgerRequest.md
-  - docs/Models/Shared/V2CreateTransactionResponse.md
+  - docs/Models/Shared/V2BulkElementResultErrorSchemas.md
+  - docs/Models/Shared/V2BulkElementResultDeleteMetadataSchemas.md
+  - docs/Models/Shared/V2BulkElementResultRevertTransactionSchemas.md
+  - docs/Models/Shared/Schemas.md
+  - docs/Models/Shared/V2BulkElementResultCreateTransactionSchemas.md
+  - docs/Models/Shared/V2BulkElementResult.md
   - docs/Models/Shared/V2Transaction.md
   - docs/Models/Shared/V2Posting.md
+  - docs/Models/Shared/V2BulkElement.md
+  - docs/Models/Shared/V2BulkElementCreateTransaction.md
   - docs/Models/Shared/V2PostTransactionScript.md
   - docs/Models/Shared/V2PostTransaction.md
+  - docs/Models/Shared/V2BulkElementAddMetadataData.md
+  - docs/Models/Shared/V2BulkElementAddMetadata.md
+  - docs/Models/Shared/V2TargetType.md
+  - docs/Models/Shared/V2TargetId.md
+  - docs/Models/Shared/V2BulkElementRevertTransactionData.md
+  - docs/Models/Shared/V2BulkElementRevertTransaction.md
+  - docs/Models/Shared/V2BulkElementDeleteMetadataData.md
+  - docs/Models/Shared/V2BulkElementDeleteMetadata.md
+  - docs/Models/Shared/V2CreateLedgerRequest.md
+  - docs/Models/Shared/V2CreateTransactionResponse.md
   - docs/Models/Shared/V2AccountResponse.md
   - docs/Models/Shared/V2Account.md
   - docs/Models/Shared/V2Volume.md
@@ -1127,8 +1230,6 @@ generatedFiles:
   - docs/Models/Shared/V2StatsResponse.md
   - docs/Models/Shared/V2Stats.md
   - docs/Models/Shared/V2RevertTransactionResponse.md
-  - docs/Models/Shared/ErrorCode.md
-  - docs/Models/Shared/Error.md
   - docs/Models/Shared/CreateTriggerResponse.md
   - docs/Models/Shared/Trigger.md
   - docs/Models/Shared/TriggerData.md
@@ -1141,6 +1242,21 @@ generatedFiles:
   - docs/Models/Shared/StageStatus.md
   - docs/Models/Shared/GetWorkflowInstanceHistoryResponse.md
   - docs/Models/Shared/WorkflowInstanceHistory.md
+  - docs/Models/Shared/Stage.md
+  - docs/Models/Shared/StageSend.md
+  - docs/Models/Shared/StageSendSource.md
+  - docs/Models/Shared/StageSendSourceWallet.md
+  - docs/Models/Shared/StageSendSourcePayment.md
+  - docs/Models/Shared/StageSendSourceAccount.md
+  - docs/Models/Shared/StageSendDestination.md
+  - docs/Models/Shared/StageSendDestinationWallet.md
+  - docs/Models/Shared/StageSendDestinationPayment.md
+  - docs/Models/Shared/StageSendDestinationAccount.md
+  - docs/Models/Shared/Monetary.md
+  - docs/Models/Shared/StageDelay.md
+  - docs/Models/Shared/StageWaitEvent.md
+  - docs/Models/Shared/Update.md
+  - docs/Models/Shared/UpdateAccount.md
   - docs/Models/Shared/GetWorkflowInstanceHistoryStageResponse.md
   - docs/Models/Shared/WorkflowInstanceHistoryStage.md
   - docs/Models/Shared/WorkflowInstanceHistoryStageOutput.md
@@ -1167,6 +1283,9 @@ generatedFiles:
   - docs/Models/Shared/OrchestrationAccount.md
   - docs/Models/Shared/ActivityDebitWalletOutput.md
   - docs/Models/Shared/Hold.md
+  - docs/Models/Shared/Subject.md
+  - docs/Models/Shared/LedgerAccountSubject.md
+  - docs/Models/Shared/WalletSubject.md
   - docs/Models/Shared/ActivityCreateTransactionOutput.md
   - docs/Models/Shared/WorkflowInstanceHistoryStageInput.md
   - docs/Models/Shared/ActivityVoidHold.md
@@ -1179,7 +1298,6 @@ generatedFiles:
   - docs/Models/Shared/ActivityGetAccount.md
   - docs/Models/Shared/ActivityDebitWallet.md
   - docs/Models/Shared/DebitWalletRequest.md
-  - docs/Models/Shared/Monetary.md
   - docs/Models/Shared/ActivityCreditWallet.md
   - docs/Models/Shared/OrchestrationCreditWalletRequest.md
   - docs/Models/Shared/ActivityCreateTransaction.md
@@ -1200,8 +1318,6 @@ generatedFiles:
   - docs/Models/Shared/Filter.md
   - docs/Models/Shared/Variables.md
   - docs/Models/Shared/V2TriggerTest.md
-  - docs/Models/Shared/V2ErrorErrorCode.md
-  - docs/Models/Shared/V2Error.md
   - docs/Models/Shared/V2CreateTriggerResponse.md
   - docs/Models/Shared/V2Trigger.md
   - docs/Models/Shared/V2TriggerData.md
@@ -1214,6 +1330,21 @@ generatedFiles:
   - docs/Models/Shared/V2StageStatus.md
   - docs/Models/Shared/V2GetWorkflowInstanceHistoryResponse.md
   - docs/Models/Shared/V2WorkflowInstanceHistory.md
+  - docs/Models/Shared/V2Stage.md
+  - docs/Models/Shared/V2StageSend.md
+  - docs/Models/Shared/V2StageSendSource.md
+  - docs/Models/Shared/V2StageSendSourceWallet.md
+  - docs/Models/Shared/V2StageSendSourcePayment.md
+  - docs/Models/Shared/V2StageSendSourceAccount.md
+  - docs/Models/Shared/V2StageSendDestination.md
+  - docs/Models/Shared/V2StageSendDestinationWallet.md
+  - docs/Models/Shared/V2StageSendDestinationPayment.md
+  - docs/Models/Shared/V2StageSendDestinationAccount.md
+  - docs/Models/Shared/V2Monetary.md
+  - docs/Models/Shared/V2StageDelay.md
+  - docs/Models/Shared/V2StageWaitEvent.md
+  - docs/Models/Shared/V2Update.md
+  - docs/Models/Shared/V2UpdateAccount.md
   - docs/Models/Shared/V2GetWorkflowInstanceHistoryStageResponse.md
   - docs/Models/Shared/V2WorkflowInstanceHistoryStage.md
   - docs/Models/Shared/V2WorkflowInstanceHistoryStageOutput.md
@@ -1237,6 +1368,9 @@ generatedFiles:
   - docs/Models/Shared/V2ActivityGetAccountOutput.md
   - docs/Models/Shared/V2ActivityDebitWalletOutput.md
   - docs/Models/Shared/V2Hold.md
+  - docs/Models/Shared/V2Subject.md
+  - docs/Models/Shared/V2LedgerAccountSubject.md
+  - docs/Models/Shared/V2WalletSubject.md
   - docs/Models/Shared/V2ActivityCreateTransactionOutput.md
   - docs/Models/Shared/OrchestrationV2Transaction.md
   - docs/Models/Shared/V2WorkflowInstanceHistoryStageInput.md
@@ -1249,7 +1383,6 @@ generatedFiles:
   - docs/Models/Shared/V2ActivityGetAccount.md
   - docs/Models/Shared/V2ActivityDebitWallet.md
   - docs/Models/Shared/V2DebitWalletRequest.md
-  - docs/Models/Shared/V2Monetary.md
   - docs/Models/Shared/V2ActivityCreditWallet.md
   - docs/Models/Shared/V2CreditWalletRequest.md
   - docs/Models/Shared/V2ActivityCreateTransaction.md
@@ -1268,7 +1401,6 @@ generatedFiles:
   - docs/Models/Shared/V2ListWorkflowsResponse.md
   - docs/Models/Shared/V2ReadTriggerResponse.md
   - docs/Models/Shared/V2RunWorkflowResponse.md
-  - docs/Models/Shared/PaymentsErrorResponse.md
   - docs/Models/Shared/PaymentsErrorsEnum.md
   - docs/Models/Shared/AddAccountToPoolRequest.md
   - docs/Models/Shared/TransferResponse.md
@@ -1307,12 +1439,49 @@ generatedFiles:
   - docs/Models/Shared/BalancesCursorCursor.md
   - docs/Models/Shared/BalancesCursor.md
   - docs/Models/Shared/AccountBalance.md
+  - docs/Models/Shared/TaskResponseData.md
   - docs/Models/Shared/TaskResponse.md
+  - docs/Models/Shared/TaskStripeDescriptor.md
+  - docs/Models/Shared/TaskStripeState.md
+  - docs/Models/Shared/TaskStripe.md
+  - docs/Models/Shared/TaskWiseDescriptor.md
+  - docs/Models/Shared/TaskWiseState.md
+  - docs/Models/Shared/TaskWise.md
+  - docs/Models/Shared/TaskCurrencyCloudDescriptor.md
+  - docs/Models/Shared/TaskCurrencyCloudState.md
+  - docs/Models/Shared/TaskCurrencyCloud.md
+  - docs/Models/Shared/TaskDummyPayDescriptor.md
+  - docs/Models/Shared/TaskDummyPayState.md
+  - docs/Models/Shared/TaskDummyPay.md
+  - docs/Models/Shared/TaskModulrDescriptor.md
+  - docs/Models/Shared/TaskModulrState.md
+  - docs/Models/Shared/TaskModulr.md
+  - docs/Models/Shared/Descriptor.md
+  - docs/Models/Shared/TaskBankingCircleState.md
+  - docs/Models/Shared/TaskBankingCircle.md
+  - docs/Models/Shared/TaskMangoPayDescriptor.md
+  - docs/Models/Shared/TaskMangoPayState.md
+  - docs/Models/Shared/TaskMangoPay.md
+  - docs/Models/Shared/TaskMoneycorpDescriptor.md
+  - docs/Models/Shared/TaskMoneycorpState.md
+  - docs/Models/Shared/TaskMoneycorp.md
   - docs/Models/Shared/PoolBalancesResponse.md
   - docs/Models/Shared/PoolBalances.md
   - docs/Models/Shared/PoolBalance.md
   - docs/Models/Shared/Data.md
   - docs/Models/Shared/ConnectorResponse.md
+  - docs/Models/Shared/ConnectorConfig.md
+  - docs/Models/Shared/StripeConfig.md
+  - docs/Models/Shared/DummyPayConfig.md
+  - docs/Models/Shared/WiseConfig.md
+  - docs/Models/Shared/ModulrConfig.md
+  - docs/Models/Shared/CurrencyCloudConfig.md
+  - docs/Models/Shared/BankingCircleConfig.md
+  - docs/Models/Shared/MangoPayConfig.md
+  - docs/Models/Shared/MoneycorpConfig.md
+  - docs/Models/Shared/AtlarConfig.md
+  - docs/Models/Shared/AdyenConfig.md
+  - docs/Models/Shared/GenericConfig.md
   - docs/Models/Shared/ConnectorsResponseData.md
   - docs/Models/Shared/ConnectorsResponse.md
   - docs/Models/Shared/BankAccountsCursorCursor.md
@@ -1321,6 +1490,7 @@ generatedFiles:
   - docs/Models/Shared/ConnectorsConfigsResponseConnector.md
   - docs/Models/Shared/ConnectorsConfigsResponseData.md
   - docs/Models/Shared/ConnectorsConfigsResponse.md
+  - docs/Models/Shared/TasksCursorData.md
   - docs/Models/Shared/TasksCursorCursor.md
   - docs/Models/Shared/TasksCursor.md
   - docs/Models/Shared/PaymentsCursorCursor.md
@@ -1336,7 +1506,6 @@ generatedFiles:
   - docs/Models/Shared/Status.md
   - docs/Models/Shared/UpdateTransferInitiationStatusRequest.md
   - docs/Models/Shared/UpdateBankAccountMetadataRequest.md
-  - docs/Models/Shared/ReconciliationErrorResponse.md
   - docs/Models/Shared/PolicyResponse.md
   - docs/Models/Shared/Policy.md
   - docs/Models/Shared/PolicyRequest.md
@@ -1352,8 +1521,6 @@ generatedFiles:
   - docs/Models/Shared/Response.md
   - docs/Models/Shared/QueryRaw.md
   - docs/Models/Shared/Query.md
-  - docs/Models/Shared/WalletsErrorResponseErrorCode.md
-  - docs/Models/Shared/WalletsErrorResponse.md
   - docs/Models/Shared/ConfirmHoldRequest.md
   - docs/Models/Shared/CreateBalanceResponse.md
   - docs/Models/Shared/Balance.md
@@ -1380,10 +1547,9 @@ generatedFiles:
   - docs/Models/Shared/ListBalancesResponse.md
   - docs/Models/Shared/ListWalletsResponseCursor.md
   - docs/Models/Shared/ListWalletsResponse.md
-  - docs/Models/Shared/WebhooksErrorResponse.md
-  - docs/Models/Shared/WebhooksErrorsEnum.md
   - docs/Models/Shared/ConfigResponse.md
   - docs/Models/Shared/WebhooksConfig.md
+  - docs/Models/Shared/WebhooksErrorsEnum.md
   - docs/Models/Shared/ConfigChangeSecret.md
   - docs/Models/Shared/ConfigsResponseCursor.md
   - docs/Models/Shared/ConfigsResponse.md
@@ -1391,6 +1557,17 @@ generatedFiles:
   - docs/Models/Shared/AttemptResponse.md
   - docs/Models/Shared/Attempt.md
   - docs/Models/Shared/Security.md
+  - docs/Models/Errors/ErrorResponse.md
+  - docs/Models/Errors/V2ErrorResponse.md
+  - docs/Models/Errors/ErrorCode.md
+  - docs/Models/Errors/Error.md
+  - docs/Models/Errors/SchemasErrorCode.md
+  - docs/Models/Errors/V2Error.md
+  - docs/Models/Errors/PaymentsErrorResponse.md
+  - docs/Models/Errors/ReconciliationErrorResponse.md
+  - docs/Models/Errors/SchemasWalletsErrorResponseErrorCode.md
+  - docs/Models/Errors/WalletsErrorResponse.md
+  - docs/Models/Errors/WebhooksErrorResponse.md
   - docs/sdks/sdk/README.md
   - docs/sdks/auth/README.md
   - docs/sdks/ledger/README.md

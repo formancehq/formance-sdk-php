@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class GetHoldResponse
 {
+    /**
+     *
+     * @var ExpandedDebitHold $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ExpandedDebitHold')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ExpandedDebitHold')]
     public ExpandedDebitHold $data;
 
-    public function __construct()
+    /**
+     * @param  ?ExpandedDebitHold  $data
+     */
+    public function __construct(?ExpandedDebitHold $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\ExpandedDebitHold();
+        $this->data = $data;
     }
 }

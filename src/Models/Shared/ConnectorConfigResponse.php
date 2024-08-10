@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ConnectorConfigResponse
 {
+    /**
+     *
+     * @var StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('mixed')]
-    public mixed $data;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StripeConfig|\formance\stack\Models\Shared\DummyPayConfig|\formance\stack\Models\Shared\WiseConfig|\formance\stack\Models\Shared\ModulrConfig|\formance\stack\Models\Shared\CurrencyCloudConfig|\formance\stack\Models\Shared\BankingCircleConfig|\formance\stack\Models\Shared\MangoPayConfig|\formance\stack\Models\Shared\MoneycorpConfig|\formance\stack\Models\Shared\AtlarConfig|\formance\stack\Models\Shared\AdyenConfig|\formance\stack\Models\Shared\GenericConfig')]
+    public StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $data;
 
-    public function __construct()
+    /**
+     * @param  StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig|null  $data
+     */
+    public function __construct(StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig|null $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

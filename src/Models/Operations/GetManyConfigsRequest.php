@@ -27,9 +27,13 @@ class GetManyConfigsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=id')]
     public ?string $id = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $endpoint
+     * @param  ?string  $id
+     */
+    public function __construct(?string $endpoint = null, ?string $id = null)
     {
-        $this->endpoint = null;
-        $this->id = null;
+        $this->endpoint = $endpoint;
+        $this->id = $id;
     }
 }

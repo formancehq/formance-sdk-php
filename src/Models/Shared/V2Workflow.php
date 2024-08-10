@@ -11,27 +11,46 @@ namespace formance\stack\Models\Shared;
 
 class V2Workflow
 {
+    /**
+     *
+     * @var V2WorkflowConfig $config
+     */
     #[\JMS\Serializer\Annotation\SerializedName('config')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2WorkflowConfig')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowConfig')]
     public V2WorkflowConfig $config;
 
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var \DateTime $updatedAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $updatedAt;
 
-    public function __construct()
+    /**
+     * @param  ?V2WorkflowConfig  $config
+     * @param  ?\DateTime  $createdAt
+     * @param  ?string  $id
+     * @param  ?\DateTime  $updatedAt
+     */
+    public function __construct(?V2WorkflowConfig $config = null, ?\DateTime $createdAt = null, ?string $id = null, ?\DateTime $updatedAt = null)
     {
-        $this->config = new \formance\stack\Models\Shared\V2WorkflowConfig();
-        $this->createdAt = new \DateTime();
-        $this->id = '';
-        $this->updatedAt = new \DateTime();
+        $this->config = $config;
+        $this->createdAt = $createdAt;
+        $this->id = $id;
+        $this->updatedAt = $updatedAt;
     }
 }

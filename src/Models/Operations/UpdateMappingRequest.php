@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateMappingRequest
 {
+    /**
+     *
+     * @var Shared\Mapping $mapping
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\Mapping $mapping;
+    public Shared\Mapping $mapping;
 
     /**
      * Name of the ledger.
@@ -22,9 +27,13 @@ class UpdateMappingRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\Mapping  $mapping
+     * @param  ?string  $ledger
+     */
+    public function __construct(?Shared\Mapping $mapping = null, ?string $ledger = null)
     {
-        $this->mapping = new \formance\stack\Models\Shared\Mapping();
-        $this->ledger = '';
+        $this->mapping = $mapping;
+        $this->ledger = $ledger;
     }
 }

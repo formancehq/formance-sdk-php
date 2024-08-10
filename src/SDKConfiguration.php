@@ -15,6 +15,7 @@ class SDKConfiguration
     public ?\GuzzleHttp\ClientInterface $securityClient = null;
 
     public ?Models\Shared\Security $security = null;
+
     /** @var pure-Closure(): string */
     public ?\Closure $securitySource = null;
 
@@ -26,11 +27,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = 'v2.0.9';
 
-    public string $sdkVersion = '2.1.3';
+    public string $sdkVersion = '2.2.0';
 
-    public string $genVersion = '2.390.6';
+    public string $genVersion = '2.392.0';
 
-    public string $userAgent = 'speakeasy-sdk/php 2.1.3 2.390.6 v2.0.9 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 2.2.0 2.392.0 v2.0.9 formance/formance-sdk';
 
     public function getServerUrl(): string
     {
@@ -49,8 +50,9 @@ class SDKConfiguration
     public function getSecurity(): ?Models\Shared\Security
     {
         if ($this->securitySource !== null) {
-            $security = new Models\Shared\Security();
-            $security->authorization = $this->securitySource->call($this);
+            $security = new Models\Shared\Security(
+                authorization: $this->securitySource->call($this)
+            );
 
             return $security;
         } else {

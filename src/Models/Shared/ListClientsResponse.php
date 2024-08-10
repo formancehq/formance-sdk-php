@@ -14,15 +14,18 @@ class ListClientsResponse
     /**
      * $data
      *
-     * @var ?array<\formance\stack\Models\Shared\Client> $data
+     * @var ?array<Client> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Client>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Client>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?array<Client>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

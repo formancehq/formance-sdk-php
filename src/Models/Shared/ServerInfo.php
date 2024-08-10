@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class ServerInfo
 {
+    /**
+     *
+     * @var string $version
+     */
     #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $version;
 
-    public function __construct()
+    /**
+     * @param  ?string  $version
+     */
+    public function __construct(?string $version = null)
     {
-        $this->version = '';
+        $this->version = $version;
     }
 }

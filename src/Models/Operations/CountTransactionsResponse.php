@@ -19,13 +19,6 @@ class CountTransactionsResponse
     public string $contentType;
 
     /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\ErrorResponse $errorResponse
-     */
-    public ?\formance\stack\Models\Shared\ErrorResponse $errorResponse = null;
-
-    /**
      * $headers
      *
      * @var array<string, array<string>> $headers
@@ -42,16 +35,21 @@ class CountTransactionsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?array<string, array<string>>  $headers
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     */
+    public function __construct(?string $contentType = null, ?array $headers = [], ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null)
     {
-        $this->contentType = '';
-        $this->errorResponse = null;
-        $this->headers = [];
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->headers = $headers;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
     }
 }

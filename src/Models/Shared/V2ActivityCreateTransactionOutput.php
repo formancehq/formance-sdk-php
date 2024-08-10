@@ -14,14 +14,17 @@ class V2ActivityCreateTransactionOutput
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\OrchestrationV2Transaction> $data
+     * @var array<OrchestrationV2Transaction> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\OrchestrationV2Transaction>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\OrchestrationV2Transaction>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<OrchestrationV2Transaction>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

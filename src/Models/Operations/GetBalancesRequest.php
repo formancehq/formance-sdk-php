@@ -58,12 +58,19 @@ class GetBalancesRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?string  $address
+     * @param  ?string  $after
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     */
+    public function __construct(?string $ledger = null, ?string $address = null, ?string $after = null, ?string $cursor = null, ?int $pageSize = null)
     {
-        $this->address = null;
-        $this->after = null;
-        $this->cursor = null;
-        $this->ledger = '';
-        $this->pageSize = null;
+        $this->ledger = $ledger;
+        $this->address = $address;
+        $this->after = $after;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
     }
 }

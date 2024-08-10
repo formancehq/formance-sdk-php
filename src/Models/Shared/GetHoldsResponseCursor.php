@@ -14,37 +14,56 @@ class GetHoldsResponseCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\Hold> $data
+     * @var array<Hold> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Hold>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Hold>')]
     public array $data;
 
+    /**
+     *
+     * @var ?bool $hasMore
+     */
     #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?bool $hasMore = null;
 
+    /**
+     *
+     * @var ?string $next
+     */
     #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $next = null;
 
+    /**
+     *
+     * @var int $pageSize
+     */
     #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $pageSize;
 
+    /**
+     *
+     * @var ?string $previous
+     */
     #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $previous = null;
 
-    public function __construct()
+    /**
+     * @param  ?array<Hold>  $data
+     * @param  ?int  $pageSize
+     * @param  ?bool  $hasMore
+     * @param  ?string  $next
+     * @param  ?string  $previous
+     */
+    public function __construct(?array $data = null, ?int $pageSize = null, ?bool $hasMore = null, ?string $next = null, ?string $previous = null)
     {
-        $this->data = [];
-        $this->hasMore = null;
-        $this->next = null;
-        $this->pageSize = 0;
-        $this->previous = null;
+        $this->data = $data;
+        $this->pageSize = $pageSize;
+        $this->hasMore = $hasMore;
+        $this->next = $next;
+        $this->previous = $previous;
     }
 }

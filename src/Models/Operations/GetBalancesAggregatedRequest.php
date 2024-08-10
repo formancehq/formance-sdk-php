@@ -35,10 +35,15 @@ class GetBalancesAggregatedRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=useInsertionDate')]
     public ?bool $useInsertionDate = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?string  $address
+     * @param  ?bool  $useInsertionDate
+     */
+    public function __construct(?string $ledger = null, ?string $address = null, ?bool $useInsertionDate = null)
     {
-        $this->address = null;
-        $this->ledger = '';
-        $this->useInsertionDate = null;
+        $this->ledger = $ledger;
+        $this->address = $address;
+        $this->useInsertionDate = $useInsertionDate;
     }
 }

@@ -11,19 +11,29 @@ namespace formance\stack\Models\Shared;
 
 class Total
 {
+    /**
+     *
+     * @var ?string $relation
+     */
     #[\JMS\Serializer\Annotation\SerializedName('relation')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $relation = null;
 
+    /**
+     *
+     * @var ?int $value
+     */
     #[\JMS\Serializer\Annotation\SerializedName('value')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?int $value = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $relation
+     * @param  ?int  $value
+     */
+    public function __construct(?string $relation = null, ?int $value = null)
     {
-        $this->relation = null;
-        $this->value = null;
+        $this->relation = $relation;
+        $this->value = $value;
     }
 }

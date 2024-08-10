@@ -11,27 +11,45 @@ namespace formance\stack\Models\Shared;
 
 class Posting
 {
+    /**
+     *
+     * @var int $amount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $amount;
 
+    /**
+     *
+     * @var string $asset
+     */
     #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $asset;
 
+    /**
+     *
+     * @var string $destination
+     */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $destination;
 
+    /**
+     *
+     * @var string $source
+     */
     #[\JMS\Serializer\Annotation\SerializedName('source')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $source;
 
-    public function __construct()
+    /**
+     * @param  ?int  $amount
+     * @param  ?string  $asset
+     * @param  ?string  $destination
+     * @param  ?string  $source
+     */
+    public function __construct(?int $amount = null, ?string $asset = null, ?string $destination = null, ?string $source = null)
     {
-        $this->amount = 0;
-        $this->asset = '';
-        $this->destination = '';
-        $this->source = '';
+        $this->amount = $amount;
+        $this->asset = $asset;
+        $this->destination = $destination;
+        $this->source = $source;
     }
 }

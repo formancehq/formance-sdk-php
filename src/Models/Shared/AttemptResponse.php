@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class AttemptResponse
 {
+    /**
+     *
+     * @var Attempt $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Attempt')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Attempt')]
     public Attempt $data;
 
-    public function __construct()
+    /**
+     * @param  ?Attempt  $data
+     */
+    public function __construct(?Attempt $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\Attempt();
+        $this->data = $data;
     }
 }

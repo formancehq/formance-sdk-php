@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ActivityGetPaymentOutput
 {
+    /**
+     *
+     * @var OrchestrationPayment $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationPayment')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPayment')]
     public OrchestrationPayment $data;
 
-    public function __construct()
+    /**
+     * @param  ?OrchestrationPayment  $data
+     */
+    public function __construct(?OrchestrationPayment $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\OrchestrationPayment();
+        $this->data = $data;
     }
 }

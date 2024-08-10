@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ConnectorsConfigsResponse
 {
+    /**
+     *
+     * @var ConnectorsConfigsResponseData $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ConnectorsConfigsResponseData')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseData')]
     public ConnectorsConfigsResponseData $data;
 
-    public function __construct()
+    /**
+     * @param  ?ConnectorsConfigsResponseData  $data
+     */
+    public function __construct(?ConnectorsConfigsResponseData $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\ConnectorsConfigsResponseData();
+        $this->data = $data;
     }
 }

@@ -11,22 +11,36 @@ namespace formance\stack\Models\Shared;
 
 class Version
 {
+    /**
+     *
+     * @var bool $health
+     */
     #[\JMS\Serializer\Annotation\SerializedName('health')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $health;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
+    /**
+     *
+     * @var string $version
+     */
     #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $version;
 
-    public function __construct()
+    /**
+     * @param  ?bool  $health
+     * @param  ?string  $name
+     * @param  ?string  $version
+     */
+    public function __construct(?bool $health = null, ?string $name = null, ?string $version = null)
     {
-        $this->health = false;
-        $this->name = '';
-        $this->version = '';
+        $this->health = $health;
+        $this->name = $name;
+        $this->version = $version;
     }
 }

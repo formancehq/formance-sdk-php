@@ -11,8 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class Response
 {
+    /**
+     *
+     * @var ?ResponseCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\ResponseCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ResponseCursor')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ResponseCursor $cursor = null;
 
@@ -26,9 +30,13 @@ class Response
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?ResponseCursor  $cursor
+     * @param  ?array<string, mixed>  $data
+     */
+    public function __construct(?ResponseCursor $cursor = null, ?array $data = null)
     {
-        $this->cursor = null;
-        $this->data = null;
+        $this->cursor = $cursor;
+        $this->data = $data;
     }
 }

@@ -19,12 +19,20 @@ class VoidHoldRequest
     #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
     public ?string $idempotencyKey = null;
 
+    /**
+     *
+     * @var string $holdId
+     */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
     public string $holdId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $holdId
+     * @param  ?string  $idempotencyKey
+     */
+    public function __construct(?string $holdId = null, ?string $idempotencyKey = null)
     {
-        $this->idempotencyKey = null;
-        $this->holdId = '';
+        $this->holdId = $holdId;
+        $this->idempotencyKey = $idempotencyKey;
     }
 }

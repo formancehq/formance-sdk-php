@@ -32,6 +32,10 @@ class V2ListTransactionsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
     public ?string $cursor = null;
 
+    /**
+     *
+     * @var ?string $expand
+     */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
     public ?string $expand = null;
 
@@ -53,16 +57,28 @@ class V2ListTransactionsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
 
+    /**
+     *
+     * @var ?\DateTime $pit
+     */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pit,dateTimeFormat=Y-m-d\TH:i:s.up')]
     public ?\DateTime $pit = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?array<string, mixed>  $requestBody
+     * @param  ?string  $cursor
+     * @param  ?string  $expand
+     * @param  ?int  $pageSize
+     * @param  ?\DateTime  $pit
+     */
+    public function __construct(?string $ledger = null, ?array $requestBody = null, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null)
     {
-        $this->requestBody = null;
-        $this->cursor = null;
-        $this->expand = null;
-        $this->ledger = '';
-        $this->pageSize = null;
-        $this->pit = null;
+        $this->ledger = $ledger;
+        $this->requestBody = $requestBody;
+        $this->cursor = $cursor;
+        $this->expand = $expand;
+        $this->pageSize = $pageSize;
+        $this->pit = $pit;
     }
 }

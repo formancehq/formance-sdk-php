@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class PostTransactionScript
 {
+    /**
+     *
+     * @var string $plain
+     */
     #[\JMS\Serializer\Annotation\SerializedName('plain')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $plain;
 
     /**
@@ -25,9 +28,13 @@ class PostTransactionScript
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $vars = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $plain
+     * @param  ?array<string, mixed>  $vars
+     */
+    public function __construct(?string $plain = null, ?array $vars = null)
     {
-        $this->plain = '';
-        $this->vars = null;
+        $this->plain = $plain;
+        $this->vars = $vars;
     }
 }

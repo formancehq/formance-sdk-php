@@ -27,9 +27,13 @@ class UpdateMetadataRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=paymentId')]
     public string $paymentId;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, string>  $requestBody
+     * @param  ?string  $paymentId
+     */
+    public function __construct(?array $requestBody = null, ?string $paymentId = null)
     {
-        $this->requestBody = [];
-        $this->paymentId = '';
+        $this->requestBody = $requestBody;
+        $this->paymentId = $paymentId;
     }
 }

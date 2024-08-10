@@ -42,10 +42,15 @@ class ListBankAccountsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
     public ?array $sort = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     * @param  ?array<string>  $sort
+     */
+    public function __construct(?string $cursor = null, ?int $pageSize = null, ?array $sort = null)
     {
-        $this->cursor = null;
-        $this->pageSize = null;
-        $this->sort = null;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
+        $this->sort = $sort;
     }
 }

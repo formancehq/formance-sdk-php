@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class Data
 {
+    /**
+     *
+     * @var string $connectorID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $connectorID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $connectorID
+     */
+    public function __construct(?string $connectorID = null)
     {
-        $this->connectorID = '';
+        $this->connectorID = $connectorID;
     }
 }

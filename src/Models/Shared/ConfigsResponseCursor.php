@@ -14,19 +14,26 @@ class ConfigsResponseCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\WebhooksConfig> $data
+     * @var array<WebhooksConfig> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\WebhooksConfig>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\WebhooksConfig>')]
     public array $data;
 
+    /**
+     *
+     * @var bool $hasMore
+     */
     #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $hasMore;
 
-    public function __construct()
+    /**
+     * @param  ?array<WebhooksConfig>  $data
+     * @param  ?bool  $hasMore
+     */
+    public function __construct(?array $data = null, ?bool $hasMore = null)
     {
-        $this->data = [];
-        $this->hasMore = false;
+        $this->data = $data;
+        $this->hasMore = $hasMore;
     }
 }

@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateClientRequest
 {
+    /**
+     *
+     * @var ?Shared\UpdateClientRequest $updateClientRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Shared\UpdateClientRequest $updateClientRequest = null;
+    public ?Shared\UpdateClientRequest $updateClientRequest = null;
 
     /**
      * Client ID
@@ -22,9 +27,13 @@ class UpdateClientRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=clientId')]
     public string $clientId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $clientId
+     * @param  ?Shared\UpdateClientRequest  $updateClientRequest
+     */
+    public function __construct(?string $clientId = null, ?Shared\UpdateClientRequest $updateClientRequest = null)
     {
-        $this->updateClientRequest = null;
-        $this->clientId = '';
+        $this->clientId = $clientId;
+        $this->updateClientRequest = $updateClientRequest;
     }
 }

@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class CreateTriggerResponse
 {
+    /**
+     *
+     * @var Trigger $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Trigger')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Trigger')]
     public Trigger $data;
 
-    public function __construct()
+    /**
+     * @param  ?Trigger  $data
+     */
+    public function __construct(?Trigger $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\Trigger();
+        $this->data = $data;
     }
 }

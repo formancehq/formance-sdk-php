@@ -8,23 +8,32 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ConnectorsTransferRequest
 {
+    /**
+     *
+     * @var Shared\TransferRequest $transferRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\TransferRequest $transferRequest;
+    public Shared\TransferRequest $transferRequest;
 
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Shared\Connector $connector
+     * @var Shared\Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Shared\Connector $connector;
+    public Shared\Connector $connector;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\TransferRequest  $transferRequest
+     * @param  ?Shared\Connector  $connector
+     */
+    public function __construct(?Shared\TransferRequest $transferRequest = null, ?Shared\Connector $connector = null)
     {
-        $this->transferRequest = new \formance\stack\Models\Shared\TransferRequest();
-        $this->connector = \formance\stack\Models\Shared\Connector::Stripe;
+        $this->transferRequest = $transferRequest;
+        $this->connector = $connector;
     }
 }

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class GetReconciliationResponse
 {
     /**
@@ -21,9 +21,9 @@ class GetReconciliationResponse
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\ReconciliationResponse $reconciliationResponse
+     * @var ?Shared\ReconciliationResponse $reconciliationResponse
      */
-    public ?\formance\stack\Models\Shared\ReconciliationResponse $reconciliationResponse = null;
+    public ?Shared\ReconciliationResponse $reconciliationResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -35,23 +35,21 @@ class GetReconciliationResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * Error response
-     *
-     * @var ?\formance\stack\Models\Shared\ReconciliationErrorResponse $reconciliationErrorResponse
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\ReconciliationResponse  $reconciliationResponse
      */
-    public ?\formance\stack\Models\Shared\ReconciliationErrorResponse $reconciliationErrorResponse = null;
-
-    public function __construct()
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\ReconciliationResponse $reconciliationResponse = null)
     {
-        $this->contentType = '';
-        $this->reconciliationResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->reconciliationErrorResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->reconciliationResponse = $reconciliationResponse;
     }
 }

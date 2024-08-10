@@ -23,34 +23,51 @@ class V2PostTransaction
     /**
      * $postings
      *
-     * @var ?array<\formance\stack\Models\Shared\V2Posting> $postings
+     * @var ?array<V2Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postings = null;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
+    /**
+     *
+     * @var ?V2PostTransactionScript $script
+     */
     #[\JMS\Serializer\Annotation\SerializedName('script')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2PostTransactionScript')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransactionScript')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2PostTransactionScript $script = null;
 
+    /**
+     *
+     * @var ?\DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $timestamp = null;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<V2Posting>  $postings
+     * @param  ?string  $reference
+     * @param  ?V2PostTransactionScript  $script
+     * @param  ?\DateTime  $timestamp
+     */
+    public function __construct(?array $metadata = null, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
     {
-        $this->metadata = [];
-        $this->postings = null;
-        $this->reference = null;
-        $this->script = null;
-        $this->timestamp = null;
+        $this->metadata = $metadata;
+        $this->postings = $postings;
+        $this->reference = $reference;
+        $this->script = $script;
+        $this->timestamp = $timestamp;
     }
 }

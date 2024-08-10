@@ -11,19 +11,30 @@ namespace formance\stack\Models\Shared;
 
 class ActivityCreateTransaction
 {
+    /**
+     *
+     * @var ?OrchestrationPostTransaction $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationPostTransaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPostTransaction')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?OrchestrationPostTransaction $data = null;
 
+    /**
+     *
+     * @var ?string $ledger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $ledger = null;
 
-    public function __construct()
+    /**
+     * @param  ?OrchestrationPostTransaction  $data
+     * @param  ?string  $ledger
+     */
+    public function __construct(?OrchestrationPostTransaction $data = null, ?string $ledger = null)
     {
-        $this->data = null;
-        $this->ledger = null;
+        $this->data = $data;
+        $this->ledger = $ledger;
     }
 }

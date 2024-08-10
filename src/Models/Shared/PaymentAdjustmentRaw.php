@@ -11,6 +11,7 @@ namespace formance\stack\Models\Shared;
 
 class PaymentAdjustmentRaw
 {
+
     public function __construct()
     {
     }

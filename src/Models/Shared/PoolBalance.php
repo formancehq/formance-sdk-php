@@ -11,17 +11,27 @@ namespace formance\stack\Models\Shared;
 
 class PoolBalance
 {
+    /**
+     *
+     * @var int $amount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $amount;
 
+    /**
+     *
+     * @var string $asset
+     */
     #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $asset;
 
-    public function __construct()
+    /**
+     * @param  ?int  $amount
+     * @param  ?string  $asset
+     */
+    public function __construct(?int $amount = null, ?string $asset = null)
     {
-        $this->amount = 0;
-        $this->asset = '';
+        $this->amount = $amount;
+        $this->asset = $asset;
     }
 }

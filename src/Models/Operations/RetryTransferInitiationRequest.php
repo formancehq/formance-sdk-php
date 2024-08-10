@@ -19,8 +19,11 @@ class RetryTransferInitiationRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=transferId')]
     public string $transferId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $transferId
+     */
+    public function __construct(?string $transferId = null)
     {
-        $this->transferId = '';
+        $this->transferId = $transferId;
     }
 }

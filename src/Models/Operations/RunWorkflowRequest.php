@@ -35,10 +35,15 @@ class RunWorkflowRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=workflowID')]
     public string $workflowID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $workflowID
+     * @param  ?array<string, string>  $requestBody
+     * @param  ?bool  $wait
+     */
+    public function __construct(?string $workflowID = null, ?array $requestBody = null, ?bool $wait = null)
     {
-        $this->requestBody = null;
-        $this->wait = null;
-        $this->workflowID = '';
+        $this->workflowID = $workflowID;
+        $this->requestBody = $requestBody;
+        $this->wait = $wait;
     }
 }

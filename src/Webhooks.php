@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+use JMS\Serializer\DeserializationContext;
+
 class Webhooks
 {
     private SDKConfiguration $sdkConfiguration;
@@ -25,40 +29,48 @@ class Webhooks
      *
      * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      *
-     * @param  \formance\stack\Models\Operations\ActivateConfigRequest  $request
-     * @return \formance\stack\Models\Operations\ActivateConfigResponse
+     * @param  Operations\ActivateConfigRequest  $request
+     * @return Operations\ActivateConfigResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function activateConfig(
-        ?\formance\stack\Models\Operations\ActivateConfigRequest $request,
-    ): \formance\stack\Models\Operations\ActivateConfigResponse {
+        ?Operations\ActivateConfigRequest $request,
+    ): Operations\ActivateConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/activate', \formance\stack\Models\Operations\ActivateConfigRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/activate', Operations\ActivateConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\ActivateConfigResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ConfigResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ActivateConfigResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    configResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -70,14 +82,15 @@ class Webhooks
      * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
      *
      *
-     * @param  \formance\stack\Models\Operations\ChangeConfigSecretRequest  $request
-     * @return \formance\stack\Models\Operations\ChangeConfigSecretResponse
+     * @param  Operations\ChangeConfigSecretRequest  $request
+     * @return Operations\ChangeConfigSecretResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function changeConfigSecret(
-        ?\formance\stack\Models\Operations\ChangeConfigSecretRequest $request,
-    ): \formance\stack\Models\Operations\ChangeConfigSecretResponse {
+        ?Operations\ChangeConfigSecretRequest $request,
+    ): Operations\ChangeConfigSecretResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/secret/change', \formance\stack\Models\Operations\ChangeConfigSecretRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/secret/change', Operations\ChangeConfigSecretRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'configChangeSecret', 'json');
         if ($body !== null) {
@@ -85,29 +98,36 @@ class Webhooks
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\ChangeConfigSecretResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ConfigResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ChangeConfigSecretResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    configResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -115,40 +135,48 @@ class Webhooks
      *
      * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      *
-     * @param  \formance\stack\Models\Operations\DeactivateConfigRequest  $request
-     * @return \formance\stack\Models\Operations\DeactivateConfigResponse
+     * @param  Operations\DeactivateConfigRequest  $request
+     * @return Operations\DeactivateConfigResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deactivateConfig(
-        ?\formance\stack\Models\Operations\DeactivateConfigRequest $request,
-    ): \formance\stack\Models\Operations\DeactivateConfigResponse {
+        ?Operations\DeactivateConfigRequest $request,
+    ): Operations\DeactivateConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/deactivate', \formance\stack\Models\Operations\DeactivateConfigRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/deactivate', Operations\DeactivateConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\DeactivateConfigResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ConfigResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\DeactivateConfigResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    configResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -156,36 +184,40 @@ class Webhooks
      *
      * Delete a webhooks config by ID.
      *
-     * @param  \formance\stack\Models\Operations\DeleteConfigRequest  $request
-     * @return \formance\stack\Models\Operations\DeleteConfigResponse
+     * @param  Operations\DeleteConfigRequest  $request
+     * @return Operations\DeleteConfigResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deleteConfig(
-        ?\formance\stack\Models\Operations\DeleteConfigRequest $request,
-    ): \formance\stack\Models\Operations\DeleteConfigResponse {
+        ?Operations\DeleteConfigRequest $request,
+    ): Operations\DeleteConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}', \formance\stack\Models\Operations\DeleteConfigRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}', Operations\DeleteConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\DeleteConfigResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
+            return new Operations\DeleteConfigResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -193,41 +225,49 @@ class Webhooks
      *
      * Sorted by updated date descending
      *
-     * @param  \formance\stack\Models\Operations\GetManyConfigsRequest  $request
-     * @return \formance\stack\Models\Operations\GetManyConfigsResponse
+     * @param  Operations\GetManyConfigsRequest  $request
+     * @return Operations\GetManyConfigsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getManyConfigs(
-        ?\formance\stack\Models\Operations\GetManyConfigsRequest $request,
-    ): \formance\stack\Models\Operations\GetManyConfigsResponse {
+        ?Operations\GetManyConfigsRequest $request,
+    ): Operations\GetManyConfigsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\GetManyConfigsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetManyConfigsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetManyConfigsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigsResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ConfigsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetManyConfigsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    configsResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -244,12 +284,13 @@ class Webhooks
      * All eventTypes are converted to lower-case when inserted.
      *
      *
-     * @param  \formance\stack\Models\Shared\ConfigUser  $request
-     * @return \formance\stack\Models\Operations\InsertConfigResponse
+     * @param  Shared\ConfigUser  $request
+     * @return Operations\InsertConfigResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function insertConfig(
-        \formance\stack\Models\Shared\ConfigUser $request,
-    ): \formance\stack\Models\Operations\InsertConfigResponse {
+        Shared\ConfigUser $request,
+    ): Operations\InsertConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
         $options = ['http_errors' => false];
@@ -260,29 +301,36 @@ class Webhooks
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\InsertConfigResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ConfigResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\InsertConfigResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    configResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -290,39 +338,47 @@ class Webhooks
      *
      * Test a config by sending a webhook to its endpoint.
      *
-     * @param  \formance\stack\Models\Operations\TestConfigRequest  $request
-     * @return \formance\stack\Models\Operations\TestConfigResponse
+     * @param  Operations\TestConfigRequest  $request
+     * @return Operations\TestConfigResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function testConfig(
-        ?\formance\stack\Models\Operations\TestConfigRequest $request,
-    ): \formance\stack\Models\Operations\TestConfigResponse {
+        ?Operations\TestConfigRequest $request,
+    ): Operations\TestConfigResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/test', \formance\stack\Models\Operations\TestConfigRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/test', Operations\TestConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\TestConfigResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->attemptResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\AttemptResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\AttemptResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\TestConfigResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    attemptResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->webhooksErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\WebhooksErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 }

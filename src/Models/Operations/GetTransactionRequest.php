@@ -27,9 +27,13 @@ class GetTransactionRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
     public int $txid;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?int  $txid
+     */
+    public function __construct(?string $ledger = null, ?int $txid = null)
     {
-        $this->ledger = '';
-        $this->txid = 0;
+        $this->ledger = $ledger;
+        $this->txid = $txid;
     }
 }

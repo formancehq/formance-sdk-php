@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class ListPoliciesResponse
 {
     /**
@@ -21,9 +21,9 @@ class ListPoliciesResponse
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\PoliciesCursorResponse $policiesCursorResponse
+     * @var ?Shared\PoliciesCursorResponse $policiesCursorResponse
      */
-    public ?\formance\stack\Models\Shared\PoliciesCursorResponse $policiesCursorResponse = null;
+    public ?Shared\PoliciesCursorResponse $policiesCursorResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -35,23 +35,21 @@ class ListPoliciesResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * Error response
-     *
-     * @var ?\formance\stack\Models\Shared\ReconciliationErrorResponse $reconciliationErrorResponse
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\PoliciesCursorResponse  $policiesCursorResponse
      */
-    public ?\formance\stack\Models\Shared\ReconciliationErrorResponse $reconciliationErrorResponse = null;
-
-    public function __construct()
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\PoliciesCursorResponse $policiesCursorResponse = null)
     {
-        $this->contentType = '';
-        $this->policiesCursorResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->reconciliationErrorResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->policiesCursorResponse = $policiesCursorResponse;
     }
 }

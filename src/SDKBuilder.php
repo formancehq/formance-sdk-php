@@ -39,8 +39,9 @@ class SDKBuilder
      */
     public function setSecurity(string $authorization): SDKBuilder
     {
-        $security = new Models\Shared\Security();
-        $security->authorization = $authorization;
+        $security = new Models\Shared\Security(
+            authorization: $authorization
+        );
         $this->sdkConfig->security = $security;
 
         return $this;

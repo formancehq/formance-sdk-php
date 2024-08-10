@@ -21,13 +21,20 @@ class CreateSecretRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?string  $name
+     * @param  ?array<string, mixed>  $metadata
+     */
+    public function __construct(?string $name = null, ?array $metadata = null)
     {
-        $this->metadata = null;
-        $this->name = '';
+        $this->name = $name;
+        $this->metadata = $metadata;
     }
 }

@@ -11,17 +11,27 @@ namespace formance\stack\Models\Shared;
 
 class ActivityRevertTransaction
 {
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var string $ledger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     * @param  ?string  $ledger
+     */
+    public function __construct(?string $id = null, ?string $ledger = null)
     {
-        $this->id = '';
-        $this->ledger = '';
+        $this->id = $id;
+        $this->ledger = $ledger;
     }
 }

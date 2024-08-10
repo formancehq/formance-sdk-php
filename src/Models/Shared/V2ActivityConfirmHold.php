@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class V2ActivityConfirmHold
 {
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     */
+    public function __construct(?string $id = null)
     {
-        $this->id = '';
+        $this->id = $id;
     }
 }

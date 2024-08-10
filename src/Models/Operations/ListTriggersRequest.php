@@ -19,8 +19,11 @@ class ListTriggersRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name')]
     public ?string $name = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $name
+     */
+    public function __construct(?string $name = null)
     {
-        $this->name = null;
+        $this->name = $name;
     }
 }

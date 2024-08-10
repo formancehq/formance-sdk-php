@@ -20,13 +20,20 @@ class PoolRequest
     #[\JMS\Serializer\Annotation\Type('array<string>')]
     public array $accountIDs;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?array<string>  $accountIDs
+     * @param  ?string  $name
+     */
+    public function __construct(?array $accountIDs = null, ?string $name = null)
     {
-        $this->accountIDs = [];
-        $this->name = '';
+        $this->accountIDs = $accountIDs;
+        $this->name = $name;
     }
 }

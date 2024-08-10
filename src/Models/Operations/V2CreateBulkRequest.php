@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateBulkRequest
 {
@@ -27,9 +28,13 @@ class V2CreateBulkRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?array<mixed>  $requestBody
+     */
+    public function __construct(?string $ledger = null, ?array $requestBody = null)
     {
-        $this->requestBody = null;
-        $this->ledger = '';
+        $this->ledger = $ledger;
+        $this->requestBody = $requestBody;
     }
 }

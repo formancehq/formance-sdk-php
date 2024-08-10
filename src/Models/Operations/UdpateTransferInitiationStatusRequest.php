@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UdpateTransferInitiationStatusRequest
 {
+    /**
+     *
+     * @var Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest;
+    public Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest;
 
     /**
      * The transfer ID.
@@ -22,9 +27,13 @@ class UdpateTransferInitiationStatusRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=transferId')]
     public string $transferId;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\UpdateTransferInitiationStatusRequest  $updateTransferInitiationStatusRequest
+     * @param  ?string  $transferId
+     */
+    public function __construct(?Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest = null, ?string $transferId = null)
     {
-        $this->updateTransferInitiationStatusRequest = new \formance\stack\Models\Shared\UpdateTransferInitiationStatusRequest();
-        $this->transferId = '';
+        $this->updateTransferInitiationStatusRequest = $updateTransferInitiationStatusRequest;
+        $this->transferId = $transferId;
     }
 }

@@ -35,10 +35,15 @@ class AddMetadataOnTransactionRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
     public int $txid;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?int  $txid
+     * @param  ?array<string, mixed>  $requestBody
+     */
+    public function __construct(?string $ledger = null, ?int $txid = null, ?array $requestBody = null)
     {
-        $this->requestBody = null;
-        $this->ledger = '';
-        $this->txid = 0;
+        $this->ledger = $ledger;
+        $this->txid = $txid;
+        $this->requestBody = $requestBody;
     }
 }

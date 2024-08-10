@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ForwardBankAccountRequest
 {
+    /**
+     *
+     * @var Shared\ForwardBankAccountRequest $forwardBankAccountRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\ForwardBankAccountRequest $forwardBankAccountRequest;
+    public Shared\ForwardBankAccountRequest $forwardBankAccountRequest;
 
     /**
      * The bank account ID.
@@ -22,9 +27,13 @@ class ForwardBankAccountRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=bankAccountId')]
     public string $bankAccountId;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\ForwardBankAccountRequest  $forwardBankAccountRequest
+     * @param  ?string  $bankAccountId
+     */
+    public function __construct(?Shared\ForwardBankAccountRequest $forwardBankAccountRequest = null, ?string $bankAccountId = null)
     {
-        $this->forwardBankAccountRequest = new \formance\stack\Models\Shared\ForwardBankAccountRequest();
-        $this->bankAccountId = '';
+        $this->forwardBankAccountRequest = $forwardBankAccountRequest;
+        $this->bankAccountId = $bankAccountId;
     }
 }

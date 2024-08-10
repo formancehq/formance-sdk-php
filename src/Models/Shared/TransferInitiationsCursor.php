@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class TransferInitiationsCursor
 {
+    /**
+     *
+     * @var TransferInitiationsCursorCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\TransferInitiationsCursorCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationsCursorCursor')]
     public TransferInitiationsCursorCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?TransferInitiationsCursorCursor  $cursor
+     */
+    public function __construct(?TransferInitiationsCursorCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\TransferInitiationsCursorCursor();
+        $this->cursor = $cursor;
     }
 }

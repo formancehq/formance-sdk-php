@@ -19,8 +19,11 @@ class ListTriggersOccurrencesRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
     public string $triggerID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $triggerID
+     */
+    public function __construct(?string $triggerID = null)
     {
-        $this->triggerID = '';
+        $this->triggerID = $triggerID;
     }
 }

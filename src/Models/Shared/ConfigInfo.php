@@ -11,22 +11,37 @@ namespace formance\stack\Models\Shared;
 
 class ConfigInfo
 {
+    /**
+     *
+     * @var Config $config
+     */
     #[\JMS\Serializer\Annotation\SerializedName('config')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Config')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Config')]
     public Config $config;
 
+    /**
+     *
+     * @var string $server
+     */
     #[\JMS\Serializer\Annotation\SerializedName('server')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $server;
 
+    /**
+     *
+     * @var string $version
+     */
     #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $version;
 
-    public function __construct()
+    /**
+     * @param  ?Config  $config
+     * @param  ?string  $server
+     * @param  ?string  $version
+     */
+    public function __construct(?Config $config = null, ?string $server = null, ?string $version = null)
     {
-        $this->config = new \formance\stack\Models\Shared\Config();
-        $this->server = '';
-        $this->version = '';
+        $this->config = $config;
+        $this->server = $server;
+        $this->version = $version;
     }
 }

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateTransactionRequest
 {
@@ -26,10 +27,10 @@ class V2CreateTransactionRequest
      *   - `script`: enabling more complex transactions with Numscript
      *
      *
-     * @var \formance\stack\Models\Shared\V2PostTransaction $v2PostTransaction
+     * @var Shared\V2PostTransaction $v2PostTransaction
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\V2PostTransaction $v2PostTransaction;
+    public Shared\V2PostTransaction $v2PostTransaction;
 
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
@@ -47,11 +48,17 @@ class V2CreateTransactionRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\V2PostTransaction  $v2PostTransaction
+     * @param  ?string  $ledger
+     * @param  ?string  $idempotencyKey
+     * @param  ?bool  $dryRun
+     */
+    public function __construct(?Shared\V2PostTransaction $v2PostTransaction = null, ?string $ledger = null, ?string $idempotencyKey = null, ?bool $dryRun = null)
     {
-        $this->idempotencyKey = null;
-        $this->v2PostTransaction = new \formance\stack\Models\Shared\V2PostTransaction();
-        $this->dryRun = null;
-        $this->ledger = '';
+        $this->v2PostTransaction = $v2PostTransaction;
+        $this->ledger = $ledger;
+        $this->idempotencyKey = $idempotencyKey;
+        $this->dryRun = $dryRun;
     }
 }

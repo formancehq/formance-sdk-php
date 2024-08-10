@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateBankAccountMetadataRequest
 {
+    /**
+     *
+     * @var Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest;
+    public Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest;
 
     /**
      * The bank account ID.
@@ -22,9 +27,13 @@ class UpdateBankAccountMetadataRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=bankAccountId')]
     public string $bankAccountId;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\UpdateBankAccountMetadataRequest  $updateBankAccountMetadataRequest
+     * @param  ?string  $bankAccountId
+     */
+    public function __construct(?Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest = null, ?string $bankAccountId = null)
     {
-        $this->updateBankAccountMetadataRequest = new \formance\stack\Models\Shared\UpdateBankAccountMetadataRequest();
-        $this->bankAccountId = '';
+        $this->updateBankAccountMetadataRequest = $updateBankAccountMetadataRequest;
+        $this->bankAccountId = $bankAccountId;
     }
 }

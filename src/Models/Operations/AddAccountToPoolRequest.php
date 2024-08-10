@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class AddAccountToPoolRequest
 {
+    /**
+     *
+     * @var Shared\AddAccountToPoolRequest $addAccountToPoolRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Shared\AddAccountToPoolRequest $addAccountToPoolRequest;
+    public Shared\AddAccountToPoolRequest $addAccountToPoolRequest;
 
     /**
      * The pool ID.
@@ -22,9 +27,13 @@ class AddAccountToPoolRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=poolId')]
     public string $poolId;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\AddAccountToPoolRequest  $addAccountToPoolRequest
+     * @param  ?string  $poolId
+     */
+    public function __construct(?Shared\AddAccountToPoolRequest $addAccountToPoolRequest = null, ?string $poolId = null)
     {
-        $this->addAccountToPoolRequest = new \formance\stack\Models\Shared\AddAccountToPoolRequest();
-        $this->poolId = '';
+        $this->addAccountToPoolRequest = $addAccountToPoolRequest;
+        $this->poolId = $poolId;
     }
 }

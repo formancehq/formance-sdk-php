@@ -11,27 +11,38 @@ namespace formance\stack\Models\Shared;
 
 class GetVersionsResponse
 {
+    /**
+     *
+     * @var string $env
+     */
     #[\JMS\Serializer\Annotation\SerializedName('env')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $env;
 
+    /**
+     *
+     * @var string $region
+     */
     #[\JMS\Serializer\Annotation\SerializedName('region')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $region;
 
     /**
      * $versions
      *
-     * @var array<\formance\stack\Models\Shared\Version> $versions
+     * @var array<Version> $versions
      */
     #[\JMS\Serializer\Annotation\SerializedName('versions')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Version>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Version>')]
     public array $versions;
 
-    public function __construct()
+    /**
+     * @param  ?string  $env
+     * @param  ?string  $region
+     * @param  ?array<Version>  $versions
+     */
+    public function __construct(?string $env = null, ?string $region = null, ?array $versions = null)
     {
-        $this->env = '';
-        $this->region = '';
-        $this->versions = [];
+        $this->env = $env;
+        $this->region = $region;
+        $this->versions = $versions;
     }
 }

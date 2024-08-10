@@ -29,9 +29,13 @@ class GetPoolBalancesRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=poolId')]
     public string $poolId;
 
-    public function __construct()
+    /**
+     * @param  ?\DateTime  $at
+     * @param  ?string  $poolId
+     */
+    public function __construct(?\DateTime $at = null, ?string $poolId = null)
     {
-        $this->at = new \DateTime();
-        $this->poolId = '';
+        $this->at = $at;
+        $this->poolId = $poolId;
     }
 }

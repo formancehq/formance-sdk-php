@@ -17,6 +17,7 @@ namespace formance\stack\Models\Shared;
  */
 class Metadata
 {
+
     public function __construct()
     {
     }

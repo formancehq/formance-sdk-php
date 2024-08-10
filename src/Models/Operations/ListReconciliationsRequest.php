@@ -34,9 +34,13 @@ class ListReconciliationsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     */
+    public function __construct(?string $cursor = null, ?int $pageSize = null)
     {
-        $this->cursor = null;
-        $this->pageSize = null;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
     }
 }

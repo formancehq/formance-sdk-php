@@ -11,24 +11,38 @@ namespace formance\stack\Models\Shared;
 
 class Balance
 {
+    /**
+     *
+     * @var ?\DateTime $expiresAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $expiresAt = null;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
+    /**
+     *
+     * @var ?int $priority
+     */
     #[\JMS\Serializer\Annotation\SerializedName('priority')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?int $priority = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $name
+     * @param  ?\DateTime  $expiresAt
+     * @param  ?int  $priority
+     */
+    public function __construct(?string $name = null, ?\DateTime $expiresAt = null, ?int $priority = null)
     {
-        $this->expiresAt = null;
-        $this->name = '';
-        $this->priority = null;
+        $this->name = $name;
+        $this->expiresAt = $expiresAt;
+        $this->priority = $priority;
     }
 }

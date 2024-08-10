@@ -27,9 +27,13 @@ class RemoveAccountFromPoolRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=poolId')]
     public string $poolId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $accountId
+     * @param  ?string  $poolId
+     */
+    public function __construct(?string $accountId = null, ?string $poolId = null)
     {
-        $this->accountId = '';
-        $this->poolId = '';
+        $this->accountId = $accountId;
+        $this->poolId = $poolId;
     }
 }

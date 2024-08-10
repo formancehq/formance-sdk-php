@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class WalletsTransaction
 {
+    /**
+     *
+     * @var int $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $id;
 
+    /**
+     *
+     * @var ?string $ledger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $ledger = null;
 
@@ -32,50 +38,66 @@ class WalletsTransaction
     /**
      * $postCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>> $postCommitVolumes
+     * @var ?array<string, array<string, WalletsVolume>> $postCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, formance\stack\Models\Shared\WalletsVolume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postCommitVolumes = null;
 
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Shared\Posting> $postings
+     * @var array<Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
     public array $postings;
 
     /**
      * $preCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>> $preCommitVolumes
+     * @var ?array<string, array<string, WalletsVolume>> $preCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, formance\stack\Models\Shared\WalletsVolume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $preCommitVolumes = null;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
+    /**
+     *
+     * @var \DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $timestamp;
 
-    public function __construct()
+    /**
+     * @param  ?int  $id
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<Posting>  $postings
+     * @param  ?\DateTime  $timestamp
+     * @param  ?string  $ledger
+     * @param  ?array<string, array<string, WalletsVolume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, WalletsVolume>>  $preCommitVolumes
+     * @param  ?string  $reference
+     */
+    public function __construct(?int $id = null, ?array $metadata = null, ?array $postings = null, ?\DateTime $timestamp = null, ?string $ledger = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {
-        $this->id = 0;
-        $this->ledger = null;
-        $this->metadata = [];
-        $this->postCommitVolumes = null;
-        $this->postings = [];
-        $this->preCommitVolumes = null;
-        $this->reference = null;
-        $this->timestamp = new \DateTime();
+        $this->id = $id;
+        $this->metadata = $metadata;
+        $this->postings = $postings;
+        $this->timestamp = $timestamp;
+        $this->ledger = $ledger;
+        $this->postCommitVolumes = $postCommitVolumes;
+        $this->preCommitVolumes = $preCommitVolumes;
+        $this->reference = $reference;
     }
 }

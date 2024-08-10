@@ -19,8 +19,11 @@ class DeletePoolRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=poolId')]
     public string $poolId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $poolId
+     */
+    public function __construct(?string $poolId = null)
     {
-        $this->poolId = '';
+        $this->poolId = $poolId;
     }
 }

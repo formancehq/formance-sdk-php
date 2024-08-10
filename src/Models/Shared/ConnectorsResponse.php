@@ -14,14 +14,17 @@ class ConnectorsResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\ConnectorsResponseData> $data
+     * @var array<ConnectorsResponseData> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\ConnectorsResponseData>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\ConnectorsResponseData>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<ConnectorsResponseData>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

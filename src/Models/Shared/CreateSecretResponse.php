@@ -11,13 +11,20 @@ namespace formance\stack\Models\Shared;
 
 class CreateSecretResponse
 {
+    /**
+     *
+     * @var ?Secret $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Secret')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Secret')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Secret $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?Secret  $data
+     */
+    public function __construct(?Secret $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

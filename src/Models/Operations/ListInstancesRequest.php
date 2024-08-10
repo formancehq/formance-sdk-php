@@ -27,9 +27,13 @@ class ListInstancesRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=workflowID')]
     public ?string $workflowID = null;
 
-    public function __construct()
+    /**
+     * @param  ?bool  $running
+     * @param  ?string  $workflowID
+     */
+    public function __construct(?bool $running = null, ?string $workflowID = null)
     {
-        $this->running = null;
-        $this->workflowID = null;
+        $this->running = $running;
+        $this->workflowID = $workflowID;
     }
 }

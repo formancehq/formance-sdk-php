@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class V2ListAccountsResponse
 {
     /**
@@ -28,30 +28,28 @@ class V2ListAccountsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\V2AccountsCursorResponse $v2AccountsCursorResponse
+     * @var ?Shared\V2AccountsCursorResponse $v2AccountsCursorResponse
      */
-    public ?\formance\stack\Models\Shared\V2AccountsCursorResponse $v2AccountsCursorResponse = null;
+    public ?Shared\V2AccountsCursorResponse $v2AccountsCursorResponse = null;
 
     /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\V2AccountsCursorResponse  $v2AccountsCursorResponse
      */
-    public ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse = null;
-
-    public function __construct()
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2AccountsCursorResponse $v2AccountsCursorResponse = null)
     {
-        $this->contentType = '';
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->v2AccountsCursorResponse = null;
-        $this->v2ErrorResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->v2AccountsCursorResponse = $v2AccountsCursorResponse;
     }
 }

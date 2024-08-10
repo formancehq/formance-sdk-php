@@ -19,8 +19,11 @@ class V2GetWorkflowRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=flowId')]
     public string $flowId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $flowId
+     */
+    public function __construct(?string $flowId = null)
     {
-        $this->flowId = '';
+        $this->flowId = $flowId;
     }
 }

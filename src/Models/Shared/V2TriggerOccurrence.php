@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class V2TriggerOccurrence
 {
+    /**
+     *
+     * @var \DateTime $date
+     */
     #[\JMS\Serializer\Annotation\SerializedName('date')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $date;
 
+    /**
+     *
+     * @var ?string $error
+     */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $error = null;
 
@@ -29,27 +35,45 @@ class V2TriggerOccurrence
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     public array $event;
 
+    /**
+     *
+     * @var string $triggerID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('triggerID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $triggerID;
 
+    /**
+     *
+     * @var ?V2WorkflowInstance $workflowInstance
+     */
     #[\JMS\Serializer\Annotation\SerializedName('workflowInstance')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2WorkflowInstance')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2WorkflowInstance $workflowInstance = null;
 
+    /**
+     *
+     * @var ?string $workflowInstanceID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('workflowInstanceID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $workflowInstanceID = null;
 
-    public function __construct()
+    /**
+     * @param  ?\DateTime  $date
+     * @param  ?array<string, mixed>  $event
+     * @param  ?string  $triggerID
+     * @param  ?string  $error
+     * @param  ?V2WorkflowInstance  $workflowInstance
+     * @param  ?string  $workflowInstanceID
+     */
+    public function __construct(?\DateTime $date = null, ?array $event = null, ?string $triggerID = null, ?string $error = null, ?V2WorkflowInstance $workflowInstance = null, ?string $workflowInstanceID = null)
     {
-        $this->date = new \DateTime();
-        $this->error = null;
-        $this->event = [];
-        $this->triggerID = '';
-        $this->workflowInstance = null;
-        $this->workflowInstanceID = null;
+        $this->date = $date;
+        $this->event = $event;
+        $this->triggerID = $triggerID;
+        $this->error = $error;
+        $this->workflowInstance = $workflowInstance;
+        $this->workflowInstanceID = $workflowInstanceID;
     }
 }

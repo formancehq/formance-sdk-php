@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class LedgerStorage
 {
+    /**
+     *
+     * @var string $driver
+     */
     #[\JMS\Serializer\Annotation\SerializedName('driver')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $driver;
 
     /**
@@ -24,9 +27,13 @@ class LedgerStorage
     #[\JMS\Serializer\Annotation\Type('array<string>')]
     public array $ledgers;
 
-    public function __construct()
+    /**
+     * @param  ?string  $driver
+     * @param  ?array<string>  $ledgers
+     */
+    public function __construct(?string $driver = null, ?array $ledgers = null)
     {
-        $this->driver = '';
-        $this->ledgers = [];
+        $this->driver = $driver;
+        $this->ledgers = $ledgers;
     }
 }

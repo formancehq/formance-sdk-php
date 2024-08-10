@@ -11,8 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class CreditWalletRequest
 {
+    /**
+     *
+     * @var Monetary $amount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Monetary')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Monetary')]
     public Monetary $amount;
 
     /**
@@ -21,7 +25,6 @@ class CreditWalletRequest
      * @var ?string $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $balance = null;
 
@@ -35,8 +38,11 @@ class CreditWalletRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
@@ -50,18 +56,29 @@ class CreditWalletRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $sources = null;
 
+    /**
+     *
+     * @var ?\DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $timestamp = null;
 
-    public function __construct()
+    /**
+     * @param  ?Monetary  $amount
+     * @param  ?string  $balance
+     * @param  ?array<string, string>  $metadata
+     * @param  ?string  $reference
+     * @param  ?array<mixed>  $sources
+     * @param  ?\DateTime  $timestamp
+     */
+    public function __construct(?Monetary $amount = null, ?string $balance = null, ?array $metadata = null, ?string $reference = null, ?array $sources = null, ?\DateTime $timestamp = null)
     {
-        $this->amount = new \formance\stack\Models\Shared\Monetary();
-        $this->balance = null;
-        $this->metadata = null;
-        $this->reference = null;
-        $this->sources = null;
-        $this->timestamp = null;
+        $this->amount = $amount;
+        $this->balance = $balance;
+        $this->metadata = $metadata;
+        $this->reference = $reference;
+        $this->sources = $sources;
+        $this->timestamp = $timestamp;
     }
 }

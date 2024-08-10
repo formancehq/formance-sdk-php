@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class GetInstanceHistoryResponse
 {
     /**
@@ -19,18 +19,11 @@ class GetInstanceHistoryResponse
     public string $contentType;
 
     /**
-     * General error
-     *
-     * @var ?\formance\stack\Models\Shared\Error $error
-     */
-    public ?\formance\stack\Models\Shared\Error $error = null;
-
-    /**
      * The workflow instance history
      *
-     * @var ?\formance\stack\Models\Shared\GetWorkflowInstanceHistoryResponse $getWorkflowInstanceHistoryResponse
+     * @var ?Shared\GetWorkflowInstanceHistoryResponse $getWorkflowInstanceHistoryResponse
      */
-    public ?\formance\stack\Models\Shared\GetWorkflowInstanceHistoryResponse $getWorkflowInstanceHistoryResponse = null;
+    public ?Shared\GetWorkflowInstanceHistoryResponse $getWorkflowInstanceHistoryResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,16 +35,21 @@ class GetInstanceHistoryResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\GetWorkflowInstanceHistoryResponse  $getWorkflowInstanceHistoryResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\GetWorkflowInstanceHistoryResponse $getWorkflowInstanceHistoryResponse = null)
     {
-        $this->contentType = '';
-        $this->error = null;
-        $this->getWorkflowInstanceHistoryResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->getWorkflowInstanceHistoryResponse = $getWorkflowInstanceHistoryResponse;
     }
 }

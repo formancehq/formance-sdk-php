@@ -28,14 +28,12 @@ Retrieve OpenID connect well-knowns.
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -56,8 +54,12 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetOIDCWellKnownsResponse](../../Models/Operations/GetOIDCWellKnownsResponse.md)**
+**[?Operations\GetOIDCWellKnownsResponse](../../Models/Operations/GetOIDCWellKnownsResponse.md)**
+### Errors
 
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 ## getVersions
 
@@ -66,14 +68,12 @@ Show stack version information
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -94,5 +94,9 @@ try {
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetVersionsResponse](../../Models/Operations/GetVersionsResponse.md)**
+**[?Operations\GetVersionsResponse](../../Models/Operations/GetVersionsResponse.md)**
+### Errors
 
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |

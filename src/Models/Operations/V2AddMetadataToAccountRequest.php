@@ -56,12 +56,19 @@ class V2AddMetadataToAccountRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, string>  $requestBody
+     * @param  ?string  $address
+     * @param  ?string  $ledger
+     * @param  ?string  $idempotencyKey
+     * @param  ?bool  $dryRun
+     */
+    public function __construct(?array $requestBody = null, ?string $address = null, ?string $ledger = null, ?string $idempotencyKey = null, ?bool $dryRun = null)
     {
-        $this->idempotencyKey = null;
-        $this->requestBody = [];
-        $this->address = '';
-        $this->dryRun = null;
-        $this->ledger = '';
+        $this->requestBody = $requestBody;
+        $this->address = $address;
+        $this->ledger = $ledger;
+        $this->idempotencyKey = $idempotencyKey;
+        $this->dryRun = $dryRun;
     }
 }

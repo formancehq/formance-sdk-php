@@ -23,10 +23,10 @@ class GetWalletSummaryResponse
     /**
      * $balances
      *
-     * @var array<\formance\stack\Models\Shared\BalanceWithAssets> $balances
+     * @var array<BalanceWithAssets> $balances
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\BalanceWithAssets>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BalanceWithAssets>')]
     public array $balances;
 
     /**
@@ -56,12 +56,19 @@ class GetWalletSummaryResponse
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $holdFunds;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, int>  $availableFunds
+     * @param  ?array<BalanceWithAssets>  $balances
+     * @param  ?array<string, int>  $expirableFunds
+     * @param  ?array<string, int>  $expiredFunds
+     * @param  ?array<string, int>  $holdFunds
+     */
+    public function __construct(?array $availableFunds = null, ?array $balances = null, ?array $expirableFunds = null, ?array $expiredFunds = null, ?array $holdFunds = null)
     {
-        $this->availableFunds = [];
-        $this->balances = [];
-        $this->expirableFunds = [];
-        $this->expiredFunds = [];
-        $this->holdFunds = [];
+        $this->availableFunds = $availableFunds;
+        $this->balances = $balances;
+        $this->expirableFunds = $expirableFunds;
+        $this->expiredFunds = $expiredFunds;
+        $this->holdFunds = $holdFunds;
     }
 }

@@ -11,13 +11,20 @@ namespace formance\stack\Models\Shared;
 
 class CreateClientResponse
 {
+    /**
+     *
+     * @var ?Client $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Client')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Client')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Client $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?Client  $data
+     */
+    public function __construct(?Client $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

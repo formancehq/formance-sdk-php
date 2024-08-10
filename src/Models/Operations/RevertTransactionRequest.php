@@ -35,10 +35,15 @@ class RevertTransactionRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
     public int $txid;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?int  $txid
+     * @param  ?bool  $disableChecks
+     */
+    public function __construct(?string $ledger = null, ?int $txid = null, ?bool $disableChecks = null)
     {
-        $this->disableChecks = null;
-        $this->ledger = '';
-        $this->txid = 0;
+        $this->ledger = $ledger;
+        $this->txid = $txid;
+        $this->disableChecks = $disableChecks;
     }
 }

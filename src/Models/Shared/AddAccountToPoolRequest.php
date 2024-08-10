@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class AddAccountToPoolRequest
 {
+    /**
+     *
+     * @var string $accountID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('accountID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $accountID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $accountID
+     */
+    public function __construct(?string $accountID = null)
     {
-        $this->accountID = '';
+        $this->accountID = $accountID;
     }
 }

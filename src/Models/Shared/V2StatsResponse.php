@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class V2StatsResponse
 {
+    /**
+     *
+     * @var V2Stats $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2Stats')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Stats')]
     public V2Stats $data;
 
-    public function __construct()
+    /**
+     * @param  ?V2Stats  $data
+     */
+    public function __construct(?V2Stats $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\V2Stats();
+        $this->data = $data;
     }
 }

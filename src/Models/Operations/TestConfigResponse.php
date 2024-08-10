@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class TestConfigResponse
 {
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\AttemptResponse $attemptResponse
+     * @var ?Shared\AttemptResponse $attemptResponse
      */
-    public ?\formance\stack\Models\Shared\AttemptResponse $attemptResponse = null;
+    public ?Shared\AttemptResponse $attemptResponse = null;
 
     /**
      * HTTP response content type for this operation
@@ -35,23 +35,21 @@ class TestConfigResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\WebhooksErrorResponse $webhooksErrorResponse
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\AttemptResponse  $attemptResponse
      */
-    public ?\formance\stack\Models\Shared\WebhooksErrorResponse $webhooksErrorResponse = null;
-
-    public function __construct()
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\AttemptResponse $attemptResponse = null)
     {
-        $this->attemptResponse = null;
-        $this->contentType = '';
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->webhooksErrorResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->attemptResponse = $attemptResponse;
     }
 }

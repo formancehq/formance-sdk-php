@@ -20,8 +20,11 @@ class AssetHolder
     #[\JMS\Serializer\Annotation\Type('array<string, int>')]
     public array $assets;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, int>  $assets
+     */
+    public function __construct(?array $assets = null)
     {
-        $this->assets = [];
+        $this->assets = $assets;
     }
 }

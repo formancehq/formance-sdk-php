@@ -19,16 +19,29 @@ class UpdateWalletRequest
     #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
     public ?string $idempotencyKey = null;
 
+    /**
+     *
+     * @var ?UpdateWalletRequestBody $requestBody
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateWalletRequestBody $requestBody = null;
 
+    /**
+     *
+     * @var string $id
+     */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public string $id;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     * @param  ?string  $idempotencyKey
+     * @param  ?UpdateWalletRequestBody  $requestBody
+     */
+    public function __construct(?string $id = null, ?string $idempotencyKey = null, ?UpdateWalletRequestBody $requestBody = null)
     {
-        $this->idempotencyKey = null;
-        $this->requestBody = null;
-        $this->id = '';
+        $this->id = $id;
+        $this->idempotencyKey = $idempotencyKey;
+        $this->requestBody = $requestBody;
     }
 }

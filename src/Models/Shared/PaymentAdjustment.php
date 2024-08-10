@@ -11,32 +11,56 @@ namespace formance\stack\Models\Shared;
 
 class PaymentAdjustment
 {
+    /**
+     *
+     * @var int $amount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $amount;
 
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
+    /**
+     *
+     * @var PaymentAdjustmentRaw $raw
+     */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PaymentAdjustmentRaw')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentAdjustmentRaw')]
     public PaymentAdjustmentRaw $raw;
 
+    /**
+     *
+     * @var string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $reference;
 
+    /**
+     *
+     * @var PaymentStatus $status
+     */
     #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\PaymentStatus>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
     public PaymentStatus $status;
 
-    public function __construct()
+    /**
+     * @param  ?int  $amount
+     * @param  ?\DateTime  $createdAt
+     * @param  ?PaymentAdjustmentRaw  $raw
+     * @param  ?string  $reference
+     * @param  ?PaymentStatus  $status
+     */
+    public function __construct(?int $amount = null, ?\DateTime $createdAt = null, ?PaymentAdjustmentRaw $raw = null, ?string $reference = null, ?PaymentStatus $status = null)
     {
-        $this->amount = 0;
-        $this->createdAt = new \DateTime();
-        $this->raw = new \formance\stack\Models\Shared\PaymentAdjustmentRaw();
-        $this->reference = '';
-        $this->status = \formance\stack\Models\Shared\PaymentStatus::Pending;
+        $this->amount = $amount;
+        $this->createdAt = $createdAt;
+        $this->raw = $raw;
+        $this->reference = $reference;
+        $this->status = $status;
     }
 }

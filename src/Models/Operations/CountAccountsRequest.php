@@ -35,10 +35,15 @@ class CountAccountsRequest
     #[SpeakeasyMetadata('queryParam:style=deepObject,explode=true,name=metadata')]
     public ?array $metadata = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?string  $address
+     * @param  ?array<string, mixed>  $metadata
+     */
+    public function __construct(?string $ledger = null, ?string $address = null, ?array $metadata = null)
     {
-        $this->address = null;
-        $this->ledger = '';
-        $this->metadata = null;
+        $this->ledger = $ledger;
+        $this->address = $address;
+        $this->metadata = $metadata;
     }
 }

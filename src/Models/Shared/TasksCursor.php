@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class TasksCursor
 {
+    /**
+     *
+     * @var TasksCursorCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\TasksCursorCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TasksCursorCursor')]
     public TasksCursorCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?TasksCursorCursor  $cursor
+     */
+    public function __construct(?TasksCursorCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\TasksCursorCursor();
+        $this->cursor = $cursor;
     }
 }

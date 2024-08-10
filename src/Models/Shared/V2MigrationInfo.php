@@ -11,31 +11,50 @@ namespace formance\stack\Models\Shared;
 
 class V2MigrationInfo
 {
+    /**
+     *
+     * @var ?\DateTime $date
+     */
     #[\JMS\Serializer\Annotation\SerializedName('date')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $date = null;
 
+    /**
+     *
+     * @var ?string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $name = null;
 
+    /**
+     *
+     * @var ?V2MigrationInfoState $state
+     */
     #[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\V2MigrationInfoState>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2MigrationInfoState')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2MigrationInfoState $state = null;
 
+    /**
+     *
+     * @var ?int $version
+     */
     #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?int $version = null;
 
-    public function __construct()
+    /**
+     * @param  ?\DateTime  $date
+     * @param  ?string  $name
+     * @param  ?V2MigrationInfoState  $state
+     * @param  ?int  $version
+     */
+    public function __construct(?\DateTime $date = null, ?string $name = null, ?V2MigrationInfoState $state = null, ?int $version = null)
     {
-        $this->date = null;
-        $this->name = null;
-        $this->state = null;
-        $this->version = null;
+        $this->date = $date;
+        $this->name = $name;
+        $this->state = $state;
+        $this->version = $version;
     }
 }

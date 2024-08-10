@@ -8,11 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class CreateWalletRequest
 {
+    /**
+     *
+     * @var ?Shared\CreateWalletRequest $createWalletRequest
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Shared\CreateWalletRequest $createWalletRequest = null;
+    public ?Shared\CreateWalletRequest $createWalletRequest = null;
 
     /**
      * Use an idempotency key
@@ -22,9 +27,13 @@ class CreateWalletRequest
     #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
     public ?string $idempotencyKey = null;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\CreateWalletRequest  $createWalletRequest
+     * @param  ?string  $idempotencyKey
+     */
+    public function __construct(?Shared\CreateWalletRequest $createWalletRequest = null, ?string $idempotencyKey = null)
     {
-        $this->createWalletRequest = null;
-        $this->idempotencyKey = null;
+        $this->createWalletRequest = $createWalletRequest;
+        $this->idempotencyKey = $idempotencyKey;
     }
 }

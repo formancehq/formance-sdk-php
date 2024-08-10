@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class GetConnectorTaskV1Response
 {
     /**
@@ -17,13 +17,6 @@ class GetConnectorTaskV1Response
      * @var string $contentType
      */
     public string $contentType;
-
-    /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\PaymentsErrorResponse $paymentsErrorResponse
-     */
-    public ?\formance\stack\Models\Shared\PaymentsErrorResponse $paymentsErrorResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -35,23 +28,28 @@ class GetConnectorTaskV1Response
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\TaskResponse $taskResponse
+     * @var ?Shared\TaskResponse $taskResponse
      */
-    public ?\formance\stack\Models\Shared\TaskResponse $taskResponse = null;
+    public ?Shared\TaskResponse $taskResponse = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\TaskResponse  $taskResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\TaskResponse $taskResponse = null)
     {
-        $this->contentType = '';
-        $this->paymentsErrorResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->taskResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->taskResponse = $taskResponse;
     }
 }

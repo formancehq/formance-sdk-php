@@ -21,8 +21,11 @@ class Script
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var string $plain
+     */
     #[\JMS\Serializer\Annotation\SerializedName('plain')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $plain;
 
     /**
@@ -31,7 +34,6 @@ class Script
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
@@ -45,11 +47,17 @@ class Script
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $vars = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $plain
+     * @param  ?array<string, mixed>  $metadata
+     * @param  ?string  $reference
+     * @param  ?array<string, mixed>  $vars
+     */
+    public function __construct(?string $plain = null, ?array $metadata = null, ?string $reference = null, ?array $vars = null)
     {
-        $this->metadata = null;
-        $this->plain = '';
-        $this->reference = null;
-        $this->vars = null;
+        $this->plain = $plain;
+        $this->metadata = $metadata;
+        $this->reference = $reference;
+        $this->vars = $vars;
     }
 }

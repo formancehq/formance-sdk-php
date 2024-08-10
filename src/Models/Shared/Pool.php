@@ -20,18 +20,29 @@ class Pool
     #[\JMS\Serializer\Annotation\Type('array<string>')]
     public array $accounts;
 
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?array<string>  $accounts
+     * @param  ?string  $id
+     * @param  ?string  $name
+     */
+    public function __construct(?array $accounts = null, ?string $id = null, ?string $name = null)
     {
-        $this->accounts = [];
-        $this->id = '';
-        $this->name = '';
+        $this->accounts = $accounts;
+        $this->id = $id;
+        $this->name = $name;
     }
 }

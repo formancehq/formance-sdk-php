@@ -11,16 +11,25 @@ namespace formance\stack\Models\Shared;
 
 class WebhooksConfig
 {
+    /**
+     *
+     * @var bool $active
+     */
     #[\JMS\Serializer\Annotation\SerializedName('active')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $active;
 
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
+    /**
+     *
+     * @var string $endpoint
+     */
     #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $endpoint;
 
     /**
@@ -32,26 +41,44 @@ class WebhooksConfig
     #[\JMS\Serializer\Annotation\Type('array<string>')]
     public array $eventTypes;
 
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var string $secret
+     */
     #[\JMS\Serializer\Annotation\SerializedName('secret')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $secret;
 
+    /**
+     *
+     * @var \DateTime $updatedAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $updatedAt;
 
-    public function __construct()
+    /**
+     * @param  ?bool  $active
+     * @param  ?\DateTime  $createdAt
+     * @param  ?string  $endpoint
+     * @param  ?array<string>  $eventTypes
+     * @param  ?string  $id
+     * @param  ?string  $secret
+     * @param  ?\DateTime  $updatedAt
+     */
+    public function __construct(?bool $active = null, ?\DateTime $createdAt = null, ?string $endpoint = null, ?array $eventTypes = null, ?string $id = null, ?string $secret = null, ?\DateTime $updatedAt = null)
     {
-        $this->active = false;
-        $this->createdAt = new \DateTime();
-        $this->endpoint = '';
-        $this->eventTypes = [];
-        $this->id = '';
-        $this->secret = '';
-        $this->updatedAt = new \DateTime();
+        $this->active = $active;
+        $this->createdAt = $createdAt;
+        $this->endpoint = $endpoint;
+        $this->eventTypes = $eventTypes;
+        $this->id = $id;
+        $this->secret = $secret;
+        $this->updatedAt = $updatedAt;
     }
 }

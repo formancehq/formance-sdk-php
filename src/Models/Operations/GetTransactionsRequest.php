@@ -40,10 +40,15 @@ class GetTransactionsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=walletID')]
     public ?string $walletID = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     * @param  ?string  $walletID
+     */
+    public function __construct(?string $cursor = null, ?int $pageSize = null, ?string $walletID = null)
     {
-        $this->cursor = null;
-        $this->pageSize = null;
-        $this->walletID = null;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
+        $this->walletID = $walletID;
     }
 }

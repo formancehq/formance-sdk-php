@@ -27,9 +27,13 @@ class V2UpdateLedgerMetadataRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?array<string, string>  $requestBody
+     */
+    public function __construct(?string $ledger = null, ?array $requestBody = null)
     {
-        $this->requestBody = null;
-        $this->ledger = '';
+        $this->ledger = $ledger;
+        $this->requestBody = $requestBody;
     }
 }

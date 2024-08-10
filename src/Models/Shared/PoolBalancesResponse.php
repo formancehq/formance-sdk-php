@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class PoolBalancesResponse
 {
+    /**
+     *
+     * @var PoolBalances $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PoolBalances')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoolBalances')]
     public PoolBalances $data;
 
-    public function __construct()
+    /**
+     * @param  ?PoolBalances  $data
+     */
+    public function __construct(?PoolBalances $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\PoolBalances();
+        $this->data = $data;
     }
 }

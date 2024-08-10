@@ -27,9 +27,13 @@ class TestTriggerRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
     public string $triggerID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $triggerID
+     * @param  ?array<string, mixed>  $requestBody
+     */
+    public function __construct(?string $triggerID = null, ?array $requestBody = null)
     {
-        $this->requestBody = null;
-        $this->triggerID = '';
+        $this->triggerID = $triggerID;
+        $this->requestBody = $requestBody;
     }
 }

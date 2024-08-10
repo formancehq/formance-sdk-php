@@ -42,10 +42,15 @@ class V2ListTriggersRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $cursor
+     * @param  ?string  $name
+     * @param  ?int  $pageSize
+     */
+    public function __construct(?string $cursor = null, ?string $name = null, ?int $pageSize = null)
     {
-        $this->cursor = null;
-        $this->name = null;
-        $this->pageSize = null;
+        $this->cursor = $cursor;
+        $this->name = $name;
+        $this->pageSize = $pageSize;
     }
 }

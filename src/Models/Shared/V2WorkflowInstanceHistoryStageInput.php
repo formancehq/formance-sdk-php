@@ -11,73 +11,130 @@ namespace formance\stack\Models\Shared;
 
 class V2WorkflowInstanceHistoryStageInput
 {
+    /**
+     *
+     * @var ?V2ActivityAddAccountMetadata $addAccountMetadata
+     */
     #[\JMS\Serializer\Annotation\SerializedName('AddAccountMetadata')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityAddAccountMetadata')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityAddAccountMetadata')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityAddAccountMetadata $addAccountMetadata = null;
 
+    /**
+     *
+     * @var ?V2ActivityConfirmHold $confirmHold
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ConfirmHold')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityConfirmHold')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityConfirmHold')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityConfirmHold $confirmHold = null;
 
+    /**
+     *
+     * @var ?V2ActivityCreateTransaction $createTransaction
+     */
     #[\JMS\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityCreateTransaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreateTransaction')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityCreateTransaction $createTransaction = null;
 
+    /**
+     *
+     * @var ?V2ActivityCreditWallet $creditWallet
+     */
     #[\JMS\Serializer\Annotation\SerializedName('CreditWallet')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityCreditWallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreditWallet')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityCreditWallet $creditWallet = null;
 
+    /**
+     *
+     * @var ?V2ActivityDebitWallet $debitWallet
+     */
     #[\JMS\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityDebitWallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityDebitWallet')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityDebitWallet $debitWallet = null;
 
+    /**
+     *
+     * @var ?V2ActivityGetAccount $getAccount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityGetAccount')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetAccount')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityGetAccount $getAccount = null;
 
+    /**
+     *
+     * @var ?V2ActivityGetPayment $getPayment
+     */
     #[\JMS\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityGetPayment')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetPayment')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityGetPayment $getPayment = null;
 
+    /**
+     *
+     * @var ?V2ActivityGetWallet $getWallet
+     */
     #[\JMS\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityGetWallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetWallet')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityGetWallet $getWallet = null;
 
+    /**
+     *
+     * @var ?V2ActivityListWallets $listWallets
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityListWallets')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityListWallets')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityListWallets $listWallets = null;
 
+    /**
+     *
+     * @var ?V2ActivityStripeTransfer $stripeTransfer
+     */
     #[\JMS\Serializer\Annotation\SerializedName('StripeTransfer')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityStripeTransfer')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityStripeTransfer')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityStripeTransfer $stripeTransfer = null;
 
+    /**
+     *
+     * @var ?V2ActivityVoidHold $voidHold
+     */
     #[\JMS\Serializer\Annotation\SerializedName('VoidHold')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ActivityVoidHold')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityVoidHold')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityVoidHold $voidHold = null;
 
-    public function __construct()
+    /**
+     * @param  ?V2ActivityAddAccountMetadata  $addAccountMetadata
+     * @param  ?V2ActivityConfirmHold  $confirmHold
+     * @param  ?V2ActivityCreateTransaction  $createTransaction
+     * @param  ?V2ActivityCreditWallet  $creditWallet
+     * @param  ?V2ActivityDebitWallet  $debitWallet
+     * @param  ?V2ActivityGetAccount  $getAccount
+     * @param  ?V2ActivityGetPayment  $getPayment
+     * @param  ?V2ActivityGetWallet  $getWallet
+     * @param  ?V2ActivityListWallets  $listWallets
+     * @param  ?V2ActivityStripeTransfer  $stripeTransfer
+     * @param  ?V2ActivityVoidHold  $voidHold
+     */
+    public function __construct(?V2ActivityAddAccountMetadata $addAccountMetadata = null, ?V2ActivityConfirmHold $confirmHold = null, ?V2ActivityCreateTransaction $createTransaction = null, ?V2ActivityCreditWallet $creditWallet = null, ?V2ActivityDebitWallet $debitWallet = null, ?V2ActivityGetAccount $getAccount = null, ?V2ActivityGetPayment $getPayment = null, ?V2ActivityGetWallet $getWallet = null, ?V2ActivityListWallets $listWallets = null, ?V2ActivityStripeTransfer $stripeTransfer = null, ?V2ActivityVoidHold $voidHold = null)
     {
-        $this->addAccountMetadata = null;
-        $this->confirmHold = null;
-        $this->createTransaction = null;
-        $this->creditWallet = null;
-        $this->debitWallet = null;
-        $this->getAccount = null;
-        $this->getPayment = null;
-        $this->getWallet = null;
-        $this->listWallets = null;
-        $this->stripeTransfer = null;
-        $this->voidHold = null;
+        $this->addAccountMetadata = $addAccountMetadata;
+        $this->confirmHold = $confirmHold;
+        $this->createTransaction = $createTransaction;
+        $this->creditWallet = $creditWallet;
+        $this->debitWallet = $debitWallet;
+        $this->getAccount = $getAccount;
+        $this->getPayment = $getPayment;
+        $this->getWallet = $getWallet;
+        $this->listWallets = $listWallets;
+        $this->stripeTransfer = $stripeTransfer;
+        $this->voidHold = $voidHold;
     }
 }

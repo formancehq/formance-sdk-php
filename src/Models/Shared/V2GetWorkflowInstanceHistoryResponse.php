@@ -14,14 +14,17 @@ class V2GetWorkflowInstanceHistoryResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\V2WorkflowInstanceHistory> $data
+     * @var array<V2WorkflowInstanceHistory> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2WorkflowInstanceHistory>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2WorkflowInstanceHistory>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<V2WorkflowInstanceHistory>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

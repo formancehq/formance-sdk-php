@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ActivityRevertTransactionOutput
 {
+    /**
+     *
+     * @var OrchestrationTransaction $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationTransaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationTransaction')]
     public OrchestrationTransaction $data;
 
-    public function __construct()
+    /**
+     * @param  ?OrchestrationTransaction  $data
+     */
+    public function __construct(?OrchestrationTransaction $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\OrchestrationTransaction();
+        $this->data = $data;
     }
 }

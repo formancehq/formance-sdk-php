@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class V2CreateLedgerRequest
 {
+    /**
+     *
+     * @var ?string $bucket
+     */
     #[\JMS\Serializer\Annotation\SerializedName('bucket')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $bucket = null;
 
@@ -26,9 +29,13 @@ class V2CreateLedgerRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $bucket
+     * @param  ?array<string, string>  $metadata
+     */
+    public function __construct(?string $bucket = null, ?array $metadata = null)
     {
-        $this->bucket = null;
-        $this->metadata = null;
+        $this->bucket = $bucket;
+        $this->metadata = $metadata;
     }
 }

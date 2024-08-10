@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class DebitWalletResponse
 {
+    /**
+     *
+     * @var Hold $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Hold')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Hold')]
     public Hold $data;
 
-    public function __construct()
+    /**
+     * @param  ?Hold  $data
+     */
+    public function __construct(?Hold $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\Hold();
+        $this->data = $data;
     }
 }

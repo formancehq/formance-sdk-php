@@ -19,8 +19,11 @@ class GetHoldRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=holdID')]
     public string $holdID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $holdID
+     */
+    public function __construct(?string $holdID = null)
     {
-        $this->holdID = '';
+        $this->holdID = $holdID;
     }
 }

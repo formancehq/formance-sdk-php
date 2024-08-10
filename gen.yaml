@@ -12,7 +12,8 @@ generation:
   comments: {}
   telemetryEnabled: false
 php:
-  version: 2.1.3
+  version: 2.2.0
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
     option: openapi

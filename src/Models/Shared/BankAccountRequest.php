@@ -11,21 +11,33 @@ namespace formance\stack\Models\Shared;
 
 class BankAccountRequest
 {
+    /**
+     *
+     * @var ?string $accountNumber
+     */
     #[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $accountNumber = null;
 
+    /**
+     *
+     * @var string $connectorID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $connectorID;
 
+    /**
+     *
+     * @var string $country
+     */
     #[\JMS\Serializer\Annotation\SerializedName('country')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $country;
 
+    /**
+     *
+     * @var ?string $iban
+     */
     #[\JMS\Serializer\Annotation\SerializedName('iban')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $iban = null;
 
@@ -39,23 +51,38 @@ class BankAccountRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
+    /**
+     *
+     * @var ?string $swiftBicCode
+     */
     #[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $swiftBicCode = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $connectorID
+     * @param  ?string  $country
+     * @param  ?string  $name
+     * @param  ?string  $accountNumber
+     * @param  ?string  $iban
+     * @param  ?array<string, string>  $metadata
+     * @param  ?string  $swiftBicCode
+     */
+    public function __construct(?string $connectorID = null, ?string $country = null, ?string $name = null, ?string $accountNumber = null, ?string $iban = null, ?array $metadata = null, ?string $swiftBicCode = null)
     {
-        $this->accountNumber = null;
-        $this->connectorID = '';
-        $this->country = '';
-        $this->iban = null;
-        $this->metadata = null;
-        $this->name = '';
-        $this->swiftBicCode = null;
+        $this->connectorID = $connectorID;
+        $this->country = $country;
+        $this->name = $name;
+        $this->accountNumber = $accountNumber;
+        $this->iban = $iban;
+        $this->metadata = $metadata;
+        $this->swiftBicCode = $swiftBicCode;
     }
 }

@@ -27,9 +27,13 @@ class DeleteSecretRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=secretId')]
     public string $secretId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $clientId
+     * @param  ?string  $secretId
+     */
+    public function __construct(?string $clientId = null, ?string $secretId = null)
     {
-        $this->clientId = '';
-        $this->secretId = '';
+        $this->clientId = $clientId;
+        $this->secretId = $secretId;
     }
 }

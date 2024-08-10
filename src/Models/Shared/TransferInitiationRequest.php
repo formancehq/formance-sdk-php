@@ -11,25 +11,40 @@ namespace formance\stack\Models\Shared;
 
 class TransferInitiationRequest
 {
+    /**
+     *
+     * @var int $amount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $amount;
 
+    /**
+     *
+     * @var string $asset
+     */
     #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $asset;
 
+    /**
+     *
+     * @var ?string $connectorID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $connectorID = null;
 
+    /**
+     *
+     * @var string $description
+     */
     #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $description;
 
+    /**
+     *
+     * @var string $destinationAccountID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $destinationAccountID;
 
     /**
@@ -42,44 +57,78 @@ class TransferInitiationRequest
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var ?Connector $provider
+     */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\Connector>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Connector $provider = null;
 
+    /**
+     *
+     * @var string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $reference;
 
+    /**
+     *
+     * @var \DateTime $scheduledAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('scheduledAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $scheduledAt;
 
+    /**
+     *
+     * @var string $sourceAccountID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $sourceAccountID;
 
+    /**
+     *
+     * @var TransferInitiationRequestType $type
+     */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\TransferInitiationRequestType>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationRequestType')]
     public TransferInitiationRequestType $type;
 
+    /**
+     *
+     * @var bool $validated
+     */
     #[\JMS\Serializer\Annotation\SerializedName('validated')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $validated;
 
-    public function __construct()
+    /**
+     * @param  ?int  $amount
+     * @param  ?string  $asset
+     * @param  ?string  $description
+     * @param  ?string  $destinationAccountID
+     * @param  ?string  $reference
+     * @param  ?\DateTime  $scheduledAt
+     * @param  ?string  $sourceAccountID
+     * @param  ?TransferInitiationRequestType  $type
+     * @param  ?bool  $validated
+     * @param  ?string  $connectorID
+     * @param  ?array<string, string>  $metadata
+     * @param  ?Connector  $provider
+     */
+    public function __construct(?int $amount = null, ?string $asset = null, ?string $description = null, ?string $destinationAccountID = null, ?string $reference = null, ?\DateTime $scheduledAt = null, ?string $sourceAccountID = null, ?TransferInitiationRequestType $type = null, ?bool $validated = null, ?string $connectorID = null, ?array $metadata = null, ?Connector $provider = null)
     {
-        $this->amount = 0;
-        $this->asset = '';
-        $this->connectorID = null;
-        $this->description = '';
-        $this->destinationAccountID = '';
-        $this->metadata = null;
-        $this->provider = null;
-        $this->reference = '';
-        $this->scheduledAt = new \DateTime();
-        $this->sourceAccountID = '';
-        $this->type = \formance\stack\Models\Shared\TransferInitiationRequestType::Transfer;
-        $this->validated = false;
+        $this->amount = $amount;
+        $this->asset = $asset;
+        $this->description = $description;
+        $this->destinationAccountID = $destinationAccountID;
+        $this->reference = $reference;
+        $this->scheduledAt = $scheduledAt;
+        $this->sourceAccountID = $sourceAccountID;
+        $this->type = $type;
+        $this->validated = $validated;
+        $this->connectorID = $connectorID;
+        $this->metadata = $metadata;
+        $this->provider = $provider;
     }
 }

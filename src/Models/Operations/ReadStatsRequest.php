@@ -19,8 +19,11 @@ class ReadStatsRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     */
+    public function __construct(?string $ledger = null)
     {
-        $this->ledger = '';
+        $this->ledger = $ledger;
     }
 }

@@ -11,19 +11,29 @@ namespace formance\stack\Models\Shared;
 
 class Filter
 {
+    /**
+     *
+     * @var ?string $error
+     */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $error = null;
 
+    /**
+     *
+     * @var ?bool $match
+     */
     #[\JMS\Serializer\Annotation\SerializedName('match')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?bool $match = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $error
+     * @param  ?bool  $match
+     */
+    public function __construct(?string $error = null, ?bool $match = null)
     {
-        $this->error = null;
-        $this->match = null;
+        $this->error = $error;
+        $this->match = $match;
     }
 }

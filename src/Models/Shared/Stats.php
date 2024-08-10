@@ -11,17 +11,27 @@ namespace formance\stack\Models\Shared;
 
 class Stats
 {
+    /**
+     *
+     * @var int $accounts
+     */
     #[\JMS\Serializer\Annotation\SerializedName('accounts')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $accounts;
 
+    /**
+     *
+     * @var int $transactions
+     */
     #[\JMS\Serializer\Annotation\SerializedName('transactions')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $transactions;
 
-    public function __construct()
+    /**
+     * @param  ?int  $accounts
+     * @param  ?int  $transactions
+     */
+    public function __construct(?int $accounts = null, ?int $transactions = null)
     {
-        $this->accounts = 0;
-        $this->transactions = 0;
+        $this->accounts = $accounts;
+        $this->transactions = $transactions;
     }
 }

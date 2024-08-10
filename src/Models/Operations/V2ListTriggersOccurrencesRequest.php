@@ -42,10 +42,15 @@ class V2ListTriggersOccurrencesRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
     public string $triggerID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $triggerID
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     */
+    public function __construct(?string $triggerID = null, ?string $cursor = null, ?int $pageSize = null)
     {
-        $this->cursor = null;
-        $this->pageSize = null;
-        $this->triggerID = '';
+        $this->triggerID = $triggerID;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
     }
 }

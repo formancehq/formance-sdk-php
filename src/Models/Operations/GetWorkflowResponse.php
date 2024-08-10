@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class GetWorkflowResponse
 {
     /**
@@ -19,18 +19,11 @@ class GetWorkflowResponse
     public string $contentType;
 
     /**
-     * General error
-     *
-     * @var ?\formance\stack\Models\Shared\Error $error
-     */
-    public ?\formance\stack\Models\Shared\Error $error = null;
-
-    /**
      * The workflow
      *
-     * @var ?\formance\stack\Models\Shared\GetWorkflowResponse $getWorkflowResponse
+     * @var ?Shared\GetWorkflowResponse $getWorkflowResponse
      */
-    public ?\formance\stack\Models\Shared\GetWorkflowResponse $getWorkflowResponse = null;
+    public ?Shared\GetWorkflowResponse $getWorkflowResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,16 +35,21 @@ class GetWorkflowResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\GetWorkflowResponse  $getWorkflowResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\GetWorkflowResponse $getWorkflowResponse = null)
     {
-        $this->contentType = '';
-        $this->error = null;
-        $this->getWorkflowResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->getWorkflowResponse = $getWorkflowResponse;
     }
 }

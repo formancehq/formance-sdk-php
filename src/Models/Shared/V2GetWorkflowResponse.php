@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class V2GetWorkflowResponse
 {
+    /**
+     *
+     * @var V2Workflow $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2Workflow')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Workflow')]
     public V2Workflow $data;
 
-    public function __construct()
+    /**
+     * @param  ?V2Workflow  $data
+     */
+    public function __construct(?V2Workflow $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\V2Workflow();
+        $this->data = $data;
     }
 }

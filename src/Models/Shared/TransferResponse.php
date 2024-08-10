@@ -11,13 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class TransferResponse
 {
+    /**
+     *
+     * @var ?string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $id = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     */
+    public function __construct(?string $id = null)
     {
-        $this->id = null;
+        $this->id = $id;
     }
 }

@@ -11,17 +11,20 @@ namespace formance\stack\Models\Shared;
 
 class OrchestrationAccount
 {
+    /**
+     *
+     * @var string $address
+     */
     #[\JMS\Serializer\Annotation\SerializedName('address')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $address;
 
     /**
      * $effectiveVolumes
      *
-     * @var ?array<string, \formance\stack\Models\Shared\Volume> $effectiveVolumes
+     * @var ?array<string, Volume> $effectiveVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, formance\stack\Models\Shared\Volume>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $effectiveVolumes = null;
 
@@ -37,18 +40,24 @@ class OrchestrationAccount
     /**
      * $volumes
      *
-     * @var ?array<string, \formance\stack\Models\Shared\Volume> $volumes
+     * @var ?array<string, Volume> $volumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, formance\stack\Models\Shared\Volume>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $volumes = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $address
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<string, Volume>  $effectiveVolumes
+     * @param  ?array<string, Volume>  $volumes
+     */
+    public function __construct(?string $address = null, ?array $metadata = null, ?array $effectiveVolumes = null, ?array $volumes = null)
     {
-        $this->address = '';
-        $this->effectiveVolumes = null;
-        $this->metadata = [];
-        $this->volumes = null;
+        $this->address = $address;
+        $this->metadata = $metadata;
+        $this->effectiveVolumes = $effectiveVolumes;
+        $this->volumes = $volumes;
     }
 }

@@ -11,12 +11,18 @@ namespace formance\stack\Models\Operations;
 
 class V2SendEventRequestBody
 {
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?string  $name
+     */
+    public function __construct(?string $name = null)
     {
-        $this->name = '';
+        $this->name = $name;
     }
 }

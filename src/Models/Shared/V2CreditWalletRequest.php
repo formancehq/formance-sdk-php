@@ -11,8 +11,12 @@ namespace formance\stack\Models\Shared;
 
 class V2CreditWalletRequest
 {
+    /**
+     *
+     * @var V2Monetary $amount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2Monetary')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary')]
     public V2Monetary $amount;
 
     /**
@@ -21,7 +25,6 @@ class V2CreditWalletRequest
      * @var ?string $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $balance = null;
 
@@ -34,8 +37,11 @@ class V2CreditWalletRequest
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
@@ -48,18 +54,29 @@ class V2CreditWalletRequest
     #[\JMS\Serializer\Annotation\Type('array<mixed>')]
     public array $sources;
 
+    /**
+     *
+     * @var ?\DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?\DateTime $timestamp = null;
 
-    public function __construct()
+    /**
+     * @param  ?V2Monetary  $amount
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<mixed>  $sources
+     * @param  ?string  $balance
+     * @param  ?string  $reference
+     * @param  ?\DateTime  $timestamp
+     */
+    public function __construct(?V2Monetary $amount = null, ?array $metadata = null, ?array $sources = null, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
     {
-        $this->amount = new \formance\stack\Models\Shared\V2Monetary();
-        $this->balance = null;
-        $this->metadata = [];
-        $this->reference = null;
-        $this->sources = [];
-        $this->timestamp = null;
+        $this->amount = $amount;
+        $this->metadata = $metadata;
+        $this->sources = $sources;
+        $this->balance = $balance;
+        $this->reference = $reference;
+        $this->timestamp = $timestamp;
     }
 }

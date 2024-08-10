@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class CreateBalanceResponse
 {
+    /**
+     *
+     * @var Balance $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Balance')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Balance')]
     public Balance $data;
 
-    public function __construct()
+    /**
+     * @param  ?Balance  $data
+     */
+    public function __construct(?Balance $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\Balance();
+        $this->data = $data;
     }
 }

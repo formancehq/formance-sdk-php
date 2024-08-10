@@ -19,8 +19,11 @@ class GetInstanceHistoryRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=instanceID')]
     public string $instanceID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $instanceID
+     */
+    public function __construct(?string $instanceID = null)
     {
-        $this->instanceID = '';
+        $this->instanceID = $instanceID;
     }
 }

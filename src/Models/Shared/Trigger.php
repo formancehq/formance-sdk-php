@@ -11,25 +11,40 @@ namespace formance\stack\Models\Shared;
 
 class Trigger
 {
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
+    /**
+     *
+     * @var string $event
+     */
     #[\JMS\Serializer\Annotation\SerializedName('event')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $event;
 
+    /**
+     *
+     * @var ?string $filter
+     */
     #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $filter = null;
 
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var ?string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $name = null;
 
@@ -43,18 +58,30 @@ class Trigger
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $vars = null;
 
+    /**
+     *
+     * @var string $workflowID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('workflowID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $workflowID;
 
-    public function __construct()
+    /**
+     * @param  ?\DateTime  $createdAt
+     * @param  ?string  $event
+     * @param  ?string  $id
+     * @param  ?string  $workflowID
+     * @param  ?string  $filter
+     * @param  ?string  $name
+     * @param  ?array<string, mixed>  $vars
+     */
+    public function __construct(?\DateTime $createdAt = null, ?string $event = null, ?string $id = null, ?string $workflowID = null, ?string $filter = null, ?string $name = null, ?array $vars = null)
     {
-        $this->createdAt = new \DateTime();
-        $this->event = '';
-        $this->filter = null;
-        $this->id = '';
-        $this->name = null;
-        $this->vars = null;
-        $this->workflowID = '';
+        $this->createdAt = $createdAt;
+        $this->event = $event;
+        $this->id = $id;
+        $this->workflowID = $workflowID;
+        $this->filter = $filter;
+        $this->name = $name;
+        $this->vars = $vars;
     }
 }

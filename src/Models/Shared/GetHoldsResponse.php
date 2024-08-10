@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class GetHoldsResponse
 {
+    /**
+     *
+     * @var GetHoldsResponseCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\GetHoldsResponseCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\GetHoldsResponseCursor')]
     public GetHoldsResponseCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?GetHoldsResponseCursor  $cursor
+     */
+    public function __construct(?GetHoldsResponseCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\GetHoldsResponseCursor();
+        $this->cursor = $cursor;
     }
 }

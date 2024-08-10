@@ -14,14 +14,17 @@ class ListRunsResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\WorkflowInstance> $data
+     * @var array<WorkflowInstance> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\WorkflowInstance>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\WorkflowInstance>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<WorkflowInstance>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

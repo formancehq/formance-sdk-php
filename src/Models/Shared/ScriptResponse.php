@@ -11,31 +11,51 @@ namespace formance\stack\Models\Shared;
 
 class ScriptResponse
 {
+    /**
+     *
+     * @var ?string $details
+     */
     #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $details = null;
 
+    /**
+     *
+     * @var ?ErrorsEnum $errorCode
+     */
     #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\ErrorsEnum>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ErrorsEnum')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ErrorsEnum $errorCode = null;
 
+    /**
+     *
+     * @var ?string $errorMessage
+     */
     #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $errorMessage = null;
 
+    /**
+     *
+     * @var ?Transaction $transaction
+     */
     #[\JMS\Serializer\Annotation\SerializedName('transaction')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Transaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Transaction')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Transaction $transaction = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $details
+     * @param  ?ErrorsEnum  $errorCode
+     * @param  ?string  $errorMessage
+     * @param  ?Transaction  $transaction
+     */
+    public function __construct(?string $details = null, ?ErrorsEnum $errorCode = null, ?string $errorMessage = null, ?Transaction $transaction = null)
     {
-        $this->details = null;
-        $this->errorCode = null;
-        $this->errorMessage = null;
-        $this->transaction = null;
+        $this->details = $details;
+        $this->errorCode = $errorCode;
+        $this->errorMessage = $errorMessage;
+        $this->transaction = $transaction;
     }
 }

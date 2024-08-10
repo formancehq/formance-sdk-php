@@ -14,14 +14,17 @@ class ListTriggersOccurrencesResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Shared\TriggerOccurrence> $data
+     * @var array<TriggerOccurrence> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\TriggerOccurrence>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TriggerOccurrence>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<TriggerOccurrence>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

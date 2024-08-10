@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
+use formance\stack\Models\Operations;
+use JMS\Serializer\DeserializationContext;
+
 class Ledger
 {
     private SDKConfiguration $sdkConfiguration;
@@ -23,14 +26,15 @@ class Ledger
     /**
      * Create a new batch of transactions to a ledger
      *
-     * @param  \formance\stack\Models\Operations\CreateTransactionsRequest  $request
-     * @return \formance\stack\Models\Operations\CreateTransactionsResponse
+     * @param  Operations\CreateTransactionsRequest  $request
+     * @return Operations\CreateTransactionsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createTransactions(
-        \formance\stack\Models\Operations\CreateTransactionsRequest $request,
-    ): \formance\stack\Models\Operations\CreateTransactionsResponse {
+        Operations\CreateTransactionsRequest $request,
+    ): Operations\CreateTransactionsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/batch', \formance\stack\Models\Operations\CreateTransactionsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/batch', Operations\CreateTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'transactions', 'json');
         if ($body === null) {
@@ -39,42 +43,50 @@ class Ledger
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\CreateTransactionsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->transactionsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\TransactionsResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\TransactionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\CreateTransactionsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    transactionsResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Set the metadata of a transaction by its ID
      *
-     * @param  \formance\stack\Models\Operations\AddMetadataOnTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\AddMetadataOnTransactionResponse
+     * @param  Operations\AddMetadataOnTransactionRequest  $request
+     * @return Operations\AddMetadataOnTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function addMetadataOnTransaction(
-        ?\formance\stack\Models\Operations\AddMetadataOnTransactionRequest $request,
-    ): \formance\stack\Models\Operations\AddMetadataOnTransactionResponse {
+        ?Operations\AddMetadataOnTransactionRequest $request,
+    ): Operations\AddMetadataOnTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/metadata', \formance\stack\Models\Operations\AddMetadataOnTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/metadata', Operations\AddMetadataOnTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
@@ -82,38 +94,42 @@ class Ledger
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\AddMetadataOnTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\AddMetadataOnTransactionResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Add metadata to an account
      *
-     * @param  \formance\stack\Models\Operations\AddMetadataToAccountRequest  $request
-     * @return \formance\stack\Models\Operations\AddMetadataToAccountResponse
+     * @param  Operations\AddMetadataToAccountRequest  $request
+     * @return Operations\AddMetadataToAccountResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function addMetadataToAccount(
-        \formance\stack\Models\Operations\AddMetadataToAccountRequest $request,
-    ): \formance\stack\Models\Operations\AddMetadataToAccountResponse {
+        Operations\AddMetadataToAccountRequest $request,
+    ): Operations\AddMetadataToAccountResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}/metadata', \formance\stack\Models\Operations\AddMetadataToAccountRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}/metadata', Operations\AddMetadataToAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body === null) {
@@ -122,417 +138,490 @@ class Ledger
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\AddMetadataToAccountResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\AddMetadataToAccountResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Count the accounts from a ledger
      *
-     * @param  \formance\stack\Models\Operations\CountAccountsRequest  $request
-     * @return \formance\stack\Models\Operations\CountAccountsResponse
+     * @param  Operations\CountAccountsRequest  $request
+     * @return Operations\CountAccountsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function countAccounts(
-        ?\formance\stack\Models\Operations\CountAccountsRequest $request,
-    ): \formance\stack\Models\Operations\CountAccountsResponse {
+        ?Operations\CountAccountsRequest $request,
+    ): Operations\CountAccountsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', \formance\stack\Models\Operations\CountAccountsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', Operations\CountAccountsRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\CountAccountsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\CountAccountsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('HEAD', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('HEAD', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\CountAccountsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
-            $response->headers = $httpResponse->getHeaders();
+        if ($statusCode == 200) {
+            return new Operations\CountAccountsResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Count the transactions from a ledger
      *
-     * @param  \formance\stack\Models\Operations\CountTransactionsRequest  $request
-     * @return \formance\stack\Models\Operations\CountTransactionsResponse
+     * @param  Operations\CountTransactionsRequest  $request
+     * @return Operations\CountTransactionsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function countTransactions(
-        ?\formance\stack\Models\Operations\CountTransactionsRequest $request,
-    ): \formance\stack\Models\Operations\CountTransactionsResponse {
+        ?Operations\CountTransactionsRequest $request,
+    ): Operations\CountTransactionsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', \formance\stack\Models\Operations\CountTransactionsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\CountTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\CountTransactionsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\CountTransactionsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('HEAD', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('HEAD', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\CountTransactionsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
-            $response->headers = $httpResponse->getHeaders();
+        if ($statusCode == 200) {
+            return new Operations\CountTransactionsResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Create a new transaction to a ledger
      *
-     * @param  \formance\stack\Models\Operations\CreateTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\CreateTransactionResponse
+     * @param  Operations\CreateTransactionRequest  $request
+     * @return Operations\CreateTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createTransaction(
-        \formance\stack\Models\Operations\CreateTransactionRequest $request,
-    ): \formance\stack\Models\Operations\CreateTransactionResponse {
+        Operations\CreateTransactionRequest $request,
+    ): Operations\CreateTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', \formance\stack\Models\Operations\CreateTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\CreateTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'postTransaction', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\CreateTransactionRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\CreateTransactionRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\CreateTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->transactionsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\TransactionsResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\TransactionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\CreateTransactionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    transactionsResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get account by its address
      *
-     * @param  \formance\stack\Models\Operations\GetAccountRequest  $request
-     * @return \formance\stack\Models\Operations\GetAccountResponse
+     * @param  Operations\GetAccountRequest  $request
+     * @return Operations\GetAccountResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getAccount(
-        ?\formance\stack\Models\Operations\GetAccountRequest $request,
-    ): \formance\stack\Models\Operations\GetAccountResponse {
+        ?Operations\GetAccountRequest $request,
+    ): Operations\GetAccountResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}', \formance\stack\Models\Operations\GetAccountRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}', Operations\GetAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetAccountResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->accountResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\AccountResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\AccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetAccountResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    accountResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get the balances from a ledger's account
      *
-     * @param  \formance\stack\Models\Operations\GetBalancesRequest  $request
-     * @return \formance\stack\Models\Operations\GetBalancesResponse
+     * @param  Operations\GetBalancesRequest  $request
+     * @return Operations\GetBalancesResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getBalances(
-        ?\formance\stack\Models\Operations\GetBalancesRequest $request,
-    ): \formance\stack\Models\Operations\GetBalancesResponse {
+        ?Operations\GetBalancesRequest $request,
+    ): Operations\GetBalancesResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/balances', \formance\stack\Models\Operations\GetBalancesRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/balances', Operations\GetBalancesRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\GetBalancesRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetBalancesRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetBalancesResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->balancesCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\BalancesCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\BalancesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetBalancesResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    balancesCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get the aggregated balances from selected accounts
      *
-     * @param  \formance\stack\Models\Operations\GetBalancesAggregatedRequest  $request
-     * @return \formance\stack\Models\Operations\GetBalancesAggregatedResponse
+     * @param  Operations\GetBalancesAggregatedRequest  $request
+     * @return Operations\GetBalancesAggregatedResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getBalancesAggregated(
-        ?\formance\stack\Models\Operations\GetBalancesAggregatedRequest $request,
-    ): \formance\stack\Models\Operations\GetBalancesAggregatedResponse {
+        ?Operations\GetBalancesAggregatedRequest $request,
+    ): Operations\GetBalancesAggregatedResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/aggregate/balances', \formance\stack\Models\Operations\GetBalancesAggregatedRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/aggregate/balances', Operations\GetBalancesAggregatedRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\GetBalancesAggregatedRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetBalancesAggregatedRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetBalancesAggregatedResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->aggregateBalancesResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\AggregateBalancesResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\AggregateBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetBalancesAggregatedResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    aggregateBalancesResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Show server information
      *
-     * @return \formance\stack\Models\Operations\GetInfoResponse
+     * @return Operations\GetInfoResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getInfo(
-    ): \formance\stack\Models\Operations\GetInfoResponse {
+    ): Operations\GetInfoResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetInfoResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->configInfoResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ConfigInfoResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ConfigInfoResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetInfoResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    configInfoResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get information about a ledger
      *
-     * @param  \formance\stack\Models\Operations\GetLedgerInfoRequest  $request
-     * @return \formance\stack\Models\Operations\GetLedgerInfoResponse
+     * @param  Operations\GetLedgerInfoRequest  $request
+     * @return Operations\GetLedgerInfoResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getLedgerInfo(
-        ?\formance\stack\Models\Operations\GetLedgerInfoRequest $request,
-    ): \formance\stack\Models\Operations\GetLedgerInfoResponse {
+        ?Operations\GetLedgerInfoRequest $request,
+    ): Operations\GetLedgerInfoResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/_info', \formance\stack\Models\Operations\GetLedgerInfoRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/_info', Operations\GetLedgerInfoRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetLedgerInfoResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->ledgerInfoResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\LedgerInfoResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\LedgerInfoResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetLedgerInfoResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    ledgerInfoResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get the mapping of a ledger
      *
-     * @param  \formance\stack\Models\Operations\GetMappingRequest  $request
-     * @return \formance\stack\Models\Operations\GetMappingResponse
+     * @param  Operations\GetMappingRequest  $request
+     * @return Operations\GetMappingResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getMapping(
-        ?\formance\stack\Models\Operations\GetMappingRequest $request,
-    ): \formance\stack\Models\Operations\GetMappingResponse {
+        ?Operations\GetMappingRequest $request,
+    ): Operations\GetMappingResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', \formance\stack\Models\Operations\GetMappingRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', Operations\GetMappingRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetMappingResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->mappingResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\MappingResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\MappingResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetMappingResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    mappingResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get transaction from a ledger by its ID
      *
-     * @param  \formance\stack\Models\Operations\GetTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\GetTransactionResponse
+     * @param  Operations\GetTransactionRequest  $request
+     * @return Operations\GetTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getTransaction(
-        ?\formance\stack\Models\Operations\GetTransactionRequest $request,
-    ): \formance\stack\Models\Operations\GetTransactionResponse {
+        ?Operations\GetTransactionRequest $request,
+    ): Operations\GetTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}', \formance\stack\Models\Operations\GetTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}', Operations\GetTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\GetTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->transactionResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\TransactionResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\TransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetTransactionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    transactionResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -540,41 +629,63 @@ class Ledger
      *
      * List accounts from a ledger, sorted by address in descending order.
      *
-     * @param  \formance\stack\Models\Operations\ListAccountsRequest  $request
-     * @return \formance\stack\Models\Operations\ListAccountsResponse
+     * @param  Operations\ListAccountsRequest  $request
+     * @return Operations\ListAccountsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listAccounts(
-        ?\formance\stack\Models\Operations\ListAccountsRequest $request,
-    ): \formance\stack\Models\Operations\ListAccountsResponse {
+        ?Operations\ListAccountsRequest $request,
+    ): Operations\ListAccountsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', \formance\stack\Models\Operations\ListAccountsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', Operations\ListAccountsRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListAccountsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListAccountsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\ListAccountsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->accountsCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\AccountsCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\AccountsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListAccountsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    accountsCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif ($statusCode == 404) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListAccountsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    errorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -582,41 +693,49 @@ class Ledger
      *
      * List the logs from a ledger, sorted by ID in descending order.
      *
-     * @param  \formance\stack\Models\Operations\ListLogsRequest  $request
-     * @return \formance\stack\Models\Operations\ListLogsResponse
+     * @param  Operations\ListLogsRequest  $request
+     * @return Operations\ListLogsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listLogs(
-        ?\formance\stack\Models\Operations\ListLogsRequest $request,
-    ): \formance\stack\Models\Operations\ListLogsResponse {
+        ?Operations\ListLogsRequest $request,
+    ): Operations\ListLogsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/logs', \formance\stack\Models\Operations\ListLogsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/logs', Operations\ListLogsRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListLogsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListLogsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\ListLogsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->logsCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\LogsCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\LogsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListLogsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    logsCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -624,41 +743,49 @@ class Ledger
      *
      * List transactions from a ledger, sorted by txid in descending order.
      *
-     * @param  \formance\stack\Models\Operations\ListTransactionsRequest  $request
-     * @return \formance\stack\Models\Operations\ListTransactionsResponse
+     * @param  Operations\ListTransactionsRequest  $request
+     * @return Operations\ListTransactionsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listTransactions(
-        ?\formance\stack\Models\Operations\ListTransactionsRequest $request,
-    ): \formance\stack\Models\Operations\ListTransactionsResponse {
+        ?Operations\ListTransactionsRequest $request,
+    ): Operations\ListTransactionsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', \formance\stack\Models\Operations\ListTransactionsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\ListTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\ListTransactionsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListTransactionsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\ListTransactionsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->transactionsCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\TransactionsCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\TransactionsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListTransactionsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    transactionsCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -667,80 +794,96 @@ class Ledger
      * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
      *
      *
-     * @param  \formance\stack\Models\Operations\ReadStatsRequest  $request
-     * @return \formance\stack\Models\Operations\ReadStatsResponse
+     * @param  Operations\ReadStatsRequest  $request
+     * @return Operations\ReadStatsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function readStats(
-        ?\formance\stack\Models\Operations\ReadStatsRequest $request,
-    ): \formance\stack\Models\Operations\ReadStatsResponse {
+        ?Operations\ReadStatsRequest $request,
+    ): Operations\ReadStatsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/stats', \formance\stack\Models\Operations\ReadStatsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/stats', Operations\ReadStatsRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\ReadStatsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->statsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\StatsResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\StatsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ReadStatsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    statsResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Revert a ledger transaction by its ID
      *
-     * @param  \formance\stack\Models\Operations\RevertTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\RevertTransactionResponse
+     * @param  Operations\RevertTransactionRequest  $request
+     * @return Operations\RevertTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function revertTransaction(
-        ?\formance\stack\Models\Operations\RevertTransactionRequest $request,
-    ): \formance\stack\Models\Operations\RevertTransactionResponse {
+        ?Operations\RevertTransactionRequest $request,
+    ): Operations\RevertTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/revert', \formance\stack\Models\Operations\RevertTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/revert', Operations\RevertTransactionRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\RevertTransactionRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\RevertTransactionRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\RevertTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 201) {
+        if ($statusCode == 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->transactionResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\TransactionResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\TransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\RevertTransactionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    transactionResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -749,56 +892,64 @@ class Ledger
      * This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
      *
      *
-     * @param  \formance\stack\Models\Operations\RunScriptRequest  $request
-     * @return \formance\stack\Models\Operations\RunScriptResponse
+     * @param  Operations\RunScriptRequest  $request
+     * @return Operations\RunScriptResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     public function runScript(
-        \formance\stack\Models\Operations\RunScriptRequest $request,
-    ): \formance\stack\Models\Operations\RunScriptResponse {
+        Operations\RunScriptRequest $request,
+    ): Operations\RunScriptResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/script', \formance\stack\Models\Operations\RunScriptRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/script', Operations\RunScriptRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'script', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\RunScriptRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\RunScriptRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\RunScriptResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->scriptResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ScriptResponse', 'json');
-            }
-        }
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\ScriptResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\RunScriptResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    scriptResponse: $obj);
 
-        return $response;
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } else {
+            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
     }
 
     /**
      * Update the mapping of a ledger
      *
-     * @param  \formance\stack\Models\Operations\UpdateMappingRequest  $request
-     * @return \formance\stack\Models\Operations\UpdateMappingResponse
+     * @param  Operations\UpdateMappingRequest  $request
+     * @return Operations\UpdateMappingResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function updateMapping(
-        \formance\stack\Models\Operations\UpdateMappingRequest $request,
-    ): \formance\stack\Models\Operations\UpdateMappingResponse {
+        Operations\UpdateMappingRequest $request,
+    ): Operations\UpdateMappingResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', \formance\stack\Models\Operations\UpdateMappingRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', Operations\UpdateMappingRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'mapping', 'json');
         if ($body === null) {
@@ -807,213 +958,235 @@ class Ledger
         $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\UpdateMappingResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->mappingResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\MappingResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\MappingResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\UpdateMappingResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    mappingResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->errorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Set the metadata of a transaction by its ID
      *
-     * @param  \formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\V2AddMetadataOnTransactionResponse
+     * @param  Operations\V2AddMetadataOnTransactionRequest  $request
+     * @return Operations\V2AddMetadataOnTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2AddMetadataOnTransaction(
-        ?\formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest $request,
-    ): \formance\stack\Models\Operations\V2AddMetadataOnTransactionResponse {
+        ?Operations\V2AddMetadataOnTransactionRequest $request,
+    ): Operations\V2AddMetadataOnTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata', \formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata', Operations\V2AddMetadataOnTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2AddMetadataOnTransactionRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2AddMetadataOnTransactionRequest::class, $request, null));
         $options = array_merge_recursive($options, Utils\Utils::getHeaders($request));
         if (! array_key_exists('headers', $options)) {
             $options['headers'] = [];
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2AddMetadataOnTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\V2AddMetadataOnTransactionResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Add metadata to an account
      *
-     * @param  \formance\stack\Models\Operations\V2AddMetadataToAccountRequest  $request
-     * @return \formance\stack\Models\Operations\V2AddMetadataToAccountResponse
+     * @param  Operations\V2AddMetadataToAccountRequest  $request
+     * @return Operations\V2AddMetadataToAccountResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2AddMetadataToAccount(
-        \formance\stack\Models\Operations\V2AddMetadataToAccountRequest $request,
-    ): \formance\stack\Models\Operations\V2AddMetadataToAccountResponse {
+        Operations\V2AddMetadataToAccountRequest $request,
+    ): Operations\V2AddMetadataToAccountResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata', \formance\stack\Models\Operations\V2AddMetadataToAccountRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata', Operations\V2AddMetadataToAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2AddMetadataToAccountRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2AddMetadataToAccountRequest::class, $request, null));
         $options = array_merge_recursive($options, Utils\Utils::getHeaders($request));
         if (! array_key_exists('headers', $options)) {
             $options['headers'] = [];
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2AddMetadataToAccountResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\V2AddMetadataToAccountResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Count the accounts from a ledger
      *
-     * @param  \formance\stack\Models\Operations\V2CountAccountsRequest  $request
-     * @return \formance\stack\Models\Operations\V2CountAccountsResponse
+     * @param  Operations\V2CountAccountsRequest  $request
+     * @return Operations\V2CountAccountsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2CountAccounts(
-        ?\formance\stack\Models\Operations\V2CountAccountsRequest $request,
-    ): \formance\stack\Models\Operations\V2CountAccountsResponse {
+        ?Operations\V2CountAccountsRequest $request,
+    ): Operations\V2CountAccountsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', \formance\stack\Models\Operations\V2CountAccountsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2CountAccountsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2CountAccountsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2CountAccountsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('HEAD', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('HEAD', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2CountAccountsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
-            $response->headers = $httpResponse->getHeaders();
+        if ($statusCode == 204) {
+            return new Operations\V2CountAccountsResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Count the transactions from a ledger
      *
-     * @param  \formance\stack\Models\Operations\V2CountTransactionsRequest  $request
-     * @return \formance\stack\Models\Operations\V2CountTransactionsResponse
+     * @param  Operations\V2CountTransactionsRequest  $request
+     * @return Operations\V2CountTransactionsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2CountTransactions(
-        ?\formance\stack\Models\Operations\V2CountTransactionsRequest $request,
-    ): \formance\stack\Models\Operations\V2CountTransactionsResponse {
+        ?Operations\V2CountTransactionsRequest $request,
+    ): Operations\V2CountTransactionsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', \formance\stack\Models\Operations\V2CountTransactionsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CountTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2CountTransactionsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2CountTransactionsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('HEAD', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('HEAD', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2CountTransactionsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
-            $response->headers = $httpResponse->getHeaders();
+        if ($statusCode == 204) {
+            return new Operations\V2CountTransactionsResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Bulk request
      *
-     * @param  \formance\stack\Models\Operations\V2CreateBulkRequest  $request
-     * @return \formance\stack\Models\Operations\V2CreateBulkResponse
+     * @param  Operations\V2CreateBulkRequest  $request
+     * @return Operations\V2CreateBulkResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2CreateBulk(
-        ?\formance\stack\Models\Operations\V2CreateBulkRequest $request,
-    ): \formance\stack\Models\Operations\V2CreateBulkResponse {
+        ?Operations\V2CreateBulkRequest $request,
+    ): Operations\V2CreateBulkResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_bulk', \formance\stack\Models\Operations\V2CreateBulkRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_bulk', Operations\V2CreateBulkRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
@@ -1021,42 +1194,50 @@ class Ledger
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2CreateBulkResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200 or $httpResponse->getStatusCode() === 400) {
+        if (in_array($statusCode, [200, 400])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2BulkResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2BulkResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2BulkResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2CreateBulkResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2BulkResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Create a ledger
      *
-     * @param  \formance\stack\Models\Operations\V2CreateLedgerRequest  $request
-     * @return \formance\stack\Models\Operations\V2CreateLedgerResponse
+     * @param  Operations\V2CreateLedgerRequest  $request
+     * @return Operations\V2CreateLedgerResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2CreateLedger(
-        ?\formance\stack\Models\Operations\V2CreateLedgerRequest $request,
-    ): \formance\stack\Models\Operations\V2CreateLedgerResponse {
+        ?Operations\V2CreateLedgerRequest $request,
+    ): Operations\V2CreateLedgerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', \formance\stack\Models\Operations\V2CreateLedgerRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2CreateLedgerRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'v2CreateLedgerRequest', 'json');
         if ($body !== null) {
@@ -1064,74 +1245,85 @@ class Ledger
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2CreateLedgerResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\V2CreateLedgerResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Create a new transaction to a ledger
      *
-     * @param  \formance\stack\Models\Operations\V2CreateTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\V2CreateTransactionResponse
+     * @param  Operations\V2CreateTransactionRequest  $request
+     * @return Operations\V2CreateTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2CreateTransaction(
-        \formance\stack\Models\Operations\V2CreateTransactionRequest $request,
-    ): \formance\stack\Models\Operations\V2CreateTransactionResponse {
+        Operations\V2CreateTransactionRequest $request,
+    ): Operations\V2CreateTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', \formance\stack\Models\Operations\V2CreateTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CreateTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'v2PostTransaction', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2CreateTransactionRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2CreateTransactionRequest::class, $request, null));
         $options = array_merge_recursive($options, Utils\Utils::getHeaders($request));
         if (! array_key_exists('headers', $options)) {
             $options['headers'] = [];
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2CreateTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2CreateTransactionResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2CreateTransactionResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2CreateTransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2CreateTransactionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2CreateTransactionResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -1139,66 +1331,73 @@ class Ledger
      *
      * Delete metadata by key
      *
-     * @param  \formance\stack\Models\Operations\V2DeleteAccountMetadataRequest  $request
-     * @return \formance\stack\Models\Operations\V2DeleteAccountMetadataResponse
+     * @param  Operations\V2DeleteAccountMetadataRequest  $request
+     * @return Operations\V2DeleteAccountMetadataResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2DeleteAccountMetadata(
-        ?\formance\stack\Models\Operations\V2DeleteAccountMetadataRequest $request,
-    ): \formance\stack\Models\Operations\V2DeleteAccountMetadataResponse {
+        ?Operations\V2DeleteAccountMetadataRequest $request,
+    ): Operations\V2DeleteAccountMetadataResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}', \formance\stack\Models\Operations\V2DeleteAccountMetadataRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}', Operations\V2DeleteAccountMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2DeleteAccountMetadataResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if (($httpResponse->getStatusCode() >= 200 && $httpResponse->getStatusCode() < 300)) {
+        if ($statusCode >= 200 && $statusCode < 300) {
+            return new Operations\V2DeleteAccountMetadataResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
+        } else {
+            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
-
-        return $response;
     }
 
     /**
      * Delete ledger metadata by key
      *
-     * @param  \formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest  $request
-     * @return \formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse
+     * @param  Operations\V2DeleteLedgerMetadataRequest  $request
+     * @return Operations\V2DeleteLedgerMetadataResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2DeleteLedgerMetadata(
-        ?\formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest $request,
-    ): \formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse {
+        ?Operations\V2DeleteLedgerMetadataRequest $request,
+    ): Operations\V2DeleteLedgerMetadataResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata/{key}', \formance\stack\Models\Operations\V2DeleteLedgerMetadataRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata/{key}', Operations\V2DeleteLedgerMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2DeleteLedgerMetadataResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\V2DeleteLedgerMetadataResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -1206,319 +1405,379 @@ class Ledger
      *
      * Delete metadata by key
      *
-     * @param  \formance\stack\Models\Operations\V2DeleteTransactionMetadataRequest  $request
-     * @return \formance\stack\Models\Operations\V2DeleteTransactionMetadataResponse
+     * @param  Operations\V2DeleteTransactionMetadataRequest  $request
+     * @return Operations\V2DeleteTransactionMetadataResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2DeleteTransactionMetadata(
-        ?\formance\stack\Models\Operations\V2DeleteTransactionMetadataRequest $request,
-    ): \formance\stack\Models\Operations\V2DeleteTransactionMetadataResponse {
+        ?Operations\V2DeleteTransactionMetadataRequest $request,
+    ): Operations\V2DeleteTransactionMetadataResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}', \formance\stack\Models\Operations\V2DeleteTransactionMetadataRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}', Operations\V2DeleteTransactionMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('DELETE', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2DeleteTransactionMetadataResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if (($httpResponse->getStatusCode() >= 200 && $httpResponse->getStatusCode() < 300)) {
+        if ($statusCode >= 200 && $statusCode < 300) {
+            return new Operations\V2DeleteTransactionMetadataResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get account by its address
      *
-     * @param  \formance\stack\Models\Operations\V2GetAccountRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetAccountResponse
+     * @param  Operations\V2GetAccountRequest  $request
+     * @return Operations\V2GetAccountResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetAccount(
-        ?\formance\stack\Models\Operations\V2GetAccountRequest $request,
-    ): \formance\stack\Models\Operations\V2GetAccountResponse {
+        ?Operations\V2GetAccountRequest $request,
+    ): Operations\V2GetAccountResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}', \formance\stack\Models\Operations\V2GetAccountRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}', Operations\V2GetAccountRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2GetAccountRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2GetAccountRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetAccountResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2AccountResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2AccountResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2AccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetAccountResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2AccountResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get the aggregated balances from selected accounts
      *
-     * @param  \formance\stack\Models\Operations\V2GetBalancesAggregatedRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetBalancesAggregatedResponse
+     * @param  Operations\V2GetBalancesAggregatedRequest  $request
+     * @return Operations\V2GetBalancesAggregatedResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetBalancesAggregated(
-        ?\formance\stack\Models\Operations\V2GetBalancesAggregatedRequest $request,
-    ): \formance\stack\Models\Operations\V2GetBalancesAggregatedResponse {
+        ?Operations\V2GetBalancesAggregatedRequest $request,
+    ): Operations\V2GetBalancesAggregatedResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/aggregate/balances', \formance\stack\Models\Operations\V2GetBalancesAggregatedRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/aggregate/balances', Operations\V2GetBalancesAggregatedRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2GetBalancesAggregatedRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2GetBalancesAggregatedRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetBalancesAggregatedResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2AggregateBalancesResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2AggregateBalancesResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2AggregateBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetBalancesAggregatedResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2AggregateBalancesResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Show server information
      *
-     * @return \formance\stack\Models\Operations\V2GetInfoResponse
+     * @return Operations\V2GetInfoResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetInfo(
-    ): \formance\stack\Models\Operations\V2GetInfoResponse {
+    ): Operations\V2GetInfoResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetInfoResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ConfigInfoResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ConfigInfoResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2ConfigInfoResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetInfoResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2ConfigInfoResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get a ledger
      *
-     * @param  \formance\stack\Models\Operations\V2GetLedgerRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetLedgerResponse
+     * @param  Operations\V2GetLedgerRequest  $request
+     * @return Operations\V2GetLedgerResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetLedger(
-        ?\formance\stack\Models\Operations\V2GetLedgerRequest $request,
-    ): \formance\stack\Models\Operations\V2GetLedgerResponse {
+        ?Operations\V2GetLedgerRequest $request,
+    ): Operations\V2GetLedgerResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', \formance\stack\Models\Operations\V2GetLedgerRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2GetLedgerRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetLedgerResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2GetLedgerResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetLedgerResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2GetLedgerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetLedgerResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2GetLedgerResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get information about a ledger
      *
-     * @param  \formance\stack\Models\Operations\V2GetLedgerInfoRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetLedgerInfoResponse
+     * @param  Operations\V2GetLedgerInfoRequest  $request
+     * @return Operations\V2GetLedgerInfoResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetLedgerInfo(
-        ?\formance\stack\Models\Operations\V2GetLedgerInfoRequest $request,
-    ): \formance\stack\Models\Operations\V2GetLedgerInfoResponse {
+        ?Operations\V2GetLedgerInfoRequest $request,
+    ): Operations\V2GetLedgerInfoResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_info', \formance\stack\Models\Operations\V2GetLedgerInfoRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_info', Operations\V2GetLedgerInfoRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetLedgerInfoResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2LedgerInfoResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2LedgerInfoResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2LedgerInfoResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetLedgerInfoResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2LedgerInfoResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get transaction from a ledger by its ID
      *
-     * @param  \formance\stack\Models\Operations\V2GetTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetTransactionResponse
+     * @param  Operations\V2GetTransactionRequest  $request
+     * @return Operations\V2GetTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetTransaction(
-        ?\formance\stack\Models\Operations\V2GetTransactionRequest $request,
-    ): \formance\stack\Models\Operations\V2GetTransactionResponse {
+        ?Operations\V2GetTransactionRequest $request,
+    ): Operations\V2GetTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}', \formance\stack\Models\Operations\V2GetTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}', Operations\V2GetTransactionRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2GetTransactionRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2GetTransactionRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2GetTransactionResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2GetTransactionResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2GetTransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetTransactionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2GetTransactionResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Get list of volumes with balances for (account/asset)
      *
-     * @param  \formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse
+     * @param  Operations\V2GetVolumesWithBalancesRequest  $request
+     * @return Operations\V2GetVolumesWithBalancesResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2GetVolumesWithBalances(
-        ?\formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest $request,
-    ): \formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse {
+        ?Operations\V2GetVolumesWithBalancesRequest $request,
+    ): Operations\V2GetVolumesWithBalancesResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/volumes', \formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/volumes', Operations\V2GetVolumesWithBalancesRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2GetVolumesWithBalancesRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2GetVolumesWithBalancesRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2GetVolumesWithBalancesResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2VolumesWithBalanceCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2VolumesWithBalanceCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2VolumesWithBalanceCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2GetVolumesWithBalancesResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2VolumesWithBalanceCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -1526,85 +1785,101 @@ class Ledger
      *
      * List accounts from a ledger, sorted by address in descending order.
      *
-     * @param  \formance\stack\Models\Operations\V2ListAccountsRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListAccountsResponse
+     * @param  Operations\V2ListAccountsRequest  $request
+     * @return Operations\V2ListAccountsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2ListAccounts(
-        ?\formance\stack\Models\Operations\V2ListAccountsRequest $request,
-    ): \formance\stack\Models\Operations\V2ListAccountsResponse {
+        ?Operations\V2ListAccountsRequest $request,
+    ): Operations\V2ListAccountsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', \formance\stack\Models\Operations\V2ListAccountsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2ListAccountsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListAccountsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListAccountsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2ListAccountsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2AccountsCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2AccountsCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2AccountsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2ListAccountsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2AccountsCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * List ledgers
      *
-     * @param  \formance\stack\Models\Operations\V2ListLedgersRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListLedgersResponse
+     * @param  Operations\V2ListLedgersRequest  $request
+     * @return Operations\V2ListLedgersResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2ListLedgers(
-        ?\formance\stack\Models\Operations\V2ListLedgersRequest $request,
-    ): \formance\stack\Models\Operations\V2ListLedgersResponse {
+        ?Operations\V2ListLedgersRequest $request,
+    ): Operations\V2ListLedgersResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2');
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListLedgersRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListLedgersRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2ListLedgersResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2LedgerListResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2LedgerListResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2LedgerListResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2ListLedgersResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2LedgerListResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -1612,45 +1887,53 @@ class Ledger
      *
      * List the logs from a ledger, sorted by ID in descending order.
      *
-     * @param  \formance\stack\Models\Operations\V2ListLogsRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListLogsResponse
+     * @param  Operations\V2ListLogsRequest  $request
+     * @return Operations\V2ListLogsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2ListLogs(
-        ?\formance\stack\Models\Operations\V2ListLogsRequest $request,
-    ): \formance\stack\Models\Operations\V2ListLogsResponse {
+        ?Operations\V2ListLogsRequest $request,
+    ): Operations\V2ListLogsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs', \formance\stack\Models\Operations\V2ListLogsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs', Operations\V2ListLogsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListLogsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListLogsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2ListLogsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2LogsCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2LogsCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2LogsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2ListLogsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2LogsCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -1658,45 +1941,53 @@ class Ledger
      *
      * List transactions from a ledger, sorted by id in descending order.
      *
-     * @param  \formance\stack\Models\Operations\V2ListTransactionsRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListTransactionsResponse
+     * @param  Operations\V2ListTransactionsRequest  $request
+     * @return Operations\V2ListTransactionsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2ListTransactions(
-        ?\formance\stack\Models\Operations\V2ListTransactionsRequest $request,
-    ): \formance\stack\Models\Operations\V2ListTransactionsResponse {
+        ?Operations\V2ListTransactionsRequest $request,
+    ): Operations\V2ListTransactionsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', \formance\stack\Models\Operations\V2ListTransactionsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2ListTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
             $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2ListTransactionsRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListTransactionsRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2ListTransactionsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2TransactionsCursorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2TransactionsCursorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2TransactionsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2ListTransactionsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2TransactionsCursorResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
@@ -1705,93 +1996,110 @@ class Ledger
      * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
      *
      *
-     * @param  \formance\stack\Models\Operations\V2ReadStatsRequest  $request
-     * @return \formance\stack\Models\Operations\V2ReadStatsResponse
+     * @param  Operations\V2ReadStatsRequest  $request
+     * @return Operations\V2ReadStatsResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2ReadStats(
-        ?\formance\stack\Models\Operations\V2ReadStatsRequest $request,
-    ): \formance\stack\Models\Operations\V2ReadStatsResponse {
+        ?Operations\V2ReadStatsRequest $request,
+    ): Operations\V2ReadStatsResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/stats', \formance\stack\Models\Operations\V2ReadStatsRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/stats', Operations\V2ReadStatsRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('GET', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2ReadStatsResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 200) {
+        if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2StatsResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2StatsResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2StatsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2ReadStatsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2StatsResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Revert a ledger transaction by its ID
      *
-     * @param  \formance\stack\Models\Operations\V2RevertTransactionRequest  $request
-     * @return \formance\stack\Models\Operations\V2RevertTransactionResponse
+     * @param  Operations\V2RevertTransactionRequest  $request
+     * @return Operations\V2RevertTransactionResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2RevertTransaction(
-        ?\formance\stack\Models\Operations\V2RevertTransactionRequest $request,
-    ): \formance\stack\Models\Operations\V2RevertTransactionResponse {
+        ?Operations\V2RevertTransactionRequest $request,
+    ): Operations\V2RevertTransactionResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/revert', \formance\stack\Models\Operations\V2RevertTransactionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/revert', Operations\V2RevertTransactionRequest::class, $request);
         $options = ['http_errors' => false];
-        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(\formance\stack\Models\Operations\V2RevertTransactionRequest::class, $request, null));
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2RevertTransactionRequest::class, $request, null));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('POST', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2RevertTransactionResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 201) {
+        if ($statusCode == 201) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2RevertTransactionResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2RevertTransactionResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\V2RevertTransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\V2RevertTransactionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    v2RevertTransactionResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 
     /**
      * Update ledger metadata
      *
-     * @param  \formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest  $request
-     * @return \formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse
+     * @param  Operations\V2UpdateLedgerMetadataRequest  $request
+     * @return Operations\V2UpdateLedgerMetadataResponse
+     * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v2UpdateLedgerMetadata(
-        ?\formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest $request,
-    ): \formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse {
+        ?Operations\V2UpdateLedgerMetadataRequest $request,
+    ): Operations\V2UpdateLedgerMetadataResponse {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata', \formance\stack\Models\Operations\V2UpdateLedgerMetadataRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata', Operations\V2UpdateLedgerMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body !== null) {
@@ -1799,24 +2107,27 @@ class Ledger
         }
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
 
-        $httpResponse = $this->sdkConfiguration->securityClient->request('PUT', $url, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-
-        $response = new \formance\stack\Models\Operations\V2UpdateLedgerMetadataResponse();
-        $response->statusCode = $statusCode;
-        $response->contentType = $contentType;
-        $response->rawResponse = $httpResponse;
-        if ($httpResponse->getStatusCode() === 204) {
+        if ($statusCode == 204) {
+            return new Operations\V2UpdateLedgerMetadataResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $response->v2ErrorResponse = $serializer->deserialize((string) $httpResponse->getBody(), 'formance\stack\Models\Shared\V2ErrorResponse', 'json');
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
-
-        return $response;
     }
 }

@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class V2GetTransactionResponse
 {
+    /**
+     *
+     * @var V2ExpandedTransaction $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\V2ExpandedTransaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ExpandedTransaction')]
     public V2ExpandedTransaction $data;
 
-    public function __construct()
+    /**
+     * @param  ?V2ExpandedTransaction  $data
+     */
+    public function __construct(?V2ExpandedTransaction $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\V2ExpandedTransaction();
+        $this->data = $data;
     }
 }

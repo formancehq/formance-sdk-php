@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class V2GetVolumesWithBalancesResponse
 {
     /**
@@ -28,30 +28,28 @@ class V2GetVolumesWithBalancesResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-
-    /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse
-     */
-    public ?\formance\stack\Models\Shared\V2ErrorResponse $v2ErrorResponse = null;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\V2VolumesWithBalanceCursorResponse $v2VolumesWithBalanceCursorResponse
+     * @var ?Shared\V2VolumesWithBalanceCursorResponse $v2VolumesWithBalanceCursorResponse
      */
-    public ?\formance\stack\Models\Shared\V2VolumesWithBalanceCursorResponse $v2VolumesWithBalanceCursorResponse = null;
+    public ?Shared\V2VolumesWithBalanceCursorResponse $v2VolumesWithBalanceCursorResponse = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\V2VolumesWithBalanceCursorResponse  $v2VolumesWithBalanceCursorResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2VolumesWithBalanceCursorResponse $v2VolumesWithBalanceCursorResponse = null)
     {
-        $this->contentType = '';
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->v2ErrorResponse = null;
-        $this->v2VolumesWithBalanceCursorResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->v2VolumesWithBalanceCursorResponse = $v2VolumesWithBalanceCursorResponse;
     }
 }

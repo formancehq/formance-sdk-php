@@ -11,13 +11,20 @@ namespace formance\stack\Models\Shared;
 
 class ReadUserResponse
 {
+    /**
+     *
+     * @var ?User $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\User')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\User')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?User $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?User  $data
+     */
+    public function __construct(?User $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

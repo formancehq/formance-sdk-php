@@ -11,6 +11,7 @@ namespace formance\stack\Models\Shared;
 
 class Raw
 {
+
     public function __construct()
     {
     }

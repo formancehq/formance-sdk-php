@@ -11,6 +11,7 @@ namespace formance\stack\Models\Shared;
 
 class Expr
 {
+
     public function __construct()
     {
     }

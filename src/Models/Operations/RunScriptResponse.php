@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class RunScriptResponse
 {
     /**
@@ -28,9 +28,9 @@ class RunScriptResponse
      *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
      *
      *
-     * @var ?\formance\stack\Models\Shared\ScriptResponse $scriptResponse
+     * @var ?Shared\ScriptResponse $scriptResponse
      */
-    public ?\formance\stack\Models\Shared\ScriptResponse $scriptResponse = null;
+    public ?Shared\ScriptResponse $scriptResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,15 +42,21 @@ class RunScriptResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\ScriptResponse  $scriptResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\ScriptResponse $scriptResponse = null)
     {
-        $this->contentType = '';
-        $this->scriptResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->scriptResponse = $scriptResponse;
     }
 }

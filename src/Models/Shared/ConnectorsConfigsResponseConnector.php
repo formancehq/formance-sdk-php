@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class ConnectorsConfigsResponseConnector
 {
+    /**
+     *
+     * @var Key $key
+     */
     #[\JMS\Serializer\Annotation\SerializedName('key')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Key')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Key')]
     public Key $key;
 
-    public function __construct()
+    /**
+     * @param  ?Key  $key
+     */
+    public function __construct(?Key $key = null)
     {
-        $this->key = new \formance\stack\Models\Shared\Key();
+        $this->key = $key;
     }
 }

@@ -20,8 +20,11 @@ class V2BulkResponse
     #[\JMS\Serializer\Annotation\Type('array<mixed>')]
     public array $data;
 
-    public function __construct()
+    /**
+     * @param  ?array<mixed>  $data
+     */
+    public function __construct(?array $data = null)
     {
-        $this->data = [];
+        $this->data = $data;
     }
 }

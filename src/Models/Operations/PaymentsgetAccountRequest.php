@@ -19,8 +19,11 @@ class PaymentsgetAccountRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=accountId')]
     public string $accountId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $accountId
+     */
+    public function __construct(?string $accountId = null)
     {
-        $this->accountId = '';
+        $this->accountId = $accountId;
     }
 }

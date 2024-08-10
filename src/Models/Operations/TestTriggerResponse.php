@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class TestTriggerResponse
 {
     /**
@@ -28,30 +28,28 @@ class TestTriggerResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
-
-    /**
-     * General error
-     *
-     * @var ?\formance\stack\Models\Shared\V2Error $v2Error
-     */
-    public ?\formance\stack\Models\Shared\V2Error $v2Error = null;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
      * Test a trigger
      *
-     * @var ?\formance\stack\Models\Shared\V2TestTriggerResponse $v2TestTriggerResponse
+     * @var ?Shared\V2TestTriggerResponse $v2TestTriggerResponse
      */
-    public ?\formance\stack\Models\Shared\V2TestTriggerResponse $v2TestTriggerResponse = null;
+    public ?Shared\V2TestTriggerResponse $v2TestTriggerResponse = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\V2TestTriggerResponse  $v2TestTriggerResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2TestTriggerResponse $v2TestTriggerResponse = null)
     {
-        $this->contentType = '';
-        $this->statusCode = 0;
-        $this->rawResponse = null;
-        $this->v2Error = null;
-        $this->v2TestTriggerResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->v2TestTriggerResponse = $v2TestTriggerResponse;
     }
 }

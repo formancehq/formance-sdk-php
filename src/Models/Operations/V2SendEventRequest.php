@@ -11,6 +11,10 @@ namespace formance\stack\Models\Operations;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2SendEventRequest
 {
+    /**
+     *
+     * @var ?V2SendEventRequestBody $requestBody
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?V2SendEventRequestBody $requestBody = null;
 
@@ -22,9 +26,13 @@ class V2SendEventRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=instanceID')]
     public string $instanceID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $instanceID
+     * @param  ?V2SendEventRequestBody  $requestBody
+     */
+    public function __construct(?string $instanceID = null, ?V2SendEventRequestBody $requestBody = null)
     {
-        $this->requestBody = null;
-        $this->instanceID = '';
+        $this->instanceID = $instanceID;
+        $this->requestBody = $requestBody;
     }
 }

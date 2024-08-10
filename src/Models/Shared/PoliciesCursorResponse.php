@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class PoliciesCursorResponse
 {
+    /**
+     *
+     * @var PoliciesCursorResponseCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\PoliciesCursorResponseCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoliciesCursorResponseCursor')]
     public PoliciesCursorResponseCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?PoliciesCursorResponseCursor  $cursor
+     */
+    public function __construct(?PoliciesCursorResponseCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\PoliciesCursorResponseCursor();
+        $this->cursor = $cursor;
     }
 }

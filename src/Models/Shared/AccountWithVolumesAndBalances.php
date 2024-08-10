@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class AccountWithVolumesAndBalances
 {
+    /**
+     *
+     * @var string $address
+     */
     #[\JMS\Serializer\Annotation\SerializedName('address')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $address;
 
     /**
@@ -35,27 +38,37 @@ class AccountWithVolumesAndBalances
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var ?string $type
+     */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $type = null;
 
     /**
      * $volumes
      *
-     * @var ?array<string, \formance\stack\Models\Shared\Volume> $volumes
+     * @var ?array<string, Volume> $volumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, formance\stack\Models\Shared\Volume>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $volumes = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $address
+     * @param  ?array<string, int>  $balances
+     * @param  ?array<string, mixed>  $metadata
+     * @param  ?string  $type
+     * @param  ?array<string, Volume>  $volumes
+     */
+    public function __construct(?string $address = null, ?array $balances = null, ?array $metadata = null, ?string $type = null, ?array $volumes = null)
     {
-        $this->address = '';
-        $this->balances = null;
-        $this->metadata = null;
-        $this->type = null;
-        $this->volumes = null;
+        $this->address = $address;
+        $this->balances = $balances;
+        $this->metadata = $metadata;
+        $this->type = $type;
+        $this->volumes = $volumes;
     }
 }

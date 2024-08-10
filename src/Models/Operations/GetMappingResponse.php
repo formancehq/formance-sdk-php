@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class GetMappingResponse
 {
     /**
@@ -19,18 +19,11 @@ class GetMappingResponse
     public string $contentType;
 
     /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\ErrorResponse $errorResponse
-     */
-    public ?\formance\stack\Models\Shared\ErrorResponse $errorResponse = null;
-
-    /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\MappingResponse $mappingResponse
+     * @var ?Shared\MappingResponse $mappingResponse
      */
-    public ?\formance\stack\Models\Shared\MappingResponse $mappingResponse = null;
+    public ?Shared\MappingResponse $mappingResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,16 +35,21 @@ class GetMappingResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\MappingResponse  $mappingResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\MappingResponse $mappingResponse = null)
     {
-        $this->contentType = '';
-        $this->errorResponse = null;
-        $this->mappingResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->mappingResponse = $mappingResponse;
     }
 }

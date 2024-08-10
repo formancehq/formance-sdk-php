@@ -72,13 +72,21 @@ class ListLogsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=startTime,dateTimeFormat=Y-m-d\TH:i:s.up')]
     public ?\DateTime $startTime = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $ledger
+     * @param  ?string  $after
+     * @param  ?string  $cursor
+     * @param  ?\DateTime  $endTime
+     * @param  ?int  $pageSize
+     * @param  ?\DateTime  $startTime
+     */
+    public function __construct(?string $ledger = null, ?string $after = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $pageSize = null, ?\DateTime $startTime = null)
     {
-        $this->after = null;
-        $this->cursor = null;
-        $this->endTime = null;
-        $this->ledger = '';
-        $this->pageSize = null;
-        $this->startTime = null;
+        $this->ledger = $ledger;
+        $this->after = $after;
+        $this->cursor = $cursor;
+        $this->endTime = $endTime;
+        $this->pageSize = $pageSize;
+        $this->startTime = $startTime;
     }
 }

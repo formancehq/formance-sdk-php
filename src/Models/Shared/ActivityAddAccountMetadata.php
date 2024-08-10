@@ -11,12 +11,18 @@ namespace formance\stack\Models\Shared;
 
 class ActivityAddAccountMetadata
 {
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var string $ledger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledger;
 
     /**
@@ -28,10 +34,15 @@ class ActivityAddAccountMetadata
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     * @param  ?string  $ledger
+     * @param  ?array<string, string>  $metadata
+     */
+    public function __construct(?string $id = null, ?string $ledger = null, ?array $metadata = null)
     {
-        $this->id = '';
-        $this->ledger = '';
-        $this->metadata = [];
+        $this->id = $id;
+        $this->ledger = $ledger;
+        $this->metadata = $metadata;
     }
 }

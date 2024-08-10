@@ -11,13 +11,20 @@ namespace formance\stack\Models\Shared;
 
 class LedgerInfoResponse
 {
+    /**
+     *
+     * @var ?LedgerInfo $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\LedgerInfo')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerInfo')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?LedgerInfo $data = null;
 
-    public function __construct()
+    /**
+     * @param  ?LedgerInfo  $data
+     */
+    public function __construct(?LedgerInfo $data = null)
     {
-        $this->data = null;
+        $this->data = $data;
     }
 }

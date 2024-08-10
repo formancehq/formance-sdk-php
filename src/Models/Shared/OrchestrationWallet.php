@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class OrchestrationWallet
 {
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
     /**
@@ -21,11 +24,13 @@ class OrchestrationWallet
      * @var string $id
      */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var string $ledger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledger;
 
     /**
@@ -37,16 +42,26 @@ class OrchestrationWallet
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?\DateTime  $createdAt
+     * @param  ?string  $id
+     * @param  ?string  $ledger
+     * @param  ?array<string, string>  $metadata
+     * @param  ?string  $name
+     */
+    public function __construct(?\DateTime $createdAt = null, ?string $id = null, ?string $ledger = null, ?array $metadata = null, ?string $name = null)
     {
-        $this->createdAt = new \DateTime();
-        $this->id = '';
-        $this->ledger = '';
-        $this->metadata = [];
-        $this->name = '';
+        $this->createdAt = $createdAt;
+        $this->id = $id;
+        $this->ledger = $ledger;
+        $this->metadata = $metadata;
+        $this->name = $name;
     }
 }

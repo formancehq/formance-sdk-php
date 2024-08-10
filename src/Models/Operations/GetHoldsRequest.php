@@ -48,11 +48,17 @@ class GetHoldsRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=walletID')]
     public ?string $walletID = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $cursor
+     * @param  ?array<string, string>  $metadata
+     * @param  ?int  $pageSize
+     * @param  ?string  $walletID
+     */
+    public function __construct(?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $walletID = null)
     {
-        $this->cursor = null;
-        $this->metadata = null;
-        $this->pageSize = null;
-        $this->walletID = null;
+        $this->cursor = $cursor;
+        $this->metadata = $metadata;
+        $this->pageSize = $pageSize;
+        $this->walletID = $walletID;
     }
 }

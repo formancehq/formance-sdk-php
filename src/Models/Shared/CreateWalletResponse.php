@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class CreateWalletResponse
 {
+    /**
+     *
+     * @var Wallet $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Wallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Wallet')]
     public Wallet $data;
 
-    public function __construct()
+    /**
+     * @param  ?Wallet  $data
+     */
+    public function __construct(?Wallet $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\Wallet();
+        $this->data = $data;
     }
 }

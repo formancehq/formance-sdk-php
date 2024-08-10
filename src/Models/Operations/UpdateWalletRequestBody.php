@@ -20,8 +20,11 @@ class UpdateWalletRequestBody
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, string>  $metadata
+     */
+    public function __construct(?array $metadata = null)
     {
-        $this->metadata = [];
+        $this->metadata = $metadata;
     }
 }

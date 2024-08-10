@@ -11,11 +11,18 @@ namespace formance\stack\Models\Operations;
 use formance\stack\Utils\SpeakeasyMetadata;
 class GetWalletRequest
 {
+    /**
+     *
+     * @var string $id
+     */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
     public string $id;
 
-    public function __construct()
+    /**
+     * @param  ?string  $id
+     */
+    public function __construct(?string $id = null)
     {
-        $this->id = '';
+        $this->id = $id;
     }
 }

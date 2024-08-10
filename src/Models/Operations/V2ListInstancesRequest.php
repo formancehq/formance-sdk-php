@@ -50,11 +50,17 @@ class V2ListInstancesRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=workflowID')]
     public ?string $workflowID = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     * @param  ?bool  $running
+     * @param  ?string  $workflowID
+     */
+    public function __construct(?string $cursor = null, ?int $pageSize = null, ?bool $running = null, ?string $workflowID = null)
     {
-        $this->cursor = null;
-        $this->pageSize = null;
-        $this->running = null;
-        $this->workflowID = null;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
+        $this->running = $running;
+        $this->workflowID = $workflowID;
     }
 }

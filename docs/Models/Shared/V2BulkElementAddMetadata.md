@@ -1,0 +1,10 @@
+# V2BulkElementAddMetadata
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `action`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         |
+| `data`                                                                                      | [?Shared\V2BulkElementAddMetadataData](../../Models/Shared/V2BulkElementAddMetadataData.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `ik`                                                                                        | *?string*                                                                                   | :heavy_minus_sign:                                                                          | N/A                                                                                         |

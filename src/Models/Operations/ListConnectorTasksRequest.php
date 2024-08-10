@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ListConnectorTasksRequest
 {
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Shared\Connector $connector
+     * @var Shared\Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Shared\Connector $connector;
+    public Shared\Connector $connector;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -42,10 +43,15 @@ class ListConnectorTasksRequest
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
     public ?int $pageSize = null;
 
-    public function __construct()
+    /**
+     * @param  ?Shared\Connector  $connector
+     * @param  ?string  $cursor
+     * @param  ?int  $pageSize
+     */
+    public function __construct(?Shared\Connector $connector = null, ?string $cursor = null, ?int $pageSize = null)
     {
-        $this->connector = \formance\stack\Models\Shared\Connector::Stripe;
-        $this->cursor = null;
-        $this->pageSize = null;
+        $this->connector = $connector;
+        $this->cursor = $cursor;
+        $this->pageSize = $pageSize;
     }
 }

@@ -1,0 +1,12 @@
+# V2StageSend
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `amount`                                                                        | [?Shared\V2Monetary](../../Models/Shared/V2Monetary.md)                         | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `destination`                                                                   | [?Shared\V2StageSendDestination](../../Models/Shared/V2StageSendDestination.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `metadata`                                                                      | array<string, *string*>                                                         | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `source`                                                                        | [?Shared\V2StageSendSource](../../Models/Shared/V2StageSendSource.md)           | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `timestamp`                                                                     | [\DateTime](https://www.php.net/manual/en/class.datetime.php)                   | :heavy_minus_sign:                                                              | N/A                                                                             |

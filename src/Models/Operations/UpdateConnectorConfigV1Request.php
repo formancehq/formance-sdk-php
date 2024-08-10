@@ -8,19 +8,24 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateConnectorConfigV1Request
 {
+    /**
+     *
+     * @var Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig
+     */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public mixed $requestBody;
+    public Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig;
 
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Shared\Connector $connector
+     * @var Shared\Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Shared\Connector $connector;
+    public Shared\Connector $connector;
 
     /**
      * The connector ID.
@@ -30,10 +35,15 @@ class UpdateConnectorConfigV1Request
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connectorId')]
     public string $connectorId;
 
-    public function __construct()
+    /**
+     * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig|null  $connectorConfig
+     * @param  ?Shared\Connector  $connector
+     * @param  ?string  $connectorId
+     */
+    public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig|null $connectorConfig = null, ?Shared\Connector $connector = null, ?string $connectorId = null)
     {
-        $this->requestBody = null;
-        $this->connector = \formance\stack\Models\Shared\Connector::Stripe;
-        $this->connectorId = '';
+        $this->connectorConfig = $connectorConfig;
+        $this->connector = $connector;
+        $this->connectorId = $connectorId;
     }
 }

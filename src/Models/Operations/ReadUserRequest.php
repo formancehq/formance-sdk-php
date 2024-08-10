@@ -19,8 +19,11 @@ class ReadUserRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=userId')]
     public string $userId;
 
-    public function __construct()
+    /**
+     * @param  ?string  $userId
+     */
+    public function __construct(?string $userId = null)
     {
-        $this->userId = '';
+        $this->userId = $userId;
     }
 }

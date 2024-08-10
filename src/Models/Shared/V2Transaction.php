@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class V2Transaction
 {
+    /**
+     *
+     * @var int $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $id;
 
     /**
@@ -27,32 +30,49 @@ class V2Transaction
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Shared\V2Posting> $postings
+     * @var array<V2Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
     public array $postings;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
+    /**
+     *
+     * @var bool $reverted
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reverted')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $reverted;
 
+    /**
+     *
+     * @var \DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $timestamp;
 
-    public function __construct()
+    /**
+     * @param  ?int  $id
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<V2Posting>  $postings
+     * @param  ?bool  $reverted
+     * @param  ?\DateTime  $timestamp
+     * @param  ?string  $reference
+     */
+    public function __construct(?int $id = null, ?array $metadata = null, ?array $postings = null, ?bool $reverted = null, ?\DateTime $timestamp = null, ?string $reference = null)
     {
-        $this->id = 0;
-        $this->metadata = [];
-        $this->postings = [];
-        $this->reference = null;
-        $this->reverted = false;
-        $this->timestamp = new \DateTime();
+        $this->id = $id;
+        $this->metadata = $metadata;
+        $this->postings = $postings;
+        $this->reverted = $reverted;
+        $this->timestamp = $timestamp;
+        $this->reference = $reference;
     }
 }

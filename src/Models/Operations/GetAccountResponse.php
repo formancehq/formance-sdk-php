@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class GetAccountResponse
 {
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\AccountResponse $accountResponse
+     * @var ?Shared\AccountResponse $accountResponse
      */
-    public ?\formance\stack\Models\Shared\AccountResponse $accountResponse = null;
+    public ?Shared\AccountResponse $accountResponse = null;
 
     /**
      * HTTP response content type for this operation
@@ -24,13 +24,6 @@ class GetAccountResponse
      * @var string $contentType
      */
     public string $contentType;
-
-    /**
-     * Error
-     *
-     * @var ?\formance\stack\Models\Shared\ErrorResponse $errorResponse
-     */
-    public ?\formance\stack\Models\Shared\ErrorResponse $errorResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,16 +35,21 @@ class GetAccountResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\AccountResponse  $accountResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\AccountResponse $accountResponse = null)
     {
-        $this->accountResponse = null;
-        $this->contentType = '';
-        $this->errorResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->accountResponse = $accountResponse;
     }
 }

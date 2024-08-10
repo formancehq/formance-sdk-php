@@ -14,14 +14,17 @@ class Mapping
     /**
      * $contracts
      *
-     * @var array<\formance\stack\Models\Shared\Contract> $contracts
+     * @var array<Contract> $contracts
      */
     #[\JMS\Serializer\Annotation\SerializedName('contracts')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\Contract>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Contract>')]
     public array $contracts;
 
-    public function __construct()
+    /**
+     * @param  ?array<Contract>  $contracts
+     */
+    public function __construct(?array $contracts = null)
     {
-        $this->contracts = [];
+        $this->contracts = $contracts;
     }
 }

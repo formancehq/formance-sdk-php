@@ -11,17 +11,27 @@ namespace formance\stack\Models\Shared;
 
 class V2ConfigInfoResponse
 {
+    /**
+     *
+     * @var string $server
+     */
     #[\JMS\Serializer\Annotation\SerializedName('server')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $server;
 
+    /**
+     *
+     * @var string $version
+     */
     #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $version;
 
-    public function __construct()
+    /**
+     * @param  ?string  $server
+     * @param  ?string  $version
+     */
+    public function __construct(?string $server = null, ?string $version = null)
     {
-        $this->server = '';
-        $this->version = '';
+        $this->server = $server;
+        $this->version = $version;
     }
 }

@@ -11,24 +11,32 @@ namespace formance\stack\Models\Shared;
 
 class V2TriggerTest
 {
+    /**
+     *
+     * @var ?Filter $filter
+     */
     #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\Filter')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Filter')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Filter $filter = null;
 
     /**
      * $variables
      *
-     * @var ?array<string, \formance\stack\Models\Shared\Variables> $variables
+     * @var ?array<string, Variables> $variables
      */
     #[\JMS\Serializer\Annotation\SerializedName('variables')]
-    #[\JMS\Serializer\Annotation\Type('array<string, formance\stack\Models\Shared\Variables>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Variables>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $variables = null;
 
-    public function __construct()
+    /**
+     * @param  ?Filter  $filter
+     * @param  ?array<string, Variables>  $variables
+     */
+    public function __construct(?Filter $filter = null, ?array $variables = null)
     {
-        $this->filter = null;
-        $this->variables = null;
+        $this->filter = $filter;
+        $this->variables = $variables;
     }
 }

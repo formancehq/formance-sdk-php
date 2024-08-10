@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Shared;
 class ListAccountsResponse
 {
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Shared\AccountsCursorResponse $accountsCursorResponse
+     * @var ?Shared\AccountsCursorResponse $accountsCursorResponse
      */
-    public ?\formance\stack\Models\Shared\AccountsCursorResponse $accountsCursorResponse = null;
+    public ?Shared\AccountsCursorResponse $accountsCursorResponse = null;
 
     /**
      * HTTP response content type for this operation
@@ -28,9 +28,9 @@ class ListAccountsResponse
     /**
      * Not found
      *
-     * @var ?\formance\stack\Models\Shared\ErrorResponse $errorResponse
+     * @var ?Errors\ErrorResponse $errorResponse
      */
-    public ?\formance\stack\Models\Shared\ErrorResponse $errorResponse = null;
+    public ?Errors\ErrorResponse $errorResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -42,16 +42,23 @@ class ListAccountsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var ?\Psr\Http\Message\ResponseInterface $rawResponse
+     * @var \Psr\Http\Message\ResponseInterface $rawResponse
      */
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public \Psr\Http\Message\ResponseInterface $rawResponse;
 
-    public function __construct()
+    /**
+     * @param  ?string  $contentType
+     * @param  ?int  $statusCode
+     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Shared\AccountsCursorResponse  $accountsCursorResponse
+     * @param  ?Errors\ErrorResponse  $errorResponse
+     */
+    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Errors\ErrorResponse $errorResponse = null)
     {
-        $this->accountsCursorResponse = null;
-        $this->contentType = '';
-        $this->errorResponse = null;
-        $this->statusCode = 0;
-        $this->rawResponse = null;
+        $this->contentType = $contentType;
+        $this->statusCode = $statusCode;
+        $this->rawResponse = $rawResponse;
+        $this->accountsCursorResponse = $accountsCursorResponse;
+        $this->errorResponse = $errorResponse;
     }
 }

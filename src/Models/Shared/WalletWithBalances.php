@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class WalletWithBalances
 {
+    /**
+     *
+     * @var WalletWithBalancesBalances $balances
+     */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\WalletWithBalancesBalances')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletWithBalancesBalances')]
     public WalletWithBalancesBalances $balances;
 
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
     /**
@@ -25,11 +32,13 @@ class WalletWithBalances
      * @var string $id
      */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var string $ledger
+     */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $ledger;
 
     /**
@@ -41,17 +50,28 @@ class WalletWithBalances
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?WalletWithBalancesBalances  $balances
+     * @param  ?\DateTime  $createdAt
+     * @param  ?string  $id
+     * @param  ?string  $ledger
+     * @param  ?array<string, string>  $metadata
+     * @param  ?string  $name
+     */
+    public function __construct(?WalletWithBalancesBalances $balances = null, ?\DateTime $createdAt = null, ?string $id = null, ?string $ledger = null, ?array $metadata = null, ?string $name = null)
     {
-        $this->balances = new \formance\stack\Models\Shared\WalletWithBalancesBalances();
-        $this->createdAt = new \DateTime();
-        $this->id = '';
-        $this->ledger = '';
-        $this->metadata = [];
-        $this->name = '';
+        $this->balances = $balances;
+        $this->createdAt = $createdAt;
+        $this->id = $id;
+        $this->ledger = $ledger;
+        $this->metadata = $metadata;
+        $this->name = $name;
     }
 }

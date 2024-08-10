@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class V2ExpandedTransaction
 {
+    /**
+     *
+     * @var int $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $id;
 
     /**
@@ -27,54 +30,73 @@ class V2ExpandedTransaction
     /**
      * $postCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Shared\V2Volume>> $postCommitVolumes
+     * @var ?array<string, array<string, V2Volume>> $postCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, formance\stack\Models\Shared\V2Volume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postCommitVolumes = null;
 
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Shared\V2Posting> $postings
+     * @var array<V2Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\V2Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
     public array $postings;
 
     /**
      * $preCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Shared\V2Volume>> $preCommitVolumes
+     * @var ?array<string, array<string, V2Volume>> $preCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, formance\stack\Models\Shared\V2Volume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $preCommitVolumes = null;
 
+    /**
+     *
+     * @var ?string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $reference = null;
 
+    /**
+     *
+     * @var bool $reverted
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reverted')]
-    #[\JMS\Serializer\Annotation\Type('bool')]
     public bool $reverted;
 
+    /**
+     *
+     * @var \DateTime $timestamp
+     */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $timestamp;
 
-    public function __construct()
+    /**
+     * @param  ?int  $id
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<V2Posting>  $postings
+     * @param  ?bool  $reverted
+     * @param  ?\DateTime  $timestamp
+     * @param  ?array<string, array<string, V2Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, V2Volume>>  $preCommitVolumes
+     * @param  ?string  $reference
+     */
+    public function __construct(?int $id = null, ?array $metadata = null, ?array $postings = null, ?bool $reverted = null, ?\DateTime $timestamp = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {
-        $this->id = 0;
-        $this->metadata = [];
-        $this->postCommitVolumes = null;
-        $this->postings = [];
-        $this->preCommitVolumes = null;
-        $this->reference = null;
-        $this->reverted = false;
-        $this->timestamp = new \DateTime();
+        $this->id = $id;
+        $this->metadata = $metadata;
+        $this->postings = $postings;
+        $this->reverted = $reverted;
+        $this->timestamp = $timestamp;
+        $this->postCommitVolumes = $postCommitVolumes;
+        $this->preCommitVolumes = $preCommitVolumes;
+        $this->reference = $reference;
     }
 }

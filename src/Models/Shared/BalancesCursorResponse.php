@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class BalancesCursorResponse
 {
+    /**
+     *
+     * @var BalancesCursorResponseCursor $cursor
+     */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\BalancesCursorResponseCursor')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorResponseCursor')]
     public BalancesCursorResponseCursor $cursor;
 
-    public function __construct()
+    /**
+     * @param  ?BalancesCursorResponseCursor  $cursor
+     */
+    public function __construct(?BalancesCursorResponseCursor $cursor = null)
     {
-        $this->cursor = new \formance\stack\Models\Shared\BalancesCursorResponseCursor();
+        $this->cursor = $cursor;
     }
 }

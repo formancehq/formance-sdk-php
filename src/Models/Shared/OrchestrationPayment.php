@@ -14,85 +14,150 @@ class OrchestrationPayment
     /**
      * $adjustments
      *
-     * @var array<\formance\stack\Models\Shared\OrchestrationPaymentAdjustment> $adjustments
+     * @var array<OrchestrationPaymentAdjustment> $adjustments
      */
     #[\JMS\Serializer\Annotation\SerializedName('adjustments')]
-    #[\JMS\Serializer\Annotation\Type('array<formance\stack\Models\Shared\OrchestrationPaymentAdjustment>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\OrchestrationPaymentAdjustment>')]
     public array $adjustments;
 
+    /**
+     *
+     * @var string $asset
+     */
     #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $asset;
 
+    /**
+     *
+     * @var string $connectorID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $connectorID;
 
+    /**
+     *
+     * @var \DateTime $createdAt
+     */
     #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $createdAt;
 
+    /**
+     *
+     * @var string $destinationAccountID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $destinationAccountID;
 
+    /**
+     *
+     * @var string $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $id;
 
+    /**
+     *
+     * @var int $initialAmount
+     */
     #[\JMS\Serializer\Annotation\SerializedName('initialAmount')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $initialAmount;
 
+    /**
+     *
+     * @var OrchestrationPaymentMetadata $metadata
+     */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationPaymentMetadata')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentMetadata')]
     public OrchestrationPaymentMetadata $metadata;
 
+    /**
+     *
+     * @var ?OrchestrationConnector $provider
+     */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\OrchestrationConnector>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationConnector')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?OrchestrationConnector $provider = null;
 
+    /**
+     *
+     * @var OrchestrationPaymentRaw $raw
+     */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\OrchestrationPaymentRaw')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentRaw')]
     public OrchestrationPaymentRaw $raw;
 
+    /**
+     *
+     * @var string $reference
+     */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $reference;
 
+    /**
+     *
+     * @var OrchestrationPaymentScheme $scheme
+     */
     #[\JMS\Serializer\Annotation\SerializedName('scheme')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\OrchestrationPaymentScheme>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentScheme')]
     public OrchestrationPaymentScheme $scheme;
 
+    /**
+     *
+     * @var string $sourceAccountID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $sourceAccountID;
 
+    /**
+     *
+     * @var OrchestrationPaymentStatus $status
+     */
     #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\OrchestrationPaymentStatus>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentStatus')]
     public OrchestrationPaymentStatus $status;
 
+    /**
+     *
+     * @var OrchestrationPaymentType $type
+     */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\OrchestrationPaymentType>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentType')]
     public OrchestrationPaymentType $type;
 
-    public function __construct()
+    /**
+     * @param  ?array<OrchestrationPaymentAdjustment>  $adjustments
+     * @param  ?string  $asset
+     * @param  ?string  $connectorID
+     * @param  ?\DateTime  $createdAt
+     * @param  ?string  $destinationAccountID
+     * @param  ?string  $id
+     * @param  ?int  $initialAmount
+     * @param  ?OrchestrationPaymentMetadata  $metadata
+     * @param  ?OrchestrationPaymentRaw  $raw
+     * @param  ?string  $reference
+     * @param  ?OrchestrationPaymentScheme  $scheme
+     * @param  ?string  $sourceAccountID
+     * @param  ?OrchestrationPaymentStatus  $status
+     * @param  ?OrchestrationPaymentType  $type
+     * @param  ?OrchestrationConnector  $provider
+     */
+    public function __construct(?array $adjustments = null, ?string $asset = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $destinationAccountID = null, ?string $id = null, ?int $initialAmount = null, ?OrchestrationPaymentMetadata $metadata = null, ?OrchestrationPaymentRaw $raw = null, ?string $reference = null, ?OrchestrationPaymentScheme $scheme = null, ?string $sourceAccountID = null, ?OrchestrationPaymentStatus $status = null, ?OrchestrationPaymentType $type = null, ?OrchestrationConnector $provider = null)
     {
-        $this->adjustments = [];
-        $this->asset = '';
-        $this->connectorID = '';
-        $this->createdAt = new \DateTime();
-        $this->destinationAccountID = '';
-        $this->id = '';
-        $this->initialAmount = 0;
-        $this->metadata = new \formance\stack\Models\Shared\OrchestrationPaymentMetadata();
-        $this->provider = null;
-        $this->raw = new \formance\stack\Models\Shared\OrchestrationPaymentRaw();
-        $this->reference = '';
-        $this->scheme = \formance\stack\Models\Shared\OrchestrationPaymentScheme::Visa;
-        $this->sourceAccountID = '';
-        $this->status = \formance\stack\Models\Shared\OrchestrationPaymentStatus::Pending;
-        $this->type = \formance\stack\Models\Shared\OrchestrationPaymentType::PayIn;
+        $this->adjustments = $adjustments;
+        $this->asset = $asset;
+        $this->connectorID = $connectorID;
+        $this->createdAt = $createdAt;
+        $this->destinationAccountID = $destinationAccountID;
+        $this->id = $id;
+        $this->initialAmount = $initialAmount;
+        $this->metadata = $metadata;
+        $this->raw = $raw;
+        $this->reference = $reference;
+        $this->scheme = $scheme;
+        $this->sourceAccountID = $sourceAccountID;
+        $this->status = $status;
+        $this->type = $type;
+        $this->provider = $provider;
     }
 }

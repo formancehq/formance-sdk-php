@@ -11,11 +11,18 @@ namespace formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class Security
 {
+    /**
+     *
+     * @var string $authorization
+     */
     #[SpeakeasyMetadata('security:scheme=true,type=oauth2,name=Authorization')]
     public string $authorization;
 
-    public function __construct()
+    /**
+     * @param  ?string  $authorization
+     */
+    public function __construct(?string $authorization = null)
     {
-        $this->authorization = '';
+        $this->authorization = $authorization;
     }
 }

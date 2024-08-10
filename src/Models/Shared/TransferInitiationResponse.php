@@ -11,12 +11,19 @@ namespace formance\stack\Models\Shared;
 
 class TransferInitiationResponse
 {
+    /**
+     *
+     * @var TransferInitiation $data
+     */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('formance\stack\Models\Shared\TransferInitiation')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiation')]
     public TransferInitiation $data;
 
-    public function __construct()
+    /**
+     * @param  ?TransferInitiation  $data
+     */
+    public function __construct(?TransferInitiation $data = null)
     {
-        $this->data = new \formance\stack\Models\Shared\TransferInitiation();
+        $this->data = $data;
     }
 }

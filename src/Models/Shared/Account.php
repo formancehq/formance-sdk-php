@@ -11,8 +11,11 @@ namespace formance\stack\Models\Shared;
 
 class Account
 {
+    /**
+     *
+     * @var string $address
+     */
     #[\JMS\Serializer\Annotation\SerializedName('address')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $address;
 
     /**
@@ -25,15 +28,23 @@ class Account
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
+    /**
+     *
+     * @var ?string $type
+     */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $type = null;
 
-    public function __construct()
+    /**
+     * @param  ?string  $address
+     * @param  ?array<string, mixed>  $metadata
+     * @param  ?string  $type
+     */
+    public function __construct(?string $address = null, ?array $metadata = null, ?string $type = null)
     {
-        $this->address = '';
-        $this->metadata = null;
-        $this->type = null;
+        $this->address = $address;
+        $this->metadata = $metadata;
+        $this->type = $type;
     }
 }

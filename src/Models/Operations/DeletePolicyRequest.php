@@ -19,8 +19,11 @@ class DeletePolicyRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=policyID')]
     public string $policyID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $policyID
+     */
+    public function __construct(?string $policyID = null)
     {
-        $this->policyID = '';
+        $this->policyID = $policyID;
     }
 }

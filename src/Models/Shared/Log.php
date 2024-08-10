@@ -20,28 +20,48 @@ class Log
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
     public array $data;
 
+    /**
+     *
+     * @var \DateTime $date
+     */
     #[\JMS\Serializer\Annotation\SerializedName('date')]
-    #[\JMS\Serializer\Annotation\Type("DateTime<'Y-m-d\TH:i:s.up'>")]
     public \DateTime $date;
 
+    /**
+     *
+     * @var string $hash
+     */
     #[\JMS\Serializer\Annotation\SerializedName('hash')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $hash;
 
+    /**
+     *
+     * @var int $id
+     */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\Type('int')]
     public int $id;
 
+    /**
+     *
+     * @var Type $type
+     */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('enum<formance\stack\Models\Shared\Type>')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Type')]
     public Type $type;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, mixed>  $data
+     * @param  ?\DateTime  $date
+     * @param  ?string  $hash
+     * @param  ?int  $id
+     * @param  ?Type  $type
+     */
+    public function __construct(?array $data = null, ?\DateTime $date = null, ?string $hash = null, ?int $id = null, ?Type $type = null)
     {
-        $this->data = [];
-        $this->date = new \DateTime();
-        $this->hash = '';
-        $this->id = 0;
-        $this->type = \formance\stack\Models\Shared\Type::NewTransaction;
+        $this->data = $data;
+        $this->date = $date;
+        $this->hash = $hash;
+        $this->id = $id;
+        $this->type = $type;
     }
 }

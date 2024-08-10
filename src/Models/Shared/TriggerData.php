@@ -11,17 +11,26 @@ namespace formance\stack\Models\Shared;
 
 class TriggerData
 {
+    /**
+     *
+     * @var string $event
+     */
     #[\JMS\Serializer\Annotation\SerializedName('event')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $event;
 
+    /**
+     *
+     * @var ?string $filter
+     */
     #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $filter = null;
 
+    /**
+     *
+     * @var ?string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $name = null;
 
@@ -35,16 +44,26 @@ class TriggerData
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $vars = null;
 
+    /**
+     *
+     * @var string $workflowID
+     */
     #[\JMS\Serializer\Annotation\SerializedName('workflowID')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $workflowID;
 
-    public function __construct()
+    /**
+     * @param  ?string  $event
+     * @param  ?string  $workflowID
+     * @param  ?string  $filter
+     * @param  ?string  $name
+     * @param  ?array<string, mixed>  $vars
+     */
+    public function __construct(?string $event = null, ?string $workflowID = null, ?string $filter = null, ?string $name = null, ?array $vars = null)
     {
-        $this->event = '';
-        $this->filter = null;
-        $this->name = null;
-        $this->vars = null;
-        $this->workflowID = '';
+        $this->event = $event;
+        $this->workflowID = $workflowID;
+        $this->filter = $filter;
+        $this->name = $name;
+        $this->vars = $vars;
     }
 }

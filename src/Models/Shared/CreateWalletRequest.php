@@ -20,13 +20,20 @@ class CreateWalletRequest
     #[\JMS\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
+    /**
+     *
+     * @var string $name
+     */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\Type('string')]
     public string $name;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, string>  $metadata
+     * @param  ?string  $name
+     */
+    public function __construct(?array $metadata = null, ?string $name = null)
     {
-        $this->metadata = [];
-        $this->name = '';
+        $this->metadata = $metadata;
+        $this->name = $name;
     }
 }

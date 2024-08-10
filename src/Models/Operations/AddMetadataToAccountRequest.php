@@ -40,10 +40,15 @@ class AddMetadataToAccountRequest
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
 
-    public function __construct()
+    /**
+     * @param  ?array<string, mixed>  $requestBody
+     * @param  ?string  $address
+     * @param  ?string  $ledger
+     */
+    public function __construct(?array $requestBody = null, ?string $address = null, ?string $ledger = null)
     {
-        $this->requestBody = [];
-        $this->address = '';
-        $this->ledger = '';
+        $this->requestBody = $requestBody;
+        $this->address = $address;
+        $this->ledger = $ledger;
     }
 }
