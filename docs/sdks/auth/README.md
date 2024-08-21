@@ -1,5 +1,6 @@
 # Auth
 
+## Overview
 
 ### Available Operations
 
@@ -67,15 +68,16 @@ try {
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
-
 ### Response
 
 **[?Operations\CreateClientResponse](../../Models/Operations/CreateClientResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## createSecret
 
@@ -123,15 +125,16 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\CreateSecretRequest](../../Models/Operations/CreateSecretRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\CreateSecretResponse](../../Models/Operations/CreateSecretResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deleteClient
 
@@ -173,15 +176,16 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteClientRequest](../../Models/Operations/DeleteClientRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\DeleteClientResponse](../../Models/Operations/DeleteClientResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deleteSecret
 
@@ -224,15 +228,16 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteSecretRequest](../../Models/Operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\DeleteSecretResponse](../../Models/Operations/DeleteSecretResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listClients
 
@@ -264,15 +269,16 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\ListClientsResponse](../../Models/Operations/ListClientsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listUsers
 
@@ -304,15 +310,16 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\ListUsersResponse](../../Models/Operations/ListUsersResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## readClient
 
@@ -354,15 +361,16 @@ try {
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\ReadClientRequest](../../Models/Operations/ReadClientRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[?Operations\ReadClientResponse](../../Models/Operations/ReadClientResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## readUser
 
@@ -404,15 +412,16 @@ try {
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\ReadUserRequest](../../Models/Operations/ReadUserRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
-
 ### Response
 
 **[?Operations\ReadUserResponse](../../Models/Operations/ReadUserResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## updateClient
 
@@ -472,10 +481,10 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\UpdateClientRequest](../../Models/Operations/UpdateClientRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\UpdateClientResponse](../../Models/Operations/UpdateClientResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

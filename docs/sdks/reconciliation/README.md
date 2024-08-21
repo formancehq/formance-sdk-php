@@ -1,5 +1,6 @@
 # Reconciliation
 
+## Overview
 
 ### Available Operations
 
@@ -56,16 +57,17 @@ try {
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `$request`                                                   | [Shared\PolicyRequest](../../Models/Shared/PolicyRequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
-
 ### Response
 
 **[?Operations\CreatePolicyResponse](../../Models/Operations/CreatePolicyResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deletePolicy
 
@@ -107,16 +109,17 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeletePolicyRequest](../../Models/Operations/DeletePolicyRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\DeletePolicyResponse](../../Models/Operations/DeletePolicyResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getPolicy
 
@@ -158,16 +161,17 @@ try {
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\GetPolicyRequest](../../Models/Operations/GetPolicyRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[?Operations\GetPolicyResponse](../../Models/Operations/GetPolicyResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getReconciliation
 
@@ -209,16 +213,17 @@ try {
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\GetReconciliationRequest](../../Models/Operations/GetReconciliationRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
-
 ### Response
 
 **[?Operations\GetReconciliationResponse](../../Models/Operations/GetReconciliationResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listPolicies
 
@@ -261,16 +266,17 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListPoliciesRequest](../../Models/Operations/ListPoliciesRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\ListPoliciesResponse](../../Models/Operations/ListPoliciesResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listReconciliations
 
@@ -313,16 +319,17 @@ try {
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\ListReconciliationsRequest](../../Models/Operations/ListReconciliationsRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[?Operations\ListReconciliationsResponse](../../Models/Operations/ListReconciliationsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## reconcile
 
@@ -369,16 +376,17 @@ try {
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\ReconcileRequest](../../Models/Operations/ReconcileRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[?Operations\ReconcileResponse](../../Models/Operations/ReconcileResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## reconciliationgetServerInfo
 
@@ -410,10 +418,10 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\ReconciliationgetServerInfoResponse](../../Models/Operations/ReconciliationgetServerInfoResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

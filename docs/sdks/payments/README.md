@@ -1,5 +1,6 @@
 # Payments
 
+## Overview
 
 ### Available Operations
 
@@ -90,16 +91,17 @@ try {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\AddAccountToPoolRequest](../../Models/Operations/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[?Operations\AddAccountToPoolResponse](../../Models/Operations/AddAccountToPoolResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## connectorsTransfer
 
@@ -147,16 +149,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ConnectorsTransferRequest](../../Models/Operations/ConnectorsTransferRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\ConnectorsTransferResponse](../../Models/Operations/ConnectorsTransferResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## createAccount
 
@@ -206,16 +209,17 @@ try {
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | `$request`                                                     | [Shared\AccountRequest](../../Models/Shared/AccountRequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
 
-
 ### Response
 
 **[?Operations\CreateAccountResponse](../../Models/Operations/CreateAccountResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## createBankAccount
 
@@ -264,16 +268,17 @@ try {
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `$request`                                                             | [Shared\BankAccountRequest](../../Models/Shared/BankAccountRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
-
 ### Response
 
 **[?Operations\CreateBankAccountResponse](../../Models/Operations/CreateBankAccountResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## createPayment
 
@@ -324,16 +329,17 @@ try {
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | `$request`                                                     | [Shared\PaymentRequest](../../Models/Shared/PaymentRequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
 
-
 ### Response
 
 **[?Operations\CreatePaymentResponse](../../Models/Operations/CreatePaymentResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## createPool
 
@@ -377,16 +383,17 @@ try {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `$request`                                               | [Shared\PoolRequest](../../Models/Shared/PoolRequest.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
 
-
 ### Response
 
 **[?Operations\CreatePoolResponse](../../Models/Operations/CreatePoolResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## createTransferInitiation
 
@@ -441,16 +448,17 @@ try {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Shared\TransferInitiationRequest](../../Models/Shared/TransferInitiationRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[?Operations\CreateTransferInitiationResponse](../../Models/Operations/CreateTransferInitiationResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deletePool
 
@@ -492,16 +500,17 @@ try {
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\DeletePoolRequest](../../Models/Operations/DeletePoolRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[?Operations\DeletePoolResponse](../../Models/Operations/DeletePoolResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deleteTransferInitiation
 
@@ -543,16 +552,17 @@ try {
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\DeleteTransferInitiationRequest](../../Models/Operations/DeleteTransferInitiationRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 
-
 ### Response
 
 **[?Operations\DeleteTransferInitiationResponse](../../Models/Operations/DeleteTransferInitiationResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## forwardBankAccount
 
@@ -597,16 +607,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ForwardBankAccountRequest](../../Models/Operations/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\ForwardBankAccountResponse](../../Models/Operations/ForwardBankAccountResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getAccountBalances
 
@@ -658,16 +669,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetAccountBalancesRequest](../../Models/Operations/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\GetAccountBalancesResponse](../../Models/Operations/GetAccountBalancesResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getBankAccount
 
@@ -709,16 +721,17 @@ try {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetBankAccountRequest](../../Models/Operations/GetBankAccountRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[?Operations\GetBankAccountResponse](../../Models/Operations/GetBankAccountResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## ~~getConnectorTask~~
 
@@ -763,16 +776,17 @@ try {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\GetConnectorTaskRequest](../../Models/Operations/GetConnectorTaskRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[?Operations\GetConnectorTaskResponse](../../Models/Operations/GetConnectorTaskResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getConnectorTaskV1
 
@@ -816,16 +830,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetConnectorTaskV1Request](../../Models/Operations/GetConnectorTaskV1Request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\GetConnectorTaskV1Response](../../Models/Operations/GetConnectorTaskV1Response.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getPayment
 
@@ -867,16 +882,17 @@ try {
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\GetPaymentRequest](../../Models/Operations/GetPaymentRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[?Operations\GetPaymentResponse](../../Models/Operations/GetPaymentResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getPool
 
@@ -918,16 +934,17 @@ try {
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `$request`                                                             | [Operations\GetPoolRequest](../../Models/Operations/GetPoolRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
-
 ### Response
 
 **[?Operations\GetPoolResponse](../../Models/Operations/GetPoolResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getPoolBalances
 
@@ -971,16 +988,17 @@ try {
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\GetPoolBalancesRequest](../../Models/Operations/GetPoolBalancesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
-
 ### Response
 
 **[?Operations\GetPoolBalancesResponse](../../Models/Operations/GetPoolBalancesResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getTransferInitiation
 
@@ -1022,16 +1040,17 @@ try {
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\GetTransferInitiationRequest](../../Models/Operations/GetTransferInitiationRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[?Operations\GetTransferInitiationResponse](../../Models/Operations/GetTransferInitiationResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## installConnector
 
@@ -1078,16 +1097,17 @@ try {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\InstallConnectorRequest](../../Models/Operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[?Operations\InstallConnectorResponse](../../Models/Operations/InstallConnectorResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listAllConnectors
 
@@ -1119,16 +1139,17 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\ListAllConnectorsResponse](../../Models/Operations/ListAllConnectorsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listBankAccounts
 
@@ -1174,16 +1195,17 @@ try {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ListBankAccountsRequest](../../Models/Operations/ListBankAccountsRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[?Operations\ListBankAccountsResponse](../../Models/Operations/ListBankAccountsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listConfigsAvailableConnectors
 
@@ -1215,16 +1237,17 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\ListConfigsAvailableConnectorsResponse](../../Models/Operations/ListConfigsAvailableConnectorsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## ~~listConnectorTasks~~
 
@@ -1270,16 +1293,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ListConnectorTasksRequest](../../Models/Operations/ListConnectorTasksRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\ListConnectorTasksResponse](../../Models/Operations/ListConnectorTasksResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listConnectorTasksV1
 
@@ -1324,16 +1348,17 @@ try {
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\ListConnectorTasksV1Request](../../Models/Operations/ListConnectorTasksV1Request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[?Operations\ListConnectorTasksV1Response](../../Models/Operations/ListConnectorTasksV1Response.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listPayments
 
@@ -1380,16 +1405,17 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListPaymentsRequest](../../Models/Operations/ListPaymentsRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\ListPaymentsResponse](../../Models/Operations/ListPaymentsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listPools
 
@@ -1436,16 +1462,17 @@ try {
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\ListPoolsRequest](../../Models/Operations/ListPoolsRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
-
 ### Response
 
 **[?Operations\ListPoolsResponse](../../Models/Operations/ListPoolsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## listTransferInitiations
 
@@ -1492,16 +1519,17 @@ try {
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\ListTransferInitiationsRequest](../../Models/Operations/ListTransferInitiationsRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[?Operations\ListTransferInitiationsResponse](../../Models/Operations/ListTransferInitiationsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## paymentsgetAccount
 
@@ -1543,16 +1571,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\PaymentsgetAccountRequest](../../Models/Operations/PaymentsgetAccountRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\PaymentsgetAccountResponse](../../Models/Operations/PaymentsgetAccountResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## paymentsgetServerInfo
 
@@ -1584,16 +1613,17 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\PaymentsgetServerInfoResponse](../../Models/Operations/PaymentsgetServerInfoResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## paymentslistAccounts
 
@@ -1643,16 +1673,17 @@ try {
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\PaymentslistAccountsRequest](../../Models/Operations/PaymentslistAccountsRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[?Operations\PaymentslistAccountsResponse](../../Models/Operations/PaymentslistAccountsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## ~~readConnectorConfig~~
 
@@ -1696,16 +1727,17 @@ try {
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\ReadConnectorConfigRequest](../../Models/Operations/ReadConnectorConfigRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
-
 ### Response
 
 **[?Operations\ReadConnectorConfigResponse](../../Models/Operations/ReadConnectorConfigResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## readConnectorConfigV1
 
@@ -1748,16 +1780,17 @@ try {
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\ReadConnectorConfigV1Request](../../Models/Operations/ReadConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[?Operations\ReadConnectorConfigV1Response](../../Models/Operations/ReadConnectorConfigV1Response.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## removeAccountFromPool
 
@@ -1800,16 +1833,17 @@ try {
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\RemoveAccountFromPoolRequest](../../Models/Operations/RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 
-
 ### Response
 
 **[?Operations\RemoveAccountFromPoolResponse](../../Models/Operations/RemoveAccountFromPoolResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## ~~resetConnector~~
 
@@ -1855,16 +1889,17 @@ try {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\ResetConnectorRequest](../../Models/Operations/ResetConnectorRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[?Operations\ResetConnectorResponse](../../Models/Operations/ResetConnectorResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## resetConnectorV1
 
@@ -1909,16 +1944,17 @@ try {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ResetConnectorV1Request](../../Models/Operations/ResetConnectorV1Request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[?Operations\ResetConnectorV1Response](../../Models/Operations/ResetConnectorV1Response.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## retryTransferInitiation
 
@@ -1960,16 +1996,17 @@ try {
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\RetryTransferInitiationRequest](../../Models/Operations/RetryTransferInitiationRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[?Operations\RetryTransferInitiationResponse](../../Models/Operations/RetryTransferInitiationResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## reverseTransferInitiation
 
@@ -2020,16 +2057,17 @@ try {
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\ReverseTransferInitiationRequest](../../Models/Operations/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 
-
 ### Response
 
 **[?Operations\ReverseTransferInitiationResponse](../../Models/Operations/ReverseTransferInitiationResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## udpateTransferInitiationStatus
 
@@ -2074,16 +2112,17 @@ try {
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                           | [Operations\UdpateTransferInitiationStatusRequest](../../Models/Operations/UdpateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 
-
 ### Response
 
 **[?Operations\UdpateTransferInitiationStatusResponse](../../Models/Operations/UdpateTransferInitiationStatusResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## ~~uninstallConnector~~
 
@@ -2127,16 +2166,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\UninstallConnectorRequest](../../Models/Operations/UninstallConnectorRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\UninstallConnectorResponse](../../Models/Operations/UninstallConnectorResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## uninstallConnectorV1
 
@@ -2179,16 +2219,17 @@ try {
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\UninstallConnectorV1Request](../../Models/Operations/UninstallConnectorV1Request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
-
 ### Response
 
 **[?Operations\UninstallConnectorV1Response](../../Models/Operations/UninstallConnectorV1Response.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## updateBankAccountMetadata
 
@@ -2235,16 +2276,17 @@ try {
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\UpdateBankAccountMetadataRequest](../../Models/Operations/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 
-
 ### Response
 
 **[?Operations\UpdateBankAccountMetadataResponse](../../Models/Operations/UpdateBankAccountMetadataResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## updateConnectorConfigV1
 
@@ -2293,16 +2335,17 @@ try {
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\UpdateConnectorConfigV1Request](../../Models/Operations/UpdateConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
-
 ### Response
 
 **[?Operations\UpdateConnectorConfigV1Response](../../Models/Operations/UpdateConnectorConfigV1Response.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\PaymentsErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## updateMetadata
 
@@ -2347,10 +2390,10 @@ try {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\UpdateMetadataRequest](../../Models/Operations/UpdateMetadataRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[?Operations\UpdateMetadataResponse](../../Models/Operations/UpdateMetadataResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

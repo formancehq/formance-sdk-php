@@ -1,6 +1,5 @@
 # SDK
 
-
 ## Overview
 
 Formance Stack API: Open, modular foundation for unique payments flows
@@ -51,15 +50,16 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\GetOIDCWellKnownsResponse](../../Models/Operations/GetOIDCWellKnownsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getVersions
 
@@ -91,10 +91,10 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\GetVersionsResponse](../../Models/Operations/GetVersionsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

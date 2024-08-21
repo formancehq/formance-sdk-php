@@ -1,5 +1,6 @@
 # Webhooks
 
+## Overview
 
 ### Available Operations
 
@@ -51,16 +52,17 @@ try {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\ActivateConfigRequest](../../Models/Operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[?Operations\ActivateConfigResponse](../../Models/Operations/ActivateConfigResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\WebhooksErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## changeConfigSecret
 
@@ -109,16 +111,17 @@ try {
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ChangeConfigSecretRequest](../../Models/Operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
-
 ### Response
 
 **[?Operations\ChangeConfigSecretResponse](../../Models/Operations/ChangeConfigSecretResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\WebhooksErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deactivateConfig
 
@@ -160,16 +163,17 @@ try {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\DeactivateConfigRequest](../../Models/Operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
-
 ### Response
 
 **[?Operations\DeactivateConfigResponse](../../Models/Operations/DeactivateConfigResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\WebhooksErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## deleteConfig
 
@@ -211,16 +215,17 @@ try {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteConfigRequest](../../Models/Operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
-
 ### Response
 
 **[?Operations\DeleteConfigResponse](../../Models/Operations/DeleteConfigResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\WebhooksErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## getManyConfigs
 
@@ -263,16 +268,17 @@ try {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetManyConfigsRequest](../../Models/Operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
-
 ### Response
 
 **[?Operations\GetManyConfigsResponse](../../Models/Operations/GetManyConfigsResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\WebhooksErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## insertConfig
 
@@ -327,16 +333,17 @@ try {
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
 | `$request`                                             | [Shared\ConfigUser](../../Models/Shared/ConfigUser.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
 
-
 ### Response
 
 **[?Operations\InsertConfigResponse](../../Models/Operations/InsertConfigResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Errors\WebhooksErrorResponse              | default                                   | application/json                          |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## testConfig
 
@@ -378,10 +385,10 @@ try {
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\TestConfigRequest](../../Models/Operations/TestConfigRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
-
 ### Response
 
 **[?Operations\TestConfigResponse](../../Models/Operations/TestConfigResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

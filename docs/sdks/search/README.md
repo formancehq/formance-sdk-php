@@ -1,5 +1,6 @@
 # Search
 
+## Overview
 
 ### Available Operations
 
@@ -61,15 +62,16 @@ try {
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | `$request`                                   | [Shared\Query](../../Models/Shared/Query.md) | :heavy_check_mark:                           | The request object to use for the request.   |
 
-
 ### Response
 
 **[?Operations\SearchResponse](../../Models/Operations/SearchResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+
 
 ## searchgetServerInfo
 
@@ -101,10 +103,10 @@ try {
 }
 ```
 
-
 ### Response
 
 **[?Operations\SearchgetServerInfoResponse](../../Models/Operations/SearchgetServerInfoResponse.md)**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
