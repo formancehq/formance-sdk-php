@@ -32,8 +32,6 @@ composer require "formance/formance-sdk"
 ### Example
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
@@ -44,9 +42,7 @@ use formance\stack\Models\Shared;
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 
-$sdk = stack\SDK::builder()
-    ->setSecurity($security)
-    ->build();
+$sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $response = $sdk->getOIDCWellKnowns();
@@ -57,7 +53,6 @@ try {
 } catch (Throwable $e) {
     // handle exception
 }
-
 ```
 <!-- End SDK Example Usage [usage] -->
 

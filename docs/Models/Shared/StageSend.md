@@ -1,0 +1,12 @@
+# StageSend
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `amount`                                                                    | [?Shared\Monetary](../../Models/Shared/Monetary.md)                         | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `destination`                                                               | [?Shared\StageSendDestination](../../Models/Shared/StageSendDestination.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `metadata`                                                                  | array<string, *string*>                                                     | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `source`                                                                    | [?Shared\StageSendSource](../../Models/Shared/StageSendSource.md)           | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `timestamp`                                                                 | [\DateTime](https://www.php.net/manual/en/class.datetime.php)               | :heavy_minus_sign:                                                          | N/A                                                                         |

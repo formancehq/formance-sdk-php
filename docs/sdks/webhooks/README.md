@@ -1,5 +1,6 @@
 # Webhooks
 
+## Overview
 
 ### Available Operations
 
@@ -18,15 +19,13 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -34,9 +33,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ActivateConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
-
+    $request = new Operations\ActivateConfigRequest(
+        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    );
     $response = $sdk->webhooks->activateConfig($request);
 
     if ($response->configResponse !== null) {
@@ -49,14 +48,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\ActivateConfigRequest](../../Models/Operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\ActivateConfigRequest](../../Models/Operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ActivateConfigResponse](../../Models/Operations/ActivateConfigResponse.md)**
+**[?Operations\ActivateConfigResponse](../../Models/Operations/ActivateConfigResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## changeConfigSecret
@@ -70,15 +75,13 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -86,11 +89,12 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ChangeConfigSecretRequest();
-    $request->configChangeSecret = new Shared\ConfigChangeSecret();
-    $request->configChangeSecret->secret = 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3';
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
-
+    $request = new Operations\ChangeConfigSecretRequest(
+        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+        configChangeSecret: new Shared\ConfigChangeSecret(
+            secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+        ),
+    );
     $response = $sdk->webhooks->changeConfigSecret($request);
 
     if ($response->configResponse !== null) {
@@ -103,14 +107,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\ChangeConfigSecretRequest](../../Models/Operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
-
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `$request`                                                                                   | [Operations\ChangeConfigSecretRequest](../../Models/Operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ChangeConfigSecretResponse](../../Models/Operations/ChangeConfigSecretResponse.md)**
+**[?Operations\ChangeConfigSecretResponse](../../Models/Operations/ChangeConfigSecretResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## deactivateConfig
@@ -120,15 +130,13 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -136,9 +144,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\DeactivateConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
-
+    $request = new Operations\DeactivateConfigRequest(
+        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    );
     $response = $sdk->webhooks->deactivateConfig($request);
 
     if ($response->configResponse !== null) {
@@ -151,14 +159,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\DeactivateConfigRequest](../../Models/Operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
-
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\DeactivateConfigRequest](../../Models/Operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeactivateConfigResponse](../../Models/Operations/DeactivateConfigResponse.md)**
+**[?Operations\DeactivateConfigResponse](../../Models/Operations/DeactivateConfigResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## deleteConfig
@@ -168,15 +182,13 @@ Delete a webhooks config by ID.
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -184,9 +196,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\DeleteConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
-
+    $request = new Operations\DeleteConfigRequest(
+        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    );
     $response = $sdk->webhooks->deleteConfig($request);
 
     if ($response->statusCode === 200) {
@@ -199,14 +211,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteConfigRequest](../../Models/Operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\DeleteConfigRequest](../../Models/Operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteConfigResponse](../../Models/Operations/DeleteConfigResponse.md)**
+**[?Operations\DeleteConfigResponse](../../Models/Operations/DeleteConfigResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## getManyConfigs
@@ -216,15 +234,13 @@ Sorted by updated date descending
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -232,10 +248,10 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\GetManyConfigsRequest();
-    $request->endpoint = 'https://example.com';
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
-
+    $request = new Operations\GetManyConfigsRequest(
+        endpoint: 'https://example.com',
+        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    );
     $response = $sdk->webhooks->getManyConfigs($request);
 
     if ($response->configsResponse !== null) {
@@ -248,14 +264,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\GetManyConfigsRequest](../../Models/Operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\GetManyConfigsRequest](../../Models/Operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetManyConfigsResponse](../../Models/Operations/GetManyConfigsResponse.md)**
+**[?Operations\GetManyConfigsResponse](../../Models/Operations/GetManyConfigsResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## insertConfig
@@ -274,14 +296,12 @@ All eventTypes are converted to lower-case when inserted.
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -289,14 +309,14 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\ConfigUser();
-    $request->endpoint = 'https://example.com';
-    $request->eventTypes = [
-        'TYPE1',
-    ];
-    $request->name = 'customer_payment';
-    $request->secret = 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3';;
-
+    $request = new Shared\ConfigUser(
+        endpoint: 'https://example.com',
+        eventTypes: [
+            'TYPE1',
+        ],
+        name: 'customer_payment',
+        secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+    );
     $response = $sdk->webhooks->insertConfig($request);
 
     if ($response->configResponse !== null) {
@@ -309,14 +329,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `$request`                                                                    | [\formance\stack\Models\Shared\ConfigUser](../../Models/Shared/ConfigUser.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `$request`                                             | [Shared\ConfigUser](../../Models/Shared/ConfigUser.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\InsertConfigResponse](../../Models/Operations/InsertConfigResponse.md)**
+**[?Operations\InsertConfigResponse](../../Models/Operations/InsertConfigResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## testConfig
@@ -326,15 +352,13 @@ Test a config by sending a webhook to its endpoint.
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -342,9 +366,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\TestConfigRequest();
-    $request->id = '4997257d-dfb6-445b-929c-cbe2ab182818';;
-
+    $request = new Operations\TestConfigRequest(
+        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    );
     $response = $sdk->webhooks->testConfig($request);
 
     if ($response->attemptResponse !== null) {
@@ -357,12 +381,17 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\TestConfigRequest](../../Models/Operations/TestConfigRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
-
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Operations\TestConfigRequest](../../Models/Operations/TestConfigRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\TestConfigResponse](../../Models/Operations/TestConfigResponse.md)**
+**[?Operations\TestConfigResponse](../../Models/Operations/TestConfigResponse.md)**
 
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |

@@ -1,0 +1,12 @@
+# V2ErrorResponse
+
+Error
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `errorCode`                                                                                  | [Shared\V2ErrorsEnum](../../Models/Shared/V2ErrorsEnum.md)                                   | :heavy_check_mark:                                                                           | N/A                                                                                          | VALIDATION                                                                                   |
+| `errorMessage`                                                                               | *string*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          | [VALIDATION] invalid 'cursor' query param                                                    |
+| `details`                                                                                    | *?string*                                                                                    | :heavy_minus_sign:                                                                           | N/A                                                                                          | https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9 |

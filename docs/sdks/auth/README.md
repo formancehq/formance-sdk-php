@@ -1,5 +1,6 @@
 # Auth
 
+## Overview
 
 ### Available Operations
 
@@ -20,14 +21,12 @@ Create client
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -35,24 +34,24 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\CreateClientRequest();
-    $request->description = 'Managed optimizing help-desk';
-    $request->metadata = [
-        'pessimistic' => '<value>',
-    ];
-    $request->name = '<value>';
-    $request->postLogoutRedirectUris = [
-        '<value>',
-    ];
-    $request->public = false;
-    $request->redirectUris = [
-        '<value>',
-    ];
-    $request->scopes = [
-        '<value>',
-    ];
-    $request->trusted = false;;
-
+    $request = new Shared\CreateClientRequest(
+        name: '<value>',
+        description: 'Managed optimizing help-desk',
+        metadata: [
+            'pessimistic' => '<value>',
+        ],
+        postLogoutRedirectUris: [
+            '<value>',
+        ],
+        public: false,
+        redirectUris: [
+            '<value>',
+        ],
+        scopes: [
+            '<value>',
+        ],
+        trusted: false,
+    );
     $response = $sdk->auth->createClient($request);
 
     if ($response->createClientResponse !== null) {
@@ -65,14 +64,19 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `$request`                                                               | [Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateClientResponse](../../Models/Operations/CreateClientResponse.md)**
+**[?Operations\CreateClientResponse](../../Models/Operations/CreateClientResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## createSecret
@@ -82,15 +86,13 @@ Add a secret to a client
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -98,14 +100,15 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\CreateSecretRequest();
-    $request->createSecretRequest = new Shared\CreateSecretRequest();
-    $request->createSecretRequest->metadata = [
-        'architecture' => '<value>',
-    ];
-    $request->createSecretRequest->name = '<value>';
-    $request->clientId = '<value>';;
-
+    $request = new Operations\CreateSecretRequest(
+        clientId: '<value>',
+        createSecretRequest: new Shared\CreateSecretRequest(
+            name: '<value>',
+            metadata: [
+                'architecture' => '<value>',
+            ],
+        ),
+    );
     $response = $sdk->auth->createSecret($request);
 
     if ($response->createSecretResponse !== null) {
@@ -118,14 +121,19 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\CreateSecretRequest](../../Models/Operations/CreateSecretRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\CreateSecretRequest](../../Models/Operations/CreateSecretRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateSecretResponse](../../Models/Operations/CreateSecretResponse.md)**
+**[?Operations\CreateSecretResponse](../../Models/Operations/CreateSecretResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## deleteClient
@@ -135,15 +143,13 @@ Delete client
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -151,9 +157,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\DeleteClientRequest();
-    $request->clientId = '<value>';;
-
+    $request = new Operations\DeleteClientRequest(
+        clientId: '<value>',
+    );
     $response = $sdk->auth->deleteClient($request);
 
     if ($response->statusCode === 200) {
@@ -166,14 +172,19 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteClientRequest](../../Models/Operations/DeleteClientRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\DeleteClientRequest](../../Models/Operations/DeleteClientRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteClientResponse](../../Models/Operations/DeleteClientResponse.md)**
+**[?Operations\DeleteClientResponse](../../Models/Operations/DeleteClientResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## deleteSecret
@@ -183,15 +194,13 @@ Delete a secret from a client
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -199,10 +208,10 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\DeleteSecretRequest();
-    $request->clientId = '<value>';
-    $request->secretId = '<value>';;
-
+    $request = new Operations\DeleteSecretRequest(
+        clientId: '<value>',
+        secretId: '<value>',
+    );
     $response = $sdk->auth->deleteSecret($request);
 
     if ($response->statusCode === 200) {
@@ -215,14 +224,19 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\DeleteSecretRequest](../../Models/Operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\DeleteSecretRequest](../../Models/Operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteSecretResponse](../../Models/Operations/DeleteSecretResponse.md)**
+**[?Operations\DeleteSecretResponse](../../Models/Operations/DeleteSecretResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## listClients
@@ -232,14 +246,12 @@ List clients
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -257,10 +269,15 @@ try {
 }
 ```
 
-
 ### Response
 
-**[?\formance\stack\Models\Operations\ListClientsResponse](../../Models/Operations/ListClientsResponse.md)**
+**[?Operations\ListClientsResponse](../../Models/Operations/ListClientsResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## listUsers
@@ -270,14 +287,12 @@ List users
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -295,10 +310,15 @@ try {
 }
 ```
 
-
 ### Response
 
-**[?\formance\stack\Models\Operations\ListUsersResponse](../../Models/Operations/ListUsersResponse.md)**
+**[?Operations\ListUsersResponse](../../Models/Operations/ListUsersResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## readClient
@@ -308,15 +328,13 @@ Read client
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -324,9 +342,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ReadClientRequest();
-    $request->clientId = '<value>';;
-
+    $request = new Operations\ReadClientRequest(
+        clientId: '<value>',
+    );
     $response = $sdk->auth->readClient($request);
 
     if ($response->readClientResponse !== null) {
@@ -339,14 +357,19 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Operations\ReadClientRequest](../../Models/Operations/ReadClientRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
-
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Operations\ReadClientRequest](../../Models/Operations/ReadClientRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadClientResponse](../../Models/Operations/ReadClientResponse.md)**
+**[?Operations\ReadClientResponse](../../Models/Operations/ReadClientResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## readUser
@@ -356,15 +379,13 @@ Read user
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -372,9 +393,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ReadUserRequest();
-    $request->userId = '<value>';;
-
+    $request = new Operations\ReadUserRequest(
+        userId: '<value>',
+    );
     $response = $sdk->auth->readUser($request);
 
     if ($response->readUserResponse !== null) {
@@ -387,14 +408,19 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$request`                                                                                      | [\formance\stack\Models\Operations\ReadUserRequest](../../Models/Operations/ReadUserRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `$request`                                                               | [Operations\ReadUserRequest](../../Models/Operations/ReadUserRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadUserResponse](../../Models/Operations/ReadUserResponse.md)**
+**[?Operations\ReadUserResponse](../../Models/Operations/ReadUserResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## updateClient
@@ -404,15 +430,13 @@ Update client
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -420,26 +444,27 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\UpdateClientRequest();
-    $request->updateClientRequest = new Shared\UpdateClientRequest();
-    $request->updateClientRequest->description = 'Secured static model';
-    $request->updateClientRequest->metadata = [
-        'Bentley' => '<value>',
-    ];
-    $request->updateClientRequest->name = '<value>';
-    $request->updateClientRequest->postLogoutRedirectUris = [
-        '<value>',
-    ];
-    $request->updateClientRequest->public = false;
-    $request->updateClientRequest->redirectUris = [
-        '<value>',
-    ];
-    $request->updateClientRequest->scopes = [
-        '<value>',
-    ];
-    $request->updateClientRequest->trusted = false;
-    $request->clientId = '<value>';;
-
+    $request = new Operations\UpdateClientRequest(
+        clientId: '<value>',
+        updateClientRequest: new Shared\UpdateClientRequest(
+            name: '<value>',
+            description: 'Secured static model',
+            metadata: [
+                'Bentley' => '<value>',
+            ],
+            postLogoutRedirectUris: [
+                '<value>',
+            ],
+            public: false,
+            redirectUris: [
+                '<value>',
+            ],
+            scopes: [
+                '<value>',
+            ],
+            trusted: false,
+        ),
+    );
     $response = $sdk->auth->updateClient($request);
 
     if ($response->updateClientResponse !== null) {
@@ -452,12 +477,16 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\UpdateClientRequest](../../Models/Operations/UpdateClientRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\UpdateClientRequest](../../Models/Operations/UpdateClientRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\UpdateClientResponse](../../Models/Operations/UpdateClientResponse.md)**
+**[?Operations\UpdateClientResponse](../../Models/Operations/UpdateClientResponse.md)**
 
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |

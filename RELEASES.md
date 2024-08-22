@@ -89,3 +89,43 @@ Based on:
 - [php v2.1.2] .
 ### Releases
 - [Composer v2.1.2] https://packagist.org/packages/formance/formance-sdk#v2.1.2 - .
+
+## 2024-08-09 00:06:17
+### Changes
+Based on:
+- OpenAPI Doc v2.0.9 
+- Speakeasy CLI 1.358.0 (2.390.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.1.3] .
+### Releases
+- [Composer v2.1.3] https://packagist.org/packages/formance/formance-sdk#v2.1.3 - .
+
+## 2024-08-10 00:06:16
+### Changes
+Based on:
+- OpenAPI Doc v2.0.9 
+- Speakeasy CLI 1.360.0 (2.392.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.2.0] .
+### Releases
+- [Composer v2.2.0] https://packagist.org/packages/formance/formance-sdk#v2.2.0 - .
+
+## 2024-08-21 15:21:07
+### Changes
+Based on:
+- OpenAPI Doc v2.0.11 
+- Speakeasy CLI 1.377.1 (2.404.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.2.1] .
+### Releases
+- [Composer v2.2.1] https://packagist.org/packages/formance/formance-sdk#v2.2.1 - .
+
+## 2024-08-22 15:17:19
+### Changes
+Based on:
+- OpenAPI Doc v2.0.12 
+- Speakeasy CLI 1.377.3 (2.404.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.2.2] .
+### Releases
+- [Composer v2.2.2] https://packagist.org/packages/formance/formance-sdk#v2.2.2 - .

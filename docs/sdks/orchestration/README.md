@@ -1,5 +1,6 @@
 # Orchestration
 
+## Overview
 
 ### Available Operations
 
@@ -46,15 +47,13 @@ Cancel a running workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -62,9 +61,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\CancelEventRequest();
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\CancelEventRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->cancelEvent($request);
 
     if ($response->statusCode === 200) {
@@ -77,14 +76,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\CancelEventRequest](../../Models/Operations/CancelEventRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\CancelEventRequest](../../Models/Operations/CancelEventRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CancelEventResponse](../../Models/Operations/CancelEventResponse.md)**
+**[?Operations\CancelEventResponse](../../Models/Operations/CancelEventResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## createTrigger
@@ -94,14 +99,12 @@ Create trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -109,15 +112,15 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\TriggerData();
-    $request->event = '<value>';
-    $request->filter = '<value>';
-    $request->name = '<value>';
-    $request->vars = [
-        'paradigms' => '<value>',
-    ];
-    $request->workflowID = '<value>';;
-
+    $request = new Shared\TriggerData(
+        event: '<value>',
+        workflowID: '<value>',
+        filter: '<value>',
+        name: '<value>',
+        vars: [
+            'paradigms' => '<value>',
+        ],
+    );
     $response = $sdk->orchestration->createTrigger($request);
 
     if ($response->createTriggerResponse !== null) {
@@ -130,14 +133,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$request`                                                                      | [\formance\stack\Models\Shared\TriggerData](../../Models/Shared/TriggerData.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `$request`                                               | [Shared\TriggerData](../../Models/Shared/TriggerData.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateTriggerResponse](../../Models/Operations/CreateTriggerResponse.md)**
+**[?Operations\CreateTriggerResponse](../../Models/Operations/CreateTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## createWorkflow
@@ -147,14 +156,12 @@ Create a workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -162,14 +169,14 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\CreateWorkflowRequest();
-    $request->name = '<value>';
-    $request->stages = [
-        [
-            'why' => '<value>',
+    $request = new Shared\CreateWorkflowRequest(
+        stages: [
+            [
+                'why' => '<value>',
+            ],
         ],
-    ];;
-
+        name: '<value>',
+    );
     $response = $sdk->orchestration->createWorkflow($request);
 
     if ($response->createWorkflowResponse !== null) {
@@ -182,14 +189,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                          | [\formance\stack\Models\Shared\CreateWorkflowRequest](../../Models/Shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
-
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Shared\CreateWorkflowRequest](../../Models/Shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\CreateWorkflowResponse](../../Models/Operations/CreateWorkflowResponse.md)**
+**[?Operations\CreateWorkflowResponse](../../Models/Operations/CreateWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## deleteTrigger
@@ -199,15 +212,13 @@ Read trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -215,9 +226,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\DeleteTriggerRequest();
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\DeleteTriggerRequest(
+        triggerID: '<value>',
+    );
     $response = $sdk->orchestration->deleteTrigger($request);
 
     if ($response->statusCode === 200) {
@@ -230,14 +241,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\DeleteTriggerRequest](../../Models/Operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\DeleteTriggerRequest](../../Models/Operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteTriggerResponse](../../Models/Operations/DeleteTriggerResponse.md)**
+**[?Operations\DeleteTriggerResponse](../../Models/Operations/DeleteTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## deleteWorkflow
@@ -247,15 +264,13 @@ Delete a flow by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -263,9 +278,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\DeleteWorkflowRequest();
-    $request->flowId = 'xxx';;
-
+    $request = new Operations\DeleteWorkflowRequest(
+        flowId: 'xxx',
+    );
     $response = $sdk->orchestration->deleteWorkflow($request);
 
     if ($response->statusCode === 200) {
@@ -278,14 +293,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\DeleteWorkflowRequest](../../Models/Operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\DeleteWorkflowRequest](../../Models/Operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\DeleteWorkflowResponse](../../Models/Operations/DeleteWorkflowResponse.md)**
+**[?Operations\DeleteWorkflowResponse](../../Models/Operations/DeleteWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## getInstance
@@ -295,15 +316,13 @@ Get a workflow instance by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -311,9 +330,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\GetInstanceRequest();
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\GetInstanceRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->getInstance($request);
 
     if ($response->getWorkflowInstanceResponse !== null) {
@@ -326,14 +345,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\GetInstanceRequest](../../Models/Operations/GetInstanceRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\GetInstanceRequest](../../Models/Operations/GetInstanceRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInstanceResponse](../../Models/Operations/GetInstanceResponse.md)**
+**[?Operations\GetInstanceResponse](../../Models/Operations/GetInstanceResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## getInstanceHistory
@@ -343,15 +368,13 @@ Get a workflow instance history by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -359,9 +382,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\GetInstanceHistoryRequest();
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\GetInstanceHistoryRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->getInstanceHistory($request);
 
     if ($response->getWorkflowInstanceHistoryResponse !== null) {
@@ -374,14 +397,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                          | [\formance\stack\Models\Operations\GetInstanceHistoryRequest](../../Models/Operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
-
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `$request`                                                                                   | [Operations\GetInstanceHistoryRequest](../../Models/Operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInstanceHistoryResponse](../../Models/Operations/GetInstanceHistoryResponse.md)**
+**[?Operations\GetInstanceHistoryResponse](../../Models/Operations/GetInstanceHistoryResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## getInstanceStageHistory
@@ -391,15 +420,13 @@ Get a workflow instance stage history
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -407,10 +434,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\GetInstanceStageHistoryRequest();
-    $request->instanceID = 'xxx';
-    $request->number = 0;;
-
+    $request = new Operations\GetInstanceStageHistoryRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->getInstanceStageHistory($request);
 
     if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
@@ -423,14 +449,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\GetInstanceStageHistoryRequest](../../Models/Operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
-
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                             | [Operations\GetInstanceStageHistoryRequest](../../Models/Operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetInstanceStageHistoryResponse](../../Models/Operations/GetInstanceStageHistoryResponse.md)**
+**[?Operations\GetInstanceStageHistoryResponse](../../Models/Operations/GetInstanceStageHistoryResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## getWorkflow
@@ -440,15 +472,13 @@ Get a flow by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -456,9 +486,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\GetWorkflowRequest();
-    $request->flowId = 'xxx';;
-
+    $request = new Operations\GetWorkflowRequest(
+        flowId: 'xxx',
+    );
     $response = $sdk->orchestration->getWorkflow($request);
 
     if ($response->getWorkflowResponse !== null) {
@@ -471,14 +501,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\GetWorkflowRequest](../../Models/Operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\GetWorkflowRequest](../../Models/Operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\GetWorkflowResponse](../../Models/Operations/GetWorkflowResponse.md)**
+**[?Operations\GetWorkflowResponse](../../Models/Operations/GetWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## listInstances
@@ -488,15 +524,13 @@ List instances of a workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -504,10 +538,10 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ListInstancesRequest();
-    $request->running = true;
-    $request->workflowID = 'xxx';;
-
+    $request = new Operations\ListInstancesRequest(
+        running: true,
+        workflowID: 'xxx',
+    );
     $response = $sdk->orchestration->listInstances($request);
 
     if ($response->listRunsResponse !== null) {
@@ -520,14 +554,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\ListInstancesRequest](../../Models/Operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\ListInstancesRequest](../../Models/Operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListInstancesResponse](../../Models/Operations/ListInstancesResponse.md)**
+**[?Operations\ListInstancesResponse](../../Models/Operations/ListInstancesResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## listTriggers
@@ -537,15 +577,13 @@ List triggers
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -553,9 +591,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ListTriggersRequest();
-    $request->name = '<value>';;
-
+    $request = new Operations\ListTriggersRequest(
+        name: '<value>',
+    );
     $response = $sdk->orchestration->listTriggers($request);
 
     if ($response->listTriggersResponse !== null) {
@@ -568,14 +606,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Operations\ListTriggersRequest](../../Models/Operations/ListTriggersRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\ListTriggersRequest](../../Models/Operations/ListTriggersRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListTriggersResponse](../../Models/Operations/ListTriggersResponse.md)**
+**[?Operations\ListTriggersResponse](../../Models/Operations/ListTriggersResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## listTriggersOccurrences
@@ -585,15 +629,13 @@ List triggers occurrences
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -601,9 +643,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ListTriggersOccurrencesRequest();
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\ListTriggersOccurrencesRequest(
+        triggerID: '<value>',
+    );
     $response = $sdk->orchestration->listTriggersOccurrences($request);
 
     if ($response->listTriggersOccurrencesResponse !== null) {
@@ -616,14 +658,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                    | [\formance\stack\Models\Operations\ListTriggersOccurrencesRequest](../../Models/Operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
-
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                             | [Operations\ListTriggersOccurrencesRequest](../../Models/Operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ListTriggersOccurrencesResponse](../../Models/Operations/ListTriggersOccurrencesResponse.md)**
+**[?Operations\ListTriggersOccurrencesResponse](../../Models/Operations/ListTriggersOccurrencesResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## listWorkflows
@@ -633,14 +681,12 @@ List registered workflows
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -658,10 +704,16 @@ try {
 }
 ```
 
-
 ### Response
 
-**[?\formance\stack\Models\Operations\ListWorkflowsResponse](../../Models/Operations/ListWorkflowsResponse.md)**
+**[?Operations\ListWorkflowsResponse](../../Models/Operations/ListWorkflowsResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## orchestrationgetServerInfo
@@ -671,14 +723,12 @@ Get server info
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -696,10 +746,16 @@ try {
 }
 ```
 
-
 ### Response
 
-**[?\formance\stack\Models\Operations\OrchestrationgetServerInfoResponse](../../Models/Operations/OrchestrationgetServerInfoResponse.md)**
+**[?Operations\OrchestrationgetServerInfoResponse](../../Models/Operations/OrchestrationgetServerInfoResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## readTrigger
@@ -709,15 +765,13 @@ Read trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -725,9 +779,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\ReadTriggerRequest();
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\ReadTriggerRequest(
+        triggerID: '<value>',
+    );
     $response = $sdk->orchestration->readTrigger($request);
 
     if ($response->readTriggerResponse !== null) {
@@ -740,14 +794,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\ReadTriggerRequest](../../Models/Operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\ReadTriggerRequest](../../Models/Operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\ReadTriggerResponse](../../Models/Operations/ReadTriggerResponse.md)**
+**[?Operations\ReadTriggerResponse](../../Models/Operations/ReadTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## runWorkflow
@@ -757,15 +817,13 @@ Run workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -773,13 +831,13 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\RunWorkflowRequest();
-    $request->requestBody = [
-        'off' => '<value>',
-    ];
-    $request->wait = false;
-    $request->workflowID = 'xxx';;
-
+    $request = new Operations\RunWorkflowRequest(
+        workflowID: 'xxx',
+        requestBody: [
+            'off' => '<value>',
+        ],
+        wait: false,
+    );
     $response = $sdk->orchestration->runWorkflow($request);
 
     if ($response->runWorkflowResponse !== null) {
@@ -792,14 +850,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\RunWorkflowRequest](../../Models/Operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\RunWorkflowRequest](../../Models/Operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\RunWorkflowResponse](../../Models/Operations/RunWorkflowResponse.md)**
+**[?Operations\RunWorkflowResponse](../../Models/Operations/RunWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## sendEvent
@@ -809,15 +873,13 @@ Send an event to a running workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -825,11 +887,12 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\SendEventRequest();
-    $request->requestBody = new Operations\SendEventRequestBody();
-    $request->requestBody->name = '<value>';
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\SendEventRequest(
+        instanceID: 'xxx',
+        requestBody: new Operations\SendEventRequestBody(
+            name: '<value>',
+        ),
+    );
     $response = $sdk->orchestration->sendEvent($request);
 
     if ($response->statusCode === 200) {
@@ -842,14 +905,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                        | [\formance\stack\Models\Operations\SendEventRequest](../../Models/Operations/SendEventRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `$request`                                                                 | [Operations\SendEventRequest](../../Models/Operations/SendEventRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\SendEventResponse](../../Models/Operations/SendEventResponse.md)**
+**[?Operations\SendEventResponse](../../Models/Operations/SendEventResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\Error                              | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## testTrigger
@@ -859,15 +928,13 @@ Test trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -875,12 +942,12 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\TestTriggerRequest();
-    $request->requestBody = [
-        'bluetooth' => '<value>',
-    ];
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\TestTriggerRequest(
+        triggerID: '<value>',
+        requestBody: [
+            'bluetooth' => '<value>',
+        ],
+    );
     $response = $sdk->orchestration->testTrigger($request);
 
     if ($response->v2TestTriggerResponse !== null) {
@@ -893,14 +960,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\TestTriggerRequest](../../Models/Operations/TestTriggerRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\TestTriggerRequest](../../Models/Operations/TestTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\TestTriggerResponse](../../Models/Operations/TestTriggerResponse.md)**
+**[?Operations\TestTriggerResponse](../../Models/Operations/TestTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2CancelEvent
@@ -910,15 +983,13 @@ Cancel a running workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -926,9 +997,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2CancelEventRequest();
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\V2CancelEventRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->v2CancelEvent($request);
 
     if ($response->statusCode === 200) {
@@ -941,14 +1012,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2CancelEventRequest](../../Models/Operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\V2CancelEventRequest](../../Models/Operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CancelEventResponse](../../Models/Operations/V2CancelEventResponse.md)**
+**[?Operations\V2CancelEventResponse](../../Models/Operations/V2CancelEventResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2CreateTrigger
@@ -958,14 +1035,12 @@ Create trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -973,15 +1048,15 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\V2TriggerData();
-    $request->event = '<value>';
-    $request->filter = '<value>';
-    $request->name = '<value>';
-    $request->vars = [
-        'primary' => '<value>',
-    ];
-    $request->workflowID = '<value>';;
-
+    $request = new Shared\V2TriggerData(
+        event: '<value>',
+        workflowID: '<value>',
+        filter: '<value>',
+        name: '<value>',
+        vars: [
+            'primary' => '<value>',
+        ],
+    );
     $response = $sdk->orchestration->v2CreateTrigger($request);
 
     if ($response->v2CreateTriggerResponse !== null) {
@@ -994,14 +1069,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `$request`                                                                          | [\formance\stack\Models\Shared\V2TriggerData](../../Models/Shared/V2TriggerData.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
-
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `$request`                                                   | [Shared\V2TriggerData](../../Models/Shared/V2TriggerData.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateTriggerResponse](../../Models/Operations/V2CreateTriggerResponse.md)**
+**[?Operations\V2CreateTriggerResponse](../../Models/Operations/V2CreateTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2CreateWorkflow
@@ -1011,14 +1092,12 @@ Create a workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1026,14 +1105,14 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Shared\V2CreateWorkflowRequest();
-    $request->name = '<value>';
-    $request->stages = [
-        [
-            'system' => '<value>',
+    $request = new Shared\V2CreateWorkflowRequest(
+        stages: [
+            [
+                'system' => '<value>',
+            ],
         ],
-    ];;
-
+        name: '<value>',
+    );
     $response = $sdk->orchestration->v2CreateWorkflow($request);
 
     if ($response->v2CreateWorkflowResponse !== null) {
@@ -1046,14 +1125,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                              | [\formance\stack\Models\Shared\V2CreateWorkflowRequest](../../Models/Shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Shared\V2CreateWorkflowRequest](../../Models/Shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2CreateWorkflowResponse](../../Models/Operations/V2CreateWorkflowResponse.md)**
+**[?Operations\V2CreateWorkflowResponse](../../Models/Operations/V2CreateWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2DeleteTrigger
@@ -1063,15 +1148,13 @@ Read trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1079,9 +1162,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2DeleteTriggerRequest();
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\V2DeleteTriggerRequest(
+        triggerID: '<value>',
+    );
     $response = $sdk->orchestration->v2DeleteTrigger($request);
 
     if ($response->statusCode === 200) {
@@ -1094,14 +1177,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2DeleteTriggerRequest](../../Models/Operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2DeleteTriggerRequest](../../Models/Operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2DeleteTriggerResponse](../../Models/Operations/V2DeleteTriggerResponse.md)**
+**[?Operations\V2DeleteTriggerResponse](../../Models/Operations/V2DeleteTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2DeleteWorkflow
@@ -1111,15 +1200,13 @@ Delete a flow by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1127,9 +1214,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2DeleteWorkflowRequest();
-    $request->flowId = 'xxx';;
-
+    $request = new Operations\V2DeleteWorkflowRequest(
+        flowId: 'xxx',
+    );
     $response = $sdk->orchestration->v2DeleteWorkflow($request);
 
     if ($response->statusCode === 200) {
@@ -1142,14 +1229,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                      | [\formance\stack\Models\Operations\V2DeleteWorkflowRequest](../../Models/Operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
-
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\V2DeleteWorkflowRequest](../../Models/Operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2DeleteWorkflowResponse](../../Models/Operations/V2DeleteWorkflowResponse.md)**
+**[?Operations\V2DeleteWorkflowResponse](../../Models/Operations/V2DeleteWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2GetInstance
@@ -1159,15 +1252,13 @@ Get a workflow instance by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1175,9 +1266,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2GetInstanceRequest();
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\V2GetInstanceRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->v2GetInstance($request);
 
     if ($response->v2GetWorkflowInstanceResponse !== null) {
@@ -1190,14 +1281,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2GetInstanceRequest](../../Models/Operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\V2GetInstanceRequest](../../Models/Operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInstanceResponse](../../Models/Operations/V2GetInstanceResponse.md)**
+**[?Operations\V2GetInstanceResponse](../../Models/Operations/V2GetInstanceResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2GetInstanceHistory
@@ -1207,15 +1304,13 @@ Get a workflow instance history by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1223,9 +1318,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2GetInstanceHistoryRequest();
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\V2GetInstanceHistoryRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->v2GetInstanceHistory($request);
 
     if ($response->v2GetWorkflowInstanceHistoryResponse !== null) {
@@ -1238,14 +1333,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                              | [\formance\stack\Models\Operations\V2GetInstanceHistoryRequest](../../Models/Operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
-
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                       | [Operations\V2GetInstanceHistoryRequest](../../Models/Operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInstanceHistoryResponse](../../Models/Operations/V2GetInstanceHistoryResponse.md)**
+**[?Operations\V2GetInstanceHistoryResponse](../../Models/Operations/V2GetInstanceHistoryResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2GetInstanceStageHistory
@@ -1255,15 +1356,13 @@ Get a workflow instance stage history
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1271,10 +1370,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2GetInstanceStageHistoryRequest();
-    $request->instanceID = 'xxx';
-    $request->number = 0;;
-
+    $request = new Operations\V2GetInstanceStageHistoryRequest(
+        instanceID: 'xxx',
+    );
     $response = $sdk->orchestration->v2GetInstanceStageHistory($request);
 
     if ($response->v2GetWorkflowInstanceHistoryStageResponse !== null) {
@@ -1287,14 +1385,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                        | [\formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest](../../Models/Operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
-
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                 | [Operations\V2GetInstanceStageHistoryRequest](../../Models/Operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse](../../Models/Operations/V2GetInstanceStageHistoryResponse.md)**
+**[?Operations\V2GetInstanceStageHistoryResponse](../../Models/Operations/V2GetInstanceStageHistoryResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2GetServerInfo
@@ -1304,14 +1408,12 @@ Get server info
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
+use formance\stack;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1329,10 +1431,16 @@ try {
 }
 ```
 
-
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetServerInfoResponse](../../Models/Operations/V2GetServerInfoResponse.md)**
+**[?Operations\V2GetServerInfoResponse](../../Models/Operations/V2GetServerInfoResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2GetWorkflow
@@ -1342,15 +1450,13 @@ Get a flow by id
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1358,9 +1464,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2GetWorkflowRequest();
-    $request->flowId = 'xxx';;
-
+    $request = new Operations\V2GetWorkflowRequest(
+        flowId: 'xxx',
+    );
     $response = $sdk->orchestration->v2GetWorkflow($request);
 
     if ($response->v2GetWorkflowResponse !== null) {
@@ -1373,14 +1479,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2GetWorkflowRequest](../../Models/Operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\V2GetWorkflowRequest](../../Models/Operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2GetWorkflowResponse](../../Models/Operations/V2GetWorkflowResponse.md)**
+**[?Operations\V2GetWorkflowResponse](../../Models/Operations/V2GetWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2ListInstances
@@ -1390,15 +1502,13 @@ List instances of a workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1406,12 +1516,12 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2ListInstancesRequest();
-    $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 100;
-    $request->running = true;
-    $request->workflowID = 'xxx';;
-
+    $request = new Operations\V2ListInstancesRequest(
+        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+        pageSize: 100,
+        running: true,
+        workflowID: 'xxx',
+    );
     $response = $sdk->orchestration->v2ListInstances($request);
 
     if ($response->v2ListRunsResponse !== null) {
@@ -1424,14 +1534,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2ListInstancesRequest](../../Models/Operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2ListInstancesRequest](../../Models/Operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListInstancesResponse](../../Models/Operations/V2ListInstancesResponse.md)**
+**[?Operations\V2ListInstancesResponse](../../Models/Operations/V2ListInstancesResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2ListTriggers
@@ -1441,15 +1557,13 @@ List triggers
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1457,11 +1571,11 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2ListTriggersRequest();
-    $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->name = '<value>';
-    $request->pageSize = 100;;
-
+    $request = new Operations\V2ListTriggersRequest(
+        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+        name: '<value>',
+        pageSize: 100,
+    );
     $response = $sdk->orchestration->v2ListTriggers($request);
 
     if ($response->v2ListTriggersResponse !== null) {
@@ -1474,14 +1588,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                  | [\formance\stack\Models\Operations\V2ListTriggersRequest](../../Models/Operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
-
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\V2ListTriggersRequest](../../Models/Operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListTriggersResponse](../../Models/Operations/V2ListTriggersResponse.md)**
+**[?Operations\V2ListTriggersResponse](../../Models/Operations/V2ListTriggersResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2ListTriggersOccurrences
@@ -1491,15 +1611,13 @@ List triggers occurrences
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1507,11 +1625,11 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2ListTriggersOccurrencesRequest();
-    $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 100;
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\V2ListTriggersOccurrencesRequest(
+        triggerID: '<value>',
+        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+        pageSize: 100,
+    );
     $response = $sdk->orchestration->v2ListTriggersOccurrences($request);
 
     if ($response->v2ListTriggersOccurrencesResponse !== null) {
@@ -1524,14 +1642,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                        | [\formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest](../../Models/Operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
-
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                 | [Operations\V2ListTriggersOccurrencesRequest](../../Models/Operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse](../../Models/Operations/V2ListTriggersOccurrencesResponse.md)**
+**[?Operations\V2ListTriggersOccurrencesResponse](../../Models/Operations/V2ListTriggersOccurrencesResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2ListWorkflows
@@ -1541,15 +1665,13 @@ List registered workflows
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1557,10 +1679,10 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2ListWorkflowsRequest();
-    $request->cursor = 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==';
-    $request->pageSize = 100;;
-
+    $request = new Operations\V2ListWorkflowsRequest(
+        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+        pageSize: 100,
+    );
     $response = $sdk->orchestration->v2ListWorkflows($request);
 
     if ($response->v2ListWorkflowsResponse !== null) {
@@ -1573,14 +1695,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                    | [\formance\stack\Models\Operations\V2ListWorkflowsRequest](../../Models/Operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2ListWorkflowsRequest](../../Models/Operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ListWorkflowsResponse](../../Models/Operations/V2ListWorkflowsResponse.md)**
+**[?Operations\V2ListWorkflowsResponse](../../Models/Operations/V2ListWorkflowsResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2ReadTrigger
@@ -1590,15 +1718,13 @@ Read trigger
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1606,9 +1732,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2ReadTriggerRequest();
-    $request->triggerID = '<value>';;
-
+    $request = new Operations\V2ReadTriggerRequest(
+        triggerID: '<value>',
+    );
     $response = $sdk->orchestration->v2ReadTrigger($request);
 
     if ($response->v2ReadTriggerResponse !== null) {
@@ -1621,14 +1747,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2ReadTriggerRequest](../../Models/Operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\V2ReadTriggerRequest](../../Models/Operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2ReadTriggerResponse](../../Models/Operations/V2ReadTriggerResponse.md)**
+**[?Operations\V2ReadTriggerResponse](../../Models/Operations/V2ReadTriggerResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2RunWorkflow
@@ -1638,15 +1770,13 @@ Run workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1654,13 +1784,13 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2RunWorkflowRequest();
-    $request->requestBody = [
-        'Wooden' => '<value>',
-    ];
-    $request->wait = false;
-    $request->workflowID = 'xxx';;
-
+    $request = new Operations\V2RunWorkflowRequest(
+        workflowID: 'xxx',
+        requestBody: [
+            'Wooden' => '<value>',
+        ],
+        wait: false,
+    );
     $response = $sdk->orchestration->v2RunWorkflow($request);
 
     if ($response->v2RunWorkflowResponse !== null) {
@@ -1673,14 +1803,20 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Operations\V2RunWorkflowRequest](../../Models/Operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\V2RunWorkflowRequest](../../Models/Operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2RunWorkflowResponse](../../Models/Operations/V2RunWorkflowResponse.md)**
+**[?Operations\V2RunWorkflowResponse](../../Models/Operations/V2RunWorkflowResponse.md)**
+
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
 
 
 ## v2SendEvent
@@ -1690,15 +1826,13 @@ Send an event to a running workflow
 ### Example Usage
 
 ```php
-<?php
-
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use \formance\stack;
-use \formance\stack\Models\Shared;
-use \formance\stack\Models\Operations;
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
 
 $security = new Shared\Security();
 $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
@@ -1706,11 +1840,12 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-        $request = new Operations\V2SendEventRequest();
-    $request->requestBody = new Operations\V2SendEventRequestBody();
-    $request->requestBody->name = '<value>';
-    $request->instanceID = 'xxx';;
-
+    $request = new Operations\V2SendEventRequest(
+        instanceID: 'xxx',
+        requestBody: new Operations\V2SendEventRequestBody(
+            name: '<value>',
+        ),
+    );
     $response = $sdk->orchestration->v2SendEvent($request);
 
     if ($response->statusCode === 200) {
@@ -1723,12 +1858,17 @@ try {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                            | [\formance\stack\Models\Operations\V2SendEventRequest](../../Models/Operations/V2SendEventRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
-
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\V2SendEventRequest](../../Models/Operations/V2SendEventRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?\formance\stack\Models\Operations\V2SendEventResponse](../../Models/Operations/V2SendEventResponse.md)**
+**[?Operations\V2SendEventResponse](../../Models/Operations/V2SendEventResponse.md)**
 
+### Errors
+
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Errors\V2Error                            | default                                   | application/json                          |
+| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |

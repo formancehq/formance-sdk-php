@@ -1,0 +1,10 @@
+# StageSendDestination
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `account`                                                                                 | [?Shared\StageSendDestinationAccount](../../Models/Shared/StageSendDestinationAccount.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `payment`                                                                                 | [?Shared\StageSendDestinationPayment](../../Models/Shared/StageSendDestinationPayment.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `wallet`                                                                                  | [?Shared\StageSendDestinationWallet](../../Models/Shared/StageSendDestinationWallet.md)   | :heavy_minus_sign:                                                                        | N/A                                                                                       |
