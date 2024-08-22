@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Errors;
 use formance\stack\Models\Shared;
 class ListAccountsResponse
 {
