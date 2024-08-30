@@ -41,7 +41,7 @@ class WalletsTransaction
      * @var ?array<string, array<string, WalletsVolume>> $postCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postCommitVolumes = null;
 
@@ -60,7 +60,7 @@ class WalletsTransaction
      * @var ?array<string, array<string, WalletsVolume>> $preCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $preCommitVolumes = null;
 

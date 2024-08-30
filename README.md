@@ -19,8 +19,9 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-### Composer
+The SDK relies on [Composer](https://getcomposer.org/) to manage its dependencies.
 
+To install the SDK and add it as a dependency to an existing `composer.json` file:
 ```bash
 composer require "formance/formance-sdk"
 ```
@@ -273,6 +274,31 @@ You can override the default server globally by passing a server index to the `s
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 <!-- End Server Selection [server] -->
+
+<!-- Start Summary [summary] -->
+## Summary
+
+Formance Stack API: Open, modular foundation for unique payments flows
+
+# Introduction
+This API is documented in **OpenAPI format**.
+
+# Authentication
+Formance Stack offers one forms of authentication:
+  - OAuth2
+OAuth2 - an open protocol to allow secure authorization in a simple
+and standard method from web, mobile and desktop applications.
+<SecurityDefinitions />
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Server Selection](#server-selection)
+<!-- End Table of Contents [toc] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

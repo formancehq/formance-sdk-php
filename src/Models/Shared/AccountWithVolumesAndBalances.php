@@ -24,7 +24,7 @@ class AccountWithVolumesAndBalances
      * @var ?array<string, int> $balances
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, int>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $balances = null;
 
@@ -34,7 +34,7 @@ class AccountWithVolumesAndBalances
      * @var ?array<string, mixed> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
@@ -52,7 +52,7 @@ class AccountWithVolumesAndBalances
      * @var ?array<string, Volume> $volumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $volumes = null;
 

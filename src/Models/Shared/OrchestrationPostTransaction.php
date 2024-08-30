@@ -26,7 +26,7 @@ class OrchestrationPostTransaction
      * @var ?array<Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postings = null;
 
@@ -43,7 +43,7 @@ class OrchestrationPostTransaction
      * @var ?OrchestrationPostTransactionScript $script
      */
     #[\JMS\Serializer\Annotation\SerializedName('script')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPostTransactionScript')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPostTransactionScript|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?OrchestrationPostTransactionScript $script = null;
 

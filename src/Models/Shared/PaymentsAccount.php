@@ -69,7 +69,7 @@ class PaymentsAccount
      * @var ?array<string> $pools
      */
     #[\JMS\Serializer\Annotation\SerializedName('pools')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $pools = null;
 

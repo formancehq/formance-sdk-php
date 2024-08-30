@@ -83,7 +83,7 @@ class Payment
      * @var ?Connector $provider
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Connector $provider = null;
 

@@ -66,7 +66,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -123,7 +123,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -172,7 +172,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -213,7 +213,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -263,7 +263,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -326,7 +326,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -375,7 +375,7 @@ class Webhooks
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
                 $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Errors\WebhooksErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj;
+                throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }

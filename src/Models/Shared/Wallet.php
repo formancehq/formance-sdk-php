@@ -16,7 +16,7 @@ class Wallet
      * @var ?WalletBalances $balances
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletBalances')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletBalances|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?WalletBalances $balances = null;
 

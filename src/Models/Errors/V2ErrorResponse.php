@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Errors;
 
 use formance\stack\Models\Shared;
+use formance\stack\Utils;
 /** V2ErrorResponse - Error */
 class V2ErrorResponse
 {
@@ -45,5 +46,14 @@ class V2ErrorResponse
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
         $this->details = $details;
+    }
+
+    public function toException(): V2ErrorResponseThrowable
+    {
+        $serializer = Utils\JSON::createSerializer();
+        $message = $serializer->serialize($this, 'json');
+        $code = -1;
+
+        return new V2ErrorResponseThrowable($message, (int) $code, $this);
     }
 }

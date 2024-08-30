@@ -16,7 +16,7 @@ class ActivityDebitWallet
      * @var ?DebitWalletRequest $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\DebitWalletRequest')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\DebitWalletRequest|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?DebitWalletRequest $data = null;
 

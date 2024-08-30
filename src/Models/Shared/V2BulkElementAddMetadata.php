@@ -23,7 +23,7 @@ class V2BulkElementAddMetadata
      * @var ?V2BulkElementAddMetadataData $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementAddMetadataData')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementAddMetadataData|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2BulkElementAddMetadataData $data = null;
 

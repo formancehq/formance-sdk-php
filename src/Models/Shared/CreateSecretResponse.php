@@ -16,7 +16,7 @@ class CreateSecretResponse
      * @var ?Secret $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Secret')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Secret|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Secret $data = null;
 

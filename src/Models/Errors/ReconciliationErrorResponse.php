@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Errors;
 
 
+use formance\stack\Utils;
 /** ReconciliationErrorResponse - Error response */
 class ReconciliationErrorResponse
 {
@@ -44,5 +45,14 @@ class ReconciliationErrorResponse
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
         $this->details = $details;
+    }
+
+    public function toException(): ReconciliationErrorResponseThrowable
+    {
+        $serializer = Utils\JSON::createSerializer();
+        $message = $serializer->serialize($this, 'json');
+        $code = -1;
+
+        return new ReconciliationErrorResponseThrowable($message, (int) $code, $this);
     }
 }

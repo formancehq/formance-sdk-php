@@ -16,7 +16,7 @@ class V2TriggerTest
      * @var ?Filter $filter
      */
     #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Filter')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Filter|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Filter $filter = null;
 
@@ -26,7 +26,7 @@ class V2TriggerTest
      * @var ?array<string, Variables> $variables
      */
     #[\JMS\Serializer\Annotation\SerializedName('variables')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Variables>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Variables>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $variables = null;
 

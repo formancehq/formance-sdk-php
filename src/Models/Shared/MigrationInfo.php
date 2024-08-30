@@ -32,7 +32,7 @@ class MigrationInfo
      * @var ?State $state
      */
     #[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\State')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\State|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?State $state = null;
 
