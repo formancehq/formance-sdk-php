@@ -23,7 +23,7 @@ class V2BulkElementDeleteMetadata
      * @var ?V2BulkElementDeleteMetadataData $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementDeleteMetadataData')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementDeleteMetadataData|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2BulkElementDeleteMetadataData $data = null;
 

@@ -24,7 +24,7 @@ class LedgerInfo
      * @var ?Storage $storage
      */
     #[\JMS\Serializer\Annotation\SerializedName('storage')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Storage')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Storage|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Storage $storage = null;
 

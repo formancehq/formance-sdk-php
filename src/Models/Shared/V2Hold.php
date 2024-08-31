@@ -23,7 +23,7 @@ class V2Hold
      * @var V2LedgerAccountSubject|V2WalletSubject|null $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject|null')]
     #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['V2LedgerAccountSubject' => '\formance\stack\Models\Shared\V2LedgerAccountSubject', 'V2WalletSubject' => '\formance\stack\Models\Shared\V2WalletSubject'])]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;

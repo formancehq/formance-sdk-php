@@ -26,7 +26,7 @@ class V2PostTransaction
      * @var ?array<V2Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postings = null;
 
@@ -43,7 +43,7 @@ class V2PostTransaction
      * @var ?V2PostTransactionScript $script
      */
     #[\JMS\Serializer\Annotation\SerializedName('script')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransactionScript')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransactionScript|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2PostTransactionScript $script = null;
 

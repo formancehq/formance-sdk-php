@@ -16,7 +16,7 @@ class UpdateClientResponse
      * @var ?Client $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Client')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Client|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Client $data = null;
 

@@ -62,7 +62,7 @@ class WorkflowInstanceHistoryStage
      * @var ?WorkflowInstanceHistoryStageOutput $output
      */
     #[\JMS\Serializer\Annotation\SerializedName('output')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?WorkflowInstanceHistoryStageOutput $output = null;
 

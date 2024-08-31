@@ -24,7 +24,7 @@ class V2LedgerInfo
      * @var ?V2LedgerInfoStorage $storage
      */
     #[\JMS\Serializer\Annotation\SerializedName('storage')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfoStorage')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfoStorage|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2LedgerInfoStorage $storage = null;
 

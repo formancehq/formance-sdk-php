@@ -16,7 +16,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityAddAccountMetadata $addAccountMetadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('AddAccountMetadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityAddAccountMetadata')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityAddAccountMetadata|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityAddAccountMetadata $addAccountMetadata = null;
 
@@ -25,7 +25,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityConfirmHold $confirmHold
      */
     #[\JMS\Serializer\Annotation\SerializedName('ConfirmHold')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityConfirmHold')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityConfirmHold|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityConfirmHold $confirmHold = null;
 
@@ -34,7 +34,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityCreateTransaction $createTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreateTransaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreateTransaction|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityCreateTransaction $createTransaction = null;
 
@@ -43,7 +43,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityCreditWallet $creditWallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('CreditWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreditWallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreditWallet|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityCreditWallet $creditWallet = null;
 
@@ -52,7 +52,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityDebitWallet $debitWallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityDebitWallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityDebitWallet|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityDebitWallet $debitWallet = null;
 
@@ -61,7 +61,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityGetAccount $getAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetAccount')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetAccount|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityGetAccount $getAccount = null;
 
@@ -70,7 +70,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityGetPayment $getPayment
      */
     #[\JMS\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetPayment')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetPayment|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityGetPayment $getPayment = null;
 
@@ -79,7 +79,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityGetWallet $getWallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetWallet')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetWallet|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityGetWallet $getWallet = null;
 
@@ -88,7 +88,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityListWallets $listWallets
      */
     #[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityListWallets')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityListWallets|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityListWallets $listWallets = null;
 
@@ -97,7 +97,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityStripeTransfer $stripeTransfer
      */
     #[\JMS\Serializer\Annotation\SerializedName('StripeTransfer')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityStripeTransfer')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityStripeTransfer|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityStripeTransfer $stripeTransfer = null;
 
@@ -106,7 +106,7 @@ class V2WorkflowInstanceHistoryStageInput
      * @var ?V2ActivityVoidHold $voidHold
      */
     #[\JMS\Serializer\Annotation\SerializedName('VoidHold')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityVoidHold')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityVoidHold|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2ActivityVoidHold $voidHold = null;
 

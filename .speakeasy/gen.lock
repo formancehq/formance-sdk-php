@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 5731933f0a0cf86c6725c3b2ac3a16e4
-  docVersion: v2.0.15
-  speakeasyVersion: 1.381.0
-  generationVersion: 2.404.9
-  releaseVersion: 2.2.5
-  configChecksum: b5c0df87c25f7af7b6e9abd1b78641e3
+  docChecksum: 706ea24f6e5943004b89faa8c7200702
+  docVersion: v2.0.17
+  speakeasyVersion: 1.385.0
+  generationVersion: 2.407.2
+  releaseVersion: 2.3.0
+  configChecksum: 40ac7e1e10bcdeb4bbed57e9bb0bf7e7
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
   published: true
 features:
   php:
-    core: 3.3.14
+    core: 3.4.0
     deprecations: 2.81.1
-    errors: 0.1.1
+    errors: 0.1.2
     getRequestBodies: 2.81.1
     globalSecurity: 2.81.7
     globalSecurityFlattening: 0.1.0
@@ -800,16 +800,24 @@ generatedFiles:
   - src/Models/Shared/AttemptResponse.php
   - src/Models/Shared/Attempt.php
   - src/Models/Shared/Security.php
+  - src/Models/Errors/ErrorResponseThrowable.php
   - src/Models/Errors/ErrorResponse.php
+  - src/Models/Errors/V2ErrorResponseThrowable.php
   - src/Models/Errors/V2ErrorResponse.php
   - src/Models/Errors/ErrorCode.php
+  - src/Models/Errors/ErrorThrowable.php
   - src/Models/Errors/Error.php
   - src/Models/Errors/SchemasErrorCode.php
+  - src/Models/Errors/V2ErrorThrowable.php
   - src/Models/Errors/V2Error.php
+  - src/Models/Errors/PaymentsErrorResponseThrowable.php
   - src/Models/Errors/PaymentsErrorResponse.php
+  - src/Models/Errors/ReconciliationErrorResponseThrowable.php
   - src/Models/Errors/ReconciliationErrorResponse.php
   - src/Models/Errors/SchemasWalletsErrorResponseErrorCode.php
+  - src/Models/Errors/WalletsErrorResponseThrowable.php
   - src/Models/Errors/WalletsErrorResponse.php
+  - src/Models/Errors/WebhooksErrorResponseThrowable.php
   - src/Models/Errors/WebhooksErrorResponse.php
   - docs/Models/Operations/GetOIDCWellKnownsResponse.md
   - docs/Models/Operations/GetVersionsResponse.md

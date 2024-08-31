@@ -31,7 +31,7 @@ class V2Ledger
      * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 

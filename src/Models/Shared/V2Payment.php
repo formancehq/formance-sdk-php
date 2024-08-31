@@ -75,7 +75,7 @@ class V2Payment
      * @var ?V2Connector $provider
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Connector')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Connector|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2Connector $provider = null;
 

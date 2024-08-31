@@ -17,7 +17,7 @@ class Transaction
      * @var ?array<string, mixed> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
@@ -27,7 +27,7 @@ class Transaction
      * @var ?array<string, array<string, Volume>> $postCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postCommitVolumes = null;
 
@@ -46,7 +46,7 @@ class Transaction
      * @var ?array<string, array<string, Volume>> $preCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $preCommitVolumes = null;
 

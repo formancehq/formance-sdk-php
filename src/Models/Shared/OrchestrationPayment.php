@@ -75,7 +75,7 @@ class OrchestrationPayment
      * @var ?OrchestrationConnector $provider
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationConnector')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationConnector|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?OrchestrationConnector $provider = null;
 

@@ -16,7 +16,7 @@ class V2StageSend
      * @var ?V2Monetary $amount
      */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2Monetary $amount = null;
 
@@ -25,7 +25,7 @@ class V2StageSend
      * @var ?V2StageSendDestination $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendDestination')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendDestination|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2StageSendDestination $destination = null;
 
@@ -35,7 +35,7 @@ class V2StageSend
      * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
@@ -44,7 +44,7 @@ class V2StageSend
      * @var ?V2StageSendSource $source
      */
     #[\JMS\Serializer\Annotation\SerializedName('source')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSource')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSource|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2StageSendSource $source = null;
 

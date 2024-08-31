@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Errors;
 
 use formance\stack\Models\Shared;
+use formance\stack\Utils;
 /** WebhooksErrorResponse - Error */
 class WebhooksErrorResponse
 {
@@ -45,5 +46,14 @@ class WebhooksErrorResponse
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
         $this->details = $details;
+    }
+
+    public function toException(): WebhooksErrorResponseThrowable
+    {
+        $serializer = Utils\JSON::createSerializer();
+        $message = $serializer->serialize($this, 'json');
+        $code = -1;
+
+        return new WebhooksErrorResponseThrowable($message, (int) $code, $this);
     }
 }

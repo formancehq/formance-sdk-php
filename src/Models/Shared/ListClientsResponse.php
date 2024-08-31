@@ -17,7 +17,7 @@ class ListClientsResponse
      * @var ?array<Client> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Client>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Client>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $data = null;
 

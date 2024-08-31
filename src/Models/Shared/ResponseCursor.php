@@ -17,7 +17,7 @@ class ResponseCursor
      * @var ?array<array<string, mixed>> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<array<string, mixed>>')]
+    #[\JMS\Serializer\Annotation\Type('array<array<string, mixed>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $data = null;
 
@@ -58,7 +58,7 @@ class ResponseCursor
      * @var ?Total $total
      */
     #[\JMS\Serializer\Annotation\SerializedName('total')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Total')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Total|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Total $total = null;
 

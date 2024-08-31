@@ -16,7 +16,7 @@ class MappingResponse
      * @var ?Mapping $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Mapping')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Mapping|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Mapping $data = null;
 

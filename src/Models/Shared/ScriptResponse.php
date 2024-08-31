@@ -24,7 +24,7 @@ class ScriptResponse
      * @var ?ErrorsEnum $errorCode
      */
     #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ErrorsEnum')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ErrorsEnum|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ErrorsEnum $errorCode = null;
 
@@ -41,7 +41,7 @@ class ScriptResponse
      * @var ?Transaction $transaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('transaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Transaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Transaction|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Transaction $transaction = null;
 

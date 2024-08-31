@@ -53,7 +53,7 @@ class TransferInitiationRequest
      * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
@@ -62,7 +62,7 @@ class TransferInitiationRequest
      * @var ?Connector $provider
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Connector $provider = null;
 

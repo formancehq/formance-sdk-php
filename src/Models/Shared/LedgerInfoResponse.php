@@ -16,7 +16,7 @@ class LedgerInfoResponse
      * @var ?LedgerInfo $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerInfo')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerInfo|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?LedgerInfo $data = null;
 

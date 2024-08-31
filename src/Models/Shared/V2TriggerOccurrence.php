@@ -47,7 +47,7 @@ class V2TriggerOccurrence
      * @var ?V2WorkflowInstance $workflowInstance
      */
     #[\JMS\Serializer\Annotation\SerializedName('workflowInstance')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2WorkflowInstance $workflowInstance = null;
 

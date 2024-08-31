@@ -25,7 +25,7 @@ class DebitWalletRequest
      * @var ?array<string> $balances
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $balances = null;
 
@@ -42,7 +42,7 @@ class DebitWalletRequest
      * @var LedgerAccountSubject|WalletSubject|null $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject|null')]
     #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['LedgerAccountSubject' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WalletSubject' => '\formance\stack\Models\Shared\WalletSubject'])]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public LedgerAccountSubject|WalletSubject|null $destination = null;

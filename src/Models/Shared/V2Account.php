@@ -24,7 +24,7 @@ class V2Account
      * @var ?array<string, V2Volume> $effectiveVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $effectiveVolumes = null;
 
@@ -43,7 +43,7 @@ class V2Account
      * @var ?array<string, V2Volume> $volumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $volumes = null;
 
