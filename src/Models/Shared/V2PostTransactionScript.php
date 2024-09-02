@@ -16,7 +16,7 @@ class V2PostTransactionScript
      * @var string $plain
      */
     #[\JMS\Serializer\Annotation\SerializedName('plain')]
-    public string $plain;
+    public ?string $plain;
 
     /**
      * $vars

@@ -25,7 +25,7 @@ class RevertTransactionRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * Transaction ID.

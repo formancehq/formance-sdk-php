@@ -10,7 +10,7 @@ namespace formance\stack\Models\Errors;
 
 use formance\stack\Models\Shared;
 /** V2ErrorResponse - Error */
-class V2ErrorResponse
+class V2ErrorResponse extends \Exception
 {
     /**
      *
@@ -45,5 +45,7 @@ class V2ErrorResponse
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
         $this->details = $details;
+
+        parent::__construct($errorCode->value . ":" . $errorMessage);
     }
 }

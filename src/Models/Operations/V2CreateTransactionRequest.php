@@ -30,7 +30,7 @@ class V2CreateTransactionRequest
      * @var Shared\V2PostTransaction $v2PostTransaction
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\V2PostTransaction $v2PostTransaction;
+    public ?Shared\V2PostTransaction $v2PostTransaction;
 
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
@@ -46,7 +46,7 @@ class V2CreateTransactionRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * @param  ?Shared\V2PostTransaction  $v2PostTransaction

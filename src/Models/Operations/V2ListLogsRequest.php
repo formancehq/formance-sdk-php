@@ -38,7 +38,7 @@ class V2ListLogsRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * The maximum number of results to return per page.

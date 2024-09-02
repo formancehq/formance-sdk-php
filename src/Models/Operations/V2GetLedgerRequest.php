@@ -17,7 +17,7 @@ class V2GetLedgerRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * @param  ?string  $ledger

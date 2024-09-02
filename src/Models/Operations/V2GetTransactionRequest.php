@@ -24,7 +24,7 @@ class V2GetTransactionRequest
      * @var int $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public int $id;
+    public ?int $id;
 
     /**
      * Name of the ledger.
@@ -32,7 +32,7 @@ class V2GetTransactionRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      *

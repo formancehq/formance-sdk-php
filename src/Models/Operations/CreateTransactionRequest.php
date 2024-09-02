@@ -30,7 +30,7 @@ class CreateTransactionRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.

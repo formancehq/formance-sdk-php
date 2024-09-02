@@ -9,12 +9,47 @@ declare(strict_types=1);
 namespace formance\stack\Utils;
 
 
+use formance\stack\Models\Errors\V2ErrorResponse;
+use formance\stack\Models\Shared\ErrorsEnum;
+use formance\stack\Models\Shared\V2ErrorsEnum;
+use JMS\Serializer\DeserializationContext;
+use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\ArrayCollectionHandler;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Handler\IteratorHandler;
 use JMS\Serializer\Handler\StdClassHandler;
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\Visitor\DeserializationVisitorInterface;
 
+final class V2ErrorResponseHandler implements SubscribingHandlerInterface
+{
+    public static function getSubscribingMethods()
+    {
+        return [
+            [
+                'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
+                'format' => 'json',
+                'type' => '\formance\stack\Models\Errors\V2ErrorResponse',
+                'method' => 'unserializeV2ErrorResponse',
+            ],
+            [
+                'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
+                'format' => 'json',
+                'type' => '\formance\stack\Models\Errors\ErrorResponse',
+                'method' => 'unserializeErrorResponse',
+            ]
+        ];
+    }
+
+    public function unserializeV2ErrorResponse(DeserializationVisitorInterface $visitor, mixed $data, array $type, DeserializationContext $context): mixed {
+        return new V2ErrorResponse(V2ErrorsEnum::from($data["errorCode"]), $data["errorMessage"]);
+    }
+
+    public function unserializeErrorResponse(DeserializationVisitorInterface $visitor, mixed $data, array $type, DeserializationContext $context): mixed {
+        return new ErrorResponse(ErrorsEnum::from($data["errorCode"]), $data["errorMessage"]);
+    }
+}
 
 class JSON
 {
@@ -30,6 +65,7 @@ class JSON
                 $registry->registerSubscribingHandler(new DateTimeHandler());
                 $registry->registerSubscribingHandler(new DateHandler());
                 $registry->registerSubscribingHandler(new UnionHandler());
+                $registry->registerSubscribingHandler(new V2ErrorResponseHandler());
             },
         )->setTypeParser(new PhpDocTypeParser())->build();
     }

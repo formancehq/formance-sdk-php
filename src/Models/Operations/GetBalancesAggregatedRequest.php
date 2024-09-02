@@ -25,7 +25,7 @@ class GetBalancesAggregatedRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * Use insertion date instead of effective date

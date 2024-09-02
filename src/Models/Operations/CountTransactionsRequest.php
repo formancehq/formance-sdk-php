@@ -44,7 +44,7 @@ class CountTransactionsRequest
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.

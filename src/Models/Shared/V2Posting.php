@@ -16,28 +16,28 @@ class V2Posting
      * @var int $amount
      */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    public ?int $amount;
 
     /**
      *
      * @var string $asset
      */
     #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    public string $asset;
+    public ?string $asset;
 
     /**
      *
      * @var string $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    public string $destination;
+    public ?string $destination;
 
     /**
      *
      * @var string $source
      */
     #[\JMS\Serializer\Annotation\SerializedName('source')]
-    public string $source;
+    public ?string $source;
 
     /**
      * @param  ?int  $amount

@@ -31,7 +31,7 @@ class OrchestrationWallet
      * @var string $ledger
      */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    public string $ledger;
+    public ?string $ledger;
 
     /**
      * Metadata associated with the wallet.
