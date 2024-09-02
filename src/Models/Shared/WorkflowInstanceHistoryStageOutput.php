@@ -16,7 +16,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?ActivityCreateTransactionOutput $createTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityCreateTransactionOutput $createTransaction = null;
 
@@ -25,7 +25,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?ActivityDebitWalletOutput $debitWallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityDebitWalletOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityDebitWalletOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityDebitWalletOutput $debitWallet = null;
 
@@ -34,7 +34,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?ActivityGetAccountOutput $getAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetAccountOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetAccountOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityGetAccountOutput $getAccount = null;
 
@@ -43,7 +43,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?ActivityGetPaymentOutput $getPayment
      */
     #[\JMS\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetPaymentOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetPaymentOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityGetPaymentOutput $getPayment = null;
 
@@ -52,7 +52,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?ActivityGetWalletOutput $getWallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetWalletOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetWalletOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityGetWalletOutput $getWallet = null;
 
@@ -61,7 +61,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?OrchestrationListWalletsResponse $listWallets
      */
     #[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponse')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponse|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?OrchestrationListWalletsResponse $listWallets = null;
 
@@ -70,7 +70,7 @@ class WorkflowInstanceHistoryStageOutput
      * @var ?ActivityRevertTransactionOutput $revertTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransactionOutput')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransactionOutput|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?ActivityRevertTransactionOutput $revertTransaction = null;
 

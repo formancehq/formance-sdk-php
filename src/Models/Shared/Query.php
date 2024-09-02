@@ -17,7 +17,7 @@ class Query
      * @var ?array<string> $after
      */
     #[\JMS\Serializer\Annotation\SerializedName('after')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $after = null;
 
@@ -35,7 +35,7 @@ class Query
      * @var ?array<string> $ledgers
      */
     #[\JMS\Serializer\Annotation\SerializedName('ledgers')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $ledgers = null;
 
@@ -60,7 +60,7 @@ class Query
      * @var ?QueryRaw $raw
      */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\QueryRaw')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\QueryRaw|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?QueryRaw $raw = null;
 
@@ -86,7 +86,7 @@ class Query
      * @var ?array<string> $terms
      */
     #[\JMS\Serializer\Annotation\SerializedName('terms')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $terms = null;
 

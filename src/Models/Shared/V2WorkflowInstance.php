@@ -39,7 +39,7 @@ class V2WorkflowInstance
      * @var ?array<V2StageStatus> $status
      */
     #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2StageStatus>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2StageStatus>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $status = null;
 

@@ -17,7 +17,7 @@ class ListUsersResponse
      * @var ?array<User> $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\User>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\User>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $data = null;
 

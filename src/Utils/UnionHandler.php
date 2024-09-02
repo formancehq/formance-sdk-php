@@ -72,10 +72,21 @@ final class UnionHandler implements SubscribingHandlerInterface
         if ($this->isPrimitiveType(gettype($data))) {
             return $this->matchSimpleType($data, $type, $context);
         } else {
-            $resolvedType = [
-                'name' => get_class($data),
-                'params' => [],
-            ];
+            if (is_array($data)) {
+                $innerType = gettype($data[0]);
+                if ($innerType === 'object') {
+                    $innerType = get_class($data[0]);
+                }
+                $resolvedType = [
+                    'name' => 'array',
+                    'params' => ['name' => $innerType, 'params' => []],
+                ];
+            } else {
+                $resolvedType = [
+                    'name' => get_class($data),
+                    'params' => [],
+                ];
+            }
 
             return $context->getNavigator()->accept($data, $resolvedType);
         }
@@ -122,6 +133,16 @@ final class UnionHandler implements SubscribingHandlerInterface
             if ($typeToTry === 'array') {
                 $typeNames = array_map(fn ($t) => $t['name'], $possibleType['params']);
                 $typeToTry = 'array<'.implode(', ', $typeNames).'>';
+            }
+            if ($typeToTry === 'enum') {
+                $typeToTry = $possibleType['params'][0]['name'];
+            }
+            if ($typeToTry == 'NULL') {
+                if ($data == null) {
+                    return null;
+                } else {
+                    continue;
+                }
             }
             $serializer = JSON::createSerializer();
             try {

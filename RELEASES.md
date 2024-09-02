@@ -159,3 +159,33 @@ Based on:
 - [php v2.2.5] .
 ### Releases
 - [Composer v2.2.5] https://packagist.org/packages/formance/formance-sdk#v2.2.5 - .
+
+## 2024-08-31 00:06:37
+### Changes
+Based on:
+- OpenAPI Doc v2.0.17 
+- Speakeasy CLI 1.385.0 (2.407.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.3.0] .
+### Releases
+- [Composer v2.3.0] https://packagist.org/packages/formance/formance-sdk#v2.3.0 - .
+
+## 2024-09-02 19:50:39
+### Changes
+Based on:
+- OpenAPI Doc v2.0.17 
+- Speakeasy CLI 1.386.0 (2.407.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.3.1] .
+### Releases
+- [Composer v2.3.1] https://packagist.org/packages/formance/formance-sdk#v2.3.1 - .
+
+## 2024-09-02 19:59:01
+### Changes
+Based on:
+- OpenAPI Doc v2.0.17 
+- Speakeasy CLI 1.386.0 (2.407.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.3.2] .
+### Releases
+- [Composer v2.3.2] https://packagist.org/packages/formance/formance-sdk#v2.3.2 - .

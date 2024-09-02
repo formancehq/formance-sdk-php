@@ -16,7 +16,7 @@ class V2Update
      * @var ?V2UpdateAccount $account
      */
     #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2UpdateAccount')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2UpdateAccount|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2UpdateAccount $account = null;
 

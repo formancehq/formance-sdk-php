@@ -16,7 +16,7 @@ class ReadUserResponse
      * @var ?User $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\User')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\User|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?User $data = null;
 

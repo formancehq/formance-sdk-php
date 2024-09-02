@@ -16,7 +16,7 @@ class ActivityCreditWallet
      * @var ?OrchestrationCreditWalletRequest $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationCreditWalletRequest')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationCreditWalletRequest|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?OrchestrationCreditWalletRequest $data = null;
 

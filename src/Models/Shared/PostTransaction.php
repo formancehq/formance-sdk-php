@@ -17,7 +17,7 @@ class PostTransaction
      * @var ?array<string, mixed> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $metadata = null;
 
@@ -27,7 +27,7 @@ class PostTransaction
      * @var ?array<Posting> $postings
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
+    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postings = null;
 
@@ -44,7 +44,7 @@ class PostTransaction
      * @var ?PostTransactionScript $script
      */
     #[\JMS\Serializer\Annotation\SerializedName('script')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PostTransactionScript')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PostTransactionScript|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?PostTransactionScript $script = null;
 

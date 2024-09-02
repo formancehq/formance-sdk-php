@@ -33,7 +33,7 @@ class V2ExpandedTransaction
      * @var ?array<string, array<string, V2Volume>> $postCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $postCommitVolumes = null;
 
@@ -52,7 +52,7 @@ class V2ExpandedTransaction
      * @var ?array<string, array<string, V2Volume>> $preCommitVolumes
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $preCommitVolumes = null;
 

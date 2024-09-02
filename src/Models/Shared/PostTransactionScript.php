@@ -24,7 +24,7 @@ class PostTransactionScript
      * @var ?array<string, mixed> $vars
      */
     #[\JMS\Serializer\Annotation\SerializedName('vars')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?array $vars = null;
 

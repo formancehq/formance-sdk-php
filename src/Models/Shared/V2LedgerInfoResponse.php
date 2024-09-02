@@ -16,7 +16,7 @@ class V2LedgerInfoResponse
      * @var ?V2LedgerInfo $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfo')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfo|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2LedgerInfo $data = null;
 

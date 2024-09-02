@@ -52,7 +52,7 @@ class ActivityStripeTransfer
      * @var ?Metadata $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Metadata')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Metadata|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?Metadata $metadata = null;
 

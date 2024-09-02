@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Errors;
 
 use formance\stack\Models\Shared;
+use formance\stack\Utils;
 /** PaymentsErrorResponse - Error */
 class PaymentsErrorResponse
 {
@@ -35,5 +36,14 @@ class PaymentsErrorResponse
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
+    }
+
+    public function toException(): PaymentsErrorResponseThrowable
+    {
+        $serializer = Utils\JSON::createSerializer();
+        $message = $serializer->serialize($this, 'json');
+        $code = -1;
+
+        return new PaymentsErrorResponseThrowable($message, (int) $code, $this);
     }
 }

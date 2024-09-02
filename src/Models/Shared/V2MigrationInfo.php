@@ -32,7 +32,7 @@ class V2MigrationInfo
      * @var ?V2MigrationInfoState $state
      */
     #[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2MigrationInfoState')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2MigrationInfoState|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2MigrationInfoState $state = null;
 

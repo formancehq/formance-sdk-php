@@ -23,7 +23,7 @@ class V2BulkElementCreateTransaction
      * @var ?V2PostTransaction $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransaction')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransaction|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2PostTransaction $data = null;
 

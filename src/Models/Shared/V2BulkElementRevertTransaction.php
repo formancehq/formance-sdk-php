@@ -23,7 +23,7 @@ class V2BulkElementRevertTransaction
      * @var ?V2BulkElementRevertTransactionData $data
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementRevertTransactionData')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementRevertTransactionData|null')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?V2BulkElementRevertTransactionData $data = null;
 
