@@ -5,8 +5,8 @@ management:
   docVersion: v2.0.17
   speakeasyVersion: 1.386.0
   generationVersion: 2.407.2
-  releaseVersion: 2.3.1
-  configChecksum: ed8cd7ef5810ef6f9d99ef8bc78ca1ca
+  releaseVersion: 2.3.2
+  configChecksum: 58b7ae22e93915234f3a4c888a6b264b
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php

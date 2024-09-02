@@ -27,11 +27,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = 'v2.0.17';
 
-    public string $sdkVersion = '2.3.1';
+    public string $sdkVersion = '2.3.2';
 
     public string $genVersion = '2.407.2';
 
-    public string $userAgent = 'speakeasy-sdk/php 2.3.1 2.407.2 v2.0.17 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 2.3.2 2.407.2 v2.0.17 formance/formance-sdk';
 
     public function getServerUrl(): string
     {
