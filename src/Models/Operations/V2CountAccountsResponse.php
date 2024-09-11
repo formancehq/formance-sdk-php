@@ -40,12 +40,12 @@ class V2CountAccountsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?array<string, array<string>>  $headers
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  array<string, array<string>>  $headers
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      */
-    public function __construct(?string $contentType = null, ?array $headers = [], ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $headers = [])
     {
         $this->contentType = $contentType;
         $this->headers = $headers;

@@ -20,9 +20,9 @@ class GetWorkflowResponse
     public Workflow $data;
 
     /**
-     * @param  ?Workflow  $data
+     * @param  Workflow  $data
      */
-    public function __construct(?Workflow $data = null)
+    public function __construct(Workflow $data)
     {
         $this->data = $data;
     }

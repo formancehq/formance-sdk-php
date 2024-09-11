@@ -20,9 +20,9 @@ class V2GetWorkflowResponse
     public V2Workflow $data;
 
     /**
-     * @param  ?V2Workflow  $data
+     * @param  V2Workflow  $data
      */
-    public function __construct(?V2Workflow $data = null)
+    public function __construct(V2Workflow $data)
     {
         $this->data = $data;
     }

@@ -16,7 +16,7 @@ class MigrationInfo
      * @var ?\DateTime $date
      */
     #[\JMS\Serializer\Annotation\SerializedName('date')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $date = null;
 
     /**
@@ -24,7 +24,7 @@ class MigrationInfo
      * @var ?string $name
      */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -33,7 +33,7 @@ class MigrationInfo
      */
     #[\JMS\Serializer\Annotation\SerializedName('state')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\State|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?State $state = null;
 
     /**
@@ -41,7 +41,7 @@ class MigrationInfo
      * @var ?int $version
      */
     #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $version = null;
 
     /**

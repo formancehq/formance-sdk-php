@@ -113,7 +113,7 @@ class ListTransactionsRequest
     public ?\DateTime $startTime = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $account
      * @param  ?string  $after
      * @param  ?string  $cursor
@@ -125,7 +125,7 @@ class ListTransactionsRequest
      * @param  ?string  $source
      * @param  ?\DateTime  $startTime
      */
-    public function __construct(?string $ledger = null, ?string $account = null, ?string $after = null, ?string $cursor = null, ?string $destination = null, ?\DateTime $endTime = null, ?array $metadata = null, ?int $pageSize = null, ?string $reference = null, ?string $source = null, ?\DateTime $startTime = null)
+    public function __construct(string $ledger, ?string $account = null, ?string $after = null, ?string $cursor = null, ?string $destination = null, ?\DateTime $endTime = null, ?array $metadata = null, ?int $pageSize = null, ?string $reference = null, ?string $source = null, ?\DateTime $startTime = null)
     {
         $this->ledger = $ledger;
         $this->account = $account;

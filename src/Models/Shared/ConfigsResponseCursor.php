@@ -28,10 +28,10 @@ class ConfigsResponseCursor
     public bool $hasMore;
 
     /**
-     * @param  ?array<WebhooksConfig>  $data
-     * @param  ?bool  $hasMore
+     * @param  array<WebhooksConfig>  $data
+     * @param  bool  $hasMore
      */
-    public function __construct(?array $data = null, ?bool $hasMore = null)
+    public function __construct(array $data, bool $hasMore)
     {
         $this->data = $data;
         $this->hasMore = $hasMore;

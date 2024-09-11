@@ -29,10 +29,10 @@ class V2Error
     public string $errorMessage;
 
     /**
-     * @param  ?SchemasErrorCode  $errorCode
-     * @param  ?string  $errorMessage
+     * @param  SchemasErrorCode  $errorCode
+     * @param  string  $errorMessage
      */
-    public function __construct(?SchemasErrorCode $errorCode = null, ?string $errorMessage = null)
+    public function __construct(SchemasErrorCode $errorCode, string $errorMessage)
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

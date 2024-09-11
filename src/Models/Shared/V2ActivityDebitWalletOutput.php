@@ -20,9 +20,9 @@ class V2ActivityDebitWalletOutput
     public V2Hold $data;
 
     /**
-     * @param  ?V2Hold  $data
+     * @param  V2Hold  $data
      */
-    public function __construct(?V2Hold $data = null)
+    public function __construct(V2Hold $data)
     {
         $this->data = $data;
     }

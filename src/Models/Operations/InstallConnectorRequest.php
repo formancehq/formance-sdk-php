@@ -28,10 +28,10 @@ class InstallConnectorRequest
     public Shared\Connector $connector;
 
     /**
-     * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig|null  $connectorConfig
-     * @param  ?Shared\Connector  $connector
+     * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig  $connectorConfig
+     * @param  Shared\Connector  $connector
      */
-    public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig|null $connectorConfig = null, ?Shared\Connector $connector = null)
+    public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig, Shared\Connector $connector)
     {
         $this->connectorConfig = $connectorConfig;
         $this->connector = $connector;

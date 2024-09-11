@@ -44,7 +44,7 @@ class PaymentRequest
      * @var ?string $destinationAccountID
      */
     #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $destinationAccountID = null;
 
     /**
@@ -67,7 +67,7 @@ class PaymentRequest
      * @var ?string $sourceAccountID
      */
     #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $sourceAccountID = null;
 
     /**
@@ -87,18 +87,18 @@ class PaymentRequest
     public PaymentType $type;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $reference
-     * @param  ?PaymentScheme  $scheme
-     * @param  ?PaymentStatus  $status
-     * @param  ?PaymentType  $type
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $reference
+     * @param  PaymentScheme  $scheme
+     * @param  PaymentStatus  $status
+     * @param  PaymentType  $type
      * @param  ?string  $destinationAccountID
      * @param  ?string  $sourceAccountID
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $reference = null, ?PaymentScheme $scheme = null, ?PaymentStatus $status = null, ?PaymentType $type = null, ?string $destinationAccountID = null, ?string $sourceAccountID = null)
+    public function __construct(int $amount, string $asset, string $connectorID, \DateTime $createdAt, string $reference, PaymentScheme $scheme, PaymentStatus $status, PaymentType $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

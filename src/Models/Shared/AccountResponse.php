@@ -20,9 +20,9 @@ class AccountResponse
     public AccountWithVolumesAndBalances $data;
 
     /**
-     * @param  ?AccountWithVolumesAndBalances  $data
+     * @param  AccountWithVolumesAndBalances  $data
      */
-    public function __construct(?AccountWithVolumesAndBalances $data = null)
+    public function __construct(AccountWithVolumesAndBalances $data)
     {
         $this->data = $data;
     }

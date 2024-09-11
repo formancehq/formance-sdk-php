@@ -16,7 +16,7 @@ class Client
      * @var ?string $description
      */
     #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $description = null;
 
     /**
@@ -33,7 +33,7 @@ class Client
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -50,7 +50,7 @@ class Client
      */
     #[\JMS\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postLogoutRedirectUris = null;
 
     /**
@@ -58,7 +58,7 @@ class Client
      * @var ?bool $public
      */
     #[\JMS\Serializer\Annotation\SerializedName('public')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $public = null;
 
     /**
@@ -68,7 +68,7 @@ class Client
      */
     #[\JMS\Serializer\Annotation\SerializedName('redirectUris')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $redirectUris = null;
 
     /**
@@ -78,7 +78,7 @@ class Client
      */
     #[\JMS\Serializer\Annotation\SerializedName('scopes')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $scopes = null;
 
     /**
@@ -88,7 +88,7 @@ class Client
      */
     #[\JMS\Serializer\Annotation\SerializedName('secrets')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\ClientSecret>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $secrets = null;
 
     /**
@@ -96,12 +96,12 @@ class Client
      * @var ?bool $trusted
      */
     #[\JMS\Serializer\Annotation\SerializedName('trusted')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $trusted = null;
 
     /**
-     * @param  ?string  $id
-     * @param  ?string  $name
+     * @param  string  $id
+     * @param  string  $name
      * @param  ?string  $description
      * @param  ?array<string, mixed>  $metadata
      * @param  ?array<string>  $postLogoutRedirectUris
@@ -111,7 +111,7 @@ class Client
      * @param  ?array<ClientSecret>  $secrets
      * @param  ?bool  $trusted
      */
-    public function __construct(?string $id = null, ?string $name = null, ?string $description = null, ?array $metadata = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?array $secrets = null, ?bool $trusted = null)
+    public function __construct(string $id, string $name, ?string $description = null, ?array $metadata = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?array $secrets = null, ?bool $trusted = null)
     {
         $this->id = $id;
         $this->name = $name;

@@ -20,9 +20,9 @@ class V2ListWalletsResponse
     public V2ListWalletsResponseCursor $cursor;
 
     /**
-     * @param  ?V2ListWalletsResponseCursor  $cursor
+     * @param  V2ListWalletsResponseCursor  $cursor
      */
-    public function __construct(?V2ListWalletsResponseCursor $cursor = null)
+    public function __construct(V2ListWalletsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

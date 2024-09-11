@@ -20,9 +20,9 @@ class GetHoldsResponse
     public GetHoldsResponseCursor $cursor;
 
     /**
-     * @param  ?GetHoldsResponseCursor  $cursor
+     * @param  GetHoldsResponseCursor  $cursor
      */
-    public function __construct(?GetHoldsResponseCursor $cursor = null)
+    public function __construct(GetHoldsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

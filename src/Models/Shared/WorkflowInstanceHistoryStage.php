@@ -23,7 +23,7 @@ class WorkflowInstanceHistoryStage
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -39,7 +39,7 @@ class WorkflowInstanceHistoryStage
      * @var ?string $lastFailure
      */
     #[\JMS\Serializer\Annotation\SerializedName('lastFailure')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $lastFailure = null;
 
     /**
@@ -54,7 +54,7 @@ class WorkflowInstanceHistoryStage
      * @var ?\DateTime $nextExecution
      */
     #[\JMS\Serializer\Annotation\SerializedName('nextExecution')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $nextExecution = null;
 
     /**
@@ -63,7 +63,7 @@ class WorkflowInstanceHistoryStage
      */
     #[\JMS\Serializer\Annotation\SerializedName('output')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?WorkflowInstanceHistoryStageOutput $output = null;
 
     /**
@@ -85,22 +85,22 @@ class WorkflowInstanceHistoryStage
      * @var ?\DateTime $terminatedAt
      */
     #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  ?int  $attempt
-     * @param  ?WorkflowInstanceHistoryStageInput  $input
-     * @param  ?string  $name
-     * @param  ?\DateTime  $startedAt
-     * @param  ?bool  $terminated
+     * @param  int  $attempt
+     * @param  WorkflowInstanceHistoryStageInput  $input
+     * @param  string  $name
+     * @param  \DateTime  $startedAt
+     * @param  bool  $terminated
      * @param  ?string  $error
      * @param  ?string  $lastFailure
      * @param  ?\DateTime  $nextExecution
      * @param  ?WorkflowInstanceHistoryStageOutput  $output
      * @param  ?\DateTime  $terminatedAt
      */
-    public function __construct(?int $attempt = null, ?WorkflowInstanceHistoryStageInput $input = null, ?string $name = null, ?\DateTime $startedAt = null, ?bool $terminated = null, ?string $error = null, ?string $lastFailure = null, ?\DateTime $nextExecution = null, ?WorkflowInstanceHistoryStageOutput $output = null, ?\DateTime $terminatedAt = null)
+    public function __construct(int $attempt, WorkflowInstanceHistoryStageInput $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?string $lastFailure = null, ?\DateTime $nextExecution = null, ?WorkflowInstanceHistoryStageOutput $output = null, ?\DateTime $terminatedAt = null)
     {
         $this->attempt = $attempt;
         $this->input = $input;

@@ -13,9 +13,9 @@ $security->authorization = '<YOUR_AUTHORIZATION_HERE>';
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $response = $sdk->getOIDCWellKnowns();
+    $response = $sdk->getVersions();
 
-    if ($response->statusCode === 200) {
+    if ($response->getVersionsResponse !== null) {
         // handle response
     }
 } catch (Throwable $e) {

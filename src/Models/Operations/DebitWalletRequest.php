@@ -35,11 +35,11 @@ class DebitWalletRequest
     public string $id;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      * @param  ?Shared\DebitWalletRequest  $debitWalletRequest
      * @param  ?string  $idempotencyKey
      */
-    public function __construct(?string $id = null, ?Shared\DebitWalletRequest $debitWalletRequest = null, ?string $idempotencyKey = null)
+    public function __construct(string $id, ?Shared\DebitWalletRequest $debitWalletRequest = null, ?string $idempotencyKey = null)
     {
         $this->id = $id;
         $this->debitWalletRequest = $debitWalletRequest;

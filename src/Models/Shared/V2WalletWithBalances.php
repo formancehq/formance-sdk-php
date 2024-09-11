@@ -58,14 +58,14 @@ class V2WalletWithBalances
     public string $name;
 
     /**
-     * @param  ?Balances  $balances
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $ledger
-     * @param  ?array<string, string>  $metadata
-     * @param  ?string  $name
+     * @param  Balances  $balances
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $ledger
+     * @param  array<string, string>  $metadata
+     * @param  string  $name
      */
-    public function __construct(?Balances $balances = null, ?\DateTime $createdAt = null, ?string $id = null, ?string $ledger = null, ?array $metadata = null, ?string $name = null)
+    public function __construct(Balances $balances, \DateTime $createdAt, string $id, string $ledger, array $metadata, string $name)
     {
         $this->balances = $balances;
         $this->createdAt = $createdAt;

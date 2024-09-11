@@ -17,7 +17,7 @@ class StageSendDestination
      */
     #[\JMS\Serializer\Annotation\SerializedName('account')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestinationAccount $account = null;
 
     /**
@@ -26,7 +26,7 @@ class StageSendDestination
      */
     #[\JMS\Serializer\Annotation\SerializedName('payment')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationPayment|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestinationPayment $payment = null;
 
     /**
@@ -35,7 +35,7 @@ class StageSendDestination
      */
     #[\JMS\Serializer\Annotation\SerializedName('wallet')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestinationWallet $wallet = null;
 
     /**

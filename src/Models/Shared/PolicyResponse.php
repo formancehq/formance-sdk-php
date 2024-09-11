@@ -20,9 +20,9 @@ class PolicyResponse
     public Policy $data;
 
     /**
-     * @param  ?Policy  $data
+     * @param  Policy  $data
      */
-    public function __construct(?Policy $data = null)
+    public function __construct(Policy $data)
     {
         $this->data = $data;
     }

@@ -28,10 +28,10 @@ class RemoveAccountFromPoolRequest
     public string $poolId;
 
     /**
-     * @param  ?string  $accountId
-     * @param  ?string  $poolId
+     * @param  string  $accountId
+     * @param  string  $poolId
      */
-    public function __construct(?string $accountId = null, ?string $poolId = null)
+    public function __construct(string $accountId, string $poolId)
     {
         $this->accountId = $accountId;
         $this->poolId = $poolId;

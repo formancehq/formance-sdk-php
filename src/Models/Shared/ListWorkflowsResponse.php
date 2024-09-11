@@ -21,9 +21,9 @@ class ListWorkflowsResponse
     public array $data;
 
     /**
-     * @param  ?array<Workflow>  $data
+     * @param  array<Workflow>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

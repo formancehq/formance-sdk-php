@@ -63,15 +63,15 @@ class WebhooksConfig
     public \DateTime $updatedAt;
 
     /**
-     * @param  ?bool  $active
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $endpoint
-     * @param  ?array<string>  $eventTypes
-     * @param  ?string  $id
-     * @param  ?string  $secret
-     * @param  ?\DateTime  $updatedAt
+     * @param  bool  $active
+     * @param  \DateTime  $createdAt
+     * @param  string  $endpoint
+     * @param  array<string>  $eventTypes
+     * @param  string  $id
+     * @param  string  $secret
+     * @param  \DateTime  $updatedAt
      */
-    public function __construct(?bool $active = null, ?\DateTime $createdAt = null, ?string $endpoint = null, ?array $eventTypes = null, ?string $id = null, ?string $secret = null, ?\DateTime $updatedAt = null)
+    public function __construct(bool $active, \DateTime $createdAt, string $endpoint, array $eventTypes, string $id, string $secret, \DateTime $updatedAt)
     {
         $this->active = $active;
         $this->createdAt = $createdAt;

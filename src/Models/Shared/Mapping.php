@@ -21,9 +21,9 @@ class Mapping
     public array $contracts;
 
     /**
-     * @param  ?array<Contract>  $contracts
+     * @param  array<Contract>  $contracts
      */
-    public function __construct(?array $contracts = null)
+    public function __construct(array $contracts)
     {
         $this->contracts = $contracts;
     }

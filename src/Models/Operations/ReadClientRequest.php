@@ -20,9 +20,9 @@ class ReadClientRequest
     public string $clientId;
 
     /**
-     * @param  ?string  $clientId
+     * @param  string  $clientId
      */
-    public function __construct(?string $clientId = null)
+    public function __construct(string $clientId)
     {
         $this->clientId = $clientId;
     }

@@ -16,7 +16,7 @@ class StageDelay
      * @var ?string $duration
      */
     #[\JMS\Serializer\Annotation\SerializedName('duration')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $duration = null;
 
     /**
@@ -24,7 +24,7 @@ class StageDelay
      * @var ?\DateTime $until
      */
     #[\JMS\Serializer\Annotation\SerializedName('until')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $until = null;
 
     /**

@@ -17,7 +17,7 @@ class ReadClientResponse
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Client|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?Client $data = null;
 
     /**

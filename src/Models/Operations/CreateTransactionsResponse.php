@@ -40,12 +40,12 @@ class CreateTransactionsResponse
     public ?Shared\TransactionsResponse $transactionsResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TransactionsResponse  $transactionsResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\TransactionsResponse $transactionsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransactionsResponse $transactionsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

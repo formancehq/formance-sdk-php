@@ -20,9 +20,9 @@ class Config
     public LedgerStorage $storage;
 
     /**
-     * @param  ?LedgerStorage  $storage
+     * @param  LedgerStorage  $storage
      */
-    public function __construct(?LedgerStorage $storage = null)
+    public function __construct(LedgerStorage $storage)
     {
         $this->storage = $storage;
     }

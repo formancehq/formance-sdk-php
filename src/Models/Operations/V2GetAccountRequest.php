@@ -47,12 +47,12 @@ class V2GetAccountRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  ?string  $address
-     * @param  ?string  $ledger
+     * @param  string  $address
+     * @param  string  $ledger
      * @param  ?string  $expand
      * @param  ?\DateTime  $pit
      */
-    public function __construct(?string $address = null, ?string $ledger = null, ?string $expand = null, ?\DateTime $pit = null)
+    public function __construct(string $address, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
     {
         $this->address = $address;
         $this->ledger = $ledger;

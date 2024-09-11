@@ -49,13 +49,13 @@ class V2PaymentAdjustment
     public V2PaymentStatus $status;
 
     /**
-     * @param  ?bool  $absolute
-     * @param  ?int  $amount
-     * @param  ?\DateTime  $date
-     * @param  ?V2PaymentAdjustmentRaw  $raw
-     * @param  ?V2PaymentStatus  $status
+     * @param  bool  $absolute
+     * @param  int  $amount
+     * @param  \DateTime  $date
+     * @param  V2PaymentAdjustmentRaw  $raw
+     * @param  V2PaymentStatus  $status
      */
-    public function __construct(?bool $absolute = null, ?int $amount = null, ?\DateTime $date = null, ?V2PaymentAdjustmentRaw $raw = null, ?V2PaymentStatus $status = null)
+    public function __construct(bool $absolute, int $amount, \DateTime $date, V2PaymentAdjustmentRaw $raw, V2PaymentStatus $status)
     {
         $this->absolute = $absolute;
         $this->amount = $amount;

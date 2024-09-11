@@ -37,11 +37,11 @@ class V2BulkElementAddMetadataData
     public V2TargetType $targetType;
 
     /**
-     * @param  ?array<string, string>  $metadata
-     * @param  string|int|null  $targetId
-     * @param  ?V2TargetType  $targetType
+     * @param  array<string, string>  $metadata
+     * @param  string|int  $targetId
+     * @param  V2TargetType  $targetType
      */
-    public function __construct(?array $metadata = null, string|int|null $targetId = null, ?V2TargetType $targetType = null)
+    public function __construct(array $metadata, string|int $targetId, V2TargetType $targetType)
     {
         $this->metadata = $metadata;
         $this->targetId = $targetId;

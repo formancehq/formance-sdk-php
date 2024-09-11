@@ -21,9 +21,9 @@ class ReadConnectorConfigRequest
     public Shared\Connector $connector;
 
     /**
-     * @param  ?Shared\Connector  $connector
+     * @param  Shared\Connector  $connector
      */
-    public function __construct(?Shared\Connector $connector = null)
+    public function __construct(Shared\Connector $connector)
     {
         $this->connector = $connector;
     }

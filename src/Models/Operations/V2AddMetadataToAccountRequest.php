@@ -57,13 +57,13 @@ class V2AddMetadataToAccountRequest
     public string $ledger;
 
     /**
-     * @param  ?array<string, string>  $requestBody
-     * @param  ?string  $address
-     * @param  ?string  $ledger
+     * @param  array<string, string>  $requestBody
+     * @param  string  $address
+     * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
      */
-    public function __construct(?array $requestBody = null, ?string $address = null, ?string $ledger = null, ?string $idempotencyKey = null, ?bool $dryRun = null)
+    public function __construct(array $requestBody, string $address, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
     {
         $this->requestBody = $requestBody;
         $this->address = $address;

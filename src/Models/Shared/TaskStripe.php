@@ -38,7 +38,7 @@ class TaskStripe
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -72,16 +72,16 @@ class TaskStripe
     public \DateTime $updatedAt;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?TaskStripeDescriptor  $descriptor
-     * @param  ?string  $id
-     * @param  ?TaskStripeState  $state
-     * @param  ?PaymentStatus  $status
-     * @param  ?\DateTime  $updatedAt
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  TaskStripeDescriptor  $descriptor
+     * @param  string  $id
+     * @param  TaskStripeState  $state
+     * @param  PaymentStatus  $status
+     * @param  \DateTime  $updatedAt
      * @param  ?string  $error
      */
-    public function __construct(?string $connectorID = null, ?\DateTime $createdAt = null, ?TaskStripeDescriptor $descriptor = null, ?string $id = null, ?TaskStripeState $state = null, ?PaymentStatus $status = null, ?\DateTime $updatedAt = null, ?string $error = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, TaskStripeDescriptor $descriptor, string $id, TaskStripeState $state, PaymentStatus $status, \DateTime $updatedAt, ?string $error = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

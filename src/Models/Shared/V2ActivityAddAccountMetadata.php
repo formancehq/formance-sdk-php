@@ -35,11 +35,11 @@ class V2ActivityAddAccountMetadata
     public array $metadata;
 
     /**
-     * @param  ?string  $id
-     * @param  ?string  $ledger
-     * @param  ?array<string, string>  $metadata
+     * @param  string  $id
+     * @param  string  $ledger
+     * @param  array<string, string>  $metadata
      */
-    public function __construct(?string $id = null, ?string $ledger = null, ?array $metadata = null)
+    public function __construct(string $id, string $ledger, array $metadata)
     {
         $this->id = $id;
         $this->ledger = $ledger;

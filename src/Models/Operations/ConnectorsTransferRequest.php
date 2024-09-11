@@ -28,10 +28,10 @@ class ConnectorsTransferRequest
     public Shared\Connector $connector;
 
     /**
-     * @param  ?Shared\TransferRequest  $transferRequest
-     * @param  ?Shared\Connector  $connector
+     * @param  Shared\TransferRequest  $transferRequest
+     * @param  Shared\Connector  $connector
      */
-    public function __construct(?Shared\TransferRequest $transferRequest = null, ?Shared\Connector $connector = null)
+    public function __construct(Shared\TransferRequest $transferRequest, Shared\Connector $connector)
     {
         $this->transferRequest = $transferRequest;
         $this->connector = $connector;

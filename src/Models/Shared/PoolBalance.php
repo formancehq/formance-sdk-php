@@ -26,10 +26,10 @@ class PoolBalance
     public string $asset;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
+     * @param  int  $amount
+     * @param  string  $asset
      */
-    public function __construct(?int $amount = null, ?string $asset = null)
+    public function __construct(int $amount, string $asset)
     {
         $this->amount = $amount;
         $this->asset = $asset;

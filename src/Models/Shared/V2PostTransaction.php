@@ -27,7 +27,7 @@ class V2PostTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postings = null;
 
     /**
@@ -35,7 +35,7 @@ class V2PostTransaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -44,7 +44,7 @@ class V2PostTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('script')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransactionScript|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?V2PostTransactionScript $script = null;
 
     /**
@@ -52,17 +52,17 @@ class V2PostTransaction
      * @var ?\DateTime $timestamp
      */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?array<string, string>  $metadata
+     * @param  array<string, string>  $metadata
      * @param  ?array<V2Posting>  $postings
      * @param  ?string  $reference
      * @param  ?V2PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      */
-    public function __construct(?array $metadata = null, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
+    public function __construct(array $metadata, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
     {
         $this->metadata = $metadata;
         $this->postings = $postings;

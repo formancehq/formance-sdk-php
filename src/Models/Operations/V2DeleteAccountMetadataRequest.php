@@ -36,11 +36,11 @@ class V2DeleteAccountMetadataRequest
     public string $ledger;
 
     /**
-     * @param  ?string  $address
-     * @param  ?string  $key
-     * @param  ?string  $ledger
+     * @param  string  $address
+     * @param  string  $key
+     * @param  string  $ledger
      */
-    public function __construct(?string $address = null, ?string $key = null, ?string $ledger = null)
+    public function __construct(string $address, string $key, string $ledger)
     {
         $this->address = $address;
         $this->key = $key;

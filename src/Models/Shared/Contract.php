@@ -16,7 +16,7 @@ class Contract
      * @var ?string $account
      */
     #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $account = null;
 
     /**
@@ -28,10 +28,10 @@ class Contract
     public Expr $expr;
 
     /**
-     * @param  ?Expr  $expr
+     * @param  Expr  $expr
      * @param  ?string  $account
      */
-    public function __construct(?Expr $expr = null, ?string $account = null)
+    public function __construct(Expr $expr, ?string $account = null)
     {
         $this->expr = $expr;
         $this->account = $account;

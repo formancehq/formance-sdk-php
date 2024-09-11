@@ -40,12 +40,12 @@ class V2ListInstancesResponse
     public ?Shared\V2ListRunsResponse $v2ListRunsResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2ListRunsResponse  $v2ListRunsResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2ListRunsResponse $v2ListRunsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ListRunsResponse $v2ListRunsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -49,13 +49,13 @@ class OrchestrationPaymentAdjustment
     public OrchestrationPaymentStatus $status;
 
     /**
-     * @param  ?bool  $absolute
-     * @param  ?int  $amount
-     * @param  ?\DateTime  $date
-     * @param  ?OrchestrationPaymentAdjustmentRaw  $raw
-     * @param  ?OrchestrationPaymentStatus  $status
+     * @param  bool  $absolute
+     * @param  int  $amount
+     * @param  \DateTime  $date
+     * @param  OrchestrationPaymentAdjustmentRaw  $raw
+     * @param  OrchestrationPaymentStatus  $status
      */
-    public function __construct(?bool $absolute = null, ?int $amount = null, ?\DateTime $date = null, ?OrchestrationPaymentAdjustmentRaw $raw = null, ?OrchestrationPaymentStatus $status = null)
+    public function __construct(bool $absolute, int $amount, \DateTime $date, OrchestrationPaymentAdjustmentRaw $raw, OrchestrationPaymentStatus $status)
     {
         $this->absolute = $absolute;
         $this->amount = $amount;

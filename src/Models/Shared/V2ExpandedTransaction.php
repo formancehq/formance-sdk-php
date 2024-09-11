@@ -34,7 +34,7 @@ class V2ExpandedTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
@@ -53,7 +53,7 @@ class V2ExpandedTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
@@ -61,7 +61,7 @@ class V2ExpandedTransaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -79,16 +79,16 @@ class V2ExpandedTransaction
     public \DateTime $timestamp;
 
     /**
-     * @param  ?int  $id
-     * @param  ?array<string, string>  $metadata
-     * @param  ?array<V2Posting>  $postings
-     * @param  ?bool  $reverted
-     * @param  ?\DateTime  $timestamp
+     * @param  int  $id
+     * @param  array<string, string>  $metadata
+     * @param  array<V2Posting>  $postings
+     * @param  bool  $reverted
+     * @param  \DateTime  $timestamp
      * @param  ?array<string, array<string, V2Volume>>  $postCommitVolumes
      * @param  ?array<string, array<string, V2Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      */
-    public function __construct(?int $id = null, ?array $metadata = null, ?array $postings = null, ?bool $reverted = null, ?\DateTime $timestamp = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
+    public function __construct(int $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;

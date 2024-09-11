@@ -20,9 +20,9 @@ class ReconciliationsCursorResponse
     public ReconciliationsCursorResponseCursor $cursor;
 
     /**
-     * @param  ?ReconciliationsCursorResponseCursor  $cursor
+     * @param  ReconciliationsCursorResponseCursor  $cursor
      */
-    public function __construct(?ReconciliationsCursorResponseCursor $cursor = null)
+    public function __construct(ReconciliationsCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

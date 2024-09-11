@@ -16,7 +16,7 @@ class BankAccount
      * @var ?string $accountID
      */
     #[\JMS\Serializer\Annotation\SerializedName('accountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $accountID = null;
 
     /**
@@ -24,7 +24,7 @@ class BankAccount
      * @var ?string $accountNumber
      */
     #[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $accountNumber = null;
 
     /**
@@ -53,7 +53,7 @@ class BankAccount
      * @var ?string $iban
      */
     #[\JMS\Serializer\Annotation\SerializedName('iban')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $iban = null;
 
     /**
@@ -70,7 +70,7 @@ class BankAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -85,7 +85,7 @@ class BankAccount
      * @var ?string $provider
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $provider = null;
 
     /**
@@ -95,7 +95,7 @@ class BankAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('relatedAccounts')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BankAccountRelatedAccounts>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $relatedAccounts = null;
 
     /**
@@ -103,24 +103,24 @@ class BankAccount
      * @var ?string $swiftBicCode
      */
     #[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?string  $country
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $name
+     * @param  string  $connectorID
+     * @param  string  $country
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $name
      * @param  ?string  $accountID
      * @param  ?string  $accountNumber
      * @param  ?string  $iban
-     * @param  ?array<string, string>  $metadata
      * @param  ?string  $provider
      * @param  ?array<BankAccountRelatedAccounts>  $relatedAccounts
      * @param  ?string  $swiftBicCode
+     * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?string $connectorID = null, ?string $country = null, ?\DateTime $createdAt = null, ?string $id = null, ?string $name = null, ?string $accountID = null, ?string $accountNumber = null, ?string $iban = null, ?array $metadata = null, ?string $provider = null, ?array $relatedAccounts = null, ?string $swiftBicCode = null)
+    public function __construct(string $connectorID, string $country, \DateTime $createdAt, string $id, string $name, ?string $accountID = null, ?string $accountNumber = null, ?string $iban = null, ?string $provider = null, ?array $relatedAccounts = null, ?string $swiftBicCode = null, ?array $metadata = null)
     {
         $this->connectorID = $connectorID;
         $this->country = $country;
@@ -130,9 +130,9 @@ class BankAccount
         $this->accountID = $accountID;
         $this->accountNumber = $accountNumber;
         $this->iban = $iban;
-        $this->metadata = $metadata;
         $this->provider = $provider;
         $this->relatedAccounts = $relatedAccounts;
         $this->swiftBicCode = $swiftBicCode;
+        $this->metadata = $metadata;
     }
 }

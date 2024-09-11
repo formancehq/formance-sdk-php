@@ -28,10 +28,10 @@ class UdpateTransferInitiationStatusRequest
     public string $transferId;
 
     /**
-     * @param  ?Shared\UpdateTransferInitiationStatusRequest  $updateTransferInitiationStatusRequest
-     * @param  ?string  $transferId
+     * @param  Shared\UpdateTransferInitiationStatusRequest  $updateTransferInitiationStatusRequest
+     * @param  string  $transferId
      */
-    public function __construct(?Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest = null, ?string $transferId = null)
+    public function __construct(Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest, string $transferId)
     {
         $this->updateTransferInitiationStatusRequest = $updateTransferInitiationStatusRequest;
         $this->transferId = $transferId;

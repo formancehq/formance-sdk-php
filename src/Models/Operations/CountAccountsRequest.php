@@ -36,11 +36,11 @@ class CountAccountsRequest
     public ?array $metadata = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $address
      * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?string $ledger = null, ?string $address = null, ?array $metadata = null)
+    public function __construct(string $ledger, ?string $address = null, ?array $metadata = null)
     {
         $this->ledger = $ledger;
         $this->address = $address;

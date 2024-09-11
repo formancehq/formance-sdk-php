@@ -20,9 +20,9 @@ class PoolsCursor
     public PoolsCursorCursor $cursor;
 
     /**
-     * @param  ?PoolsCursorCursor  $cursor
+     * @param  PoolsCursorCursor  $cursor
      */
-    public function __construct(?PoolsCursorCursor $cursor = null)
+    public function __construct(PoolsCursorCursor $cursor)
     {
         $this->cursor = $cursor;
     }

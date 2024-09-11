@@ -47,17 +47,17 @@ class MangoPayConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
-     * @param  ?string  $apiKey
-     * @param  ?string  $clientID
-     * @param  ?string  $endpoint
-     * @param  ?string  $name
+     * @param  string  $apiKey
+     * @param  string  $clientID
+     * @param  string  $endpoint
+     * @param  string  $name
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(?string $apiKey = null, ?string $clientID = null, ?string $endpoint = null, ?string $name = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = null)
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;

@@ -40,12 +40,12 @@ class V2GetAccountResponse
     public ?Shared\V2AccountResponse $v2AccountResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2AccountResponse  $v2AccountResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2AccountResponse $v2AccountResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2AccountResponse $v2AccountResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

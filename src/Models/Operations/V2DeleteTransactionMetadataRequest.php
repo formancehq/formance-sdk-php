@@ -36,11 +36,11 @@ class V2DeleteTransactionMetadataRequest
     public string $ledger;
 
     /**
-     * @param  ?int  $id
-     * @param  ?string  $key
-     * @param  ?string  $ledger
+     * @param  int  $id
+     * @param  string  $key
+     * @param  string  $ledger
      */
-    public function __construct(?int $id = null, ?string $key = null, ?string $ledger = null)
+    public function __construct(int $id, string $key, string $ledger)
     {
         $this->id = $id;
         $this->key = $key;

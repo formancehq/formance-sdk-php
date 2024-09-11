@@ -19,9 +19,9 @@ class AddAccountToPoolRequest
     public string $accountID;
 
     /**
-     * @param  ?string  $accountID
+     * @param  string  $accountID
      */
-    public function __construct(?string $accountID = null)
+    public function __construct(string $accountID)
     {
         $this->accountID = $accountID;
     }

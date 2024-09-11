@@ -35,11 +35,11 @@ class V2CountTransactionsRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
      * @param  ?\DateTime  $pit
      */
-    public function __construct(?string $ledger = null, ?array $requestBody = null, ?\DateTime $pit = null)
+    public function __construct(string $ledger, ?array $requestBody = null, ?\DateTime $pit = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;

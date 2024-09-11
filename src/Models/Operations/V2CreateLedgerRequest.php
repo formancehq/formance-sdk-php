@@ -28,10 +28,10 @@ class V2CreateLedgerRequest
     public string $ledger;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?Shared\V2CreateLedgerRequest  $v2CreateLedgerRequest
      */
-    public function __construct(?string $ledger = null, ?Shared\V2CreateLedgerRequest $v2CreateLedgerRequest = null)
+    public function __construct(string $ledger, ?Shared\V2CreateLedgerRequest $v2CreateLedgerRequest = null)
     {
         $this->ledger = $ledger;
         $this->v2CreateLedgerRequest = $v2CreateLedgerRequest;

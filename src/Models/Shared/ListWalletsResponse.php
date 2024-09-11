@@ -20,9 +20,9 @@ class ListWalletsResponse
     public ListWalletsResponseCursor $cursor;
 
     /**
-     * @param  ?ListWalletsResponseCursor  $cursor
+     * @param  ListWalletsResponseCursor  $cursor
      */
-    public function __construct(?ListWalletsResponseCursor $cursor = null)
+    public function __construct(ListWalletsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

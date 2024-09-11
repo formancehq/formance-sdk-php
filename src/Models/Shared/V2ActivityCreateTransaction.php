@@ -17,7 +17,7 @@ class V2ActivityCreateTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?V2PostTransaction $data = null;
 
     /**
@@ -25,7 +25,7 @@ class V2ActivityCreateTransaction
      * @var ?string $ledger
      */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $ledger = null;
 
     /**

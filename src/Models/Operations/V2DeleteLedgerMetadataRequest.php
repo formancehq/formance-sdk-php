@@ -28,10 +28,10 @@ class V2DeleteLedgerMetadataRequest
     public string $ledger;
 
     /**
-     * @param  ?string  $key
-     * @param  ?string  $ledger
+     * @param  string  $key
+     * @param  string  $ledger
      */
-    public function __construct(?string $key = null, ?string $ledger = null)
+    public function __construct(string $key, string $ledger)
     {
         $this->key = $key;
         $this->ledger = $ledger;

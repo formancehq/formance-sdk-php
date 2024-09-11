@@ -35,11 +35,11 @@ class GetVersionsResponse
     public array $versions;
 
     /**
-     * @param  ?string  $env
-     * @param  ?string  $region
-     * @param  ?array<Version>  $versions
+     * @param  string  $env
+     * @param  string  $region
+     * @param  array<Version>  $versions
      */
-    public function __construct(?string $env = null, ?string $region = null, ?array $versions = null)
+    public function __construct(string $env, string $region, array $versions)
     {
         $this->env = $env;
         $this->region = $region;

@@ -50,13 +50,13 @@ class OrchestrationWallet
     public string $name;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $ledger
-     * @param  ?array<string, string>  $metadata
-     * @param  ?string  $name
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $ledger
+     * @param  array<string, string>  $metadata
+     * @param  string  $name
      */
-    public function __construct(?\DateTime $createdAt = null, ?string $id = null, ?string $ledger = null, ?array $metadata = null, ?string $name = null)
+    public function __construct(\DateTime $createdAt, string $id, string $ledger, array $metadata, string $name)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

@@ -23,9 +23,9 @@ class Hold
      * @var LedgerAccountSubject|WalletSubject|null $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject|null')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject')]
     #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['LedgerAccountSubject' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WalletSubject' => '\formance\stack\Models\Shared\WalletSubject'])]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
@@ -54,13 +54,13 @@ class Hold
     public string $walletID;
 
     /**
-     * @param  ?string  $description
-     * @param  ?string  $id
-     * @param  ?array<string, string>  $metadata
-     * @param  ?string  $walletID
+     * @param  string  $description
+     * @param  string  $id
+     * @param  array<string, string>  $metadata
+     * @param  string  $walletID
      * @param  LedgerAccountSubject|WalletSubject|null  $destination
      */
-    public function __construct(?string $description = null, ?string $id = null, ?array $metadata = null, ?string $walletID = null, LedgerAccountSubject|WalletSubject|null $destination = null)
+    public function __construct(string $description, string $id, array $metadata, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
     {
         $this->description = $description;
         $this->id = $id;

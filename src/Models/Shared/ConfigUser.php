@@ -32,7 +32,7 @@ class ConfigUser
      * @var ?string $name
      */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -40,16 +40,16 @@ class ConfigUser
      * @var ?string $secret
      */
     #[\JMS\Serializer\Annotation\SerializedName('secret')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $secret = null;
 
     /**
-     * @param  ?string  $endpoint
-     * @param  ?array<string>  $eventTypes
+     * @param  string  $endpoint
+     * @param  array<string>  $eventTypes
      * @param  ?string  $name
      * @param  ?string  $secret
      */
-    public function __construct(?string $endpoint = null, ?array $eventTypes = null, ?string $name = null, ?string $secret = null)
+    public function __construct(string $endpoint, array $eventTypes, ?string $name = null, ?string $secret = null)
     {
         $this->endpoint = $endpoint;
         $this->eventTypes = $eventTypes;

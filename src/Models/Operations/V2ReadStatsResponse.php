@@ -40,12 +40,12 @@ class V2ReadStatsResponse
     public ?Shared\V2StatsResponse $v2StatsResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2StatsResponse  $v2StatsResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2StatsResponse $v2StatsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2StatsResponse $v2StatsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

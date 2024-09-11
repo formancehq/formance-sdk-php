@@ -16,7 +16,7 @@ class BankAccountRequest
      * @var ?string $accountNumber
      */
     #[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $accountNumber = null;
 
     /**
@@ -38,7 +38,7 @@ class BankAccountRequest
      * @var ?string $iban
      */
     #[\JMS\Serializer\Annotation\SerializedName('iban')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $iban = null;
 
     /**
@@ -48,7 +48,7 @@ class BankAccountRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -63,26 +63,26 @@ class BankAccountRequest
      * @var ?string $swiftBicCode
      */
     #[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?string  $country
-     * @param  ?string  $name
+     * @param  string  $connectorID
+     * @param  string  $country
+     * @param  string  $name
      * @param  ?string  $accountNumber
      * @param  ?string  $iban
-     * @param  ?array<string, string>  $metadata
      * @param  ?string  $swiftBicCode
+     * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?string $connectorID = null, ?string $country = null, ?string $name = null, ?string $accountNumber = null, ?string $iban = null, ?array $metadata = null, ?string $swiftBicCode = null)
+    public function __construct(string $connectorID, string $country, string $name, ?string $accountNumber = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $metadata = null)
     {
         $this->connectorID = $connectorID;
         $this->country = $country;
         $this->name = $name;
         $this->accountNumber = $accountNumber;
         $this->iban = $iban;
-        $this->metadata = $metadata;
         $this->swiftBicCode = $swiftBicCode;
+        $this->metadata = $metadata;
     }
 }

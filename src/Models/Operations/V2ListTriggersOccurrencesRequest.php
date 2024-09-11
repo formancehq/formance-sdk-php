@@ -43,11 +43,11 @@ class V2ListTriggersOccurrencesRequest
     public string $triggerID;
 
     /**
-     * @param  ?string  $triggerID
+     * @param  string  $triggerID
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      */
-    public function __construct(?string $triggerID = null, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(string $triggerID, ?string $cursor = null, ?int $pageSize = null)
     {
         $this->triggerID = $triggerID;
         $this->cursor = $cursor;

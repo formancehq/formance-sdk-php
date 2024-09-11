@@ -47,13 +47,13 @@ class V2VolumesWithBalance
     public int $output;
 
     /**
-     * @param  ?string  $account
-     * @param  ?string  $asset
-     * @param  ?int  $balance
-     * @param  ?int  $input
-     * @param  ?int  $output
+     * @param  string  $account
+     * @param  string  $asset
+     * @param  int  $balance
+     * @param  int  $input
+     * @param  int  $output
      */
-    public function __construct(?string $account = null, ?string $asset = null, ?int $balance = null, ?int $input = null, ?int $output = null)
+    public function __construct(string $account, string $asset, int $balance, int $input, int $output)
     {
         $this->account = $account;
         $this->asset = $asset;

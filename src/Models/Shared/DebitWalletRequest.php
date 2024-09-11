@@ -26,7 +26,7 @@ class DebitWalletRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $balances = null;
 
     /**
@@ -34,7 +34,7 @@ class DebitWalletRequest
      * @var ?string $description
      */
     #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $description = null;
 
     /**
@@ -42,9 +42,9 @@ class DebitWalletRequest
      * @var LedgerAccountSubject|WalletSubject|null $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject|null')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject')]
     #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['LedgerAccountSubject' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WalletSubject' => '\formance\stack\Models\Shared\WalletSubject'])]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
@@ -62,7 +62,7 @@ class DebitWalletRequest
      * @var ?bool $pending
      */
     #[\JMS\Serializer\Annotation\SerializedName('pending')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $pending = null;
 
     /**
@@ -71,19 +71,19 @@ class DebitWalletRequest
      * @var ?\DateTime $timestamp
      */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?Monetary  $amount
-     * @param  ?array<string, string>  $metadata
+     * @param  Monetary  $amount
+     * @param  array<string, string>  $metadata
      * @param  ?array<string>  $balances
      * @param  ?string  $description
      * @param  LedgerAccountSubject|WalletSubject|null  $destination
      * @param  ?bool  $pending
      * @param  ?\DateTime  $timestamp
      */
-    public function __construct(?Monetary $amount = null, ?array $metadata = null, ?array $balances = null, ?string $description = null, LedgerAccountSubject|WalletSubject|null $destination = null, ?bool $pending = null, ?\DateTime $timestamp = null)
+    public function __construct(Monetary $amount, array $metadata, ?array $balances = null, ?string $description = null, LedgerAccountSubject|WalletSubject|null $destination = null, ?bool $pending = null, ?\DateTime $timestamp = null)
     {
         $this->amount = $amount;
         $this->metadata = $metadata;

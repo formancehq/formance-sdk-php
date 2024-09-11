@@ -18,7 +18,7 @@ class Query
      */
     #[\JMS\Serializer\Annotation\SerializedName('after')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $after = null;
 
     /**
@@ -26,7 +26,7 @@ class Query
      * @var ?string $cursor
      */
     #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $cursor = null;
 
     /**
@@ -36,7 +36,7 @@ class Query
      */
     #[\JMS\Serializer\Annotation\SerializedName('ledgers')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $ledgers = null;
 
     /**
@@ -44,7 +44,7 @@ class Query
      * @var ?int $pageSize
      */
     #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
@@ -52,7 +52,7 @@ class Query
      * @var ?string $policy
      */
     #[\JMS\Serializer\Annotation\SerializedName('policy')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $policy = null;
 
     /**
@@ -61,7 +61,7 @@ class Query
      */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\QueryRaw|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?QueryRaw $raw = null;
 
     /**
@@ -69,7 +69,7 @@ class Query
      * @var ?string $sort
      */
     #[\JMS\Serializer\Annotation\SerializedName('sort')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $sort = null;
 
     /**
@@ -77,7 +77,7 @@ class Query
      * @var ?string $target
      */
     #[\JMS\Serializer\Annotation\SerializedName('target')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $target = null;
 
     /**
@@ -87,7 +87,7 @@ class Query
      */
     #[\JMS\Serializer\Annotation\SerializedName('terms')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $terms = null;
 
     /**

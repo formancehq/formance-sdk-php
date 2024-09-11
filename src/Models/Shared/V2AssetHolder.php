@@ -21,9 +21,9 @@ class V2AssetHolder
     public array $assets;
 
     /**
-     * @param  ?array<string, int>  $assets
+     * @param  array<string, int>  $assets
      */
-    public function __construct(?array $assets = null)
+    public function __construct(array $assets)
     {
         $this->assets = $assets;
     }

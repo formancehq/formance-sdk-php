@@ -20,9 +20,9 @@ class V2CreateTransactionResponse
     public V2Transaction $data;
 
     /**
-     * @param  ?V2Transaction  $data
+     * @param  V2Transaction  $data
      */
-    public function __construct(?V2Transaction $data = null)
+    public function __construct(V2Transaction $data)
     {
         $this->data = $data;
     }

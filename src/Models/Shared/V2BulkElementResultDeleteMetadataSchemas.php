@@ -19,9 +19,9 @@ class V2BulkElementResultDeleteMetadataSchemas
     public string $responseType;
 
     /**
-     * @param  ?string  $responseType
+     * @param  string  $responseType
      */
-    public function __construct(?string $responseType = null)
+    public function __construct(string $responseType)
     {
         $this->responseType = $responseType;
     }

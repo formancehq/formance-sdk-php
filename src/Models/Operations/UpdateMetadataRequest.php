@@ -14,10 +14,10 @@ class UpdateMetadataRequest
     /**
      * $requestBody
      *
-     * @var array<string, string> $requestBody
+     * @var ?array<string, string> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public array $requestBody;
+    public ?array $requestBody;
 
     /**
      * The payment ID.
@@ -28,12 +28,12 @@ class UpdateMetadataRequest
     public string $paymentId;
 
     /**
+     * @param  string  $paymentId
      * @param  ?array<string, string>  $requestBody
-     * @param  ?string  $paymentId
      */
-    public function __construct(?array $requestBody = null, ?string $paymentId = null)
+    public function __construct(string $paymentId, ?array $requestBody = null)
     {
-        $this->requestBody = $requestBody;
         $this->paymentId = $paymentId;
+        $this->requestBody = $requestBody;
     }
 }

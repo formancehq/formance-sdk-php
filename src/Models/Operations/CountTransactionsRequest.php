@@ -82,7 +82,7 @@ class CountTransactionsRequest
     public ?\DateTime $startTime = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $account
      * @param  ?string  $destination
      * @param  ?\DateTime  $endTime
@@ -91,7 +91,7 @@ class CountTransactionsRequest
      * @param  ?string  $source
      * @param  ?\DateTime  $startTime
      */
-    public function __construct(?string $ledger = null, ?string $account = null, ?string $destination = null, ?\DateTime $endTime = null, ?Metadata $metadata = null, ?string $reference = null, ?string $source = null, ?\DateTime $startTime = null)
+    public function __construct(string $ledger, ?string $account = null, ?string $destination = null, ?\DateTime $endTime = null, ?Metadata $metadata = null, ?string $reference = null, ?string $source = null, ?\DateTime $startTime = null)
     {
         $this->ledger = $ledger;
         $this->account = $account;

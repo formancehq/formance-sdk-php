@@ -47,13 +47,13 @@ class BankAccountRelatedAccounts
     public string $provider;
 
     /**
-     * @param  ?string  $accountID
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $provider
+     * @param  string  $accountID
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $provider
      */
-    public function __construct(?string $accountID = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $id = null, ?string $provider = null)
+    public function __construct(string $accountID, string $connectorID, \DateTime $createdAt, string $id, string $provider)
     {
         $this->accountID = $accountID;
         $this->connectorID = $connectorID;

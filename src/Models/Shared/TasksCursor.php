@@ -20,9 +20,9 @@ class TasksCursor
     public TasksCursorCursor $cursor;
 
     /**
-     * @param  ?TasksCursorCursor  $cursor
+     * @param  TasksCursorCursor  $cursor
      */
-    public function __construct(?TasksCursorCursor $cursor = null)
+    public function __construct(TasksCursorCursor $cursor)
     {
         $this->cursor = $cursor;
     }

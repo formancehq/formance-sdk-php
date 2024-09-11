@@ -14,10 +14,10 @@ class AddMetadataToAccountRequest
     /**
      * metadata
      *
-     * @var array<string, mixed> $requestBody
+     * @var ?array<string, mixed> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public array $requestBody;
+    public ?array $requestBody;
 
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
@@ -41,14 +41,14 @@ class AddMetadataToAccountRequest
     public string $ledger;
 
     /**
+     * @param  string  $address
+     * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
-     * @param  ?string  $address
-     * @param  ?string  $ledger
      */
-    public function __construct(?array $requestBody = null, ?string $address = null, ?string $ledger = null)
+    public function __construct(string $address, string $ledger, ?array $requestBody = null)
     {
-        $this->requestBody = $requestBody;
         $this->address = $address;
         $this->ledger = $ledger;
+        $this->requestBody = $requestBody;
     }
 }

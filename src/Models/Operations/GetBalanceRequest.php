@@ -26,10 +26,10 @@ class GetBalanceRequest
     public string $id;
 
     /**
-     * @param  ?string  $balanceName
-     * @param  ?string  $id
+     * @param  string  $balanceName
+     * @param  string  $id
      */
-    public function __construct(?string $balanceName = null, ?string $id = null)
+    public function __construct(string $balanceName, string $id)
     {
         $this->balanceName = $balanceName;
         $this->id = $id;

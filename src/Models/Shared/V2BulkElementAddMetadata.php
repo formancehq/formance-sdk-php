@@ -24,7 +24,7 @@ class V2BulkElementAddMetadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementAddMetadataData|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?V2BulkElementAddMetadataData $data = null;
 
     /**
@@ -32,15 +32,15 @@ class V2BulkElementAddMetadata
      * @var ?string $ik
      */
     #[\JMS\Serializer\Annotation\SerializedName('ik')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $ik = null;
 
     /**
-     * @param  ?string  $action
+     * @param  string  $action
      * @param  ?V2BulkElementAddMetadataData  $data
      * @param  ?string  $ik
      */
-    public function __construct(?string $action = null, ?V2BulkElementAddMetadataData $data = null, ?string $ik = null)
+    public function __construct(string $action, ?V2BulkElementAddMetadataData $data = null, ?string $ik = null)
     {
         $this->action = $action;
         $this->data = $data;

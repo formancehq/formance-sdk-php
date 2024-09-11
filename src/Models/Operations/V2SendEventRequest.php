@@ -27,10 +27,10 @@ class V2SendEventRequest
     public string $instanceID;
 
     /**
-     * @param  ?string  $instanceID
+     * @param  string  $instanceID
      * @param  ?V2SendEventRequestBody  $requestBody
      */
-    public function __construct(?string $instanceID = null, ?V2SendEventRequestBody $requestBody = null)
+    public function __construct(string $instanceID, ?V2SendEventRequestBody $requestBody = null)
     {
         $this->instanceID = $instanceID;
         $this->requestBody = $requestBody;

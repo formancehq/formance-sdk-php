@@ -32,7 +32,7 @@ class Reconciliation
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -89,18 +89,18 @@ class Reconciliation
     public string $status;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?array<string, int>  $driftBalances
-     * @param  ?string  $id
-     * @param  ?array<string, int>  $ledgerBalances
-     * @param  ?array<string, int>  $paymentsBalances
-     * @param  ?string  $policyID
-     * @param  ?\DateTime  $reconciledAtLedger
-     * @param  ?\DateTime  $reconciledAtPayments
-     * @param  ?string  $status
+     * @param  \DateTime  $createdAt
+     * @param  array<string, int>  $driftBalances
+     * @param  string  $id
+     * @param  array<string, int>  $ledgerBalances
+     * @param  array<string, int>  $paymentsBalances
+     * @param  string  $policyID
+     * @param  \DateTime  $reconciledAtLedger
+     * @param  \DateTime  $reconciledAtPayments
+     * @param  string  $status
      * @param  ?string  $error
      */
-    public function __construct(?\DateTime $createdAt = null, ?array $driftBalances = null, ?string $id = null, ?array $ledgerBalances = null, ?array $paymentsBalances = null, ?string $policyID = null, ?\DateTime $reconciledAtLedger = null, ?\DateTime $reconciledAtPayments = null, ?string $status = null, ?string $error = null)
+    public function __construct(\DateTime $createdAt, array $driftBalances, string $id, array $ledgerBalances, array $paymentsBalances, string $policyID, \DateTime $reconciledAtLedger, \DateTime $reconciledAtPayments, string $status, ?string $error = null)
     {
         $this->createdAt = $createdAt;
         $this->driftBalances = $driftBalances;

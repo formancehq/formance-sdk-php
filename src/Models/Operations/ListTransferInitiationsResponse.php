@@ -40,12 +40,12 @@ class ListTransferInitiationsResponse
     public ?Shared\TransferInitiationsCursor $transferInitiationsCursor = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TransferInitiationsCursor  $transferInitiationsCursor
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\TransferInitiationsCursor $transferInitiationsCursor = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransferInitiationsCursor $transferInitiationsCursor = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

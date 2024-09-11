@@ -25,7 +25,7 @@ class GetTransactionsResponseCursor
      * @var ?bool $hasMore
      */
     #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $hasMore = null;
 
     /**
@@ -33,7 +33,7 @@ class GetTransactionsResponseCursor
      * @var ?string $next
      */
     #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $next = null;
 
     /**
@@ -48,17 +48,17 @@ class GetTransactionsResponseCursor
      * @var ?string $previous
      */
     #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $previous = null;
 
     /**
-     * @param  ?array<WalletsTransaction>  $data
-     * @param  ?int  $pageSize
+     * @param  array<WalletsTransaction>  $data
+     * @param  int  $pageSize
      * @param  ?bool  $hasMore
      * @param  ?string  $next
      * @param  ?string  $previous
      */
-    public function __construct(?array $data = null, ?int $pageSize = null, ?bool $hasMore = null, ?string $next = null, ?string $previous = null)
+    public function __construct(array $data, int $pageSize, ?bool $hasMore = null, ?string $next = null, ?string $previous = null)
     {
         $this->data = $data;
         $this->pageSize = $pageSize;

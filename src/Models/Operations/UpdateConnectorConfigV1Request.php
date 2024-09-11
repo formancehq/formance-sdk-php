@@ -36,11 +36,11 @@ class UpdateConnectorConfigV1Request
     public string $connectorId;
 
     /**
-     * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig|null  $connectorConfig
-     * @param  ?Shared\Connector  $connector
-     * @param  ?string  $connectorId
+     * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig  $connectorConfig
+     * @param  Shared\Connector  $connector
+     * @param  string  $connectorId
      */
-    public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig|null $connectorConfig = null, ?Shared\Connector $connector = null, ?string $connectorId = null)
+    public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig, Shared\Connector $connector, string $connectorId)
     {
         $this->connectorConfig = $connectorConfig;
         $this->connector = $connector;

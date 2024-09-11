@@ -20,9 +20,9 @@ class V2ActivityGetPaymentOutput
     public V2Payment $data;
 
     /**
-     * @param  ?V2Payment  $data
+     * @param  V2Payment  $data
      */
-    public function __construct(?V2Payment $data = null)
+    public function __construct(V2Payment $data)
     {
         $this->data = $data;
     }

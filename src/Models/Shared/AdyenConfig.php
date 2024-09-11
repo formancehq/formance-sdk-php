@@ -30,7 +30,7 @@ class AdyenConfig
      * @var ?string $liveEndpointPrefix
      */
     #[\JMS\Serializer\Annotation\SerializedName('liveEndpointPrefix')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $liveEndpointPrefix = null;
 
     /**
@@ -48,17 +48,17 @@ class AdyenConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
-     * @param  ?string  $apiKey
-     * @param  ?string  $hmacKey
-     * @param  ?string  $name
+     * @param  string  $apiKey
+     * @param  string  $hmacKey
+     * @param  string  $name
      * @param  ?string  $liveEndpointPrefix
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(?string $apiKey = null, ?string $hmacKey = null, ?string $name = null, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = null)
     {
         $this->apiKey = $apiKey;
         $this->hmacKey = $hmacKey;

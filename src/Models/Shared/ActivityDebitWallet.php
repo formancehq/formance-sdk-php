@@ -17,7 +17,7 @@ class ActivityDebitWallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\DebitWalletRequest|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?DebitWalletRequest $data = null;
 
     /**
@@ -25,7 +25,7 @@ class ActivityDebitWallet
      * @var ?string $id
      */
     #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $id = null;
 
     /**

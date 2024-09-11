@@ -20,9 +20,9 @@ class GetBalanceResponse
     public BalanceWithAssets $data;
 
     /**
-     * @param  ?BalanceWithAssets  $data
+     * @param  BalanceWithAssets  $data
      */
-    public function __construct(?BalanceWithAssets $data = null)
+    public function __construct(BalanceWithAssets $data)
     {
         $this->data = $data;
     }

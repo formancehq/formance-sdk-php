@@ -20,9 +20,9 @@ class V2GetInstanceHistoryRequest
     public string $instanceID;
 
     /**
-     * @param  ?string  $instanceID
+     * @param  string  $instanceID
      */
-    public function __construct(?string $instanceID = null)
+    public function __construct(string $instanceID)
     {
         $this->instanceID = $instanceID;
     }

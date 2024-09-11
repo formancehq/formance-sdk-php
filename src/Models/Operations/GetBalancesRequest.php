@@ -59,13 +59,13 @@ class GetBalancesRequest
     public ?int $pageSize = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $address
      * @param  ?string  $after
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      */
-    public function __construct(?string $ledger = null, ?string $address = null, ?string $after = null, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(string $ledger, ?string $address = null, ?string $after = null, ?string $cursor = null, ?int $pageSize = null)
     {
         $this->ledger = $ledger;
         $this->address = $address;

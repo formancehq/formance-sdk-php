@@ -14,10 +14,10 @@ class UpdateMappingRequest
 {
     /**
      *
-     * @var Shared\Mapping $mapping
+     * @var ?Shared\Mapping $mapping
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\Mapping $mapping;
+    public ?Shared\Mapping $mapping;
 
     /**
      * Name of the ledger.
@@ -28,12 +28,12 @@ class UpdateMappingRequest
     public string $ledger;
 
     /**
+     * @param  string  $ledger
      * @param  ?Shared\Mapping  $mapping
-     * @param  ?string  $ledger
      */
-    public function __construct(?Shared\Mapping $mapping = null, ?string $ledger = null)
+    public function __construct(string $ledger, ?Shared\Mapping $mapping = null)
     {
-        $this->mapping = $mapping;
         $this->ledger = $ledger;
+        $this->mapping = $mapping;
     }
 }

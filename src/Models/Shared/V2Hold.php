@@ -23,9 +23,9 @@ class V2Hold
      * @var V2LedgerAccountSubject|V2WalletSubject|null $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject|null')]
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject')]
     #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['V2LedgerAccountSubject' => '\formance\stack\Models\Shared\V2LedgerAccountSubject', 'V2WalletSubject' => '\formance\stack\Models\Shared\V2WalletSubject'])]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 
     /**
@@ -54,13 +54,13 @@ class V2Hold
     public string $walletID;
 
     /**
-     * @param  ?string  $description
-     * @param  ?string  $id
-     * @param  ?array<string, string>  $metadata
-     * @param  ?string  $walletID
+     * @param  string  $description
+     * @param  string  $id
+     * @param  array<string, string>  $metadata
+     * @param  string  $walletID
      * @param  V2LedgerAccountSubject|V2WalletSubject|null  $destination
      */
-    public function __construct(?string $description = null, ?string $id = null, ?array $metadata = null, ?string $walletID = null, V2LedgerAccountSubject|V2WalletSubject|null $destination = null)
+    public function __construct(string $description, string $id, array $metadata, string $walletID, V2LedgerAccountSubject|V2WalletSubject|null $destination = null)
     {
         $this->description = $description;
         $this->id = $id;

@@ -16,7 +16,7 @@ class Balance
      * @var ?\DateTime $expiresAt
      */
     #[\JMS\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $expiresAt = null;
 
     /**
@@ -31,18 +31,18 @@ class Balance
      * @var ?int $priority
      */
     #[\JMS\Serializer\Annotation\SerializedName('priority')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $priority = null;
 
     /**
-     * @param  ?string  $name
-     * @param  ?\DateTime  $expiresAt
+     * @param  string  $name
      * @param  ?int  $priority
+     * @param  ?\DateTime  $expiresAt
      */
-    public function __construct(?string $name = null, ?\DateTime $expiresAt = null, ?int $priority = null)
+    public function __construct(string $name, ?int $priority = null, ?\DateTime $expiresAt = null)
     {
         $this->name = $name;
-        $this->expiresAt = $expiresAt;
         $this->priority = $priority;
+        $this->expiresAt = $expiresAt;
     }
 }

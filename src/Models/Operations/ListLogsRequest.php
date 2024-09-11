@@ -73,14 +73,14 @@ class ListLogsRequest
     public ?\DateTime $startTime = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $after
      * @param  ?string  $cursor
      * @param  ?\DateTime  $endTime
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $startTime
      */
-    public function __construct(?string $ledger = null, ?string $after = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $pageSize = null, ?\DateTime $startTime = null)
+    public function __construct(string $ledger, ?string $after = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $pageSize = null, ?\DateTime $startTime = null)
     {
         $this->ledger = $ledger;
         $this->after = $after;

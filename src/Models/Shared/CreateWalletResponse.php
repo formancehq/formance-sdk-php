@@ -20,9 +20,9 @@ class CreateWalletResponse
     public Wallet $data;
 
     /**
-     * @param  ?Wallet  $data
+     * @param  Wallet  $data
      */
-    public function __construct(?Wallet $data = null)
+    public function __construct(Wallet $data)
     {
         $this->data = $data;
     }

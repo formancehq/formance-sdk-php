@@ -16,7 +16,7 @@ class Volume
      * @var ?int $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $balance = null;
 
     /**
@@ -34,11 +34,11 @@ class Volume
     public int $output;
 
     /**
-     * @param  ?int  $input
-     * @param  ?int  $output
+     * @param  int  $input
+     * @param  int  $output
      * @param  ?int  $balance
      */
-    public function __construct(?int $input = null, ?int $output = null, ?int $balance = null)
+    public function __construct(int $input, int $output, ?int $balance = null)
     {
         $this->input = $input;
         $this->output = $output;

@@ -21,9 +21,9 @@ class UpdateWalletRequestBody
     public array $metadata;
 
     /**
-     * @param  ?array<string, string>  $metadata
+     * @param  array<string, string>  $metadata
      */
-    public function __construct(?array $metadata = null)
+    public function __construct(array $metadata)
     {
         $this->metadata = $metadata;
     }

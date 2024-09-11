@@ -41,11 +41,11 @@ class CreateTransactionRequest
     public ?bool $preview = null;
 
     /**
-     * @param  ?Shared\PostTransaction  $postTransaction
-     * @param  ?string  $ledger
+     * @param  Shared\PostTransaction  $postTransaction
+     * @param  string  $ledger
      * @param  ?bool  $preview
      */
-    public function __construct(?Shared\PostTransaction $postTransaction = null, ?string $ledger = null, ?bool $preview = null)
+    public function __construct(Shared\PostTransaction $postTransaction, string $ledger, ?bool $preview = null)
     {
         $this->postTransaction = $postTransaction;
         $this->ledger = $ledger;

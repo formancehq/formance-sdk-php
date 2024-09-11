@@ -20,9 +20,9 @@ class OrchestrationListWalletsResponse
     public OrchestrationListWalletsResponseCursor $cursor;
 
     /**
-     * @param  ?OrchestrationListWalletsResponseCursor  $cursor
+     * @param  OrchestrationListWalletsResponseCursor  $cursor
      */
-    public function __construct(?OrchestrationListWalletsResponseCursor $cursor = null)
+    public function __construct(OrchestrationListWalletsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

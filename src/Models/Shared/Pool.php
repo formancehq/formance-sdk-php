@@ -35,11 +35,11 @@ class Pool
     public string $name;
 
     /**
-     * @param  ?array<string>  $accounts
-     * @param  ?string  $id
-     * @param  ?string  $name
+     * @param  array<string>  $accounts
+     * @param  string  $id
+     * @param  string  $name
      */
-    public function __construct(?array $accounts = null, ?string $id = null, ?string $name = null)
+    public function __construct(array $accounts, string $id, string $name)
     {
         $this->accounts = $accounts;
         $this->id = $id;

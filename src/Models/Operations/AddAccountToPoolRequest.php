@@ -28,10 +28,10 @@ class AddAccountToPoolRequest
     public string $poolId;
 
     /**
-     * @param  ?Shared\AddAccountToPoolRequest  $addAccountToPoolRequest
-     * @param  ?string  $poolId
+     * @param  Shared\AddAccountToPoolRequest  $addAccountToPoolRequest
+     * @param  string  $poolId
      */
-    public function __construct(?Shared\AddAccountToPoolRequest $addAccountToPoolRequest = null, ?string $poolId = null)
+    public function __construct(Shared\AddAccountToPoolRequest $addAccountToPoolRequest, string $poolId)
     {
         $this->addAccountToPoolRequest = $addAccountToPoolRequest;
         $this->poolId = $poolId;

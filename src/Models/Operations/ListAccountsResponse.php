@@ -48,13 +48,13 @@ class ListAccountsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\AccountsCursorResponse  $accountsCursorResponse
      * @param  ?Errors\ErrorResponse  $errorResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Errors\ErrorResponse $errorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Errors\ErrorResponse $errorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -57,11 +57,11 @@ class PaymentsAccount
     /**
      * $metadata
      *
-     * @var array<string, string> $metadata
+     * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
-    public array $metadata;
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
+    public ?array $metadata;
 
     /**
      * $pools
@@ -70,7 +70,7 @@ class PaymentsAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('pools')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $pools = null;
 
     /**
@@ -78,16 +78,16 @@ class PaymentsAccount
      * @var ?string $provider
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $provider = null;
 
     /**
      *
-     * @var PaymentsAccountRaw $raw
+     * @var ?PaymentsAccountRaw $raw
      */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsAccountRaw')]
-    public PaymentsAccountRaw $raw;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsAccountRaw|null')]
+    public ?PaymentsAccountRaw $raw;
 
     /**
      *
@@ -105,20 +105,20 @@ class PaymentsAccount
     public AccountType $type;
 
     /**
-     * @param  ?string  $accountName
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $defaultAsset
-     * @param  ?string  $defaultCurrency
-     * @param  ?string  $id
+     * @param  string  $accountName
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $defaultAsset
+     * @param  string  $defaultCurrency
+     * @param  string  $id
+     * @param  string  $reference
+     * @param  AccountType  $type
      * @param  ?array<string, string>  $metadata
-     * @param  ?PaymentsAccountRaw  $raw
-     * @param  ?string  $reference
-     * @param  ?AccountType  $type
      * @param  ?array<string>  $pools
      * @param  ?string  $provider
+     * @param  ?PaymentsAccountRaw  $raw
      */
-    public function __construct(?string $accountName = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $defaultAsset = null, ?string $defaultCurrency = null, ?string $id = null, ?array $metadata = null, ?PaymentsAccountRaw $raw = null, ?string $reference = null, ?AccountType $type = null, ?array $pools = null, ?string $provider = null)
+    public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, AccountType $type, ?array $metadata = null, ?array $pools = null, ?string $provider = null, ?PaymentsAccountRaw $raw = null)
     {
         $this->accountName = $accountName;
         $this->connectorID = $connectorID;
@@ -126,11 +126,11 @@ class PaymentsAccount
         $this->defaultAsset = $defaultAsset;
         $this->defaultCurrency = $defaultCurrency;
         $this->id = $id;
-        $this->metadata = $metadata;
-        $this->raw = $raw;
         $this->reference = $reference;
         $this->type = $type;
+        $this->metadata = $metadata;
         $this->pools = $pools;
         $this->provider = $provider;
+        $this->raw = $raw;
     }
 }

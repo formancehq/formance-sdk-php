@@ -20,9 +20,9 @@ class PaymentsAccountResponse
     public PaymentsAccount $data;
 
     /**
-     * @param  ?PaymentsAccount  $data
+     * @param  PaymentsAccount  $data
      */
-    public function __construct(?PaymentsAccount $data = null)
+    public function __construct(PaymentsAccount $data)
     {
         $this->data = $data;
     }

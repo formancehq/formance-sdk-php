@@ -28,10 +28,10 @@ class PoolRequest
     public string $name;
 
     /**
-     * @param  ?array<string>  $accountIDs
-     * @param  ?string  $name
+     * @param  array<string>  $accountIDs
+     * @param  string  $name
      */
-    public function __construct(?array $accountIDs = null, ?string $name = null)
+    public function __construct(array $accountIDs, string $name)
     {
         $this->accountIDs = $accountIDs;
         $this->name = $name;

@@ -38,7 +38,7 @@ class TaskWise
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -72,16 +72,16 @@ class TaskWise
     public \DateTime $updatedAt;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?TaskWiseDescriptor  $descriptor
-     * @param  ?string  $id
-     * @param  ?TaskWiseState  $state
-     * @param  ?PaymentStatus  $status
-     * @param  ?\DateTime  $updatedAt
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  TaskWiseDescriptor  $descriptor
+     * @param  string  $id
+     * @param  TaskWiseState  $state
+     * @param  PaymentStatus  $status
+     * @param  \DateTime  $updatedAt
      * @param  ?string  $error
      */
-    public function __construct(?string $connectorID = null, ?\DateTime $createdAt = null, ?TaskWiseDescriptor $descriptor = null, ?string $id = null, ?TaskWiseState $state = null, ?PaymentStatus $status = null, ?\DateTime $updatedAt = null, ?string $error = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, TaskWiseDescriptor $descriptor, string $id, TaskWiseState $state, PaymentStatus $status, \DateTime $updatedAt, ?string $error = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

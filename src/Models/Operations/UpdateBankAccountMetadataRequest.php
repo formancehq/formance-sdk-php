@@ -28,10 +28,10 @@ class UpdateBankAccountMetadataRequest
     public string $bankAccountId;
 
     /**
-     * @param  ?Shared\UpdateBankAccountMetadataRequest  $updateBankAccountMetadataRequest
-     * @param  ?string  $bankAccountId
+     * @param  Shared\UpdateBankAccountMetadataRequest  $updateBankAccountMetadataRequest
+     * @param  string  $bankAccountId
      */
-    public function __construct(?Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest = null, ?string $bankAccountId = null)
+    public function __construct(Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest, string $bankAccountId)
     {
         $this->updateBankAccountMetadataRequest = $updateBankAccountMetadataRequest;
         $this->bankAccountId = $bankAccountId;

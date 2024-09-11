@@ -90,7 +90,7 @@ class ListAccountsRequest
     public ?string $paginationToken = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $address
      * @param  ?string  $after
      * @param  ?int  $balance
@@ -99,7 +99,7 @@ class ListAccountsRequest
      * @param  ?int  $pageSize
      * @param  ?string  $paginationToken
      */
-    public function __construct(?string $ledger = null, ?string $address = null, ?string $after = null, ?int $balance = null, ?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $paginationToken = null)
+    public function __construct(string $ledger, ?string $address = null, ?string $after = null, ?int $balance = null, ?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $paginationToken = null)
     {
         $this->ledger = $ledger;
         $this->address = $address;

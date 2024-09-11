@@ -36,11 +36,11 @@ class V2RunWorkflowRequest
     public string $workflowID;
 
     /**
-     * @param  ?string  $workflowID
+     * @param  string  $workflowID
      * @param  ?array<string, string>  $requestBody
      * @param  ?bool  $wait
      */
-    public function __construct(?string $workflowID = null, ?array $requestBody = null, ?bool $wait = null)
+    public function __construct(string $workflowID, ?array $requestBody = null, ?bool $wait = null)
     {
         $this->workflowID = $workflowID;
         $this->requestBody = $requestBody;

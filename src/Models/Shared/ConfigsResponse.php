@@ -20,9 +20,9 @@ class ConfigsResponse
     public ConfigsResponseCursor $cursor;
 
     /**
-     * @param  ?ConfigsResponseCursor  $cursor
+     * @param  ConfigsResponseCursor  $cursor
      */
-    public function __construct(?ConfigsResponseCursor $cursor = null)
+    public function __construct(ConfigsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

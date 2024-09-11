@@ -33,7 +33,7 @@ class StripeConfig
      * @var ?int $pageSize
      */
     #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
@@ -44,16 +44,16 @@ class StripeConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
-     * @param  ?string  $apiKey
-     * @param  ?string  $name
+     * @param  string  $apiKey
+     * @param  string  $name
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(?string $apiKey = null, ?string $name = null, ?int $pageSize = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $name, ?int $pageSize = null, ?string $pollingPeriod = null)
     {
         $this->apiKey = $apiKey;
         $this->name = $name;

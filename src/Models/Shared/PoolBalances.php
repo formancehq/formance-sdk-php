@@ -21,9 +21,9 @@ class PoolBalances
     public array $balances;
 
     /**
-     * @param  ?array<PoolBalance>  $balances
+     * @param  array<PoolBalance>  $balances
      */
-    public function __construct(?array $balances = null)
+    public function __construct(array $balances)
     {
         $this->balances = $balances;
     }

@@ -20,9 +20,9 @@ class PoolBalancesResponse
     public PoolBalances $data;
 
     /**
-     * @param  ?PoolBalances  $data
+     * @param  PoolBalances  $data
      */
-    public function __construct(?PoolBalances $data = null)
+    public function __construct(PoolBalances $data)
     {
         $this->data = $data;
     }

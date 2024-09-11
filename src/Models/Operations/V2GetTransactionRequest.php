@@ -42,12 +42,12 @@ class V2GetTransactionRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  ?int  $id
-     * @param  ?string  $ledger
+     * @param  int  $id
+     * @param  string  $ledger
      * @param  ?string  $expand
      * @param  ?\DateTime  $pit
      */
-    public function __construct(?int $id = null, ?string $ledger = null, ?string $expand = null, ?\DateTime $pit = null)
+    public function __construct(int $id, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

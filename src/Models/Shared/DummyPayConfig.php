@@ -24,7 +24,7 @@ class DummyPayConfig
      * @var ?string $filePollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('filePollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $filePollingPeriod = null;
 
     /**
@@ -39,7 +39,7 @@ class DummyPayConfig
      * @var ?int $numberOfAccountsPreGenerated
      */
     #[\JMS\Serializer\Annotation\SerializedName('numberOfAccountsPreGenerated')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $numberOfAccountsPreGenerated = null;
 
     /**
@@ -47,7 +47,7 @@ class DummyPayConfig
      * @var ?int $numberOfPaymentsPreGenerated
      */
     #[\JMS\Serializer\Annotation\SerializedName('numberOfPaymentsPreGenerated')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $numberOfPaymentsPreGenerated = null;
 
     /**
@@ -55,18 +55,18 @@ class DummyPayConfig
      * @var ?string $prefixFileToIngest
      */
     #[\JMS\Serializer\Annotation\SerializedName('prefixFileToIngest')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $prefixFileToIngest = null;
 
     /**
-     * @param  ?string  $directory
-     * @param  ?string  $name
+     * @param  string  $directory
+     * @param  string  $name
      * @param  ?string  $filePollingPeriod
      * @param  ?int  $numberOfAccountsPreGenerated
      * @param  ?int  $numberOfPaymentsPreGenerated
      * @param  ?string  $prefixFileToIngest
      */
-    public function __construct(?string $directory = null, ?string $name = null, ?string $filePollingPeriod = null, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null)
+    public function __construct(string $directory, string $name, ?string $filePollingPeriod = null, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null)
     {
         $this->directory = $directory;
         $this->name = $name;

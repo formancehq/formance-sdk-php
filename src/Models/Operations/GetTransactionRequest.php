@@ -28,10 +28,10 @@ class GetTransactionRequest
     public int $txid;
 
     /**
-     * @param  ?string  $ledger
-     * @param  ?int  $txid
+     * @param  string  $ledger
+     * @param  int  $txid
      */
-    public function __construct(?string $ledger = null, ?int $txid = null)
+    public function __construct(string $ledger, int $txid)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

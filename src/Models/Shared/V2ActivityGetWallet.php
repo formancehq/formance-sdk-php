@@ -19,9 +19,9 @@ class V2ActivityGetWallet
     public string $id;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      */
-    public function __construct(?string $id = null)
+    public function __construct(string $id)
     {
         $this->id = $id;
     }

@@ -20,9 +20,9 @@ class ConnectorsConfigsResponseConnector
     public Key $key;
 
     /**
-     * @param  ?Key  $key
+     * @param  Key  $key
      */
-    public function __construct(?Key $key = null)
+    public function __construct(Key $key)
     {
         $this->key = $key;
     }

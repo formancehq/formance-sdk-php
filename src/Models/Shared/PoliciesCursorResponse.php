@@ -20,9 +20,9 @@ class PoliciesCursorResponse
     public PoliciesCursorResponseCursor $cursor;
 
     /**
-     * @param  ?PoliciesCursorResponseCursor  $cursor
+     * @param  PoliciesCursorResponseCursor  $cursor
      */
-    public function __construct(?PoliciesCursorResponseCursor $cursor = null)
+    public function __construct(PoliciesCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

@@ -40,12 +40,12 @@ class V2ListLedgersResponse
     public ?Shared\V2LedgerListResponse $v2LedgerListResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2LedgerListResponse  $v2LedgerListResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2LedgerListResponse $v2LedgerListResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2LedgerListResponse $v2LedgerListResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

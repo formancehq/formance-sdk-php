@@ -26,10 +26,10 @@ class V2Stats
     public int $transactions;
 
     /**
-     * @param  ?int  $accounts
-     * @param  ?int  $transactions
+     * @param  int  $accounts
+     * @param  int  $transactions
      */
-    public function __construct(?int $accounts = null, ?int $transactions = null)
+    public function __construct(int $accounts, int $transactions)
     {
         $this->accounts = $accounts;
         $this->transactions = $transactions;

@@ -41,12 +41,12 @@ class TransferInitiationPayments
     public TransferInitiationStatus $status;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $error
-     * @param  ?string  $paymentID
-     * @param  ?TransferInitiationStatus  $status
+     * @param  \DateTime  $createdAt
+     * @param  string  $error
+     * @param  string  $paymentID
+     * @param  TransferInitiationStatus  $status
      */
-    public function __construct(?\DateTime $createdAt = null, ?string $error = null, ?string $paymentID = null, ?TransferInitiationStatus $status = null)
+    public function __construct(\DateTime $createdAt, string $error, string $paymentID, TransferInitiationStatus $status)
     {
         $this->createdAt = $createdAt;
         $this->error = $error;

@@ -81,7 +81,7 @@ class V2GetVolumesWithBalancesRequest
     public ?\DateTime $startTime = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?\DateTime  $endTime
@@ -90,7 +90,7 @@ class V2GetVolumesWithBalancesRequest
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $startTime
      */
-    public function __construct(?string $ledger = null, ?array $requestBody = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $startTime = null)
+    public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $startTime = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;

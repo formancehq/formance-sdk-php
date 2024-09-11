@@ -20,9 +20,9 @@ class GetReconciliationRequest
     public string $reconciliationID;
 
     /**
-     * @param  ?string  $reconciliationID
+     * @param  string  $reconciliationID
      */
-    public function __construct(?string $reconciliationID = null)
+    public function __construct(string $reconciliationID)
     {
         $this->reconciliationID = $reconciliationID;
     }

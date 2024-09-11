@@ -30,7 +30,7 @@ class V2BulkElementResultErrorSchemas
      * @var ?string $errorDetails
      */
     #[\JMS\Serializer\Annotation\SerializedName('errorDetails')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $errorDetails = null;
 
     /**
@@ -41,12 +41,12 @@ class V2BulkElementResultErrorSchemas
     public string $responseType;
 
     /**
-     * @param  ?string  $errorCode
-     * @param  ?string  $errorDescription
-     * @param  ?string  $responseType
+     * @param  string  $errorCode
+     * @param  string  $errorDescription
+     * @param  string  $responseType
      * @param  ?string  $errorDetails
      */
-    public function __construct(?string $errorCode = null, ?string $errorDescription = null, ?string $responseType = null, ?string $errorDetails = null)
+    public function __construct(string $errorCode, string $errorDescription, string $responseType, ?string $errorDetails = null)
     {
         $this->errorCode = $errorCode;
         $this->errorDescription = $errorDescription;

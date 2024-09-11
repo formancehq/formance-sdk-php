@@ -72,11 +72,11 @@ class Payment
     /**
      * $metadata
      *
-     * @var array<string, string> $metadata
+     * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
-    public array $metadata;
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
+    public ?array $metadata;
 
     /**
      *
@@ -84,16 +84,16 @@ class Payment
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?Connector $provider = null;
 
     /**
      *
-     * @var Raw $raw
+     * @var ?Raw $raw
      */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Raw')]
-    public Raw $raw;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Raw|null')]
+    public ?Raw $raw;
 
     /**
      *
@@ -134,24 +134,24 @@ class Payment
     public PaymentType $type;
 
     /**
-     * @param  ?array<PaymentAdjustment>  $adjustments
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $destinationAccountID
-     * @param  ?string  $id
-     * @param  ?int  $initialAmount
+     * @param  array<PaymentAdjustment>  $adjustments
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $destinationAccountID
+     * @param  string  $id
+     * @param  int  $initialAmount
+     * @param  string  $reference
+     * @param  PaymentScheme  $scheme
+     * @param  string  $sourceAccountID
+     * @param  PaymentStatus  $status
+     * @param  PaymentType  $type
      * @param  ?array<string, string>  $metadata
-     * @param  ?Raw  $raw
-     * @param  ?string  $reference
-     * @param  ?PaymentScheme  $scheme
-     * @param  ?string  $sourceAccountID
-     * @param  ?PaymentStatus  $status
-     * @param  ?PaymentType  $type
      * @param  ?Connector  $provider
+     * @param  ?Raw  $raw
      */
-    public function __construct(?array $adjustments = null, ?int $amount = null, ?string $asset = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $destinationAccountID = null, ?string $id = null, ?int $initialAmount = null, ?array $metadata = null, ?Raw $raw = null, ?string $reference = null, ?PaymentScheme $scheme = null, ?string $sourceAccountID = null, ?PaymentStatus $status = null, ?PaymentType $type = null, ?Connector $provider = null)
+    public function __construct(array $adjustments, int $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, int $initialAmount, string $reference, PaymentScheme $scheme, string $sourceAccountID, PaymentStatus $status, PaymentType $type, ?array $metadata = null, ?Connector $provider = null, ?Raw $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->amount = $amount;
@@ -161,13 +161,13 @@ class Payment
         $this->destinationAccountID = $destinationAccountID;
         $this->id = $id;
         $this->initialAmount = $initialAmount;
-        $this->metadata = $metadata;
-        $this->raw = $raw;
         $this->reference = $reference;
         $this->scheme = $scheme;
         $this->sourceAccountID = $sourceAccountID;
         $this->status = $status;
         $this->type = $type;
+        $this->metadata = $metadata;
         $this->provider = $provider;
+        $this->raw = $raw;
     }
 }

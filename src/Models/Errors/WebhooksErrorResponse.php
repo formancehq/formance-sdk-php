@@ -18,7 +18,7 @@ class WebhooksErrorResponse
      * @var ?string $details
      */
     #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
 
     /**
@@ -37,11 +37,11 @@ class WebhooksErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  ?Shared\WebhooksErrorsEnum  $errorCode
-     * @param  ?string  $errorMessage
+     * @param  Shared\WebhooksErrorsEnum  $errorCode
+     * @param  string  $errorMessage
      * @param  ?string  $details
      */
-    public function __construct(?Shared\WebhooksErrorsEnum $errorCode = null, ?string $errorMessage = null, ?string $details = null)
+    public function __construct(Shared\WebhooksErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

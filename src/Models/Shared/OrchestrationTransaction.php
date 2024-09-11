@@ -41,7 +41,7 @@ class OrchestrationTransaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -59,14 +59,14 @@ class OrchestrationTransaction
     public \DateTime $timestamp;
 
     /**
-     * @param  ?int  $id
-     * @param  ?array<string, string>  $metadata
-     * @param  ?array<Posting>  $postings
-     * @param  ?bool  $reverted
-     * @param  ?\DateTime  $timestamp
+     * @param  int  $id
+     * @param  array<string, string>  $metadata
+     * @param  array<Posting>  $postings
+     * @param  bool  $reverted
+     * @param  \DateTime  $timestamp
      * @param  ?string  $reference
      */
-    public function __construct(?int $id = null, ?array $metadata = null, ?array $postings = null, ?bool $reverted = null, ?\DateTime $timestamp = null, ?string $reference = null)
+    public function __construct(int $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?string $reference = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;

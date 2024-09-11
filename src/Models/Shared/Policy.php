@@ -56,14 +56,14 @@ class Policy
     public string $paymentsPoolID;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $ledgerName
-     * @param  ?array<string, mixed>  $ledgerQuery
-     * @param  ?string  $name
-     * @param  ?string  $paymentsPoolID
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $ledgerName
+     * @param  array<string, mixed>  $ledgerQuery
+     * @param  string  $name
+     * @param  string  $paymentsPoolID
      */
-    public function __construct(?\DateTime $createdAt = null, ?string $id = null, ?string $ledgerName = null, ?array $ledgerQuery = null, ?string $name = null, ?string $paymentsPoolID = null)
+    public function __construct(\DateTime $createdAt, string $id, string $ledgerName, array $ledgerQuery, string $name, string $paymentsPoolID)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

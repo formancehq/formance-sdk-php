@@ -16,7 +16,7 @@ class AccountRequest
      * @var ?string $accountName
      */
     #[\JMS\Serializer\Annotation\SerializedName('accountName')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $accountName = null;
 
     /**
@@ -38,7 +38,7 @@ class AccountRequest
      * @var ?string $defaultAsset
      */
     #[\JMS\Serializer\Annotation\SerializedName('defaultAsset')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $defaultAsset = null;
 
     /**
@@ -48,7 +48,7 @@ class AccountRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -67,15 +67,15 @@ class AccountRequest
     public AccountType $type;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $reference
-     * @param  ?AccountType  $type
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $reference
+     * @param  AccountType  $type
      * @param  ?string  $accountName
      * @param  ?string  $defaultAsset
      * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?string $connectorID = null, ?\DateTime $createdAt = null, ?string $reference = null, ?AccountType $type = null, ?string $accountName = null, ?string $defaultAsset = null, ?array $metadata = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $reference, AccountType $type, ?string $accountName = null, ?string $defaultAsset = null, ?array $metadata = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

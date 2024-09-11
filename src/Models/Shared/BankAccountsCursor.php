@@ -20,9 +20,9 @@ class BankAccountsCursor
     public BankAccountsCursorCursor $cursor;
 
     /**
-     * @param  ?BankAccountsCursorCursor  $cursor
+     * @param  BankAccountsCursorCursor  $cursor
      */
-    public function __construct(?BankAccountsCursorCursor $cursor = null)
+    public function __construct(BankAccountsCursorCursor $cursor)
     {
         $this->cursor = $cursor;
     }

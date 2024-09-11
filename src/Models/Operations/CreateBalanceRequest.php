@@ -35,11 +35,11 @@ class CreateBalanceRequest
     public string $id;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      * @param  ?Shared\CreateBalanceRequest  $createBalanceRequest
      * @param  ?string  $idempotencyKey
      */
-    public function __construct(?string $id = null, ?Shared\CreateBalanceRequest $createBalanceRequest = null, ?string $idempotencyKey = null)
+    public function __construct(string $id, ?Shared\CreateBalanceRequest $createBalanceRequest = null, ?string $idempotencyKey = null)
     {
         $this->id = $id;
         $this->createBalanceRequest = $createBalanceRequest;

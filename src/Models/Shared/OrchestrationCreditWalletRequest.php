@@ -25,7 +25,7 @@ class OrchestrationCreditWalletRequest
      * @var ?string $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $balance = null;
 
     /**
@@ -42,7 +42,7 @@ class OrchestrationCreditWalletRequest
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -59,18 +59,18 @@ class OrchestrationCreditWalletRequest
      * @var ?\DateTime $timestamp
      */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?Monetary  $amount
-     * @param  ?array<string, string>  $metadata
-     * @param  ?array<mixed>  $sources
+     * @param  Monetary  $amount
+     * @param  array<string, string>  $metadata
+     * @param  array<mixed>  $sources
      * @param  ?string  $balance
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      */
-    public function __construct(?Monetary $amount = null, ?array $metadata = null, ?array $sources = null, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
+    public function __construct(Monetary $amount, array $metadata, array $sources, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
     {
         $this->amount = $amount;
         $this->metadata = $metadata;

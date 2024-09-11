@@ -52,12 +52,12 @@ class ListConnectorTasksV1Request
     public ?int $pageSize = null;
 
     /**
-     * @param  ?Shared\Connector  $connector
-     * @param  ?string  $connectorId
+     * @param  Shared\Connector  $connector
+     * @param  string  $connectorId
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      */
-    public function __construct(?Shared\Connector $connector = null, ?string $connectorId = null, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(Shared\Connector $connector, string $connectorId, ?string $cursor = null, ?int $pageSize = null)
     {
         $this->connector = $connector;
         $this->connectorId = $connectorId;

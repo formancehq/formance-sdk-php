@@ -18,7 +18,7 @@ class TransactionData
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -35,7 +35,7 @@ class TransactionData
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -43,20 +43,20 @@ class TransactionData
      * @var ?\DateTime $timestamp
      */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?array<Posting>  $postings
-     * @param  ?array<string, mixed>  $metadata
+     * @param  array<Posting>  $postings
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
+     * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?array $postings = null, ?array $metadata = null, ?string $reference = null, ?\DateTime $timestamp = null)
+    public function __construct(array $postings, ?string $reference = null, ?\DateTime $timestamp = null, ?array $metadata = null)
     {
         $this->postings = $postings;
-        $this->metadata = $metadata;
         $this->reference = $reference;
         $this->timestamp = $timestamp;
+        $this->metadata = $metadata;
     }
 }

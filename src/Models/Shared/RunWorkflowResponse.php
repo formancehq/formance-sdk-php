@@ -20,9 +20,9 @@ class RunWorkflowResponse
     public WorkflowInstance $data;
 
     /**
-     * @param  ?WorkflowInstance  $data
+     * @param  WorkflowInstance  $data
      */
-    public function __construct(?WorkflowInstance $data = null)
+    public function __construct(WorkflowInstance $data)
     {
         $this->data = $data;
     }

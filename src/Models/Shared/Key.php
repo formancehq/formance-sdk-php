@@ -26,10 +26,10 @@ class Key
     public bool $required;
 
     /**
-     * @param  ?string  $dataType
-     * @param  ?bool  $required
+     * @param  string  $dataType
+     * @param  bool  $required
      */
-    public function __construct(?string $dataType = null, ?bool $required = null)
+    public function __construct(string $dataType, bool $required)
     {
         $this->dataType = $dataType;
         $this->required = $required;

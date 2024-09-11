@@ -37,16 +37,16 @@ class TransferRequest
      * @var ?string $source
      */
     #[\JMS\Serializer\Annotation\SerializedName('source')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $source = null;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $destination
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $destination
      * @param  ?string  $source
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $destination = null, ?string $source = null)
+    public function __construct(int $amount, string $asset, string $destination, ?string $source = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

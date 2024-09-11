@@ -25,7 +25,7 @@ class Account
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -33,15 +33,15 @@ class Account
      * @var ?string $type
      */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $type = null;
 
     /**
-     * @param  ?string  $address
+     * @param  string  $address
      * @param  ?array<string, mixed>  $metadata
      * @param  ?string  $type
      */
-    public function __construct(?string $address = null, ?array $metadata = null, ?string $type = null)
+    public function __construct(string $address, ?array $metadata = null, ?string $type = null)
     {
         $this->address = $address;
         $this->metadata = $metadata;

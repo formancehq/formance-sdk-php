@@ -20,9 +20,9 @@ class DeletePoolRequest
     public string $poolId;
 
     /**
-     * @param  ?string  $poolId
+     * @param  string  $poolId
      */
-    public function __construct(?string $poolId = null)
+    public function __construct(string $poolId)
     {
         $this->poolId = $poolId;
     }

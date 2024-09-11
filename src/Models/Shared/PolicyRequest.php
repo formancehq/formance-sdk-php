@@ -42,12 +42,12 @@ class PolicyRequest
     public string $paymentsPoolID;
 
     /**
-     * @param  ?string  $ledgerName
-     * @param  ?array<string, mixed>  $ledgerQuery
-     * @param  ?string  $name
-     * @param  ?string  $paymentsPoolID
+     * @param  string  $ledgerName
+     * @param  array<string, mixed>  $ledgerQuery
+     * @param  string  $name
+     * @param  string  $paymentsPoolID
      */
-    public function __construct(?string $ledgerName = null, ?array $ledgerQuery = null, ?string $name = null, ?string $paymentsPoolID = null)
+    public function __construct(string $ledgerName, array $ledgerQuery, string $name, string $paymentsPoolID)
     {
         $this->ledgerName = $ledgerName;
         $this->ledgerQuery = $ledgerQuery;

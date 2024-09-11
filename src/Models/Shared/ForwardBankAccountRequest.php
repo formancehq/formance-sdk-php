@@ -19,9 +19,9 @@ class ForwardBankAccountRequest
     public string $connectorID;
 
     /**
-     * @param  ?string  $connectorID
+     * @param  string  $connectorID
      */
-    public function __construct(?string $connectorID = null)
+    public function __construct(string $connectorID)
     {
         $this->connectorID = $connectorID;
     }

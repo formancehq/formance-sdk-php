@@ -20,9 +20,9 @@ class Balances
     public V2AssetHolder $main;
 
     /**
-     * @param  ?V2AssetHolder  $main
+     * @param  V2AssetHolder  $main
      */
-    public function __construct(?V2AssetHolder $main = null)
+    public function __construct(V2AssetHolder $main)
     {
         $this->main = $main;
     }

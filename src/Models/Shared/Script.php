@@ -18,7 +18,7 @@ class Script
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -34,7 +34,7 @@ class Script
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -44,20 +44,20 @@ class Script
      */
     #[\JMS\Serializer\Annotation\SerializedName('vars')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
 
     /**
-     * @param  ?string  $plain
-     * @param  ?array<string, mixed>  $metadata
+     * @param  string  $plain
      * @param  ?string  $reference
      * @param  ?array<string, mixed>  $vars
+     * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?string $plain = null, ?array $metadata = null, ?string $reference = null, ?array $vars = null)
+    public function __construct(string $plain, ?string $reference = null, ?array $vars = null, ?array $metadata = null)
     {
         $this->plain = $plain;
-        $this->metadata = $metadata;
         $this->reference = $reference;
         $this->vars = $vars;
+        $this->metadata = $metadata;
     }
 }

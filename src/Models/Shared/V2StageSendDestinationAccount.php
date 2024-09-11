@@ -23,14 +23,14 @@ class V2StageSendDestinationAccount
      * @var ?string $ledger
      */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $ledger = null;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      * @param  ?string  $ledger
      */
-    public function __construct(?string $id = null, ?string $ledger = null)
+    public function __construct(string $id, ?string $ledger = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

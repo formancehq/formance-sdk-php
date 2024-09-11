@@ -55,14 +55,14 @@ class AccountBalance
     public \DateTime $lastUpdatedAt;
 
     /**
-     * @param  ?string  $accountId
-     * @param  ?string  $asset
-     * @param  ?int  $balance
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $currency
-     * @param  ?\DateTime  $lastUpdatedAt
+     * @param  string  $accountId
+     * @param  string  $asset
+     * @param  int  $balance
+     * @param  \DateTime  $createdAt
+     * @param  string  $currency
+     * @param  \DateTime  $lastUpdatedAt
      */
-    public function __construct(?string $accountId = null, ?string $asset = null, ?int $balance = null, ?\DateTime $createdAt = null, ?string $currency = null, ?\DateTime $lastUpdatedAt = null)
+    public function __construct(string $accountId, string $asset, int $balance, \DateTime $createdAt, string $currency, \DateTime $lastUpdatedAt)
     {
         $this->accountId = $accountId;
         $this->asset = $asset;

@@ -38,7 +38,7 @@ class TaskBankingCircle
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -72,16 +72,16 @@ class TaskBankingCircle
     public \DateTime $updatedAt;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?Descriptor  $descriptor
-     * @param  ?string  $id
-     * @param  ?TaskBankingCircleState  $state
-     * @param  ?PaymentStatus  $status
-     * @param  ?\DateTime  $updatedAt
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  Descriptor  $descriptor
+     * @param  string  $id
+     * @param  TaskBankingCircleState  $state
+     * @param  PaymentStatus  $status
+     * @param  \DateTime  $updatedAt
      * @param  ?string  $error
      */
-    public function __construct(?string $connectorID = null, ?\DateTime $createdAt = null, ?Descriptor $descriptor = null, ?string $id = null, ?TaskBankingCircleState $state = null, ?PaymentStatus $status = null, ?\DateTime $updatedAt = null, ?string $error = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, Descriptor $descriptor, string $id, TaskBankingCircleState $state, PaymentStatus $status, \DateTime $updatedAt, ?string $error = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

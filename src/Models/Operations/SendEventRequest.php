@@ -27,10 +27,10 @@ class SendEventRequest
     public string $instanceID;
 
     /**
-     * @param  ?string  $instanceID
+     * @param  string  $instanceID
      * @param  ?SendEventRequestBody  $requestBody
      */
-    public function __construct(?string $instanceID = null, ?SendEventRequestBody $requestBody = null)
+    public function __construct(string $instanceID, ?SendEventRequestBody $requestBody = null)
     {
         $this->instanceID = $instanceID;
         $this->requestBody = $requestBody;

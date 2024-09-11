@@ -18,7 +18,7 @@ class Transaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -28,7 +28,7 @@ class Transaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
@@ -47,7 +47,7 @@ class Transaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
@@ -55,7 +55,7 @@ class Transaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -73,22 +73,22 @@ class Transaction
     public int $txid;
 
     /**
-     * @param  ?array<Posting>  $postings
-     * @param  ?\DateTime  $timestamp
-     * @param  ?int  $txid
-     * @param  ?array<string, mixed>  $metadata
+     * @param  array<Posting>  $postings
+     * @param  \DateTime  $timestamp
+     * @param  int  $txid
      * @param  ?array<string, array<string, Volume>>  $postCommitVolumes
      * @param  ?array<string, array<string, Volume>>  $preCommitVolumes
      * @param  ?string  $reference
+     * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?array $postings = null, ?\DateTime $timestamp = null, ?int $txid = null, ?array $metadata = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
+    public function __construct(array $postings, \DateTime $timestamp, int $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
     {
         $this->postings = $postings;
         $this->timestamp = $timestamp;
         $this->txid = $txid;
-        $this->metadata = $metadata;
         $this->postCommitVolumes = $postCommitVolumes;
         $this->preCommitVolumes = $preCommitVolumes;
         $this->reference = $reference;
+        $this->metadata = $metadata;
     }
 }

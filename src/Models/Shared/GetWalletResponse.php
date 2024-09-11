@@ -20,9 +20,9 @@ class GetWalletResponse
     public WalletWithBalances $data;
 
     /**
-     * @param  ?WalletWithBalances  $data
+     * @param  WalletWithBalances  $data
      */
-    public function __construct(?WalletWithBalances $data = null)
+    public function __construct(WalletWithBalances $data)
     {
         $this->data = $data;
     }

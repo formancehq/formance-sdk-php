@@ -47,7 +47,7 @@ class BankingCircleConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -72,16 +72,16 @@ class BankingCircleConfig
     public string $username;
 
     /**
-     * @param  ?string  $authorizationEndpoint
-     * @param  ?string  $endpoint
-     * @param  ?string  $name
-     * @param  ?string  $password
-     * @param  ?string  $userCertificate
-     * @param  ?string  $userCertificateKey
-     * @param  ?string  $username
+     * @param  string  $authorizationEndpoint
+     * @param  string  $endpoint
+     * @param  string  $name
+     * @param  string  $password
+     * @param  string  $userCertificate
+     * @param  string  $userCertificateKey
+     * @param  string  $username
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(?string $authorizationEndpoint = null, ?string $endpoint = null, ?string $name = null, ?string $password = null, ?string $userCertificate = null, ?string $userCertificateKey = null, ?string $username = null, ?string $pollingPeriod = null)
+    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?string $pollingPeriod = null)
     {
         $this->authorizationEndpoint = $authorizationEndpoint;
         $this->endpoint = $endpoint;

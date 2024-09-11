@@ -28,10 +28,10 @@ class DeleteSecretRequest
     public string $secretId;
 
     /**
-     * @param  ?string  $clientId
-     * @param  ?string  $secretId
+     * @param  string  $clientId
+     * @param  string  $secretId
      */
-    public function __construct(?string $clientId = null, ?string $secretId = null)
+    public function __construct(string $clientId, string $secretId)
     {
         $this->clientId = $clientId;
         $this->secretId = $secretId;

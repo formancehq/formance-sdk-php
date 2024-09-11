@@ -23,7 +23,7 @@ class WalletsTransaction
      * @var ?string $ledger
      */
     #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $ledger = null;
 
     /**
@@ -42,7 +42,7 @@ class WalletsTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
@@ -61,7 +61,7 @@ class WalletsTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
@@ -69,7 +69,7 @@ class WalletsTransaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -80,16 +80,16 @@ class WalletsTransaction
     public \DateTime $timestamp;
 
     /**
-     * @param  ?int  $id
-     * @param  ?array<string, string>  $metadata
-     * @param  ?array<Posting>  $postings
-     * @param  ?\DateTime  $timestamp
+     * @param  int  $id
+     * @param  array<string, string>  $metadata
+     * @param  array<Posting>  $postings
+     * @param  \DateTime  $timestamp
      * @param  ?string  $ledger
      * @param  ?array<string, array<string, WalletsVolume>>  $postCommitVolumes
      * @param  ?array<string, array<string, WalletsVolume>>  $preCommitVolumes
      * @param  ?string  $reference
      */
-    public function __construct(?int $id = null, ?array $metadata = null, ?array $postings = null, ?\DateTime $timestamp = null, ?string $ledger = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
+    public function __construct(int $id, array $metadata, array $postings, \DateTime $timestamp, ?string $ledger = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;

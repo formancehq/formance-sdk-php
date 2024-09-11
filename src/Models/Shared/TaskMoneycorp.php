@@ -38,7 +38,7 @@ class TaskMoneycorp
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -72,16 +72,16 @@ class TaskMoneycorp
     public \DateTime $updatedAt;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?TaskMoneycorpDescriptor  $descriptor
-     * @param  ?string  $id
-     * @param  ?TaskMoneycorpState  $state
-     * @param  ?PaymentStatus  $status
-     * @param  ?\DateTime  $updatedAt
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  TaskMoneycorpDescriptor  $descriptor
+     * @param  string  $id
+     * @param  TaskMoneycorpState  $state
+     * @param  PaymentStatus  $status
+     * @param  \DateTime  $updatedAt
      * @param  ?string  $error
      */
-    public function __construct(?string $connectorID = null, ?\DateTime $createdAt = null, ?TaskMoneycorpDescriptor $descriptor = null, ?string $id = null, ?TaskMoneycorpState $state = null, ?PaymentStatus $status = null, ?\DateTime $updatedAt = null, ?string $error = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, TaskMoneycorpDescriptor $descriptor, string $id, TaskMoneycorpState $state, PaymentStatus $status, \DateTime $updatedAt, ?string $error = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

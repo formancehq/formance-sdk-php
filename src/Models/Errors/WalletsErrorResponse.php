@@ -29,10 +29,10 @@ class WalletsErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  ?SchemasWalletsErrorResponseErrorCode  $errorCode
-     * @param  ?string  $errorMessage
+     * @param  SchemasWalletsErrorResponseErrorCode  $errorCode
+     * @param  string  $errorMessage
      */
-    public function __construct(?SchemasWalletsErrorResponseErrorCode $errorCode = null, ?string $errorMessage = null)
+    public function __construct(SchemasWalletsErrorResponseErrorCode $errorCode, string $errorMessage)
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

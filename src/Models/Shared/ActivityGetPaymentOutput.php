@@ -20,9 +20,9 @@ class ActivityGetPaymentOutput
     public OrchestrationPayment $data;
 
     /**
-     * @param  ?OrchestrationPayment  $data
+     * @param  OrchestrationPayment  $data
      */
-    public function __construct(?OrchestrationPayment $data = null)
+    public function __construct(OrchestrationPayment $data)
     {
         $this->data = $data;
     }

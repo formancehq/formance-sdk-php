@@ -25,14 +25,14 @@ class PostTransactionScript
      */
     #[\JMS\Serializer\Annotation\SerializedName('vars')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
 
     /**
-     * @param  ?string  $plain
+     * @param  string  $plain
      * @param  ?array<string, mixed>  $vars
      */
-    public function __construct(?string $plain = null, ?array $vars = null)
+    public function __construct(string $plain, ?array $vars = null)
     {
         $this->plain = $plain;
         $this->vars = $vars;

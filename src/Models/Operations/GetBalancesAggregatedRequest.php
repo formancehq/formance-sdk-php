@@ -36,11 +36,11 @@ class GetBalancesAggregatedRequest
     public ?bool $useInsertionDate = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?string  $address
      * @param  ?bool  $useInsertionDate
      */
-    public function __construct(?string $ledger = null, ?string $address = null, ?bool $useInsertionDate = null)
+    public function __construct(string $ledger, ?string $address = null, ?bool $useInsertionDate = null)
     {
         $this->ledger = $ledger;
         $this->address = $address;

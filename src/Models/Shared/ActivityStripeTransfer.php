@@ -16,7 +16,7 @@ class ActivityStripeTransfer
      * @var ?int $amount
      */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $amount = null;
 
     /**
@@ -24,7 +24,7 @@ class ActivityStripeTransfer
      * @var ?string $asset
      */
     #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $asset = null;
 
     /**
@@ -32,7 +32,7 @@ class ActivityStripeTransfer
      * @var ?string $connectorID
      */
     #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
@@ -40,7 +40,7 @@ class ActivityStripeTransfer
      * @var ?string $destination
      */
     #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $destination = null;
 
     /**
@@ -53,7 +53,7 @@ class ActivityStripeTransfer
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Metadata|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?Metadata $metadata = null;
 
     /**
@@ -61,7 +61,7 @@ class ActivityStripeTransfer
      * @var ?bool $waitingValidation
      */
     #[\JMS\Serializer\Annotation\SerializedName('waitingValidation')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $waitingValidation = null;
 
     /**

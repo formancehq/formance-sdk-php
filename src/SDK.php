@@ -76,37 +76,6 @@ class SDK
     }
 
     /**
-     * Retrieve OpenID connect well-knowns.
-     *
-     * @return Operations\GetOIDCWellKnownsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
-     */
-    public function getOIDCWellKnowns(
-    ): Operations\GetOIDCWellKnownsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
-        $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
-        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-
-
-        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $statusCode = $httpResponse->getStatusCode();
-        if ($statusCode == 200) {
-            return new Operations\GetOIDCWellKnownsResponse(
-                statusCode: $statusCode,
-                contentType: $contentType,
-                rawResponse: $httpResponse
-            );
-        } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-        }
-    }
-
-    /**
      * Show stack version information
      *
      * @return Operations\GetVersionsResponse

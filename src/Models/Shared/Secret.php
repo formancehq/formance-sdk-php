@@ -39,7 +39,7 @@ class Secret
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -50,13 +50,13 @@ class Secret
     public string $name;
 
     /**
-     * @param  ?string  $clear
-     * @param  ?string  $id
-     * @param  ?string  $lastDigits
-     * @param  ?string  $name
+     * @param  string  $clear
+     * @param  string  $id
+     * @param  string  $lastDigits
+     * @param  string  $name
      * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?string $clear = null, ?string $id = null, ?string $lastDigits = null, ?string $name = null, ?array $metadata = null)
+    public function __construct(string $clear, string $id, string $lastDigits, string $name, ?array $metadata = null)
     {
         $this->clear = $clear;
         $this->id = $id;

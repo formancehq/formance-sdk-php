@@ -20,9 +20,9 @@ class ConnectorConfigResponse
     public StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $data;
 
     /**
-     * @param  StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig|null  $data
+     * @param  StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig  $data
      */
-    public function __construct(StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig|null $data = null)
+    public function __construct(StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $data)
     {
         $this->data = $data;
     }

@@ -20,9 +20,9 @@ class DeleteTransferInitiationRequest
     public string $transferId;
 
     /**
-     * @param  ?string  $transferId
+     * @param  string  $transferId
      */
-    public function __construct(?string $transferId = null)
+    public function __construct(string $transferId)
     {
         $this->transferId = $transferId;
     }

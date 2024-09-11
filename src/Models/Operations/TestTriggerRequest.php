@@ -28,10 +28,10 @@ class TestTriggerRequest
     public string $triggerID;
 
     /**
-     * @param  ?string  $triggerID
+     * @param  string  $triggerID
      * @param  ?array<string, mixed>  $requestBody
      */
-    public function __construct(?string $triggerID = null, ?array $requestBody = null)
+    public function __construct(string $triggerID, ?array $requestBody = null)
     {
         $this->triggerID = $triggerID;
         $this->requestBody = $requestBody;

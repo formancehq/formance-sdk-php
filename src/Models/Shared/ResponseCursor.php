@@ -18,7 +18,7 @@ class ResponseCursor
      */
     #[\JMS\Serializer\Annotation\SerializedName('data')]
     #[\JMS\Serializer\Annotation\Type('array<array<string, mixed>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $data = null;
 
     /**
@@ -26,7 +26,7 @@ class ResponseCursor
      * @var ?bool $hasMore
      */
     #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $hasMore = null;
 
     /**
@@ -34,7 +34,7 @@ class ResponseCursor
      * @var ?string $next
      */
     #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $next = null;
 
     /**
@@ -42,7 +42,7 @@ class ResponseCursor
      * @var ?int $pageSize
      */
     #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
@@ -50,7 +50,7 @@ class ResponseCursor
      * @var ?string $previous
      */
     #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $previous = null;
 
     /**
@@ -59,7 +59,7 @@ class ResponseCursor
      */
     #[\JMS\Serializer\Annotation\SerializedName('total')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Total|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?Total $total = null;
 
     /**

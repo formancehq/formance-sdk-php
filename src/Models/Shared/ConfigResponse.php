@@ -20,9 +20,9 @@ class ConfigResponse
     public WebhooksConfig $data;
 
     /**
-     * @param  ?WebhooksConfig  $data
+     * @param  WebhooksConfig  $data
      */
-    public function __construct(?WebhooksConfig $data = null)
+    public function __construct(WebhooksConfig $data)
     {
         $this->data = $data;
     }

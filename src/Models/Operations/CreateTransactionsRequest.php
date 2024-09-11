@@ -28,10 +28,10 @@ class CreateTransactionsRequest
     public string $ledger;
 
     /**
-     * @param  ?Shared\Transactions  $transactions
-     * @param  ?string  $ledger
+     * @param  Shared\Transactions  $transactions
+     * @param  string  $ledger
      */
-    public function __construct(?Shared\Transactions $transactions = null, ?string $ledger = null)
+    public function __construct(Shared\Transactions $transactions, string $ledger)
     {
         $this->transactions = $transactions;
         $this->ledger = $ledger;
