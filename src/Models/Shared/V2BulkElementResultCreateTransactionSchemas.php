@@ -27,10 +27,10 @@ class V2BulkElementResultCreateTransactionSchemas
     public string $responseType;
 
     /**
-     * @param  ?V2Transaction  $data
-     * @param  ?string  $responseType
+     * @param  V2Transaction  $data
+     * @param  string  $responseType
      */
-    public function __construct(?V2Transaction $data = null, ?string $responseType = null)
+    public function __construct(V2Transaction $data, string $responseType)
     {
         $this->data = $data;
         $this->responseType = $responseType;

@@ -16,7 +16,7 @@ class V2StageSendSourceWallet
      * @var ?string $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $balance = null;
 
     /**
@@ -27,10 +27,10 @@ class V2StageSendSourceWallet
     public string $id;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      * @param  ?string  $balance
      */
-    public function __construct(?string $id = null, ?string $balance = null)
+    public function __construct(string $id, ?string $balance = null)
     {
         $this->id = $id;
         $this->balance = $balance;

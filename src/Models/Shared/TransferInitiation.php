@@ -81,7 +81,7 @@ class TransferInitiation
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -98,7 +98,7 @@ class TransferInitiation
      */
     #[\JMS\Serializer\Annotation\SerializedName('relatedAdjustments')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TransferInitiationAdjusments>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $relatedAdjustments = null;
 
     /**
@@ -108,7 +108,7 @@ class TransferInitiation
      */
     #[\JMS\Serializer\Annotation\SerializedName('relatedPayments')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TransferInitiationPayments>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $relatedPayments = null;
 
     /**
@@ -142,25 +142,25 @@ class TransferInitiation
     public TransferInitiationType $type;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $description
-     * @param  ?string  $destinationAccountID
-     * @param  ?string  $error
-     * @param  ?string  $id
-     * @param  ?int  $initialAmount
-     * @param  ?string  $reference
-     * @param  ?\DateTime  $scheduledAt
-     * @param  ?string  $sourceAccountID
-     * @param  ?TransferInitiationStatus  $status
-     * @param  ?TransferInitiationType  $type
-     * @param  ?array<string, string>  $metadata
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $description
+     * @param  string  $destinationAccountID
+     * @param  string  $error
+     * @param  string  $id
+     * @param  int  $initialAmount
+     * @param  string  $reference
+     * @param  \DateTime  $scheduledAt
+     * @param  string  $sourceAccountID
+     * @param  TransferInitiationStatus  $status
+     * @param  TransferInitiationType  $type
      * @param  ?array<TransferInitiationAdjusments>  $relatedAdjustments
      * @param  ?array<TransferInitiationPayments>  $relatedPayments
+     * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $description = null, ?string $destinationAccountID = null, ?string $error = null, ?string $id = null, ?int $initialAmount = null, ?string $reference = null, ?\DateTime $scheduledAt = null, ?string $sourceAccountID = null, ?TransferInitiationStatus $status = null, ?TransferInitiationType $type = null, ?array $metadata = null, ?array $relatedAdjustments = null, ?array $relatedPayments = null)
+    public function __construct(int $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $error, string $id, int $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, TransferInitiationType $type, ?array $relatedAdjustments = null, ?array $relatedPayments = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -176,8 +176,8 @@ class TransferInitiation
         $this->sourceAccountID = $sourceAccountID;
         $this->status = $status;
         $this->type = $type;
-        $this->metadata = $metadata;
         $this->relatedAdjustments = $relatedAdjustments;
         $this->relatedPayments = $relatedPayments;
+        $this->metadata = $metadata;
     }
 }

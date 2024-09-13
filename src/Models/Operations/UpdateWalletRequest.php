@@ -34,11 +34,11 @@ class UpdateWalletRequest
     public string $id;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      * @param  ?string  $idempotencyKey
      * @param  ?UpdateWalletRequestBody  $requestBody
      */
-    public function __construct(?string $id = null, ?string $idempotencyKey = null, ?UpdateWalletRequestBody $requestBody = null)
+    public function __construct(string $id, ?string $idempotencyKey = null, ?UpdateWalletRequestBody $requestBody = null)
     {
         $this->id = $id;
         $this->idempotencyKey = $idempotencyKey;

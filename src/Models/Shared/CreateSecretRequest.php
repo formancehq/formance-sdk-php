@@ -18,7 +18,7 @@ class CreateSecretRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -29,10 +29,10 @@ class CreateSecretRequest
     public string $name;
 
     /**
-     * @param  ?string  $name
+     * @param  string  $name
      * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?string $name = null, ?array $metadata = null)
+    public function __construct(string $name, ?array $metadata = null)
     {
         $this->name = $name;
         $this->metadata = $metadata;

@@ -33,11 +33,11 @@ class Version
     public string $version;
 
     /**
-     * @param  ?bool  $health
-     * @param  ?string  $name
-     * @param  ?string  $version
+     * @param  bool  $health
+     * @param  string  $name
+     * @param  string  $version
      */
-    public function __construct(?bool $health = null, ?string $name = null, ?string $version = null)
+    public function __construct(bool $health, string $name, string $version)
     {
         $this->health = $health;
         $this->name = $name;

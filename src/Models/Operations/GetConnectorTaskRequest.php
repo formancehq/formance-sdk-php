@@ -29,10 +29,10 @@ class GetConnectorTaskRequest
     public string $taskId;
 
     /**
-     * @param  ?Shared\Connector  $connector
-     * @param  ?string  $taskId
+     * @param  Shared\Connector  $connector
+     * @param  string  $taskId
      */
-    public function __construct(?Shared\Connector $connector = null, ?string $taskId = null)
+    public function __construct(Shared\Connector $connector, string $taskId)
     {
         $this->connector = $connector;
         $this->taskId = $taskId;

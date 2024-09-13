@@ -25,7 +25,7 @@ class BalanceWithAssets
      * @var ?\DateTime $expiresAt
      */
     #[\JMS\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $expiresAt = null;
 
     /**
@@ -40,20 +40,20 @@ class BalanceWithAssets
      * @var ?int $priority
      */
     #[\JMS\Serializer\Annotation\SerializedName('priority')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $priority = null;
 
     /**
-     * @param  ?array<string, int>  $assets
-     * @param  ?string  $name
-     * @param  ?\DateTime  $expiresAt
+     * @param  array<string, int>  $assets
+     * @param  string  $name
      * @param  ?int  $priority
+     * @param  ?\DateTime  $expiresAt
      */
-    public function __construct(?array $assets = null, ?string $name = null, ?\DateTime $expiresAt = null, ?int $priority = null)
+    public function __construct(array $assets, string $name, ?int $priority = null, ?\DateTime $expiresAt = null)
     {
         $this->assets = $assets;
         $this->name = $name;
-        $this->expiresAt = $expiresAt;
         $this->priority = $priority;
+        $this->expiresAt = $expiresAt;
     }
 }

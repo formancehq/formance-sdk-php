@@ -20,9 +20,9 @@ class GetMappingRequest
     public string $ledger;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      */
-    public function __construct(?string $ledger = null)
+    public function __construct(string $ledger)
     {
         $this->ledger = $ledger;
     }

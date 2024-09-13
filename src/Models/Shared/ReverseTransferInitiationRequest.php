@@ -35,11 +35,11 @@ class ReverseTransferInitiationRequest
     /**
      * $metadata
      *
-     * @var array<string, string> $metadata
+     * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
-    public array $metadata;
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
+    public ?array $metadata;
 
     /**
      *
@@ -49,18 +49,18 @@ class ReverseTransferInitiationRequest
     public string $reference;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $description
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $description
+     * @param  string  $reference
      * @param  ?array<string, string>  $metadata
-     * @param  ?string  $reference
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $description = null, ?array $metadata = null, ?string $reference = null)
+    public function __construct(int $amount, string $asset, string $description, string $reference, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
         $this->description = $description;
-        $this->metadata = $metadata;
         $this->reference = $reference;
+        $this->metadata = $metadata;
     }
 }

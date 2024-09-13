@@ -19,9 +19,9 @@ class StageSendDestinationPayment
     public string $psp;
 
     /**
-     * @param  ?string  $psp
+     * @param  string  $psp
      */
-    public function __construct(?string $psp = null)
+    public function __construct(string $psp)
     {
         $this->psp = $psp;
     }

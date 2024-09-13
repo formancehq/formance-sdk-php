@@ -20,9 +20,9 @@ class V2ActivityGetAccountOutput
     public V2Account $data;
 
     /**
-     * @param  ?V2Account  $data
+     * @param  V2Account  $data
      */
-    public function __construct(?V2Account $data = null)
+    public function __construct(V2Account $data)
     {
         $this->data = $data;
     }

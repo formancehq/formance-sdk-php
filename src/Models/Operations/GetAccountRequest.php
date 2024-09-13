@@ -33,10 +33,10 @@ class GetAccountRequest
     public string $ledger;
 
     /**
-     * @param  ?string  $address
-     * @param  ?string  $ledger
+     * @param  string  $address
+     * @param  string  $ledger
      */
-    public function __construct(?string $address = null, ?string $ledger = null)
+    public function __construct(string $address, string $ledger)
     {
         $this->address = $address;
         $this->ledger = $ledger;

@@ -34,11 +34,11 @@ class ConfigInfo
     public string $version;
 
     /**
-     * @param  ?Config  $config
-     * @param  ?string  $server
-     * @param  ?string  $version
+     * @param  Config  $config
+     * @param  string  $server
+     * @param  string  $version
      */
-    public function __construct(?Config $config = null, ?string $server = null, ?string $version = null)
+    public function __construct(Config $config, string $server, string $version)
     {
         $this->config = $config;
         $this->server = $server;

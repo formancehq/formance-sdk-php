@@ -28,10 +28,10 @@ class ReconcileRequest
     public string $policyID;
 
     /**
-     * @param  ?Shared\ReconciliationRequest  $reconciliationRequest
-     * @param  ?string  $policyID
+     * @param  Shared\ReconciliationRequest  $reconciliationRequest
+     * @param  string  $policyID
      */
-    public function __construct(?Shared\ReconciliationRequest $reconciliationRequest = null, ?string $policyID = null)
+    public function __construct(Shared\ReconciliationRequest $reconciliationRequest, string $policyID)
     {
         $this->reconciliationRequest = $reconciliationRequest;
         $this->policyID = $policyID;

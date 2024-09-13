@@ -20,9 +20,9 @@ class V2ListWorkflowsResponse
     public V2ListWorkflowsResponseCursor $cursor;
 
     /**
-     * @param  ?V2ListWorkflowsResponseCursor  $cursor
+     * @param  V2ListWorkflowsResponseCursor  $cursor
      */
-    public function __construct(?V2ListWorkflowsResponseCursor $cursor = null)
+    public function __construct(V2ListWorkflowsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

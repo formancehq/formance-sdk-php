@@ -16,7 +16,7 @@ class UpdateClientRequest
      * @var ?string $description
      */
     #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $description = null;
 
     /**
@@ -26,7 +26,7 @@ class UpdateClientRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -43,7 +43,7 @@ class UpdateClientRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postLogoutRedirectUris = null;
 
     /**
@@ -51,7 +51,7 @@ class UpdateClientRequest
      * @var ?bool $public
      */
     #[\JMS\Serializer\Annotation\SerializedName('public')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $public = null;
 
     /**
@@ -61,7 +61,7 @@ class UpdateClientRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('redirectUris')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $redirectUris = null;
 
     /**
@@ -71,7 +71,7 @@ class UpdateClientRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('scopes')]
     #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $scopes = null;
 
     /**
@@ -79,11 +79,11 @@ class UpdateClientRequest
      * @var ?bool $trusted
      */
     #[\JMS\Serializer\Annotation\SerializedName('trusted')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $trusted = null;
 
     /**
-     * @param  ?string  $name
+     * @param  string  $name
      * @param  ?string  $description
      * @param  ?array<string, mixed>  $metadata
      * @param  ?array<string>  $postLogoutRedirectUris
@@ -92,7 +92,7 @@ class UpdateClientRequest
      * @param  ?array<string>  $scopes
      * @param  ?bool  $trusted
      */
-    public function __construct(?string $name = null, ?string $description = null, ?array $metadata = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?bool $trusted = null)
+    public function __construct(string $name, ?string $description = null, ?array $metadata = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?bool $trusted = null)
     {
         $this->name = $name;
         $this->description = $description;

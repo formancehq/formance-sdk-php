@@ -23,7 +23,7 @@ class TaskStripeDescriptor
      * @var ?bool $main
      */
     #[\JMS\Serializer\Annotation\SerializedName('main')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $main = null;
 
     /**
@@ -34,11 +34,11 @@ class TaskStripeDescriptor
     public string $name;
 
     /**
-     * @param  ?string  $account
-     * @param  ?string  $name
+     * @param  string  $account
+     * @param  string  $name
      * @param  ?bool  $main
      */
-    public function __construct(?string $account = null, ?string $name = null, ?bool $main = null)
+    public function __construct(string $account, string $name, ?bool $main = null)
     {
         $this->account = $account;
         $this->name = $name;

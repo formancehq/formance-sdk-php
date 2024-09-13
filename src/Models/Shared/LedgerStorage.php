@@ -28,10 +28,10 @@ class LedgerStorage
     public array $ledgers;
 
     /**
-     * @param  ?string  $driver
-     * @param  ?array<string>  $ledgers
+     * @param  string  $driver
+     * @param  array<string>  $ledgers
      */
-    public function __construct(?string $driver = null, ?array $ledgers = null)
+    public function __construct(string $driver, array $ledgers)
     {
         $this->driver = $driver;
         $this->ledgers = $ledgers;

@@ -20,9 +20,9 @@ class StatsResponse
     public Stats $data;
 
     /**
-     * @param  ?Stats  $data
+     * @param  Stats  $data
      */
-    public function __construct(?Stats $data = null)
+    public function __construct(Stats $data)
     {
         $this->data = $data;
     }

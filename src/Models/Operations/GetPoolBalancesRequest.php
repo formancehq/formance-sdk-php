@@ -30,10 +30,10 @@ class GetPoolBalancesRequest
     public string $poolId;
 
     /**
-     * @param  ?\DateTime  $at
-     * @param  ?string  $poolId
+     * @param  \DateTime  $at
+     * @param  string  $poolId
      */
-    public function __construct(?\DateTime $at = null, ?string $poolId = null)
+    public function __construct(\DateTime $at, string $poolId)
     {
         $this->at = $at;
         $this->poolId = $poolId;

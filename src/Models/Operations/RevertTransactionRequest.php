@@ -36,11 +36,11 @@ class RevertTransactionRequest
     public int $txid;
 
     /**
-     * @param  ?string  $ledger
-     * @param  ?int  $txid
+     * @param  string  $ledger
+     * @param  int  $txid
      * @param  ?bool  $disableChecks
      */
-    public function __construct(?string $ledger = null, ?int $txid = null, ?bool $disableChecks = null)
+    public function __construct(string $ledger, int $txid, ?bool $disableChecks = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

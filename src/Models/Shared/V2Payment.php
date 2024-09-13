@@ -64,11 +64,11 @@ class V2Payment
 
     /**
      *
-     * @var V2PaymentMetadata $metadata
+     * @var ?V2PaymentMetadata $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentMetadata')]
-    public V2PaymentMetadata $metadata;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentMetadata|null')]
+    public ?V2PaymentMetadata $metadata;
 
     /**
      *
@@ -76,16 +76,16 @@ class V2Payment
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Connector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?V2Connector $provider = null;
 
     /**
      *
-     * @var V2PaymentRaw $raw
+     * @var ?V2PaymentRaw $raw
      */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentRaw')]
-    public V2PaymentRaw $raw;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentRaw|null')]
+    public ?V2PaymentRaw $raw;
 
     /**
      *
@@ -126,23 +126,23 @@ class V2Payment
     public V2PaymentType $type;
 
     /**
-     * @param  ?array<V2PaymentAdjustment>  $adjustments
-     * @param  ?string  $asset
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $destinationAccountID
-     * @param  ?string  $id
-     * @param  ?int  $initialAmount
+     * @param  array<V2PaymentAdjustment>  $adjustments
+     * @param  string  $asset
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $destinationAccountID
+     * @param  string  $id
+     * @param  int  $initialAmount
+     * @param  string  $reference
+     * @param  Scheme  $scheme
+     * @param  string  $sourceAccountID
+     * @param  V2PaymentStatus  $status
+     * @param  V2PaymentType  $type
      * @param  ?V2PaymentMetadata  $metadata
-     * @param  ?V2PaymentRaw  $raw
-     * @param  ?string  $reference
-     * @param  ?Scheme  $scheme
-     * @param  ?string  $sourceAccountID
-     * @param  ?V2PaymentStatus  $status
-     * @param  ?V2PaymentType  $type
      * @param  ?V2Connector  $provider
+     * @param  ?V2PaymentRaw  $raw
      */
-    public function __construct(?array $adjustments = null, ?string $asset = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $destinationAccountID = null, ?string $id = null, ?int $initialAmount = null, ?V2PaymentMetadata $metadata = null, ?V2PaymentRaw $raw = null, ?string $reference = null, ?Scheme $scheme = null, ?string $sourceAccountID = null, ?V2PaymentStatus $status = null, ?V2PaymentType $type = null, ?V2Connector $provider = null)
+    public function __construct(array $adjustments, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, int $initialAmount, string $reference, Scheme $scheme, string $sourceAccountID, V2PaymentStatus $status, V2PaymentType $type, ?V2PaymentMetadata $metadata = null, ?V2Connector $provider = null, ?V2PaymentRaw $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->asset = $asset;
@@ -151,13 +151,13 @@ class V2Payment
         $this->destinationAccountID = $destinationAccountID;
         $this->id = $id;
         $this->initialAmount = $initialAmount;
-        $this->metadata = $metadata;
-        $this->raw = $raw;
         $this->reference = $reference;
         $this->scheme = $scheme;
         $this->sourceAccountID = $sourceAccountID;
         $this->status = $status;
         $this->type = $type;
+        $this->metadata = $metadata;
         $this->provider = $provider;
+        $this->raw = $raw;
     }
 }

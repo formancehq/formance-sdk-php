@@ -20,9 +20,9 @@ class V2ListTriggersOccurrencesResponse
     public V2ListTriggersOccurrencesResponseCursor $cursor;
 
     /**
-     * @param  ?V2ListTriggersOccurrencesResponseCursor  $cursor
+     * @param  V2ListTriggersOccurrencesResponseCursor  $cursor
      */
-    public function __construct(?V2ListTriggersOccurrencesResponseCursor $cursor = null)
+    public function __construct(V2ListTriggersOccurrencesResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

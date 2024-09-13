@@ -40,12 +40,12 @@ class V2CreateBulkResponse
     public ?Shared\V2BulkResponse $v2BulkResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2BulkResponse  $v2BulkResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2BulkResponse $v2BulkResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2BulkResponse $v2BulkResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

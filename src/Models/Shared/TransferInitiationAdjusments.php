@@ -39,7 +39,7 @@ class TransferInitiationAdjusments
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -51,13 +51,13 @@ class TransferInitiationAdjusments
     public TransferInitiationStatus $status;
 
     /**
-     * @param  ?string  $adjustmentID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $error
-     * @param  ?TransferInitiationStatus  $status
+     * @param  string  $adjustmentID
+     * @param  \DateTime  $createdAt
+     * @param  string  $error
+     * @param  TransferInitiationStatus  $status
      * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?string $adjustmentID = null, ?\DateTime $createdAt = null, ?string $error = null, ?TransferInitiationStatus $status = null, ?array $metadata = null)
+    public function __construct(string $adjustmentID, \DateTime $createdAt, string $error, TransferInitiationStatus $status, ?array $metadata = null)
     {
         $this->adjustmentID = $adjustmentID;
         $this->createdAt = $createdAt;

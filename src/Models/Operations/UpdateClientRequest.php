@@ -28,10 +28,10 @@ class UpdateClientRequest
     public string $clientId;
 
     /**
-     * @param  ?string  $clientId
+     * @param  string  $clientId
      * @param  ?Shared\UpdateClientRequest  $updateClientRequest
      */
-    public function __construct(?string $clientId = null, ?Shared\UpdateClientRequest $updateClientRequest = null)
+    public function __construct(string $clientId, ?Shared\UpdateClientRequest $updateClientRequest = null)
     {
         $this->clientId = $clientId;
         $this->updateClientRequest = $updateClientRequest;

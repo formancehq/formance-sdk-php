@@ -26,10 +26,10 @@ class V2ConfigInfoResponse
     public string $version;
 
     /**
-     * @param  ?string  $server
-     * @param  ?string  $version
+     * @param  string  $server
+     * @param  string  $version
      */
-    public function __construct(?string $server = null, ?string $version = null)
+    public function __construct(string $server, string $version)
     {
         $this->server = $server;
         $this->version = $version;

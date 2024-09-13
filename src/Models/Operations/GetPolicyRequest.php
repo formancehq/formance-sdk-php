@@ -20,9 +20,9 @@ class GetPolicyRequest
     public string $policyID;
 
     /**
-     * @param  ?string  $policyID
+     * @param  string  $policyID
      */
-    public function __construct(?string $policyID = null)
+    public function __construct(string $policyID)
     {
         $this->policyID = $policyID;
     }

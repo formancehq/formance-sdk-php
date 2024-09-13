@@ -40,16 +40,16 @@ class GenericConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
-     * @param  ?string  $apiKey
-     * @param  ?string  $endpoint
-     * @param  ?string  $name
+     * @param  string  $apiKey
+     * @param  string  $endpoint
+     * @param  string  $name
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(?string $apiKey = null, ?string $endpoint = null, ?string $name = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $endpoint, string $name, ?string $pollingPeriod = null)
     {
         $this->apiKey = $apiKey;
         $this->endpoint = $endpoint;

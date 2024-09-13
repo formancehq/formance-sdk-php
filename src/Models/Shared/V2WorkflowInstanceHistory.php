@@ -16,7 +16,7 @@ class V2WorkflowInstanceHistory
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -53,18 +53,18 @@ class V2WorkflowInstanceHistory
      * @var ?\DateTime $terminatedAt
      */
     #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update|null  $input
-     * @param  ?string  $name
-     * @param  ?\DateTime  $startedAt
-     * @param  ?bool  $terminated
+     * @param  V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update  $input
+     * @param  string  $name
+     * @param  \DateTime  $startedAt
+     * @param  bool  $terminated
      * @param  ?string  $error
      * @param  ?\DateTime  $terminatedAt
      */
-    public function __construct(V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update|null $input = null, ?string $name = null, ?\DateTime $startedAt = null, ?bool $terminated = null, ?string $error = null, ?\DateTime $terminatedAt = null)
+    public function __construct(V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null)
     {
         $this->input = $input;
         $this->name = $name;

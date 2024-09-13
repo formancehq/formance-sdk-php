@@ -17,7 +17,7 @@ class ConfirmHoldRequest
      * @var ?int $amount
      */
     #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $amount = null;
 
     /**
@@ -26,7 +26,7 @@ class ConfirmHoldRequest
      * @var ?bool $final
      */
     #[\JMS\Serializer\Annotation\SerializedName('final')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $final = null;
 
     /**

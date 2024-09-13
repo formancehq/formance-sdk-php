@@ -40,12 +40,12 @@ class V2GetServerInfoResponse
     public ?Shared\V2ServerInfo $v2ServerInfo = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2ServerInfo  $v2ServerInfo
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2ServerInfo $v2ServerInfo = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ServerInfo $v2ServerInfo = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

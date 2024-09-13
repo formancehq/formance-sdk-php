@@ -20,9 +20,9 @@ class ActivityGetAccountOutput
     public OrchestrationAccount $data;
 
     /**
-     * @param  ?OrchestrationAccount  $data
+     * @param  OrchestrationAccount  $data
      */
-    public function __construct(?OrchestrationAccount $data = null)
+    public function __construct(OrchestrationAccount $data)
     {
         $this->data = $data;
     }

@@ -19,9 +19,9 @@ class ServerInfo
     public string $version;
 
     /**
-     * @param  ?string  $version
+     * @param  string  $version
      */
-    public function __construct(?string $version = null)
+    public function __construct(string $version)
     {
         $this->version = $version;
     }

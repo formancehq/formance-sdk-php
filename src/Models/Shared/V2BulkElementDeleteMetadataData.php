@@ -35,11 +35,11 @@ class V2BulkElementDeleteMetadataData
     public V2TargetType $targetType;
 
     /**
-     * @param  ?string  $key
-     * @param  string|int|null  $targetId
-     * @param  ?V2TargetType  $targetType
+     * @param  string  $key
+     * @param  string|int  $targetId
+     * @param  V2TargetType  $targetType
      */
-    public function __construct(?string $key = null, string|int|null $targetId = null, ?V2TargetType $targetType = null)
+    public function __construct(string $key, string|int $targetId, V2TargetType $targetType)
     {
         $this->key = $key;
         $this->targetId = $targetId;

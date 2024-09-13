@@ -16,7 +16,7 @@ class V2WalletSubject
      * @var ?string $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $balance = null;
 
     /**
@@ -34,11 +34,11 @@ class V2WalletSubject
     public string $type;
 
     /**
-     * @param  ?string  $identifier
-     * @param  ?string  $type
+     * @param  string  $identifier
+     * @param  string  $type
      * @param  ?string  $balance
      */
-    public function __construct(?string $identifier = null, ?string $type = null, ?string $balance = null)
+    public function __construct(string $identifier, string $type, ?string $balance = null)
     {
         $this->identifier = $identifier;
         $this->type = $type;

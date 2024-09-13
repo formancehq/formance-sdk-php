@@ -20,9 +20,9 @@ class GetHoldRequest
     public string $holdID;
 
     /**
-     * @param  ?string  $holdID
+     * @param  string  $holdID
      */
-    public function __construct(?string $holdID = null)
+    public function __construct(string $holdID)
     {
         $this->holdID = $holdID;
     }

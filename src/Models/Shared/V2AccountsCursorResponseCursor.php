@@ -32,7 +32,7 @@ class V2AccountsCursorResponseCursor
      * @var ?string $next
      */
     #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $next = null;
 
     /**
@@ -47,17 +47,17 @@ class V2AccountsCursorResponseCursor
      * @var ?string $previous
      */
     #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $previous = null;
 
     /**
-     * @param  ?array<V2Account>  $data
-     * @param  ?bool  $hasMore
-     * @param  ?int  $pageSize
+     * @param  array<V2Account>  $data
+     * @param  bool  $hasMore
+     * @param  int  $pageSize
      * @param  ?string  $next
      * @param  ?string  $previous
      */
-    public function __construct(?array $data = null, ?bool $hasMore = null, ?int $pageSize = null, ?string $next = null, ?string $previous = null)
+    public function __construct(array $data, bool $hasMore, int $pageSize, ?string $next = null, ?string $previous = null)
     {
         $this->data = $data;
         $this->hasMore = $hasMore;

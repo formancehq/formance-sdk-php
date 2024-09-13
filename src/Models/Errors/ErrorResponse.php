@@ -18,7 +18,7 @@ class ErrorResponse
      * @var ?string $details
      */
     #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
 
     /**
@@ -37,11 +37,11 @@ class ErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  ?Shared\ErrorsEnum  $errorCode
-     * @param  ?string  $errorMessage
+     * @param  Shared\ErrorsEnum  $errorCode
+     * @param  string  $errorMessage
      * @param  ?string  $details
      */
-    public function __construct(?Shared\ErrorsEnum $errorCode = null, ?string $errorMessage = null, ?string $details = null)
+    public function __construct(Shared\ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

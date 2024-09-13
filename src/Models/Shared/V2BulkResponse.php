@@ -21,9 +21,9 @@ class V2BulkResponse
     public array $data;
 
     /**
-     * @param  ?array<mixed>  $data
+     * @param  array<mixed>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

@@ -20,9 +20,9 @@ class V2VolumesWithBalanceCursorResponse
     public V2VolumesWithBalanceCursorResponseCursor $cursor;
 
     /**
-     * @param  ?V2VolumesWithBalanceCursorResponseCursor  $cursor
+     * @param  V2VolumesWithBalanceCursorResponseCursor  $cursor
      */
-    public function __construct(?V2VolumesWithBalanceCursorResponseCursor $cursor = null)
+    public function __construct(V2VolumesWithBalanceCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

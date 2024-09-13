@@ -41,12 +41,12 @@ class Workflow
     public \DateTime $updatedAt;
 
     /**
-     * @param  ?WorkflowConfig  $config
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?\DateTime  $updatedAt
+     * @param  WorkflowConfig  $config
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  \DateTime  $updatedAt
      */
-    public function __construct(?WorkflowConfig $config = null, ?\DateTime $createdAt = null, ?string $id = null, ?\DateTime $updatedAt = null)
+    public function __construct(WorkflowConfig $config, \DateTime $createdAt, string $id, \DateTime $updatedAt)
     {
         $this->config = $config;
         $this->createdAt = $createdAt;

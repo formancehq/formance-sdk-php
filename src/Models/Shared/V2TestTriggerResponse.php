@@ -20,9 +20,9 @@ class V2TestTriggerResponse
     public V2TriggerTest $data;
 
     /**
-     * @param  ?V2TriggerTest  $data
+     * @param  V2TriggerTest  $data
      */
-    public function __construct(?V2TriggerTest $data = null)
+    public function __construct(V2TriggerTest $data)
     {
         $this->data = $data;
     }

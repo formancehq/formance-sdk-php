@@ -21,9 +21,9 @@ class ConnectorsResponse
     public array $data;
 
     /**
-     * @param  ?array<ConnectorsResponseData>  $data
+     * @param  array<ConnectorsResponseData>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

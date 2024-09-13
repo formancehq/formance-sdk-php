@@ -49,12 +49,12 @@ class V2CreateTransactionRequest
     public string $ledger;
 
     /**
-     * @param  ?Shared\V2PostTransaction  $v2PostTransaction
-     * @param  ?string  $ledger
+     * @param  Shared\V2PostTransaction  $v2PostTransaction
+     * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
      */
-    public function __construct(?Shared\V2PostTransaction $v2PostTransaction = null, ?string $ledger = null, ?string $idempotencyKey = null, ?bool $dryRun = null)
+    public function __construct(Shared\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
     {
         $this->v2PostTransaction = $v2PostTransaction;
         $this->ledger = $ledger;

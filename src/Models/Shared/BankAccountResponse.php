@@ -20,9 +20,9 @@ class BankAccountResponse
     public BankAccount $data;
 
     /**
-     * @param  ?BankAccount  $data
+     * @param  BankAccount  $data
      */
-    public function __construct(?BankAccount $data = null)
+    public function __construct(BankAccount $data)
     {
         $this->data = $data;
     }

@@ -28,10 +28,10 @@ class V2UpdateLedgerMetadataRequest
     public string $ledger;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?array<string, string>  $requestBody
      */
-    public function __construct(?string $ledger = null, ?array $requestBody = null)
+    public function __construct(string $ledger, ?array $requestBody = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;

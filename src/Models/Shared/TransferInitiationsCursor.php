@@ -20,9 +20,9 @@ class TransferInitiationsCursor
     public TransferInitiationsCursorCursor $cursor;
 
     /**
-     * @param  ?TransferInitiationsCursorCursor  $cursor
+     * @param  TransferInitiationsCursorCursor  $cursor
      */
-    public function __construct(?TransferInitiationsCursorCursor $cursor = null)
+    public function __construct(TransferInitiationsCursorCursor $cursor)
     {
         $this->cursor = $cursor;
     }

@@ -20,9 +20,9 @@ class TransactionResponse
     public Transaction $data;
 
     /**
-     * @param  ?Transaction  $data
+     * @param  Transaction  $data
      */
-    public function __construct(?Transaction $data = null)
+    public function __construct(Transaction $data)
     {
         $this->data = $data;
     }

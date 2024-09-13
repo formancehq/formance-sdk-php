@@ -20,9 +20,9 @@ class GetTransactionsResponse
     public GetTransactionsResponseCursor $cursor;
 
     /**
-     * @param  ?GetTransactionsResponseCursor  $cursor
+     * @param  GetTransactionsResponseCursor  $cursor
      */
-    public function __construct(?GetTransactionsResponseCursor $cursor = null)
+    public function __construct(GetTransactionsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

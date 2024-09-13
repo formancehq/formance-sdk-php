@@ -34,7 +34,7 @@ class OrchestrationV2Transaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -52,13 +52,13 @@ class OrchestrationV2Transaction
     public int $txid;
 
     /**
-     * @param  ?array<string, string>  $metadata
-     * @param  ?array<V2Posting>  $postings
-     * @param  ?\DateTime  $timestamp
-     * @param  ?int  $txid
+     * @param  array<string, string>  $metadata
+     * @param  array<V2Posting>  $postings
+     * @param  \DateTime  $timestamp
+     * @param  int  $txid
      * @param  ?string  $reference
      */
-    public function __construct(?array $metadata = null, ?array $postings = null, ?\DateTime $timestamp = null, ?int $txid = null, ?string $reference = null)
+    public function __construct(array $metadata, array $postings, \DateTime $timestamp, int $txid, ?string $reference = null)
     {
         $this->metadata = $metadata;
         $this->postings = $postings;

@@ -20,9 +20,9 @@ class ActivityDebitWalletOutput
     public Hold $data;
 
     /**
-     * @param  ?Hold  $data
+     * @param  Hold  $data
      */
-    public function __construct(?Hold $data = null)
+    public function __construct(Hold $data)
     {
         $this->data = $data;
     }

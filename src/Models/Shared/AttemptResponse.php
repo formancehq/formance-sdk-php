@@ -20,9 +20,9 @@ class AttemptResponse
     public Attempt $data;
 
     /**
-     * @param  ?Attempt  $data
+     * @param  Attempt  $data
      */
-    public function __construct(?Attempt $data = null)
+    public function __construct(Attempt $data)
     {
         $this->data = $data;
     }

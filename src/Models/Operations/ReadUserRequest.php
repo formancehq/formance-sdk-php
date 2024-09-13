@@ -20,9 +20,9 @@ class ReadUserRequest
     public string $userId;
 
     /**
-     * @param  ?string  $userId
+     * @param  string  $userId
      */
-    public function __construct(?string $userId = null)
+    public function __construct(string $userId)
     {
         $this->userId = $userId;
     }

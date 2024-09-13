@@ -22,4 +22,5 @@ enum V2ErrorsEnum: string
     case AlreadyRevert = 'ALREADY_REVERT';
     case NoPostings = 'NO_POSTINGS';
     case LedgerNotFound = 'LEDGER_NOT_FOUND';
+    case Import = 'IMPORT';
 }

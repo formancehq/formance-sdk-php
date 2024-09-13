@@ -48,6 +48,13 @@ class V2ListTransactionsRequest
     public string $ledger;
 
     /**
+     *
+     * @var ?Order $order
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order')]
+    public ?Order $order = null;
+
+    /**
      * The maximum number of results to return per page.
      *
      *
@@ -65,20 +72,31 @@ class V2ListTransactionsRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  ?string  $ledger
+     *
+     * @var ?bool $reverse
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=reverse')]
+    public ?bool $reverse = null;
+
+    /**
+     * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?string  $expand
+     * @param  ?Order  $order
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
+     * @param  ?bool  $reverse
      */
-    public function __construct(?string $ledger = null, ?array $requestBody = null, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null)
+    public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?string $expand = null, ?Order $order = null, ?int $pageSize = null, ?\DateTime $pit = null, ?bool $reverse = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;
         $this->cursor = $cursor;
         $this->expand = $expand;
+        $this->order = $order;
         $this->pageSize = $pageSize;
         $this->pit = $pit;
+        $this->reverse = $reverse;
     }
 }

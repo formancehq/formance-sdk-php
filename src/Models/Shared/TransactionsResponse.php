@@ -21,9 +21,9 @@ class TransactionsResponse
     public array $data;
 
     /**
-     * @param  ?array<Transaction>  $data
+     * @param  array<Transaction>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

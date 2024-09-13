@@ -20,9 +20,9 @@ class UpdateTransferInitiationStatusRequest
     public Status $status;
 
     /**
-     * @param  ?Status  $status
+     * @param  Status  $status
      */
-    public function __construct(?Status $status = null)
+    public function __construct(Status $status)
     {
         $this->status = $status;
     }

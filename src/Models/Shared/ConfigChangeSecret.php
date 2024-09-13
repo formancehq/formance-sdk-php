@@ -19,9 +19,9 @@ class ConfigChangeSecret
     public string $secret;
 
     /**
-     * @param  ?string  $secret
+     * @param  string  $secret
      */
-    public function __construct(?string $secret = null)
+    public function __construct(string $secret)
     {
         $this->secret = $secret;
     }

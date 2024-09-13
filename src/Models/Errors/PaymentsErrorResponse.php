@@ -29,10 +29,10 @@ class PaymentsErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  ?Shared\PaymentsErrorsEnum  $errorCode
-     * @param  ?string  $errorMessage
+     * @param  Shared\PaymentsErrorsEnum  $errorCode
+     * @param  string  $errorMessage
      */
-    public function __construct(?Shared\PaymentsErrorsEnum $errorCode = null, ?string $errorMessage = null)
+    public function __construct(Shared\PaymentsErrorsEnum $errorCode, string $errorMessage)
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

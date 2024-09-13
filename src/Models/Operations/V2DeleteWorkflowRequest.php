@@ -20,9 +20,9 @@ class V2DeleteWorkflowRequest
     public string $flowId;
 
     /**
-     * @param  ?string  $flowId
+     * @param  string  $flowId
      */
-    public function __construct(?string $flowId = null)
+    public function __construct(string $flowId)
     {
         $this->flowId = $flowId;
     }

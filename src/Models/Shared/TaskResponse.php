@@ -20,9 +20,9 @@ class TaskResponse
     public TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data;
 
     /**
-     * @param  TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp|null  $data
+     * @param  TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp  $data
      */
-    public function __construct(TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp|null $data = null)
+    public function __construct(TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data)
     {
         $this->data = $data;
     }

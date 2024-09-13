@@ -16,7 +16,7 @@ class V2BulkElementRevertTransactionData
      * @var ?bool $atEffectiveDate
      */
     #[\JMS\Serializer\Annotation\SerializedName('atEffectiveDate')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $atEffectiveDate = null;
 
     /**
@@ -24,7 +24,7 @@ class V2BulkElementRevertTransactionData
      * @var ?bool $force
      */
     #[\JMS\Serializer\Annotation\SerializedName('force')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $force = null;
 
     /**
@@ -35,11 +35,11 @@ class V2BulkElementRevertTransactionData
     public int $id;
 
     /**
-     * @param  ?int  $id
+     * @param  int  $id
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $force
      */
-    public function __construct(?int $id = null, ?bool $atEffectiveDate = null, ?bool $force = null)
+    public function __construct(int $id, ?bool $atEffectiveDate = null, ?bool $force = null)
     {
         $this->id = $id;
         $this->atEffectiveDate = $atEffectiveDate;

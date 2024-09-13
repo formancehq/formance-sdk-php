@@ -20,9 +20,9 @@ class V2CreateTriggerResponse
     public V2Trigger $data;
 
     /**
-     * @param  ?V2Trigger  $data
+     * @param  V2Trigger  $data
      */
-    public function __construct(?V2Trigger $data = null)
+    public function __construct(V2Trigger $data)
     {
         $this->data = $data;
     }

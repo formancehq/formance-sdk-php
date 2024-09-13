@@ -16,7 +16,7 @@ class V2WorkflowConfig
      * @var ?string $name
      */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -29,10 +29,10 @@ class V2WorkflowConfig
     public array $stages;
 
     /**
-     * @param  ?array<array<string, mixed>>  $stages
+     * @param  array<array<string, mixed>>  $stages
      * @param  ?string  $name
      */
-    public function __construct(?array $stages = null, ?string $name = null)
+    public function __construct(array $stages, ?string $name = null)
     {
         $this->stages = $stages;
         $this->name = $name;

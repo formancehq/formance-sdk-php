@@ -16,7 +16,7 @@ class Filter
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -24,7 +24,7 @@ class Filter
      * @var ?bool $match
      */
     #[\JMS\Serializer\Annotation\SerializedName('match')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $match = null;
 
     /**

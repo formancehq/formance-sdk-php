@@ -57,13 +57,13 @@ class GetWalletSummaryResponse
     public array $holdFunds;
 
     /**
-     * @param  ?array<string, int>  $availableFunds
-     * @param  ?array<BalanceWithAssets>  $balances
-     * @param  ?array<string, int>  $expirableFunds
-     * @param  ?array<string, int>  $expiredFunds
-     * @param  ?array<string, int>  $holdFunds
+     * @param  array<string, int>  $availableFunds
+     * @param  array<BalanceWithAssets>  $balances
+     * @param  array<string, int>  $expirableFunds
+     * @param  array<string, int>  $expiredFunds
+     * @param  array<string, int>  $holdFunds
      */
-    public function __construct(?array $availableFunds = null, ?array $balances = null, ?array $expirableFunds = null, ?array $expiredFunds = null, ?array $holdFunds = null)
+    public function __construct(array $availableFunds, array $balances, array $expirableFunds, array $expiredFunds, array $holdFunds)
     {
         $this->availableFunds = $availableFunds;
         $this->balances = $balances;

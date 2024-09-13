@@ -40,12 +40,12 @@ class V2ListTransactionsResponse
     public ?Shared\V2TransactionsCursorResponse $v2TransactionsCursorResponse = null;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2TransactionsCursorResponse  $v2TransactionsCursorResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null, ?Shared\V2TransactionsCursorResponse $v2TransactionsCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2TransactionsCursorResponse $v2TransactionsCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

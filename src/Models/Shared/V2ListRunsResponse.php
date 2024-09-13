@@ -20,9 +20,9 @@ class V2ListRunsResponse
     public V2ListRunsResponseCursor $cursor;
 
     /**
-     * @param  ?V2ListRunsResponseCursor  $cursor
+     * @param  V2ListRunsResponseCursor  $cursor
      */
-    public function __construct(?V2ListRunsResponseCursor $cursor = null)
+    public function __construct(V2ListRunsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

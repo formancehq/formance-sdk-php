@@ -30,7 +30,7 @@ class Trigger
      * @var ?string $filter
      */
     #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $filter = null;
 
     /**
@@ -45,7 +45,7 @@ class Trigger
      * @var ?string $name
      */
     #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -55,7 +55,7 @@ class Trigger
      */
     #[\JMS\Serializer\Annotation\SerializedName('vars')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
 
     /**
@@ -66,15 +66,15 @@ class Trigger
     public string $workflowID;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $event
-     * @param  ?string  $id
-     * @param  ?string  $workflowID
+     * @param  \DateTime  $createdAt
+     * @param  string  $event
+     * @param  string  $id
+     * @param  string  $workflowID
      * @param  ?string  $filter
      * @param  ?string  $name
      * @param  ?array<string, mixed>  $vars
      */
-    public function __construct(?\DateTime $createdAt = null, ?string $event = null, ?string $id = null, ?string $workflowID = null, ?string $filter = null, ?string $name = null, ?array $vars = null)
+    public function __construct(\DateTime $createdAt, string $event, string $id, string $workflowID, ?string $filter = null, ?string $name = null, ?array $vars = null)
     {
         $this->createdAt = $createdAt;
         $this->event = $event;

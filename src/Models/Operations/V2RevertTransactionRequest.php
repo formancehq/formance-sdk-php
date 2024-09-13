@@ -44,12 +44,12 @@ class V2RevertTransactionRequest
     public string $ledger;
 
     /**
-     * @param  ?int  $id
-     * @param  ?string  $ledger
+     * @param  int  $id
+     * @param  string  $ledger
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $force
      */
-    public function __construct(?int $id = null, ?string $ledger = null, ?bool $atEffectiveDate = null, ?bool $force = null)
+    public function __construct(int $id, string $ledger, ?bool $atEffectiveDate = null, ?bool $force = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

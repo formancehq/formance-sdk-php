@@ -58,13 +58,13 @@ class V2ListLogsRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
      */
-    public function __construct(?string $ledger = null, ?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null)
+    public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;

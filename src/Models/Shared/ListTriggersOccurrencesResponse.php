@@ -21,9 +21,9 @@ class ListTriggersOccurrencesResponse
     public array $data;
 
     /**
-     * @param  ?array<TriggerOccurrence>  $data
+     * @param  array<TriggerOccurrence>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

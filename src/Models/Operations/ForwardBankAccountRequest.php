@@ -28,10 +28,10 @@ class ForwardBankAccountRequest
     public string $bankAccountId;
 
     /**
-     * @param  ?Shared\ForwardBankAccountRequest  $forwardBankAccountRequest
-     * @param  ?string  $bankAccountId
+     * @param  Shared\ForwardBankAccountRequest  $forwardBankAccountRequest
+     * @param  string  $bankAccountId
      */
-    public function __construct(?Shared\ForwardBankAccountRequest $forwardBankAccountRequest = null, ?string $bankAccountId = null)
+    public function __construct(Shared\ForwardBankAccountRequest $forwardBankAccountRequest, string $bankAccountId)
     {
         $this->forwardBankAccountRequest = $forwardBankAccountRequest;
         $this->bankAccountId = $bankAccountId;

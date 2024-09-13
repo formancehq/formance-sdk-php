@@ -20,9 +20,9 @@ class TransferInitiationResponse
     public TransferInitiation $data;
 
     /**
-     * @param  ?TransferInitiation  $data
+     * @param  TransferInitiation  $data
      */
-    public function __construct(?TransferInitiation $data = null)
+    public function __construct(TransferInitiation $data)
     {
         $this->data = $data;
     }

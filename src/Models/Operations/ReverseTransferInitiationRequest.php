@@ -28,10 +28,10 @@ class ReverseTransferInitiationRequest
     public string $transferId;
 
     /**
-     * @param  ?Shared\ReverseTransferInitiationRequest  $reverseTransferInitiationRequest
-     * @param  ?string  $transferId
+     * @param  Shared\ReverseTransferInitiationRequest  $reverseTransferInitiationRequest
+     * @param  string  $transferId
      */
-    public function __construct(?Shared\ReverseTransferInitiationRequest $reverseTransferInitiationRequest = null, ?string $transferId = null)
+    public function __construct(Shared\ReverseTransferInitiationRequest $reverseTransferInitiationRequest, string $transferId)
     {
         $this->reverseTransferInitiationRequest = $reverseTransferInitiationRequest;
         $this->transferId = $transferId;

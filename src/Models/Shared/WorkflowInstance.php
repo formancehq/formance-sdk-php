@@ -23,7 +23,7 @@ class WorkflowInstance
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -40,7 +40,7 @@ class WorkflowInstance
      */
     #[\JMS\Serializer\Annotation\SerializedName('status')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\StageStatus>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $status = null;
 
     /**
@@ -55,7 +55,7 @@ class WorkflowInstance
      * @var ?\DateTime $terminatedAt
      */
     #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
@@ -73,16 +73,16 @@ class WorkflowInstance
     public string $workflowID;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?bool  $terminated
-     * @param  ?\DateTime  $updatedAt
-     * @param  ?string  $workflowID
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  bool  $terminated
+     * @param  \DateTime  $updatedAt
+     * @param  string  $workflowID
      * @param  ?string  $error
      * @param  ?array<StageStatus>  $status
      * @param  ?\DateTime  $terminatedAt
      */
-    public function __construct(?\DateTime $createdAt = null, ?string $id = null, ?bool $terminated = null, ?\DateTime $updatedAt = null, ?string $workflowID = null, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null)
+    public function __construct(\DateTime $createdAt, string $id, bool $terminated, \DateTime $updatedAt, string $workflowID, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

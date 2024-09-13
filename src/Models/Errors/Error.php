@@ -29,10 +29,10 @@ class Error
     public string $errorMessage;
 
     /**
-     * @param  ?ErrorCode  $errorCode
-     * @param  ?string  $errorMessage
+     * @param  ErrorCode  $errorCode
+     * @param  string  $errorMessage
      */
-    public function __construct(?ErrorCode $errorCode = null, ?string $errorMessage = null)
+    public function __construct(ErrorCode $errorCode, string $errorMessage)
     {
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

@@ -20,9 +20,9 @@ class V2StatsResponse
     public V2Stats $data;
 
     /**
-     * @param  ?V2Stats  $data
+     * @param  V2Stats  $data
      */
-    public function __construct(?V2Stats $data = null)
+    public function __construct(V2Stats $data)
     {
         $this->data = $data;
     }

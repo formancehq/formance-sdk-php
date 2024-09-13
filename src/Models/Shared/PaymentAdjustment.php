@@ -49,13 +49,13 @@ class PaymentAdjustment
     public PaymentStatus $status;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?\DateTime  $createdAt
-     * @param  ?PaymentAdjustmentRaw  $raw
-     * @param  ?string  $reference
-     * @param  ?PaymentStatus  $status
+     * @param  int  $amount
+     * @param  \DateTime  $createdAt
+     * @param  PaymentAdjustmentRaw  $raw
+     * @param  string  $reference
+     * @param  PaymentStatus  $status
      */
-    public function __construct(?int $amount = null, ?\DateTime $createdAt = null, ?PaymentAdjustmentRaw $raw = null, ?string $reference = null, ?PaymentStatus $status = null)
+    public function __construct(int $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
     {
         $this->amount = $amount;
         $this->createdAt = $createdAt;

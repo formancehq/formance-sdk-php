@@ -24,7 +24,7 @@ class CurrencyCloudConfig
      * @var ?string $endpoint
      */
     #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $endpoint = null;
 
     /**
@@ -48,17 +48,17 @@ class CurrencyCloudConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
-     * @param  ?string  $apiKey
-     * @param  ?string  $loginID
-     * @param  ?string  $name
+     * @param  string  $apiKey
+     * @param  string  $loginID
+     * @param  string  $name
      * @param  ?string  $endpoint
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(?string $apiKey = null, ?string $loginID = null, ?string $name = null, ?string $endpoint = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = null)
     {
         $this->apiKey = $apiKey;
         $this->loginID = $loginID;

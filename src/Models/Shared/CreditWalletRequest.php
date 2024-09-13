@@ -25,7 +25,7 @@ class CreditWalletRequest
      * @var ?string $balance
      */
     #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $balance = null;
 
     /**
@@ -35,7 +35,7 @@ class CreditWalletRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -43,7 +43,7 @@ class CreditWalletRequest
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -53,7 +53,7 @@ class CreditWalletRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('sources')]
     #[\JMS\Serializer\Annotation\Type('array<mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $sources = null;
 
     /**
@@ -61,24 +61,24 @@ class CreditWalletRequest
      * @var ?\DateTime $timestamp
      */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?Monetary  $amount
+     * @param  Monetary  $amount
      * @param  ?string  $balance
-     * @param  ?array<string, string>  $metadata
      * @param  ?string  $reference
-     * @param  ?array<mixed>  $sources
      * @param  ?\DateTime  $timestamp
+     * @param  ?array<string, string>  $metadata
+     * @param  ?array<mixed>  $sources
      */
-    public function __construct(?Monetary $amount = null, ?string $balance = null, ?array $metadata = null, ?string $reference = null, ?array $sources = null, ?\DateTime $timestamp = null)
+    public function __construct(Monetary $amount, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null, ?array $metadata = null, ?array $sources = null)
     {
         $this->amount = $amount;
         $this->balance = $balance;
-        $this->metadata = $metadata;
         $this->reference = $reference;
-        $this->sources = $sources;
         $this->timestamp = $timestamp;
+        $this->metadata = $metadata;
+        $this->sources = $sources;
     }
 }

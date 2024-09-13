@@ -20,9 +20,9 @@ class GetHoldResponse
     public ExpandedDebitHold $data;
 
     /**
-     * @param  ?ExpandedDebitHold  $data
+     * @param  ExpandedDebitHold  $data
      */
-    public function __construct(?ExpandedDebitHold $data = null)
+    public function __construct(ExpandedDebitHold $data)
     {
         $this->data = $data;
     }

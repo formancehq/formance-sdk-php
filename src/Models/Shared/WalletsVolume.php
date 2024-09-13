@@ -33,11 +33,11 @@ class WalletsVolume
     public int $output;
 
     /**
-     * @param  ?int  $balance
-     * @param  ?int  $input
-     * @param  ?int  $output
+     * @param  int  $balance
+     * @param  int  $input
+     * @param  int  $output
      */
-    public function __construct(?int $balance = null, ?int $input = null, ?int $output = null)
+    public function __construct(int $balance, int $input, int $output)
     {
         $this->balance = $balance;
         $this->input = $input;

@@ -21,9 +21,9 @@ class Transactions
     public array $transactions;
 
     /**
-     * @param  ?array<TransactionData>  $transactions
+     * @param  array<TransactionData>  $transactions
      */
-    public function __construct(?array $transactions = null)
+    public function __construct(array $transactions)
     {
         $this->transactions = $transactions;
     }

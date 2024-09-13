@@ -35,11 +35,11 @@ class ConfirmHoldRequest
     public string $holdId;
 
     /**
-     * @param  ?string  $holdId
+     * @param  string  $holdId
      * @param  ?Shared\ConfirmHoldRequest  $confirmHoldRequest
      * @param  ?string  $idempotencyKey
      */
-    public function __construct(?string $holdId = null, ?Shared\ConfirmHoldRequest $confirmHoldRequest = null, ?string $idempotencyKey = null)
+    public function __construct(string $holdId, ?Shared\ConfirmHoldRequest $confirmHoldRequest = null, ?string $idempotencyKey = null)
     {
         $this->holdId = $holdId;
         $this->confirmHoldRequest = $confirmHoldRequest;

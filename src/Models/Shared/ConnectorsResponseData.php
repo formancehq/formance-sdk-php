@@ -23,7 +23,7 @@ class ConnectorsResponseData
      * @var ?bool $enabled
      */
     #[\JMS\Serializer\Annotation\SerializedName('enabled')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?bool $enabled = null;
 
     /**
@@ -42,12 +42,12 @@ class ConnectorsResponseData
     public Connector $provider;
 
     /**
-     * @param  ?string  $connectorID
-     * @param  ?string  $name
-     * @param  ?Connector  $provider
+     * @param  string  $connectorID
+     * @param  string  $name
+     * @param  Connector  $provider
      * @param  ?bool  $enabled
      */
-    public function __construct(?string $connectorID = null, ?string $name = null, ?Connector $provider = null, ?bool $enabled = null)
+    public function __construct(string $connectorID, string $name, Connector $provider, ?bool $enabled = null)
     {
         $this->connectorID = $connectorID;
         $this->name = $name;

@@ -23,7 +23,7 @@ class V2TriggerOccurrence
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -48,7 +48,7 @@ class V2TriggerOccurrence
      */
     #[\JMS\Serializer\Annotation\SerializedName('workflowInstance')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?V2WorkflowInstance $workflowInstance = null;
 
     /**
@@ -56,18 +56,18 @@ class V2TriggerOccurrence
      * @var ?string $workflowInstanceID
      */
     #[\JMS\Serializer\Annotation\SerializedName('workflowInstanceID')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $workflowInstanceID = null;
 
     /**
-     * @param  ?\DateTime  $date
-     * @param  ?array<string, mixed>  $event
-     * @param  ?string  $triggerID
+     * @param  \DateTime  $date
+     * @param  array<string, mixed>  $event
+     * @param  string  $triggerID
      * @param  ?string  $error
      * @param  ?V2WorkflowInstance  $workflowInstance
      * @param  ?string  $workflowInstanceID
      */
-    public function __construct(?\DateTime $date = null, ?array $event = null, ?string $triggerID = null, ?string $error = null, ?V2WorkflowInstance $workflowInstance = null, ?string $workflowInstanceID = null)
+    public function __construct(\DateTime $date, array $event, string $triggerID, ?string $error = null, ?V2WorkflowInstance $workflowInstance = null, ?string $workflowInstanceID = null)
     {
         $this->date = $date;
         $this->event = $event;

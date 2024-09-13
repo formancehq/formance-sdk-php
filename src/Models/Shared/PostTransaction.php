@@ -18,7 +18,7 @@ class PostTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -28,7 +28,7 @@ class PostTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('postings')]
     #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $postings = null;
 
     /**
@@ -36,7 +36,7 @@ class PostTransaction
      * @var ?string $reference
      */
     #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -45,7 +45,7 @@ class PostTransaction
      */
     #[\JMS\Serializer\Annotation\SerializedName('script')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PostTransactionScript|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?PostTransactionScript $script = null;
 
     /**
@@ -53,22 +53,22 @@ class PostTransaction
      * @var ?\DateTime $timestamp
      */
     #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?array<string, mixed>  $metadata
      * @param  ?array<Posting>  $postings
      * @param  ?string  $reference
      * @param  ?PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
+     * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(?array $metadata = null, ?array $postings = null, ?string $reference = null, ?PostTransactionScript $script = null, ?\DateTime $timestamp = null)
+    public function __construct(?array $postings = null, ?string $reference = null, ?PostTransactionScript $script = null, ?\DateTime $timestamp = null, ?array $metadata = null)
     {
-        $this->metadata = $metadata;
         $this->postings = $postings;
         $this->reference = $reference;
         $this->script = $script;
         $this->timestamp = $timestamp;
+        $this->metadata = $metadata;
     }
 }

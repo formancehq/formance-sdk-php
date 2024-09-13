@@ -16,7 +16,7 @@ class StageStatus
      * @var ?string $error
      */
     #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -45,17 +45,17 @@ class StageStatus
      * @var ?\DateTime $terminatedAt
      */
     #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  ?string  $instanceID
-     * @param  ?float  $stage
-     * @param  ?\DateTime  $startedAt
+     * @param  string  $instanceID
+     * @param  float  $stage
+     * @param  \DateTime  $startedAt
      * @param  ?string  $error
      * @param  ?\DateTime  $terminatedAt
      */
-    public function __construct(?string $instanceID = null, ?float $stage = null, ?\DateTime $startedAt = null, ?string $error = null, ?\DateTime $terminatedAt = null)
+    public function __construct(string $instanceID, float $stage, \DateTime $startedAt, ?string $error = null, ?\DateTime $terminatedAt = null)
     {
         $this->instanceID = $instanceID;
         $this->stage = $stage;

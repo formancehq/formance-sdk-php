@@ -7,15 +7,16 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $response = $sdk->getOIDCWellKnowns();
+    $response = $sdk->getVersions();
 
-    if ($response->statusCode === 200) {
+    if ($response->getVersionsResponse !== null) {
         // handle response
     }
 } catch (Throwable $e) {

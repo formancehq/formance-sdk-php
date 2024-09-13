@@ -20,9 +20,9 @@ class WalletBalances
     public AssetHolder $main;
 
     /**
-     * @param  ?AssetHolder  $main
+     * @param  AssetHolder  $main
      */
-    public function __construct(?AssetHolder $main = null)
+    public function __construct(AssetHolder $main)
     {
         $this->main = $main;
     }

@@ -64,11 +64,11 @@ class OrchestrationPayment
 
     /**
      *
-     * @var OrchestrationPaymentMetadata $metadata
+     * @var ?OrchestrationPaymentMetadata $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentMetadata')]
-    public OrchestrationPaymentMetadata $metadata;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentMetadata|null')]
+    public ?OrchestrationPaymentMetadata $metadata;
 
     /**
      *
@@ -76,16 +76,16 @@ class OrchestrationPayment
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationConnector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?OrchestrationConnector $provider = null;
 
     /**
      *
-     * @var OrchestrationPaymentRaw $raw
+     * @var ?OrchestrationPaymentRaw $raw
      */
     #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentRaw')]
-    public OrchestrationPaymentRaw $raw;
+    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPaymentRaw|null')]
+    public ?OrchestrationPaymentRaw $raw;
 
     /**
      *
@@ -126,23 +126,23 @@ class OrchestrationPayment
     public OrchestrationPaymentType $type;
 
     /**
-     * @param  ?array<OrchestrationPaymentAdjustment>  $adjustments
-     * @param  ?string  $asset
-     * @param  ?string  $connectorID
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $destinationAccountID
-     * @param  ?string  $id
-     * @param  ?int  $initialAmount
+     * @param  array<OrchestrationPaymentAdjustment>  $adjustments
+     * @param  string  $asset
+     * @param  string  $connectorID
+     * @param  \DateTime  $createdAt
+     * @param  string  $destinationAccountID
+     * @param  string  $id
+     * @param  int  $initialAmount
+     * @param  string  $reference
+     * @param  OrchestrationPaymentScheme  $scheme
+     * @param  string  $sourceAccountID
+     * @param  OrchestrationPaymentStatus  $status
+     * @param  OrchestrationPaymentType  $type
      * @param  ?OrchestrationPaymentMetadata  $metadata
-     * @param  ?OrchestrationPaymentRaw  $raw
-     * @param  ?string  $reference
-     * @param  ?OrchestrationPaymentScheme  $scheme
-     * @param  ?string  $sourceAccountID
-     * @param  ?OrchestrationPaymentStatus  $status
-     * @param  ?OrchestrationPaymentType  $type
      * @param  ?OrchestrationConnector  $provider
+     * @param  ?OrchestrationPaymentRaw  $raw
      */
-    public function __construct(?array $adjustments = null, ?string $asset = null, ?string $connectorID = null, ?\DateTime $createdAt = null, ?string $destinationAccountID = null, ?string $id = null, ?int $initialAmount = null, ?OrchestrationPaymentMetadata $metadata = null, ?OrchestrationPaymentRaw $raw = null, ?string $reference = null, ?OrchestrationPaymentScheme $scheme = null, ?string $sourceAccountID = null, ?OrchestrationPaymentStatus $status = null, ?OrchestrationPaymentType $type = null, ?OrchestrationConnector $provider = null)
+    public function __construct(array $adjustments, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, int $initialAmount, string $reference, OrchestrationPaymentScheme $scheme, string $sourceAccountID, OrchestrationPaymentStatus $status, OrchestrationPaymentType $type, ?OrchestrationPaymentMetadata $metadata = null, ?OrchestrationConnector $provider = null, ?OrchestrationPaymentRaw $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->asset = $asset;
@@ -151,13 +151,13 @@ class OrchestrationPayment
         $this->destinationAccountID = $destinationAccountID;
         $this->id = $id;
         $this->initialAmount = $initialAmount;
-        $this->metadata = $metadata;
-        $this->raw = $raw;
         $this->reference = $reference;
         $this->scheme = $scheme;
         $this->sourceAccountID = $sourceAccountID;
         $this->status = $status;
         $this->type = $type;
+        $this->metadata = $metadata;
         $this->provider = $provider;
+        $this->raw = $raw;
     }
 }

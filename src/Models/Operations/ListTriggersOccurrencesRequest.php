@@ -20,9 +20,9 @@ class ListTriggersOccurrencesRequest
     public string $triggerID;
 
     /**
-     * @param  ?string  $triggerID
+     * @param  string  $triggerID
      */
-    public function __construct(?string $triggerID = null)
+    public function __construct(string $triggerID)
     {
         $this->triggerID = $triggerID;
     }

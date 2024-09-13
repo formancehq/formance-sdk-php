@@ -27,10 +27,10 @@ class VoidHoldRequest
     public string $holdId;
 
     /**
-     * @param  ?string  $holdId
+     * @param  string  $holdId
      * @param  ?string  $idempotencyKey
      */
-    public function __construct(?string $holdId = null, ?string $idempotencyKey = null)
+    public function __construct(string $holdId, ?string $idempotencyKey = null)
     {
         $this->holdId = $holdId;
         $this->idempotencyKey = $idempotencyKey;

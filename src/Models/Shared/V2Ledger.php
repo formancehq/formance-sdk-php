@@ -32,7 +32,7 @@ class V2Ledger
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -43,12 +43,12 @@ class V2Ledger
     public string $name;
 
     /**
-     * @param  ?\DateTime  $addedAt
-     * @param  ?string  $bucket
-     * @param  ?string  $name
+     * @param  \DateTime  $addedAt
+     * @param  string  $bucket
+     * @param  string  $name
      * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?\DateTime $addedAt = null, ?string $bucket = null, ?string $name = null, ?array $metadata = null)
+    public function __construct(\DateTime $addedAt, string $bucket, string $name, ?array $metadata = null)
     {
         $this->addedAt = $addedAt;
         $this->bucket = $bucket;

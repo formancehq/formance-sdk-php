@@ -20,9 +20,9 @@ class GetBankAccountRequest
     public string $bankAccountId;
 
     /**
-     * @param  ?string  $bankAccountId
+     * @param  string  $bankAccountId
      */
-    public function __construct(?string $bankAccountId = null)
+    public function __construct(string $bankAccountId)
     {
         $this->bankAccountId = $bankAccountId;
     }

@@ -25,7 +25,7 @@ class OrchestrationAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('effectiveVolumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $effectiveVolumes = null;
 
     /**
@@ -44,16 +44,16 @@ class OrchestrationAccount
      */
     #[\JMS\Serializer\Annotation\SerializedName('volumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $volumes = null;
 
     /**
-     * @param  ?string  $address
-     * @param  ?array<string, string>  $metadata
+     * @param  string  $address
+     * @param  array<string, string>  $metadata
      * @param  ?array<string, Volume>  $effectiveVolumes
      * @param  ?array<string, Volume>  $volumes
      */
-    public function __construct(?string $address = null, ?array $metadata = null, ?array $effectiveVolumes = null, ?array $volumes = null)
+    public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?array $volumes = null)
     {
         $this->address = $address;
         $this->metadata = $metadata;

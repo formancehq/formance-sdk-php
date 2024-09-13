@@ -20,9 +20,9 @@ class ReconciliationResponse
     public Reconciliation $data;
 
     /**
-     * @param  ?Reconciliation  $data
+     * @param  Reconciliation  $data
      */
-    public function __construct(?Reconciliation $data = null)
+    public function __construct(Reconciliation $data)
     {
         $this->data = $data;
     }

@@ -40,12 +40,12 @@ class V2Posting
     public string $source;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $destination
-     * @param  ?string  $source
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $destination
+     * @param  string  $source
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $destination = null, ?string $source = null)
+    public function __construct(int $amount, string $asset, string $destination, string $source)
     {
         $this->amount = $amount;
         $this->asset = $asset;

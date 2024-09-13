@@ -20,9 +20,9 @@ class CreateTriggerResponse
     public Trigger $data;
 
     /**
-     * @param  ?Trigger  $data
+     * @param  Trigger  $data
      */
-    public function __construct(?Trigger $data = null)
+    public function __construct(Trigger $data)
     {
         $this->data = $data;
     }

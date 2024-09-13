@@ -26,10 +26,10 @@ class LedgerAccountSubject
     public string $type;
 
     /**
-     * @param  ?string  $identifier
-     * @param  ?string  $type
+     * @param  string  $identifier
+     * @param  string  $type
      */
-    public function __construct(?string $identifier = null, ?string $type = null)
+    public function __construct(string $identifier, string $type)
     {
         $this->identifier = $identifier;
         $this->type = $type;

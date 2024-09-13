@@ -36,11 +36,11 @@ class AddMetadataOnTransactionRequest
     public int $txid;
 
     /**
-     * @param  ?string  $ledger
-     * @param  ?int  $txid
+     * @param  string  $ledger
+     * @param  int  $txid
      * @param  ?array<string, mixed>  $requestBody
      */
-    public function __construct(?string $ledger = null, ?int $txid = null, ?array $requestBody = null)
+    public function __construct(string $ledger, int $txid, ?array $requestBody = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

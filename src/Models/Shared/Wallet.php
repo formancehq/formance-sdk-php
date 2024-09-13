@@ -17,7 +17,7 @@ class Wallet
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletBalances|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?WalletBalances $balances = null;
 
     /**
@@ -59,14 +59,14 @@ class Wallet
     public string $name;
 
     /**
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $ledger
-     * @param  ?array<string, string>  $metadata
-     * @param  ?string  $name
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $ledger
+     * @param  array<string, string>  $metadata
+     * @param  string  $name
      * @param  ?WalletBalances  $balances
      */
-    public function __construct(?\DateTime $createdAt = null, ?string $id = null, ?string $ledger = null, ?array $metadata = null, ?string $name = null, ?WalletBalances $balances = null)
+    public function __construct(\DateTime $createdAt, string $id, string $ledger, array $metadata, string $name, ?WalletBalances $balances = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

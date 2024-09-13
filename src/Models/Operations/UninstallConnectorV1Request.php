@@ -29,10 +29,10 @@ class UninstallConnectorV1Request
     public string $connectorId;
 
     /**
-     * @param  ?Shared\Connector  $connector
-     * @param  ?string  $connectorId
+     * @param  Shared\Connector  $connector
+     * @param  string  $connectorId
      */
-    public function __construct(?Shared\Connector $connector = null, ?string $connectorId = null)
+    public function __construct(Shared\Connector $connector, string $connectorId)
     {
         $this->connector = $connector;
         $this->connectorId = $connectorId;

@@ -19,9 +19,9 @@ class Security
     public string $authorization;
 
     /**
-     * @param  ?string  $authorization
+     * @param  string  $authorization
      */
-    public function __construct(?string $authorization = null)
+    public function __construct(string $authorization)
     {
         $this->authorization = $authorization;
     }

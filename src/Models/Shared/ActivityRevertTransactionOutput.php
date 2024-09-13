@@ -20,9 +20,9 @@ class ActivityRevertTransactionOutput
     public OrchestrationTransaction $data;
 
     /**
-     * @param  ?OrchestrationTransaction  $data
+     * @param  OrchestrationTransaction  $data
      */
-    public function __construct(?OrchestrationTransaction $data = null)
+    public function __construct(OrchestrationTransaction $data)
     {
         $this->data = $data;
     }

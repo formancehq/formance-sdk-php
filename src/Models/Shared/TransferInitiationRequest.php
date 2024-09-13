@@ -30,7 +30,7 @@ class TransferInitiationRequest
      * @var ?string $connectorID
      */
     #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
@@ -54,7 +54,7 @@ class TransferInitiationRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -63,7 +63,7 @@ class TransferInitiationRequest
      */
     #[\JMS\Serializer\Annotation\SerializedName('provider')]
     #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?Connector $provider = null;
 
     /**
@@ -103,20 +103,20 @@ class TransferInitiationRequest
     public bool $validated;
 
     /**
-     * @param  ?int  $amount
-     * @param  ?string  $asset
-     * @param  ?string  $description
-     * @param  ?string  $destinationAccountID
-     * @param  ?string  $reference
-     * @param  ?\DateTime  $scheduledAt
-     * @param  ?string  $sourceAccountID
-     * @param  ?TransferInitiationRequestType  $type
-     * @param  ?bool  $validated
+     * @param  int  $amount
+     * @param  string  $asset
+     * @param  string  $description
+     * @param  string  $destinationAccountID
+     * @param  string  $reference
+     * @param  \DateTime  $scheduledAt
+     * @param  string  $sourceAccountID
+     * @param  TransferInitiationRequestType  $type
+     * @param  bool  $validated
      * @param  ?string  $connectorID
-     * @param  ?array<string, string>  $metadata
      * @param  ?Connector  $provider
+     * @param  ?array<string, string>  $metadata
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $description = null, ?string $destinationAccountID = null, ?string $reference = null, ?\DateTime $scheduledAt = null, ?string $sourceAccountID = null, ?TransferInitiationRequestType $type = null, ?bool $validated = null, ?string $connectorID = null, ?array $metadata = null, ?Connector $provider = null)
+    public function __construct(int $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?Connector $provider = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -128,7 +128,7 @@ class TransferInitiationRequest
         $this->type = $type;
         $this->validated = $validated;
         $this->connectorID = $connectorID;
-        $this->metadata = $metadata;
         $this->provider = $provider;
+        $this->metadata = $metadata;
     }
 }

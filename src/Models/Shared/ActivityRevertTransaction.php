@@ -26,10 +26,10 @@ class ActivityRevertTransaction
     public string $ledger;
 
     /**
-     * @param  ?string  $id
-     * @param  ?string  $ledger
+     * @param  string  $id
+     * @param  string  $ledger
      */
-    public function __construct(?string $id = null, ?string $ledger = null)
+    public function __construct(string $id, string $ledger)
     {
         $this->id = $id;
         $this->ledger = $ledger;

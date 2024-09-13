@@ -28,10 +28,10 @@ class ChangeConfigSecretRequest
     public string $id;
 
     /**
-     * @param  ?string  $id
+     * @param  string  $id
      * @param  ?Shared\ConfigChangeSecret  $configChangeSecret
      */
-    public function __construct(?string $id = null, ?Shared\ConfigChangeSecret $configChangeSecret = null)
+    public function __construct(string $id, ?Shared\ConfigChangeSecret $configChangeSecret = null)
     {
         $this->id = $id;
         $this->configChangeSecret = $configChangeSecret;

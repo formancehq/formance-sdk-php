@@ -50,13 +50,13 @@ class V2Log
     public V2LogType $type;
 
     /**
-     * @param  ?array<string, mixed>  $data
-     * @param  ?\DateTime  $date
-     * @param  ?string  $hash
-     * @param  ?int  $id
-     * @param  ?V2LogType  $type
+     * @param  array<string, mixed>  $data
+     * @param  \DateTime  $date
+     * @param  string  $hash
+     * @param  int  $id
+     * @param  V2LogType  $type
      */
-    public function __construct(?array $data = null, ?\DateTime $date = null, ?string $hash = null, ?int $id = null, ?V2LogType $type = null)
+    public function __construct(array $data, \DateTime $date, string $hash, int $id, V2LogType $type)
     {
         $this->data = $data;
         $this->date = $date;

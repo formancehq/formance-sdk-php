@@ -21,9 +21,9 @@ class GetWorkflowInstanceHistoryStageResponse
     public array $data;
 
     /**
-     * @param  ?array<WorkflowInstanceHistoryStage>  $data
+     * @param  array<WorkflowInstanceHistoryStage>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

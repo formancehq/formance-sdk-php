@@ -28,10 +28,10 @@ class CreateSecretRequest
     public string $clientId;
 
     /**
-     * @param  ?string  $clientId
+     * @param  string  $clientId
      * @param  ?Shared\CreateSecretRequest  $createSecretRequest
      */
-    public function __construct(?string $clientId = null, ?Shared\CreateSecretRequest $createSecretRequest = null)
+    public function __construct(string $clientId, ?Shared\CreateSecretRequest $createSecretRequest = null)
     {
         $this->clientId = $clientId;
         $this->createSecretRequest = $createSecretRequest;

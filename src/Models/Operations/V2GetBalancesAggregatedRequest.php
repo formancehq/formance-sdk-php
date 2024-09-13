@@ -43,12 +43,12 @@ class V2GetBalancesAggregatedRequest
     public ?bool $useInsertionDate = null;
 
     /**
-     * @param  ?string  $ledger
+     * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
      * @param  ?\DateTime  $pit
      * @param  ?bool  $useInsertionDate
      */
-    public function __construct(?string $ledger = null, ?array $requestBody = null, ?\DateTime $pit = null, ?bool $useInsertionDate = null)
+    public function __construct(string $ledger, ?array $requestBody = null, ?\DateTime $pit = null, ?bool $useInsertionDate = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;

@@ -20,9 +20,9 @@ class V2ActivityGetWalletOutput
     public V2WalletWithBalances $data;
 
     /**
-     * @param  ?V2WalletWithBalances  $data
+     * @param  V2WalletWithBalances  $data
      */
-    public function __construct(?V2WalletWithBalances $data = null)
+    public function __construct(V2WalletWithBalances $data)
     {
         $this->data = $data;
     }

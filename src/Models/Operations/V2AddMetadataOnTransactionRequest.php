@@ -52,13 +52,13 @@ class V2AddMetadataOnTransactionRequest
     public string $ledger;
 
     /**
-     * @param  ?int  $id
-     * @param  ?string  $ledger
+     * @param  int  $id
+     * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?array<string, string>  $requestBody
      * @param  ?bool  $dryRun
      */
-    public function __construct(?int $id = null, ?string $ledger = null, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
+    public function __construct(int $id, string $ledger, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

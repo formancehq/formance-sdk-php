@@ -25,7 +25,7 @@ class AccountWithVolumesAndBalances
      */
     #[\JMS\Serializer\Annotation\SerializedName('balances')]
     #[\JMS\Serializer\Annotation\Type('array<string, int>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $balances = null;
 
     /**
@@ -35,7 +35,7 @@ class AccountWithVolumesAndBalances
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
     #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -43,7 +43,7 @@ class AccountWithVolumesAndBalances
      * @var ?string $type
      */
     #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $type = null;
 
     /**
@@ -53,17 +53,17 @@ class AccountWithVolumesAndBalances
      */
     #[\JMS\Serializer\Annotation\SerializedName('volumes')]
     #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?array $volumes = null;
 
     /**
-     * @param  ?string  $address
+     * @param  string  $address
      * @param  ?array<string, int>  $balances
      * @param  ?array<string, mixed>  $metadata
      * @param  ?string  $type
      * @param  ?array<string, Volume>  $volumes
      */
-    public function __construct(?string $address = null, ?array $balances = null, ?array $metadata = null, ?string $type = null, ?array $volumes = null)
+    public function __construct(string $address, ?array $balances = null, ?array $metadata = null, ?string $type = null, ?array $volumes = null)
     {
         $this->address = $address;
         $this->balances = $balances;

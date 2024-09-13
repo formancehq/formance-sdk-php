@@ -21,9 +21,9 @@ class V2GetWorkflowInstanceHistoryResponse
     public array $data;
 
     /**
-     * @param  ?array<V2WorkflowInstanceHistory>  $data
+     * @param  array<V2WorkflowInstanceHistory>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

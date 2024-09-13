@@ -21,9 +21,9 @@ class V2ActivityCreateTransactionOutput
     public array $data;
 
     /**
-     * @param  ?array<OrchestrationV2Transaction>  $data
+     * @param  array<OrchestrationV2Transaction>  $data
      */
-    public function __construct(?array $data = null)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

@@ -28,10 +28,10 @@ class V2GetInstanceStageHistoryRequest
     public int $number;
 
     /**
-     * @param  ?string  $instanceID
-     * @param  ?int  $number
+     * @param  string  $instanceID
+     * @param  int  $number
      */
-    public function __construct(?string $instanceID = null, ?int $number = null)
+    public function __construct(string $instanceID, int $number)
     {
         $this->instanceID = $instanceID;
         $this->number = $number;

@@ -20,9 +20,9 @@ class ConfigInfoResponse
     public ConfigInfo $data;
 
     /**
-     * @param  ?ConfigInfo  $data
+     * @param  ConfigInfo  $data
      */
-    public function __construct(?ConfigInfo $data = null)
+    public function __construct(ConfigInfo $data)
     {
         $this->data = $data;
     }

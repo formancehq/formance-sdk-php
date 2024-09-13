@@ -20,9 +20,9 @@ class V2GetLedgerResponse
     public V2Ledger $data;
 
     /**
-     * @param  ?V2Ledger  $data
+     * @param  V2Ledger  $data
      */
-    public function __construct(?V2Ledger $data = null)
+    public function __construct(V2Ledger $data)
     {
         $this->data = $data;
     }

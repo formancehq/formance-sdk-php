@@ -50,13 +50,13 @@ class Log
     public Type $type;
 
     /**
-     * @param  ?array<string, mixed>  $data
-     * @param  ?\DateTime  $date
-     * @param  ?string  $hash
-     * @param  ?int  $id
-     * @param  ?Type  $type
+     * @param  array<string, mixed>  $data
+     * @param  \DateTime  $date
+     * @param  string  $hash
+     * @param  int  $id
+     * @param  Type  $type
      */
-    public function __construct(?array $data = null, ?\DateTime $date = null, ?string $hash = null, ?int $id = null, ?Type $type = null)
+    public function __construct(array $data, \DateTime $date, string $hash, int $id, Type $type)
     {
         $this->data = $data;
         $this->date = $date;

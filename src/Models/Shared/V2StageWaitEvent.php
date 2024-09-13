@@ -19,9 +19,9 @@ class V2StageWaitEvent
     public string $event;
 
     /**
-     * @param  ?string  $event
+     * @param  string  $event
      */
-    public function __construct(?string $event = null)
+    public function __construct(string $event)
     {
         $this->event = $event;
     }

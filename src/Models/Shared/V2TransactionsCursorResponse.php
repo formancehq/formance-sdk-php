@@ -20,9 +20,9 @@ class V2TransactionsCursorResponse
     public V2TransactionsCursorResponseCursor $cursor;
 
     /**
-     * @param  ?V2TransactionsCursorResponseCursor  $cursor
+     * @param  V2TransactionsCursorResponseCursor  $cursor
      */
-    public function __construct(?V2TransactionsCursorResponseCursor $cursor = null)
+    public function __construct(V2TransactionsCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

@@ -28,10 +28,10 @@ class CreateWalletRequest
     public string $name;
 
     /**
-     * @param  ?array<string, string>  $metadata
-     * @param  ?string  $name
+     * @param  array<string, string>  $metadata
+     * @param  string  $name
      */
-    public function __construct(?array $metadata = null, ?string $name = null)
+    public function __construct(array $metadata, string $name)
     {
         $this->metadata = $metadata;
         $this->name = $name;

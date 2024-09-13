@@ -20,9 +20,9 @@ class LogsCursorResponse
     public LogsCursorResponseCursor $cursor;
 
     /**
-     * @param  ?LogsCursorResponseCursor  $cursor
+     * @param  LogsCursorResponseCursor  $cursor
      */
-    public function __construct(?LogsCursorResponseCursor $cursor = null)
+    public function __construct(LogsCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

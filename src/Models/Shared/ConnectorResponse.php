@@ -20,9 +20,9 @@ class ConnectorResponse
     public Data $data;
 
     /**
-     * @param  ?Data  $data
+     * @param  Data  $data
      */
-    public function __construct(?Data $data = null)
+    public function __construct(Data $data)
     {
         $this->data = $data;
     }

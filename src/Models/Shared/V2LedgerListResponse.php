@@ -20,9 +20,9 @@ class V2LedgerListResponse
     public V2LedgerListResponseCursor $cursor;
 
     /**
-     * @param  ?V2LedgerListResponseCursor  $cursor
+     * @param  V2LedgerListResponseCursor  $cursor
      */
-    public function __construct(?V2LedgerListResponseCursor $cursor = null)
+    public function __construct(V2LedgerListResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

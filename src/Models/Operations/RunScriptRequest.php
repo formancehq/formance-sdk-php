@@ -36,11 +36,11 @@ class RunScriptRequest
     public ?bool $preview = null;
 
     /**
-     * @param  ?Shared\Script  $script
-     * @param  ?string  $ledger
+     * @param  Shared\Script  $script
+     * @param  string  $ledger
      * @param  ?bool  $preview
      */
-    public function __construct(?Shared\Script $script = null, ?string $ledger = null, ?bool $preview = null)
+    public function __construct(Shared\Script $script, string $ledger, ?bool $preview = null)
     {
         $this->script = $script;
         $this->ledger = $ledger;

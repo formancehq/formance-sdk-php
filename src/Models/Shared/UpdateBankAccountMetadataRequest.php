@@ -14,11 +14,11 @@ class UpdateBankAccountMetadataRequest
     /**
      * $metadata
      *
-     * @var array<string, string> $metadata
+     * @var ?array<string, string> $metadata
      */
     #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
-    public array $metadata;
+    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
+    public ?array $metadata;
 
     /**
      * @param  ?array<string, string>  $metadata

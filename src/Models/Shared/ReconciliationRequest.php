@@ -26,10 +26,10 @@ class ReconciliationRequest
     public \DateTime $reconciledAtPayments;
 
     /**
-     * @param  ?\DateTime  $reconciledAtLedger
-     * @param  ?\DateTime  $reconciledAtPayments
+     * @param  \DateTime  $reconciledAtLedger
+     * @param  \DateTime  $reconciledAtPayments
      */
-    public function __construct(?\DateTime $reconciledAtLedger = null, ?\DateTime $reconciledAtPayments = null)
+    public function __construct(\DateTime $reconciledAtLedger, \DateTime $reconciledAtPayments)
     {
         $this->reconciledAtLedger = $reconciledAtLedger;
         $this->reconciledAtPayments = $reconciledAtPayments;

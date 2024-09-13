@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-
+use formance\stack\Models\Errors;
 class V2UpdateLedgerMetadataResponse
 {
     /**
@@ -33,14 +33,23 @@ class V2UpdateLedgerMetadataResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * @param  ?string  $contentType
-     * @param  ?int  $statusCode
-     * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
+     * Error
+     *
+     * @var ?Errors\V2ErrorResponse $v2ErrorResponse
      */
-    public function __construct(?string $contentType = null, ?int $statusCode = null, ?\Psr\Http\Message\ResponseInterface $rawResponse = null)
+    public ?Errors\V2ErrorResponse $v2ErrorResponse = null;
+
+    /**
+     * @param  string  $contentType
+     * @param  int  $statusCode
+     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Errors\V2ErrorResponse  $v2ErrorResponse
+     */
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Errors\V2ErrorResponse $v2ErrorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
+        $this->v2ErrorResponse = $v2ErrorResponse;
     }
 }

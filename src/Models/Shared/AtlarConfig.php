@@ -30,7 +30,7 @@ class AtlarConfig
      * @var ?string $baseUrl
      */
     #[\JMS\Serializer\Annotation\SerializedName('baseUrl')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $baseUrl = null;
 
     /**
@@ -48,7 +48,7 @@ class AtlarConfig
      * @var ?int $pageSize
      */
     #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
@@ -59,7 +59,7 @@ class AtlarConfig
      * @var ?string $pollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -81,19 +81,19 @@ class AtlarConfig
      * @var ?string $transferInitiationStatusPollingPeriod
      */
     #[\JMS\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $transferInitiationStatusPollingPeriod = null;
 
     /**
-     * @param  ?string  $accessKey
-     * @param  ?string  $name
-     * @param  ?string  $secret
+     * @param  string  $accessKey
+     * @param  string  $name
+     * @param  string  $secret
      * @param  ?string  $baseUrl
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
      * @param  ?string  $transferInitiationStatusPollingPeriod
      */
-    public function __construct(?string $accessKey = null, ?string $name = null, ?string $secret = null, ?string $baseUrl = null, ?int $pageSize = null, ?string $pollingPeriod = null, ?string $transferInitiationStatusPollingPeriod = null)
+    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = null, ?int $pageSize = null, ?string $pollingPeriod = null, ?string $transferInitiationStatusPollingPeriod = null)
     {
         $this->accessKey = $accessKey;
         $this->name = $name;

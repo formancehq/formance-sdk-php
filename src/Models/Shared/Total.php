@@ -16,7 +16,7 @@ class Total
      * @var ?string $relation
      */
     #[\JMS\Serializer\Annotation\SerializedName('relation')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?string $relation = null;
 
     /**
@@ -24,7 +24,7 @@ class Total
      * @var ?int $value
      */
     #[\JMS\Serializer\Annotation\SerializedName('value')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?int $value = null;
 
     /**

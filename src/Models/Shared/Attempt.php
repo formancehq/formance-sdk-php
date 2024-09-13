@@ -38,7 +38,7 @@ class Attempt
      * @var ?\DateTime $nextRetryAfter
      */
     #[\JMS\Serializer\Annotation\SerializedName('nextRetryAfter')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
+    #[\JMS\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $nextRetryAfter = null;
 
     /**
@@ -84,18 +84,18 @@ class Attempt
     public string $webhookID;
 
     /**
-     * @param  ?WebhooksConfig  $config
-     * @param  ?\DateTime  $createdAt
-     * @param  ?string  $id
-     * @param  ?string  $payload
-     * @param  ?int  $retryAttempt
-     * @param  ?string  $status
-     * @param  ?int  $statusCode
-     * @param  ?\DateTime  $updatedAt
-     * @param  ?string  $webhookID
+     * @param  WebhooksConfig  $config
+     * @param  \DateTime  $createdAt
+     * @param  string  $id
+     * @param  string  $payload
+     * @param  int  $retryAttempt
+     * @param  string  $status
+     * @param  int  $statusCode
+     * @param  \DateTime  $updatedAt
+     * @param  string  $webhookID
      * @param  ?\DateTime  $nextRetryAfter
      */
-    public function __construct(?WebhooksConfig $config = null, ?\DateTime $createdAt = null, ?string $id = null, ?string $payload = null, ?int $retryAttempt = null, ?string $status = null, ?int $statusCode = null, ?\DateTime $updatedAt = null, ?string $webhookID = null, ?\DateTime $nextRetryAfter = null)
+    public function __construct(WebhooksConfig $config, \DateTime $createdAt, string $id, string $payload, int $retryAttempt, string $status, int $statusCode, \DateTime $updatedAt, string $webhookID, ?\DateTime $nextRetryAfter = null)
     {
         $this->config = $config;
         $this->createdAt = $createdAt;

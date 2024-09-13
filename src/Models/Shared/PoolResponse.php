@@ -20,9 +20,9 @@ class PoolResponse
     public Pool $data;
 
     /**
-     * @param  ?Pool  $data
+     * @param  Pool  $data
      */
-    public function __construct(?Pool $data = null)
+    public function __construct(Pool $data)
     {
         $this->data = $data;
     }
