@@ -40,8 +40,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -97,8 +98,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -106,9 +108,6 @@ try {
     $request = new Operations\AddMetadataOnTransactionRequest(
         ledger: 'ledger001',
         txid: 1234,
-        requestBody: [
-            'withdrawal' => '<value>',
-        ],
     );
     $response = $sdk->ledgerV1->addMetadataOnTransaction($request);
 
@@ -153,8 +152,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -163,7 +163,7 @@ try {
         address: 'users:001',
         ledger: 'ledger001',
         requestBody: [
-            'Oriental' => '<value>',
+            'key' => '<value>',
         ],
     );
     $response = $sdk->ledgerV1->addMetadataToAccount($request);
@@ -209,8 +209,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -219,7 +220,56 @@ try {
         ledger: 'ledger001',
         address: 'users:.+',
         metadata: [
-            'Electronic' => '<value>',
+            '0' => 'm',
+            '1' => 'e',
+            '2' => 't',
+            '3' => 'a',
+            '4' => 'd',
+            '5' => 'a',
+            '6' => 't',
+            '7' => 'a',
+            '8' => '[',
+            '9' => 'k',
+            '10' => 'e',
+            '11' => 'y',
+            '12' => ']',
+            '13' => '=',
+            '14' => 'v',
+            '15' => 'a',
+            '16' => 'l',
+            '17' => 'u',
+            '18' => 'e',
+            '19' => '1',
+            '20' => '&',
+            '21' => 'm',
+            '22' => 'e',
+            '23' => 't',
+            '24' => 'a',
+            '25' => 'd',
+            '26' => 'a',
+            '27' => 't',
+            '28' => 'a',
+            '29' => '[',
+            '30' => 'a',
+            '31' => '.',
+            '32' => 'n',
+            '33' => 'e',
+            '34' => 's',
+            '35' => 't',
+            '36' => 'e',
+            '37' => 'd',
+            '38' => '.',
+            '39' => 'k',
+            '40' => 'e',
+            '41' => 'y',
+            '42' => ']',
+            '43' => '=',
+            '44' => 'v',
+            '45' => 'a',
+            '46' => 'l',
+            '47' => 'u',
+            '48' => 'e',
+            '49' => '2',
         ],
     );
     $response = $sdk->ledgerV1->countAccounts($request);
@@ -264,10 +314,10 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -276,13 +326,9 @@ try {
         ledger: 'ledger001',
         account: 'users:001',
         destination: 'users:001',
-        endTime: Utils\Utils::parseDateTime('2022-07-20T14:23:01.272Z'),
-        metadata: new Operations\Metadata(
-
-        ),
+        metadata: new Operations\Metadata(),
         reference: 'ref:001',
         source: 'users:001',
-        startTime: Utils\Utils::parseDateTime('2024-09-26T22:46:35.189Z'),
     );
     $response = $sdk->ledgerV1->countTransactions($request);
 
@@ -326,10 +372,10 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -350,13 +396,9 @@ try {
                 )
                 ',
                 vars: [
-                    'before' => '<value>',
+                    'user' => 'users:042',
                 ],
             ),
-            timestamp: Utils\Utils::parseDateTime('2024-10-17T04:59:08.030Z'),
-            metadata: [
-                'however' => '<value>',
-            ],
         ),
         ledger: 'ledger001',
         preview: true,
@@ -404,8 +446,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -457,8 +500,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -468,7 +512,6 @@ try {
         address: 'users:001',
         after: 'users:003',
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 755286,
     );
     $response = $sdk->ledgerV1->getBalances($request);
 
@@ -513,8 +556,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -522,7 +566,6 @@ try {
     $request = new Operations\GetBalancesAggregatedRequest(
         ledger: 'ledger001',
         address: 'users:001',
-        useInsertionDate: false,
     );
     $response = $sdk->ledgerV1->getBalancesAggregated($request);
 
@@ -566,8 +609,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -609,8 +653,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -661,8 +706,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -713,8 +759,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -766,8 +813,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -779,10 +827,58 @@ try {
         balance: 2400,
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         metadata: [
-            'glistening' => '<value>',
+            '0' => 'm',
+            '1' => 'e',
+            '2' => 't',
+            '3' => 'a',
+            '4' => 'd',
+            '5' => 'a',
+            '6' => 't',
+            '7' => 'a',
+            '8' => '[',
+            '9' => 'k',
+            '10' => 'e',
+            '11' => 'y',
+            '12' => ']',
+            '13' => '=',
+            '14' => 'v',
+            '15' => 'a',
+            '16' => 'l',
+            '17' => 'u',
+            '18' => 'e',
+            '19' => '1',
+            '20' => '&',
+            '21' => 'm',
+            '22' => 'e',
+            '23' => 't',
+            '24' => 'a',
+            '25' => 'd',
+            '26' => 'a',
+            '27' => 't',
+            '28' => 'a',
+            '29' => '[',
+            '30' => 'a',
+            '31' => '.',
+            '32' => 'n',
+            '33' => 'e',
+            '34' => 's',
+            '35' => 't',
+            '36' => 'e',
+            '37' => 'd',
+            '38' => '.',
+            '39' => 'k',
+            '40' => 'e',
+            '41' => 'y',
+            '42' => ']',
+            '43' => '=',
+            '44' => 'v',
+            '45' => 'a',
+            '46' => 'l',
+            '47' => 'u',
+            '48' => 'e',
+            '49' => '2',
         ],
         pageSize: 100,
-        paginationToken: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     );
     $response = $sdk->ledgerV1->listAccounts($request);
 
@@ -826,10 +922,10 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -838,9 +934,7 @@ try {
         ledger: 'ledger001',
         after: '1234',
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        endTime: Utils\Utils::parseDateTime('2023-09-04T18:34:28.222Z'),
         pageSize: 100,
-        startTime: Utils\Utils::parseDateTime('2023-12-22T08:05:32.688Z'),
     );
     $response = $sdk->ledgerV1->listLogs($request);
 
@@ -884,10 +978,10 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -898,14 +992,9 @@ try {
         after: '1234',
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         destination: 'users:001',
-        endTime: Utils\Utils::parseDateTime('2023-09-09T05:38:58.239Z'),
-        metadata: [
-            'South' => '<value>',
-        ],
         pageSize: 100,
         reference: 'ref:001',
         source: 'users:001',
-        startTime: Utils\Utils::parseDateTime('2023-05-19T14:56:57.390Z'),
     );
     $response = $sdk->ledgerV1->listTransactions($request);
 
@@ -951,8 +1040,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1003,8 +1093,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1012,7 +1103,6 @@ try {
     $request = new Operations\RevertTransactionRequest(
         ledger: 'ledger001',
         txid: 1234,
-        disableChecks: false,
     );
     $response = $sdk->ledgerV1->revertTransaction($request);
 
@@ -1060,8 +1150,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1078,10 +1169,7 @@ try {
             ',
             reference: 'order_1234',
             vars: [
-                'Azerbaijan' => '<value>',
-            ],
-            metadata: [
-                'Mercury' => '<value>',
+                'user' => 'users:042',
             ],
         ),
         ledger: 'ledger001',
@@ -1129,8 +1217,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 

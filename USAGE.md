@@ -7,8 +7,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 

@@ -21,8 +21,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -35,13 +36,9 @@ try {
         ledgers: [
             'quickstart',
         ],
-        pageSize: 307631,
         policy: 'OR',
-        raw: new Shared\QueryRaw(
-
-        ),
+        raw: new Shared\QueryRaw(),
         sort: 'id:asc',
-        target: '<value>',
         terms: [
             'destination=central_bank1',
         ],
@@ -87,8 +84,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 

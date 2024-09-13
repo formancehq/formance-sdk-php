@@ -36,8 +36,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -48,7 +49,6 @@ try {
             amount: 100,
             final: true,
         ),
-        idempotencyKey: '<value>',
     );
     $response = $sdk->walletsV1->confirmHold($request);
 
@@ -92,22 +92,16 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\CreateBalanceRequest(
         id: '<id>',
-        createBalanceRequest: new Shared\CreateBalanceRequest(
-            name: '<value>',
-            priority: 727318,
-            expiresAt: Utils\Utils::parseDateTime('2024-07-21T23:35:09.027Z'),
-        ),
-        idempotencyKey: '<value>',
     );
     $response = $sdk->walletsV1->createBalance($request);
 
@@ -152,21 +146,14 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
-    $request = new Operations\CreateWalletRequest(
-        createWalletRequest: new Shared\CreateWalletRequest(
-            metadata: [
-                'array' => '<value>',
-            ],
-            name: '<value>',
-        ),
-        idempotencyKey: '<value>',
-    );
+    $request = new Operations\CreateWalletRequest();
     $response = $sdk->walletsV1->createWallet($request);
 
     if ($response->createWalletResponse !== null) {
@@ -209,10 +196,10 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -221,14 +208,11 @@ try {
         id: '<id>',
         creditWalletRequest: new Shared\CreditWalletRequest(
             amount: new Shared\Monetary(
-                amount: 201874,
-                asset: '<value>',
+                amount: 100,
+                asset: 'USD/2',
             ),
-            balance: '<value>',
-            reference: '<value>',
-            timestamp: Utils\Utils::parseDateTime('2022-01-17T00:03:10.305Z'),
             metadata: [
-                'second' => '<value>',
+                'key' => '',
             ],
             sources: [
                 new Shared\LedgerAccountSubject(
@@ -237,7 +221,6 @@ try {
                 ),
             ],
         ),
-        idempotencyKey: '<value>',
     );
     $response = $sdk->walletsV1->creditWallet($request);
 
@@ -281,10 +264,10 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -293,25 +276,14 @@ try {
         id: '<id>',
         debitWalletRequest: new Shared\DebitWalletRequest(
             amount: new Shared\Monetary(
-                amount: 245256,
-                asset: '<value>',
+                amount: 100,
+                asset: 'USD/2',
             ),
             metadata: [
-                'Oriental' => '<value>',
+                'key' => '',
             ],
-            balances: [
-                '<value>',
-            ],
-            description: 'Up-sized context-sensitive toolset',
-            destination: new Shared\WalletSubject(
-                identifier: '<value>',
-                type: '<value>',
-                balance: '<value>',
-            ),
-            pending: false,
-            timestamp: Utils\Utils::parseDateTime('2022-03-06T22:29:17.890Z'),
+            pending: true,
         ),
-        idempotencyKey: '<value>',
     );
     $response = $sdk->walletsV1->debitWallet($request);
 
@@ -356,8 +328,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -409,8 +382,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -461,8 +435,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -470,7 +445,7 @@ try {
     $request = new Operations\GetHoldsRequest(
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         metadata: [
-            'Engineer' => '<value>',
+            'admin' => 'true',
         ],
         pageSize: 100,
         walletID: 'wallet1',
@@ -516,8 +491,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -570,8 +546,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -622,8 +599,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -674,8 +652,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -725,8 +704,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -735,7 +715,7 @@ try {
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         expand: 'balances',
         metadata: [
-            'Auto' => '<value>',
+            'admin' => 'true',
         ],
         name: 'wallet1',
         pageSize: 100,
@@ -783,20 +763,15 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\UpdateWalletRequest(
         id: '<id>',
-        idempotencyKey: '<value>',
-        requestBody: new Operations\UpdateWalletRequestBody(
-            metadata: [
-                'override' => '<value>',
-            ],
-        ),
     );
     $response = $sdk->walletsV1->updateWallet($request);
 
@@ -841,15 +816,15 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\VoidHoldRequest(
         holdId: '<value>',
-        idempotencyKey: '<value>',
     );
     $response = $sdk->walletsV1->voidHold($request);
 
@@ -893,8 +868,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 

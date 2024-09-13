@@ -63,8 +63,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -118,8 +119,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -176,8 +178,9 @@ use formance\stack;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -187,11 +190,6 @@ try {
         createdAt: Utils\Utils::parseDateTime('2024-08-19T02:15:08.668Z'),
         reference: '<value>',
         type: Shared\AccountType::Unknown,
-        accountName: '<value>',
-        defaultAsset: '<value>',
-        metadata: [
-            '24' => '<value>',
-        ],
     );
     $response = $sdk->paymentsV1->createAccount($request);
 
@@ -235,8 +233,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -245,12 +244,6 @@ try {
         connectorID: '<value>',
         country: 'GB',
         name: 'My account',
-        accountNumber: '<value>',
-        iban: 'HU80500236840980904027018003',
-        swiftBicCode: '<value>',
-        metadata: [
-            'Manganese' => '<value>',
-        ],
     );
     $response = $sdk->paymentsV1->createBankAccount($request);
 
@@ -295,8 +288,9 @@ use formance\stack;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -310,8 +304,6 @@ try {
         scheme: Shared\PaymentScheme::GooglePay,
         status: Shared\PaymentStatus::DisputeWon,
         type: Shared\PaymentType::Transfer,
-        destinationAccountID: '<value>',
-        sourceAccountID: '<value>',
     );
     $response = $sdk->paymentsV1->createPayment($request);
 
@@ -355,8 +347,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -410,8 +403,9 @@ use formance\stack;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -426,11 +420,6 @@ try {
         sourceAccountID: '<value>',
         type: Shared\TransferInitiationRequestType::Transfer,
         validated: false,
-        connectorID: '<value>',
-        provider: Shared\Connector::Mangopay,
-        metadata: [
-            'South' => '<value>',
-        ],
     );
     $response = $sdk->paymentsV1->createTransferInitiation($request);
 
@@ -475,8 +464,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -527,8 +517,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -579,8 +570,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -633,25 +625,22 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\GetAccountBalancesRequest(
         accountId: 'XXX',
-        asset: '<value>',
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        from: Utils\Utils::parseDateTime('2023-02-05T05:11:20.042Z'),
-        limit: 743236,
         pageSize: 100,
         sort: [
-            '<value>',
+            'date:asc',
+            'status:desc',
         ],
-        to: Utils\Utils::parseDateTime('2022-05-18T12:09:40.608Z'),
     );
     $response = $sdk->paymentsV1->getAccountBalances($request);
 
@@ -696,8 +685,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -750,8 +740,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -803,8 +794,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -857,8 +849,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -909,8 +902,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -962,8 +956,9 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1015,8 +1010,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1067,8 +1063,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1123,8 +1120,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1166,8 +1164,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1176,7 +1175,8 @@ try {
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         pageSize: 100,
         sort: [
-            '<value>',
+            'date:asc',
+            'status:desc',
         ],
     );
     $response = $sdk->paymentsV1->listBankAccounts($request);
@@ -1221,8 +1221,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1266,8 +1267,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1320,8 +1322,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1375,8 +1378,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1384,9 +1388,9 @@ try {
     $request = new Operations\ListPaymentsRequest(
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         pageSize: 100,
-        query: '<value>',
         sort: [
-            '<value>',
+            'date:asc',
+            'status:desc',
         ],
     );
     $response = $sdk->paymentsV1->listPayments($request);
@@ -1432,8 +1436,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1441,9 +1446,9 @@ try {
     $request = new Operations\ListPoolsRequest(
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         pageSize: 100,
-        query: '<value>',
         sort: [
-            '<value>',
+            'date:asc',
+            'status:desc',
         ],
     );
     $response = $sdk->paymentsV1->listPools($request);
@@ -1489,8 +1494,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1498,9 +1504,9 @@ try {
     $request = new Operations\ListTransferInitiationsRequest(
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         pageSize: 100,
-        query: '<value>',
         sort: [
-            '<value>',
+            'date:asc',
+            'status:desc',
         ],
     );
     $response = $sdk->paymentsV1->listTransferInitiations($request);
@@ -1546,8 +1552,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1597,8 +1604,9 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1640,21 +1648,19 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\PaymentslistAccountsRequest(
-        requestBody: [
-            'Rustic' => '<value>',
-        ],
         cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
         pageSize: 100,
-        query: '<value>',
         sort: [
-            '<value>',
+            'date:asc',
+            'status:desc',
         ],
     );
     $response = $sdk->paymentsV1->paymentslistAccounts($request);
@@ -1702,8 +1708,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1754,8 +1761,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1807,8 +1815,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1864,8 +1873,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1918,8 +1928,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -1971,8 +1982,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2023,8 +2035,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2036,7 +2049,7 @@ try {
             description: 'Streamlined high-level local area network',
             reference: 'XXX',
             metadata: [
-                'sky' => '<value>',
+                'key' => '<value>',
             ],
         ),
         transferId: 'XXX',
@@ -2084,8 +2097,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2141,8 +2155,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2193,8 +2208,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2246,8 +2262,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2255,7 +2272,7 @@ try {
     $request = new Operations\UpdateBankAccountMetadataRequest(
         updateBankAccountMetadataRequest: new Shared\UpdateBankAccountMetadataRequest(
             metadata: [
-                'West' => '<value>',
+                'key' => '<value>',
             ],
         ),
         bankAccountId: 'XXX',
@@ -2303,8 +2320,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2362,8 +2380,9 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security();
-$security->authorization = '<YOUR_AUTHORIZATION_HERE>';
+$security = new Shared\Security(
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+);
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
@@ -2371,7 +2390,7 @@ try {
     $request = new Operations\UpdateMetadataRequest(
         paymentId: 'XXX',
         requestBody: [
-            'synthesizing' => '<value>',
+            'key' => '<value>',
         ],
     );
     $response = $sdk->paymentsV1->updateMetadata($request);

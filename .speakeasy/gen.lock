@@ -3,22 +3,22 @@ id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
   docChecksum: bb72b9e5f65512abfc137f36f5e4fd02
   docVersion: v2.1.0-beta.1
-  speakeasyVersion: 1.395.1
-  generationVersion: 2.415.0
-  releaseVersion: 2.4.0
-  configChecksum: bf53fbe487457dbffbef901b3471fb48
+  speakeasyVersion: 1.396.6
+  generationVersion: 2.415.6
+  releaseVersion: 2.4.1
+  configChecksum: 9d36d291e2b1a4bd2b27099aa6950d87
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
   published: true
 features:
   php:
-    core: 3.4.1
+    core: 3.4.3
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
     globalSecurity: 2.81.7
-    globalSecurityFlattening: 0.1.0
+    globalSecurityFlattening: 0.1.1
     globalServerURLs: 2.82.1
     ignores: 2.81.1
     nameOverrides: 2.81.2
@@ -2552,6 +2552,7 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200": {}
   createAccount:
     speakeasy-default-create-account:
       requestBody:
@@ -2657,7 +2658,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-09-14T18:08:36.220Z", "id": "7bc89db4-3a47-4f1b-b9a2-4050795f4220", "status": "DISPUTE", "updatedAt": "2024-08-25T09:44:07.045Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-03-04T09:03:44.079Z", "id": "37bc89db-43a4-47f1-bb9a-24050795f422", "status": "PENDING", "updatedAt": "2023-12-20T20:12:51.365Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2669,7 +2670,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-05-15T09:04:44.771Z", "id": "52d569d2-5c83-4cae-84b5-a32c806dcf92", "status": "SUCCEEDED", "updatedAt": "2024-11-07T12:10:00.076Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2024-08-05T22:20:59.377Z", "id": "752d569d-25c8-43ca-a84b-5a32c806dcf9", "status": "SUCCEEDED", "updatedAt": "2022-06-02T20:15:28.566Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:
@@ -2720,7 +2721,7 @@ examples:
         path:
           connector: "ADYEN"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<value>"}}
@@ -2862,7 +2863,7 @@ examples:
           connectorId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}}
+          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   removeAccountFromPool:
