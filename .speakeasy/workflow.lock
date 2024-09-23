@@ -1,0 +1,32 @@
+speakeasyVersion: 1.401.3
+sources:
+    my-source:
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:9e799be414b09d9f8302cf039b1eb4e2b49dd0102424879bd9360c3a007c32c9
+        sourceBlobDigest: sha256:d381055f92cce103e8bd74a08b227de17950d63394bdf06c5d5e0709fb8d9fa8
+        tags:
+            - latest
+            - main
+targets:
+    formance-sdk-php:
+        source: my-source
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:9e799be414b09d9f8302cf039b1eb4e2b49dd0102424879bd9360c3a007c32c9
+        sourceBlobDigest: sha256:d381055f92cce103e8bd74a08b227de17950d63394bdf06c5d5e0709fb8d9fa8
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        my-source:
+            inputs:
+                - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.2/generate.json
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/my-source
+    targets:
+        formance-sdk-php:
+            target: php
+            source: my-source
+            publish:
+                packagist:
+                    username: $PACKAGIST_USERNAME
+                    token: $PACKAGIST_TOKEN
