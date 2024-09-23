@@ -31,6 +31,8 @@ class SDK
     public const SERVERS = [
         /** local server */
         'http://localhost',
+        /** sandbox server */
+        'https://{stack}.sandbox.formance.cloud',
     ];
 
     public Auth $auth;

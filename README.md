@@ -330,6 +330,7 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
+| 1 | `https://{stack}.sandbox.formance.cloud` | None |
 
 
 

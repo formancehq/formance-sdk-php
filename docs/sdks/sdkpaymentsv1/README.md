@@ -187,9 +187,9 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 try {
     $request = new Shared\AccountRequest(
         connectorID: '<value>',
-        createdAt: Utils\Utils::parseDateTime('2024-08-19T02:15:08.668Z'),
+        createdAt: Utils\Utils::parseDateTime('2024-08-19T02:15:08.152Z'),
         reference: '<value>',
-        type: Shared\AccountType::Unknown,
+        type: Shared\AccountType::Internal,
     );
     $response = $sdk->paymentsV1->createAccount($request);
 
@@ -299,11 +299,11 @@ try {
         amount: 100,
         asset: 'USD',
         connectorID: '<value>',
-        createdAt: Utils\Utils::parseDateTime('2024-11-09T01:03:21.153Z'),
+        createdAt: Utils\Utils::parseDateTime('2024-11-09T01:03:21.011Z'),
         reference: '<value>',
-        scheme: Shared\PaymentScheme::GooglePay,
-        status: Shared\PaymentStatus::DisputeWon,
-        type: Shared\PaymentType::Transfer,
+        scheme: Shared\PaymentScheme::Molpay,
+        status: Shared\PaymentStatus::RefundedFailure,
+        type: Shared\PaymentType::Payout,
     );
     $response = $sdk->paymentsV1->createPayment($request);
 
@@ -413,12 +413,12 @@ try {
     $request = new Shared\TransferInitiationRequest(
         amount: 256698,
         asset: 'USD',
-        description: 'Multi-tiered incremental methodology',
+        description: 'Open-architected heuristic knowledge user',
         destinationAccountID: '<value>',
         reference: 'XXX',
-        scheduledAt: Utils\Utils::parseDateTime('2023-05-04T22:47:54.364Z'),
+        scheduledAt: Utils\Utils::parseDateTime('2024-05-21T00:04:35.840Z'),
         sourceAccountID: '<value>',
-        type: Shared\TransferInitiationRequestType::Transfer,
+        type: Shared\TransferInitiationRequestType::Payout,
         validated: false,
     );
     $response = $sdk->paymentsV1->createTransferInitiation($request);
@@ -964,7 +964,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\GetPoolBalancesRequest(
-        at: Utils\Utils::parseDateTime('2023-05-05T06:40:23.018Z'),
+        at: Utils\Utils::parseDateTime('2023-05-05T06:40:23.119Z'),
         poolId: 'XXX',
     );
     $response = $sdk->paymentsV1->getPoolBalances($request);
@@ -1076,7 +1076,7 @@ try {
             name: 'My Wise Account',
             pollingPeriod: '60s',
         ),
-        connector: Shared\Connector::Adyen,
+        connector: Shared\Connector::Atlar,
     );
     $response = $sdk->paymentsV1->installConnector($request);
 
@@ -2046,7 +2046,7 @@ try {
         reverseTransferInitiationRequest: new Shared\ReverseTransferInitiationRequest(
             amount: 327549,
             asset: 'USD',
-            description: 'Streamlined high-level local area network',
+            description: 'Multi-channelled responsive capability',
             reference: 'XXX',
             metadata: [
                 'key' => '<value>',
@@ -2334,7 +2334,7 @@ try {
             pageSize: 50,
             pollingPeriod: '60s',
         ),
-        connector: Shared\Connector::Stripe,
+        connector: Shared\Connector::Adyen,
         connectorId: 'XXX',
     );
     $response = $sdk->paymentsV1->updateConnectorConfigV1($request);
