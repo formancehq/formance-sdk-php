@@ -278,7 +278,9 @@ try {
     $request = new Operations\V2CreateBulkRequest(
         ledger: 'ledger001',
         requestBody: [
-
+            new Shared\V2BulkElementAddMetadata(
+                action: '<value>',
+            ),
         ],
     );
     $response = $sdk->ledgerV2->createBulk($request);
@@ -466,7 +468,7 @@ $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
 try {
     $request = new Operations\V2DeleteAccountMetadataRequest(
-        address: '69266 Krajcik Bypass',
+        address: '96609 Cummings Canyon',
         key: 'foo',
         ledger: 'ledger001',
     );
