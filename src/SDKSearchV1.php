@@ -35,7 +35,7 @@ class SDKSearchV1
     public function search(
         Shared\Query $request,
     ): Operations\SearchResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/search/');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -79,7 +79,7 @@ class SDKSearchV1
      */
     public function searchgetServerInfo(
     ): Operations\SearchgetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/search/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';

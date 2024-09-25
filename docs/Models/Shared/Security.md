@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `authorization`    | *string*           | :heavy_check_mark: | N/A                |
+| `authorization`    | *?string*          | :heavy_minus_sign: | N/A                |

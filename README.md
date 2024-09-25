@@ -63,16 +63,15 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Shared;
+use formance\stack\Models\Operations;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
-);
-
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$sdk = stack\SDK::builder()->build();
 
 try {
-    $response = $sdk->getVersions();
+    $requestSecurity = new Operations\GetVersionsSecurity(
+        authorization: "<YOUR_AUTHORIZATION_HERE>",
+    );
+    $response = $sdk->getVersions($requestSecurity);
 
     if ($response->getVersionsResponse !== null) {
         // handle response
@@ -330,10 +329,15 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
-| 1 | `https://{stack}.sandbox.formance.cloud` | None |
+| 1 | `https://{organization}.{environment}.formance.cloud` | `environment` (default is `sandbox`), `organization` (default is `orgID-stackID`) |
 
 
 
+#### Variables
+
+Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
+ * `environment: stack\ServerEnvironment`
+ * `organization: string`
 
 ### Override Server URL Per-Client
 

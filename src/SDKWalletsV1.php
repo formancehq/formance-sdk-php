@@ -32,7 +32,7 @@ class SDKWalletsV1
     public function confirmHold(
         ?Operations\ConfirmHoldRequest $request,
     ): Operations\ConfirmHoldResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/confirm', Operations\ConfirmHoldRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'confirmHoldRequest', 'json');
@@ -79,7 +79,7 @@ class SDKWalletsV1
     public function createBalance(
         ?Operations\CreateBalanceRequest $request,
     ): Operations\CreateBalanceResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', Operations\CreateBalanceRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'createBalanceRequest', 'json');
@@ -134,7 +134,7 @@ class SDKWalletsV1
     public function createWallet(
         ?Operations\CreateWalletRequest $request,
     ): Operations\CreateWalletResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'createWalletRequest', 'json');
@@ -189,7 +189,7 @@ class SDKWalletsV1
     public function creditWallet(
         ?Operations\CreditWalletRequest $request,
     ): Operations\CreditWalletResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/credit', Operations\CreditWalletRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'creditWalletRequest', 'json');
@@ -236,7 +236,7 @@ class SDKWalletsV1
     public function debitWallet(
         ?Operations\DebitWalletRequest $request,
     ): Operations\DebitWalletResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/debit', Operations\DebitWalletRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'debitWalletRequest', 'json');
@@ -297,7 +297,7 @@ class SDKWalletsV1
     public function getBalance(
         ?Operations\GetBalanceRequest $request,
     ): Operations\GetBalanceResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances/{balanceName}', Operations\GetBalanceRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -344,7 +344,7 @@ class SDKWalletsV1
     public function getHold(
         ?Operations\GetHoldRequest $request,
     ): Operations\GetHoldResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{holdID}', Operations\GetHoldRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -391,7 +391,7 @@ class SDKWalletsV1
     public function getHolds(
         ?Operations\GetHoldsRequest $request,
     ): Operations\GetHoldsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetHoldsRequest::class, $request));
@@ -439,7 +439,7 @@ class SDKWalletsV1
     public function getTransactions(
         ?Operations\GetTransactionsRequest $request,
     ): Operations\GetTransactionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/transactions');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetTransactionsRequest::class, $request));
@@ -487,7 +487,7 @@ class SDKWalletsV1
     public function getWallet(
         ?Operations\GetWalletRequest $request,
     ): Operations\GetWalletResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', Operations\GetWalletRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -540,7 +540,7 @@ class SDKWalletsV1
     public function getWalletSummary(
         ?Operations\GetWalletSummaryRequest $request,
     ): Operations\GetWalletSummaryResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/summary', Operations\GetWalletSummaryRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -593,7 +593,7 @@ class SDKWalletsV1
     public function listBalances(
         ?Operations\ListBalancesRequest $request,
     ): Operations\ListBalancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', Operations\ListBalancesRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -634,7 +634,7 @@ class SDKWalletsV1
     public function listWallets(
         ?Operations\ListWalletsRequest $request,
     ): Operations\ListWalletsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListWalletsRequest::class, $request));
@@ -682,7 +682,7 @@ class SDKWalletsV1
     public function updateWallet(
         ?Operations\UpdateWalletRequest $request,
     ): Operations\UpdateWalletResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', Operations\UpdateWalletRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -729,7 +729,7 @@ class SDKWalletsV1
     public function voidHold(
         ?Operations\VoidHoldRequest $request,
     ): Operations\VoidHoldResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/void', Operations\VoidHoldRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getHeaders($request));
@@ -770,7 +770,7 @@ class SDKWalletsV1
      */
     public function walletsgetServerInfo(
     ): Operations\WalletsgetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';

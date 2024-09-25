@@ -31,8 +31,8 @@ class SDK
     public const SERVERS = [
         /** local server */
         'http://localhost',
-        /** sandbox server */
-        'https://{stack}.sandbox.formance.cloud',
+        /** A per-organization and per-environment API */
+        'https://{organization}.{environment}.formance.cloud',
     ];
 
     public Auth $auth;
@@ -80,20 +80,22 @@ class SDK
     /**
      * Show stack version information
      *
+     * @param  Operations\GetVersionsSecurity  $security
      * @return Operations\GetVersionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getVersions(
+        Operations\GetVersionsSecurity $security,
     ): Operations\GetVersionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/versions');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $security);
 
-
-        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
+        $httpResponse = $client->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();

@@ -35,7 +35,7 @@ class SDKOrchestrationV1
     public function cancelEvent(
         ?Operations\CancelEventRequest $request,
     ): Operations\CancelEventResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/abort', Operations\CancelEventRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -76,7 +76,7 @@ class SDKOrchestrationV1
     public function createTrigger(
         ?Shared\TriggerData $request,
     ): Operations\CreateTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -129,7 +129,7 @@ class SDKOrchestrationV1
     public function createWorkflow(
         ?Shared\CreateWorkflowRequest $request,
     ): Operations\CreateWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -182,7 +182,7 @@ class SDKOrchestrationV1
     public function deleteTrigger(
         ?Operations\DeleteTriggerRequest $request,
     ): Operations\DeleteTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}', Operations\DeleteTriggerRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -223,7 +223,7 @@ class SDKOrchestrationV1
     public function deleteWorkflow(
         ?Operations\DeleteWorkflowRequest $request,
     ): Operations\DeleteWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', Operations\DeleteWorkflowRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -264,7 +264,7 @@ class SDKOrchestrationV1
     public function getInstance(
         ?Operations\GetInstanceRequest $request,
     ): Operations\GetInstanceResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}', Operations\GetInstanceRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -313,7 +313,7 @@ class SDKOrchestrationV1
     public function getInstanceHistory(
         ?Operations\GetInstanceHistoryRequest $request,
     ): Operations\GetInstanceHistoryResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/history', Operations\GetInstanceHistoryRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -362,7 +362,7 @@ class SDKOrchestrationV1
     public function getInstanceStageHistory(
         ?Operations\GetInstanceStageHistoryRequest $request,
     ): Operations\GetInstanceStageHistoryResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/stages/{number}/history', Operations\GetInstanceStageHistoryRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -411,7 +411,7 @@ class SDKOrchestrationV1
     public function getWorkflow(
         ?Operations\GetWorkflowRequest $request,
     ): Operations\GetWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', Operations\GetWorkflowRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -460,7 +460,7 @@ class SDKOrchestrationV1
     public function listInstances(
         ?Operations\ListInstancesRequest $request,
     ): Operations\ListInstancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListInstancesRequest::class, $request));
@@ -510,7 +510,7 @@ class SDKOrchestrationV1
     public function listTriggers(
         ?Operations\ListTriggersRequest $request,
     ): Operations\ListTriggersResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListTriggersRequest::class, $request));
@@ -560,7 +560,7 @@ class SDKOrchestrationV1
     public function listTriggersOccurrences(
         ?Operations\ListTriggersOccurrencesRequest $request,
     ): Operations\ListTriggersOccurrencesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}/occurrences', Operations\ListTriggersOccurrencesRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -607,7 +607,7 @@ class SDKOrchestrationV1
      */
     public function listWorkflows(
     ): Operations\ListWorkflowsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -652,7 +652,7 @@ class SDKOrchestrationV1
      */
     public function orchestrationgetServerInfo(
     ): Operations\OrchestrationgetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -701,7 +701,7 @@ class SDKOrchestrationV1
     public function readTrigger(
         ?Operations\ReadTriggerRequest $request,
     ): Operations\ReadTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}', Operations\ReadTriggerRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -750,7 +750,7 @@ class SDKOrchestrationV1
     public function runWorkflow(
         ?Operations\RunWorkflowRequest $request,
     ): Operations\RunWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{workflowID}/instances', Operations\RunWorkflowRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -804,7 +804,7 @@ class SDKOrchestrationV1
     public function sendEvent(
         ?Operations\SendEventRequest $request,
     ): Operations\SendEventResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/events', Operations\SendEventRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');

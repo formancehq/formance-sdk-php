@@ -23,15 +23,25 @@ class SDKConfiguration
 
     public int $serverIndex = 0;
 
+    /** @var array<array<string, string>> */
+    public ?array $serverDefaults = [
+        [
+        ],
+        [
+            'environment' => 'sandbox',
+            'organization' => 'orgID-stackID',
+        ],
+    ];
+
     public string $language = 'php';
 
-    public string $openapiDocVersion = 'v2.1.0-beta.2';
+    public string $openapiDocVersion = 'v2.1.0-beta.3';
 
-    public string $sdkVersion = '3.0.0';
+    public string $sdkVersion = '3.1.0';
 
-    public string $genVersion = '2.421.3';
+    public string $genVersion = '2.422.22';
 
-    public string $userAgent = 'speakeasy-sdk/php 3.0.0 2.421.3 v2.1.0-beta.2 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 3.1.0 2.422.22 v2.1.0-beta.3 formance/formance-sdk';
 
     public function getServerUrl(): string
     {
@@ -41,6 +51,14 @@ class SDKConfiguration
         }
 
         return SDK::SERVERS[$this->serverIndex];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getServerDefaults(): ?array
+    {
+        return $this->serverDefaults[$this->serverIndex];
     }
     public function hasSecurity(): bool
     {

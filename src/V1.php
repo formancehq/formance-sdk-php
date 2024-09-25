@@ -33,7 +33,7 @@ class V1
     public function createClient(
         ?Shared\CreateClientRequest $request,
     ): Operations\CreateClientResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -78,7 +78,7 @@ class V1
     public function createSecret(
         ?Operations\CreateSecretRequest $request,
     ): Operations\CreateSecretResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', Operations\CreateSecretRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'createSecretRequest', 'json');
@@ -123,7 +123,7 @@ class V1
     public function deleteClient(
         ?Operations\DeleteClientRequest $request,
     ): Operations\DeleteClientResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\DeleteClientRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
@@ -156,7 +156,7 @@ class V1
     public function deleteSecret(
         ?Operations\DeleteSecretRequest $request,
     ): Operations\DeleteSecretResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', Operations\DeleteSecretRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
@@ -187,7 +187,7 @@ class V1
      */
     public function getOIDCWellKnowns(
     ): Operations\GetOIDCWellKnownsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
@@ -218,7 +218,7 @@ class V1
      */
     public function getServerInfo(
     ): Operations\GetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -257,7 +257,7 @@ class V1
      */
     public function listClients(
     ): Operations\ListClientsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -298,7 +298,7 @@ class V1
      */
     public function listUsers(
     ): Operations\ListUsersResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -339,7 +339,7 @@ class V1
     public function readClient(
         ?Operations\ReadClientRequest $request,
     ): Operations\ReadClientResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\ReadClientRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -382,7 +382,7 @@ class V1
     public function readUser(
         ?Operations\ReadUserRequest $request,
     ): Operations\ReadUserResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', Operations\ReadUserRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -423,7 +423,7 @@ class V1
     public function updateClient(
         ?Operations\UpdateClientRequest $request,
     ): Operations\UpdateClientResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\UpdateClientRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'updateClientRequest', 'json');

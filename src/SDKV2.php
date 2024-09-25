@@ -35,7 +35,7 @@ class SDKV2
     public function cancelEvent(
         ?Operations\V2CancelEventRequest $request,
     ): Operations\V2CancelEventResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/abort', Operations\V2CancelEventRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -76,7 +76,7 @@ class SDKV2
     public function createTrigger(
         ?Shared\V2TriggerData $request,
     ): Operations\V2CreateTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -129,7 +129,7 @@ class SDKV2
     public function createWorkflow(
         ?Shared\V2CreateWorkflowRequest $request,
     ): Operations\V2CreateWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -182,7 +182,7 @@ class SDKV2
     public function deleteTrigger(
         ?Operations\V2DeleteTriggerRequest $request,
     ): Operations\V2DeleteTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', Operations\V2DeleteTriggerRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -223,7 +223,7 @@ class SDKV2
     public function deleteWorkflow(
         ?Operations\V2DeleteWorkflowRequest $request,
     ): Operations\V2DeleteWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', Operations\V2DeleteWorkflowRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -264,7 +264,7 @@ class SDKV2
     public function getInstance(
         ?Operations\V2GetInstanceRequest $request,
     ): Operations\V2GetInstanceResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}', Operations\V2GetInstanceRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -313,7 +313,7 @@ class SDKV2
     public function getInstanceHistory(
         ?Operations\V2GetInstanceHistoryRequest $request,
     ): Operations\V2GetInstanceHistoryResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/history', Operations\V2GetInstanceHistoryRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -362,7 +362,7 @@ class SDKV2
     public function getInstanceStageHistory(
         ?Operations\V2GetInstanceStageHistoryRequest $request,
     ): Operations\V2GetInstanceStageHistoryResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/stages/{number}/history', Operations\V2GetInstanceStageHistoryRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -407,7 +407,7 @@ class SDKV2
      */
     public function getServerInfo(
     ): Operations\V2GetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -456,7 +456,7 @@ class SDKV2
     public function getWorkflow(
         ?Operations\V2GetWorkflowRequest $request,
     ): Operations\V2GetWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', Operations\V2GetWorkflowRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -505,7 +505,7 @@ class SDKV2
     public function listInstances(
         ?Operations\V2ListInstancesRequest $request,
     ): Operations\V2ListInstancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListInstancesRequest::class, $request));
@@ -555,7 +555,7 @@ class SDKV2
     public function listTriggers(
         ?Operations\V2ListTriggersRequest $request,
     ): Operations\V2ListTriggersResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListTriggersRequest::class, $request));
@@ -605,7 +605,7 @@ class SDKV2
     public function listTriggersOccurrences(
         ?Operations\V2ListTriggersOccurrencesRequest $request,
     ): Operations\V2ListTriggersOccurrencesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/occurrences', Operations\V2ListTriggersOccurrencesRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListTriggersOccurrencesRequest::class, $request));
@@ -655,7 +655,7 @@ class SDKV2
     public function listWorkflows(
         ?Operations\V2ListWorkflowsRequest $request,
     ): Operations\V2ListWorkflowsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListWorkflowsRequest::class, $request));
@@ -705,7 +705,7 @@ class SDKV2
     public function readTrigger(
         ?Operations\V2ReadTriggerRequest $request,
     ): Operations\V2ReadTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', Operations\V2ReadTriggerRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -754,7 +754,7 @@ class SDKV2
     public function runWorkflow(
         ?Operations\V2RunWorkflowRequest $request,
     ): Operations\V2RunWorkflowResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{workflowID}/instances', Operations\V2RunWorkflowRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -808,7 +808,7 @@ class SDKV2
     public function sendEvent(
         ?Operations\V2SendEventRequest $request,
     ): Operations\V2SendEventResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/events', Operations\V2SendEventRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -853,7 +853,7 @@ class SDKV2
     public function testTrigger(
         ?Operations\TestTriggerRequest $request,
     ): Operations\TestTriggerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/test', Operations\TestTriggerRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');

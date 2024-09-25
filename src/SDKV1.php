@@ -32,7 +32,7 @@ class SDKV1
     public function createTransactions(
         Operations\CreateTransactionsRequest $request,
     ): Operations\CreateTransactionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/batch', Operations\CreateTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'transactions', 'json');
@@ -84,7 +84,7 @@ class SDKV1
     public function addMetadataOnTransaction(
         ?Operations\AddMetadataOnTransactionRequest $request,
     ): Operations\AddMetadataOnTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/metadata', Operations\AddMetadataOnTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -127,7 +127,7 @@ class SDKV1
     public function addMetadataToAccount(
         Operations\AddMetadataToAccountRequest $request,
     ): Operations\AddMetadataToAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}/metadata', Operations\AddMetadataToAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -171,7 +171,7 @@ class SDKV1
     public function countAccounts(
         ?Operations\CountAccountsRequest $request,
     ): Operations\CountAccountsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', Operations\CountAccountsRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\CountAccountsRequest::class, $request));
@@ -211,7 +211,7 @@ class SDKV1
     public function countTransactions(
         ?Operations\CountTransactionsRequest $request,
     ): Operations\CountTransactionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\CountTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\CountTransactionsRequest::class, $request));
@@ -251,7 +251,7 @@ class SDKV1
     public function createTransaction(
         Operations\CreateTransactionRequest $request,
     ): Operations\CreateTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\CreateTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'postTransaction', 'json');
@@ -304,7 +304,7 @@ class SDKV1
     public function getAccount(
         ?Operations\GetAccountRequest $request,
     ): Operations\GetAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}', Operations\GetAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -351,7 +351,7 @@ class SDKV1
     public function getBalances(
         ?Operations\GetBalancesRequest $request,
     ): Operations\GetBalancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/balances', Operations\GetBalancesRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetBalancesRequest::class, $request));
@@ -399,7 +399,7 @@ class SDKV1
     public function getBalancesAggregated(
         ?Operations\GetBalancesAggregatedRequest $request,
     ): Operations\GetBalancesAggregatedResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/aggregate/balances', Operations\GetBalancesAggregatedRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetBalancesAggregatedRequest::class, $request));
@@ -445,7 +445,7 @@ class SDKV1
      */
     public function getInfo(
     ): Operations\GetInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -492,7 +492,7 @@ class SDKV1
     public function getLedgerInfo(
         ?Operations\GetLedgerInfoRequest $request,
     ): Operations\GetLedgerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/_info', Operations\GetLedgerInfoRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -539,7 +539,7 @@ class SDKV1
     public function getMapping(
         ?Operations\GetMappingRequest $request,
     ): Operations\GetMappingResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', Operations\GetMappingRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -586,7 +586,7 @@ class SDKV1
     public function getTransaction(
         ?Operations\GetTransactionRequest $request,
     ): Operations\GetTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}', Operations\GetTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -635,7 +635,7 @@ class SDKV1
     public function listAccounts(
         ?Operations\ListAccountsRequest $request,
     ): Operations\ListAccountsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', Operations\ListAccountsRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListAccountsRequest::class, $request));
@@ -699,7 +699,7 @@ class SDKV1
     public function listLogs(
         ?Operations\ListLogsRequest $request,
     ): Operations\ListLogsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/logs', Operations\ListLogsRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListLogsRequest::class, $request));
@@ -749,7 +749,7 @@ class SDKV1
     public function listTransactions(
         ?Operations\ListTransactionsRequest $request,
     ): Operations\ListTransactionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\ListTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListTransactionsRequest::class, $request));
@@ -800,7 +800,7 @@ class SDKV1
     public function readStats(
         ?Operations\ReadStatsRequest $request,
     ): Operations\ReadStatsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/stats', Operations\ReadStatsRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -847,7 +847,7 @@ class SDKV1
     public function revertTransaction(
         ?Operations\RevertTransactionRequest $request,
     ): Operations\RevertTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/revert', Operations\RevertTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\RevertTransactionRequest::class, $request));
@@ -900,7 +900,7 @@ class SDKV1
         Operations\RunScriptRequest $request,
     ): Operations\RunScriptResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/script', Operations\RunScriptRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'script', 'json');
@@ -947,7 +947,7 @@ class SDKV1
     public function updateMapping(
         Operations\UpdateMappingRequest $request,
     ): Operations\UpdateMappingResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', Operations\UpdateMappingRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'mapping', 'json');
