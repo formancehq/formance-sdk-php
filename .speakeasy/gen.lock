@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: da9839425759ec1e92b6441bb2f3ca7c
-  docVersion: v2.1.0-beta.2
-  speakeasyVersion: 1.401.4
-  generationVersion: 2.421.3
-  releaseVersion: 3.0.0
-  configChecksum: 81f4388952106541a307980a7e810376
+  docChecksum: d5d12540f5ed5f4996d23aae4cd97c31
+  docVersion: v2.1.0-beta.3
+  speakeasyVersion: 1.402.14
+  generationVersion: 2.422.22
+  releaseVersion: 3.1.0
+  configChecksum: d3cf88a54a4c1b792558c3a7f38355fc
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
   published: true
 features:
   php:
-    core: 3.4.4
+    core: 3.4.5
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
@@ -21,6 +21,7 @@ features:
     globalSecurityFlattening: 0.1.1
     globalServerURLs: 2.82.1
     ignores: 2.81.1
+    methodSecurity: 2.82.1
     nameOverrides: 2.81.2
     nullables: 1.0.0
     responseFormat: 0.1.0
@@ -156,6 +157,7 @@ generatedFiles:
   - docs/Models/Operations/GetTransferInitiationRequest.md
   - docs/Models/Operations/GetTransferInitiationResponse.md
   - docs/Models/Operations/GetVersionsResponse.md
+  - docs/Models/Operations/GetVersionsSecurity.md
   - docs/Models/Operations/GetWalletRequest.md
   - docs/Models/Operations/GetWalletResponse.md
   - docs/Models/Operations/GetWalletSummaryRequest.md
@@ -953,6 +955,7 @@ generatedFiles:
   - src/Models/Operations/GetTransferInitiationRequest.php
   - src/Models/Operations/GetTransferInitiationResponse.php
   - src/Models/Operations/GetVersionsResponse.php
+  - src/Models/Operations/GetVersionsSecurity.php
   - src/Models/Operations/GetWalletRequest.php
   - src/Models/Operations/GetWalletResponse.php
   - src/Models/Operations/GetWalletSummaryRequest.php
@@ -1595,6 +1598,7 @@ generatedFiles:
   - src/SDKWalletsV1.php
   - src/SDKWebhooksV1.php
   - src/Search.php
+  - src/ServerEnvironment.php
   - src/Utils/DateHandler.php
   - src/Utils/DateTimeHandler.php
   - src/Utils/DefaultRequest.php

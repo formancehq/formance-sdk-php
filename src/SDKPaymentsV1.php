@@ -35,7 +35,7 @@ class SDKPaymentsV1
     public function addAccountToPool(
         Operations\AddAccountToPoolRequest $request,
     ): Operations\AddAccountToPoolResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/accounts', Operations\AddAccountToPoolRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'addAccountToPoolRequest', 'json');
@@ -81,7 +81,7 @@ class SDKPaymentsV1
     public function connectorsTransfer(
         Operations\ConnectorsTransferRequest $request,
     ): Operations\ConnectorsTransferResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/transfers', Operations\ConnectorsTransferRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'transferRequest', 'json');
@@ -135,7 +135,7 @@ class SDKPaymentsV1
     public function createAccount(
         Shared\AccountRequest $request,
     ): Operations\CreateAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -189,7 +189,7 @@ class SDKPaymentsV1
     public function createBankAccount(
         Shared\BankAccountRequest $request,
     ): Operations\CreateBankAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -243,7 +243,7 @@ class SDKPaymentsV1
     public function createPayment(
         Shared\PaymentRequest $request,
     ): Operations\CreatePaymentResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -297,7 +297,7 @@ class SDKPaymentsV1
     public function createPool(
         Shared\PoolRequest $request,
     ): Operations\CreatePoolResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -351,7 +351,7 @@ class SDKPaymentsV1
     public function createTransferInitiation(
         Shared\TransferInitiationRequest $request,
     ): Operations\CreateTransferInitiationResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -405,7 +405,7 @@ class SDKPaymentsV1
     public function deletePool(
         ?Operations\DeletePoolRequest $request,
     ): Operations\DeletePoolResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}', Operations\DeletePoolRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -446,7 +446,7 @@ class SDKPaymentsV1
     public function deleteTransferInitiation(
         ?Operations\DeleteTransferInitiationRequest $request,
     ): Operations\DeleteTransferInitiationResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}', Operations\DeleteTransferInitiationRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -485,7 +485,7 @@ class SDKPaymentsV1
     public function forwardBankAccount(
         Operations\ForwardBankAccountRequest $request,
     ): Operations\ForwardBankAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}/forward', Operations\ForwardBankAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'forwardBankAccountRequest', 'json');
@@ -537,7 +537,7 @@ class SDKPaymentsV1
     public function getAccountBalances(
         ?Operations\GetAccountBalancesRequest $request,
     ): Operations\GetAccountBalancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts/{accountId}/balances', Operations\GetAccountBalancesRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetAccountBalancesRequest::class, $request));
@@ -585,7 +585,7 @@ class SDKPaymentsV1
     public function getBankAccount(
         ?Operations\GetBankAccountRequest $request,
     ): Operations\GetBankAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}', Operations\GetBankAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -636,7 +636,7 @@ class SDKPaymentsV1
         ?Operations\GetConnectorTaskRequest $request,
     ): Operations\GetConnectorTaskResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/tasks/{taskId}', Operations\GetConnectorTaskRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -685,7 +685,7 @@ class SDKPaymentsV1
     public function getConnectorTaskV1(
         ?Operations\GetConnectorTaskV1Request $request,
     ): Operations\GetConnectorTaskV1Response {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}', Operations\GetConnectorTaskV1Request::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -732,7 +732,7 @@ class SDKPaymentsV1
     public function getPayment(
         ?Operations\GetPaymentRequest $request,
     ): Operations\GetPaymentResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments/{paymentId}', Operations\GetPaymentRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -779,7 +779,7 @@ class SDKPaymentsV1
     public function getPool(
         ?Operations\GetPoolRequest $request,
     ): Operations\GetPoolResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}', Operations\GetPoolRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -826,7 +826,7 @@ class SDKPaymentsV1
     public function getPoolBalances(
         ?Operations\GetPoolBalancesRequest $request,
     ): Operations\GetPoolBalancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/balances', Operations\GetPoolBalancesRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetPoolBalancesRequest::class, $request));
@@ -874,7 +874,7 @@ class SDKPaymentsV1
     public function getTransferInitiation(
         ?Operations\GetTransferInitiationRequest $request,
     ): Operations\GetTransferInitiationResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}', Operations\GetTransferInitiationRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -923,7 +923,7 @@ class SDKPaymentsV1
     public function installConnector(
         Operations\InstallConnectorRequest $request,
     ): Operations\InstallConnectorResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}', Operations\InstallConnectorRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'connectorConfig', 'json');
@@ -975,7 +975,7 @@ class SDKPaymentsV1
      */
     public function listAllConnectors(
     ): Operations\ListAllConnectorsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1024,7 +1024,7 @@ class SDKPaymentsV1
     public function listBankAccounts(
         ?Operations\ListBankAccountsRequest $request,
     ): Operations\ListBankAccountsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListBankAccountsRequest::class, $request));
@@ -1072,7 +1072,7 @@ class SDKPaymentsV1
      */
     public function listConfigsAvailableConnectors(
     ): Operations\ListConfigsAvailableConnectorsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/configs');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1123,7 +1123,7 @@ class SDKPaymentsV1
         ?Operations\ListConnectorTasksRequest $request,
     ): Operations\ListConnectorTasksResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/tasks', Operations\ListConnectorTasksRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListConnectorTasksRequest::class, $request));
@@ -1173,7 +1173,7 @@ class SDKPaymentsV1
     public function listConnectorTasksV1(
         ?Operations\ListConnectorTasksV1Request $request,
     ): Operations\ListConnectorTasksV1Response {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/tasks', Operations\ListConnectorTasksV1Request::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListConnectorTasksV1Request::class, $request));
@@ -1221,7 +1221,7 @@ class SDKPaymentsV1
     public function listPayments(
         ?Operations\ListPaymentsRequest $request,
     ): Operations\ListPaymentsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListPaymentsRequest::class, $request));
@@ -1269,7 +1269,7 @@ class SDKPaymentsV1
     public function listPools(
         ?Operations\ListPoolsRequest $request,
     ): Operations\ListPoolsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListPoolsRequest::class, $request));
@@ -1317,7 +1317,7 @@ class SDKPaymentsV1
     public function listTransferInitiations(
         ?Operations\ListTransferInitiationsRequest $request,
     ): Operations\ListTransferInitiationsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListTransferInitiationsRequest::class, $request));
@@ -1365,7 +1365,7 @@ class SDKPaymentsV1
     public function paymentsgetAccount(
         ?Operations\PaymentsgetAccountRequest $request,
     ): Operations\PaymentsgetAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts/{accountId}', Operations\PaymentsgetAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1410,7 +1410,7 @@ class SDKPaymentsV1
      */
     public function paymentsgetServerInfo(
     ): Operations\PaymentsgetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1457,7 +1457,7 @@ class SDKPaymentsV1
     public function paymentslistAccounts(
         ?Operations\PaymentslistAccountsRequest $request,
     ): Operations\PaymentslistAccountsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -1513,7 +1513,7 @@ class SDKPaymentsV1
         ?Operations\ReadConnectorConfigRequest $request,
     ): Operations\ReadConnectorConfigResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/config', Operations\ReadConnectorConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1562,7 +1562,7 @@ class SDKPaymentsV1
     public function readConnectorConfigV1(
         ?Operations\ReadConnectorConfigV1Request $request,
     ): Operations\ReadConnectorConfigV1Response {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/config', Operations\ReadConnectorConfigV1Request::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1611,7 +1611,7 @@ class SDKPaymentsV1
     public function removeAccountFromPool(
         ?Operations\RemoveAccountFromPoolRequest $request,
     ): Operations\RemoveAccountFromPoolResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/accounts/{accountId}', Operations\RemoveAccountFromPoolRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1656,7 +1656,7 @@ class SDKPaymentsV1
         ?Operations\ResetConnectorRequest $request,
     ): Operations\ResetConnectorResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/reset', Operations\ResetConnectorRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1699,7 +1699,7 @@ class SDKPaymentsV1
     public function resetConnectorV1(
         ?Operations\ResetConnectorV1Request $request,
     ): Operations\ResetConnectorV1Response {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/reset', Operations\ResetConnectorV1Request::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1740,7 +1740,7 @@ class SDKPaymentsV1
     public function retryTransferInitiation(
         ?Operations\RetryTransferInitiationRequest $request,
     ): Operations\RetryTransferInitiationResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/retry', Operations\RetryTransferInitiationRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1781,7 +1781,7 @@ class SDKPaymentsV1
     public function reverseTransferInitiation(
         Operations\ReverseTransferInitiationRequest $request,
     ): Operations\ReverseTransferInitiationResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/reverse', Operations\ReverseTransferInitiationRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'reverseTransferInitiationRequest', 'json');
@@ -1827,7 +1827,7 @@ class SDKPaymentsV1
     public function udpateTransferInitiationStatus(
         Operations\UdpateTransferInitiationStatusRequest $request,
     ): Operations\UdpateTransferInitiationStatusResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/status', Operations\UdpateTransferInitiationStatusRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'updateTransferInitiationStatusRequest', 'json');
@@ -1875,7 +1875,7 @@ class SDKPaymentsV1
         ?Operations\UninstallConnectorRequest $request,
     ): Operations\UninstallConnectorResponse {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}', Operations\UninstallConnectorRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1916,7 +1916,7 @@ class SDKPaymentsV1
     public function uninstallConnectorV1(
         ?Operations\UninstallConnectorV1Request $request,
     ): Operations\UninstallConnectorV1Response {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}', Operations\UninstallConnectorV1Request::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1955,7 +1955,7 @@ class SDKPaymentsV1
     public function updateBankAccountMetadata(
         Operations\UpdateBankAccountMetadataRequest $request,
     ): Operations\UpdateBankAccountMetadataResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}/metadata', Operations\UpdateBankAccountMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'updateBankAccountMetadataRequest', 'json');
@@ -2001,7 +2001,7 @@ class SDKPaymentsV1
     public function updateConnectorConfigV1(
         Operations\UpdateConnectorConfigV1Request $request,
     ): Operations\UpdateConnectorConfigV1Response {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/config', Operations\UpdateConnectorConfigV1Request::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'connectorConfig', 'json');
@@ -2045,7 +2045,7 @@ class SDKPaymentsV1
     public function updateMetadata(
         Operations\UpdateMetadataRequest $request,
     ): Operations\UpdateMetadataResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments/{paymentId}/metadata', Operations\UpdateMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');

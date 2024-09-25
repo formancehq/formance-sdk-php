@@ -35,7 +35,7 @@ class SDKWebhooksV1
     public function activateConfig(
         ?Operations\ActivateConfigRequest $request,
     ): Operations\ActivateConfigResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/activate', Operations\ActivateConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -88,7 +88,7 @@ class SDKWebhooksV1
     public function changeConfigSecret(
         ?Operations\ChangeConfigSecretRequest $request,
     ): Operations\ChangeConfigSecretResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/secret/change', Operations\ChangeConfigSecretRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'configChangeSecret', 'json');
@@ -141,7 +141,7 @@ class SDKWebhooksV1
     public function deactivateConfig(
         ?Operations\DeactivateConfigRequest $request,
     ): Operations\DeactivateConfigResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/deactivate', Operations\DeactivateConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -190,7 +190,7 @@ class SDKWebhooksV1
     public function deleteConfig(
         ?Operations\DeleteConfigRequest $request,
     ): Operations\DeleteConfigResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}', Operations\DeleteConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -231,7 +231,7 @@ class SDKWebhooksV1
     public function getManyConfigs(
         ?Operations\GetManyConfigsRequest $request,
     ): Operations\GetManyConfigsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetManyConfigsRequest::class, $request));
@@ -290,7 +290,7 @@ class SDKWebhooksV1
     public function insertConfig(
         Shared\ConfigUser $request,
     ): Operations\InsertConfigResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -344,7 +344,7 @@ class SDKWebhooksV1
     public function testConfig(
         ?Operations\TestConfigRequest $request,
     ): Operations\TestConfigResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/test', Operations\TestConfigRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';

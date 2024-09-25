@@ -31,16 +31,15 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Shared;
+use formance\stack\Models\Operations;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
-);
-
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$sdk = stack\SDK::builder()->build();
 
 try {
-    $response = $sdk->getVersions();
+    $requestSecurity = new Operations\GetVersionsSecurity(
+        authorization: "<YOUR_AUTHORIZATION_HERE>",
+    );
+    $response = $sdk->getVersions($requestSecurity);
 
     if ($response->getVersionsResponse !== null) {
         // handle response
@@ -49,6 +48,12 @@ try {
     // handle exception
 }
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `security`                                                                       | [Operations\GetVersionsSecurity](../../Models/Operations/GetVersionsSecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
 
 ### Response
 

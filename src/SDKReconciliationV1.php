@@ -35,7 +35,7 @@ class SDKReconciliationV1
     public function createPolicy(
         Shared\PolicyRequest $request,
     ): Operations\CreatePolicyResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies');
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -89,7 +89,7 @@ class SDKReconciliationV1
     public function deletePolicy(
         ?Operations\DeletePolicyRequest $request,
     ): Operations\DeletePolicyResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}', Operations\DeletePolicyRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -128,7 +128,7 @@ class SDKReconciliationV1
     public function getPolicy(
         ?Operations\GetPolicyRequest $request,
     ): Operations\GetPolicyResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}', Operations\GetPolicyRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -175,7 +175,7 @@ class SDKReconciliationV1
     public function getReconciliation(
         ?Operations\GetReconciliationRequest $request,
     ): Operations\GetReconciliationResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/reconciliations/{reconciliationID}', Operations\GetReconciliationRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -222,7 +222,7 @@ class SDKReconciliationV1
     public function listPolicies(
         ?Operations\ListPoliciesRequest $request,
     ): Operations\ListPoliciesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListPoliciesRequest::class, $request));
@@ -270,7 +270,7 @@ class SDKReconciliationV1
     public function listReconciliations(
         ?Operations\ListReconciliationsRequest $request,
     ): Operations\ListReconciliationsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/reconciliations');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListReconciliationsRequest::class, $request));
@@ -320,7 +320,7 @@ class SDKReconciliationV1
     public function reconcile(
         Operations\ReconcileRequest $request,
     ): Operations\ReconcileResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}/reconciliation', Operations\ReconcileRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'reconciliationRequest', 'json');
@@ -370,7 +370,7 @@ class SDKReconciliationV1
      */
     public function reconciliationgetServerInfo(
     ): Operations\ReconciliationgetServerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';

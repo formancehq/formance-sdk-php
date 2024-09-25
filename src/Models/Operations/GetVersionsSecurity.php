@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace formance\stack\Models\Shared;
+namespace formance\stack\Models\Operations;
 
 use formance\stack\Utils\SpeakeasyMetadata;
-class Security
+class GetVersionsSecurity
 {
     /**
      *
@@ -19,10 +19,19 @@ class Security
     public ?string $authorization = null;
 
     /**
-     * @param  ?string  $authorization
+     *
+     * @var ?string $noAuthorization
      */
-    public function __construct(?string $authorization = null)
+    #[SpeakeasyMetadata('security:scheme=true,type=oauth2,name=Authorization')]
+    public ?string $noAuthorization = null;
+
+    /**
+     * @param  ?string  $authorization
+     * @param  ?string  $noAuthorization
+     */
+    public function __construct(?string $authorization = null, ?string $noAuthorization = null)
     {
         $this->authorization = $authorization;
+        $this->noAuthorization = $noAuthorization;
     }
 }

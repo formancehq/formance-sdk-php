@@ -89,6 +89,42 @@ class SDKBuilder
     }
 
     /**
+     * setEnvironment is used to configure the environment variable for url substitution
+     *
+     * @param  ServerEnvironment  $environment
+     * @return SDKBuilder
+     */
+    public function setEnvironment(ServerEnvironment $environment): SDKBuilder
+    {
+        foreach ($this->sdkConfig->serverDefaults as $idx => $serverDefaults) {
+            if (! array_key_exists('environment', $serverDefaults)) {
+                continue;
+            }
+            $this->sdkConfig->serverDefaults[$idx]['environment'] = $environment->value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * setOrganization is used to configure the organization variable for url substitution
+     *
+     * @param  string  $organization
+     * @return SDKBuilder
+     */
+    public function setOrganization(string $organization): SDKBuilder
+    {
+        foreach ($this->sdkConfig->serverDefaults as $idx => $serverDefaults) {
+            if (! array_key_exists('organization', $serverDefaults)) {
+                continue;
+            }
+            $this->sdkConfig->serverDefaults[$idx]['organization'] = $organization;
+        }
+
+        return $this;
+    }
+
+    /**
      * build is used to build the SDK with any of the configured options.
      *
      * @return SDK

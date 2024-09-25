@@ -32,7 +32,7 @@ class V2
     public function addMetadataOnTransaction(
         ?Operations\V2AddMetadataOnTransactionRequest $request,
     ): Operations\V2AddMetadataOnTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata', Operations\V2AddMetadataOnTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -80,7 +80,7 @@ class V2
     public function addMetadataToAccount(
         Operations\V2AddMetadataToAccountRequest $request,
     ): Operations\V2AddMetadataToAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata', Operations\V2AddMetadataToAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -129,7 +129,7 @@ class V2
     public function countAccounts(
         ?Operations\V2CountAccountsRequest $request,
     ): Operations\V2CountAccountsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2CountAccountsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -173,7 +173,7 @@ class V2
     public function countTransactions(
         ?Operations\V2CountTransactionsRequest $request,
     ): Operations\V2CountTransactionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CountTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -217,7 +217,7 @@ class V2
     public function createBulk(
         ?Operations\V2CreateBulkRequest $request,
     ): Operations\V2CreateBulkResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_bulk', Operations\V2CreateBulkRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -268,7 +268,7 @@ class V2
     public function createLedger(
         ?Operations\V2CreateLedgerRequest $request,
     ): Operations\V2CreateLedgerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2CreateLedgerRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'v2CreateLedgerRequest', 'json');
@@ -311,7 +311,7 @@ class V2
     public function createTransaction(
         Operations\V2CreateTransactionRequest $request,
     ): Operations\V2CreateTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CreateTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'v2PostTransaction', 'json');
@@ -370,7 +370,7 @@ class V2
     public function deleteAccountMetadata(
         ?Operations\V2DeleteAccountMetadataRequest $request,
     ): Operations\V2DeleteAccountMetadataResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}', Operations\V2DeleteAccountMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -409,7 +409,7 @@ class V2
     public function deleteLedgerMetadata(
         ?Operations\V2DeleteLedgerMetadataRequest $request,
     ): Operations\V2DeleteLedgerMetadataResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata/{key}', Operations\V2DeleteLedgerMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -450,7 +450,7 @@ class V2
     public function deleteTransactionMetadata(
         ?Operations\V2DeleteTransactionMetadataRequest $request,
     ): Operations\V2DeleteTransactionMetadataResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}', Operations\V2DeleteTransactionMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -489,7 +489,7 @@ class V2
     public function exportLogs(
         ?Operations\V2ExportLogsRequest $request,
     ): Operations\V2ExportLogsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs/export', Operations\V2ExportLogsRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = '*/*';
@@ -522,7 +522,7 @@ class V2
     public function getAccount(
         ?Operations\V2GetAccountRequest $request,
     ): Operations\V2GetAccountResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}', Operations\V2GetAccountRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2GetAccountRequest::class, $request));
@@ -570,7 +570,7 @@ class V2
     public function getBalancesAggregated(
         ?Operations\V2GetBalancesAggregatedRequest $request,
     ): Operations\V2GetBalancesAggregatedResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/aggregate/balances', Operations\V2GetBalancesAggregatedRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -620,7 +620,7 @@ class V2
      */
     public function getInfo(
     ): Operations\V2GetInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_info');
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -681,7 +681,7 @@ class V2
     public function getLedger(
         ?Operations\V2GetLedgerRequest $request,
     ): Operations\V2GetLedgerResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2GetLedgerRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -728,7 +728,7 @@ class V2
     public function getLedgerInfo(
         ?Operations\V2GetLedgerInfoRequest $request,
     ): Operations\V2GetLedgerInfoResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_info', Operations\V2GetLedgerInfoRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -775,7 +775,7 @@ class V2
     public function getTransaction(
         ?Operations\V2GetTransactionRequest $request,
     ): Operations\V2GetTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}', Operations\V2GetTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2GetTransactionRequest::class, $request));
@@ -823,7 +823,7 @@ class V2
     public function getVolumesWithBalances(
         ?Operations\V2GetVolumesWithBalancesRequest $request,
     ): Operations\V2GetVolumesWithBalancesResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/volumes', Operations\V2GetVolumesWithBalancesRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -875,7 +875,7 @@ class V2
     public function importLogs(
         ?Operations\V2ImportLogsRequest $request,
     ): Operations\V2ImportLogsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs/import', Operations\V2ImportLogsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'string');
@@ -920,7 +920,7 @@ class V2
     public function listAccounts(
         ?Operations\V2ListAccountsRequest $request,
     ): Operations\V2ListAccountsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2ListAccountsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -972,7 +972,7 @@ class V2
     public function listLedgers(
         ?Operations\V2ListLedgersRequest $request,
     ): Operations\V2ListLedgersResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2');
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2ListLedgersRequest::class, $request));
@@ -1022,7 +1022,7 @@ class V2
     public function listLogs(
         ?Operations\V2ListLogsRequest $request,
     ): Operations\V2ListLogsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs', Operations\V2ListLogsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -1076,7 +1076,7 @@ class V2
     public function listTransactions(
         ?Operations\V2ListTransactionsRequest $request,
     ): Operations\V2ListTransactionsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2ListTransactionsRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -1131,7 +1131,7 @@ class V2
     public function readStats(
         ?Operations\V2ReadStatsRequest $request,
     ): Operations\V2ReadStatsResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/stats', Operations\V2ReadStatsRequest::class, $request);
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
@@ -1178,7 +1178,7 @@ class V2
     public function revertTransaction(
         ?Operations\V2RevertTransactionRequest $request,
     ): Operations\V2RevertTransactionResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/revert', Operations\V2RevertTransactionRequest::class, $request);
         $options = ['http_errors' => false];
         $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\V2RevertTransactionRequest::class, $request));
@@ -1226,7 +1226,7 @@ class V2
     public function updateLedgerMetadata(
         ?Operations\V2UpdateLedgerMetadataRequest $request,
     ): Operations\V2UpdateLedgerMetadataResponse {
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata', Operations\V2UpdateLedgerMetadataRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
