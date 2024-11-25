@@ -15,14 +15,14 @@ class V2Ledger
      *
      * @var \DateTime $addedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('addedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('addedAt')]
     public \DateTime $addedAt;
 
     /**
      *
      * @var string $bucket
      */
-    #[\JMS\Serializer\Annotation\SerializedName('bucket')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('bucket')]
     public string $bucket;
 
     /**
@@ -30,16 +30,16 @@ class V2Ledger
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**

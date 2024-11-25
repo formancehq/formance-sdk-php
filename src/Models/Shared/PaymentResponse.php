@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** PaymentResponse - OK */
 class PaymentResponse
 {
     /**
      *
      * @var Payment $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Payment')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Payment')]
     public Payment $data;
 
     /**

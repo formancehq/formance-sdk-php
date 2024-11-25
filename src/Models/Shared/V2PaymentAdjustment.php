@@ -15,47 +15,47 @@ class V2PaymentAdjustment
      *
      * @var bool $absolute
      */
-    #[\JMS\Serializer\Annotation\SerializedName('absolute')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('absolute')]
     public bool $absolute;
 
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var \DateTime $date
      */
-    #[\JMS\Serializer\Annotation\SerializedName('date')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
     public \DateTime $date;
 
     /**
      *
      * @var V2PaymentAdjustmentRaw $raw
      */
-    #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentAdjustmentRaw')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentAdjustmentRaw')]
     public V2PaymentAdjustmentRaw $raw;
 
     /**
      *
      * @var V2PaymentStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentStatus')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentStatus')]
     public V2PaymentStatus $status;
 
     /**
      * @param  bool  $absolute
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  \DateTime  $date
      * @param  V2PaymentAdjustmentRaw  $raw
      * @param  V2PaymentStatus  $status
      */
-    public function __construct(bool $absolute, int $amount, \DateTime $date, V2PaymentAdjustmentRaw $raw, V2PaymentStatus $status)
+    public function __construct(bool $absolute, \Brick\Math\BigInteger $amount, \DateTime $date, V2PaymentAdjustmentRaw $raw, V2PaymentStatus $status)
     {
         $this->absolute = $absolute;
         $this->amount = $amount;

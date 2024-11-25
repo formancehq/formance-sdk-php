@@ -15,14 +15,14 @@ class ReconciliationRequest
      *
      * @var \DateTime $reconciledAtLedger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtLedger')]
     public \DateTime $reconciledAtLedger;
 
     /**
      *
      * @var \DateTime $reconciledAtPayments
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtPayments')]
     public \DateTime $reconciledAtPayments;
 
     /**

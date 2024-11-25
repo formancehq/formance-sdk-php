@@ -16,38 +16,38 @@ class BankAccountsCursorCursor
      *
      * @var array<BankAccount> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BankAccount>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BankAccount>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
     public bool $hasMore;
 
     /**
      *
      * @var ?string $next
      */
-    #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var int $pageSize
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     public int $pageSize;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $previous = null;
 
     /**

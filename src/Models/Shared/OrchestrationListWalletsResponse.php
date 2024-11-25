@@ -15,8 +15,8 @@ class OrchestrationListWalletsResponse
      *
      * @var OrchestrationListWalletsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponseCursor')]
     public OrchestrationListWalletsResponseCursor $cursor;
 
     /**

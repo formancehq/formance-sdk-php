@@ -16,9 +16,9 @@ class Transaction
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -26,9 +26,9 @@ class Transaction
      *
      * @var ?array<string, array<string, Volume>> $postCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
@@ -36,8 +36,8 @@ class Transaction
      *
      * @var array<Posting> $postings
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
     public array $postings;
 
     /**
@@ -45,43 +45,43 @@ class Transaction
      *
      * @var ?array<string, array<string, Volume>> $preCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
      *
-     * @var int $txid
+     * @var \Brick\Math\BigInteger $txid
      */
-    #[\JMS\Serializer\Annotation\SerializedName('txid')]
-    public int $txid;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('txid')]
+    public \Brick\Math\BigInteger $txid;
 
     /**
      * @param  array<Posting>  $postings
      * @param  \DateTime  $timestamp
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
      * @param  ?array<string, array<string, Volume>>  $postCommitVolumes
      * @param  ?array<string, array<string, Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?array<string, mixed>  $metadata
      */
-    public function __construct(array $postings, \DateTime $timestamp, int $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
+    public function __construct(array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
     {
         $this->postings = $postings;
         $this->timestamp = $timestamp;

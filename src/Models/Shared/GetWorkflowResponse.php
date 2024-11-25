@@ -15,8 +15,8 @@ class GetWorkflowResponse
      *
      * @var Workflow $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Workflow')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Workflow')]
     public Workflow $data;
 
     /**

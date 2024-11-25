@@ -15,72 +15,72 @@ class Attempt
      *
      * @var WebhooksConfig $config
      */
-    #[\JMS\Serializer\Annotation\SerializedName('config')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WebhooksConfig')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WebhooksConfig')]
     public WebhooksConfig $config;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var ?\DateTime $nextRetryAfter
      */
-    #[\JMS\Serializer\Annotation\SerializedName('nextRetryAfter')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('nextRetryAfter')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $nextRetryAfter = null;
 
     /**
      *
      * @var string $payload
      */
-    #[\JMS\Serializer\Annotation\SerializedName('payload')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('payload')]
     public string $payload;
 
     /**
      *
      * @var int $retryAttempt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('retryAttempt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('retryAttempt')]
     public int $retryAttempt;
 
     /**
      *
      * @var string $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     public string $status;
 
     /**
      *
      * @var int $statusCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('statusCode')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('statusCode')]
     public int $statusCode;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var string $webhookID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('webhookID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('webhookID')]
     public string $webhookID;
 
     /**

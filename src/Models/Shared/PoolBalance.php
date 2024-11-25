@@ -13,23 +13,23 @@ class PoolBalance
 {
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      */
-    public function __construct(int $amount, string $asset)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset)
     {
         $this->amount = $amount;
         $this->asset = $asset;

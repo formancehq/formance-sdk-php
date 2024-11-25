@@ -15,17 +15,17 @@ class V2LedgerInfo
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?V2LedgerInfoStorage $storage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('storage')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfoStorage|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerInfoStorage|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2LedgerInfoStorage $storage = null;
 
     /**

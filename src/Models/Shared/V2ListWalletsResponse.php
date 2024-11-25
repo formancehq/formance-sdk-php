@@ -15,8 +15,8 @@ class V2ListWalletsResponse
      *
      * @var V2ListWalletsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWalletsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWalletsResponseCursor')]
     public V2ListWalletsResponseCursor $cursor;
 
     /**

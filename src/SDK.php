@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack;
 
 use formance\stack\Models\Operations;
-use JMS\Serializer\DeserializationContext;
+use Speakeasy\Serializer\DeserializationContext;
 
 /**
  * SDK - Formance Stack API: Open, modular foundation for unique payments flows
@@ -65,7 +65,7 @@ class SDK
      * @param  SDKConfiguration  $sdkConfiguration
      */
     public function __construct(
-        private SDKConfiguration $sdkConfiguration,
+        public SDKConfiguration $sdkConfiguration,
     ) {
         $this->auth = new Auth($this->sdkConfiguration);
         $this->ledger = new Ledger($this->sdkConfiguration);
@@ -80,29 +80,29 @@ class SDK
     /**
      * Show stack version information
      *
-     * @param  Operations\GetVersionsSecurity  $security
      * @return Operations\GetVersionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getVersions(
-        Operations\GetVersionsSecurity $security,
-    ): Operations\GetVersionsResponse {
+    public function getVersions(): Operations\GetVersionsResponse
+    {
         $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
         $url = Utils\Utils::generateUrl($baseUrl, '/versions');
+        $urlOverride = null;
         $options = ['http_errors' => false];
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $security);
 
-        $httpResponse = $client->send($httpRequest, $options);
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
         if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\formance\stack\Models\Shared\GetVersionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\GetVersionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetVersionsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,

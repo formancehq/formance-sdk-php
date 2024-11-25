@@ -13,31 +13,31 @@ class WalletsVolume
 {
     /**
      *
-     * @var int $balance
+     * @var \Brick\Math\BigInteger $balance
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    public int $balance;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    public \Brick\Math\BigInteger $balance;
 
     /**
      *
-     * @var int $input
+     * @var \Brick\Math\BigInteger $input
      */
-    #[\JMS\Serializer\Annotation\SerializedName('input')]
-    public int $input;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    public \Brick\Math\BigInteger $input;
 
     /**
      *
-     * @var int $output
+     * @var \Brick\Math\BigInteger $output
      */
-    #[\JMS\Serializer\Annotation\SerializedName('output')]
-    public int $output;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
+    public \Brick\Math\BigInteger $output;
 
     /**
-     * @param  int  $balance
-     * @param  int  $input
-     * @param  int  $output
+     * @param  \Brick\Math\BigInteger  $balance
+     * @param  \Brick\Math\BigInteger  $input
+     * @param  \Brick\Math\BigInteger  $output
      */
-    public function __construct(int $balance, int $input, int $output)
+    public function __construct(\Brick\Math\BigInteger $balance, \Brick\Math\BigInteger $input, \Brick\Math\BigInteger $output)
     {
         $this->balance = $balance;
         $this->input = $input;
