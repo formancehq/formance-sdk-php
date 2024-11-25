@@ -14,14 +14,14 @@ class V2AssetHolder
     /**
      * $assets
      *
-     * @var array<string, int> $assets
+     * @var array<string, \Brick\Math\BigInteger> $assets
      */
-    #[\JMS\Serializer\Annotation\SerializedName('assets')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('assets')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $assets;
 
     /**
-     * @param  array<string, int>  $assets
+     * @param  array<string, \Brick\Math\BigInteger>  $assets
      */
     public function __construct(array $assets)
     {

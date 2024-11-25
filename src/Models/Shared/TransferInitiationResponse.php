@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** TransferInitiationResponse - OK */
 class TransferInitiationResponse
 {
     /**
      *
      * @var TransferInitiation $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiation')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiation')]
     public TransferInitiation $data;
 
     /**

@@ -38,10 +38,10 @@ class V2AddMetadataOnTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public int $id;
+    public \Brick\Math\BigInteger $id;
 
     /**
      * Name of the ledger.
@@ -52,13 +52,13 @@ class V2AddMetadataOnTransactionRequest
     public string $ledger;
 
     /**
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?array<string, string>  $requestBody
      * @param  ?bool  $dryRun
      */
-    public function __construct(int $id, string $ledger, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

@@ -15,8 +15,8 @@ class V2GetWorkflowInstanceResponse
      *
      * @var V2WorkflowInstance $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance')]
     public V2WorkflowInstance $data;
 
     /**

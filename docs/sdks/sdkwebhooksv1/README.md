@@ -1,4 +1,5 @@
 # SDKWebhooksV1
+(*webhooks->v1*)
 
 ## Overview
 
@@ -28,22 +29,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ActivateConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->activateConfig($request);
+$request = new Operations\ActivateConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+);
 
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->activateConfig(
+    request: $request
+);
+
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -59,11 +60,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## changeConfigSecret
 
@@ -85,25 +85,25 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ChangeConfigSecretRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-        configChangeSecret: new Shared\ConfigChangeSecret(
-            secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-        ),
-    );
-    $response = $sdk->webhooksV1->changeConfigSecret($request);
+$request = new Operations\ChangeConfigSecretRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    configChangeSecret: new Shared\ConfigChangeSecret(
+        secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+    ),
+);
 
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->changeConfigSecret(
+    request: $request
+);
+
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -119,11 +119,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## deactivateConfig
 
@@ -141,22 +140,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\DeactivateConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->deactivateConfig($request);
+$request = new Operations\DeactivateConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+);
 
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->deactivateConfig(
+    request: $request
+);
+
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -172,11 +171,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## deleteConfig
 
@@ -194,22 +192,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\DeleteConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->deleteConfig($request);
+$request = new Operations\DeleteConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->deleteConfig(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -225,11 +223,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getManyConfigs
 
@@ -247,23 +244,23 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetManyConfigsRequest(
-        endpoint: 'https://example.com',
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->getManyConfigs($request);
+$request = new Operations\GetManyConfigsRequest(
+    endpoint: 'https://example.com',
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+);
 
-    if ($response->configsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->getManyConfigs(
+    request: $request
+);
+
+if ($response->configsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -279,11 +276,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## insertConfig
 
@@ -309,28 +305,28 @@ use formance\stack;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Shared\ConfigUser(
-        endpoint: 'https://example.com',
-        eventTypes: [
-            'TYPE1',
-            'TYPE2',
-        ],
-        name: 'customer_payment',
-        secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-    );
-    $response = $sdk->webhooksV1->insertConfig($request);
+$request = new Shared\ConfigUser(
+    endpoint: 'https://example.com',
+    eventTypes: [
+        'TYPE1',
+        'TYPE2',
+    ],
+    name: 'customer_payment',
+    secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+);
 
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->insertConfig(
+    request: $request
+);
+
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -346,11 +342,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## testConfig
 
@@ -368,22 +363,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\TestConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->testConfig($request);
+$request = new Operations\TestConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+);
 
-    if ($response->attemptResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->webhooks->v1->testConfig(
+    request: $request
+);
+
+if ($response->attemptResponse !== null) {
+    // handle response
 }
 ```
 
@@ -399,7 +394,7 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |

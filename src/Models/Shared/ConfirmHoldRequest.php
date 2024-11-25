@@ -14,26 +14,26 @@ class ConfirmHoldRequest
     /**
      * Define the amount to transfer.
      *
-     * @var ?int $amount
+     * @var ?\Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?int $amount = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\Brick\Math\BigInteger $amount = null;
 
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      *
      * @var ?bool $final
      */
-    #[\JMS\Serializer\Annotation\SerializedName('final')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('final')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $final = null;
 
     /**
-     * @param  ?int  $amount
+     * @param  ?\Brick\Math\BigInteger  $amount
      * @param  ?bool  $final
      */
-    public function __construct(?int $amount = null, ?bool $final = null)
+    public function __construct(?\Brick\Math\BigInteger $amount = null, ?bool $final = null)
     {
         $this->amount = $amount;
         $this->final = $final;

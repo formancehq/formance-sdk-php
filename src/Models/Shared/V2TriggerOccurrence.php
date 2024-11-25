@@ -15,15 +15,15 @@ class V2TriggerOccurrence
      *
      * @var \DateTime $date
      */
-    #[\JMS\Serializer\Annotation\SerializedName('date')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
     public \DateTime $date;
 
     /**
      *
      * @var ?string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -31,32 +31,32 @@ class V2TriggerOccurrence
      *
      * @var array<string, mixed> $event
      */
-    #[\JMS\Serializer\Annotation\SerializedName('event')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $event;
 
     /**
      *
      * @var string $triggerID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('triggerID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('triggerID')]
     public string $triggerID;
 
     /**
      *
      * @var ?V2WorkflowInstance $workflowInstance
      */
-    #[\JMS\Serializer\Annotation\SerializedName('workflowInstance')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstance')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowInstance|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2WorkflowInstance $workflowInstance = null;
 
     /**
      *
      * @var ?string $workflowInstanceID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('workflowInstanceID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstanceID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $workflowInstanceID = null;
 
     /**

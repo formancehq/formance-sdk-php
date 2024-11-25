@@ -14,42 +14,42 @@ class BalanceWithAssets
     /**
      * $assets
      *
-     * @var array<string, int> $assets
+     * @var array<string, \Brick\Math\BigInteger> $assets
      */
-    #[\JMS\Serializer\Annotation\SerializedName('assets')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('assets')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $assets;
 
     /**
      *
      * @var ?\DateTime $expiresAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expiresAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $expiresAt = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var ?int $priority
+     * @var ?\Brick\Math\BigInteger $priority
      */
-    #[\JMS\Serializer\Annotation\SerializedName('priority')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?int $priority = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('priority')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\Brick\Math\BigInteger $priority = null;
 
     /**
-     * @param  array<string, int>  $assets
+     * @param  array<string, \Brick\Math\BigInteger>  $assets
      * @param  string  $name
-     * @param  ?int  $priority
+     * @param  ?\Brick\Math\BigInteger  $priority
      * @param  ?\DateTime  $expiresAt
      */
-    public function __construct(array $assets, string $name, ?int $priority = null, ?\DateTime $expiresAt = null)
+    public function __construct(array $assets, string $name, ?\Brick\Math\BigInteger $priority = null, ?\DateTime $expiresAt = null)
     {
         $this->assets = $assets;
         $this->name = $name;

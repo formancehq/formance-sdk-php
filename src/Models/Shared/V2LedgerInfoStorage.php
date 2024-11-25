@@ -16,9 +16,9 @@ class V2LedgerInfoStorage
      *
      * @var ?array<V2MigrationInfo> $migrations
      */
-    #[\JMS\Serializer\Annotation\SerializedName('migrations')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2MigrationInfo>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('migrations')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2MigrationInfo>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $migrations = null;
 
     /**

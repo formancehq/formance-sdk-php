@@ -15,22 +15,22 @@ class TaskStripeDescriptor
      *
      * @var string $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
     public string $account;
 
     /**
      *
      * @var ?bool $main
      */
-    #[\JMS\Serializer\Annotation\SerializedName('main')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $main = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
