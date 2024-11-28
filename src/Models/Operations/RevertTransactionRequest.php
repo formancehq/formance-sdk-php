@@ -30,17 +30,17 @@ class RevertTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var int $txid
+     * @var \Brick\Math\BigInteger $txid
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
-    public int $txid;
+    public \Brick\Math\BigInteger $txid;
 
     /**
      * @param  string  $ledger
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
      * @param  ?bool  $disableChecks
      */
-    public function __construct(string $ledger, int $txid, ?bool $disableChecks = null)
+    public function __construct(string $ledger, \Brick\Math\BigInteger $txid, ?bool $disableChecks = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

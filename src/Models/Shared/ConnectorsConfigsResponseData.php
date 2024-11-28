@@ -15,8 +15,8 @@ class ConnectorsConfigsResponseData
      *
      * @var ConnectorsConfigsResponseConnector $connector
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connector')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseConnector')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connector')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseConnector')]
     public ConnectorsConfigsResponseConnector $connector;
 
     /**

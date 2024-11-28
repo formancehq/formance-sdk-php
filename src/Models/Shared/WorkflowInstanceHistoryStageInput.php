@@ -15,108 +15,108 @@ class WorkflowInstanceHistoryStageInput
      *
      * @var ?ActivityAddAccountMetadata $addAccountMetadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('AddAccountMetadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityAddAccountMetadata|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('AddAccountMetadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityAddAccountMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityAddAccountMetadata $addAccountMetadata = null;
 
     /**
      *
      * @var ?ActivityConfirmHold $confirmHold
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ConfirmHold')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityConfirmHold|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ConfirmHold')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityConfirmHold|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityConfirmHold $confirmHold = null;
 
     /**
      *
      * @var ?ActivityCreateTransaction $createTransaction
      */
-    #[\JMS\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityCreateTransaction $createTransaction = null;
 
     /**
      *
      * @var ?ActivityCreditWallet $creditWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('CreditWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreditWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('CreditWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreditWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityCreditWallet $creditWallet = null;
 
     /**
      *
      * @var ?ActivityDebitWallet $debitWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityDebitWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityDebitWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityDebitWallet $debitWallet = null;
 
     /**
      *
      * @var ?ActivityGetAccount $getAccount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityGetAccount $getAccount = null;
 
     /**
      *
      * @var ?ActivityGetPayment $getPayment
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetPayment|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetPayment|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityGetPayment $getPayment = null;
 
     /**
      *
      * @var ?ActivityGetWallet $getWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityGetWallet $getWallet = null;
 
     /**
      *
      * @var ?ActivityListWallets $listWallets
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityListWallets|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityListWallets|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityListWallets $listWallets = null;
 
     /**
      *
      * @var ?ActivityRevertTransaction $revertTransaction
      */
-    #[\JMS\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityRevertTransaction $revertTransaction = null;
 
     /**
      *
      * @var ?ActivityStripeTransfer $stripeTransfer
      */
-    #[\JMS\Serializer\Annotation\SerializedName('StripeTransfer')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityStripeTransfer|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('StripeTransfer')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityStripeTransfer|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityStripeTransfer $stripeTransfer = null;
 
     /**
      *
      * @var ?ActivityVoidHold $voidHold
      */
-    #[\JMS\Serializer\Annotation\SerializedName('VoidHold')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityVoidHold|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('VoidHold')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityVoidHold|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityVoidHold $voidHold = null;
 
     /**

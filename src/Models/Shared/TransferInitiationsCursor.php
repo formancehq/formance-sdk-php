@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** TransferInitiationsCursor - OK */
 class TransferInitiationsCursor
 {
     /**
      *
      * @var TransferInitiationsCursorCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationsCursorCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationsCursorCursor')]
     public TransferInitiationsCursorCursor $cursor;
 
     /**

@@ -1,4 +1,5 @@
 # SDKWalletsV1
+(*wallets->v1*)
 
 ## Overview
 
@@ -32,31 +33,32 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ConfirmHoldRequest(
-        holdId: '<value>',
-        confirmHoldRequest: new Shared\ConfirmHoldRequest(
-            amount: 100,
-            final: true,
-        ),
-    );
-    $response = $sdk->walletsV1->confirmHold($request);
+$request = new Operations\ConfirmHoldRequest(
+    holdId: '<id>',
+    confirmHoldRequest: new Shared\ConfirmHoldRequest(
+        amount: BigInteger::of('100'),
+        final: true,
+    ),
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->confirmHold(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -72,11 +74,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## createBalance
 
@@ -94,22 +95,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CreateBalanceRequest(
-        id: '<id>',
-    );
-    $response = $sdk->walletsV1->createBalance($request);
+$request = new Operations\CreateBalanceRequest(
+    id: '<id>',
+);
 
-    if ($response->createBalanceResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->createBalance(
+    request: $request
+);
+
+if ($response->createBalanceResponse !== null) {
+    // handle response
 }
 ```
 
@@ -125,11 +126,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## createWallet
 
@@ -147,20 +147,20 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CreateWalletRequest();
-    $response = $sdk->walletsV1->createWallet($request);
+$request = new Operations\CreateWalletRequest();
 
-    if ($response->createWalletResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->createWallet(
+    request: $request
+);
+
+if ($response->createWalletResponse !== null) {
+    // handle response
 }
 ```
 
@@ -176,11 +176,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## creditWallet
 
@@ -193,42 +192,43 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CreditWalletRequest(
-        id: '<id>',
-        creditWalletRequest: new Shared\CreditWalletRequest(
-            amount: new Shared\Monetary(
-                amount: 100,
-                asset: 'USD/2',
-            ),
-            metadata: [
-                'key' => '',
-            ],
-            sources: [
-                new Shared\LedgerAccountSubject(
-                    identifier: '<value>',
-                    type: '<value>',
-                ),
-            ],
+$request = new Operations\CreditWalletRequest(
+    id: '<id>',
+    creditWalletRequest: new Shared\CreditWalletRequest(
+        amount: new Shared\Monetary(
+            amount: BigInteger::of('100'),
+            asset: 'USD/2',
         ),
-    );
-    $response = $sdk->walletsV1->creditWallet($request);
+        metadata: [
+            'key' => '',
+        ],
+        sources: [
+            new Shared\LedgerAccountSubject(
+                identifier: '<value>',
+                type: '<value>',
+            ),
+        ],
+    ),
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->creditWallet(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -244,11 +244,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## debitWallet
 
@@ -261,37 +260,38 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\DebitWalletRequest(
-        id: '<id>',
-        debitWalletRequest: new Shared\DebitWalletRequest(
-            amount: new Shared\Monetary(
-                amount: 100,
-                asset: 'USD/2',
-            ),
-            metadata: [
-                'key' => '',
-            ],
-            pending: true,
+$request = new Operations\DebitWalletRequest(
+    id: '<id>',
+    debitWalletRequest: new Shared\DebitWalletRequest(
+        amount: new Shared\Monetary(
+            amount: BigInteger::of('100'),
+            asset: 'USD/2',
         ),
-    );
-    $response = $sdk->walletsV1->debitWallet($request);
+        metadata: [
+            'key' => '',
+        ],
+        pending: true,
+    ),
+);
 
-    if ($response->debitWalletResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->debitWallet(
+    request: $request
+);
+
+if ($response->debitWalletResponse !== null) {
+    // handle response
 }
 ```
 
@@ -307,11 +307,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## getBalance
 
@@ -329,23 +328,23 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetBalanceRequest(
-        balanceName: '<value>',
-        id: '<id>',
-    );
-    $response = $sdk->walletsV1->getBalance($request);
+$request = new Operations\GetBalanceRequest(
+    balanceName: '<value>',
+    id: '<id>',
+);
 
-    if ($response->getBalanceResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->getBalance(
+    request: $request
+);
+
+if ($response->getBalanceResponse !== null) {
+    // handle response
 }
 ```
 
@@ -361,11 +360,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## getHold
 
@@ -383,22 +381,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetHoldRequest(
-        holdID: '<value>',
-    );
-    $response = $sdk->walletsV1->getHold($request);
+$request = new Operations\GetHoldRequest(
+    holdID: '<id>',
+);
 
-    if ($response->getHoldResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->getHold(
+    request: $request
+);
+
+if ($response->getHoldResponse !== null) {
+    // handle response
 }
 ```
 
@@ -414,11 +412,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## getHolds
 
@@ -436,27 +433,27 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetHoldsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        metadata: [
-            'admin' => 'true',
-        ],
-        pageSize: 100,
-        walletID: 'wallet1',
-    );
-    $response = $sdk->walletsV1->getHolds($request);
+$request = new Operations\GetHoldsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    metadata: [
+        'admin' => 'true',
+    ],
+    pageSize: 100,
+    walletID: 'wallet1',
+);
 
-    if ($response->getHoldsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->getHolds(
+    request: $request
+);
+
+if ($response->getHoldsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -472,11 +469,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## getTransactions
 
@@ -492,24 +488,24 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetTransactionsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        walletID: 'wallet1',
-    );
-    $response = $sdk->walletsV1->getTransactions($request);
+$request = new Operations\GetTransactionsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+    walletID: 'wallet1',
+);
 
-    if ($response->getTransactionsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->getTransactions(
+    request: $request
+);
+
+if ($response->getTransactionsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -525,11 +521,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## getWallet
 
@@ -547,22 +542,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetWalletRequest(
-        id: '<id>',
-    );
-    $response = $sdk->walletsV1->getWallet($request);
+$request = new Operations\GetWalletRequest(
+    id: '<id>',
+);
 
-    if ($response->getWalletResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->getWallet(
+    request: $request
+);
+
+if ($response->getWalletResponse !== null) {
+    // handle response
 }
 ```
 
@@ -578,11 +573,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## getWalletSummary
 
@@ -600,22 +594,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetWalletSummaryRequest(
-        id: '<id>',
-    );
-    $response = $sdk->walletsV1->getWalletSummary($request);
+$request = new Operations\GetWalletSummaryRequest(
+    id: '<id>',
+);
 
-    if ($response->getWalletSummaryResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->getWalletSummary(
+    request: $request
+);
+
+if ($response->getWalletSummaryResponse !== null) {
+    // handle response
 }
 ```
 
@@ -631,11 +625,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## listBalances
 
@@ -653,22 +646,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ListBalancesRequest(
-        id: '<id>',
-    );
-    $response = $sdk->walletsV1->listBalances($request);
+$request = new Operations\ListBalancesRequest(
+    id: '<id>',
+);
 
-    if ($response->listBalancesResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->listBalances(
+    request: $request
+);
+
+if ($response->listBalancesResponse !== null) {
+    // handle response
 }
 ```
 
@@ -684,10 +677,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listWallets
 
@@ -705,28 +697,28 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ListWalletsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        expand: 'balances',
-        metadata: [
-            'admin' => 'true',
-        ],
-        name: 'wallet1',
-        pageSize: 100,
-    );
-    $response = $sdk->walletsV1->listWallets($request);
+$request = new Operations\ListWalletsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    expand: 'balances',
+    metadata: [
+        'admin' => 'true',
+    ],
+    name: 'wallet1',
+    pageSize: 100,
+);
 
-    if ($response->listWalletsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->listWallets(
+    request: $request
+);
+
+if ($response->listWalletsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -742,11 +734,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## updateWallet
 
@@ -764,22 +755,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\UpdateWalletRequest(
-        id: '<id>',
-    );
-    $response = $sdk->walletsV1->updateWallet($request);
+$request = new Operations\UpdateWalletRequest(
+    id: '<id>',
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->updateWallet(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -795,11 +786,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## voidHold
 
@@ -817,22 +807,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\VoidHoldRequest(
-        holdId: '<value>',
-    );
-    $response = $sdk->walletsV1->voidHold($request);
+$request = new Operations\VoidHoldRequest(
+    holdId: '<id>',
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->wallets->v1->voidHold(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -848,11 +838,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
 
 ## walletsgetServerInfo
 
@@ -869,19 +858,20 @@ use formance\stack;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $response = $sdk->walletsV1->walletsgetServerInfo();
 
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+
+$response = $sdk->wallets->v1->walletsgetServerInfo(
+
+);
+
+if ($response->serverInfo !== null) {
+    // handle response
 }
 ```
 
@@ -891,7 +881,7 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WalletsErrorResponse               | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| Errors\WalletsErrorResponse | default                     | application/json            |
+| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |

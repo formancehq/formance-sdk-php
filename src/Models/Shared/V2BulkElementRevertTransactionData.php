@@ -15,31 +15,31 @@ class V2BulkElementRevertTransactionData
      *
      * @var ?bool $atEffectiveDate
      */
-    #[\JMS\Serializer\Annotation\SerializedName('atEffectiveDate')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('atEffectiveDate')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $atEffectiveDate = null;
 
     /**
      *
      * @var ?bool $force
      */
-    #[\JMS\Serializer\Annotation\SerializedName('force')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('force')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $force = null;
 
     /**
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    public int $id;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public \Brick\Math\BigInteger $id;
 
     /**
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $force
      */
-    public function __construct(int $id, ?bool $atEffectiveDate = null, ?bool $force = null)
+    public function __construct(\Brick\Math\BigInteger $id, ?bool $atEffectiveDate = null, ?bool $force = null)
     {
         $this->id = $id;
         $this->atEffectiveDate = $atEffectiveDate;

@@ -15,15 +15,15 @@ class Client
      *
      * @var ?string $description
      */
-    #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $description = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
@@ -31,16 +31,16 @@ class Client
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -48,17 +48,17 @@ class Client
      *
      * @var ?array<string> $postLogoutRedirectUris
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $postLogoutRedirectUris = null;
 
     /**
      *
      * @var ?bool $public
      */
-    #[\JMS\Serializer\Annotation\SerializedName('public')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $public = null;
 
     /**
@@ -66,9 +66,9 @@ class Client
      *
      * @var ?array<string> $redirectUris
      */
-    #[\JMS\Serializer\Annotation\SerializedName('redirectUris')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('redirectUris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $redirectUris = null;
 
     /**
@@ -76,9 +76,9 @@ class Client
      *
      * @var ?array<string> $scopes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('scopes')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $scopes = null;
 
     /**
@@ -86,17 +86,17 @@ class Client
      *
      * @var ?array<ClientSecret> $secrets
      */
-    #[\JMS\Serializer\Annotation\SerializedName('secrets')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\ClientSecret>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secrets')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\ClientSecret>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $secrets = null;
 
     /**
      *
      * @var ?bool $trusted
      */
-    #[\JMS\Serializer\Annotation\SerializedName('trusted')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('trusted')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $trusted = null;
 
     /**

@@ -15,45 +15,45 @@ class V2WorkflowInstanceHistory
      *
      * @var ?string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $input
      */
-    #[\JMS\Serializer\Annotation\SerializedName('input')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSend|\formance\stack\Models\Shared\V2StageDelay|\formance\stack\Models\Shared\V2StageWaitEvent|\formance\stack\Models\Shared\V2Update')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSend|\formance\stack\Models\Shared\V2StageDelay|\formance\stack\Models\Shared\V2StageWaitEvent|\formance\stack\Models\Shared\V2Update')]
     public V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $input;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('startedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
     public \DateTime $startedAt;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminated')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
     public bool $terminated;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**

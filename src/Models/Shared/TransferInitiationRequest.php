@@ -13,38 +13,38 @@ class TransferInitiationRequest
 {
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
      *
      * @var string $description
      */
-    #[\JMS\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
     public string $description;
 
     /**
      *
      * @var string $destinationAccountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
     public string $destinationAccountID;
 
     /**
@@ -52,58 +52,58 @@ class TransferInitiationRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?Connector $provider
      */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Connector $provider = null;
 
     /**
      *
      * @var string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var \DateTime $scheduledAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('scheduledAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduledAt')]
     public \DateTime $scheduledAt;
 
     /**
      *
      * @var string $sourceAccountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
     public string $sourceAccountID;
 
     /**
      *
      * @var TransferInitiationRequestType $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationRequestType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationRequestType')]
     public TransferInitiationRequestType $type;
 
     /**
      *
      * @var bool $validated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('validated')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('validated')]
     public bool $validated;
 
     /**
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $description
      * @param  string  $destinationAccountID
@@ -116,7 +116,7 @@ class TransferInitiationRequest
      * @param  ?Connector  $provider
      * @param  ?array<string, string>  $metadata
      */
-    public function __construct(int $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?Connector $provider = null, ?array $metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?Connector $provider = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
