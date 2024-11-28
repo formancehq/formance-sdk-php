@@ -9,11 +9,13 @@ generation:
     requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
   comments: {}
   telemetryEnabled: false
 php:
-  version: 3.1.0
+  version: 3.2.0
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKException
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -24,7 +26,11 @@ php:
       shared: Models/Shared
       webhooks: Models/Webhooks
   inputModelSuffix: input
+  laravelServiceProvider:
+    enabled: false
+    svcName: openapi
   maxMethodParams: 0
+  methodArguments: infer-optional-args
   namespace: formance\stack
   outputModelSuffix: output
   packageName: formance/formance-sdk

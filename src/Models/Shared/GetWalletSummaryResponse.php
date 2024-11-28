@@ -14,10 +14,10 @@ class GetWalletSummaryResponse
     /**
      * $availableFunds
      *
-     * @var array<string, int> $availableFunds
+     * @var array<string, \Brick\Math\BigInteger> $availableFunds
      */
-    #[\JMS\Serializer\Annotation\SerializedName('availableFunds')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('availableFunds')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $availableFunds;
 
     /**
@@ -25,43 +25,43 @@ class GetWalletSummaryResponse
      *
      * @var array<BalanceWithAssets> $balances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BalanceWithAssets>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BalanceWithAssets>')]
     public array $balances;
 
     /**
      * $expirableFunds
      *
-     * @var array<string, int> $expirableFunds
+     * @var array<string, \Brick\Math\BigInteger> $expirableFunds
      */
-    #[\JMS\Serializer\Annotation\SerializedName('expirableFunds')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expirableFunds')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $expirableFunds;
 
     /**
      * $expiredFunds
      *
-     * @var array<string, int> $expiredFunds
+     * @var array<string, \Brick\Math\BigInteger> $expiredFunds
      */
-    #[\JMS\Serializer\Annotation\SerializedName('expiredFunds')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expiredFunds')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $expiredFunds;
 
     /**
      * $holdFunds
      *
-     * @var array<string, int> $holdFunds
+     * @var array<string, \Brick\Math\BigInteger> $holdFunds
      */
-    #[\JMS\Serializer\Annotation\SerializedName('holdFunds')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('holdFunds')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $holdFunds;
 
     /**
-     * @param  array<string, int>  $availableFunds
+     * @param  array<string, \Brick\Math\BigInteger>  $availableFunds
      * @param  array<BalanceWithAssets>  $balances
-     * @param  array<string, int>  $expirableFunds
-     * @param  array<string, int>  $expiredFunds
-     * @param  array<string, int>  $holdFunds
+     * @param  array<string, \Brick\Math\BigInteger>  $expirableFunds
+     * @param  array<string, \Brick\Math\BigInteger>  $expiredFunds
+     * @param  array<string, \Brick\Math\BigInteger>  $holdFunds
      */
     public function __construct(array $availableFunds, array $balances, array $expirableFunds, array $expiredFunds, array $holdFunds)
     {

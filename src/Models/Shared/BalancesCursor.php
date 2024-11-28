@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** BalancesCursor - OK */
 class BalancesCursor
 {
     /**
      *
      * @var BalancesCursorCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorCursor')]
     public BalancesCursorCursor $cursor;
 
     /**

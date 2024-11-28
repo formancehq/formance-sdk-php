@@ -16,8 +16,8 @@ class Transactions
      *
      * @var array<TransactionData> $transactions
      */
-    #[\JMS\Serializer\Annotation\SerializedName('transactions')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TransactionData>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TransactionData>')]
     public array $transactions;
 
     /**

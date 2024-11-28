@@ -15,16 +15,16 @@ class Contract
      *
      * @var ?string $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $account = null;
 
     /**
      *
      * @var Expr $expr
      */
-    #[\JMS\Serializer\Annotation\SerializedName('expr')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Expr')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expr')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Expr')]
     public Expr $expr;
 
     /**

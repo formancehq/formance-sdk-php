@@ -15,16 +15,16 @@ class Descriptor
      *
      * @var ?string $key
      */
-    #[\JMS\Serializer\Annotation\SerializedName('key')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $key = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**

@@ -16,7 +16,7 @@ class SDKConfiguration
 
     public ?Models\Shared\Security $security = null;
 
-    /** @var pure-Closure(): string */
+    /** @var pure-Closure(): Models\Shared\Security */
     public ?\Closure $securitySource = null;
 
     public string $serverUrl = '';
@@ -35,13 +35,13 @@ class SDKConfiguration
 
     public string $language = 'php';
 
-    public string $openapiDocVersion = 'v2.1.0-beta.3';
+    public string $openapiDocVersion = 'v2.1.1';
 
-    public string $sdkVersion = '3.1.0';
+    public string $sdkVersion = '3.2.0';
 
-    public string $genVersion = '2.422.22';
+    public string $genVersion = '2.467.4';
 
-    public string $userAgent = 'speakeasy-sdk/php 3.1.0 2.422.22 v2.1.0-beta.3 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 3.2.0 2.467.4 v2.1.1 formance/formance-sdk';
 
     public function getServerUrl(): string
     {
@@ -50,7 +50,11 @@ class SDKConfiguration
             return $this->serverUrl;
         }
 
-        return SDK::SERVERS[$this->serverIndex];
+        if (isset(SDK::SERVERS[$this->serverIndex])) {
+            return SDK::SERVERS[$this->serverIndex];
+        } else {
+            throw new \OutOfBoundsException('Server index '.$this->serverIndex.' is out of bounds');
+        }
     }
 
     /**
@@ -68,13 +72,28 @@ class SDKConfiguration
     public function getSecurity(): ?Models\Shared\Security
     {
         if ($this->securitySource !== null) {
-            $security = new Models\Shared\Security(
-                authorization: $this->securitySource->call($this)
-            );
+            $security = $this->securitySource->call($this);
 
             return $security;
         } else {
             return $this->security;
         }
     }
+
+    /**
+     * @return Utils\ServerDetails
+     */
+    public function getServerDetails(): Utils\ServerDetails
+    {
+        if ($this->serverUrl !== null && $this->serverUrl !== '') {
+            return new Utils\ServerDetails(rtrim($this->serverUrl, '/'), []);
+        }
+        if ($this->serverIndex === null) {
+            $this->serverIndex = 0;
+        }
+
+        return new Utils\ServerDetails(SDK::SERVERS[$this->serverIndex], $this->serverDefaults[$this->serverIndex]);
+
+    }
+
 }

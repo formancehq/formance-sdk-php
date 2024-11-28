@@ -15,7 +15,7 @@ class Account
      *
      * @var string $address
      */
-    #[\JMS\Serializer\Annotation\SerializedName('address')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
     public string $address;
 
     /**
@@ -23,17 +23,17 @@ class Account
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $type = null;
 
     /**

@@ -57,7 +57,7 @@ class ListConnectorTasksV1Request
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      */
-    public function __construct(Shared\Connector $connector, string $connectorId, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(Shared\Connector $connector, string $connectorId, ?string $cursor = null, ?int $pageSize = 15)
     {
         $this->connector = $connector;
         $this->connectorId = $connectorId;

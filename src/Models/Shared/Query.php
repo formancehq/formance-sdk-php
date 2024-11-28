@@ -16,17 +16,17 @@ class Query
      *
      * @var ?array<string> $after
      */
-    #[\JMS\Serializer\Annotation\SerializedName('after')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('after')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $after = null;
 
     /**
      *
      * @var ?string $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $cursor = null;
 
     /**
@@ -34,50 +34,50 @@ class Query
      *
      * @var ?array<string> $ledgers
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgers')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgers')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $ledgers = null;
 
     /**
      *
      * @var ?int $pageSize
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $policy
      */
-    #[\JMS\Serializer\Annotation\SerializedName('policy')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('policy')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $policy = null;
 
     /**
      *
      * @var ?QueryRaw $raw
      */
-    #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\QueryRaw|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\QueryRaw|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?QueryRaw $raw = null;
 
     /**
      *
      * @var ?string $sort
      */
-    #[\JMS\Serializer\Annotation\SerializedName('sort')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sort')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $sort = null;
 
     /**
      *
      * @var ?string $target
      */
-    #[\JMS\Serializer\Annotation\SerializedName('target')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('target')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $target = null;
 
     /**
@@ -85,9 +85,9 @@ class Query
      *
      * @var ?array<string> $terms
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terms')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terms')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $terms = null;
 
     /**

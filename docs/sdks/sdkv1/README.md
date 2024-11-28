@@ -1,4 +1,5 @@
 # SDKV1
+(*ledger->v1*)
 
 ## Overview
 
@@ -36,32 +37,43 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CreateTransactionsRequest(
-        transactions: new Shared\Transactions(
-            transactions: [
-                new Shared\TransactionData,
-            ],
-        ),
-        ledger: 'ledger001',
-    );
-    $response = $sdk->ledgerV1->createTransactions($request);
+$request = new Operations\CreateTransactionsRequest(
+    transactions: new Shared\Transactions(
+        transactions: [
+            new Shared\TransactionData(
+                postings: [
+                    new Shared\Posting(
+                        amount: BigInteger::of('100'),
+                        asset: 'COIN',
+                        destination: 'users:002',
+                        source: 'users:001',
+                    ),
+                ],
+                reference: 'ref:001',
+            ),
+        ],
+    ),
+    ledger: 'ledger001',
+);
 
-    if ($response->transactionsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->createTransactions(
+    request: $request
+);
+
+if ($response->transactionsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -77,11 +89,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## addMetadataOnTransaction
 
@@ -94,28 +105,29 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\AddMetadataOnTransactionRequest(
-        ledger: 'ledger001',
-        txid: 1234,
-    );
-    $response = $sdk->ledgerV1->addMetadataOnTransaction($request);
+$request = new Operations\AddMetadataOnTransactionRequest(
+    ledger: 'ledger001',
+    txid: BigInteger::of('1234'),
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->addMetadataOnTransaction(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -131,11 +143,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## addMetadataToAccount
 
@@ -153,26 +164,26 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\AddMetadataToAccountRequest(
-        address: 'users:001',
-        ledger: 'ledger001',
-        requestBody: [
-            'key' => '<value>',
-        ],
-    );
-    $response = $sdk->ledgerV1->addMetadataToAccount($request);
+$request = new Operations\AddMetadataToAccountRequest(
+    address: 'users:001',
+    ledger: 'ledger001',
+    requestBody: [
+        'key' => '<value>',
+    ],
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->addMetadataToAccount(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -188,11 +199,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## countAccounts
 
@@ -210,75 +220,75 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CountAccountsRequest(
-        ledger: 'ledger001',
-        address: 'users:.+',
-        metadata: [
-            '0' => 'm',
-            '1' => 'e',
-            '2' => 't',
-            '3' => 'a',
-            '4' => 'd',
-            '5' => 'a',
-            '6' => 't',
-            '7' => 'a',
-            '8' => '[',
-            '9' => 'k',
-            '10' => 'e',
-            '11' => 'y',
-            '12' => ']',
-            '13' => '=',
-            '14' => 'v',
-            '15' => 'a',
-            '16' => 'l',
-            '17' => 'u',
-            '18' => 'e',
-            '19' => '1',
-            '20' => '&',
-            '21' => 'm',
-            '22' => 'e',
-            '23' => 't',
-            '24' => 'a',
-            '25' => 'd',
-            '26' => 'a',
-            '27' => 't',
-            '28' => 'a',
-            '29' => '[',
-            '30' => 'a',
-            '31' => '.',
-            '32' => 'n',
-            '33' => 'e',
-            '34' => 's',
-            '35' => 't',
-            '36' => 'e',
-            '37' => 'd',
-            '38' => '.',
-            '39' => 'k',
-            '40' => 'e',
-            '41' => 'y',
-            '42' => ']',
-            '43' => '=',
-            '44' => 'v',
-            '45' => 'a',
-            '46' => 'l',
-            '47' => 'u',
-            '48' => 'e',
-            '49' => '2',
-        ],
-    );
-    $response = $sdk->ledgerV1->countAccounts($request);
+$request = new Operations\CountAccountsRequest(
+    ledger: 'ledger001',
+    address: 'users:.+',
+    metadata: [
+        '0' => 'm',
+        '1' => 'e',
+        '2' => 't',
+        '3' => 'a',
+        '4' => 'd',
+        '5' => 'a',
+        '6' => 't',
+        '7' => 'a',
+        '8' => '[',
+        '9' => 'k',
+        '10' => 'e',
+        '11' => 'y',
+        '12' => ']',
+        '13' => '=',
+        '14' => 'v',
+        '15' => 'a',
+        '16' => 'l',
+        '17' => 'u',
+        '18' => 'e',
+        '19' => '1',
+        '20' => '&',
+        '21' => 'm',
+        '22' => 'e',
+        '23' => 't',
+        '24' => 'a',
+        '25' => 'd',
+        '26' => 'a',
+        '27' => 't',
+        '28' => 'a',
+        '29' => '[',
+        '30' => 'a',
+        '31' => '.',
+        '32' => 'n',
+        '33' => 'e',
+        '34' => 's',
+        '35' => 't',
+        '36' => 'e',
+        '37' => 'd',
+        '38' => '.',
+        '39' => 'k',
+        '40' => 'e',
+        '41' => 'y',
+        '42' => ']',
+        '43' => '=',
+        '44' => 'v',
+        '45' => 'a',
+        '46' => 'l',
+        '47' => 'u',
+        '48' => 'e',
+        '49' => '2',
+    ],
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->countAccounts(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -294,11 +304,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## countTransactions
 
@@ -316,27 +325,27 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CountTransactionsRequest(
-        ledger: 'ledger001',
-        account: 'users:001',
-        destination: 'users:001',
-        metadata: new Operations\Metadata(),
-        reference: 'ref:001',
-        source: 'users:001',
-    );
-    $response = $sdk->ledgerV1->countTransactions($request);
+$request = new Operations\CountTransactionsRequest(
+    ledger: 'ledger001',
+    account: 'users:001',
+    destination: 'users:001',
+    metadata: new Operations\Metadata(),
+    reference: 'ref:001',
+    source: 'users:001',
+);
 
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->countTransactions(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -352,11 +361,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## createTransaction
 
@@ -369,47 +377,53 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\CreateTransactionRequest(
-        postTransaction: new Shared\PostTransaction(
-            postings: [
-                new Shared\Posting,
-            ],
-            reference: 'ref:001',
-            script: new Shared\PostTransactionScript(
-                plain: 'vars {
-                account $user
-                }
-                send [COIN 10] (
-                	source = @world
-                	destination = $user
-                )
-                ',
-                vars: [
-                    'user' => 'users:042',
-                ],
+$request = new Operations\CreateTransactionRequest(
+    postTransaction: new Shared\PostTransaction(
+        postings: [
+            new Shared\Posting(
+                amount: BigInteger::of('100'),
+                asset: 'COIN',
+                destination: 'users:002',
+                source: 'users:001',
             ),
+        ],
+        reference: 'ref:001',
+        script: new Shared\PostTransactionScript(
+            plain: 'vars {
+            account $user
+            }
+            send [COIN 10] (
+            	source = @world
+            	destination = $user
+            )
+            ',
+            vars: [
+                'user' => 'users:042',
+            ],
         ),
-        ledger: 'ledger001',
-        preview: true,
-    );
-    $response = $sdk->ledgerV1->createTransaction($request);
+    ),
+    ledger: 'ledger001',
+    preview: true,
+);
 
-    if ($response->transactionsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->createTransaction(
+    request: $request
+);
+
+if ($response->transactionsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -425,11 +439,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getAccount
 
@@ -447,23 +460,23 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetAccountRequest(
-        address: 'users:001',
-        ledger: 'ledger001',
-    );
-    $response = $sdk->ledgerV1->getAccount($request);
+$request = new Operations\GetAccountRequest(
+    address: 'users:001',
+    ledger: 'ledger001',
+);
 
-    if ($response->accountResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->getAccount(
+    request: $request
+);
+
+if ($response->accountResponse !== null) {
+    // handle response
 }
 ```
 
@@ -479,11 +492,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getBalances
 
@@ -501,25 +513,25 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetBalancesRequest(
-        ledger: 'ledger001',
-        address: 'users:001',
-        after: 'users:003',
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    );
-    $response = $sdk->ledgerV1->getBalances($request);
+$request = new Operations\GetBalancesRequest(
+    ledger: 'ledger001',
+    address: 'users:001',
+    after: 'users:003',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+);
 
-    if ($response->balancesCursorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->getBalances(
+    request: $request
+);
+
+if ($response->balancesCursorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -535,11 +547,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getBalancesAggregated
 
@@ -557,23 +568,23 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetBalancesAggregatedRequest(
-        ledger: 'ledger001',
-        address: 'users:001',
-    );
-    $response = $sdk->ledgerV1->getBalancesAggregated($request);
+$request = new Operations\GetBalancesAggregatedRequest(
+    ledger: 'ledger001',
+    address: 'users:001',
+);
 
-    if ($response->aggregateBalancesResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->getBalancesAggregated(
+    request: $request
+);
+
+if ($response->aggregateBalancesResponse !== null) {
+    // handle response
 }
 ```
 
@@ -589,11 +600,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getInfo
 
@@ -610,19 +620,20 @@ use formance\stack;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $response = $sdk->ledgerV1->getInfo();
 
-    if ($response->configInfoResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+
+$response = $sdk->ledger->v1->getInfo(
+
+);
+
+if ($response->configInfoResponse !== null) {
+    // handle response
 }
 ```
 
@@ -632,11 +643,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getLedgerInfo
 
@@ -654,22 +664,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetLedgerInfoRequest(
-        ledger: 'ledger001',
-    );
-    $response = $sdk->ledgerV1->getLedgerInfo($request);
+$request = new Operations\GetLedgerInfoRequest(
+    ledger: 'ledger001',
+);
 
-    if ($response->ledgerInfoResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->getLedgerInfo(
+    request: $request
+);
+
+if ($response->ledgerInfoResponse !== null) {
+    // handle response
 }
 ```
 
@@ -685,11 +695,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getMapping
 
@@ -707,22 +716,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetMappingRequest(
-        ledger: 'ledger001',
-    );
-    $response = $sdk->ledgerV1->getMapping($request);
+$request = new Operations\GetMappingRequest(
+    ledger: 'ledger001',
+);
 
-    if ($response->mappingResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->getMapping(
+    request: $request
+);
+
+if ($response->mappingResponse !== null) {
+    // handle response
 }
 ```
 
@@ -738,11 +747,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## getTransaction
 
@@ -755,28 +763,29 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\GetTransactionRequest(
-        ledger: 'ledger001',
-        txid: 1234,
-    );
-    $response = $sdk->ledgerV1->getTransaction($request);
+$request = new Operations\GetTransactionRequest(
+    ledger: 'ledger001',
+    txid: BigInteger::of('1234'),
+);
 
-    if ($response->transactionResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->getTransaction(
+    request: $request
+);
+
+if ($response->transactionResponse !== null) {
+    // handle response
 }
 ```
 
@@ -792,11 +801,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## listAccounts
 
@@ -814,79 +822,79 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ListAccountsRequest(
-        ledger: 'ledger001',
-        address: 'users:.+',
-        after: 'users:003',
-        balance: 2400,
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        metadata: [
-            '0' => 'm',
-            '1' => 'e',
-            '2' => 't',
-            '3' => 'a',
-            '4' => 'd',
-            '5' => 'a',
-            '6' => 't',
-            '7' => 'a',
-            '8' => '[',
-            '9' => 'k',
-            '10' => 'e',
-            '11' => 'y',
-            '12' => ']',
-            '13' => '=',
-            '14' => 'v',
-            '15' => 'a',
-            '16' => 'l',
-            '17' => 'u',
-            '18' => 'e',
-            '19' => '1',
-            '20' => '&',
-            '21' => 'm',
-            '22' => 'e',
-            '23' => 't',
-            '24' => 'a',
-            '25' => 'd',
-            '26' => 'a',
-            '27' => 't',
-            '28' => 'a',
-            '29' => '[',
-            '30' => 'a',
-            '31' => '.',
-            '32' => 'n',
-            '33' => 'e',
-            '34' => 's',
-            '35' => 't',
-            '36' => 'e',
-            '37' => 'd',
-            '38' => '.',
-            '39' => 'k',
-            '40' => 'e',
-            '41' => 'y',
-            '42' => ']',
-            '43' => '=',
-            '44' => 'v',
-            '45' => 'a',
-            '46' => 'l',
-            '47' => 'u',
-            '48' => 'e',
-            '49' => '2',
-        ],
-        pageSize: 100,
-    );
-    $response = $sdk->ledgerV1->listAccounts($request);
+$request = new Operations\ListAccountsRequest(
+    ledger: 'ledger001',
+    address: 'users:.+',
+    after: 'users:003',
+    balance: 2400,
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    metadata: [
+        '0' => 'm',
+        '1' => 'e',
+        '2' => 't',
+        '3' => 'a',
+        '4' => 'd',
+        '5' => 'a',
+        '6' => 't',
+        '7' => 'a',
+        '8' => '[',
+        '9' => 'k',
+        '10' => 'e',
+        '11' => 'y',
+        '12' => ']',
+        '13' => '=',
+        '14' => 'v',
+        '15' => 'a',
+        '16' => 'l',
+        '17' => 'u',
+        '18' => 'e',
+        '19' => '1',
+        '20' => '&',
+        '21' => 'm',
+        '22' => 'e',
+        '23' => 't',
+        '24' => 'a',
+        '25' => 'd',
+        '26' => 'a',
+        '27' => 't',
+        '28' => 'a',
+        '29' => '[',
+        '30' => 'a',
+        '31' => '.',
+        '32' => 'n',
+        '33' => 'e',
+        '34' => 's',
+        '35' => 't',
+        '36' => 'e',
+        '37' => 'd',
+        '38' => '.',
+        '39' => 'k',
+        '40' => 'e',
+        '41' => 'y',
+        '42' => ']',
+        '43' => '=',
+        '44' => 'v',
+        '45' => 'a',
+        '46' => 'l',
+        '47' => 'u',
+        '48' => 'e',
+        '49' => '2',
+    ],
+    pageSize: 100,
+);
 
-    if ($response->accountsCursorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->listAccounts(
+    request: $request
+);
+
+if ($response->accountsCursorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -902,11 +910,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## listLogs
 
@@ -924,25 +931,25 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ListLogsRequest(
-        ledger: 'ledger001',
-        after: '1234',
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-    );
-    $response = $sdk->ledgerV1->listLogs($request);
+$request = new Operations\ListLogsRequest(
+    ledger: 'ledger001',
+    after: '1234',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+);
 
-    if ($response->logsCursorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->listLogs(
+    request: $request
+);
+
+if ($response->logsCursorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -958,11 +965,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## listTransactions
 
@@ -980,29 +986,29 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ListTransactionsRequest(
-        ledger: 'ledger001',
-        account: 'users:001',
-        after: '1234',
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        destination: 'users:001',
-        pageSize: 100,
-        reference: 'ref:001',
-        source: 'users:001',
-    );
-    $response = $sdk->ledgerV1->listTransactions($request);
+$request = new Operations\ListTransactionsRequest(
+    ledger: 'ledger001',
+    account: 'users:001',
+    after: '1234',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    destination: 'users:001',
+    pageSize: 100,
+    reference: 'ref:001',
+    source: 'users:001',
+);
 
-    if ($response->transactionsCursorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->listTransactions(
+    request: $request
+);
+
+if ($response->transactionsCursorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1018,11 +1024,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## readStats
 
@@ -1041,22 +1046,22 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\ReadStatsRequest(
-        ledger: 'ledger001',
-    );
-    $response = $sdk->ledgerV1->readStats($request);
+$request = new Operations\ReadStatsRequest(
+    ledger: 'ledger001',
+);
 
-    if ($response->statsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->readStats(
+    request: $request
+);
+
+if ($response->statsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1072,11 +1077,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## revertTransaction
 
@@ -1089,28 +1093,29 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\RevertTransactionRequest(
-        ledger: 'ledger001',
-        txid: 1234,
-    );
-    $response = $sdk->ledgerV1->revertTransaction($request);
+$request = new Operations\RevertTransactionRequest(
+    ledger: 'ledger001',
+    txid: BigInteger::of('1234'),
+);
 
-    if ($response->transactionResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->revertTransaction(
+    request: $request
+);
+
+if ($response->transactionResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1126,11 +1131,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## ~~runScript~~
 
@@ -1151,37 +1155,37 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\RunScriptRequest(
-        script: new Shared\Script(
-            plain: 'vars {
-            account $user
-            }
-            send [COIN 10] (
-            	source = @world
-            	destination = $user
-            )
-            ',
-            reference: 'order_1234',
-            vars: [
-                'user' => 'users:042',
-            ],
-        ),
-        ledger: 'ledger001',
-        preview: true,
-    );
-    $response = $sdk->ledgerV1->runScript($request);
+$request = new Operations\RunScriptRequest(
+    script: new Shared\Script(
+        plain: 'vars {
+        account $user
+        }
+        send [COIN 10] (
+        	source = @world
+        	destination = $user
+        )
+        ',
+        reference: 'order_1234',
+        vars: [
+            'user' => 'users:042',
+        ],
+    ),
+    ledger: 'ledger001',
+    preview: true,
+);
 
-    if ($response->scriptResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->runScript(
+    request: $request
+);
+
+if ($response->scriptResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1197,10 +1201,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## updateMapping
 
@@ -1218,27 +1221,30 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    clientID: '<YOUR_CLIENT_ID_HERE>',
+    clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
 );
 
 $sdk = stack\SDK::builder()->setSecurity($security)->build();
 
-try {
-    $request = new Operations\UpdateMappingRequest(
-        ledger: 'ledger001',
-        mapping: new Shared\Mapping(
-            contracts: [
-                new Shared\Contract,
-            ],
-        ),
-    );
-    $response = $sdk->ledgerV1->updateMapping($request);
+$request = new Operations\UpdateMappingRequest(
+    ledger: 'ledger001',
+    mapping: new Shared\Mapping(
+        contracts: [
+            new Shared\Contract(
+                expr: new Shared\Expr(),
+                account: 'users:001',
+            ),
+        ],
+    ),
+);
 
-    if ($response->mappingResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+$response = $sdk->ledger->v1->updateMapping(
+    request: $request
+);
+
+if ($response->mappingResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1254,7 +1260,7 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ErrorResponse                      | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| Errors\ErrorResponse | default              | application/json     |
+| Errors\SDKException  | 4XX, 5XX             | \*/\*                |

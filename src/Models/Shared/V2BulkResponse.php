@@ -16,8 +16,8 @@ class V2BulkResponse
      *
      * @var array<mixed> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<mixed>')]
     public array $data;
 
     /**

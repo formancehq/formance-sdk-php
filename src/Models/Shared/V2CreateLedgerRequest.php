@@ -15,8 +15,8 @@ class V2CreateLedgerRequest
      *
      * @var ?string $bucket
      */
-    #[\JMS\Serializer\Annotation\SerializedName('bucket')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('bucket')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $bucket = null;
 
     /**
@@ -24,9 +24,9 @@ class V2CreateLedgerRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**

@@ -15,8 +15,8 @@ class BalancesCursorResponse
      *
      * @var BalancesCursorResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorResponseCursor')]
     public BalancesCursorResponseCursor $cursor;
 
     /**

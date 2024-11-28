@@ -47,7 +47,7 @@ class ListBankAccountsRequest
      * @param  ?int  $pageSize
      * @param  ?array<string>  $sort
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null, ?array $sort = null)
+    public function __construct(?string $cursor = null, ?array $sort = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;

@@ -16,15 +16,15 @@ class PoolRequest
      *
      * @var array<string> $accountIDs
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountIDs')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountIDs')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
     public array $accountIDs;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**

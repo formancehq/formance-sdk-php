@@ -15,14 +15,14 @@ class GetVersionsResponse
      *
      * @var string $env
      */
-    #[\JMS\Serializer\Annotation\SerializedName('env')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('env')]
     public string $env;
 
     /**
      *
      * @var string $region
      */
-    #[\JMS\Serializer\Annotation\SerializedName('region')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('region')]
     public string $region;
 
     /**
@@ -30,8 +30,8 @@ class GetVersionsResponse
      *
      * @var array<Version> $versions
      */
-    #[\JMS\Serializer\Annotation\SerializedName('versions')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Version>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('versions')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Version>')]
     public array $versions;
 
     /**
