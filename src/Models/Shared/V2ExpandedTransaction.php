@@ -13,18 +13,18 @@ class V2ExpandedTransaction
 {
     /**
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    public int $id;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public \Brick\Math\BigInteger $id;
 
     /**
      * $metadata
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -32,9 +32,9 @@ class V2ExpandedTransaction
      *
      * @var ?array<string, array<string, V2Volume>> $postCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
@@ -42,8 +42,8 @@ class V2ExpandedTransaction
      *
      * @var array<V2Posting> $postings
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
     public array $postings;
 
     /**
@@ -51,35 +51,35 @@ class V2ExpandedTransaction
      *
      * @var ?array<string, array<string, V2Volume>> $preCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V2Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
      * @var bool $reverted
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reverted')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reverted')]
     public bool $reverted;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  array<string, string>  $metadata
      * @param  array<V2Posting>  $postings
      * @param  bool  $reverted
@@ -88,7 +88,7 @@ class V2ExpandedTransaction
      * @param  ?array<string, array<string, V2Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      */
-    public function __construct(int $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
+    public function __construct(\Brick\Math\BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;

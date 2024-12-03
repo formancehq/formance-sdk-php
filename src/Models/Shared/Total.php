@@ -15,16 +15,16 @@ class Total
      *
      * @var ?string $relation
      */
-    #[\JMS\Serializer\Annotation\SerializedName('relation')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('relation')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $relation = null;
 
     /**
      *
      * @var ?int $value
      */
-    #[\JMS\Serializer\Annotation\SerializedName('value')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('value')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $value = null;
 
     /**

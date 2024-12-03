@@ -15,8 +15,8 @@ class V2TestTriggerResponse
      *
      * @var V2TriggerTest $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2TriggerTest')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2TriggerTest')]
     public V2TriggerTest $data;
 
     /**

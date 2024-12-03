@@ -15,28 +15,28 @@ class MoneycorpConfig
      *
      * @var string $apiKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
     public string $apiKey;
 
     /**
      *
      * @var string $clientID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('clientID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('clientID')]
     public string $clientID;
 
     /**
      *
      * @var string $endpoint
      */
-    #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
     public string $endpoint;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -46,8 +46,8 @@ class MoneycorpConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -57,7 +57,7 @@ class MoneycorpConfig
      * @param  string  $name
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = '120s')
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;

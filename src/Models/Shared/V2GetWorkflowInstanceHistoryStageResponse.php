@@ -16,8 +16,8 @@ class V2GetWorkflowInstanceHistoryStageResponse
      *
      * @var array<V2WorkflowInstanceHistoryStage> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2WorkflowInstanceHistoryStage>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2WorkflowInstanceHistoryStage>')]
     public array $data;
 
     /**

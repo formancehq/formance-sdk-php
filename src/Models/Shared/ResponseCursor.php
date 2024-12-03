@@ -16,50 +16,50 @@ class ResponseCursor
      *
      * @var ?array<array<string, mixed>> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<array<string, mixed>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<array<string, mixed>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $data = null;
 
     /**
      *
      * @var ?bool $hasMore
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $hasMore = null;
 
     /**
      *
      * @var ?string $next
      */
-    #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var ?int $pageSize
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $previous = null;
 
     /**
      *
      * @var ?Total $total
      */
-    #[\JMS\Serializer\Annotation\SerializedName('total')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Total|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Total|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Total $total = null;
 
     /**

@@ -13,23 +13,23 @@ class ReverseTransferInitiationRequest
 {
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $description
      */
-    #[\JMS\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
     public string $description;
 
     /**
@@ -37,25 +37,25 @@ class ReverseTransferInitiationRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     public ?array $metadata;
 
     /**
      *
      * @var string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
 
     /**
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $description
      * @param  string  $reference
      * @param  ?array<string, string>  $metadata
      */
-    public function __construct(int $amount, string $asset, string $description, string $reference, ?array $metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $reference, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

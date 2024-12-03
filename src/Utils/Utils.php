@@ -12,14 +12,15 @@ use GuzzleHttp\ClientInterface;
 
 class Utils
 {
+
     /**
-     * little function to adjust the return type from DateTime|false to DateTime|null
+     * little function to adjust the return type from DateTime|false to DateTime
      */
-    public static function parseDateTime(string $dateTimeString): ?\DateTime
+    public static function parseDateTime(string $dateTimeString): \DateTime
     {
         $val = \DateTime::createFromFormat('Y-m-d\\TH:i:s.uP', $dateTimeString);
         if ($val === false) {
-            return null;
+            throw new \InvalidArgumentException('Invalid date time string: '.$dateTimeString);
         }
 
         return $val;
@@ -140,12 +141,19 @@ class Utils
      * @param  array<string,array<string,array<string,string>>>|null  $globals
      * @return array<string,mixed>
      */
-    public static function getQueryParams(string $type, mixed $queryParams, ?array $globals = null): array
+    public static function getQueryParams(string $type, mixed $queryParams, ?string $urlOverride, ?array $globals = null): array
     {
         $qp = new QueryParameters();
         $globals ??= [];
 
-        $query = $qp->parseQueryParams($type, $queryParams, $globals);
+        $parsedUrl = [];
+        if ($urlOverride != null) {
+            $splitUrl = explode('?', $urlOverride);
+            if (count($splitUrl) > 1) {
+                $parsedUrl = self::proper_parse_str($splitUrl[1]);
+            }
+        }
+        $query = $qp->parseQueryParams($type, $queryParams, $parsedUrl, $globals);
 
         if ($query === null) {
             return [];
@@ -173,6 +181,39 @@ class Utils
             'headers' => $headers,
         ];
     }
+
+    /**
+     * The builtin php parse_str function does not
+     * properly implement query param parsing (specifically it doesn't handle
+     * multiple values from the same key)  This function is a bit more correct
+     * @param  string  $str
+     * @return array<string,mixed>
+     */
+    public static function proper_parse_str($str)
+    {
+        $arr = [];
+
+        $pairs = explode('&', $str);
+
+        foreach ($pairs as $i) {
+            [$name,$value] = explode('=', $i, 2);
+
+            // if name already exists
+            if (isset($arr[$name])) {
+                // stick multiple values into an array
+                if (is_array($arr[$name])) {
+                    $arr[$name][] = $value;
+                } else {
+                    $arr[$name] = [$arr[$name], $value];
+                }
+            } else {
+                // else treat as scalar
+                $arr[$name] = $value;
+            }
+        }
+
+        return $arr;
+    }
 }
 
 function removePrefix(string $text, string $prefix): string
@@ -193,8 +234,12 @@ function removeSuffix(string $text, string $suffix): string
 
     return $text;
 }
-
-function valToString(mixed $val, string $dateTimeFormat = ''): string
+/**
+ * @param  mixed  $val
+ * @param  array<string, mixed>  $extras
+ * @return string
+ */
+function valToString(mixed $val, array $extras): string
 {
     switch (gettype($val)) {
         case 'string':
@@ -202,13 +247,26 @@ function valToString(mixed $val, string $dateTimeFormat = ''): string
         case 'object':
             switch (get_class($val)) {
                 case 'DateTime':
-                    if (empty($dateTimeFormat)) {
-                        $dateTimeFormat = 'Y-m-d\TH:i:s.up';
+                    $dateTimeFormat = $dateTimeFormat = 'Y-m-d\TH:i:s.up';
+                    if (array_key_exists('dateTimeFormat', $extras)) {
+                        $dateTimeFormat = $extras['dateTimeFormat'];
                     }
 
                     return $val->format($dateTimeFormat);
                 case 'Brick\DateTime\LocalDate':
                     return $val->jsonSerialize();
+                case 'Brick\Math\BigInteger':
+                    if (array_key_exists('serializeToString', $extras) && $extras['serializeToString']) {
+                        return '"'.$val->toBase(10).'"';
+                    }
+
+                    return $val->toBase(10);
+                case 'Brick\Math\BigDecimal':
+                    if (array_key_exists('serializeToString', $extras) && $extras['serializeToString']) {
+                        return '"'.$val->__toString().'"';
+                    }
+
+                    return $val->__toString();
                 default:
                     if (is_a($val, \BackedEnum::class, true)) {
                         $enumVal = $val->value;
@@ -224,6 +282,7 @@ function valToString(mixed $val, string $dateTimeFormat = ''): string
         default:
             return var_export($val, true);
     }
+
 }
 
 /**

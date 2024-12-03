@@ -15,27 +15,27 @@ class V2StageSendSource
      *
      * @var ?V2StageSendSourceAccount $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourceAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourceAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2StageSendSourceAccount $account = null;
 
     /**
      *
      * @var ?V2StageSendSourcePayment $payment
      */
-    #[\JMS\Serializer\Annotation\SerializedName('payment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourcePayment|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('payment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourcePayment|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2StageSendSourcePayment $payment = null;
 
     /**
      *
      * @var ?V2StageSendSourceWallet $wallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('wallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourceWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('wallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourceWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2StageSendSourceWallet $wallet = null;
 
     /**

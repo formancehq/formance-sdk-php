@@ -15,8 +15,8 @@ class ActivityCreateTransactionOutput
      *
      * @var OrchestrationTransaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationTransaction')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationTransaction')]
     public OrchestrationTransaction $data;
 
     /**

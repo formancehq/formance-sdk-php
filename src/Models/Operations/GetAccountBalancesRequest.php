@@ -101,7 +101,7 @@ class GetAccountBalancesRequest
      * @param  ?array<string>  $sort
      * @param  ?\DateTime  $to
      */
-    public function __construct(string $accountId, ?string $asset = null, ?string $cursor = null, ?\DateTime $from = null, ?int $limit = null, ?int $pageSize = null, ?array $sort = null, ?\DateTime $to = null)
+    public function __construct(string $accountId, ?string $asset = null, ?string $cursor = null, ?\DateTime $from = null, ?int $limit = null, ?array $sort = null, ?\DateTime $to = null, ?int $pageSize = 15)
     {
         $this->accountId = $accountId;
         $this->asset = $asset;

@@ -15,7 +15,7 @@ class CurrencyCloudConfig
      *
      * @var string $apiKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
     public string $apiKey;
 
     /**
@@ -23,8 +23,8 @@ class CurrencyCloudConfig
      *
      * @var ?string $endpoint
      */
-    #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $endpoint = null;
 
     /**
@@ -32,14 +32,14 @@ class CurrencyCloudConfig
      *
      * @var string $loginID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('loginID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('loginID')]
     public string $loginID;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -47,8 +47,8 @@ class CurrencyCloudConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -58,7 +58,7 @@ class CurrencyCloudConfig
      * @param  ?string  $endpoint
      * @param  ?string  $pollingPeriod
      */
-    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s')
     {
         $this->apiKey = $apiKey;
         $this->loginID = $loginID;

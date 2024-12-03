@@ -45,7 +45,7 @@ class GetTransactionsRequest
      * @param  ?int  $pageSize
      * @param  ?string  $walletID
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null, ?string $walletID = null)
+    public function __construct(?string $cursor = null, ?string $walletID = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;

@@ -15,29 +15,29 @@ class V2BulkElementResultErrorSchemas
      *
      * @var string $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     public string $errorCode;
 
     /**
      *
      * @var string $errorDescription
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorDescription')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorDescription')]
     public string $errorDescription;
 
     /**
      *
      * @var ?string $errorDetails
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorDetails')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorDetails')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $errorDetails = null;
 
     /**
      *
      * @var string $responseType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('responseType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
     public string $responseType;
 
     /**

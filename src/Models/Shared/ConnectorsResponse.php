@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** ConnectorsResponse - OK */
 class ConnectorsResponse
 {
     /**
@@ -16,8 +17,8 @@ class ConnectorsResponse
      *
      * @var array<ConnectorsResponseData> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\ConnectorsResponseData>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\ConnectorsResponseData>')]
     public array $data;
 
     /**

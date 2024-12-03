@@ -15,8 +15,8 @@ class V2GetTransactionResponse
      *
      * @var V2ExpandedTransaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ExpandedTransaction')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ExpandedTransaction')]
     public V2ExpandedTransaction $data;
 
     /**

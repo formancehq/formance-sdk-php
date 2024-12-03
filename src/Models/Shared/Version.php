@@ -15,21 +15,21 @@ class Version
      *
      * @var bool $health
      */
-    #[\JMS\Serializer\Annotation\SerializedName('health')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('health')]
     public bool $health;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $version
      */
-    #[\JMS\Serializer\Annotation\SerializedName('version')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
     public string $version;
 
     /**

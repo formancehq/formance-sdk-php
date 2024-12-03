@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** PoliciesCursorResponse - OK */
 class PoliciesCursorResponse
 {
     /**
      *
      * @var PoliciesCursorResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoliciesCursorResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoliciesCursorResponseCursor')]
     public PoliciesCursorResponseCursor $cursor;
 
     /**

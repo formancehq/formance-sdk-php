@@ -1,18 +1,21 @@
-speakeasyVersion: 1.402.14
+speakeasyVersion: 1.449.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0f91ebfb9d754eff5dc742b23c76f28207ffd67e6aec3e5713c343ad6781f22c
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:5bf72d0d3958f806482df5be2e01a610667cb5bc39789d64392da21babfe4d98
+        sourceBlobDigest: sha256:ad1bdcc615ebeb9d963920de837261ed561327d8517193955fa61c76702f44fb
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1732234037
+            - v2.1.1
 targets:
     formance-sdk-php:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0f91ebfb9d754eff5dc742b23c76f28207ffd67e6aec3e5713c343ad6781f22c
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:5bf72d0d3958f806482df5be2e01a610667cb5bc39789d64392da21babfe4d98
+        sourceBlobDigest: sha256:ad1bdcc615ebeb9d963920de837261ed561327d8517193955fa61c76702f44fb
+        codeSamplesNamespace: my-source-php-code-samples
+        codeSamplesRevisionDigest: sha256:2c6182b50cd62398806256e722a877df993c5728a3638ce52c662e6a6c1d0fbf
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -30,3 +33,7 @@ workflow:
                 packagist:
                     username: $PACKAGIST_USERNAME
                     token: $PACKAGIST_TOKEN
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/formance/formance/my-source-php-code-samples
+                blocking: false

@@ -15,17 +15,17 @@ class AccountWithVolumesAndBalances
      *
      * @var string $address
      */
-    #[\JMS\Serializer\Annotation\SerializedName('address')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
     public string $address;
 
     /**
      * $balances
      *
-     * @var ?array<string, int> $balances
+     * @var ?array<string, \Brick\Math\BigInteger> $balances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $balances = null;
 
     /**
@@ -33,17 +33,17 @@ class AccountWithVolumesAndBalances
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $type = null;
 
     /**
@@ -51,14 +51,14 @@ class AccountWithVolumesAndBalances
      *
      * @var ?array<string, Volume> $volumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $volumes = null;
 
     /**
      * @param  string  $address
-     * @param  ?array<string, int>  $balances
+     * @param  ?array<string, \Brick\Math\BigInteger>  $balances
      * @param  ?array<string, mixed>  $metadata
      * @param  ?string  $type
      * @param  ?array<string, Volume>  $volumes

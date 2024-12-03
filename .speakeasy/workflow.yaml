@@ -14,3 +14,7 @@ targets:
             packagist:
                 username: $PACKAGIST_USERNAME
                 token: $PACKAGIST_TOKEN
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/my-source-php-code-samples
+            blocking: false

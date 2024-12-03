@@ -15,14 +15,14 @@ class V2ConfigInfoResponse
      *
      * @var string $server
      */
-    #[\JMS\Serializer\Annotation\SerializedName('server')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('server')]
     public string $server;
 
     /**
      *
      * @var string $version
      */
-    #[\JMS\Serializer\Annotation\SerializedName('version')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
     public string $version;
 
     /**

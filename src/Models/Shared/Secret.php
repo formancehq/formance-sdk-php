@@ -15,21 +15,21 @@ class Secret
      *
      * @var string $clear
      */
-    #[\JMS\Serializer\Annotation\SerializedName('clear')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('clear')]
     public string $clear;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $lastDigits
      */
-    #[\JMS\Serializer\Annotation\SerializedName('lastDigits')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('lastDigits')]
     public string $lastDigits;
 
     /**
@@ -37,16 +37,16 @@ class Secret
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**

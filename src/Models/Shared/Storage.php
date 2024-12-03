@@ -16,9 +16,9 @@ class Storage
      *
      * @var ?array<MigrationInfo> $migrations
      */
-    #[\JMS\Serializer\Annotation\SerializedName('migrations')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\MigrationInfo>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('migrations')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\MigrationInfo>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $migrations = null;
 
     /**

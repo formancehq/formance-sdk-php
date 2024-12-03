@@ -15,28 +15,28 @@ class AccountBalance
      *
      * @var string $accountId
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountId')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountId')]
     public string $accountId;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
-     * @var int $balance
+     * @var \Brick\Math\BigInteger $balance
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    public int $balance;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    public \Brick\Math\BigInteger $balance;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -44,25 +44,25 @@ class AccountBalance
      * @var string $currency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    #[\JMS\Serializer\Annotation\SerializedName('currency')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     public string $currency;
 
     /**
      *
      * @var \DateTime $lastUpdatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('lastUpdatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('lastUpdatedAt')]
     public \DateTime $lastUpdatedAt;
 
     /**
      * @param  string  $accountId
      * @param  string  $asset
-     * @param  int  $balance
+     * @param  \Brick\Math\BigInteger  $balance
      * @param  \DateTime  $createdAt
      * @param  string  $currency
      * @param  \DateTime  $lastUpdatedAt
      */
-    public function __construct(string $accountId, string $asset, int $balance, \DateTime $createdAt, string $currency, \DateTime $lastUpdatedAt)
+    public function __construct(string $accountId, string $asset, \Brick\Math\BigInteger $balance, \DateTime $createdAt, string $currency, \DateTime $lastUpdatedAt)
     {
         $this->accountId = $accountId;
         $this->asset = $asset;

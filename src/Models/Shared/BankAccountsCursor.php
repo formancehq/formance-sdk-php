@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** BankAccountsCursor - OK */
 class BankAccountsCursor
 {
     /**
      *
      * @var BankAccountsCursorCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BankAccountsCursorCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\BankAccountsCursorCursor')]
     public BankAccountsCursorCursor $cursor;
 
     /**

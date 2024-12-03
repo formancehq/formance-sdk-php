@@ -15,7 +15,7 @@ class OrchestrationPostTransactionScript
      *
      * @var string $plain
      */
-    #[\JMS\Serializer\Annotation\SerializedName('plain')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('plain')]
     public string $plain;
 
     /**
@@ -23,9 +23,9 @@ class OrchestrationPostTransactionScript
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\JMS\Serializer\Annotation\SerializedName('vars')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
 
     /**

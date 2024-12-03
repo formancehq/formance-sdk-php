@@ -65,7 +65,7 @@ class GetBalancesRequest
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      */
-    public function __construct(string $ledger, ?string $address = null, ?string $after = null, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(string $ledger, ?string $address = null, ?string $after = null, ?string $cursor = null, ?int $pageSize = 15)
     {
         $this->ledger = $ledger;
         $this->address = $address;

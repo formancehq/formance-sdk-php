@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Errors;
 use formance\stack\Models\Shared;
 class ListAccountsResponse
 {
@@ -29,9 +28,9 @@ class ListAccountsResponse
     /**
      * Not found
      *
-     * @var ?Errors\ErrorResponse $errorResponse
+     * @var ?Shared\ErrorResponse $errorResponse
      */
-    public ?Errors\ErrorResponse $errorResponse = null;
+    public ?Shared\ErrorResponse $errorResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -52,9 +51,9 @@ class ListAccountsResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\AccountsCursorResponse  $accountsCursorResponse
-     * @param  ?Errors\ErrorResponse  $errorResponse
+     * @param  ?Shared\ErrorResponse  $errorResponse
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Errors\ErrorResponse $errorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Shared\ErrorResponse $errorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

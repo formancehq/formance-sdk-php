@@ -15,17 +15,17 @@ class ExpandedDebitHold
      *
      * @var string $description
      */
-    #[\JMS\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
     public string $description;
 
     /**
      *
      * @var LedgerAccountSubject|WalletSubject|null $destination
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject')]
-    #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['LedgerAccountSubject' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WalletSubject' => '\formance\stack\Models\Shared\WalletSubject'])]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['LedgerAccountSubject' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WalletSubject' => '\formance\stack\Models\Shared\WalletSubject'])]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
@@ -33,7 +33,7 @@ class ExpandedDebitHold
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
@@ -41,44 +41,44 @@ class ExpandedDebitHold
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
      * Original amount on hold
      *
-     * @var int $originalAmount
+     * @var \Brick\Math\BigInteger $originalAmount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('originalAmount')]
-    public int $originalAmount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('originalAmount')]
+    public \Brick\Math\BigInteger $originalAmount;
 
     /**
      * Remaining amount on hold
      *
-     * @var int $remaining
+     * @var \Brick\Math\BigInteger $remaining
      */
-    #[\JMS\Serializer\Annotation\SerializedName('remaining')]
-    public int $remaining;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('remaining')]
+    public \Brick\Math\BigInteger $remaining;
 
     /**
      * The ID of the wallet the hold is associated with.
      *
      * @var string $walletID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('walletID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('walletID')]
     public string $walletID;
 
     /**
      * @param  string  $description
      * @param  string  $id
      * @param  array<string, string>  $metadata
-     * @param  int  $originalAmount
-     * @param  int  $remaining
+     * @param  \Brick\Math\BigInteger  $originalAmount
+     * @param  \Brick\Math\BigInteger  $remaining
      * @param  string  $walletID
      * @param  LedgerAccountSubject|WalletSubject|null  $destination
      */
-    public function __construct(string $description, string $id, array $metadata, int $originalAmount, int $remaining, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
+    public function __construct(string $description, string $id, array $metadata, \Brick\Math\BigInteger $originalAmount, \Brick\Math\BigInteger $remaining, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
     {
         $this->description = $description;
         $this->id = $id;

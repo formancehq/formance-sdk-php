@@ -9,14 +9,15 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** TaskResponse - OK */
 class TaskResponse
 {
     /**
      *
      * @var TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStripe|\formance\stack\Models\Shared\TaskWise|\formance\stack\Models\Shared\TaskCurrencyCloud|\formance\stack\Models\Shared\TaskDummyPay|\formance\stack\Models\Shared\TaskModulr|\formance\stack\Models\Shared\TaskBankingCircle|\formance\stack\Models\Shared\TaskMangoPay|\formance\stack\Models\Shared\TaskMoneycorp')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStripe|\formance\stack\Models\Shared\TaskWise|\formance\stack\Models\Shared\TaskCurrencyCloud|\formance\stack\Models\Shared\TaskDummyPay|\formance\stack\Models\Shared\TaskModulr|\formance\stack\Models\Shared\TaskBankingCircle|\formance\stack\Models\Shared\TaskMangoPay|\formance\stack\Models\Shared\TaskMoneycorp')]
     public TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data;
 
     /**

@@ -16,8 +16,8 @@ class ListTriggersOccurrencesResponse
      *
      * @var array<TriggerOccurrence> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TriggerOccurrence>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TriggerOccurrence>')]
     public array $data;
 
     /**

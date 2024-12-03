@@ -15,21 +15,21 @@ class V2Stats
      *
      * @var int $accounts
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accounts')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts')]
     public int $accounts;
 
     /**
      *
-     * @var int $transactions
+     * @var \Brick\Math\BigInteger $transactions
      */
-    #[\JMS\Serializer\Annotation\SerializedName('transactions')]
-    public int $transactions;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
+    public \Brick\Math\BigInteger $transactions;
 
     /**
      * @param  int  $accounts
-     * @param  int  $transactions
+     * @param  \Brick\Math\BigInteger  $transactions
      */
-    public function __construct(int $accounts, int $transactions)
+    public function __construct(int $accounts, \Brick\Math\BigInteger $transactions)
     {
         $this->accounts = $accounts;
         $this->transactions = $transactions;

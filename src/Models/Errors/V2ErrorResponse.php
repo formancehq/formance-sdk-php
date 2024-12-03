@@ -10,30 +10,30 @@ namespace formance\stack\Models\Errors;
 
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
-/** V2ErrorResponse - Error */
+
 class V2ErrorResponse
 {
     /**
      *
      * @var ?string $details
      */
-    #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
      * @var Shared\V2ErrorsEnum $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ErrorsEnum')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ErrorsEnum')]
     public Shared\V2ErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**

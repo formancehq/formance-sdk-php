@@ -1,31 +1,33 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: d5d12540f5ed5f4996d23aae4cd97c31
-  docVersion: v2.1.0-beta.3
-  speakeasyVersion: 1.402.14
-  generationVersion: 2.422.22
-  releaseVersion: 3.1.0
-  configChecksum: d3cf88a54a4c1b792558c3a7f38355fc
+  docChecksum: 26dc51843f72f8922c6265f03b5e50f2
+  docVersion: v2.1.1
+  speakeasyVersion: 1.449.0
+  generationVersion: 2.467.4
+  releaseVersion: 3.2.0
+  configChecksum: f1cd6e894541f944dc194f48ad558a4b
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
   published: true
 features:
   php:
-    core: 3.4.5
+    bigint: 0.1.1
+    constsAndDefaults: 0.2.0
+    core: 3.7.3
     deprecations: 2.81.1
-    errors: 0.1.2
+    errors: 0.3.0
     getRequestBodies: 2.81.1
     globalSecurity: 2.81.7
-    globalSecurityFlattening: 0.1.1
     globalServerURLs: 2.82.1
     ignores: 2.81.1
-    methodSecurity: 2.82.1
+    methodArguments: 0.1.0
     nameOverrides: 2.81.2
     nullables: 1.0.0
+    oauth2ClientCredentials: 0.1.0
     responseFormat: 0.1.0
-    unions: 0.1.3
+    unions: 0.1.4
 generatedFiles:
   - .gitattributes
   - CONTRIBUTING.md
@@ -157,7 +159,6 @@ generatedFiles:
   - docs/Models/Operations/GetTransferInitiationRequest.md
   - docs/Models/Operations/GetTransferInitiationResponse.md
   - docs/Models/Operations/GetVersionsResponse.md
-  - docs/Models/Operations/GetVersionsSecurity.md
   - docs/Models/Operations/GetWalletRequest.md
   - docs/Models/Operations/GetWalletResponse.md
   - docs/Models/Operations/GetWalletSummaryRequest.md
@@ -445,6 +446,7 @@ generatedFiles:
   - docs/Models/Shared/DebitWalletResponse.md
   - docs/Models/Shared/Descriptor.md
   - docs/Models/Shared/DummyPayConfig.md
+  - docs/Models/Shared/ErrorResponse.md
   - docs/Models/Shared/ErrorsEnum.md
   - docs/Models/Shared/ExpandedDebitHold.md
   - docs/Models/Shared/Expr.md
@@ -686,6 +688,7 @@ generatedFiles:
   - docs/Models/Shared/V2CreateWorkflowResponse.md
   - docs/Models/Shared/V2CreditWalletRequest.md
   - docs/Models/Shared/V2DebitWalletRequest.md
+  - docs/Models/Shared/V2ErrorResponse.md
   - docs/Models/Shared/V2ErrorsEnum.md
   - docs/Models/Shared/V2ExpandedTransaction.md
   - docs/Models/Shared/V2GetLedgerResponse.md
@@ -955,7 +958,6 @@ generatedFiles:
   - src/Models/Operations/GetTransferInitiationRequest.php
   - src/Models/Operations/GetTransferInitiationResponse.php
   - src/Models/Operations/GetVersionsResponse.php
-  - src/Models/Operations/GetVersionsSecurity.php
   - src/Models/Operations/GetWalletRequest.php
   - src/Models/Operations/GetWalletResponse.php
   - src/Models/Operations/GetWalletSummaryRequest.php
@@ -1242,6 +1244,7 @@ generatedFiles:
   - src/Models/Shared/DebitWalletResponse.php
   - src/Models/Shared/Descriptor.php
   - src/Models/Shared/DummyPayConfig.php
+  - src/Models/Shared/ErrorResponse.php
   - src/Models/Shared/ErrorsEnum.php
   - src/Models/Shared/ExpandedDebitHold.php
   - src/Models/Shared/Expr.php
@@ -1477,6 +1480,7 @@ generatedFiles:
   - src/Models/Shared/V2CreateWorkflowResponse.php
   - src/Models/Shared/V2CreditWalletRequest.php
   - src/Models/Shared/V2DebitWalletRequest.php
+  - src/Models/Shared/V2ErrorResponse.php
   - src/Models/Shared/V2ErrorsEnum.php
   - src/Models/Shared/V2ExpandedTransaction.php
   - src/Models/Shared/V2GetLedgerResponse.php
@@ -1599,6 +1603,8 @@ generatedFiles:
   - src/SDKWebhooksV1.php
   - src/Search.php
   - src/ServerEnvironment.php
+  - src/Utils/BigDecimalHandler.php
+  - src/Utils/BigIntHandler.php
   - src/Utils/DateHandler.php
   - src/Utils/DateTimeHandler.php
   - src/Utils/DefaultRequest.php
@@ -1620,6 +1626,7 @@ generatedFiles:
   - src/Utils/Security.php
   - src/Utils/SecurityClient.php
   - src/Utils/SecurityMetadata.php
+  - src/Utils/ServerDetails.php
   - src/Utils/SpeakeasyMetadata.php
   - src/Utils/UnionHandler.php
   - src/Utils/Utils.php
@@ -2663,7 +2670,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2675,7 +2682,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:
@@ -3299,3 +3306,4 @@ examples:
           application/json: {"data": {"config": {"active": true, "createdAt": "2023-05-30T09:53:59.199Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "2846f0d5-34bb-4964-967d-fe71e6ffb881", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-12-01T05:22:46.116Z"}, "createdAt": "2024-09-28T21:02:11.496Z", "id": "21fdbd6d-a78d-45b5-9c0e-4a204cb7c2a1", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2024-07-05T23:45:46.439Z", "webhookID": "dec67687-2f74-4eed-b324-86395f8c9408"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+generatedTests: {}

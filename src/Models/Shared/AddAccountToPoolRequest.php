@@ -15,7 +15,7 @@ class AddAccountToPoolRequest
      *
      * @var string $accountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
     public string $accountID;
 
     /**

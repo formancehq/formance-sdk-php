@@ -15,15 +15,15 @@ class V2BulkElementResultCreateTransactionSchemas
      *
      * @var V2Transaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Transaction')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Transaction')]
     public V2Transaction $data;
 
     /**
      *
      * @var string $responseType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('responseType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
     public string $responseType;
 
     /**

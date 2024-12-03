@@ -15,30 +15,30 @@ class BankAccountRequest
      *
      * @var ?string $accountNumber
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountNumber')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $accountNumber = null;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var string $country
      */
-    #[\JMS\Serializer\Annotation\SerializedName('country')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     public string $country;
 
     /**
      *
      * @var ?string $iban
      */
-    #[\JMS\Serializer\Annotation\SerializedName('iban')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('iban')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $iban = null;
 
     /**
@@ -46,24 +46,24 @@ class BankAccountRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?string $swiftBicCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('swiftBicCode')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**

@@ -58,7 +58,7 @@ class ListTransferInitiationsRequest
      * @param  ?string  $query
      * @param  ?array<string>  $sort
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null, ?string $query = null, ?array $sort = null)
+    public function __construct(?string $cursor = null, ?string $query = null, ?array $sort = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;

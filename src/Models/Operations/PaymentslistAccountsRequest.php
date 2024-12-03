@@ -67,7 +67,7 @@ class PaymentslistAccountsRequest
      * @param  ?string  $query
      * @param  ?array<string>  $sort
      */
-    public function __construct(?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null, ?string $query = null, ?array $sort = null)
+    public function __construct(?array $requestBody = null, ?string $cursor = null, ?string $query = null, ?array $sort = null, ?int $pageSize = 15)
     {
         $this->requestBody = $requestBody;
         $this->cursor = $cursor;

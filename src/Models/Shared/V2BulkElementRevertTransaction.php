@@ -15,24 +15,24 @@ class V2BulkElementRevertTransaction
      *
      * @var string $action
      */
-    #[\JMS\Serializer\Annotation\SerializedName('action')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('action')]
     public string $action;
 
     /**
      *
      * @var ?V2BulkElementRevertTransactionData $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementRevertTransactionData|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2BulkElementRevertTransactionData|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2BulkElementRevertTransactionData $data = null;
 
     /**
      *
      * @var ?string $ik
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ik')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ik')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $ik = null;
 
     /**

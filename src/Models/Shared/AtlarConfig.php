@@ -19,7 +19,7 @@ class AtlarConfig
      *
      * @var string $accessKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accessKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accessKey')]
     public string $accessKey;
 
     /**
@@ -29,15 +29,15 @@ class AtlarConfig
      *
      * @var ?string $baseUrl
      */
-    #[\JMS\Serializer\Annotation\SerializedName('baseUrl')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('baseUrl')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $baseUrl = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -47,8 +47,8 @@ class AtlarConfig
      *
      * @var ?int $pageSize
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
@@ -58,8 +58,8 @@ class AtlarConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -70,7 +70,7 @@ class AtlarConfig
      *
      * @var string $secret
      */
-    #[\JMS\Serializer\Annotation\SerializedName('secret')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
     public string $secret;
 
     /**
@@ -80,8 +80,8 @@ class AtlarConfig
      *
      * @var ?string $transferInitiationStatusPollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $transferInitiationStatusPollingPeriod = null;
 
     /**
@@ -93,7 +93,7 @@ class AtlarConfig
      * @param  ?string  $pollingPeriod
      * @param  ?string  $transferInitiationStatusPollingPeriod
      */
-    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = null, ?int $pageSize = null, ?string $pollingPeriod = null, ?string $transferInitiationStatusPollingPeriod = null)
+    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = 'https://api.atlar.com', ?int $pageSize = 25, ?string $pollingPeriod = '120s', ?string $transferInitiationStatusPollingPeriod = '120s')
     {
         $this->accessKey = $accessKey;
         $this->name = $name;

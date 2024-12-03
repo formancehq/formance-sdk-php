@@ -16,8 +16,8 @@ class ListRunsResponse
      *
      * @var array<WorkflowInstance> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\WorkflowInstance>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\WorkflowInstance>')]
     public array $data;
 
     /**

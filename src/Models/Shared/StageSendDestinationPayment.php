@@ -15,7 +15,7 @@ class StageSendDestinationPayment
      *
      * @var string $psp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('psp')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('psp')]
     public string $psp;
 
     /**

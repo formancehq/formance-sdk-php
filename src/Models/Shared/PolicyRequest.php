@@ -15,7 +15,7 @@ class PolicyRequest
      *
      * @var string $ledgerName
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgerName')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerName')]
     public string $ledgerName;
 
     /**
@@ -23,22 +23,22 @@ class PolicyRequest
      *
      * @var array<string, mixed> $ledgerQuery
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerQuery')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $ledgerQuery;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $paymentsPoolID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('paymentsPoolID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentsPoolID')]
     public string $paymentsPoolID;
 
     /**

@@ -15,8 +15,8 @@ class V2AccountsCursorResponse
      *
      * @var V2AccountsCursorResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2AccountsCursorResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2AccountsCursorResponseCursor')]
     public V2AccountsCursorResponseCursor $cursor;
 
     /**

@@ -15,21 +15,21 @@ class WebhooksConfig
      *
      * @var bool $active
      */
-    #[\JMS\Serializer\Annotation\SerializedName('active')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('active')]
     public bool $active;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $endpoint
      */
-    #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
     public string $endpoint;
 
     /**
@@ -37,29 +37,29 @@ class WebhooksConfig
      *
      * @var array<string> $eventTypes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('eventTypes')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('eventTypes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
     public array $eventTypes;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $secret
      */
-    #[\JMS\Serializer\Annotation\SerializedName('secret')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
     public string $secret;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**

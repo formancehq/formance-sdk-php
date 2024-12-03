@@ -15,22 +15,22 @@ class V2WorkflowInstance
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var ?string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
@@ -38,38 +38,38 @@ class V2WorkflowInstance
      *
      * @var ?array<V2StageStatus> $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2StageStatus>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2StageStatus>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $status = null;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminated')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
     public bool $terminated;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var string $workflowID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('workflowID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowID')]
     public string $workflowID;
 
     /**

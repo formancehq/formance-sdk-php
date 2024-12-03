@@ -15,7 +15,7 @@ class V2Account
      *
      * @var string $address
      */
-    #[\JMS\Serializer\Annotation\SerializedName('address')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
     public string $address;
 
     /**
@@ -23,9 +23,9 @@ class V2Account
      *
      * @var ?array<string, V2Volume> $effectiveVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $effectiveVolumes = null;
 
     /**
@@ -33,8 +33,8 @@ class V2Account
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -42,9 +42,9 @@ class V2Account
      *
      * @var ?array<string, V2Volume> $volumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\V2Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $volumes = null;
 
     /**

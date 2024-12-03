@@ -15,16 +15,16 @@ class V2StageDelay
      *
      * @var ?string $duration
      */
-    #[\JMS\Serializer\Annotation\SerializedName('duration')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('duration')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $duration = null;
 
     /**
      *
      * @var ?\DateTime $until
      */
-    #[\JMS\Serializer\Annotation\SerializedName('until')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('until')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $until = null;
 
     /**

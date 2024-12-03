@@ -15,8 +15,8 @@ class V2ListWorkflowsResponse
      *
      * @var V2ListWorkflowsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWorkflowsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWorkflowsResponseCursor')]
     public V2ListWorkflowsResponseCursor $cursor;
 
     /**

@@ -16,8 +16,8 @@ class PoolBalances
      *
      * @var array<PoolBalance> $balances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\PoolBalance>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\PoolBalance>')]
     public array $balances;
 
     /**

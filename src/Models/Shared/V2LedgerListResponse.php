@@ -15,8 +15,8 @@ class V2LedgerListResponse
      *
      * @var V2LedgerListResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerListResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerListResponseCursor')]
     public V2LedgerListResponseCursor $cursor;
 
     /**

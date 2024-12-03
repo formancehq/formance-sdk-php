@@ -54,7 +54,7 @@ class GetHoldsRequest
      * @param  ?int  $pageSize
      * @param  ?string  $walletID
      */
-    public function __construct(?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $walletID = null)
+    public function __construct(?string $cursor = null, ?array $metadata = null, ?string $walletID = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
         $this->metadata = $metadata;

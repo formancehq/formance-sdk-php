@@ -80,7 +80,7 @@ class ListLogsRequest
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $startTime
      */
-    public function __construct(string $ledger, ?string $after = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $pageSize = null, ?\DateTime $startTime = null)
+    public function __construct(string $ledger, ?string $after = null, ?string $cursor = null, ?\DateTime $endTime = null, ?\DateTime $startTime = null, ?int $pageSize = 15)
     {
         $this->ledger = $ledger;
         $this->after = $after;

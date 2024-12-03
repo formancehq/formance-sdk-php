@@ -6,12 +6,18 @@
 ### `string`
 
 ```php
+/**
+* @var string
+*/
 string $value = /* values here */
 ```
 
-### `int`
+### `\Brick\Math\BigInteger`
 
 ```php
-int $value = /* values here */
+/**
+* @var \Brick\Math\BigInteger
+*/
+\Brick\Math\BigInteger $value = /* values here */
 ```
 

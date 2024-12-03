@@ -15,9 +15,9 @@ class Update
      *
      * @var ?UpdateAccount $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\UpdateAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\UpdateAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?UpdateAccount $account = null;
 
     /**

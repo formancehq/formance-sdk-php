@@ -16,8 +16,8 @@ class AggregateBalancesResponse
      *
      * @var array<string, int> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, int>')]
     public array $data;
 
     /**
