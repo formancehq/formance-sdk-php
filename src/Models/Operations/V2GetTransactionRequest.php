@@ -21,10 +21,10 @@ class V2GetTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public int $id;
+    public \Brick\Math\BigInteger $id;
 
     /**
      * Name of the ledger.
@@ -42,12 +42,12 @@ class V2GetTransactionRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $expand
      * @param  ?\DateTime  $pit
      */
-    public function __construct(int $id, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

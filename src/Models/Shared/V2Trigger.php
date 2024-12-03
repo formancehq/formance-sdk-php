@@ -15,37 +15,37 @@ class V2Trigger
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $event
      */
-    #[\JMS\Serializer\Annotation\SerializedName('event')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
     public string $event;
 
     /**
      *
      * @var ?string $filter
      */
-    #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filter')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $filter = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -53,16 +53,16 @@ class V2Trigger
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\JMS\Serializer\Annotation\SerializedName('vars')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
 
     /**
      *
      * @var string $workflowID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('workflowID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowID')]
     public string $workflowID;
 
     /**

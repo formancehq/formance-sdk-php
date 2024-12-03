@@ -15,8 +15,8 @@ class V2ActivityGetPaymentOutput
      *
      * @var V2Payment $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Payment')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Payment')]
     public V2Payment $data;
 
     /**

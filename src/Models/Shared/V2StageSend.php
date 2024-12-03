@@ -15,18 +15,18 @@ class V2StageSend
      *
      * @var ?V2Monetary $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2Monetary $amount = null;
 
     /**
      *
      * @var ?V2StageSendDestination $destination
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendDestination|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendDestination|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2StageSendDestination $destination = null;
 
     /**
@@ -34,26 +34,26 @@ class V2StageSend
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?V2StageSendSource $source
      */
-    #[\JMS\Serializer\Annotation\SerializedName('source')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSource|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2StageSendSource $source = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**

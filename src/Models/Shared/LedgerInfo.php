@@ -15,17 +15,17 @@ class LedgerInfo
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?Storage $storage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('storage')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Storage|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Storage|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Storage $storage = null;
 
     /**

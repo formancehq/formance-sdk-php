@@ -15,14 +15,14 @@ class V2LedgerAccountSubject
      *
      * @var string $identifier
      */
-    #[\JMS\Serializer\Annotation\SerializedName('identifier')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
     public string $identifier;
 
     /**
      *
      * @var string $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     public string $type;
 
     /**

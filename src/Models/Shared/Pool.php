@@ -16,22 +16,22 @@ class Pool
      *
      * @var array<string> $accounts
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accounts')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
     public array $accounts;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
