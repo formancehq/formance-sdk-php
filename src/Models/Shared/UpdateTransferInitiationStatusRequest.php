@@ -15,12 +15,13 @@ class UpdateTransferInitiationStatusRequest
      *
      * @var Status $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Status')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Status')]
     public Status $status;
 
     /**
      * @param  Status  $status
+     * @phpstan-pure
      */
     public function __construct(Status $status)
     {

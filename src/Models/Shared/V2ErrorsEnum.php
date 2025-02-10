@@ -23,4 +23,10 @@ enum V2ErrorsEnum: string
     case NoPostings = 'NO_POSTINGS';
     case LedgerNotFound = 'LEDGER_NOT_FOUND';
     case Import = 'IMPORT';
+    case Timeout = 'TIMEOUT';
+    case BulkSizeExceeded = 'BULK_SIZE_EXCEEDED';
+    case InterpreterParse = 'INTERPRETER_PARSE';
+    case InterpreterRuntime = 'INTERPRETER_RUNTIME';
+    case LedgerAlreadyExists = 'LEDGER_ALREADY_EXISTS';
+    case OutdatedSchema = 'OUTDATED_SCHEMA';
 }

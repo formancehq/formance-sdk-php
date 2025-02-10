@@ -25,6 +25,14 @@ class ListBankAccountsRequest
     public ?string $cursor = null;
 
     /**
+     * Fields used to sort payments (default is date:desc).
+     *
+     * @var ?array<string> $sort
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
+    public ?array $sort = null;
+
+    /**
      * The maximum number of results to return per page.
      *
      *
@@ -35,22 +43,15 @@ class ListBankAccountsRequest
     public ?int $pageSize = null;
 
     /**
-     * Fields used to sort payments (default is date:desc).
-     *
-     * @var ?array<string> $sort
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
-    public ?array $sort = null;
-
-    /**
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @param  ?array<string>  $sort
+     * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null, ?array $sort = null)
+    public function __construct(?string $cursor = null, ?array $sort = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
-        $this->pageSize = $pageSize;
         $this->sort = $sort;
+        $this->pageSize = $pageSize;
     }
 }

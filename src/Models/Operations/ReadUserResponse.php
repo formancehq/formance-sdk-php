@@ -19,13 +19,6 @@ class ReadUserResponse
     public string $contentType;
 
     /**
-     * Retrieved user
-     *
-     * @var ?Shared\ReadUserResponse $readUserResponse
-     */
-    public ?Shared\ReadUserResponse $readUserResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ReadUserResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Retrieved user
+     *
+     * @var ?Shared\ReadUserResponse $readUserResponse
+     */
+    public ?Shared\ReadUserResponse $readUserResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ReadUserResponse  $readUserResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ReadUserResponse $readUserResponse = null)
     {

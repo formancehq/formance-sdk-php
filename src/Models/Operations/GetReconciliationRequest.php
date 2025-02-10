@@ -21,6 +21,7 @@ class GetReconciliationRequest
 
     /**
      * @param  string  $reconciliationID
+     * @phpstan-pure
      */
     public function __construct(string $reconciliationID)
     {

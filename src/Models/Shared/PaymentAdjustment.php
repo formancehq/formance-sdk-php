@@ -13,49 +13,50 @@ class PaymentAdjustment
 {
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var PaymentAdjustmentRaw $raw
      */
-    #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentAdjustmentRaw')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentAdjustmentRaw')]
     public PaymentAdjustmentRaw $raw;
 
     /**
      *
      * @var string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var PaymentStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
     public PaymentStatus $status;
 
     /**
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  \DateTime  $createdAt
      * @param  PaymentAdjustmentRaw  $raw
      * @param  string  $reference
      * @param  PaymentStatus  $status
+     * @phpstan-pure
      */
-    public function __construct(int $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
+    public function __construct(\Brick\Math\BigInteger $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
     {
         $this->amount = $amount;
         $this->createdAt = $createdAt;

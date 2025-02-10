@@ -15,12 +15,13 @@ class ConfigsResponse
      *
      * @var ConfigsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConfigsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConfigsResponseCursor')]
     public ConfigsResponseCursor $cursor;
 
     /**
      * @param  ConfigsResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(ConfigsResponseCursor $cursor)
     {

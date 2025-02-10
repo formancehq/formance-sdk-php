@@ -19,13 +19,6 @@ class CreateWalletResponse
     public string $contentType;
 
     /**
-     * Wallet created
-     *
-     * @var ?Shared\CreateWalletResponse $createWalletResponse
-     */
-    public ?Shared\CreateWalletResponse $createWalletResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class CreateWalletResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Wallet created
+     *
+     * @var ?Shared\CreateWalletResponse $createWalletResponse
+     */
+    public ?Shared\CreateWalletResponse $createWalletResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\CreateWalletResponse  $createWalletResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\CreateWalletResponse $createWalletResponse = null)
     {

@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class GetManyConfigsResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\ConfigsResponse $configsResponse
-     */
-    public ?Shared\ConfigsResponse $configsResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class GetManyConfigsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\ConfigsResponse $configsResponse
+     */
+    public ?Shared\ConfigsResponse $configsResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ConfigsResponse  $configsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConfigsResponse $configsResponse = null)
     {

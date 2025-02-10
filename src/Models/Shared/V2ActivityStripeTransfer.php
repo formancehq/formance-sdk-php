@@ -13,34 +13,34 @@ class V2ActivityStripeTransfer
 {
     /**
      *
-     * @var ?int $amount
+     * @var ?\Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?int $amount = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\Brick\Math\BigInteger $amount = null;
 
     /**
      *
      * @var ?string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $asset = null;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
      *
      * @var ?string $destination
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $destination = null;
 
     /**
@@ -51,28 +51,29 @@ class V2ActivityStripeTransfer
      *
      * @var ?V2ActivityStripeTransferMetadata $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityStripeTransferMetadata|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityStripeTransferMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ActivityStripeTransferMetadata $metadata = null;
 
     /**
      *
      * @var ?bool $waitingValidation
      */
-    #[\JMS\Serializer\Annotation\SerializedName('waitingValidation')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('waitingValidation')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $waitingValidation = null;
 
     /**
-     * @param  ?int  $amount
+     * @param  ?\Brick\Math\BigInteger  $amount
      * @param  ?string  $asset
      * @param  ?string  $connectorID
      * @param  ?string  $destination
      * @param  ?V2ActivityStripeTransferMetadata  $metadata
      * @param  ?bool  $waitingValidation
+     * @phpstan-pure
      */
-    public function __construct(?int $amount = null, ?string $asset = null, ?string $connectorID = null, ?string $destination = null, ?V2ActivityStripeTransferMetadata $metadata = null, ?bool $waitingValidation = null)
+    public function __construct(?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?string $connectorID = null, ?string $destination = null, ?V2ActivityStripeTransferMetadata $metadata = null, ?bool $waitingValidation = false)
     {
         $this->amount = $amount;
         $this->asset = $asset;

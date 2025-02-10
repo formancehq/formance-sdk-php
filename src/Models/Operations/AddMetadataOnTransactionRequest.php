@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class AddMetadataOnTransactionRequest
 {
     /**
-     * metadata
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -30,17 +22,26 @@ class AddMetadataOnTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var int $txid
+     * @var \Brick\Math\BigInteger $txid
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
-    public int $txid;
+    public \Brick\Math\BigInteger $txid;
+
+    /**
+     * metadata
+     *
+     * @var ?array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody = null;
 
     /**
      * @param  string  $ledger
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
      * @param  ?array<string, mixed>  $requestBody
+     * @phpstan-pure
      */
-    public function __construct(string $ledger, int $txid, ?array $requestBody = null)
+    public function __construct(string $ledger, \Brick\Math\BigInteger $txid, ?array $requestBody = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

@@ -21,6 +21,7 @@ class V2CancelEventRequest
 
     /**
      * @param  string  $instanceID
+     * @phpstan-pure
      */
     public function __construct(string $instanceID)
     {

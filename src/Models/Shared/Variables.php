@@ -15,21 +15,22 @@ class Variables
      *
      * @var ?string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var ?string $value
      */
-    #[\JMS\Serializer\Annotation\SerializedName('value')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('value')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $value = null;
 
     /**
      * @param  ?string  $error
      * @param  ?string  $value
+     * @phpstan-pure
      */
     public function __construct(?string $error = null, ?string $value = null)
     {

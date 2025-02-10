@@ -15,12 +15,13 @@ class V2GetLedgerResponse
      *
      * @var V2Ledger $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Ledger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Ledger')]
     public V2Ledger $data;
 
     /**
      * @param  V2Ledger  $data
+     * @phpstan-pure
      */
     public function __construct(V2Ledger $data)
     {

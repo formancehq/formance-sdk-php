@@ -30,6 +30,7 @@ class ReconcileRequest
     /**
      * @param  Shared\ReconciliationRequest  $reconciliationRequest
      * @param  string  $policyID
+     * @phpstan-pure
      */
     public function __construct(Shared\ReconciliationRequest $reconciliationRequest, string $policyID)
     {

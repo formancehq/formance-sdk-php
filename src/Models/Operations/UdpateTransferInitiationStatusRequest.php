@@ -30,6 +30,7 @@ class UdpateTransferInitiationStatusRequest
     /**
      * @param  Shared\UpdateTransferInitiationStatusRequest  $updateTransferInitiationStatusRequest
      * @param  string  $transferId
+     * @phpstan-pure
      */
     public function __construct(Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest, string $transferId)
     {

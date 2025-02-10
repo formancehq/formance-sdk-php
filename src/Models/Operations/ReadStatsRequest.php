@@ -21,6 +21,7 @@ class ReadStatsRequest
 
     /**
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(string $ledger)
     {

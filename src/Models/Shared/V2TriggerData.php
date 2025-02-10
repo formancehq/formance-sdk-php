@@ -15,23 +15,30 @@ class V2TriggerData
      *
      * @var string $event
      */
-    #[\JMS\Serializer\Annotation\SerializedName('event')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
     public string $event;
+
+    /**
+     *
+     * @var string $workflowID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowID')]
+    public string $workflowID;
 
     /**
      *
      * @var ?string $filter
      */
-    #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filter')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $filter = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -39,17 +46,10 @@ class V2TriggerData
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\JMS\Serializer\Annotation\SerializedName('vars')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
-
-    /**
-     *
-     * @var string $workflowID
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('workflowID')]
-    public string $workflowID;
 
     /**
      * @param  string  $event
@@ -57,6 +57,7 @@ class V2TriggerData
      * @param  ?string  $filter
      * @param  ?string  $name
      * @param  ?array<string, mixed>  $vars
+     * @phpstan-pure
      */
     public function __construct(string $event, string $workflowID, ?string $filter = null, ?string $name = null, ?array $vars = null)
     {

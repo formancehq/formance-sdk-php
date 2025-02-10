@@ -15,11 +15,12 @@ class StageWaitEvent
      *
      * @var string $event
      */
-    #[\JMS\Serializer\Annotation\SerializedName('event')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
     public string $event;
 
     /**
      * @param  string  $event
+     * @phpstan-pure
      */
     public function __construct(string $event)
     {

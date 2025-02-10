@@ -12,28 +12,12 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2RevertTransactionRequest
 {
     /**
-     * Revert transaction at effective date of the original tx
-     *
-     * @var ?bool $atEffectiveDate
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=atEffectiveDate')]
-    public ?bool $atEffectiveDate = null;
-
-    /**
-     * Force revert
-     *
-     * @var ?bool $force
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
-    public ?bool $force = null;
-
-    /**
      * Transaction ID.
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public int $id;
+    public \Brick\Math\BigInteger $id;
 
     /**
      * Name of the ledger.
@@ -44,16 +28,43 @@ class V2RevertTransactionRequest
     public string $ledger;
 
     /**
-     * @param  int  $id
+     * Revert transaction at effective date of the original tx
+     *
+     * @var ?bool $atEffectiveDate
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=atEffectiveDate')]
+    public ?bool $atEffectiveDate = null;
+
+    /**
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     *
+     * @var ?bool $dryRun
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
+    public ?bool $dryRun = null;
+
+    /**
+     * Force revert
+     *
+     * @var ?bool $force
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
+    public ?bool $force = null;
+
+    /**
+     * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?bool  $atEffectiveDate
+     * @param  ?bool  $dryRun
      * @param  ?bool  $force
+     * @phpstan-pure
      */
-    public function __construct(int $id, string $ledger, ?bool $atEffectiveDate = null, ?bool $force = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;
         $this->atEffectiveDate = $atEffectiveDate;
+        $this->dryRun = $dryRun;
         $this->force = $force;
     }
 }

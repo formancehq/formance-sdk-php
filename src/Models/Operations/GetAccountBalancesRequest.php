@@ -63,16 +63,6 @@ class GetAccountBalancesRequest
     public ?int $limit = null;
 
     /**
-     * The maximum number of results to return per page.
-     *
-     *
-     *
-     * @var ?int $pageSize
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
-    public ?int $pageSize = null;
-
-    /**
      * Fields used to sort payments (default is date:desc).
      *
      * @var ?array<string> $sort
@@ -92,6 +82,16 @@ class GetAccountBalancesRequest
     public ?\DateTime $to = null;
 
     /**
+     * The maximum number of results to return per page.
+     *
+     *
+     *
+     * @var ?int $pageSize
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
+    public ?int $pageSize = null;
+
+    /**
      * @param  string  $accountId
      * @param  ?string  $asset
      * @param  ?string  $cursor
@@ -100,16 +100,17 @@ class GetAccountBalancesRequest
      * @param  ?int  $pageSize
      * @param  ?array<string>  $sort
      * @param  ?\DateTime  $to
+     * @phpstan-pure
      */
-    public function __construct(string $accountId, ?string $asset = null, ?string $cursor = null, ?\DateTime $from = null, ?int $limit = null, ?int $pageSize = null, ?array $sort = null, ?\DateTime $to = null)
+    public function __construct(string $accountId, ?string $asset = null, ?string $cursor = null, ?\DateTime $from = null, ?int $limit = null, ?array $sort = null, ?\DateTime $to = null, ?int $pageSize = 15)
     {
         $this->accountId = $accountId;
         $this->asset = $asset;
         $this->cursor = $cursor;
         $this->from = $from;
         $this->limit = $limit;
-        $this->pageSize = $pageSize;
         $this->sort = $sort;
         $this->to = $to;
+        $this->pageSize = $pageSize;
     }
 }

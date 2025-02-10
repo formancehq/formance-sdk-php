@@ -15,12 +15,13 @@ class GetTransactionsResponse
      *
      * @var GetTransactionsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\GetTransactionsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\GetTransactionsResponseCursor')]
     public GetTransactionsResponseCursor $cursor;
 
     /**
      * @param  GetTransactionsResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(GetTransactionsResponseCursor $cursor)
     {

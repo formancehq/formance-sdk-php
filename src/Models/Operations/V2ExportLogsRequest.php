@@ -21,6 +21,7 @@ class V2ExportLogsRequest
 
     /**
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(string $ledger)
     {

@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class AddMetadataToAccountRequest
 {
     /**
-     * metadata
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody;
-
-    /**
      * Exact address of the account. It must match the following regular expressions pattern:
      *
      * ```
@@ -41,9 +33,18 @@ class AddMetadataToAccountRequest
     public string $ledger;
 
     /**
+     * metadata
+     *
+     * @var ?array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody;
+
+    /**
      * @param  string  $address
      * @param  string  $ledger
      * @param  ?array<string, mixed>  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $address, string $ledger, ?array $requestBody = null)
     {

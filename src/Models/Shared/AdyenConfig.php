@@ -15,30 +15,30 @@ class AdyenConfig
      *
      * @var string $apiKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
     public string $apiKey;
 
     /**
      *
      * @var string $hmacKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hmacKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hmacKey')]
     public string $hmacKey;
-
-    /**
-     *
-     * @var ?string $liveEndpointPrefix
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('liveEndpointPrefix')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $liveEndpointPrefix = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     *
+     * @var ?string $liveEndpointPrefix
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('liveEndpointPrefix')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $liveEndpointPrefix = null;
 
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
@@ -47,8 +47,8 @@ class AdyenConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -57,8 +57,9 @@ class AdyenConfig
      * @param  string  $name
      * @param  ?string  $liveEndpointPrefix
      * @param  ?string  $pollingPeriod
+     * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = '120s')
     {
         $this->apiKey = $apiKey;
         $this->hmacKey = $hmacKey;

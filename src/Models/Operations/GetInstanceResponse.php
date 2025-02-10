@@ -19,13 +19,6 @@ class GetInstanceResponse
     public string $contentType;
 
     /**
-     * The workflow instance
-     *
-     * @var ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse
-     */
-    public ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class GetInstanceResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * The workflow instance
+     *
+     * @var ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse
+     */
+    public ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\GetWorkflowInstanceResponse  $getWorkflowInstanceResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null)
     {

@@ -8,17 +8,10 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateBulkRequest
 {
-    /**
-     * $requestBody
-     *
-     * @var ?array<mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
-
     /**
      * Name of the ledger.
      *
@@ -28,12 +21,51 @@ class V2CreateBulkRequest
     public string $ledger;
 
     /**
-     * @param  string  $ledger
-     * @param  ?array<mixed>  $requestBody
+     * $requestBody
+     *
+     * @var ?array<Shared\V2BulkElementCreateTransaction|Shared\V2BulkElementAddMetadata|Shared\V2BulkElementRevertTransaction|Shared\V2BulkElementDeleteMetadata> $requestBody
      */
-    public function __construct(string $ledger, ?array $requestBody = null)
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody = null;
+
+    /**
+     * Make bulk atomic
+     *
+     * @var ?bool $atomic
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=atomic')]
+    public ?bool $atomic = null;
+
+    /**
+     * Continue on failure
+     *
+     * @var ?bool $continueOnFailure
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=continueOnFailure')]
+    public ?bool $continueOnFailure = null;
+
+    /**
+     * Process bulk elements in parallel
+     *
+     * @var ?bool $parallel
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=parallel')]
+    public ?bool $parallel = null;
+
+    /**
+     * @param  string  $ledger
+     * @param  ?array<Shared\V2BulkElementCreateTransaction|Shared\V2BulkElementAddMetadata|Shared\V2BulkElementRevertTransaction|Shared\V2BulkElementDeleteMetadata>  $requestBody
+     * @param  ?bool  $atomic
+     * @param  ?bool  $continueOnFailure
+     * @param  ?bool  $parallel
+     * @phpstan-pure
+     */
+    public function __construct(string $ledger, ?array $requestBody = null, ?bool $atomic = null, ?bool $continueOnFailure = null, ?bool $parallel = null)
     {
         $this->ledger = $ledger;
         $this->requestBody = $requestBody;
+        $this->atomic = $atomic;
+        $this->continueOnFailure = $continueOnFailure;
+        $this->parallel = $parallel;
     }
 }

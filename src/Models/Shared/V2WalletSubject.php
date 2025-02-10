@@ -13,30 +13,31 @@ class V2WalletSubject
 {
     /**
      *
-     * @var ?string $balance
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $balance = null;
-
-    /**
-     *
      * @var string $identifier
      */
-    #[\JMS\Serializer\Annotation\SerializedName('identifier')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
     public string $identifier;
 
     /**
      *
      * @var string $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     public string $type;
+
+    /**
+     *
+     * @var ?string $balance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $balance = null;
 
     /**
      * @param  string  $identifier
      * @param  string  $type
      * @param  ?string  $balance
+     * @phpstan-pure
      */
     public function __construct(string $identifier, string $type, ?string $balance = null)
     {

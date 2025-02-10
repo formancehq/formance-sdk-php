@@ -21,6 +21,7 @@ class GetBankAccountRequest
 
     /**
      * @param  string  $bankAccountId
+     * @phpstan-pure
      */
     public function __construct(string $bankAccountId)
     {

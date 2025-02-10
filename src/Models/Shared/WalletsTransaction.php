@@ -15,69 +15,69 @@ class WalletsTransaction
      *
      * @var int $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public int $id;
-
-    /**
-     *
-     * @var ?string $ledger
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $ledger = null;
 
     /**
      * Metadata associated with the wallet.
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
-
-    /**
-     * $postCommitVolumes
-     *
-     * @var ?array<string, array<string, WalletsVolume>> $postCommitVolumes
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $postCommitVolumes = null;
 
     /**
      * $postings
      *
      * @var array<Posting> $postings
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
     public array $postings;
+
+    /**
+     *
+     * @var \DateTime $timestamp
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    public \DateTime $timestamp;
+
+    /**
+     *
+     * @var ?string $ledger
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $ledger = null;
+
+    /**
+     * $postCommitVolumes
+     *
+     * @var ?array<string, array<string, WalletsVolume>> $postCommitVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $postCommitVolumes = null;
 
     /**
      * $preCommitVolumes
      *
      * @var ?array<string, array<string, WalletsVolume>> $preCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\WalletsVolume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
-
-    /**
-     *
-     * @var \DateTime $timestamp
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    public \DateTime $timestamp;
 
     /**
      * @param  int  $id
@@ -88,6 +88,7 @@ class WalletsTransaction
      * @param  ?array<string, array<string, WalletsVolume>>  $postCommitVolumes
      * @param  ?array<string, array<string, WalletsVolume>>  $preCommitVolumes
      * @param  ?string  $reference
+     * @phpstan-pure
      */
     public function __construct(int $id, array $metadata, array $postings, \DateTime $timestamp, ?string $ledger = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {

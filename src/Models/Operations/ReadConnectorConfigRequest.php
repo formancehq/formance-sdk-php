@@ -22,6 +22,7 @@ class ReadConnectorConfigRequest
 
     /**
      * @param  Shared\Connector  $connector
+     * @phpstan-pure
      */
     public function __construct(Shared\Connector $connector)
     {

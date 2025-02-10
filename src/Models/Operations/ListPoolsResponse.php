@@ -19,13 +19,6 @@ class ListPoolsResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\PoolsCursor $poolsCursor
-     */
-    public ?Shared\PoolsCursor $poolsCursor = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ListPoolsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\PoolsCursor $poolsCursor
+     */
+    public ?Shared\PoolsCursor $poolsCursor = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\PoolsCursor  $poolsCursor
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PoolsCursor $poolsCursor = null)
     {

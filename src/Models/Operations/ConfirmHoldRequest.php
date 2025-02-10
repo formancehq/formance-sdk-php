@@ -14,6 +14,13 @@ class ConfirmHoldRequest
 {
     /**
      *
+     * @var string $holdId
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
+    public string $holdId;
+
+    /**
+     *
      * @var ?Shared\ConfirmHoldRequest $confirmHoldRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
@@ -28,16 +35,10 @@ class ConfirmHoldRequest
     public ?string $idempotencyKey = null;
 
     /**
-     *
-     * @var string $holdId
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
-    public string $holdId;
-
-    /**
      * @param  string  $holdId
      * @param  ?Shared\ConfirmHoldRequest  $confirmHoldRequest
      * @param  ?string  $idempotencyKey
+     * @phpstan-pure
      */
     public function __construct(string $holdId, ?Shared\ConfirmHoldRequest $confirmHoldRequest = null, ?string $idempotencyKey = null)
     {

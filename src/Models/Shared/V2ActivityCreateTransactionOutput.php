@@ -16,12 +16,13 @@ class V2ActivityCreateTransactionOutput
      *
      * @var array<OrchestrationV2Transaction> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\OrchestrationV2Transaction>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\OrchestrationV2Transaction>')]
     public array $data;
 
     /**
      * @param  array<OrchestrationV2Transaction>  $data
+     * @phpstan-pure
      */
     public function __construct(array $data)
     {

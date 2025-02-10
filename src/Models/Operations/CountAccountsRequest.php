@@ -12,20 +12,20 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class CountAccountsRequest
 {
     /**
-     * Filter accounts by address pattern (regular expression placed between ^ and $).
-     *
-     * @var ?string $address
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
-    public ?string $address = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
+
+    /**
+     * Filter accounts by address pattern (regular expression placed between ^ and $).
+     *
+     * @var ?string $address
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
+    public ?string $address = null;
 
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2
@@ -39,6 +39,7 @@ class CountAccountsRequest
      * @param  string  $ledger
      * @param  ?string  $address
      * @param  ?array<string, mixed>  $metadata
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $address = null, ?array $metadata = null)
     {

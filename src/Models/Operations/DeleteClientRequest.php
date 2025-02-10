@@ -21,6 +21,7 @@ class DeleteClientRequest
 
     /**
      * @param  string  $clientId
+     * @phpstan-pure
      */
     public function __construct(string $clientId)
     {

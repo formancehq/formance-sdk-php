@@ -30,6 +30,7 @@ class CreateWalletRequest
     /**
      * @param  ?Shared\CreateWalletRequest  $createWalletRequest
      * @param  ?string  $idempotencyKey
+     * @phpstan-pure
      */
     public function __construct(?Shared\CreateWalletRequest $createWalletRequest = null, ?string $idempotencyKey = null)
     {

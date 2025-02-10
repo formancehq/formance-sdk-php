@@ -15,12 +15,13 @@ class V2ListWalletsResponse
      *
      * @var V2ListWalletsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWalletsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWalletsResponseCursor')]
     public V2ListWalletsResponseCursor $cursor;
 
     /**
      * @param  V2ListWalletsResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(V2ListWalletsResponseCursor $cursor)
     {

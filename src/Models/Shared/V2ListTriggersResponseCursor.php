@@ -16,38 +16,38 @@ class V2ListTriggersResponseCursor
      *
      * @var array<V2Trigger> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Trigger>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Trigger>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
     public bool $hasMore;
-
-    /**
-     *
-     * @var ?string $next
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('next')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $next = null;
 
     /**
      *
      * @var int $pageSize
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     public int $pageSize;
+
+    /**
+     *
+     * @var ?string $next
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $next = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\JMS\Serializer\Annotation\SerializedName('previous')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $previous = null;
 
     /**
@@ -56,6 +56,7 @@ class V2ListTriggersResponseCursor
      * @param  int  $pageSize
      * @param  ?string  $next
      * @param  ?string  $previous
+     * @phpstan-pure
      */
     public function __construct(array $data, bool $hasMore, int $pageSize, ?string $next = null, ?string $previous = null)
     {

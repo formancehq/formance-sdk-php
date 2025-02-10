@@ -13,39 +13,39 @@ class StageStatus
 {
     /**
      *
-     * @var ?string $error
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
-
-    /**
-     *
      * @var string $instanceID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('instanceID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('instanceID')]
     public string $instanceID;
 
     /**
      *
      * @var float $stage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('stage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('stage')]
     public float $stage;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('startedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
     public \DateTime $startedAt;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
@@ -54,6 +54,7 @@ class StageStatus
      * @param  \DateTime  $startedAt
      * @param  ?string  $error
      * @param  ?\DateTime  $terminatedAt
+     * @phpstan-pure
      */
     public function __construct(string $instanceID, float $stage, \DateTime $startedAt, ?string $error = null, ?\DateTime $terminatedAt = null)
     {

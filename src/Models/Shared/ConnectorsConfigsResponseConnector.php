@@ -15,12 +15,13 @@ class ConnectorsConfigsResponseConnector
      *
      * @var Key $key
      */
-    #[\JMS\Serializer\Annotation\SerializedName('key')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Key')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Key')]
     public Key $key;
 
     /**
      * @param  Key  $key
+     * @phpstan-pure
      */
     public function __construct(Key $key)
     {

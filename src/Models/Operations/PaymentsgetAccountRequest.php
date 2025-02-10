@@ -21,6 +21,7 @@ class PaymentsgetAccountRequest
 
     /**
      * @param  string  $accountId
+     * @phpstan-pure
      */
     public function __construct(string $accountId)
     {

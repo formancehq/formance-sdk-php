@@ -15,7 +15,7 @@ class LedgerStorage
      *
      * @var string $driver
      */
-    #[\JMS\Serializer\Annotation\SerializedName('driver')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('driver')]
     public string $driver;
 
     /**
@@ -23,13 +23,14 @@ class LedgerStorage
      *
      * @var array<string> $ledgers
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgers')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgers')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
     public array $ledgers;
 
     /**
      * @param  string  $driver
      * @param  array<string>  $ledgers
+     * @phpstan-pure
      */
     public function __construct(string $driver, array $ledgers)
     {

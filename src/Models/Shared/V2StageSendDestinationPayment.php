@@ -15,11 +15,12 @@ class V2StageSendDestinationPayment
      *
      * @var string $psp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('psp')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('psp')]
     public string $psp;
 
     /**
      * @param  string  $psp
+     * @phpstan-pure
      */
     public function __construct(string $psp)
     {

@@ -15,42 +15,43 @@ class MigrationInfo
      *
      * @var ?\DateTime $date
      */
-    #[\JMS\Serializer\Annotation\SerializedName('date')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $date = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?State $state
      */
-    #[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\State|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\State|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?State $state = null;
 
     /**
      *
-     * @var ?int $version
+     * @var ?string $version
      */
-    #[\JMS\Serializer\Annotation\SerializedName('version')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?int $version = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $version = null;
 
     /**
      * @param  ?\DateTime  $date
      * @param  ?string  $name
      * @param  ?State  $state
-     * @param  ?int  $version
+     * @param  ?string  $version
+     * @phpstan-pure
      */
-    public function __construct(?\DateTime $date = null, ?string $name = null, ?State $state = null, ?int $version = null)
+    public function __construct(?\DateTime $date = null, ?string $name = null, ?State $state = null, ?string $version = null)
     {
         $this->date = $date;
         $this->name = $name;

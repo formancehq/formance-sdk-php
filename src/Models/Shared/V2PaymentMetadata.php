@@ -15,12 +15,13 @@ class V2PaymentMetadata
      *
      * @var ?string $key
      */
-    #[\JMS\Serializer\Annotation\SerializedName('key')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $key = null;
 
     /**
      * @param  ?string  $key
+     * @phpstan-pure
      */
     public function __construct(?string $key = null)
     {

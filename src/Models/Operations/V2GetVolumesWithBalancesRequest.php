@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2GetVolumesWithBalancesRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * $requestBody
      *
      * @var ?array<string, mixed> $requestBody
@@ -56,14 +64,6 @@ class V2GetVolumesWithBalancesRequest
     public ?bool $insertionDate = null;
 
     /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
-
-    /**
      * The maximum number of results to return per page.
      *
      *
@@ -89,6 +89,7 @@ class V2GetVolumesWithBalancesRequest
      * @param  ?bool  $insertionDate
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $startTime
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $startTime = null)
     {

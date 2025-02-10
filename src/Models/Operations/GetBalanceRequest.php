@@ -28,6 +28,7 @@ class GetBalanceRequest
     /**
      * @param  string  $balanceName
      * @param  string  $id
+     * @phpstan-pure
      */
     public function __construct(string $balanceName, string $id)
     {

@@ -13,79 +13,70 @@ class BankAccount
 {
     /**
      *
-     * @var ?string $accountID
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('accountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $accountID = null;
-
-    /**
-     *
-     * @var ?string $accountNumber
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $accountNumber = null;
-
-    /**
-     *
-     * @var string $connectorID
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
-    public string $connectorID;
-
-    /**
-     *
      * @var string $country
      */
-    #[\JMS\Serializer\Annotation\SerializedName('country')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     public string $country;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
-
-    /**
-     *
-     * @var ?string $iban
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('iban')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $iban = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
-
-    /**
-     * $metadata
-     *
-     * @var ?array<string, string> $metadata
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $metadata = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     *
+     * @var ?string $accountID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $accountID = null;
+
+    /**
+     *
+     * @var ?string $accountNumber
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountNumber')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $accountNumber = null;
+
+    /**
+     *
+     * @var ?string $connectorID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $connectorID = null;
+
+    /**
+     *
+     * @var ?string $iban
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('iban')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $iban = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $provider = null;
 
     /**
@@ -93,42 +84,53 @@ class BankAccount
      *
      * @var ?array<BankAccountRelatedAccounts> $relatedAccounts
      */
-    #[\JMS\Serializer\Annotation\SerializedName('relatedAccounts')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BankAccountRelatedAccounts>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAccounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\BankAccountRelatedAccounts>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $relatedAccounts = null;
 
     /**
      *
      * @var ?string $swiftBicCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('swiftBicCode')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**
-     * @param  string  $connectorID
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  string  $country
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name
      * @param  ?string  $accountID
      * @param  ?string  $accountNumber
+     * @param  ?string  $connectorID
      * @param  ?string  $iban
      * @param  ?string  $provider
      * @param  ?array<BankAccountRelatedAccounts>  $relatedAccounts
      * @param  ?string  $swiftBicCode
      * @param  ?array<string, string>  $metadata
+     * @phpstan-pure
      */
-    public function __construct(string $connectorID, string $country, \DateTime $createdAt, string $id, string $name, ?string $accountID = null, ?string $accountNumber = null, ?string $iban = null, ?string $provider = null, ?array $relatedAccounts = null, ?string $swiftBicCode = null, ?array $metadata = null)
+    public function __construct(string $country, \DateTime $createdAt, string $id, string $name, ?string $accountID = null, ?string $accountNumber = null, ?string $connectorID = null, ?string $iban = null, ?string $provider = null, ?array $relatedAccounts = null, ?string $swiftBicCode = null, ?array $metadata = null)
     {
-        $this->connectorID = $connectorID;
         $this->country = $country;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->name = $name;
         $this->accountID = $accountID;
         $this->accountNumber = $accountNumber;
+        $this->connectorID = $connectorID;
         $this->iban = $iban;
         $this->provider = $provider;
         $this->relatedAccounts = $relatedAccounts;

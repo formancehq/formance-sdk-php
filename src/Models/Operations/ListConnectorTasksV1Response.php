@@ -44,6 +44,7 @@ class ListConnectorTasksV1Response
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TasksCursor  $tasksCursor
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TasksCursor $tasksCursor = null)
     {

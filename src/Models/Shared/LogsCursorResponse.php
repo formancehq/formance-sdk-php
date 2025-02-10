@@ -15,12 +15,13 @@ class LogsCursorResponse
      *
      * @var LogsCursorResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LogsCursorResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\LogsCursorResponseCursor')]
     public LogsCursorResponseCursor $cursor;
 
     /**
      * @param  LogsCursorResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(LogsCursorResponseCursor $cursor)
     {

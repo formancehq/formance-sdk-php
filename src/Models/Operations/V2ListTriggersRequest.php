@@ -46,6 +46,7 @@ class V2ListTriggersRequest
      * @param  ?string  $cursor
      * @param  ?string  $name
      * @param  ?int  $pageSize
+     * @phpstan-pure
      */
     public function __construct(?string $cursor = null, ?string $name = null, ?int $pageSize = null)
     {

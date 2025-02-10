@@ -15,12 +15,13 @@ class ConfigResponse
      *
      * @var WebhooksConfig $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WebhooksConfig')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WebhooksConfig')]
     public WebhooksConfig $data;
 
     /**
      * @param  WebhooksConfig  $data
+     * @phpstan-pure
      */
     public function __construct(WebhooksConfig $data)
     {

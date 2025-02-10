@@ -16,37 +16,37 @@ class Log
      *
      * @var array<string, mixed> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $data;
 
     /**
      *
      * @var \DateTime $date
      */
-    #[\JMS\Serializer\Annotation\SerializedName('date')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
     public \DateTime $date;
 
     /**
      *
      * @var string $hash
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hash')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hash')]
     public string $hash;
 
     /**
      *
      * @var int $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public int $id;
 
     /**
      *
      * @var Type $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Type')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Type')]
     public Type $type;
 
     /**
@@ -55,6 +55,7 @@ class Log
      * @param  string  $hash
      * @param  int  $id
      * @param  Type  $type
+     * @phpstan-pure
      */
     public function __construct(array $data, \DateTime $date, string $hash, int $id, Type $type)
     {

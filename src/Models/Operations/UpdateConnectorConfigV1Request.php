@@ -39,6 +39,7 @@ class UpdateConnectorConfigV1Request
      * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig  $connectorConfig
      * @param  Shared\Connector  $connector
      * @param  string  $connectorId
+     * @phpstan-pure
      */
     public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig, Shared\Connector $connector, string $connectorId)
     {

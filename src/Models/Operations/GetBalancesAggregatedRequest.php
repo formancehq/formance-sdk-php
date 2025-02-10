@@ -12,20 +12,20 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class GetBalancesAggregatedRequest
 {
     /**
-     * Filter balances involving given account, either as source or destination.
-     *
-     * @var ?string $address
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
-    public ?string $address = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
+
+    /**
+     * Filter balances involving given account, either as source or destination.
+     *
+     * @var ?string $address
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address')]
+    public ?string $address = null;
 
     /**
      * Use insertion date instead of effective date
@@ -39,6 +39,7 @@ class GetBalancesAggregatedRequest
      * @param  string  $ledger
      * @param  ?string  $address
      * @param  ?bool  $useInsertionDate
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $address = null, ?bool $useInsertionDate = null)
     {

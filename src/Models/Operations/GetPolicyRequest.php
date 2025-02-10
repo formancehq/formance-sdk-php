@@ -21,6 +21,7 @@ class GetPolicyRequest
 
     /**
      * @param  string  $policyID
+     * @phpstan-pure
      */
     public function __construct(string $policyID)
     {

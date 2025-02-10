@@ -44,6 +44,7 @@ class CreateTransactionsResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TransactionsResponse  $transactionsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransactionsResponse $transactionsResponse = null)
     {

@@ -25,19 +25,19 @@ class V2GetAccountRequest
     public string $address;
 
     /**
-     *
-     * @var ?string $expand
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
-    public ?string $expand = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
+
+    /**
+     *
+     * @var ?string $expand
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
+    public ?string $expand = null;
 
     /**
      *
@@ -51,6 +51,7 @@ class V2GetAccountRequest
      * @param  string  $ledger
      * @param  ?string  $expand
      * @param  ?\DateTime  $pit
+     * @phpstan-pure
      */
     public function __construct(string $address, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
     {

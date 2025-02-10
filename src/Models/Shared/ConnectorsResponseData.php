@@ -15,37 +15,38 @@ class ConnectorsResponseData
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
-
-    /**
-     *
-     * @var ?bool $enabled
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('enabled')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?bool $enabled = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var Connector $provider
      */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector')]
     public Connector $provider;
+
+    /**
+     *
+     * @var ?bool $enabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $enabled = null;
 
     /**
      * @param  string  $connectorID
      * @param  string  $name
      * @param  Connector  $provider
      * @param  ?bool  $enabled
+     * @phpstan-pure
      */
     public function __construct(string $connectorID, string $name, Connector $provider, ?bool $enabled = null)
     {

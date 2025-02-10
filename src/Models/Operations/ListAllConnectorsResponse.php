@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class ListAllConnectorsResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\ConnectorsResponse $connectorsResponse
-     */
-    public ?Shared\ConnectorsResponse $connectorsResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class ListAllConnectorsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\ConnectorsResponse $connectorsResponse
+     */
+    public ?Shared\ConnectorsResponse $connectorsResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ConnectorsResponse  $connectorsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConnectorsResponse $connectorsResponse = null)
     {

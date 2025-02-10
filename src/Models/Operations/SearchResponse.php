@@ -19,13 +19,6 @@ class SearchResponse
     public string $contentType;
 
     /**
-     * Success
-     *
-     * @var ?Shared\Response $response
-     */
-    public ?Shared\Response $response = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class SearchResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Success
+     *
+     * @var ?Shared\Response $response
+     */
+    public ?Shared\Response $response = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\Response  $response
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\Response $response = null)
     {

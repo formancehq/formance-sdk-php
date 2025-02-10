@@ -15,21 +15,22 @@ class StageDelay
      *
      * @var ?string $duration
      */
-    #[\JMS\Serializer\Annotation\SerializedName('duration')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('duration')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $duration = null;
 
     /**
      *
      * @var ?\DateTime $until
      */
-    #[\JMS\Serializer\Annotation\SerializedName('until')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('until')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $until = null;
 
     /**
      * @param  ?string  $duration
      * @param  ?\DateTime  $until
+     * @phpstan-pure
      */
     public function __construct(?string $duration = null, ?\DateTime $until = null)
     {

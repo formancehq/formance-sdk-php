@@ -15,54 +15,54 @@ class V2WorkflowInstanceHistoryStageOutput
      *
      * @var ?V2ActivityCreateTransactionOutput $createTransaction
      */
-    #[\JMS\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreateTransactionOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityCreateTransactionOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ActivityCreateTransactionOutput $createTransaction = null;
 
     /**
      *
      * @var ?V2ActivityDebitWalletOutput $debitWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityDebitWalletOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityDebitWalletOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ActivityDebitWalletOutput $debitWallet = null;
 
     /**
      *
      * @var ?V2ActivityGetAccountOutput $getAccount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetAccountOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetAccountOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ActivityGetAccountOutput $getAccount = null;
 
     /**
      *
      * @var ?V2ActivityGetPaymentOutput $getPayment
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetPaymentOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetPaymentOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ActivityGetPaymentOutput $getPayment = null;
 
     /**
      *
      * @var ?V2ActivityGetWalletOutput $getWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetWalletOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetWalletOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ActivityGetWalletOutput $getWallet = null;
 
     /**
      *
      * @var ?V2ListWalletsResponse $listWallets
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWalletsResponse|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListWalletsResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2ListWalletsResponse $listWallets = null;
 
     /**
@@ -72,6 +72,7 @@ class V2WorkflowInstanceHistoryStageOutput
      * @param  ?V2ActivityGetPaymentOutput  $getPayment
      * @param  ?V2ActivityGetWalletOutput  $getWallet
      * @param  ?V2ListWalletsResponse  $listWallets
+     * @phpstan-pure
      */
     public function __construct(?V2ActivityCreateTransactionOutput $createTransaction = null, ?V2ActivityDebitWalletOutput $debitWallet = null, ?V2ActivityGetAccountOutput $getAccount = null, ?V2ActivityGetPaymentOutput $getPayment = null, ?V2ActivityGetWalletOutput $getWallet = null, ?V2ListWalletsResponse $listWallets = null)
     {

@@ -15,13 +15,14 @@ class V2Update
      *
      * @var ?V2UpdateAccount $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2UpdateAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2UpdateAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2UpdateAccount $account = null;
 
     /**
      * @param  ?V2UpdateAccount  $account
+     * @phpstan-pure
      */
     public function __construct(?V2UpdateAccount $account = null)
     {

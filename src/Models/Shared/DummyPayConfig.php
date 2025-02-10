@@ -15,48 +15,48 @@ class DummyPayConfig
      *
      * @var string $directory
      */
-    #[\JMS\Serializer\Annotation\SerializedName('directory')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('directory')]
     public string $directory;
-
-    /**
-     * The frequency at which the connector will try to fetch new payment objects from the directory
-     *
-     * @var ?string $filePollingPeriod
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('filePollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $filePollingPeriod = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?int $numberOfAccountsPreGenerated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('numberOfAccountsPreGenerated')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('numberOfAccountsPreGenerated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $numberOfAccountsPreGenerated = null;
 
     /**
      *
      * @var ?int $numberOfPaymentsPreGenerated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('numberOfPaymentsPreGenerated')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('numberOfPaymentsPreGenerated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $numberOfPaymentsPreGenerated = null;
 
     /**
      *
      * @var ?string $prefixFileToIngest
      */
-    #[\JMS\Serializer\Annotation\SerializedName('prefixFileToIngest')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('prefixFileToIngest')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $prefixFileToIngest = null;
+
+    /**
+     * The frequency at which the connector will try to fetch new payment objects from the directory
+     *
+     * @var ?string $filePollingPeriod
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filePollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $filePollingPeriod = null;
 
     /**
      * @param  string  $directory
@@ -65,14 +65,15 @@ class DummyPayConfig
      * @param  ?int  $numberOfAccountsPreGenerated
      * @param  ?int  $numberOfPaymentsPreGenerated
      * @param  ?string  $prefixFileToIngest
+     * @phpstan-pure
      */
-    public function __construct(string $directory, string $name, ?string $filePollingPeriod = null, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null)
+    public function __construct(string $directory, string $name, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null, ?string $filePollingPeriod = '10s')
     {
         $this->directory = $directory;
         $this->name = $name;
-        $this->filePollingPeriod = $filePollingPeriod;
         $this->numberOfAccountsPreGenerated = $numberOfAccountsPreGenerated;
         $this->numberOfPaymentsPreGenerated = $numberOfPaymentsPreGenerated;
         $this->prefixFileToIngest = $prefixFileToIngest;
+        $this->filePollingPeriod = $filePollingPeriod;
     }
 }

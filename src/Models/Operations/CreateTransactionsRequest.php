@@ -30,6 +30,7 @@ class CreateTransactionsRequest
     /**
      * @param  Shared\Transactions  $transactions
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(Shared\Transactions $transactions, string $ledger)
     {

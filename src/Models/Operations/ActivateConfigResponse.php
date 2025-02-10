@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class ActivateConfigResponse
 {
     /**
-     * Config successfully activated.
-     *
-     * @var ?Shared\ConfigResponse $configResponse
-     */
-    public ?Shared\ConfigResponse $configResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class ActivateConfigResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Config successfully activated.
+     *
+     * @var ?Shared\ConfigResponse $configResponse
+     */
+    public ?Shared\ConfigResponse $configResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ConfigResponse  $configResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConfigResponse $configResponse = null)
     {

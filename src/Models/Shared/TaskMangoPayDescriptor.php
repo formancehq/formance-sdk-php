@@ -15,30 +15,31 @@ class TaskMangoPayDescriptor
      *
      * @var ?string $key
      */
-    #[\JMS\Serializer\Annotation\SerializedName('key')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $key = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?string $userID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('userID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('userID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $userID = null;
 
     /**
      * @param  ?string  $key
      * @param  ?string  $name
      * @param  ?string  $userID
+     * @phpstan-pure
      */
     public function __construct(?string $key = null, ?string $name = null, ?string $userID = null)
     {

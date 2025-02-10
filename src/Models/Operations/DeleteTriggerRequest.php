@@ -21,6 +21,7 @@ class DeleteTriggerRequest
 
     /**
      * @param  string  $triggerID
+     * @phpstan-pure
      */
     public function __construct(string $triggerID)
     {

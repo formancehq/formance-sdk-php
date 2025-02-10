@@ -1,4 +1,4 @@
-speakeasyVersion: 1.402.14
+speakeasyVersion: 1.487.1
 sources:
     my-source:
         sourceNamespace: my-source
@@ -7,26 +7,42 @@ sources:
         tags:
             - latest
             - main
+    stacks-source:
+        sourceNamespace: stacks-source
+        sourceRevisionDigest: sha256:c6c425a9c053695924ac26321a716f32f9c0be2b48f5532d1364e7a38bafb04c
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
+        tags:
+            - latest
+            - speakeasy-sdk-regen-1738282027
+            - v3.0.0
 targets:
     formance-sdk-php:
-        source: my-source
-        sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0f91ebfb9d754eff5dc742b23c76f28207ffd67e6aec3e5713c343ad6781f22c
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        source: stacks-source
+        sourceNamespace: stacks-source
+        sourceRevisionDigest: sha256:c6c425a9c053695924ac26321a716f32f9c0be2b48f5532d1364e7a38bafb04c
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
+        codeSamplesNamespace: stacks-source-php-code-samples
+        codeSamplesRevisionDigest: sha256:5a840f026bf7ac68b83acc3d0ad73d8d142f72a146da5d7b70ff5229441a3da4
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        my-source:
+        stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.2/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.0/generate.json
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:
         formance-sdk-php:
             target: php
-            source: my-source
+            source: stacks-source
             publish:
                 packagist:
                     username: $PACKAGIST_USERNAME
                     token: $PACKAGIST_TOKEN
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-php-code-samples
+                labelOverride:
+                    fixedValue: Php (SDK)
+                blocking: false

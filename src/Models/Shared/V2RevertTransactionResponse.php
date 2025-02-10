@@ -15,12 +15,13 @@ class V2RevertTransactionResponse
      *
      * @var V2Transaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Transaction')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Transaction')]
     public V2Transaction $data;
 
     /**
      * @param  V2Transaction  $data
+     * @phpstan-pure
      */
     public function __construct(V2Transaction $data)
     {

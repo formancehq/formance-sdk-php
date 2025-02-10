@@ -13,18 +13,9 @@ class Wallet
 {
     /**
      *
-     * @var ?WalletBalances $balances
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletBalances|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?WalletBalances $balances = null;
-
-    /**
-     *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -32,14 +23,14 @@ class Wallet
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
     public string $ledger;
 
     /**
@@ -47,16 +38,25 @@ class Wallet
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     *
+     * @var ?WalletBalances $balances
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletBalances|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?WalletBalances $balances = null;
 
     /**
      * @param  \DateTime  $createdAt
@@ -65,6 +65,7 @@ class Wallet
      * @param  array<string, string>  $metadata
      * @param  string  $name
      * @param  ?WalletBalances  $balances
+     * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $id, string $ledger, array $metadata, string $name, ?WalletBalances $balances = null)
     {

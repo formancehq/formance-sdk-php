@@ -15,18 +15,18 @@ class StageSend
      *
      * @var ?Monetary $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Monetary|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Monetary|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Monetary $amount = null;
 
     /**
      *
      * @var ?StageSendDestination $destination
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestination|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestination|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestination $destination = null;
 
     /**
@@ -34,26 +34,26 @@ class StageSend
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?StageSendSource $source
      */
-    #[\JMS\Serializer\Annotation\SerializedName('source')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSource|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendSource $source = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
@@ -62,6 +62,7 @@ class StageSend
      * @param  ?array<string, string>  $metadata
      * @param  ?StageSendSource  $source
      * @param  ?\DateTime  $timestamp
+     * @phpstan-pure
      */
     public function __construct(?Monetary $amount = null, ?StageSendDestination $destination = null, ?array $metadata = null, ?StageSendSource $source = null, ?\DateTime $timestamp = null)
     {

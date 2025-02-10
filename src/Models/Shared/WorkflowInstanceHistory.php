@@ -13,47 +13,47 @@ class WorkflowInstanceHistory
 {
     /**
      *
-     * @var ?string $error
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
-
-    /**
-     *
      * @var StageSend|StageDelay|StageWaitEvent|Update $input
      */
-    #[\JMS\Serializer\Annotation\SerializedName('input')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSend|\formance\stack\Models\Shared\StageDelay|\formance\stack\Models\Shared\StageWaitEvent|\formance\stack\Models\Shared\Update')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSend|\formance\stack\Models\Shared\StageDelay|\formance\stack\Models\Shared\StageWaitEvent|\formance\stack\Models\Shared\Update')]
     public StageSend|StageDelay|StageWaitEvent|Update $input;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('startedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
     public \DateTime $startedAt;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminated')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
     public bool $terminated;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
@@ -63,6 +63,7 @@ class WorkflowInstanceHistory
      * @param  bool  $terminated
      * @param  ?string  $error
      * @param  ?\DateTime  $terminatedAt
+     * @phpstan-pure
      */
     public function __construct(StageSend|StageDelay|StageWaitEvent|Update $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null)
     {

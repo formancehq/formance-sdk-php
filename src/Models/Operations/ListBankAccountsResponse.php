@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class ListBankAccountsResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\BankAccountsCursor $bankAccountsCursor
-     */
-    public ?Shared\BankAccountsCursor $bankAccountsCursor = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class ListBankAccountsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\BankAccountsCursor $bankAccountsCursor
+     */
+    public ?Shared\BankAccountsCursor $bankAccountsCursor = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\BankAccountsCursor  $bankAccountsCursor
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\BankAccountsCursor $bankAccountsCursor = null)
     {

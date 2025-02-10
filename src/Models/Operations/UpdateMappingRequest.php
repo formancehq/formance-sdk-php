@@ -13,13 +13,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateMappingRequest
 {
     /**
-     *
-     * @var ?Shared\Mapping $mapping
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\Mapping $mapping;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -28,8 +21,16 @@ class UpdateMappingRequest
     public string $ledger;
 
     /**
+     *
+     * @var ?Shared\Mapping $mapping
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?Shared\Mapping $mapping;
+
+    /**
      * @param  string  $ledger
      * @param  ?Shared\Mapping  $mapping
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?Shared\Mapping $mapping = null)
     {

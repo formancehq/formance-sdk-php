@@ -16,47 +16,48 @@ class V2Log
      *
      * @var array<string, mixed> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $data;
 
     /**
      *
      * @var \DateTime $date
      */
-    #[\JMS\Serializer\Annotation\SerializedName('date')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
     public \DateTime $date;
 
     /**
      *
      * @var string $hash
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hash')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hash')]
     public string $hash;
 
     /**
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    public int $id;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public \Brick\Math\BigInteger $id;
 
     /**
      *
      * @var V2LogType $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LogType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LogType')]
     public V2LogType $type;
 
     /**
      * @param  array<string, mixed>  $data
      * @param  \DateTime  $date
      * @param  string  $hash
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  V2LogType  $type
+     * @phpstan-pure
      */
-    public function __construct(array $data, \DateTime $date, string $hash, int $id, V2LogType $type)
+    public function __construct(array $data, \DateTime $date, string $hash, \Brick\Math\BigInteger $id, V2LogType $type)
     {
         $this->data = $data;
         $this->date = $date;

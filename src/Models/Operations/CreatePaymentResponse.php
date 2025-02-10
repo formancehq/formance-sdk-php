@@ -19,13 +19,6 @@ class CreatePaymentResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\PaymentResponse $paymentResponse
-     */
-    public ?Shared\PaymentResponse $paymentResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class CreatePaymentResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\PaymentResponse $paymentResponse
+     */
+    public ?Shared\PaymentResponse $paymentResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\PaymentResponse  $paymentResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PaymentResponse $paymentResponse = null)
     {

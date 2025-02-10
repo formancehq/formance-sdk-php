@@ -44,6 +44,7 @@ class V2GetLedgerResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2GetLedgerResponse  $v2GetLedgerResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2GetLedgerResponse $v2GetLedgerResponse = null)
     {

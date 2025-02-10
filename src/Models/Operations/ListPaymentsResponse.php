@@ -19,13 +19,6 @@ class ListPaymentsResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\PaymentsCursor $paymentsCursor
-     */
-    public ?Shared\PaymentsCursor $paymentsCursor = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ListPaymentsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\PaymentsCursor $paymentsCursor
+     */
+    public ?Shared\PaymentsCursor $paymentsCursor = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\PaymentsCursor  $paymentsCursor
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PaymentsCursor $paymentsCursor = null)
     {

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
+use Psr\Http\Message\RequestInterface;
 use ReflectionProperty;
 
 class QueryParameters
@@ -15,10 +16,11 @@ class QueryParameters
     /**
      * @param  string  $type
      * @param  mixed  $queryParams
+     * @param  array<string,string>  $urlOverride
      * @param  array<string,array<string,array<string,string>>>|null  $globals
-     * @return ?string
+     * @return array<string, string>
      */
-    public function parseQueryParams(string $type, mixed $queryParams, ?array $globals = null): ?string
+    public function parseQueryParams(string $type, mixed $queryParams, array $urlOverride, ?array $globals = null): array
     {
         $parts = [];
 
@@ -44,28 +46,29 @@ class QueryParameters
             if ($metadata === null) {
                 continue;
             }
-
             if (! empty($metadata->serialization)) {
-                $parts[] = $this->parseSerializationParams($metadata, $value);
+                $parts = array_merge($parts, $this->parseSerializationParams($metadata, $value));
             } else {
                 match ($metadata->style) {
-                    'deepObject' => $parts[] = $this->parseDeepObjectParams($metadata, $value),
-                    'form' => $parts[] = $this->parseDelimitedParams($metadata, $value, ','),
-                    'pipeDelimited' => $parts[] = $this->parseDelimitedParams($metadata, $value, '|'),
+                    'deepObject' => $parts = array_merge_recursive($parts, $this->parseDeepObjectParams($metadata, $value)),
+                    'form' => $parts = array_merge_recursive($parts, $this->parseDelimitedParams($metadata, $value, ',')),
+                    'pipeDelimited' => $parts = array_merge_recursive($parts, $this->parseDelimitedParams($metadata, $value, '|')),
                     default => throw new \RuntimeException('Unsupported style '.$metadata->style),
                 };
             }
         }
 
-        return empty($parts) ? null : implode('&', $parts);
+        $parts = array_merge($parts, $urlOverride);
+
+        return $parts;
     }
 
     /**
      * @param  ParamsMetadata  $metadata
      * @param  mixed  $value
-     * @return string
+     * @return array<string,string>
      */
-    private function parseSerializationParams(ParamsMetadata $metadata, mixed $value): string
+    private function parseSerializationParams(ParamsMetadata $metadata, mixed $value): array
     {
         $queryParams = [];
 
@@ -78,15 +81,15 @@ class QueryParameters
                 throw new \Exception('Unsupported serialization: '.$metadata->serialization);
         }
 
-        return http_build_query($queryParams);
+        return $queryParams;
     }
 
     /**
      * @param  ParamsMetadata  $metadata
      * @param  mixed  $value
-     * @return string
+     * @return array<string, array<int, string>|string>
      */
-    private function parseDeepObjectParams(ParamsMetadata $metadata, mixed $value): string
+    private function parseDeepObjectParams(ParamsMetadata $metadata, mixed $value): array
     {
         $queryParams = [];
 
@@ -110,10 +113,10 @@ class QueryParameters
 
                     if (is_array($val) && array_is_list($val)) {
                         foreach ($val as $item) {
-                            $items[] = valToString($item, $dateTimeFormat);
+                            $items[] = valToString($item, ['dateTimeFormat' => $dateTimeFormat]);
                         }
                     } else {
-                        $queryParams[$metadata->name.'['.$fieldMetaData->name.']'] = valToString($val, $dateTimeFormat);
+                        $queryParams[$metadata->name.'['.$fieldMetaData->name.']'] = valToString($val, ['dateTimeFormat' => $dateTimeFormat]);
                     }
 
                     if (count($items) > 0) {
@@ -132,10 +135,10 @@ class QueryParameters
 
                         if (is_array($val) && array_is_list($val)) {
                             foreach ($val as $item) {
-                                $items[] = valToString($item, $dateTimeFormat);
+                                $items[] = valToString($item, ['dateTimeFormat' => $dateTimeFormat]);
                             }
                         } else {
-                            $queryParams[$metadata->name.'['.$key.']'] = valToString($val, $dateTimeFormat);
+                            $queryParams[$metadata->name.'['.$key.']'] = valToString($val, ['dateTimeFormat' => $dateTimeFormat]);
                         }
 
                         if (count($items) > 0) {
@@ -146,16 +149,16 @@ class QueryParameters
                 break;
         }
 
-        return $this->buildQueryString($queryParams);
+        return $queryParams;
     }
 
     /**
      * @param  ParamsMetadata  $metadata
      * @param  mixed  $value
      * @param  string  $delimiter
-     * @return string
+     * @return array<string, array<int, string>|string>
      */
-    private function parseDelimitedParams(ParamsMetadata $metadata, mixed $value, string $delimiter): string
+    private function parseDelimitedParams(ParamsMetadata $metadata, mixed $value, string $delimiter): array
     {
         $queryParams = [];
 
@@ -164,7 +167,11 @@ class QueryParameters
         switch (gettype($value)) {
             case 'object':
                 $items = [];
-
+                $cls = get_class($value);
+                if ($cls === 'Brick\\Math\\BigDecimal' || $cls === 'Brick\\Math\\BigInteger') {
+                    $queryParams[$metadata->name] = valToString($value, []);
+                    break;
+                }
                 foreach ($value as $field => $val) { /** @phpstan-ignore-line */
                     if ($val === null) {
                         continue;
@@ -178,9 +185,9 @@ class QueryParameters
                     $dateTimeFormat = $fieldMetaData->dateTimeFormat;
 
                     if ($metadata->explode) {
-                        $queryParams[$fieldMetaData->name] = valToString($val, $dateTimeFormat);
+                        $queryParams[$fieldMetaData->name] = valToString($val, ['dateTimeFormat' => $dateTimeFormat]);
                     } else {
-                        $items[] = $fieldMetaData->name.$delimiter.valToString($val, $dateTimeFormat);
+                        $items[] = $fieldMetaData->name.$delimiter.valToString($val, ['dateTimeFormat' => $dateTimeFormat]);
                     }
                 }
 
@@ -195,9 +202,9 @@ class QueryParameters
 
                     foreach ($value as $item) {
                         if ($metadata->explode) {
-                            $values[] = valToString($item, $dateTimeFormat);
+                            $values[] = valToString($item, ['dateTimeFormat' => $dateTimeFormat]);
                         } else {
-                            $items[] = valToString($item, $dateTimeFormat);
+                            $items[] = valToString($item, ['dateTimeFormat' => $dateTimeFormat]);
                         }
                     }
 
@@ -215,9 +222,9 @@ class QueryParameters
                         }
 
                         if ($metadata->explode) {
-                            $queryParams[$key] = valToString($val, $dateTimeFormat);
+                            $queryParams[$key] = valToString($val, ['dateTimeFormat' => $dateTimeFormat]);
                         } else {
-                            $items[] = $key.$delimiter.valToString($val, $dateTimeFormat);
+                            $items[] = $key.$delimiter.valToString($val, ['dateTimeFormat' => $dateTimeFormat]);
                         }
                     }
 
@@ -227,31 +234,46 @@ class QueryParameters
                 }
                 break;
             default:
-                $queryParams[$metadata->name] = valToString($value, $dateTimeFormat);
+                $queryParams[$metadata->name] = valToString($value, ['dateTimeFormat' => $dateTimeFormat]);
         }
 
-        return $this->buildQueryString($queryParams);
+        return $queryParams;
     }
 
     /**
-     * @param  array<array<string>|string>  $queryParams
+     * @param  array<int|string, string|array<string|int, string>>  $queryParams
+     * @return string
      */
-    private function buildQueryString(array $queryParams): string
+    private static function recursivelyBuildQueryString(array $queryParams): string
     {
-        ksort($queryParams);
-
         $parts = [];
+
         foreach ($queryParams as $key => $value) {
-            if (is_array($value)) {
-                foreach ($value as $item) {
-                    $parts[] = urlencode($key).'='.urlencode($item);
-                }
+            if (is_array($value) && array_is_list($value)) {
+                $parts = array_merge($parts, array_map(fn ($v) => self::buildQueryString($key, $v), $value));
+            } elseif (is_array($value)) {
+                $res = self::recursivelyBuildQueryString($value);
+                $parts[] = self::buildQueryString($key, $res);
             } else {
-                $parts[] = urlencode($key).'='.urlencode($value);
+                $parts[] = self::buildQueryString($key, $value);
             }
         }
 
         return implode('&', $parts);
+    }
+
+    /**
+     * @param  string|int  $queryParamKey
+     * @param  string  $queryParamValue
+     * @return string
+     */
+    private static function buildQueryString(string|int $queryParamKey, string $queryParamValue): string
+    {
+        if (is_int($queryParamKey)) {
+            $queryParamKey = (string) $queryParamKey;
+        }
+
+        return implode('=', [urlencode($queryParamKey), urlencode($queryParamValue)]);
     }
 
     private function parseQueryParamsMetadata(ReflectionProperty $property): ?ParamsMetadata
@@ -268,5 +290,21 @@ class QueryParameters
 
         return $metadata;
     }
-}
 
+    /**
+     * @param  RequestInterface  $httpRequest
+     * @param  array<string, mixed>  $queryParams
+     * @return string
+     */
+    public static function standardizeQueryParams(RequestInterface $httpRequest, array $queryParams): string
+    {
+        $uri = $httpRequest->getUri();
+        $query = $uri->getQuery();
+        $requestQueryParams = Utils::proper_parse_str($query);
+
+        $allParams = array_merge($queryParams, $requestQueryParams);
+        $uri = $uri->withQuery(QueryParameters::recursivelyBuildQueryString($allParams));
+
+        return $uri->getQuery();
+    }
+}

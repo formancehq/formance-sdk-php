@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class ListLogsRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      *
      * @var ?string $after
@@ -44,14 +52,6 @@ class ListLogsRequest
     public ?\DateTime $endTime = null;
 
     /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
-
-    /**
      * The maximum number of results to return per page.
      *
      *
@@ -79,6 +79,7 @@ class ListLogsRequest
      * @param  ?\DateTime  $endTime
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $startTime
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $after = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $pageSize = null, ?\DateTime $startTime = null)
     {

@@ -13,45 +13,35 @@ class CreateClientRequest
 {
     /**
      *
-     * @var ?string $description
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $description = null;
-
-    /**
-     * $metadata
-     *
-     * @var ?array<string, mixed> $metadata
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $metadata = null;
-
-    /**
-     *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     *
+     * @var ?string $description
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $description = null;
 
     /**
      * $postLogoutRedirectUris
      *
      * @var ?array<string> $postLogoutRedirectUris
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $postLogoutRedirectUris = null;
 
     /**
      *
      * @var ?bool $public
      */
-    #[\JMS\Serializer\Annotation\SerializedName('public')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $public = null;
 
     /**
@@ -59,9 +49,9 @@ class CreateClientRequest
      *
      * @var ?array<string> $redirectUris
      */
-    #[\JMS\Serializer\Annotation\SerializedName('redirectUris')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('redirectUris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $redirectUris = null;
 
     /**
@@ -69,38 +59,49 @@ class CreateClientRequest
      *
      * @var ?array<string> $scopes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('scopes')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $scopes = null;
 
     /**
      *
      * @var ?bool $trusted
      */
-    #[\JMS\Serializer\Annotation\SerializedName('trusted')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('trusted')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $trusted = null;
+
+    /**
+     * $metadata
+     *
+     * @var ?array<string, mixed> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
 
     /**
      * @param  string  $name
      * @param  ?string  $description
-     * @param  ?array<string, mixed>  $metadata
      * @param  ?array<string>  $postLogoutRedirectUris
      * @param  ?bool  $public
      * @param  ?array<string>  $redirectUris
      * @param  ?array<string>  $scopes
      * @param  ?bool  $trusted
+     * @param  ?array<string, mixed>  $metadata
+     * @phpstan-pure
      */
-    public function __construct(string $name, ?string $description = null, ?array $metadata = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?bool $trusted = null)
+    public function __construct(string $name, ?string $description = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?bool $trusted = null, ?array $metadata = null)
     {
         $this->name = $name;
         $this->description = $description;
-        $this->metadata = $metadata;
         $this->postLogoutRedirectUris = $postLogoutRedirectUris;
         $this->public = $public;
         $this->redirectUris = $redirectUris;
         $this->scopes = $scopes;
         $this->trusted = $trusted;
+        $this->metadata = $metadata;
     }
 }

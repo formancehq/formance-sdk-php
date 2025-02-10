@@ -15,29 +15,29 @@ class V2Workflow
      *
      * @var V2WorkflowConfig $config
      */
-    #[\JMS\Serializer\Annotation\SerializedName('config')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowConfig')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WorkflowConfig')]
     public V2WorkflowConfig $config;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
@@ -45,6 +45,7 @@ class V2Workflow
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  \DateTime  $updatedAt
+     * @phpstan-pure
      */
     public function __construct(V2WorkflowConfig $config, \DateTime $createdAt, string $id, \DateTime $updatedAt)
     {

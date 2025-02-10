@@ -15,12 +15,13 @@ class StatsResponse
      *
      * @var Stats $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Stats')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Stats')]
     public Stats $data;
 
     /**
      * @param  Stats  $data
+     * @phpstan-pure
      */
     public function __construct(Stats $data)
     {

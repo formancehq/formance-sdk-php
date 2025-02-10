@@ -13,13 +13,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class ChangeConfigSecretRequest
 {
     /**
-     *
-     * @var ?Shared\ConfigChangeSecret $configChangeSecret
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\ConfigChangeSecret $configChangeSecret = null;
-
-    /**
      * Config ID
      *
      * @var string $id
@@ -28,8 +21,16 @@ class ChangeConfigSecretRequest
     public string $id;
 
     /**
+     *
+     * @var ?Shared\ConfigChangeSecret $configChangeSecret
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?Shared\ConfigChangeSecret $configChangeSecret = null;
+
+    /**
      * @param  string  $id
      * @param  ?Shared\ConfigChangeSecret  $configChangeSecret
+     * @phpstan-pure
      */
     public function __construct(string $id, ?Shared\ConfigChangeSecret $configChangeSecret = null)
     {

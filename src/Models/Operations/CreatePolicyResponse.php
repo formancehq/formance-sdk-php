@@ -19,13 +19,6 @@ class CreatePolicyResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\PolicyResponse $policyResponse
-     */
-    public ?Shared\PolicyResponse $policyResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class CreatePolicyResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\PolicyResponse $policyResponse
+     */
+    public ?Shared\PolicyResponse $policyResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\PolicyResponse  $policyResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PolicyResponse $policyResponse = null)
     {

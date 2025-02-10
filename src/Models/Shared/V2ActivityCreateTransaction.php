@@ -13,26 +13,27 @@ class V2ActivityCreateTransaction
 {
     /**
      *
-     * @var ?V2PostTransaction $data
+     * @var ?OrchestrationV2PostTransaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?V2PostTransaction $data = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationV2PostTransaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?OrchestrationV2PostTransaction $data = null;
 
     /**
      *
      * @var ?string $ledger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $ledger = null;
 
     /**
-     * @param  ?V2PostTransaction  $data
+     * @param  ?OrchestrationV2PostTransaction  $data
      * @param  ?string  $ledger
+     * @phpstan-pure
      */
-    public function __construct(?V2PostTransaction $data = null, ?string $ledger = null)
+    public function __construct(?OrchestrationV2PostTransaction $data = null, ?string $ledger = null)
     {
         $this->data = $data;
         $this->ledger = $ledger;

@@ -14,14 +14,15 @@ class V2AggregateBalancesResponse
     /**
      * $data
      *
-     * @var array<string, int> $data
+     * @var array<string, \Brick\Math\BigInteger> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $data;
 
     /**
-     * @param  array<string, int>  $data
+     * @param  array<string, \Brick\Math\BigInteger>  $data
+     * @phpstan-pure
      */
     public function __construct(array $data)
     {

@@ -13,23 +13,24 @@ class Contract
 {
     /**
      *
-     * @var ?string $account
+     * @var Expr $expr
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $account = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expr')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Expr')]
+    public Expr $expr;
 
     /**
      *
-     * @var Expr $expr
+     * @var ?string $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('expr')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Expr')]
-    public Expr $expr;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $account = null;
 
     /**
      * @param  Expr  $expr
      * @param  ?string  $account
+     * @phpstan-pure
      */
     public function __construct(Expr $expr, ?string $account = null)
     {

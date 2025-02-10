@@ -39,6 +39,7 @@ class V2DeleteAccountMetadataRequest
      * @param  string  $address
      * @param  string  $key
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(string $address, string $key, string $ledger)
     {

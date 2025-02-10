@@ -44,6 +44,7 @@ class CreateTransactionRequest
      * @param  Shared\PostTransaction  $postTransaction
      * @param  string  $ledger
      * @param  ?bool  $preview
+     * @phpstan-pure
      */
     public function __construct(Shared\PostTransaction $postTransaction, string $ledger, ?bool $preview = null)
     {

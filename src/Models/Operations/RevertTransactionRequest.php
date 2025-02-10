@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class RevertTransactionRequest
 {
     /**
-     * Allow to disable balances checks
-     *
-     * @var ?bool $disableChecks
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=disableChecks')]
-    public ?bool $disableChecks = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -30,17 +22,26 @@ class RevertTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var int $txid
+     * @var \Brick\Math\BigInteger $txid
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
-    public int $txid;
+    public \Brick\Math\BigInteger $txid;
+
+    /**
+     * Allow to disable balances checks
+     *
+     * @var ?bool $disableChecks
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=disableChecks')]
+    public ?bool $disableChecks = null;
 
     /**
      * @param  string  $ledger
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
      * @param  ?bool  $disableChecks
+     * @phpstan-pure
      */
-    public function __construct(string $ledger, int $txid, ?bool $disableChecks = null)
+    public function __construct(string $ledger, \Brick\Math\BigInteger $txid, ?bool $disableChecks = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

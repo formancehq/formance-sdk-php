@@ -15,12 +15,13 @@ class WalletBalances
      *
      * @var AssetHolder $main
      */
-    #[\JMS\Serializer\Annotation\SerializedName('main')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\AssetHolder')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\AssetHolder')]
     public AssetHolder $main;
 
     /**
      * @param  AssetHolder  $main
+     * @phpstan-pure
      */
     public function __construct(AssetHolder $main)
     {

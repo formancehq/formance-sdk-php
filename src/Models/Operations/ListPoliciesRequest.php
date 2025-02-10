@@ -37,6 +37,7 @@ class ListPoliciesRequest
     /**
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
+     * @phpstan-pure
      */
     public function __construct(?string $cursor = null, ?int $pageSize = null)
     {

@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2AddMetadataToAccountRequest
 {
     /**
-     * Use an idempotency key
-     *
-     * @var ?string $idempotencyKey
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
-    public ?string $idempotencyKey = null;
-
-    /**
      * metadata
      *
      * @var array<string, string> $requestBody
@@ -41,14 +33,6 @@ class V2AddMetadataToAccountRequest
     public string $address;
 
     /**
-     * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
-     *
-     * @var ?bool $dryRun
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
-    public ?bool $dryRun = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -57,11 +41,28 @@ class V2AddMetadataToAccountRequest
     public string $ledger;
 
     /**
+     * Use an idempotency key
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
+     * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     *
+     * @var ?bool $dryRun
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
+    public ?bool $dryRun = null;
+
+    /**
      * @param  array<string, string>  $requestBody
      * @param  string  $address
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
+     * @phpstan-pure
      */
     public function __construct(array $requestBody, string $address, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
     {

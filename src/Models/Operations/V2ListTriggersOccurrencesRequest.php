@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListTriggersOccurrencesRequest
 {
     /**
+     * The trigger id
+     *
+     * @var string $triggerID
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
+    public string $triggerID;
+
+    /**
      * Parameter used in pagination requests.
      *
      * Set to the value of next for the next page of results.
@@ -35,17 +43,10 @@ class V2ListTriggersOccurrencesRequest
     public ?int $pageSize = null;
 
     /**
-     * The trigger id
-     *
-     * @var string $triggerID
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=triggerID')]
-    public string $triggerID;
-
-    /**
      * @param  string  $triggerID
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
+     * @phpstan-pure
      */
     public function __construct(string $triggerID, ?string $cursor = null, ?int $pageSize = null)
     {

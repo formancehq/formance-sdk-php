@@ -15,12 +15,13 @@ class CreateWalletResponse
      *
      * @var Wallet $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Wallet')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Wallet')]
     public Wallet $data;
 
     /**
      * @param  Wallet  $data
+     * @phpstan-pure
      */
     public function __construct(Wallet $data)
     {

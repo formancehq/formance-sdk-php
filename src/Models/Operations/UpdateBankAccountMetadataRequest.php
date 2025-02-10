@@ -30,6 +30,7 @@ class UpdateBankAccountMetadataRequest
     /**
      * @param  Shared\UpdateBankAccountMetadataRequest  $updateBankAccountMetadataRequest
      * @param  string  $bankAccountId
+     * @phpstan-pure
      */
     public function __construct(Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest, string $bankAccountId)
     {

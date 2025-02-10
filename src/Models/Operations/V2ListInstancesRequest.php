@@ -55,6 +55,7 @@ class V2ListInstancesRequest
      * @param  ?int  $pageSize
      * @param  ?bool  $running
      * @param  ?string  $workflowID
+     * @phpstan-pure
      */
     public function __construct(?string $cursor = null, ?int $pageSize = null, ?bool $running = null, ?string $workflowID = null)
     {

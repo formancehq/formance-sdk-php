@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class RunWorkflowRequest
 {
     /**
+     * The flow id
+     *
+     * @var string $workflowID
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=workflowID')]
+    public string $workflowID;
+
+    /**
      * $requestBody
      *
      * @var ?array<string, string> $requestBody
@@ -28,17 +36,10 @@ class RunWorkflowRequest
     public ?bool $wait = null;
 
     /**
-     * The flow id
-     *
-     * @var string $workflowID
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=workflowID')]
-    public string $workflowID;
-
-    /**
      * @param  string  $workflowID
      * @param  ?array<string, string>  $requestBody
      * @param  ?bool  $wait
+     * @phpstan-pure
      */
     public function __construct(string $workflowID, ?array $requestBody = null, ?bool $wait = null)
     {

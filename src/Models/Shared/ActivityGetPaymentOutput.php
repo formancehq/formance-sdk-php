@@ -15,12 +15,13 @@ class ActivityGetPaymentOutput
      *
      * @var OrchestrationPayment $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPayment')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPayment')]
     public OrchestrationPayment $data;
 
     /**
      * @param  OrchestrationPayment  $data
+     * @phpstan-pure
      */
     public function __construct(OrchestrationPayment $data)
     {

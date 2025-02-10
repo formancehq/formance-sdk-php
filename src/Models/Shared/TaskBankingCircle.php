@@ -15,81 +15,83 @@ class TaskBankingCircle
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var Descriptor $descriptor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('descriptor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Descriptor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('descriptor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Descriptor')]
     public Descriptor $descriptor;
-
-    /**
-     *
-     * @var ?string $error
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var TaskBankingCircleState $state
+     * @var TaskStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskBankingCircleState')]
-    public TaskBankingCircleState $state;
-
-    /**
-     *
-     * @var PaymentStatus $status
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
-    public PaymentStatus $status;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStatus')]
+    public TaskStatus $status;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
+
+    /**
+     *
+     * @var ?TaskBankingCircleState $state
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskBankingCircleState|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TaskBankingCircleState $state = null;
 
     /**
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  Descriptor  $descriptor
      * @param  string  $id
-     * @param  TaskBankingCircleState  $state
-     * @param  PaymentStatus  $status
+     * @param  TaskStatus  $status
      * @param  \DateTime  $updatedAt
      * @param  ?string  $error
+     * @param  ?TaskBankingCircleState  $state
+     * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, Descriptor $descriptor, string $id, TaskBankingCircleState $state, PaymentStatus $status, \DateTime $updatedAt, ?string $error = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, Descriptor $descriptor, string $id, TaskStatus $status, \DateTime $updatedAt, ?string $error = null, ?TaskBankingCircleState $state = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->descriptor = $descriptor;
         $this->id = $id;
-        $this->state = $state;
         $this->status = $status;
         $this->updatedAt = $updatedAt;
         $this->error = $error;
+        $this->state = $state;
     }
 }

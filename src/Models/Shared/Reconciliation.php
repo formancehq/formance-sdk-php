@@ -15,90 +15,91 @@ class Reconciliation
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      * $driftBalances
      *
-     * @var array<string, int> $driftBalances
+     * @var array<string, \Brick\Math\BigInteger> $driftBalances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('driftBalances')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('driftBalances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $driftBalances;
-
-    /**
-     *
-     * @var ?string $error
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      * $ledgerBalances
      *
-     * @var array<string, int> $ledgerBalances
+     * @var array<string, \Brick\Math\BigInteger> $ledgerBalances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgerBalances')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerBalances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $ledgerBalances;
 
     /**
      * $paymentsBalances
      *
-     * @var array<string, int> $paymentsBalances
+     * @var array<string, \Brick\Math\BigInteger> $paymentsBalances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('paymentsBalances')]
-    #[\JMS\Serializer\Annotation\Type('array<string, int>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentsBalances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
     public array $paymentsBalances;
 
     /**
      *
      * @var string $policyID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('policyID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('policyID')]
     public string $policyID;
 
     /**
      *
      * @var \DateTime $reconciledAtLedger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtLedger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtLedger')]
     public \DateTime $reconciledAtLedger;
 
     /**
      *
      * @var \DateTime $reconciledAtPayments
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reconciledAtPayments')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtPayments')]
     public \DateTime $reconciledAtPayments;
 
     /**
      *
      * @var string $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     public string $status;
 
     /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
+
+    /**
      * @param  \DateTime  $createdAt
-     * @param  array<string, int>  $driftBalances
+     * @param  array<string, \Brick\Math\BigInteger>  $driftBalances
      * @param  string  $id
-     * @param  array<string, int>  $ledgerBalances
-     * @param  array<string, int>  $paymentsBalances
+     * @param  array<string, \Brick\Math\BigInteger>  $ledgerBalances
+     * @param  array<string, \Brick\Math\BigInteger>  $paymentsBalances
      * @param  string  $policyID
      * @param  \DateTime  $reconciledAtLedger
      * @param  \DateTime  $reconciledAtPayments
      * @param  string  $status
      * @param  ?string  $error
+     * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, array $driftBalances, string $id, array $ledgerBalances, array $paymentsBalances, string $policyID, \DateTime $reconciledAtLedger, \DateTime $reconciledAtPayments, string $status, ?string $error = null)
     {

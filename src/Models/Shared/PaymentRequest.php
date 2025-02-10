@@ -13,81 +13,81 @@ class PaymentRequest
 {
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
-
-    /**
-     *
-     * @var ?string $destinationAccountID
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $destinationAccountID = null;
 
     /**
      *
      * @var string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var PaymentScheme $scheme
      */
-    #[\JMS\Serializer\Annotation\SerializedName('scheme')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentScheme')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentScheme')]
     public PaymentScheme $scheme;
-
-    /**
-     *
-     * @var ?string $sourceAccountID
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $sourceAccountID = null;
 
     /**
      *
      * @var PaymentStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
     public PaymentStatus $status;
 
     /**
      *
      * @var PaymentType $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentType')]
     public PaymentType $type;
 
     /**
-     * @param  int  $amount
+     *
+     * @var ?string $destinationAccountID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $destinationAccountID = null;
+
+    /**
+     *
+     * @var ?string $sourceAccountID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sourceAccountID = null;
+
+    /**
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
@@ -97,8 +97,9 @@ class PaymentRequest
      * @param  PaymentType  $type
      * @param  ?string  $destinationAccountID
      * @param  ?string  $sourceAccountID
+     * @phpstan-pure
      */
-    public function __construct(int $amount, string $asset, string $connectorID, \DateTime $createdAt, string $reference, PaymentScheme $scheme, PaymentStatus $status, PaymentType $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $reference, PaymentScheme $scheme, PaymentStatus $status, PaymentType $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

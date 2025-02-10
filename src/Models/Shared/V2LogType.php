@@ -14,4 +14,5 @@ enum V2LogType: string
     case NewTransaction = 'NEW_TRANSACTION';
     case SetMetadata = 'SET_METADATA';
     case RevertedTransaction = 'REVERTED_TRANSACTION';
+    case DeleteMetadata = 'DELETE_METADATA';
 }

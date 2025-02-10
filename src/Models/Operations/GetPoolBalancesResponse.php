@@ -19,13 +19,6 @@ class GetPoolBalancesResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\PoolBalancesResponse $poolBalancesResponse
-     */
-    public ?Shared\PoolBalancesResponse $poolBalancesResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class GetPoolBalancesResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\PoolBalancesResponse $poolBalancesResponse
+     */
+    public ?Shared\PoolBalancesResponse $poolBalancesResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\PoolBalancesResponse  $poolBalancesResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PoolBalancesResponse $poolBalancesResponse = null)
     {

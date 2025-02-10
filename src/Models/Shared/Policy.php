@@ -15,21 +15,21 @@ class Policy
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledgerName
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgerName')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerName')]
     public string $ledgerName;
 
     /**
@@ -37,22 +37,22 @@ class Policy
      *
      * @var array<string, mixed> $ledgerQuery
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledgerQuery')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerQuery')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $ledgerQuery;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $paymentsPoolID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('paymentsPoolID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentsPoolID')]
     public string $paymentsPoolID;
 
     /**
@@ -62,6 +62,7 @@ class Policy
      * @param  array<string, mixed>  $ledgerQuery
      * @param  string  $name
      * @param  string  $paymentsPoolID
+     * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $id, string $ledgerName, array $ledgerQuery, string $name, string $paymentsPoolID)
     {

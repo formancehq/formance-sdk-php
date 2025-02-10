@@ -1,4 +1,5 @@
 # V1
+(*auth->v1*)
 
 ## Overview
 
@@ -30,23 +31,25 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\CreateClientRequest(
+    name: '<value>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->createClient(
+    request: $request
+);
 
-try {
-    $request = new Shared\CreateClientRequest(
-        name: '<value>',
-    );
-    $response = $sdk->authV1->createClient($request);
-
-    if ($response->createClientResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->createClientResponse !== null) {
+    // handle response
 }
 ```
 
@@ -62,10 +65,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createSecret
 
@@ -82,23 +84,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\CreateSecretRequest(
+    clientId: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->createSecret(
+    request: $request
+);
 
-try {
-    $request = new Operations\CreateSecretRequest(
-        clientId: '<value>',
-    );
-    $response = $sdk->authV1->createSecret($request);
-
-    if ($response->createSecretResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->createSecretResponse !== null) {
+    // handle response
 }
 ```
 
@@ -114,10 +118,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## deleteClient
 
@@ -134,23 +137,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeleteClientRequest(
+    clientId: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->deleteClient(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeleteClientRequest(
-        clientId: '<value>',
-    );
-    $response = $sdk->authV1->deleteClient($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -166,10 +171,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## deleteSecret
 
@@ -186,24 +190,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeleteSecretRequest(
+    clientId: '<id>',
+    secretId: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->deleteSecret(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeleteSecretRequest(
-        clientId: '<value>',
-        secretId: '<value>',
-    );
-    $response = $sdk->authV1->deleteSecret($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -219,10 +225,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getOIDCWellKnowns
 
@@ -238,20 +243,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->auth->v1->getOIDCWellKnowns(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->authV1->getOIDCWellKnowns();
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -261,10 +269,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getServerInfo
 
@@ -280,20 +287,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->auth->v1->getServerInfo(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->authV1->getServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->serverInfo !== null) {
+    // handle response
 }
 ```
 
@@ -303,10 +313,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listClients
 
@@ -322,20 +331,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->auth->v1->listClients(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->authV1->listClients();
-
-    if ($response->listClientsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->listClientsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -345,10 +357,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listUsers
 
@@ -364,20 +375,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->auth->v1->listUsers(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->authV1->listUsers();
-
-    if ($response->listUsersResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->listUsersResponse !== null) {
+    // handle response
 }
 ```
 
@@ -387,10 +401,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## readClient
 
@@ -407,23 +420,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReadClientRequest(
+    clientId: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->readClient(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReadClientRequest(
-        clientId: '<value>',
-    );
-    $response = $sdk->authV1->readClient($request);
-
-    if ($response->readClientResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->readClientResponse !== null) {
+    // handle response
 }
 ```
 
@@ -439,10 +454,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## readUser
 
@@ -459,23 +473,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReadUserRequest(
+    userId: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->readUser(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReadUserRequest(
-        userId: '<value>',
-    );
-    $response = $sdk->authV1->readUser($request);
-
-    if ($response->readUserResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->readUserResponse !== null) {
+    // handle response
 }
 ```
 
@@ -491,10 +507,9 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## updateClient
 
@@ -511,23 +526,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdateClientRequest(
+    clientId: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->auth->v1->updateClient(
+    request: $request
+);
 
-try {
-    $request = new Operations\UpdateClientRequest(
-        clientId: '<value>',
-    );
-    $response = $sdk->authV1->updateClient($request);
-
-    if ($response->updateClientResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->updateClientResponse !== null) {
+    // handle response
 }
 ```
 
@@ -543,6 +560,6 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

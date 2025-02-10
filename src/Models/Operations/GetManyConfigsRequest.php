@@ -30,6 +30,7 @@ class GetManyConfigsRequest
     /**
      * @param  ?string  $endpoint
      * @param  ?string  $id
+     * @phpstan-pure
      */
     public function __construct(?string $endpoint = null, ?string $id = null)
     {

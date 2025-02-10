@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class InstallConnectorResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\ConnectorResponse $connectorResponse
-     */
-    public ?Shared\ConnectorResponse $connectorResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class InstallConnectorResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\ConnectorResponse $connectorResponse
+     */
+    public ?Shared\ConnectorResponse $connectorResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ConnectorResponse  $connectorResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConnectorResponse $connectorResponse = null)
     {

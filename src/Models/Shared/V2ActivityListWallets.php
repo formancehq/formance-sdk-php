@@ -15,12 +15,13 @@ class V2ActivityListWallets
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      * @param  ?string  $name
+     * @phpstan-pure
      */
     public function __construct(?string $name = null)
     {

@@ -44,6 +44,7 @@ class V2CreateTriggerResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2CreateTriggerResponse  $v2CreateTriggerResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2CreateTriggerResponse $v2CreateTriggerResponse = null)
     {

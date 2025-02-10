@@ -44,6 +44,7 @@ class V2RevertTransactionResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2RevertTransactionResponse  $v2RevertTransactionResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null)
     {

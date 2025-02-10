@@ -19,13 +19,6 @@ class GetBalanceResponse
     public string $contentType;
 
     /**
-     * Balance summary
-     *
-     * @var ?Shared\GetBalanceResponse $getBalanceResponse
-     */
-    public ?Shared\GetBalanceResponse $getBalanceResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class GetBalanceResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Balance summary
+     *
+     * @var ?Shared\GetBalanceResponse $getBalanceResponse
+     */
+    public ?Shared\GetBalanceResponse $getBalanceResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\GetBalanceResponse  $getBalanceResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetBalanceResponse $getBalanceResponse = null)
     {

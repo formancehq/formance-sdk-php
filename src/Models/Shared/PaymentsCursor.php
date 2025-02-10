@@ -9,18 +9,20 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** PaymentsCursor - OK */
 class PaymentsCursor
 {
     /**
      *
      * @var PaymentsCursorCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsCursorCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsCursorCursor')]
     public PaymentsCursorCursor $cursor;
 
     /**
      * @param  PaymentsCursorCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(PaymentsCursorCursor $cursor)
     {

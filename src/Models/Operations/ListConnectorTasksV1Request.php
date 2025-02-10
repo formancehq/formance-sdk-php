@@ -56,8 +56,9 @@ class ListConnectorTasksV1Request
      * @param  string  $connectorId
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
+     * @phpstan-pure
      */
-    public function __construct(Shared\Connector $connector, string $connectorId, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(Shared\Connector $connector, string $connectorId, ?string $cursor = null, ?int $pageSize = 15)
     {
         $this->connector = $connector;
         $this->connectorId = $connectorId;

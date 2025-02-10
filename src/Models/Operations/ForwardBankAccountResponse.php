@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class ForwardBankAccountResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\BankAccountResponse $bankAccountResponse
-     */
-    public ?Shared\BankAccountResponse $bankAccountResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class ForwardBankAccountResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\BankAccountResponse $bankAccountResponse
+     */
+    public ?Shared\BankAccountResponse $bankAccountResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\BankAccountResponse  $bankAccountResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\BankAccountResponse $bankAccountResponse = null)
     {

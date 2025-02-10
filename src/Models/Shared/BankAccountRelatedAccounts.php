@@ -15,35 +15,35 @@ class BankAccountRelatedAccounts
      *
      * @var string $accountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
     public string $accountID;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $provider
      */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
     public string $provider;
 
     /**
@@ -52,6 +52,7 @@ class BankAccountRelatedAccounts
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $provider
+     * @phpstan-pure
      */
     public function __construct(string $accountID, string $connectorID, \DateTime $createdAt, string $id, string $provider)
     {

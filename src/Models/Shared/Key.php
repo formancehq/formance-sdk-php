@@ -15,19 +15,20 @@ class Key
      *
      * @var string $dataType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('dataType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('dataType')]
     public string $dataType;
 
     /**
      *
      * @var bool $required
      */
-    #[\JMS\Serializer\Annotation\SerializedName('required')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('required')]
     public bool $required;
 
     /**
      * @param  string  $dataType
      * @param  bool  $required
+     * @phpstan-pure
      */
     public function __construct(string $dataType, bool $required)
     {

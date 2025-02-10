@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateMetadataRequest
 {
     /**
-     * $requestBody
-     *
-     * @var ?array<string, string> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody;
-
-    /**
      * The payment ID.
      *
      * @var string $paymentId
@@ -28,8 +20,17 @@ class UpdateMetadataRequest
     public string $paymentId;
 
     /**
+     * $requestBody
+     *
+     * @var ?array<string, string> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody;
+
+    /**
      * @param  string  $paymentId
      * @param  ?array<string, string>  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $paymentId, ?array $requestBody = null)
     {

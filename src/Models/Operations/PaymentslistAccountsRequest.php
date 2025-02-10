@@ -33,16 +33,6 @@ class PaymentslistAccountsRequest
     public ?string $cursor = null;
 
     /**
-     * The maximum number of results to return per page.
-     *
-     *
-     *
-     * @var ?int $pageSize
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
-    public ?int $pageSize = null;
-
-    /**
      * Filters used to filter resources.
      *
      *
@@ -61,18 +51,29 @@ class PaymentslistAccountsRequest
     public ?array $sort = null;
 
     /**
+     * The maximum number of results to return per page.
+     *
+     *
+     *
+     * @var ?int $pageSize
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
+    public ?int $pageSize = null;
+
+    /**
      * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @param  ?string  $query
      * @param  ?array<string>  $sort
+     * @phpstan-pure
      */
-    public function __construct(?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null, ?string $query = null, ?array $sort = null)
+    public function __construct(?array $requestBody = null, ?string $cursor = null, ?string $query = null, ?array $sort = null, ?int $pageSize = 15)
     {
         $this->requestBody = $requestBody;
         $this->cursor = $cursor;
-        $this->pageSize = $pageSize;
         $this->query = $query;
         $this->sort = $sort;
+        $this->pageSize = $pageSize;
     }
 }

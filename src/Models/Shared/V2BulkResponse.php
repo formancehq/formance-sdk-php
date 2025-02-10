@@ -14,17 +14,47 @@ class V2BulkResponse
     /**
      * $data
      *
-     * @var array<mixed> $data
+     * @var array<V2BulkElementResultCreateTransactionSchemas|Schemas|V2BulkElementResultRevertTransactionSchemas|V2BulkElementResultDeleteMetadataSchemas|V2BulkElementResultErrorSchemas> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<mixed>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2BulkElementResultCreateTransactionSchemas|\formance\stack\Models\Shared\Schemas|\formance\stack\Models\Shared\V2BulkElementResultRevertTransactionSchemas|\formance\stack\Models\Shared\V2BulkElementResultDeleteMetadataSchemas|\formance\stack\Models\Shared\V2BulkElementResultErrorSchemas>')]
     public array $data;
 
     /**
-     * @param  array<mixed>  $data
+     *
+     * @var V2ErrorsEnum $errorCode
      */
-    public function __construct(array $data)
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ErrorsEnum')]
+    public V2ErrorsEnum $errorCode;
+
+    /**
+     *
+     * @var string $errorMessage
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    public string $errorMessage;
+
+    /**
+     *
+     * @var ?string $details
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $details = null;
+
+    /**
+     * @param  array<V2BulkElementResultCreateTransactionSchemas|Schemas|V2BulkElementResultRevertTransactionSchemas|V2BulkElementResultDeleteMetadataSchemas|V2BulkElementResultErrorSchemas>  $data
+     * @param  V2ErrorsEnum  $errorCode
+     * @param  string  $errorMessage
+     * @param  ?string  $details
+     * @phpstan-pure
+     */
+    public function __construct(array $data, V2ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
         $this->data = $data;
+        $this->errorCode = $errorCode;
+        $this->errorMessage = $errorMessage;
+        $this->details = $details;
     }
 }

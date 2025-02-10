@@ -13,18 +13,38 @@ namespace formance\stack;
 class Ledger
 {
     private SDKConfiguration $sdkConfiguration;
-    public SDKV1 $v1;
-
     public V2 $v2;
+
+    public SDKV1 $v1;
 
     /**
      * @param  SDKConfiguration  $sdkConfig
      */
-    public function __construct(SDKConfiguration $sdkConfig)
+    public function __construct(public SDKConfiguration $sdkConfig)
     {
         $this->sdkConfiguration = $sdkConfig;
-        $this->v1 = new SDKV1($this->sdkConfiguration);
         $this->v2 = new V2($this->sdkConfiguration);
+        $this->v1 = new SDKV1($this->sdkConfiguration);
+    }
+    /**
+     * @param  string  $baseUrl
+     * @param  array<string, string>  $urlVariables
+     *
+     * @return string
+     */
+    public function getUrl(string $baseUrl, array $urlVariables): string
+    {
+        $serverDetails = $this->sdkConfiguration->getServerDetails();
+
+        if ($baseUrl == null) {
+            $baseUrl = $serverDetails->baseUrl;
+        }
+
+        if ($urlVariables == null) {
+            $urlVariables = $serverDetails->options;
+        }
+
+        return Utils\Utils::templateUrl($baseUrl, $urlVariables);
     }
 
 }

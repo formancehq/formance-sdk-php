@@ -15,10 +15,10 @@ class PathParameters
     /**
      * @param  string  $type
      * @param  mixed  $pathParams
-     * @param  array<string,array<string,array<string,string>>>  $globals
+     * @param  array<string,array<string,array<string,string>>>|null  $globals
      * @return array<string,string>
      */
-    public function parsePathParams(string $type, mixed $pathParams, array $globals): array
+    public function parsePathParams(string $type, mixed $pathParams, ?array $globals): array
     {
         $parsed = [];
 
@@ -71,6 +71,11 @@ class PathParameters
             case 'object':
                 $vals = [];
 
+                $cls = get_class($value);
+                if ($cls === 'Brick\\Math\\BigDecimal' || $cls === 'Brick\\Math\\BigInteger') {
+                    $pathParams[$metadata->name] = valToString($value, []);
+                    break;
+                }
                 foreach ($value as $field => $fieldValue) { /** @phpstan-ignore-line */
                     if ($fieldValue === null) {
                         continue;
@@ -82,9 +87,9 @@ class PathParameters
                     }
 
                     if ($metadata->explode) {
-                        $vals[] = sprintf('%s=%s', $fieldMetadata->name, valToString($fieldValue, $fieldMetadata->dateTimeFormat));
+                        $vals[] = sprintf('%s=%s', $fieldMetadata->name, valToString($fieldValue, ['dateTimeFormat' => $fieldMetadata->dateTimeFormat]));
                     } else {
-                        $vals[] = sprintf('%s,%s', $fieldMetadata->name, valToString($fieldValue, $fieldMetadata->dateTimeFormat));
+                        $vals[] = sprintf('%s,%s', $fieldMetadata->name, valToString($fieldValue, ['dateTimeFormat' => $fieldMetadata->dateTimeFormat]));
                     }
                 }
 
@@ -95,14 +100,14 @@ class PathParameters
 
                 if (array_is_list($value)) {
                     foreach ($value as $val) {
-                        $vals[] = valToString($val);
+                        $vals[] = valToString($val, []);
                     }
                 } else {
                     foreach ($value as $key => $val) {
                         if ($metadata->explode) {
-                            $vals[] = sprintf('%s=%s', $key, valToString($val));
+                            $vals[] = sprintf('%s=%s', $key, valToString($val, []));
                         } else {
-                            $vals[] = sprintf('%s,%s', $key, valToString($val));
+                            $vals[] = sprintf('%s,%s', $key, valToString($val, []));
                         }
                     }
                 }
@@ -110,7 +115,7 @@ class PathParameters
                 $pathParams[$metadata->name] = implode(',', $vals);
                 break;
             default:
-                $pathParams[$metadata->name] = valToString($value);
+                $pathParams[$metadata->name] = valToString($value, []);
                 break;
         }
 

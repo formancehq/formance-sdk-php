@@ -9,18 +9,20 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** ConnectorsConfigsResponse - OK */
 class ConnectorsConfigsResponse
 {
     /**
      *
      * @var ConnectorsConfigsResponseData $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseData')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseData')]
     public ConnectorsConfigsResponseData $data;
 
     /**
      * @param  ConnectorsConfigsResponseData  $data
+     * @phpstan-pure
      */
     public function __construct(ConnectorsConfigsResponseData $data)
     {

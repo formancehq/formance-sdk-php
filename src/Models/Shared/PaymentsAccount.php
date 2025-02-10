@@ -15,28 +15,28 @@ class PaymentsAccount
      *
      * @var string $accountName
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountName')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
     public string $accountName;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $defaultAsset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('defaultAsset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
     public string $defaultAsset;
 
     /**
@@ -44,23 +44,38 @@ class PaymentsAccount
      * @var string $defaultCurrency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    #[\JMS\Serializer\Annotation\SerializedName('defaultCurrency')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultCurrency')]
     public string $defaultCurrency;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
+
+    /**
+     *
+     * @var string $reference
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    public string $reference;
+
+    /**
+     *
+     * @var AccountType $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\AccountType')]
+    public AccountType $type;
 
     /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     public ?array $metadata;
 
     /**
@@ -68,41 +83,26 @@ class PaymentsAccount
      *
      * @var ?array<string> $pools
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pools')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pools')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $pools = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $provider = null;
 
     /**
      *
      * @var ?PaymentsAccountRaw $raw
      */
-    #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsAccountRaw|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsAccountRaw|null')]
     public ?PaymentsAccountRaw $raw;
-
-    /**
-     *
-     * @var string $reference
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    public string $reference;
-
-    /**
-     *
-     * @var AccountType $type
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\AccountType')]
-    public AccountType $type;
 
     /**
      * @param  string  $accountName
@@ -117,6 +117,7 @@ class PaymentsAccount
      * @param  ?array<string>  $pools
      * @param  ?string  $provider
      * @param  ?PaymentsAccountRaw  $raw
+     * @phpstan-pure
      */
     public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, AccountType $type, ?array $metadata = null, ?array $pools = null, ?string $provider = null, ?PaymentsAccountRaw $raw = null)
     {

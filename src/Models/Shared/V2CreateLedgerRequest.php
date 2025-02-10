@@ -15,27 +15,40 @@ class V2CreateLedgerRequest
      *
      * @var ?string $bucket
      */
-    #[\JMS\Serializer\Annotation\SerializedName('bucket')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('bucket')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $bucket = null;
+
+    /**
+     * $features
+     *
+     * @var ?array<string, string> $features
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $features = null;
 
     /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  ?string  $bucket
+     * @param  ?array<string, string>  $features
      * @param  ?array<string, string>  $metadata
+     * @phpstan-pure
      */
-    public function __construct(?string $bucket = null, ?array $metadata = null)
+    public function __construct(?string $bucket = null, ?array $features = null, ?array $metadata = null)
     {
         $this->bucket = $bucket;
+        $this->features = $features;
         $this->metadata = $metadata;
     }
 }

@@ -15,11 +15,12 @@ class V2ServerInfo
      *
      * @var string $version
      */
-    #[\JMS\Serializer\Annotation\SerializedName('version')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
     public string $version;
 
     /**
      * @param  string  $version
+     * @phpstan-pure
      */
     public function __construct(string $version)
     {

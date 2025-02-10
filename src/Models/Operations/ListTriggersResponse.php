@@ -19,13 +19,6 @@ class ListTriggersResponse
     public string $contentType;
 
     /**
-     * List of triggers
-     *
-     * @var ?Shared\ListTriggersResponse $listTriggersResponse
-     */
-    public ?Shared\ListTriggersResponse $listTriggersResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ListTriggersResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * List of triggers
+     *
+     * @var ?Shared\ListTriggersResponse $listTriggersResponse
+     */
+    public ?Shared\ListTriggersResponse $listTriggersResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ListTriggersResponse  $listTriggersResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ListTriggersResponse $listTriggersResponse = null)
     {

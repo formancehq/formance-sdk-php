@@ -15,22 +15,23 @@ class ActivityCreateTransaction
      *
      * @var ?OrchestrationPostTransaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPostTransaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationPostTransaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?OrchestrationPostTransaction $data = null;
 
     /**
      *
      * @var ?string $ledger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $ledger = null;
 
     /**
      * @param  ?OrchestrationPostTransaction  $data
      * @param  ?string  $ledger
+     * @phpstan-pure
      */
     public function __construct(?OrchestrationPostTransaction $data = null, ?string $ledger = null)
     {

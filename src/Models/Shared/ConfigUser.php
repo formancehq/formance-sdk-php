@@ -15,7 +15,7 @@ class ConfigUser
      *
      * @var string $endpoint
      */
-    #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
     public string $endpoint;
 
     /**
@@ -23,24 +23,24 @@ class ConfigUser
      *
      * @var array<string> $eventTypes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('eventTypes')]
-    #[\JMS\Serializer\Annotation\Type('array<string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('eventTypes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
     public array $eventTypes;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?string $secret
      */
-    #[\JMS\Serializer\Annotation\SerializedName('secret')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $secret = null;
 
     /**
@@ -48,6 +48,7 @@ class ConfigUser
      * @param  array<string>  $eventTypes
      * @param  ?string  $name
      * @param  ?string  $secret
+     * @phpstan-pure
      */
     public function __construct(string $endpoint, array $eventTypes, ?string $name = null, ?string $secret = null)
     {

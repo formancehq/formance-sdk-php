@@ -13,16 +13,26 @@ class V2BulkElementResultDeleteMetadataSchemas
 {
     /**
      *
+     * @var int $logID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('logID')]
+    public int $logID;
+
+    /**
+     *
      * @var string $responseType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('responseType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
     public string $responseType;
 
     /**
+     * @param  int  $logID
      * @param  string  $responseType
+     * @phpstan-pure
      */
-    public function __construct(string $responseType)
+    public function __construct(int $logID, string $responseType)
     {
+        $this->logID = $logID;
         $this->responseType = $responseType;
     }
 }

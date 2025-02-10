@@ -21,6 +21,7 @@ class GetPoolRequest
 
     /**
      * @param  string  $poolId
+     * @phpstan-pure
      */
     public function __construct(string $poolId)
     {

@@ -8,9 +8,12 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
+
+
 /** The environment name. Defaults to the production environment. */
 enum ServerEnvironment: string
 {
+    case EuSandbox = 'eu.sandbox';
     case Sandbox = 'sandbox';
     case EuWest1 = 'eu-west-1';
     case UsEast1 = 'us-east-1';

@@ -19,48 +19,15 @@ class AtlarConfig
      *
      * @var string $accessKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accessKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accessKey')]
     public string $accessKey;
-
-    /**
-     * The base URL the client uses for making requests towards the Atlar API.
-     *
-     *
-     *
-     * @var ?string $baseUrl
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('baseUrl')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $baseUrl = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
-
-    /**
-     * Number of items to fetch when querying paginated APIs.
-     *
-     *
-     *
-     * @var ?int $pageSize
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('pageSize')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?int $pageSize = null;
-
-    /**
-     * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
-     *
-     *
-     *
-     * @var ?string $pollingPeriod
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $pollingPeriod = null;
 
     /**
      * The secret used by the connector for authorizing requests to the Atlar API.
@@ -70,8 +37,41 @@ class AtlarConfig
      *
      * @var string $secret
      */
-    #[\JMS\Serializer\Annotation\SerializedName('secret')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
     public string $secret;
+
+    /**
+     * The base URL the client uses for making requests towards the Atlar API.
+     *
+     *
+     *
+     * @var ?string $baseUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('baseUrl')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $baseUrl = null;
+
+    /**
+     * Number of items to fetch when querying paginated APIs.
+     *
+     *
+     *
+     * @var ?int $pageSize
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $pageSize = null;
+
+    /**
+     * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
+     *
+     *
+     *
+     * @var ?string $pollingPeriod
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $pollingPeriod = null;
 
     /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
@@ -80,8 +80,8 @@ class AtlarConfig
      *
      * @var ?string $transferInitiationStatusPollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $transferInitiationStatusPollingPeriod = null;
 
     /**
@@ -92,8 +92,9 @@ class AtlarConfig
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
      * @param  ?string  $transferInitiationStatusPollingPeriod
+     * @phpstan-pure
      */
-    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = null, ?int $pageSize = null, ?string $pollingPeriod = null, ?string $transferInitiationStatusPollingPeriod = null)
+    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = 'https://api.atlar.com', ?int $pageSize = 25, ?string $pollingPeriod = '120s', ?string $transferInitiationStatusPollingPeriod = '120s')
     {
         $this->accessKey = $accessKey;
         $this->name = $name;

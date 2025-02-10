@@ -16,20 +16,21 @@ class ConfigsResponseCursor
      *
      * @var array<WebhooksConfig> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\WebhooksConfig>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\WebhooksConfig>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\JMS\Serializer\Annotation\SerializedName('hasMore')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
     public bool $hasMore;
 
     /**
      * @param  array<WebhooksConfig>  $data
      * @param  bool  $hasMore
+     * @phpstan-pure
      */
     public function __construct(array $data, bool $hasMore)
     {

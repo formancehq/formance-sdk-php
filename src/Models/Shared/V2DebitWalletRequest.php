@@ -15,54 +15,54 @@ class V2DebitWalletRequest
      *
      * @var V2Monetary $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary')]
     public V2Monetary $amount;
-
-    /**
-     * $balances
-     *
-     * @var ?array<string> $balances
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $balances = null;
-
-    /**
-     *
-     * @var ?string $description
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('description')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $description = null;
-
-    /**
-     *
-     * @var V2LedgerAccountSubject|V2WalletSubject|null $destination
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('destination')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject')]
-    #[\JMS\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['V2LedgerAccountSubject' => '\formance\stack\Models\Shared\V2LedgerAccountSubject', 'V2WalletSubject' => '\formance\stack\Models\Shared\V2WalletSubject'])]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 
     /**
      * Metadata associated with the wallet.
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
+
+    /**
+     * $balances
+     *
+     * @var ?array<string> $balances
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $balances = null;
+
+    /**
+     *
+     * @var ?string $description
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $description = null;
+
+    /**
+     *
+     * @var V2LedgerAccountSubject|V2WalletSubject|null $destination
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['V2LedgerAccountSubject' => '\formance\stack\Models\Shared\V2LedgerAccountSubject', 'V2WalletSubject' => '\formance\stack\Models\Shared\V2WalletSubject'])]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      *
      * @var ?bool $pending
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pending')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pending')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $pending = null;
 
     /**
@@ -70,8 +70,8 @@ class V2DebitWalletRequest
      *
      * @var ?\DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
@@ -82,6 +82,7 @@ class V2DebitWalletRequest
      * @param  V2LedgerAccountSubject|V2WalletSubject|null  $destination
      * @param  ?bool  $pending
      * @param  ?\DateTime  $timestamp
+     * @phpstan-pure
      */
     public function __construct(V2Monetary $amount, array $metadata, ?array $balances = null, ?string $description = null, V2LedgerAccountSubject|V2WalletSubject|null $destination = null, ?bool $pending = null, ?\DateTime $timestamp = null)
     {

@@ -15,11 +15,12 @@ class ConfigChangeSecret
      *
      * @var string $secret
      */
-    #[\JMS\Serializer\Annotation\SerializedName('secret')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
     public string $secret;
 
     /**
      * @param  string  $secret
+     * @phpstan-pure
      */
     public function __construct(string $secret)
     {

@@ -13,13 +13,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class CreateSecretRequest
 {
     /**
-     *
-     * @var ?Shared\CreateSecretRequest $createSecretRequest
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\CreateSecretRequest $createSecretRequest = null;
-
-    /**
      * Client ID
      *
      * @var string $clientId
@@ -28,8 +21,16 @@ class CreateSecretRequest
     public string $clientId;
 
     /**
+     *
+     * @var ?Shared\CreateSecretRequest $createSecretRequest
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?Shared\CreateSecretRequest $createSecretRequest = null;
+
+    /**
      * @param  string  $clientId
      * @param  ?Shared\CreateSecretRequest  $createSecretRequest
+     * @phpstan-pure
      */
     public function __construct(string $clientId, ?Shared\CreateSecretRequest $createSecretRequest = null)
     {

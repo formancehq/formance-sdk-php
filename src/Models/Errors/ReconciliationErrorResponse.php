@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Errors;
 
-
 use formance\stack\Utils;
 /** ReconciliationErrorResponse - Error response */
 class ReconciliationErrorResponse
@@ -17,28 +16,29 @@ class ReconciliationErrorResponse
      *
      * @var ?string $details
      */
-    #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
      * @var string $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     public string $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
      * @param  string  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
+     * @phpstan-pure
      */
     public function __construct(string $errorCode, string $errorMessage, ?string $details = null)
     {

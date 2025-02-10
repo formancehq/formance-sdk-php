@@ -15,38 +15,39 @@ class ClientSecret
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $lastDigits
      */
-    #[\JMS\Serializer\Annotation\SerializedName('lastDigits')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('lastDigits')]
     public string $lastDigits;
+
+    /**
+     *
+     * @var string $name
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    public string $name;
 
     /**
      * $metadata
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
-
-    /**
-     *
-     * @var string $name
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    public string $name;
 
     /**
      * @param  string  $id
      * @param  string  $lastDigits
      * @param  string  $name
      * @param  ?array<string, mixed>  $metadata
+     * @phpstan-pure
      */
     public function __construct(string $id, string $lastDigits, string $name, ?array $metadata = null)
     {

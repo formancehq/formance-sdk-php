@@ -15,21 +15,22 @@ class Filter
      *
      * @var ?string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var ?bool $match
      */
-    #[\JMS\Serializer\Annotation\SerializedName('match')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('match')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $match = null;
 
     /**
      * @param  ?string  $error
      * @param  ?bool  $match
+     * @phpstan-pure
      */
     public function __construct(?string $error = null, ?bool $match = null)
     {

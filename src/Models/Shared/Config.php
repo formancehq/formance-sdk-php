@@ -15,12 +15,13 @@ class Config
      *
      * @var LedgerStorage $storage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('storage')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerStorage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerStorage')]
     public LedgerStorage $storage;
 
     /**
      * @param  LedgerStorage  $storage
+     * @phpstan-pure
      */
     public function __construct(LedgerStorage $storage)
     {

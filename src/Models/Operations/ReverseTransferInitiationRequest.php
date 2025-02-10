@@ -30,6 +30,7 @@ class ReverseTransferInitiationRequest
     /**
      * @param  Shared\ReverseTransferInitiationRequest  $reverseTransferInitiationRequest
      * @param  string  $transferId
+     * @phpstan-pure
      */
     public function __construct(Shared\ReverseTransferInitiationRequest $reverseTransferInitiationRequest, string $transferId)
     {

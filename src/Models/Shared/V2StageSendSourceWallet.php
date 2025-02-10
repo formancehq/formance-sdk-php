@@ -13,22 +13,23 @@ class V2StageSendSourceWallet
 {
     /**
      *
-     * @var ?string $balance
+     * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $balance = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public string $id;
 
     /**
      *
-     * @var string $id
+     * @var ?string $balance
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    public string $id;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $balance = null;
 
     /**
      * @param  string  $id
      * @param  ?string  $balance
+     * @phpstan-pure
      */
     public function __construct(string $id, ?string $balance = null)
     {

@@ -1,4 +1,5 @@
 # SDKOrchestrationV1
+(*orchestration->v1*)
 
 ## Overview
 
@@ -37,23 +38,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\CancelEventRequest(
+    instanceID: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->cancelEvent(
+    request: $request
+);
 
-try {
-    $request = new Operations\CancelEventRequest(
-        instanceID: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->cancelEvent($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -69,11 +72,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createTrigger
 
@@ -89,24 +91,26 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\TriggerData(
+    event: '<value>',
+    workflowID: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->createTrigger(
+    request: $request
+);
 
-try {
-    $request = new Shared\TriggerData(
-        event: '<value>',
-        workflowID: '<value>',
-    );
-    $response = $sdk->orchestrationV1->createTrigger($request);
-
-    if ($response->createTriggerResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->createTriggerResponse !== null) {
+    // handle response
 }
 ```
 
@@ -122,11 +126,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createWorkflow
 
@@ -142,27 +145,29 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\CreateWorkflowRequest(
+    stages: [
+        [
+            'key' => '<value>',
+        ],
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->createWorkflow(
+    request: $request
+);
 
-try {
-    $request = new Shared\CreateWorkflowRequest(
-        stages: [
-            [
-                'key' => '<value>',
-            ],
-        ],
-    );
-    $response = $sdk->orchestrationV1->createWorkflow($request);
-
-    if ($response->createWorkflowResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->createWorkflowResponse !== null) {
+    // handle response
 }
 ```
 
@@ -178,11 +183,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## deleteTrigger
 
@@ -199,23 +203,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeleteTriggerRequest(
+    triggerID: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->deleteTrigger(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeleteTriggerRequest(
-        triggerID: '<value>',
-    );
-    $response = $sdk->orchestrationV1->deleteTrigger($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -231,11 +237,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## deleteWorkflow
 
@@ -252,23 +257,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeleteWorkflowRequest(
+    flowId: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->deleteWorkflow(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeleteWorkflowRequest(
-        flowId: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->deleteWorkflow($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -284,11 +291,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getInstance
 
@@ -305,23 +311,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetInstanceRequest(
+    instanceID: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->getInstance(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetInstanceRequest(
-        instanceID: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->getInstance($request);
-
-    if ($response->getWorkflowInstanceResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->getWorkflowInstanceResponse !== null) {
+    // handle response
 }
 ```
 
@@ -337,11 +345,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getInstanceHistory
 
@@ -358,23 +365,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetInstanceHistoryRequest(
+    instanceID: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->getInstanceHistory(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetInstanceHistoryRequest(
-        instanceID: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->getInstanceHistory($request);
-
-    if ($response->getWorkflowInstanceHistoryResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->getWorkflowInstanceHistoryResponse !== null) {
+    // handle response
 }
 ```
 
@@ -390,11 +399,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getInstanceStageHistory
 
@@ -411,24 +419,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetInstanceStageHistoryRequest(
+    instanceID: 'xxx',
+    number: 0,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->getInstanceStageHistory(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetInstanceStageHistoryRequest(
-        instanceID: 'xxx',
-        number: 0,
-    );
-    $response = $sdk->orchestrationV1->getInstanceStageHistory($request);
-
-    if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
+    // handle response
 }
 ```
 
@@ -444,11 +454,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getWorkflow
 
@@ -465,23 +474,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetWorkflowRequest(
+    flowId: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->getWorkflow(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetWorkflowRequest(
-        flowId: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->getWorkflow($request);
-
-    if ($response->getWorkflowResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->getWorkflowResponse !== null) {
+    // handle response
 }
 ```
 
@@ -497,11 +508,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listInstances
 
@@ -518,24 +528,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListInstancesRequest(
+    running: true,
+    workflowID: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->listInstances(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListInstancesRequest(
-        running: true,
-        workflowID: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->listInstances($request);
-
-    if ($response->listRunsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->listRunsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -551,11 +563,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listTriggers
 
@@ -572,21 +583,23 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListTriggersRequest();
+
+$response = $sdk->orchestration->v1->listTriggers(
+    request: $request
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $request = new Operations\ListTriggersRequest();
-    $response = $sdk->orchestrationV1->listTriggers($request);
-
-    if ($response->listTriggersResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->listTriggersResponse !== null) {
+    // handle response
 }
 ```
 
@@ -602,11 +615,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listTriggersOccurrences
 
@@ -623,23 +635,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListTriggersOccurrencesRequest(
+    triggerID: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->listTriggersOccurrences(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListTriggersOccurrencesRequest(
-        triggerID: '<value>',
-    );
-    $response = $sdk->orchestrationV1->listTriggersOccurrences($request);
-
-    if ($response->listTriggersOccurrencesResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->listTriggersOccurrencesResponse !== null) {
+    // handle response
 }
 ```
 
@@ -655,11 +669,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listWorkflows
 
@@ -675,20 +688,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->orchestration->v1->listWorkflows(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->orchestrationV1->listWorkflows();
-
-    if ($response->listWorkflowsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->listWorkflowsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -698,11 +714,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## orchestrationgetServerInfo
 
@@ -718,20 +733,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->orchestration->v1->orchestrationgetServerInfo(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->orchestrationV1->orchestrationgetServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->serverInfo !== null) {
+    // handle response
 }
 ```
 
@@ -741,11 +759,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## readTrigger
 
@@ -762,23 +779,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReadTriggerRequest(
+    triggerID: '<id>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->readTrigger(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReadTriggerRequest(
-        triggerID: '<value>',
-    );
-    $response = $sdk->orchestrationV1->readTrigger($request);
-
-    if ($response->readTriggerResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->readTriggerResponse !== null) {
+    // handle response
 }
 ```
 
@@ -794,11 +813,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## runWorkflow
 
@@ -815,23 +833,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\RunWorkflowRequest(
+    workflowID: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->runWorkflow(
+    request: $request
+);
 
-try {
-    $request = new Operations\RunWorkflowRequest(
-        workflowID: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->runWorkflow($request);
-
-    if ($response->runWorkflowResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->runWorkflowResponse !== null) {
+    // handle response
 }
 ```
 
@@ -847,11 +867,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## sendEvent
 
@@ -868,23 +887,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\SendEventRequest(
+    instanceID: 'xxx',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->orchestration->v1->sendEvent(
+    request: $request
+);
 
-try {
-    $request = new Operations\SendEventRequest(
-        instanceID: 'xxx',
-    );
-    $response = $sdk->orchestrationV1->sendEvent($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -900,7 +921,7 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\Error                              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\Error        | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

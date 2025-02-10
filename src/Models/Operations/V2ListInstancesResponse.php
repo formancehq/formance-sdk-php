@@ -44,6 +44,7 @@ class V2ListInstancesResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2ListRunsResponse  $v2ListRunsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ListRunsResponse $v2ListRunsResponse = null)
     {

@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListTransactionsRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * $requestBody
      *
      * @var ?array<string, mixed> $requestBody
@@ -38,14 +46,6 @@ class V2ListTransactionsRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=expand')]
     public ?string $expand = null;
-
-    /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
 
     /**
      *
@@ -87,6 +87,7 @@ class V2ListTransactionsRequest
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
      * @param  ?bool  $reverse
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?string $expand = null, ?Order $order = null, ?int $pageSize = null, ?\DateTime $pit = null, ?bool $reverse = null)
     {

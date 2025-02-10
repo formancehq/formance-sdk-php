@@ -16,12 +16,13 @@ class Mapping
      *
      * @var array<Contract> $contracts
      */
-    #[\JMS\Serializer\Annotation\SerializedName('contracts')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Contract>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('contracts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Contract>')]
     public array $contracts;
 
     /**
      * @param  array<Contract>  $contracts
+     * @phpstan-pure
      */
     public function __construct(array $contracts)
     {

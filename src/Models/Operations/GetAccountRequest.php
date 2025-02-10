@@ -35,6 +35,7 @@ class GetAccountRequest
     /**
      * @param  string  $address
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(string $address, string $ledger)
     {

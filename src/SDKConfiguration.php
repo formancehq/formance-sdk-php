@@ -7,18 +7,15 @@
 declare(strict_types=1);
 
 namespace formance\stack;
+use formance\stack\Utils\Retry\RetryConfig;
 
 class SDKConfiguration
 {
-    public ?\GuzzleHttp\ClientInterface $defaultClient = null;
+    public ?\GuzzleHttp\ClientInterface $client = null;
 
-    public ?\GuzzleHttp\ClientInterface $securityClient = null;
-
-    public ?Models\Shared\Security $security = null;
-
-    /** @var pure-Closure(): string */
+    public Hooks\SDKHooks $hooks;
+    /** @var ?pure-Closure(): Models\Shared\Security */
     public ?\Closure $securitySource = null;
-
     public string $serverUrl = '';
 
     public int $serverIndex = 0;
@@ -28,20 +25,27 @@ class SDKConfiguration
         [
         ],
         [
-            'environment' => 'sandbox',
+            'environment' => 'eu.sandbox',
             'organization' => 'orgID-stackID',
         ],
     ];
 
     public string $language = 'php';
 
-    public string $openapiDocVersion = 'v2.1.0-beta.3';
+    public string $openapiDocVersion = 'v3.0.0';
 
-    public string $sdkVersion = '3.1.0';
+    public string $sdkVersion = '4.0.0';
 
-    public string $genVersion = '2.422.22';
+    public string $genVersion = '2.506.0';
 
-    public string $userAgent = 'speakeasy-sdk/php 3.1.0 2.422.22 v2.1.0-beta.3 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 4.0.0 2.506.0 v3.0.0 formance/formance-sdk';
+
+    public ?RetryConfig $retryConfig = null;
+
+    public function __construct()
+    {
+        $this->hooks = new Hooks\SDKHooks();
+    }
 
     public function getServerUrl(): string
     {
@@ -50,7 +54,11 @@ class SDKConfiguration
             return $this->serverUrl;
         }
 
-        return SDK::SERVERS[$this->serverIndex];
+        if (isset(SDK::SERVERS[$this->serverIndex])) {
+            return SDK::SERVERS[$this->serverIndex];
+        } else {
+            throw new \OutOfBoundsException('Server index '.$this->serverIndex.' is out of bounds');
+        }
     }
 
     /**
@@ -62,19 +70,47 @@ class SDKConfiguration
     }
     public function hasSecurity(): bool
     {
-        return $this->security !== null || $this->securitySource !== null;
+        return $this->securitySource !== null;
     }
 
     public function getSecurity(): ?Models\Shared\Security
     {
-        if ($this->securitySource !== null) {
-            $security = new Models\Shared\Security(
-                authorization: $this->securitySource->call($this)
-            );
+        return $this->securitySource->call($this);
+    }
 
-            return $security;
-        } else {
-            return $this->security;
+    /**
+     * @return Utils\ServerDetails
+     */
+    public function getServerDetails(): Utils\ServerDetails
+    {
+        if ($this->serverUrl !== '') {
+            return new Utils\ServerDetails(rtrim($this->serverUrl, '/'), []);
         }
+        if ($this->serverIndex === null) {
+            $this->serverIndex = 0;
+        }
+
+        return new Utils\ServerDetails(SDK::SERVERS[$this->serverIndex], $this->serverDefaults[$this->serverIndex]);
+
+    }
+
+    public function getTemplatedServerUrl(): string
+    {
+        if ($this->serverUrl) {
+            return Utils\Utils::templateUrl($this->serverUrl.trim('/'), []);
+        }
+
+        return Utils\Utils::templateUrl($this->getServerUrl(), $this->getServerDefaults());
+    }
+
+    public function initHooks(\GuzzleHttp\ClientInterface $client): \GuzzleHttp\ClientInterface
+    {
+        $preHooksUrl = $this->getTemplatedServerUrl();
+        $ret = $this->hooks->sdkInit($preHooksUrl, $client);
+        if ($preHooksUrl != $ret->url) {
+            $this->serverUrl = $ret->url;
+        }
+
+        return $ret->client;
     }
 }
