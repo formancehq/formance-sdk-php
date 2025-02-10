@@ -61,8 +61,9 @@ class ListWalletsRequest
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $name
      * @param  ?int  $pageSize
+     * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?string $expand = null, ?array $metadata = null, ?string $name = null, ?int $pageSize = null)
+    public function __construct(?string $cursor = null, ?string $expand = null, ?array $metadata = null, ?string $name = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
         $this->expand = $expand;

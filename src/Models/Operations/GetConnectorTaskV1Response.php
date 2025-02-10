@@ -44,6 +44,7 @@ class GetConnectorTaskV1Response
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TaskResponse  $taskResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TaskResponse $taskResponse = null)
     {

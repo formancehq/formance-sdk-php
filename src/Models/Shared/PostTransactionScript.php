@@ -15,7 +15,7 @@ class PostTransactionScript
      *
      * @var string $plain
      */
-    #[\JMS\Serializer\Annotation\SerializedName('plain')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('plain')]
     public string $plain;
 
     /**
@@ -23,14 +23,15 @@ class PostTransactionScript
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\JMS\Serializer\Annotation\SerializedName('vars')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $vars = null;
 
     /**
      * @param  string  $plain
      * @param  ?array<string, mixed>  $vars
+     * @phpstan-pure
      */
     public function __construct(string $plain, ?array $vars = null)
     {

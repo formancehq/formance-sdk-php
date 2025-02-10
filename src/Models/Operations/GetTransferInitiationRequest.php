@@ -21,6 +21,7 @@ class GetTransferInitiationRequest
 
     /**
      * @param  string  $transferId
+     * @phpstan-pure
      */
     public function __construct(string $transferId)
     {

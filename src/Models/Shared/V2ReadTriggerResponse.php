@@ -15,12 +15,13 @@ class V2ReadTriggerResponse
      *
      * @var V2Trigger $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Trigger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Trigger')]
     public V2Trigger $data;
 
     /**
      * @param  V2Trigger  $data
+     * @phpstan-pure
      */
     public function __construct(V2Trigger $data)
     {

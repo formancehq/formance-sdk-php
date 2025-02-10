@@ -15,63 +15,63 @@ class WorkflowInstanceHistoryStageOutput
      *
      * @var ?ActivityCreateTransactionOutput $createTransaction
      */
-    #[\JMS\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityCreateTransactionOutput $createTransaction = null;
 
     /**
      *
      * @var ?ActivityDebitWalletOutput $debitWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityDebitWalletOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityDebitWalletOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityDebitWalletOutput $debitWallet = null;
 
     /**
      *
      * @var ?ActivityGetAccountOutput $getAccount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetAccountOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetAccountOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityGetAccountOutput $getAccount = null;
 
     /**
      *
      * @var ?ActivityGetPaymentOutput $getPayment
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetPaymentOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetPaymentOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityGetPaymentOutput $getPayment = null;
 
     /**
      *
      * @var ?ActivityGetWalletOutput $getWallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetWalletOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityGetWalletOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityGetWalletOutput $getWallet = null;
 
     /**
      *
      * @var ?OrchestrationListWalletsResponse $listWallets
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponse|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationListWalletsResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?OrchestrationListWalletsResponse $listWallets = null;
 
     /**
      *
      * @var ?ActivityRevertTransactionOutput $revertTransaction
      */
-    #[\JMS\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransactionOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransactionOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ActivityRevertTransactionOutput $revertTransaction = null;
 
     /**
@@ -82,6 +82,7 @@ class WorkflowInstanceHistoryStageOutput
      * @param  ?ActivityGetWalletOutput  $getWallet
      * @param  ?OrchestrationListWalletsResponse  $listWallets
      * @param  ?ActivityRevertTransactionOutput  $revertTransaction
+     * @phpstan-pure
      */
     public function __construct(?ActivityCreateTransactionOutput $createTransaction = null, ?ActivityDebitWalletOutput $debitWallet = null, ?ActivityGetAccountOutput $getAccount = null, ?ActivityGetPaymentOutput $getPayment = null, ?ActivityGetWalletOutput $getWallet = null, ?OrchestrationListWalletsResponse $listWallets = null, ?ActivityRevertTransactionOutput $revertTransaction = null)
     {

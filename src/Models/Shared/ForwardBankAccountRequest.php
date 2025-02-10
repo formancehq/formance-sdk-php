@@ -15,11 +15,12 @@ class ForwardBankAccountRequest
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      * @param  string  $connectorID
+     * @phpstan-pure
      */
     public function __construct(string $connectorID)
     {

@@ -15,60 +15,61 @@ class V2CreditWalletRequest
      *
      * @var V2Monetary $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Monetary')]
     public V2Monetary $amount;
-
-    /**
-     * The balance to credit
-     *
-     * @var ?string $balance
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $balance = null;
 
     /**
      * Metadata associated with the wallet.
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
+
+    /**
+     * $sources
+     *
+     * @var array<V2LedgerAccountSubject|V2WalletSubject> $sources
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sources')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject>')]
+    public array $sources;
+
+    /**
+     * The balance to credit
+     *
+     * @var ?string $balance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $balance = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
-
-    /**
-     * $sources
-     *
-     * @var array<mixed> $sources
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('sources')]
-    #[\JMS\Serializer\Annotation\Type('array<mixed>')]
-    public array $sources;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
      * @param  V2Monetary  $amount
      * @param  array<string, string>  $metadata
-     * @param  array<mixed>  $sources
+     * @param  array<V2LedgerAccountSubject|V2WalletSubject>  $sources
      * @param  ?string  $balance
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
+     * @phpstan-pure
      */
     public function __construct(V2Monetary $amount, array $metadata, array $sources, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
     {

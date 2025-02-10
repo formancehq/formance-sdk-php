@@ -12,49 +12,49 @@ namespace formance\stack\Models\Shared;
 class PostTransaction
 {
     /**
-     * $metadata
-     *
-     * @var ?array<string, mixed> $metadata
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $metadata = null;
-
-    /**
      * $postings
      *
      * @var ?array<Posting> $postings
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $postings = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
      * @var ?PostTransactionScript $script
      */
-    #[\JMS\Serializer\Annotation\SerializedName('script')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PostTransactionScript|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PostTransactionScript|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?PostTransactionScript $script = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $timestamp = null;
+
+    /**
+     * $metadata
+     *
+     * @var ?array<string, mixed> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
 
     /**
      * @param  ?array<Posting>  $postings
@@ -62,6 +62,7 @@ class PostTransaction
      * @param  ?PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, mixed>  $metadata
+     * @phpstan-pure
      */
     public function __construct(?array $postings = null, ?string $reference = null, ?PostTransactionScript $script = null, ?\DateTime $timestamp = null, ?array $metadata = null)
     {

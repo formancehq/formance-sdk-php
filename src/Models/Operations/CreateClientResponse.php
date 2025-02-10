@@ -19,13 +19,6 @@ class CreateClientResponse
     public string $contentType;
 
     /**
-     * Client created
-     *
-     * @var ?Shared\CreateClientResponse $createClientResponse
-     */
-    public ?Shared\CreateClientResponse $createClientResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class CreateClientResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Client created
+     *
+     * @var ?Shared\CreateClientResponse $createClientResponse
+     */
+    public ?Shared\CreateClientResponse $createClientResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\CreateClientResponse  $createClientResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\CreateClientResponse $createClientResponse = null)
     {

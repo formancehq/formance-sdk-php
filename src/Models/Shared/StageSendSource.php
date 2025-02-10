@@ -15,33 +15,34 @@ class StageSendSource
      *
      * @var ?StageSendSourceAccount $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourceAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourceAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendSourceAccount $account = null;
 
     /**
      *
      * @var ?StageSendSourcePayment $payment
      */
-    #[\JMS\Serializer\Annotation\SerializedName('payment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourcePayment|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('payment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourcePayment|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendSourcePayment $payment = null;
 
     /**
      *
      * @var ?StageSendSourceWallet $wallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('wallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourceWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('wallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourceWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendSourceWallet $wallet = null;
 
     /**
      * @param  ?StageSendSourceAccount  $account
      * @param  ?StageSendSourcePayment  $payment
      * @param  ?StageSendSourceWallet  $wallet
+     * @phpstan-pure
      */
     public function __construct(?StageSendSourceAccount $account = null, ?StageSendSourcePayment $payment = null, ?StageSendSourceWallet $wallet = null)
     {

@@ -12,25 +12,26 @@ namespace formance\stack\Models\Shared;
 class CreateWorkflowRequest
 {
     /**
-     *
-     * @var ?string $name
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $name = null;
-
-    /**
      * $stages
      *
      * @var array<array<string, mixed>> $stages
      */
-    #[\JMS\Serializer\Annotation\SerializedName('stages')]
-    #[\JMS\Serializer\Annotation\Type('array<array<string, mixed>>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('stages')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<array<string, mixed>>')]
     public array $stages;
+
+    /**
+     *
+     * @var ?string $name
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $name = null;
 
     /**
      * @param  array<array<string, mixed>>  $stages
      * @param  ?string  $name
+     * @phpstan-pure
      */
     public function __construct(array $stages, ?string $name = null)
     {

@@ -15,34 +15,34 @@ class ScriptResponse
      *
      * @var ?string $details
      */
-    #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
      * @var ?ErrorsEnum $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ErrorsEnum|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ErrorsEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ErrorsEnum $errorCode = null;
 
     /**
      *
      * @var ?string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $errorMessage = null;
 
     /**
      *
      * @var ?Transaction $transaction
      */
-    #[\JMS\Serializer\Annotation\SerializedName('transaction')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Transaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Transaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Transaction $transaction = null;
 
     /**
@@ -50,6 +50,7 @@ class ScriptResponse
      * @param  ?ErrorsEnum  $errorCode
      * @param  ?string  $errorMessage
      * @param  ?Transaction  $transaction
+     * @phpstan-pure
      */
     public function __construct(?string $details = null, ?ErrorsEnum $errorCode = null, ?string $errorMessage = null, ?Transaction $transaction = null)
     {

@@ -30,6 +30,7 @@ class ConnectorsTransferRequest
     /**
      * @param  Shared\TransferRequest  $transferRequest
      * @param  Shared\Connector  $connector
+     * @phpstan-pure
      */
     public function __construct(Shared\TransferRequest $transferRequest, Shared\Connector $connector)
     {

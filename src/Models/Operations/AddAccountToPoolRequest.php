@@ -30,6 +30,7 @@ class AddAccountToPoolRequest
     /**
      * @param  Shared\AddAccountToPoolRequest  $addAccountToPoolRequest
      * @param  string  $poolId
+     * @phpstan-pure
      */
     public function __construct(Shared\AddAccountToPoolRequest $addAccountToPoolRequest, string $poolId)
     {

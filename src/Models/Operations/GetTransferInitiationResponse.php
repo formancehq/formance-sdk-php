@@ -44,6 +44,7 @@ class GetTransferInitiationResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TransferInitiationResponse  $transferInitiationResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransferInitiationResponse $transferInitiationResponse = null)
     {

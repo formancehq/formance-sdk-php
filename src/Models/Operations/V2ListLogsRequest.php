@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListLogsRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * $requestBody
      *
      * @var ?array<string, mixed> $requestBody
@@ -31,14 +39,6 @@ class V2ListLogsRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
     public ?string $cursor = null;
-
-    /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
 
     /**
      * The maximum number of results to return per page.
@@ -63,6 +63,7 @@ class V2ListLogsRequest
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null)
     {

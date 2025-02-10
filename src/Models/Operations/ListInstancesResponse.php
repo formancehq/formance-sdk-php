@@ -19,13 +19,6 @@ class ListInstancesResponse
     public string $contentType;
 
     /**
-     * List of workflow instances
-     *
-     * @var ?Shared\ListRunsResponse $listRunsResponse
-     */
-    public ?Shared\ListRunsResponse $listRunsResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ListInstancesResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * List of workflow instances
+     *
+     * @var ?Shared\ListRunsResponse $listRunsResponse
+     */
+    public ?Shared\ListRunsResponse $listRunsResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ListRunsResponse  $listRunsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ListRunsResponse $listRunsResponse = null)
     {

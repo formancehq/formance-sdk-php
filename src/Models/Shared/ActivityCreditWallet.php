@@ -15,22 +15,23 @@ class ActivityCreditWallet
      *
      * @var ?OrchestrationCreditWalletRequest $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationCreditWalletRequest|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationCreditWalletRequest|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?OrchestrationCreditWalletRequest $data = null;
 
     /**
      *
      * @var ?string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $id = null;
 
     /**
      * @param  ?OrchestrationCreditWalletRequest  $data
      * @param  ?string  $id
+     * @phpstan-pure
      */
     public function __construct(?OrchestrationCreditWalletRequest $data = null, ?string $id = null)
     {

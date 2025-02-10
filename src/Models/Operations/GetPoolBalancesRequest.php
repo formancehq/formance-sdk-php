@@ -32,6 +32,7 @@ class GetPoolBalancesRequest
     /**
      * @param  \DateTime  $at
      * @param  string  $poolId
+     * @phpstan-pure
      */
     public function __construct(\DateTime $at, string $poolId)
     {

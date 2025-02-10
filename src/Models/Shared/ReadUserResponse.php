@@ -15,13 +15,14 @@ class ReadUserResponse
      *
      * @var ?User $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\User|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\User|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?User $data = null;
 
     /**
      * @param  ?User  $data
+     * @phpstan-pure
      */
     public function __construct(?User $data = null)
     {

@@ -19,13 +19,6 @@ class DebitWalletResponse
     public string $contentType;
 
     /**
-     * Wallet successfully debited as a pending hold
-     *
-     * @var ?Shared\DebitWalletResponse $debitWalletResponse
-     */
-    public ?Shared\DebitWalletResponse $debitWalletResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class DebitWalletResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Wallet successfully debited as a pending hold
+     *
+     * @var ?Shared\DebitWalletResponse $debitWalletResponse
+     */
+    public ?Shared\DebitWalletResponse $debitWalletResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\DebitWalletResponse  $debitWalletResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\DebitWalletResponse $debitWalletResponse = null)
     {

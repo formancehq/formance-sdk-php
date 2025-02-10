@@ -33,14 +33,6 @@ class GetHoldsRequest
     public ?array $metadata = null;
 
     /**
-     * The maximum number of results to return per page
-     *
-     * @var ?int $pageSize
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
-    public ?int $pageSize = null;
-
-    /**
      * The wallet to filter on
      *
      * @var ?string $walletID
@@ -49,16 +41,25 @@ class GetHoldsRequest
     public ?string $walletID = null;
 
     /**
+     * The maximum number of results to return per page
+     *
+     * @var ?int $pageSize
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pageSize')]
+    public ?int $pageSize = null;
+
+    /**
      * @param  ?string  $cursor
      * @param  ?array<string, string>  $metadata
      * @param  ?int  $pageSize
      * @param  ?string  $walletID
+     * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $walletID = null)
+    public function __construct(?string $cursor = null, ?array $metadata = null, ?string $walletID = null, ?int $pageSize = 15)
     {
         $this->cursor = $cursor;
         $this->metadata = $metadata;
-        $this->pageSize = $pageSize;
         $this->walletID = $walletID;
+        $this->pageSize = $pageSize;
     }
 }

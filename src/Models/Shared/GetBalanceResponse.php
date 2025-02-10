@@ -15,12 +15,13 @@ class GetBalanceResponse
      *
      * @var BalanceWithAssets $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalanceWithAssets')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalanceWithAssets')]
     public BalanceWithAssets $data;
 
     /**
      * @param  BalanceWithAssets  $data
+     * @phpstan-pure
      */
     public function __construct(BalanceWithAssets $data)
     {

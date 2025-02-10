@@ -15,19 +15,20 @@ class V2ActivityGetAccount
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
     public string $ledger;
 
     /**
      * @param  string  $id
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(string $id, string $ledger)
     {

@@ -19,13 +19,6 @@ class ReconciliationgetServerInfoResponse
     public string $contentType;
 
     /**
-     * Server information
-     *
-     * @var ?Shared\ServerInfo $serverInfo
-     */
-    public ?Shared\ServerInfo $serverInfo = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ReconciliationgetServerInfoResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Server information
+     *
+     * @var ?Shared\ServerInfo $serverInfo
+     */
+    public ?Shared\ServerInfo $serverInfo = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ServerInfo  $serverInfo
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ServerInfo $serverInfo = null)
     {

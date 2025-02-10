@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Errors;
 
-
 use formance\stack\Utils;
 /** Error - General error */
 class Error
@@ -17,20 +16,21 @@ class Error
      *
      * @var ErrorCode $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Errors\ErrorCode')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Errors\ErrorCode')]
     public ErrorCode $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
      * @param  ErrorCode  $errorCode
      * @param  string  $errorMessage
+     * @phpstan-pure
      */
     public function __construct(ErrorCode $errorCode, string $errorMessage)
     {

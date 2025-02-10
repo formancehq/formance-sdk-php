@@ -16,12 +16,13 @@ class ListWorkflowsResponse
      *
      * @var array<Workflow> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Workflow>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Workflow>')]
     public array $data;
 
     /**
      * @param  array<Workflow>  $data
+     * @phpstan-pure
      */
     public function __construct(array $data)
     {

@@ -1,4 +1,5 @@
 # SDKReconciliationV1
+(*reconciliation->v1*)
 
 ## Overview
 
@@ -27,28 +28,30 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\PolicyRequest(
+    ledgerName: 'default',
+    ledgerQuery: [
+        'key' => '<value>',
+    ],
+    name: 'XXX',
+    paymentsPoolID: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->createPolicy(
+    request: $request
+);
 
-try {
-    $request = new Shared\PolicyRequest(
-        ledgerName: 'default',
-        ledgerQuery: [
-            'key' => '<value>',
-        ],
-        name: 'XXX',
-        paymentsPoolID: 'XXX',
-    );
-    $response = $sdk->reconciliationV1->createPolicy($request);
-
-    if ($response->policyResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->policyResponse !== null) {
+    // handle response
 }
 ```
 
@@ -64,11 +67,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## deletePolicy
 
@@ -85,23 +87,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeletePolicyRequest(
+    policyID: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->deletePolicy(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeletePolicyRequest(
-        policyID: 'XXX',
-    );
-    $response = $sdk->reconciliationV1->deletePolicy($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -117,11 +121,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## getPolicy
 
@@ -138,23 +141,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetPolicyRequest(
+    policyID: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->getPolicy(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetPolicyRequest(
-        policyID: 'XXX',
-    );
-    $response = $sdk->reconciliationV1->getPolicy($request);
-
-    if ($response->policyResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->policyResponse !== null) {
+    // handle response
 }
 ```
 
@@ -170,11 +175,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## getReconciliation
 
@@ -191,23 +195,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetReconciliationRequest(
+    reconciliationID: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->getReconciliation(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetReconciliationRequest(
-        reconciliationID: 'XXX',
-    );
-    $response = $sdk->reconciliationV1->getReconciliation($request);
-
-    if ($response->reconciliationResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->reconciliationResponse !== null) {
+    // handle response
 }
 ```
 
@@ -223,11 +229,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## listPolicies
 
@@ -244,24 +249,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListPoliciesRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->listPolicies(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListPoliciesRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-    );
-    $response = $sdk->reconciliationV1->listPolicies($request);
-
-    if ($response->policiesCursorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->policiesCursorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -277,11 +284,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## listReconciliations
 
@@ -298,24 +304,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListReconciliationsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->listReconciliations(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListReconciliationsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-    );
-    $response = $sdk->reconciliationV1->listReconciliations($request);
-
-    if ($response->reconciliationsCursorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->reconciliationsCursorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -331,11 +339,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## reconcile
 
@@ -353,27 +360,29 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReconcileRequest(
+    reconciliationRequest: new Shared\ReconciliationRequest(
+        reconciledAtLedger: Utils\Utils::parseDateTime('2021-01-01T00:00:00.000Z'),
+        reconciledAtPayments: Utils\Utils::parseDateTime('2021-01-01T00:00:00.000Z'),
+    ),
+    policyID: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->reconciliation->v1->reconcile(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReconcileRequest(
-        reconciliationRequest: new Shared\ReconciliationRequest(
-            reconciledAtLedger: Utils\Utils::parseDateTime('2021-01-01T00:00:00.000Z'),
-            reconciledAtPayments: Utils\Utils::parseDateTime('2021-01-01T00:00:00.000Z'),
-        ),
-        policyID: 'XXX',
-    );
-    $response = $sdk->reconciliationV1->reconcile($request);
-
-    if ($response->reconciliationResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->reconciliationResponse !== null) {
+    // handle response
 }
 ```
 
@@ -389,11 +398,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
 
 ## reconciliationgetServerInfo
 
@@ -409,20 +417,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->reconciliation->v1->reconciliationgetServerInfo(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->reconciliationV1->reconciliationgetServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->serverInfo !== null) {
+    // handle response
 }
 ```
 
@@ -432,7 +443,7 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\ReconciliationErrorResponse        | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| Errors\ReconciliationErrorResponse | default                            | application/json                   |
+| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |

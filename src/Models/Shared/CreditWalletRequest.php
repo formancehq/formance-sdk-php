@@ -15,8 +15,8 @@ class CreditWalletRequest
      *
      * @var Monetary $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Monetary')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Monetary')]
     public Monetary $amount;
 
     /**
@@ -24,45 +24,45 @@ class CreditWalletRequest
      *
      * @var ?string $balance
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $balance = null;
+
+    /**
+     *
+     * @var ?string $reference
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $reference = null;
+
+    /**
+     *
+     * @var ?\DateTime $timestamp
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $timestamp = null;
 
     /**
      * Metadata associated with the wallet.
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
-
-    /**
-     *
-     * @var ?string $reference
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $reference = null;
 
     /**
      * $sources
      *
-     * @var ?array<mixed> $sources
+     * @var ?array<LedgerAccountSubject|WalletSubject> $sources
      */
-    #[\JMS\Serializer\Annotation\SerializedName('sources')]
-    #[\JMS\Serializer\Annotation\Type('array<mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sources')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $sources = null;
-
-    /**
-     *
-     * @var ?\DateTime $timestamp
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $timestamp = null;
 
     /**
      * @param  Monetary  $amount
@@ -70,7 +70,8 @@ class CreditWalletRequest
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, string>  $metadata
-     * @param  ?array<mixed>  $sources
+     * @param  ?array<LedgerAccountSubject|WalletSubject>  $sources
+     * @phpstan-pure
      */
     public function __construct(Monetary $amount, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null, ?array $metadata = null, ?array $sources = null)
     {

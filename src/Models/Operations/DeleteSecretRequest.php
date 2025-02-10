@@ -30,6 +30,7 @@ class DeleteSecretRequest
     /**
      * @param  string  $clientId
      * @param  string  $secretId
+     * @phpstan-pure
      */
     public function __construct(string $clientId, string $secretId)
     {

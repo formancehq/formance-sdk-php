@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListAccountsRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * $requestBody
      *
      * @var ?array<string, mixed> $requestBody
@@ -40,14 +48,6 @@ class V2ListAccountsRequest
     public ?string $expand = null;
 
     /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
-
-    /**
      * The maximum number of results to return per page.
      *
      *
@@ -71,6 +71,7 @@ class V2ListAccountsRequest
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null)
     {

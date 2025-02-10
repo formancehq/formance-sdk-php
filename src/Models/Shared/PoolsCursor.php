@@ -9,18 +9,20 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** PoolsCursor - OK */
 class PoolsCursor
 {
     /**
      *
      * @var PoolsCursorCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoolsCursorCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoolsCursorCursor')]
     public PoolsCursorCursor $cursor;
 
     /**
      * @param  PoolsCursorCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(PoolsCursorCursor $cursor)
     {

@@ -15,12 +15,13 @@ class AccountResponse
      *
      * @var AccountWithVolumesAndBalances $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\AccountWithVolumesAndBalances')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\AccountWithVolumesAndBalances')]
     public AccountWithVolumesAndBalances $data;
 
     /**
      * @param  AccountWithVolumesAndBalances  $data
+     * @phpstan-pure
      */
     public function __construct(AccountWithVolumesAndBalances $data)
     {

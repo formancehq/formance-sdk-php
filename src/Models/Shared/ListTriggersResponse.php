@@ -16,12 +16,13 @@ class ListTriggersResponse
      *
      * @var array<Trigger> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Trigger>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Trigger>')]
     public array $data;
 
     /**
      * @param  array<Trigger>  $data
+     * @phpstan-pure
      */
     public function __construct(array $data)
     {

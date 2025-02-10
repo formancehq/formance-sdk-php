@@ -15,12 +15,13 @@ class V2ListRunsResponse
      *
      * @var V2ListRunsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListRunsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListRunsResponseCursor')]
     public V2ListRunsResponseCursor $cursor;
 
     /**
      * @param  V2ListRunsResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(V2ListRunsResponseCursor $cursor)
     {

@@ -15,30 +15,31 @@ class TaskMoneycorpDescriptor
      *
      * @var ?string $accountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accountID')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $accountID = null;
 
     /**
      *
      * @var ?string $key
      */
-    #[\JMS\Serializer\Annotation\SerializedName('key')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $key = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $name = null;
 
     /**
      * @param  ?string  $accountID
      * @param  ?string  $key
      * @param  ?string  $name
+     * @phpstan-pure
      */
     public function __construct(?string $accountID = null, ?string $key = null, ?string $name = null)
     {

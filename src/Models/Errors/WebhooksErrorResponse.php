@@ -10,36 +10,36 @@ namespace formance\stack\Models\Errors;
 
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
-/** WebhooksErrorResponse - Error */
 class WebhooksErrorResponse
 {
     /**
      *
      * @var ?string $details
      */
-    #[\JMS\Serializer\Annotation\SerializedName('details')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
      * @var Shared\WebhooksErrorsEnum $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WebhooksErrorsEnum')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WebhooksErrorsEnum')]
     public Shared\WebhooksErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
      * @param  Shared\WebhooksErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
+     * @phpstan-pure
      */
     public function __construct(Shared\WebhooksErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {

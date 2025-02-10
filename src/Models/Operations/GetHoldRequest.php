@@ -21,6 +21,7 @@ class GetHoldRequest
 
     /**
      * @param  string  $holdID
+     * @phpstan-pure
      */
     public function __construct(string $holdID)
     {

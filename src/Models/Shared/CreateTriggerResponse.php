@@ -15,12 +15,13 @@ class CreateTriggerResponse
      *
      * @var Trigger $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Trigger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Trigger')]
     public Trigger $data;
 
     /**
      * @param  Trigger  $data
+     * @phpstan-pure
      */
     public function __construct(Trigger $data)
     {

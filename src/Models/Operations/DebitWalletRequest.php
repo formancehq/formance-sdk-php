@@ -14,6 +14,13 @@ class DebitWalletRequest
 {
     /**
      *
+     * @var string $id
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    public string $id;
+
+    /**
+     *
      * @var ?Shared\DebitWalletRequest $debitWalletRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
@@ -28,16 +35,10 @@ class DebitWalletRequest
     public ?string $idempotencyKey = null;
 
     /**
-     *
-     * @var string $id
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public string $id;
-
-    /**
      * @param  string  $id
      * @param  ?Shared\DebitWalletRequest  $debitWalletRequest
      * @param  ?string  $idempotencyKey
+     * @phpstan-pure
      */
     public function __construct(string $id, ?Shared\DebitWalletRequest $debitWalletRequest = null, ?string $idempotencyKey = null)
     {

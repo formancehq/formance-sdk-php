@@ -15,28 +15,29 @@ class ConfigInfo
      *
      * @var Config $config
      */
-    #[\JMS\Serializer\Annotation\SerializedName('config')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Config')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Config')]
     public Config $config;
 
     /**
      *
      * @var string $server
      */
-    #[\JMS\Serializer\Annotation\SerializedName('server')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('server')]
     public string $server;
 
     /**
      *
      * @var string $version
      */
-    #[\JMS\Serializer\Annotation\SerializedName('version')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
     public string $version;
 
     /**
      * @param  Config  $config
      * @param  string  $server
      * @param  string  $version
+     * @phpstan-pure
      */
     public function __construct(Config $config, string $server, string $version)
     {

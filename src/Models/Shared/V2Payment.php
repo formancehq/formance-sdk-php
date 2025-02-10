@@ -16,114 +16,114 @@ class V2Payment
      *
      * @var array<V2PaymentAdjustment> $adjustments
      */
-    #[\JMS\Serializer\Annotation\SerializedName('adjustments')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2PaymentAdjustment>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2PaymentAdjustment>')]
     public array $adjustments;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $destinationAccountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
     public string $destinationAccountID;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var int $initialAmount
+     * @var \Brick\Math\BigInteger $initialAmount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('initialAmount')]
-    public int $initialAmount;
-
-    /**
-     *
-     * @var ?V2PaymentMetadata $metadata
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentMetadata|null')]
-    public ?V2PaymentMetadata $metadata;
-
-    /**
-     *
-     * @var ?V2Connector $provider
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Connector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?V2Connector $provider = null;
-
-    /**
-     *
-     * @var ?V2PaymentRaw $raw
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentRaw|null')]
-    public ?V2PaymentRaw $raw;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('initialAmount')]
+    public \Brick\Math\BigInteger $initialAmount;
 
     /**
      *
      * @var string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var Scheme $scheme
      */
-    #[\JMS\Serializer\Annotation\SerializedName('scheme')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Scheme')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Scheme')]
     public Scheme $scheme;
 
     /**
      *
      * @var string $sourceAccountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
     public string $sourceAccountID;
 
     /**
      *
      * @var V2PaymentStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentStatus')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentStatus')]
     public V2PaymentStatus $status;
 
     /**
      *
      * @var V2PaymentType $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentType')]
     public V2PaymentType $type;
+
+    /**
+     *
+     * @var ?V2PaymentMetadata $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentMetadata|null')]
+    public ?V2PaymentMetadata $metadata;
+
+    /**
+     *
+     * @var ?V2Connector $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Connector|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2Connector $provider = null;
+
+    /**
+     *
+     * @var ?V2PaymentRaw $raw
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PaymentRaw|null')]
+    public ?V2PaymentRaw $raw;
 
     /**
      * @param  array<V2PaymentAdjustment>  $adjustments
@@ -132,7 +132,7 @@ class V2Payment
      * @param  \DateTime  $createdAt
      * @param  string  $destinationAccountID
      * @param  string  $id
-     * @param  int  $initialAmount
+     * @param  \Brick\Math\BigInteger  $initialAmount
      * @param  string  $reference
      * @param  Scheme  $scheme
      * @param  string  $sourceAccountID
@@ -141,8 +141,9 @@ class V2Payment
      * @param  ?V2PaymentMetadata  $metadata
      * @param  ?V2Connector  $provider
      * @param  ?V2PaymentRaw  $raw
+     * @phpstan-pure
      */
-    public function __construct(array $adjustments, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, int $initialAmount, string $reference, Scheme $scheme, string $sourceAccountID, V2PaymentStatus $status, V2PaymentType $type, ?V2PaymentMetadata $metadata = null, ?V2Connector $provider = null, ?V2PaymentRaw $raw = null)
+    public function __construct(array $adjustments, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, Scheme $scheme, string $sourceAccountID, V2PaymentStatus $status, V2PaymentType $type, ?V2PaymentMetadata $metadata = null, ?V2Connector $provider = null, ?V2PaymentRaw $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->asset = $asset;

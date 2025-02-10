@@ -19,13 +19,6 @@ class ReadClientResponse
     public string $contentType;
 
     /**
-     * Retrieved client
-     *
-     * @var ?Shared\ReadClientResponse $readClientResponse
-     */
-    public ?Shared\ReadClientResponse $readClientResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ReadClientResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Retrieved client
+     *
+     * @var ?Shared\ReadClientResponse $readClientResponse
+     */
+    public ?Shared\ReadClientResponse $readClientResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ReadClientResponse  $readClientResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ReadClientResponse $readClientResponse = null)
     {

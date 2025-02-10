@@ -44,6 +44,7 @@ class V2ListTriggersOccurrencesResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2ListTriggersOccurrencesResponse  $v2ListTriggersOccurrencesResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ListTriggersOccurrencesResponse $v2ListTriggersOccurrencesResponse = null)
     {

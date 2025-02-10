@@ -44,6 +44,7 @@ class V2ReadTriggerResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2ReadTriggerResponse  $v2ReadTriggerResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ReadTriggerResponse $v2ReadTriggerResponse = null)
     {

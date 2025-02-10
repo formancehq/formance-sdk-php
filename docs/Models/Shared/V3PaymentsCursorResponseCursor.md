@@ -1,0 +1,12 @@
+# V3PaymentsCursorResponseCursor
+
+
+## Fields
+
+| Field                                                       | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `data`                                                      | array<[Shared\V3Payment](../../Models/Shared/V3Payment.md)> | :heavy_check_mark:                                          | N/A                                                         |                                                             |
+| `hasMore`                                                   | *bool*                                                      | :heavy_check_mark:                                          | N/A                                                         | false                                                       |
+| `pageSize`                                                  | *int*                                                       | :heavy_check_mark:                                          | N/A                                                         | 15                                                          |
+| `next`                                                      | *?string*                                                   | :heavy_minus_sign:                                          | N/A                                                         |                                                             |
+| `previous`                                                  | *?string*                                                   | :heavy_minus_sign:                                          | N/A                                                         | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                |

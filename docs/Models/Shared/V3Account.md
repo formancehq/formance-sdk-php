@@ -1,0 +1,17 @@
+# V3Account
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `connectorID`                                                        | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  |
+| `createdAt`                                                          | [\DateTime](https://www.php.net/manual/en/class.datetime.php)        | :heavy_check_mark:                                                   | N/A                                                                  |
+| `id`                                                                 | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  |
+| `provider`                                                           | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  |
+| `raw`                                                                | [Shared\V3AccountRaw](../../Models/Shared/V3AccountRaw.md)           | :heavy_check_mark:                                                   | N/A                                                                  |
+| `reference`                                                          | *string*                                                             | :heavy_check_mark:                                                   | N/A                                                                  |
+| `type`                                                               | [Shared\V3AccountTypeEnum](../../Models/Shared/V3AccountTypeEnum.md) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `name`                                                               | *?string*                                                            | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `defaultAsset`                                                       | *?string*                                                            | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `metadata`                                                           | array<string, *string*>                                              | :heavy_minus_sign:                                                   | N/A                                                                  |

@@ -15,22 +15,23 @@ class V2ActivityCreditWallet
      *
      * @var ?V2CreditWalletRequest $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2CreditWalletRequest|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2CreditWalletRequest|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2CreditWalletRequest $data = null;
 
     /**
      *
      * @var ?string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $id = null;
 
     /**
      * @param  ?V2CreditWalletRequest  $data
      * @param  ?string  $id
+     * @phpstan-pure
      */
     public function __construct(?V2CreditWalletRequest $data = null, ?string $id = null)
     {

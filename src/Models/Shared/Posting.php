@@ -13,39 +13,40 @@ class Posting
 {
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $destination
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     public string $destination;
 
     /**
      *
      * @var string $source
      */
-    #[\JMS\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     public string $source;
 
     /**
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $destination
      * @param  string  $source
+     * @phpstan-pure
      */
-    public function __construct(int $amount, string $asset, string $destination, string $source)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $destination, string $source)
     {
         $this->amount = $amount;
         $this->asset = $asset;

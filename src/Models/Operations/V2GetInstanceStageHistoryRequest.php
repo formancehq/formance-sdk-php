@@ -30,6 +30,7 @@ class V2GetInstanceStageHistoryRequest
     /**
      * @param  string  $instanceID
      * @param  int  $number
+     * @phpstan-pure
      */
     public function __construct(string $instanceID, int $number)
     {

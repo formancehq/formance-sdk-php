@@ -15,30 +15,31 @@ class V2BulkElementCreateTransaction
      *
      * @var string $action
      */
-    #[\JMS\Serializer\Annotation\SerializedName('action')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('action')]
     public string $action;
 
     /**
      *
      * @var ?V2PostTransaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransaction|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2PostTransaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V2PostTransaction $data = null;
 
     /**
      *
      * @var ?string $ik
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ik')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ik')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $ik = null;
 
     /**
      * @param  string  $action
      * @param  ?V2PostTransaction  $data
      * @param  ?string  $ik
+     * @phpstan-pure
      */
     public function __construct(string $action, ?V2PostTransaction $data = null, ?string $ik = null)
     {

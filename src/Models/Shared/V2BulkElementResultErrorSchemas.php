@@ -15,41 +15,51 @@ class V2BulkElementResultErrorSchemas
      *
      * @var string $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     public string $errorCode;
 
     /**
      *
      * @var string $errorDescription
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorDescription')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorDescription')]
     public string $errorDescription;
 
     /**
      *
-     * @var ?string $errorDetails
+     * @var int $logID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorDetails')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $errorDetails = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('logID')]
+    public int $logID;
 
     /**
      *
      * @var string $responseType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('responseType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
     public string $responseType;
+
+    /**
+     *
+     * @var ?string $errorDetails
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorDetails')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $errorDetails = null;
 
     /**
      * @param  string  $errorCode
      * @param  string  $errorDescription
+     * @param  int  $logID
      * @param  string  $responseType
      * @param  ?string  $errorDetails
+     * @phpstan-pure
      */
-    public function __construct(string $errorCode, string $errorDescription, string $responseType, ?string $errorDetails = null)
+    public function __construct(string $errorCode, string $errorDescription, int $logID, string $responseType, ?string $errorDetails = null)
     {
         $this->errorCode = $errorCode;
         $this->errorDescription = $errorDescription;
+        $this->logID = $logID;
         $this->responseType = $responseType;
         $this->errorDetails = $errorDetails;
     }

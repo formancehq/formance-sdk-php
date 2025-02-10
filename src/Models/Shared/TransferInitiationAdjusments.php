@@ -15,40 +15,40 @@ class TransferInitiationAdjusments
      *
      * @var string $adjustmentID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('adjustmentID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('adjustmentID')]
     public string $adjustmentID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     public string $error;
+
+    /**
+     *
+     * @var TransferInitiationStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationStatus')]
+    public TransferInitiationStatus $status;
 
     /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
-
-    /**
-     *
-     * @var TransferInitiationStatus $status
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationStatus')]
-    public TransferInitiationStatus $status;
 
     /**
      * @param  string  $adjustmentID
@@ -56,6 +56,7 @@ class TransferInitiationAdjusments
      * @param  string  $error
      * @param  TransferInitiationStatus  $status
      * @param  ?array<string, string>  $metadata
+     * @phpstan-pure
      */
     public function __construct(string $adjustmentID, \DateTime $createdAt, string $error, TransferInitiationStatus $status, ?array $metadata = null)
     {

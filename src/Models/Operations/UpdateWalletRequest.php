@@ -12,6 +12,13 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateWalletRequest
 {
     /**
+     *
+     * @var string $id
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    public string $id;
+
+    /**
      * Use an idempotency key
      *
      * @var ?string $idempotencyKey
@@ -27,16 +34,10 @@ class UpdateWalletRequest
     public ?UpdateWalletRequestBody $requestBody = null;
 
     /**
-     *
-     * @var string $id
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public string $id;
-
-    /**
      * @param  string  $id
      * @param  ?string  $idempotencyKey
      * @param  ?UpdateWalletRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $id, ?string $idempotencyKey = null, ?UpdateWalletRequestBody $requestBody = null)
     {

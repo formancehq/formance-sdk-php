@@ -15,12 +15,13 @@ class AttemptResponse
      *
      * @var Attempt $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Attempt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Attempt')]
     public Attempt $data;
 
     /**
      * @param  Attempt  $data
+     * @phpstan-pure
      */
     public function __construct(Attempt $data)
     {

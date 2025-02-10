@@ -30,6 +30,7 @@ class ListInstancesRequest
     /**
      * @param  ?bool  $running
      * @param  ?string  $workflowID
+     * @phpstan-pure
      */
     public function __construct(?bool $running = null, ?string $workflowID = null)
     {

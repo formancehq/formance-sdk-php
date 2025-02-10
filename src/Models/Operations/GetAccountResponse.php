@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class GetAccountResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\AccountResponse $accountResponse
-     */
-    public ?Shared\AccountResponse $accountResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class GetAccountResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\AccountResponse $accountResponse
+     */
+    public ?Shared\AccountResponse $accountResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\AccountResponse  $accountResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AccountResponse $accountResponse = null)
     {

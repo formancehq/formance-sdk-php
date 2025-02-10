@@ -12,13 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ImportLogsRequest
 {
     /**
-     *
-     * @var ?string $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/octet-stream')]
-    public ?string $requestBody = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -27,8 +20,16 @@ class V2ImportLogsRequest
     public string $ledger;
 
     /**
+     *
+     * @var ?string $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/octet-stream')]
+    public ?string $requestBody = null;
+
+    /**
      * @param  string  $ledger
      * @param  ?string  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $requestBody = null)
     {

@@ -1,4 +1,5 @@
 # SDKWebhooksV1
+(*webhooks->v1*)
 
 ## Overview
 
@@ -11,6 +12,7 @@
 * [getManyConfigs](#getmanyconfigs) - Get many configs
 * [insertConfig](#insertconfig) - Insert a new config
 * [testConfig](#testconfig) - Test one config
+* [updateConfig](#updateconfig) - Update one config
 
 ## activateConfig
 
@@ -27,23 +29,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ActivateConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->activateConfig(
+    request: $request
+);
 
-try {
-    $request = new Operations\ActivateConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->activateConfig($request);
-
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -59,11 +63,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## changeConfigSecret
 
@@ -84,26 +87,28 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ChangeConfigSecretRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+    configChangeSecret: new Shared\ConfigChangeSecret(
+        secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+    ),
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->changeConfigSecret(
+    request: $request
+);
 
-try {
-    $request = new Operations\ChangeConfigSecretRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-        configChangeSecret: new Shared\ConfigChangeSecret(
-            secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-        ),
-    );
-    $response = $sdk->webhooksV1->changeConfigSecret($request);
-
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -119,11 +124,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## deactivateConfig
 
@@ -140,23 +144,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeactivateConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->deactivateConfig(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeactivateConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->deactivateConfig($request);
-
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -172,11 +178,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## deleteConfig
 
@@ -193,23 +198,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeleteConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->deleteConfig(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeleteConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->deleteConfig($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -225,11 +232,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getManyConfigs
 
@@ -246,24 +252,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetManyConfigsRequest(
+    endpoint: 'https://example.com',
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->getManyConfigs(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetManyConfigsRequest(
-        endpoint: 'https://example.com',
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->getManyConfigs($request);
-
-    if ($response->configsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->configsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -279,11 +287,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## insertConfig
 
@@ -308,29 +315,31 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\ConfigUser(
+    endpoint: 'https://example.com',
+    eventTypes: [
+        'TYPE1',
+        'TYPE2',
+    ],
+    name: 'customer_payment',
+    secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->insertConfig(
+    request: $request
+);
 
-try {
-    $request = new Shared\ConfigUser(
-        endpoint: 'https://example.com',
-        eventTypes: [
-            'TYPE1',
-            'TYPE2',
-        ],
-        name: 'customer_payment',
-        secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
-    );
-    $response = $sdk->webhooksV1->insertConfig($request);
-
-    if ($response->configResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->configResponse !== null) {
+    // handle response
 }
 ```
 
@@ -346,11 +355,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## testConfig
 
@@ -367,23 +375,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\TestConfigRequest(
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->webhooks->v1->testConfig(
+    request: $request
+);
 
-try {
-    $request = new Operations\TestConfigRequest(
-        id: '4997257d-dfb6-445b-929c-cbe2ab182818',
-    );
-    $response = $sdk->webhooksV1->testConfig($request);
-
-    if ($response->attemptResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->attemptResponse !== null) {
+    // handle response
 }
 ```
 
@@ -399,7 +409,70 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\WebhooksErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+
+## updateConfig
+
+Update a webhooks config by ID.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdateConfigRequest(
+    configUser: new Shared\ConfigUser(
+        endpoint: 'https://example.com',
+        eventTypes: [
+            'TYPE1',
+            'TYPE2',
+        ],
+        name: 'customer_payment',
+        secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
+    ),
+    id: '4997257d-dfb6-445b-929c-cbe2ab182818',
+);
+
+$response = $sdk->webhooks->v1->updateConfig(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\UpdateConfigRequest](../../Models/Operations/UpdateConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+### Response
+
+**[?Operations\UpdateConfigResponse](../../Models/Operations/UpdateConfigResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\WebhooksErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |

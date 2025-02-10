@@ -13,14 +13,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateTransactionRequest
 {
     /**
-     * Use an idempotency key
-     *
-     * @var ?string $idempotencyKey
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
-    public ?string $idempotencyKey = null;
-
-    /**
      * The request body must contain at least one of the following objects:
      *
      *   - `postings`: suitable for simple transactions
@@ -33,14 +25,6 @@ class V2CreateTransactionRequest
     public Shared\V2PostTransaction $v2PostTransaction;
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
-     *
-     * @var ?bool $dryRun
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
-    public ?bool $dryRun = null;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -49,16 +33,43 @@ class V2CreateTransactionRequest
     public string $ledger;
 
     /**
+     * Use an idempotency key
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     *
+     * @var ?bool $dryRun
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=dryRun')]
+    public ?bool $dryRun = null;
+
+    /**
+     * Disable balance checks when passing postings
+     *
+     * @var ?bool $force
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
+    public ?bool $force = null;
+
+    /**
      * @param  Shared\V2PostTransaction  $v2PostTransaction
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
+     * @param  ?bool  $force
+     * @phpstan-pure
      */
-    public function __construct(Shared\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
+    public function __construct(Shared\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?bool $force = null)
     {
         $this->v2PostTransaction = $v2PostTransaction;
         $this->ledger = $ledger;
         $this->idempotencyKey = $idempotencyKey;
         $this->dryRun = $dryRun;
+        $this->force = $force;
     }
 }

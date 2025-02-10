@@ -19,13 +19,6 @@ class ReadStatsResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\StatsResponse $statsResponse
-     */
-    public ?Shared\StatsResponse $statsResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ReadStatsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\StatsResponse $statsResponse
+     */
+    public ?Shared\StatsResponse $statsResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\StatsResponse  $statsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\StatsResponse $statsResponse = null)
     {

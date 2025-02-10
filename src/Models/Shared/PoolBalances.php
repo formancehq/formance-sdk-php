@@ -16,12 +16,13 @@ class PoolBalances
      *
      * @var array<PoolBalance> $balances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\PoolBalance>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\PoolBalance>')]
     public array $balances;
 
     /**
      * @param  array<PoolBalance>  $balances
+     * @phpstan-pure
      */
     public function __construct(array $balances)
     {

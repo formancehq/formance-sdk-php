@@ -19,13 +19,6 @@ class UpdateMappingResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\MappingResponse $mappingResponse
-     */
-    public ?Shared\MappingResponse $mappingResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class UpdateMappingResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\MappingResponse $mappingResponse
+     */
+    public ?Shared\MappingResponse $mappingResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\MappingResponse  $mappingResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\MappingResponse $mappingResponse = null)
     {

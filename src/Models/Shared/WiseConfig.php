@@ -15,14 +15,14 @@ class WiseConfig
      *
      * @var string $apiKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
     public string $apiKey;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -32,16 +32,17 @@ class WiseConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      * @param  string  $apiKey
      * @param  string  $name
      * @param  ?string  $pollingPeriod
+     * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $name, ?string $pollingPeriod = '120s')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;

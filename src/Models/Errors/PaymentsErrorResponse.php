@@ -17,20 +17,21 @@ class PaymentsErrorResponse
      *
      * @var Shared\PaymentsErrorsEnum $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsErrorsEnum')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentsErrorsEnum')]
     public Shared\PaymentsErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
      * @param  Shared\PaymentsErrorsEnum  $errorCode
      * @param  string  $errorMessage
+     * @phpstan-pure
      */
     public function __construct(Shared\PaymentsErrorsEnum $errorCode, string $errorMessage)
     {

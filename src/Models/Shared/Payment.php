@@ -16,132 +16,132 @@ class Payment
      *
      * @var array<PaymentAdjustment> $adjustments
      */
-    #[\JMS\Serializer\Annotation\SerializedName('adjustments')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\PaymentAdjustment>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\PaymentAdjustment>')]
     public array $adjustments;
 
     /**
      *
-     * @var int $amount
+     * @var \Brick\Math\BigInteger $amount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public \Brick\Math\BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\JMS\Serializer\Annotation\SerializedName('asset')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $destinationAccountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
     public string $destinationAccountID;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var int $initialAmount
+     * @var \Brick\Math\BigInteger $initialAmount
      */
-    #[\JMS\Serializer\Annotation\SerializedName('initialAmount')]
-    public int $initialAmount;
-
-    /**
-     * $metadata
-     *
-     * @var ?array<string, string> $metadata
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>|null')]
-    public ?array $metadata;
-
-    /**
-     *
-     * @var ?Connector $provider
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('provider')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?Connector $provider = null;
-
-    /**
-     *
-     * @var ?Raw $raw
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('raw')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Raw|null')]
-    public ?Raw $raw;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('initialAmount')]
+    public \Brick\Math\BigInteger $initialAmount;
 
     /**
      *
      * @var string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var PaymentScheme $scheme
      */
-    #[\JMS\Serializer\Annotation\SerializedName('scheme')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentScheme')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentScheme')]
     public PaymentScheme $scheme;
 
     /**
      *
      * @var string $sourceAccountID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
     public string $sourceAccountID;
 
     /**
      *
      * @var PaymentStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
     public PaymentStatus $status;
 
     /**
      *
      * @var PaymentType $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentType')]
     public PaymentType $type;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    public ?array $metadata;
+
+    /**
+     *
+     * @var ?Connector $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Connector $provider = null;
+
+    /**
+     *
+     * @var ?Raw $raw
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Raw|null')]
+    public ?Raw $raw;
+
+    /**
      * @param  array<PaymentAdjustment>  $adjustments
-     * @param  int  $amount
+     * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $destinationAccountID
      * @param  string  $id
-     * @param  int  $initialAmount
+     * @param  \Brick\Math\BigInteger  $initialAmount
      * @param  string  $reference
      * @param  PaymentScheme  $scheme
      * @param  string  $sourceAccountID
@@ -150,8 +150,9 @@ class Payment
      * @param  ?array<string, string>  $metadata
      * @param  ?Connector  $provider
      * @param  ?Raw  $raw
+     * @phpstan-pure
      */
-    public function __construct(array $adjustments, int $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, int $initialAmount, string $reference, PaymentScheme $scheme, string $sourceAccountID, PaymentStatus $status, PaymentType $type, ?array $metadata = null, ?Connector $provider = null, ?Raw $raw = null)
+    public function __construct(array $adjustments, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, PaymentScheme $scheme, string $sourceAccountID, PaymentStatus $status, PaymentType $type, ?array $metadata = null, ?Connector $provider = null, ?Raw $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->amount = $amount;

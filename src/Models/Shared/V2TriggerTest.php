@@ -15,9 +15,9 @@ class V2TriggerTest
      *
      * @var ?Filter $filter
      */
-    #[\JMS\Serializer\Annotation\SerializedName('filter')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Filter|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filter')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Filter|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Filter $filter = null;
 
     /**
@@ -25,14 +25,15 @@ class V2TriggerTest
      *
      * @var ?array<string, Variables> $variables
      */
-    #[\JMS\Serializer\Annotation\SerializedName('variables')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Variables>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('variables')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Variables>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $variables = null;
 
     /**
      * @param  ?Filter  $filter
      * @param  ?array<string, Variables>  $variables
+     * @phpstan-pure
      */
     public function __construct(?Filter $filter = null, ?array $variables = null)
     {

@@ -14,6 +14,13 @@ class CreditWalletRequest
 {
     /**
      *
+     * @var string $id
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    public string $id;
+
+    /**
+     *
      * @var ?Shared\CreditWalletRequest $creditWalletRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
@@ -28,16 +35,10 @@ class CreditWalletRequest
     public ?string $idempotencyKey = null;
 
     /**
-     *
-     * @var string $id
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public string $id;
-
-    /**
      * @param  string  $id
      * @param  ?Shared\CreditWalletRequest  $creditWalletRequest
      * @param  ?string  $idempotencyKey
+     * @phpstan-pure
      */
     public function __construct(string $id, ?Shared\CreditWalletRequest $creditWalletRequest = null, ?string $idempotencyKey = null)
     {

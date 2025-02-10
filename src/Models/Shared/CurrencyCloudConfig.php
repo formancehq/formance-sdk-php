@@ -15,40 +15,40 @@ class CurrencyCloudConfig
      *
      * @var string $apiKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
     public string $apiKey;
-
-    /**
-     * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
-     *
-     * @var ?string $endpoint
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $endpoint = null;
 
     /**
      * Username of the API Key holder
      *
      * @var string $loginID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('loginID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('loginID')]
     public string $loginID;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
+     *
+     * @var ?string $endpoint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $endpoint = null;
 
     /**
      * The frequency at which the connector will fetch transactions
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -57,8 +57,9 @@ class CurrencyCloudConfig
      * @param  string  $name
      * @param  ?string  $endpoint
      * @param  ?string  $pollingPeriod
+     * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s')
     {
         $this->apiKey = $apiKey;
         $this->loginID = $loginID;

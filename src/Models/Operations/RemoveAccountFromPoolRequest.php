@@ -30,6 +30,7 @@ class RemoveAccountFromPoolRequest
     /**
      * @param  string  $accountId
      * @param  string  $poolId
+     * @phpstan-pure
      */
     public function __construct(string $accountId, string $poolId)
     {

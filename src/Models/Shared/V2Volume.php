@@ -13,32 +13,33 @@ class V2Volume
 {
     /**
      *
-     * @var ?int $balance
+     * @var \Brick\Math\BigInteger $input
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balance')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?int $balance = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    public \Brick\Math\BigInteger $input;
 
     /**
      *
-     * @var int $input
+     * @var \Brick\Math\BigInteger $output
      */
-    #[\JMS\Serializer\Annotation\SerializedName('input')]
-    public int $input;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
+    public \Brick\Math\BigInteger $output;
 
     /**
      *
-     * @var int $output
+     * @var ?\Brick\Math\BigInteger $balance
      */
-    #[\JMS\Serializer\Annotation\SerializedName('output')]
-    public int $output;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\Brick\Math\BigInteger $balance = null;
 
     /**
-     * @param  int  $input
-     * @param  int  $output
-     * @param  ?int  $balance
+     * @param  \Brick\Math\BigInteger  $input
+     * @param  \Brick\Math\BigInteger  $output
+     * @param  ?\Brick\Math\BigInteger  $balance
+     * @phpstan-pure
      */
-    public function __construct(int $input, int $output, ?int $balance = null)
+    public function __construct(\Brick\Math\BigInteger $input, \Brick\Math\BigInteger $output, ?\Brick\Math\BigInteger $balance = null)
     {
         $this->input = $input;
         $this->output = $output;

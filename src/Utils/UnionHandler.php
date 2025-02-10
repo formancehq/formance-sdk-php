@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
-use JMS\Serializer\Context;
-use JMS\Serializer\DeserializationContext;
-use JMS\Serializer\Exception\NonFloatCastableTypeException;
-use JMS\Serializer\Exception\NonIntCastableTypeException;
-use JMS\Serializer\Exception\NonStringCastableTypeException;
-use JMS\Serializer\Exception\NonVisitableTypeException;
-use JMS\Serializer\Exception\PropertyMissingException;
-use JMS\Serializer\Exception\RuntimeException;
-use JMS\Serializer\GraphNavigatorInterface;
-use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use JMS\Serializer\SerializationContext;
-use JMS\Serializer\Visitor\DeserializationVisitorInterface;
-use JMS\Serializer\Visitor\SerializationVisitorInterface;
+use Speakeasy\Serializer\Context;
+use Speakeasy\Serializer\DeserializationContext;
+use Speakeasy\Serializer\Exception\NonFloatCastableTypeException;
+use Speakeasy\Serializer\Exception\NonIntCastableTypeException;
+use Speakeasy\Serializer\Exception\NonStringCastableTypeException;
+use Speakeasy\Serializer\Exception\NonVisitableTypeException;
+use Speakeasy\Serializer\Exception\PropertyMissingException;
+use Speakeasy\Serializer\Exception\RuntimeException;
+use Speakeasy\Serializer\GraphNavigatorInterface;
+use Speakeasy\Serializer\Handler\SubscribingHandlerInterface;
+use Speakeasy\Serializer\SerializationContext;
+use Speakeasy\Serializer\Visitor\DeserializationVisitorInterface;
+use Speakeasy\Serializer\Visitor\SerializationVisitorInterface;
 
 final class UnionHandler implements SubscribingHandlerInterface
 {
@@ -72,26 +72,11 @@ final class UnionHandler implements SubscribingHandlerInterface
         if ($this->isPrimitiveType(gettype($data))) {
             return $this->matchSimpleType($data, $type, $context);
         } else {
-            if (is_array($data)) {
-                if (array_is_list($data) && ! empty($data)) {
-                    $innerType = gettype($data[0]);
-                    if ($innerType === 'object') {
-                        $innerType = get_class($data[0]);
-                    }
-                    $resolvedType = [
-                        'name' => 'array',
-                        'params' => ['name' => $innerType, 'params' => []],
-                    ];
+            if (is_array($data) && ! empty($data)) {
+                if (array_is_list($data)) {
+                    return $this->matchArrayType($data, $type, $context);
                 } else {
-                    $keyType = gettype(array_key_first($data));
-                    $valueType = gettype($data[array_key_first($data)]);
-                    $resolvedType = [
-                        'name' => 'array',
-                        'params' => [
-                            ['name' => $keyType, 'params' => []],
-                            ['name' => $valueType, 'params' => []],
-                        ],
-                    ];
+                    return $this->matchAssociativeArrayType($data, $type, $context);
                 }
             } else {
                 $resolvedType = null;
@@ -112,7 +97,6 @@ final class UnionHandler implements SubscribingHandlerInterface
             return $context->getNavigator()->accept($data, $resolvedType);
         }
     }
-
     /**
      * @param  DeserializationVisitorInterface  $visitor
      * @param  mixed  $data
@@ -152,8 +136,7 @@ final class UnionHandler implements SubscribingHandlerInterface
 
             $typeToTry = $possibleType['name'];
             if ($typeToTry === 'array') {
-                $typeNames = array_map(fn ($t) => $t['name'], $possibleType['params']);
-                $typeToTry = 'array<'.implode(', ', $typeNames).'>';
+                $typeToTry = $this->resolveArrayTypes($possibleType);
             }
             if ($typeToTry === 'enum') {
                 $typeToTry = $possibleType['params'][0]['name'];
@@ -187,6 +170,8 @@ final class UnionHandler implements SubscribingHandlerInterface
             } catch (NonIntCastableTypeException $e) {
                 continue;
             } catch (NonFloatCastableTypeException $e) {
+                continue;
+            } catch (\Brick\Math\Exception\NumberFormatException $e) {
                 continue;
             } catch (RuntimeException $e) {
                 continue;
@@ -231,6 +216,85 @@ final class UnionHandler implements SubscribingHandlerInterface
         }
 
         return null;
+    }
+
+    /**
+     * @param  mixed  $data
+     * @param  array<string, mixed>  $type
+     * @param  Context  $context
+     */
+    private function matchArrayType(mixed $data, array $type, Context $context): mixed
+    {
+        $dataType = gettype($data[0]);
+        if ($dataType === 'object') {
+            $dataType = get_class($data[0]);
+        }
+
+        foreach ($type['params'] as $possibleType) {
+            $isNotArray = $possibleType['name'] != 'array';
+            $isNotListArray = $possibleType['name'] == 'array' && count($possibleType['params']) > 1 && $possibleType['params'][0]['name'] != 'integer';
+
+            if ($isNotArray || $isNotListArray) {
+                continue;
+            } else {
+                if (count($possibleType['params']) == 2) {
+                    $possibleValueType = $possibleType['params'][1]['name'];
+                } else {
+                    $possibleValueType = $possibleType['params'][0]['name'];
+                }
+
+                if ($possibleValueType == 'mixed' || $possibleValueType == $dataType) {
+                    return $context->getNavigator()->accept($data, $possibleType);
+                }
+            }
+        }
+
+        $resolvedType = [
+            'name' => 'array',
+            'params' => ['name' => $dataType, 'params' => []],
+        ];
+
+        return $context->getNavigator()->accept($data, $resolvedType);
+    }
+
+    /**
+     * @param  mixed  $data
+     * @param  array<string, mixed>  $type
+     * @param  Context  $context
+     */
+    private function matchAssociativeArrayType(mixed $data, array $type, Context $context): mixed
+    {
+        $keyType = gettype(array_key_first($data));
+        $value = $data[array_key_first($data)];
+        $valueType = gettype($value);
+        foreach ($type['params'] as $possibleType) {
+            $isNotArray = $possibleType['name'] != 'array';
+            $isNotAssociativeArray = $possibleType['name'] == 'array' && (count($possibleType['params']) < 2 || $possibleType['params'][0]['name'] != 'string');
+
+            if ($isNotArray || $isNotAssociativeArray) {
+                continue;
+            } else {
+                $possibleValueType = $possibleType['params'][1]['name'];
+
+                if ($valueType == 'object') {
+                    $valueType = get_class($value);
+                }
+
+                if ($possibleValueType == 'mixed' || $possibleValueType == $valueType) {
+                    return $context->getNavigator()->accept($data, $possibleType);
+                }
+            }
+        }
+
+        $resolvedType = [
+            'name' => 'array',
+            'params' => [
+                ['name' => $keyType, 'params' => []],
+                ['name' => $valueType, 'params' => []],
+            ],
+        ];
+
+        return $context->getNavigator()->accept($data, $resolvedType);
     }
 
     /**
@@ -312,5 +376,27 @@ final class UnionHandler implements SubscribingHandlerInterface
         }
 
         return $type;
+    }
+
+
+    /**
+     * @param  array<string, mixed>  $possibleType
+     * @return string
+     */
+    private function resolveArrayTypes(array $possibleType): string
+    {
+        $typeNames = [];
+        foreach ($possibleType['params'] as $param) {
+
+            if ($param['name'] === 'union') {
+                $innerTypes = array_map(fn ($t) => $t['name'], $param['params']);
+                $typeNames[] = $typeToTry = implode('|', $innerTypes);
+            } else {
+                $typeNames[] = $param['name'];
+            }
+        }
+        $typeToTry = 'array<'.implode(', ', $typeNames).'>';
+
+        return $typeToTry;
     }
 }

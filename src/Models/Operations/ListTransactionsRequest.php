@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class ListTransactionsRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      *
      * @var ?string $account
@@ -58,14 +66,6 @@ class ListTransactionsRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=endTime,dateTimeFormat=Y-m-d\TH:i:s.up')]
     public ?\DateTime $endTime = null;
-
-    /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
 
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -124,6 +124,7 @@ class ListTransactionsRequest
      * @param  ?string  $reference
      * @param  ?string  $source
      * @param  ?\DateTime  $startTime
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $account = null, ?string $after = null, ?string $cursor = null, ?string $destination = null, ?\DateTime $endTime = null, ?array $metadata = null, ?int $pageSize = null, ?string $reference = null, ?string $source = null, ?\DateTime $startTime = null)
     {

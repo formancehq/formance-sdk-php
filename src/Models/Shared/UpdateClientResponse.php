@@ -15,13 +15,14 @@ class UpdateClientResponse
      *
      * @var ?Client $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Client|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Client|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?Client $data = null;
 
     /**
      * @param  ?Client  $data
+     * @phpstan-pure
      */
     public function __construct(?Client $data = null)
     {

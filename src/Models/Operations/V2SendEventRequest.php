@@ -12,13 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2SendEventRequest
 {
     /**
-     *
-     * @var ?V2SendEventRequestBody $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?V2SendEventRequestBody $requestBody = null;
-
-    /**
      * The instance id
      *
      * @var string $instanceID
@@ -27,8 +20,16 @@ class V2SendEventRequest
     public string $instanceID;
 
     /**
+     *
+     * @var ?V2SendEventRequestBody $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?V2SendEventRequestBody $requestBody = null;
+
+    /**
      * @param  string  $instanceID
      * @param  ?V2SendEventRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $instanceID, ?V2SendEventRequestBody $requestBody = null)
     {

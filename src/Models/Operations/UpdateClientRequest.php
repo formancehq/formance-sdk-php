@@ -13,13 +13,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateClientRequest
 {
     /**
-     *
-     * @var ?Shared\UpdateClientRequest $updateClientRequest
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\UpdateClientRequest $updateClientRequest = null;
-
-    /**
      * Client ID
      *
      * @var string $clientId
@@ -28,8 +21,16 @@ class UpdateClientRequest
     public string $clientId;
 
     /**
+     *
+     * @var ?Shared\UpdateClientRequest $updateClientRequest
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?Shared\UpdateClientRequest $updateClientRequest = null;
+
+    /**
      * @param  string  $clientId
      * @param  ?Shared\UpdateClientRequest  $updateClientRequest
+     * @phpstan-pure
      */
     public function __construct(string $clientId, ?Shared\UpdateClientRequest $updateClientRequest = null)
     {

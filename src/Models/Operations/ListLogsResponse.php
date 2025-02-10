@@ -19,13 +19,6 @@ class ListLogsResponse
     public string $contentType;
 
     /**
-     * OK
-     *
-     * @var ?Shared\LogsCursorResponse $logsCursorResponse
-     */
-    public ?Shared\LogsCursorResponse $logsCursorResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ListLogsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\LogsCursorResponse $logsCursorResponse
+     */
+    public ?Shared\LogsCursorResponse $logsCursorResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\LogsCursorResponse  $logsCursorResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\LogsCursorResponse $logsCursorResponse = null)
     {

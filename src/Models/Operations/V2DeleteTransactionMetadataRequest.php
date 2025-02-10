@@ -14,10 +14,10 @@ class V2DeleteTransactionMetadataRequest
     /**
      * Transaction ID.
      *
-     * @var int $id
+     * @var \Brick\Math\BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public int $id;
+    public \Brick\Math\BigInteger $id;
 
     /**
      * The key to remove.
@@ -36,11 +36,12 @@ class V2DeleteTransactionMetadataRequest
     public string $ledger;
 
     /**
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  string  $key
      * @param  string  $ledger
+     * @phpstan-pure
      */
-    public function __construct(int $id, string $key, string $ledger)
+    public function __construct(\Brick\Math\BigInteger $id, string $key, string $ledger)
     {
         $this->id = $id;
         $this->key = $key;

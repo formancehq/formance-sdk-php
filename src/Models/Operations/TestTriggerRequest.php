@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class TestTriggerRequest
 {
     /**
-     * $requestBody
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
-
-    /**
      * The trigger id
      *
      * @var string $triggerID
@@ -28,8 +20,17 @@ class TestTriggerRequest
     public string $triggerID;
 
     /**
+     * $requestBody
+     *
+     * @var ?array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody = null;
+
+    /**
      * @param  string  $triggerID
      * @param  ?array<string, mixed>  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $triggerID, ?array $requestBody = null)
     {

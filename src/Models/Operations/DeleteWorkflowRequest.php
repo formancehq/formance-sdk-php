@@ -21,6 +21,7 @@ class DeleteWorkflowRequest
 
     /**
      * @param  string  $flowId
+     * @phpstan-pure
      */
     public function __construct(string $flowId)
     {

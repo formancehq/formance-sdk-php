@@ -19,13 +19,6 @@ class ListClientsResponse
     public string $contentType;
 
     /**
-     * List of clients
-     *
-     * @var ?Shared\ListClientsResponse $listClientsResponse
-     */
-    public ?Shared\ListClientsResponse $listClientsResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ListClientsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * List of clients
+     *
+     * @var ?Shared\ListClientsResponse $listClientsResponse
+     */
+    public ?Shared\ListClientsResponse $listClientsResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ListClientsResponse  $listClientsResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ListClientsResponse $listClientsResponse = null)
     {

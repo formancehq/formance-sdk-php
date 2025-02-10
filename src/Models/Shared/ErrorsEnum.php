@@ -19,4 +19,5 @@ enum ErrorsEnum: string
     case CompilationFailed = 'COMPILATION_FAILED';
     case MetadataOverride = 'METADATA_OVERRIDE';
     case NotFound = 'NOT_FOUND';
+    case Timeout = 'TIMEOUT';
 }

@@ -15,29 +15,29 @@ class TransferInitiationPayments
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $error
      */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     public string $error;
 
     /**
      *
      * @var string $paymentID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('paymentID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentID')]
     public string $paymentID;
 
     /**
      *
      * @var TransferInitiationStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationStatus')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationStatus')]
     public TransferInitiationStatus $status;
 
     /**
@@ -45,6 +45,7 @@ class TransferInitiationPayments
      * @param  string  $error
      * @param  string  $paymentID
      * @param  TransferInitiationStatus  $status
+     * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $error, string $paymentID, TransferInitiationStatus $status)
     {

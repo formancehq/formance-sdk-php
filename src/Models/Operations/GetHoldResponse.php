@@ -19,13 +19,6 @@ class GetHoldResponse
     public string $contentType;
 
     /**
-     * Holds
-     *
-     * @var ?Shared\GetHoldResponse $getHoldResponse
-     */
-    public ?Shared\GetHoldResponse $getHoldResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class GetHoldResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Holds
+     *
+     * @var ?Shared\GetHoldResponse $getHoldResponse
+     */
+    public ?Shared\GetHoldResponse $getHoldResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\GetHoldResponse  $getHoldResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetHoldResponse $getHoldResponse = null)
     {

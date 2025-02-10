@@ -19,13 +19,6 @@ class ReadTriggerResponse
     public string $contentType;
 
     /**
-     * A specific trigger
-     *
-     * @var ?Shared\ReadTriggerResponse $readTriggerResponse
-     */
-    public ?Shared\ReadTriggerResponse $readTriggerResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class ReadTriggerResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * A specific trigger
+     *
+     * @var ?Shared\ReadTriggerResponse $readTriggerResponse
+     */
+    public ?Shared\ReadTriggerResponse $readTriggerResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\ReadTriggerResponse  $readTriggerResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ReadTriggerResponse $readTriggerResponse = null)
     {

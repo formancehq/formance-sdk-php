@@ -12,6 +12,13 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class VoidHoldRequest
 {
     /**
+     *
+     * @var string $holdId
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
+    public string $holdId;
+
+    /**
      * Use an idempotency key
      *
      * @var ?string $idempotencyKey
@@ -20,15 +27,9 @@ class VoidHoldRequest
     public ?string $idempotencyKey = null;
 
     /**
-     *
-     * @var string $holdId
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=hold_id')]
-    public string $holdId;
-
-    /**
      * @param  string  $holdId
      * @param  ?string  $idempotencyKey
+     * @phpstan-pure
      */
     public function __construct(string $holdId, ?string $idempotencyKey = null)
     {

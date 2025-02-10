@@ -13,16 +13,34 @@ class Security
 {
     /**
      *
-     * @var ?string $authorization
+     * @var ?string $clientID
      */
-    #[SpeakeasyMetadata('security:scheme=true,type=oauth2,name=Authorization')]
-    public ?string $authorization = null;
+    #[SpeakeasyMetadata('security:scheme=true,type=oauth2,subtype=client_credentials,name=clientID')]
+    public ?string $clientID = null;
 
     /**
-     * @param  ?string  $authorization
+     *
+     * @var ?string $clientSecret
      */
-    public function __construct(?string $authorization = null)
+    #[SpeakeasyMetadata('security:scheme=true,type=oauth2,subtype=client_credentials,name=clientSecret')]
+    public ?string $clientSecret = null;
+
+    /**
+     *
+     * @var ?string $tokenURL
+     */
+    public ?string $tokenURL = null;
+
+    /**
+     * @param  ?string  $clientID
+     * @param  ?string  $clientSecret
+     * @param  ?string  $tokenURL
+     * @phpstan-pure
+     */
+    public function __construct(?string $clientID = null, ?string $clientSecret = null, ?string $tokenURL = '/api/auth/oauth/token')
     {
-        $this->authorization = $authorization;
+        $this->clientID = $clientID;
+        $this->clientSecret = $clientSecret;
+        $this->tokenURL = $tokenURL;
     }
 }

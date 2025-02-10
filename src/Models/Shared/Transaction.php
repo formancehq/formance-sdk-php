@@ -12,76 +12,77 @@ namespace formance\stack\Models\Shared;
 class Transaction
 {
     /**
-     * $metadata
+     * $postings
      *
-     * @var ?array<string, mixed> $metadata
+     * @var array<Posting> $postings
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $metadata = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
+    public array $postings;
+
+    /**
+     *
+     * @var \DateTime $timestamp
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    public \DateTime $timestamp;
+
+    /**
+     *
+     * @var \Brick\Math\BigInteger $txid
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('txid')]
+    public \Brick\Math\BigInteger $txid;
 
     /**
      * $postCommitVolumes
      *
      * @var ?array<string, array<string, Volume>> $postCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $postCommitVolumes = null;
-
-    /**
-     * $postings
-     *
-     * @var array<Posting> $postings
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Posting>')]
-    public array $postings;
 
     /**
      * $preCommitVolumes
      *
      * @var ?array<string, array<string, Volume>> $preCommitVolumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
 
     /**
+     * $metadata
      *
-     * @var \DateTime $timestamp
+     * @var ?array<string, mixed> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
-    public \DateTime $timestamp;
-
-    /**
-     *
-     * @var int $txid
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('txid')]
-    public int $txid;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
 
     /**
      * @param  array<Posting>  $postings
      * @param  \DateTime  $timestamp
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
      * @param  ?array<string, array<string, Volume>>  $postCommitVolumes
      * @param  ?array<string, array<string, Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?array<string, mixed>  $metadata
+     * @phpstan-pure
      */
-    public function __construct(array $postings, \DateTime $timestamp, int $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
+    public function __construct(array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
     {
         $this->postings = $postings;
         $this->timestamp = $timestamp;

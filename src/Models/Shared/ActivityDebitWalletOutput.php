@@ -15,12 +15,13 @@ class ActivityDebitWalletOutput
      *
      * @var Hold $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Hold')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Hold')]
     public Hold $data;
 
     /**
      * @param  Hold  $data
+     * @phpstan-pure
      */
     public function __construct(Hold $data)
     {

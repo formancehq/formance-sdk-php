@@ -30,6 +30,7 @@ class V2DeleteLedgerMetadataRequest
     /**
      * @param  string  $key
      * @param  string  $ledger
+     * @phpstan-pure
      */
     public function __construct(string $key, string $ledger)
     {

@@ -15,12 +15,13 @@ class GetHoldsResponse
      *
      * @var GetHoldsResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\GetHoldsResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\GetHoldsResponseCursor')]
     public GetHoldsResponseCursor $cursor;
 
     /**
      * @param  GetHoldsResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(GetHoldsResponseCursor $cursor)
     {

@@ -15,81 +15,83 @@ class TaskStripe
      *
      * @var string $connectorID
      */
-    #[\JMS\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var TaskStripeDescriptor $descriptor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('descriptor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStripeDescriptor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('descriptor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStripeDescriptor')]
     public TaskStripeDescriptor $descriptor;
-
-    /**
-     *
-     * @var ?string $error
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
 
     /**
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var TaskStripeState $state
+     * @var TaskStatus $status
      */
-    #[\JMS\Serializer\Annotation\SerializedName('state')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStripeState')]
-    public TaskStripeState $state;
-
-    /**
-     *
-     * @var PaymentStatus $status
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('status')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
-    public PaymentStatus $status;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStatus')]
+    public TaskStatus $status;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
+
+    /**
+     *
+     * @var ?TaskStripeState $state
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TaskStripeState|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TaskStripeState $state = null;
 
     /**
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  TaskStripeDescriptor  $descriptor
      * @param  string  $id
-     * @param  TaskStripeState  $state
-     * @param  PaymentStatus  $status
+     * @param  TaskStatus  $status
      * @param  \DateTime  $updatedAt
      * @param  ?string  $error
+     * @param  ?TaskStripeState  $state
+     * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, TaskStripeDescriptor $descriptor, string $id, TaskStripeState $state, PaymentStatus $status, \DateTime $updatedAt, ?string $error = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, TaskStripeDescriptor $descriptor, string $id, TaskStatus $status, \DateTime $updatedAt, ?string $error = null, ?TaskStripeState $state = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->descriptor = $descriptor;
         $this->id = $id;
-        $this->state = $state;
         $this->status = $status;
         $this->updatedAt = $updatedAt;
         $this->error = $error;
+        $this->state = $state;
     }
 }

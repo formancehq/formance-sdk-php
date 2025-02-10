@@ -22,16 +22,17 @@ class GetTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var int $txid
+     * @var \Brick\Math\BigInteger $txid
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
-    public int $txid;
+    public \Brick\Math\BigInteger $txid;
 
     /**
      * @param  string  $ledger
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
+     * @phpstan-pure
      */
-    public function __construct(string $ledger, int $txid)
+    public function __construct(string $ledger, \Brick\Math\BigInteger $txid)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

@@ -12,13 +12,6 @@ use formance\stack\Models\Shared;
 class GetBalancesResponse
 {
     /**
-     * OK
-     *
-     * @var ?Shared\BalancesCursorResponse $balancesCursorResponse
-     */
-    public ?Shared\BalancesCursorResponse $balancesCursorResponse = null;
-
-    /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
@@ -40,10 +33,18 @@ class GetBalancesResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\BalancesCursorResponse $balancesCursorResponse
+     */
+    public ?Shared\BalancesCursorResponse $balancesCursorResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\BalancesCursorResponse  $balancesCursorResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\BalancesCursorResponse $balancesCursorResponse = null)
     {

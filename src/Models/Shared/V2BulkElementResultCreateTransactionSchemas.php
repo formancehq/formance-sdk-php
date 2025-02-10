@@ -15,24 +15,34 @@ class V2BulkElementResultCreateTransactionSchemas
      *
      * @var V2Transaction $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Transaction')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2Transaction')]
     public V2Transaction $data;
+
+    /**
+     *
+     * @var int $logID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('logID')]
+    public int $logID;
 
     /**
      *
      * @var string $responseType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('responseType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
     public string $responseType;
 
     /**
      * @param  V2Transaction  $data
+     * @param  int  $logID
      * @param  string  $responseType
+     * @phpstan-pure
      */
-    public function __construct(V2Transaction $data, string $responseType)
+    public function __construct(V2Transaction $data, int $logID, string $responseType)
     {
         $this->data = $data;
+        $this->logID = $logID;
         $this->responseType = $responseType;
     }
 }

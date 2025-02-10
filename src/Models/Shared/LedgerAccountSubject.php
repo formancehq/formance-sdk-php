@@ -15,19 +15,20 @@ class LedgerAccountSubject
      *
      * @var string $identifier
      */
-    #[\JMS\Serializer\Annotation\SerializedName('identifier')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
     public string $identifier;
 
     /**
      *
      * @var string $type
      */
-    #[\JMS\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     public string $type;
 
     /**
      * @param  string  $identifier
      * @param  string  $type
+     * @phpstan-pure
      */
     public function __construct(string $identifier, string $type)
     {

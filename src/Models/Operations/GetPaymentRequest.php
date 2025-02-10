@@ -21,6 +21,7 @@ class GetPaymentRequest
 
     /**
      * @param  string  $paymentId
+     * @phpstan-pure
      */
     public function __construct(string $paymentId)
     {

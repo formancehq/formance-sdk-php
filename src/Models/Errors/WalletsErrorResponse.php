@@ -8,29 +8,28 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Errors;
 
-
 use formance\stack\Utils;
-/** WalletsErrorResponse - Error */
 class WalletsErrorResponse
 {
     /**
      *
      * @var SchemasWalletsErrorResponseErrorCode $errorCode
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorCode')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Errors\SchemasWalletsErrorResponseErrorCode')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Errors\SchemasWalletsErrorResponseErrorCode')]
     public SchemasWalletsErrorResponseErrorCode $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\JMS\Serializer\Annotation\SerializedName('errorMessage')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
      * @param  SchemasWalletsErrorResponseErrorCode  $errorCode
      * @param  string  $errorMessage
+     * @phpstan-pure
      */
     public function __construct(SchemasWalletsErrorResponseErrorCode $errorCode, string $errorMessage)
     {

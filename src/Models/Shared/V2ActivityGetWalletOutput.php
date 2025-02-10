@@ -15,12 +15,13 @@ class V2ActivityGetWalletOutput
      *
      * @var V2WalletWithBalances $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WalletWithBalances')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2WalletWithBalances')]
     public V2WalletWithBalances $data;
 
     /**
      * @param  V2WalletWithBalances  $data
+     * @phpstan-pure
      */
     public function __construct(V2WalletWithBalances $data)
     {

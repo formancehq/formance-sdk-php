@@ -15,12 +15,13 @@ class AccountsCursorResponse
      *
      * @var AccountsCursorResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\AccountsCursorResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\AccountsCursorResponseCursor')]
     public AccountsCursorResponseCursor $cursor;
 
     /**
      * @param  AccountsCursorResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(AccountsCursorResponseCursor $cursor)
     {

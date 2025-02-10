@@ -9,18 +9,20 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** TransferResponse - OK */
 class TransferResponse
 {
     /**
      *
      * @var ?string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $id = null;
 
     /**
      * @param  ?string  $id
+     * @phpstan-pure
      */
     public function __construct(?string $id = null)
     {

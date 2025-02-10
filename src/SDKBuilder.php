@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace formance\stack;
 
+use formance\stack\Utils\Retry;
+
 /**
  * SDKBuilder is used to configure and build an instance of the SDK.
  */
@@ -26,7 +28,7 @@ class SDKBuilder
      */
     public function setClient(\GuzzleHttp\ClientInterface $client): SDKBuilder
     {
-        $this->sdkConfig->defaultClient = $client;
+        $this->sdkConfig->client = $client;
 
         return $this;
     }
@@ -34,15 +36,12 @@ class SDKBuilder
     /**
      * setSecurity is used to configure the security required for the SDK.
      *
-     * @param  string  $authorization
+     * @param  Models\Shared\Security  $security
      * @return SDKBuilder
      */
-    public function setSecurity(string $authorization): SDKBuilder
+    public function setSecurity(Models\Shared\Security $security): SDKBuilder
     {
-        $security = new Models\Shared\Security(
-            authorization: $authorization
-        );
-        $this->sdkConfig->security = $security;
+        $this->sdkConfig->securitySource = fn () => $security;
 
         return $this;
     }
@@ -51,7 +50,7 @@ class SDKBuilder
      * setSecuritySource is usd to configure the security required for the SDK.
      * unlike setSecurity, setSecuritySource accepts a closure that will be called to retrieve the security information.
      *
-     * @param  pure-Closure(): string  $securitySource
+     * @param  pure-Closure(): Models\Shared\Security  $securitySource
      * @return SDKBuilder
      */
     public function setSecuritySource(\Closure $securitySource): SDKBuilder
@@ -124,6 +123,13 @@ class SDKBuilder
         return $this;
     }
 
+    public function setRetryConfig(Retry\RetryConfig $config): SDKBuilder
+    {
+        $this->sdkConfig->retryConfig = $config;
+
+        return $this;
+    }
+
     /**
      * build is used to build the SDK with any of the configured options.
      *
@@ -131,16 +137,13 @@ class SDKBuilder
      */
     public function build(): SDK
     {
-        if ($this->sdkConfig->defaultClient === null) {
-            $this->sdkConfig->defaultClient = new \GuzzleHttp\Client([
+        if ($this->sdkConfig->client === null) {
+            $this->sdkConfig->client = new \GuzzleHttp\Client([
                 'timeout' => 60,
             ]);
         }
         if ($this->sdkConfig->hasSecurity()) {
-            $this->sdkConfig->securityClient = Utils\Utils::configureSecurityClient($this->sdkConfig->defaultClient, $this->sdkConfig->getSecurity());
-        }
-        if ($this->sdkConfig->securityClient === null) {
-            $this->sdkConfig->securityClient = $this->sdkConfig->defaultClient;
+            $this->sdkConfig->client = Utils\Utils::configureSecurityClient($this->sdkConfig->client, $this->sdkConfig->getSecurity());
         }
 
         return new SDK($this->sdkConfig);

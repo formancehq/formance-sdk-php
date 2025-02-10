@@ -15,36 +15,36 @@ class OrchestrationAccount
      *
      * @var string $address
      */
-    #[\JMS\Serializer\Annotation\SerializedName('address')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
     public string $address;
-
-    /**
-     * $effectiveVolumes
-     *
-     * @var ?array<string, Volume> $effectiveVolumes
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?array $effectiveVolumes = null;
 
     /**
      * $metadata
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
+
+    /**
+     * $effectiveVolumes
+     *
+     * @var ?array<string, Volume> $effectiveVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $effectiveVolumes = null;
 
     /**
      * $volumes
      *
      * @var ?array<string, Volume> $volumes
      */
-    #[\JMS\Serializer\Annotation\SerializedName('volumes')]
-    #[\JMS\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Shared\Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $volumes = null;
 
     /**
@@ -52,6 +52,7 @@ class OrchestrationAccount
      * @param  array<string, string>  $metadata
      * @param  ?array<string, Volume>  $effectiveVolumes
      * @param  ?array<string, Volume>  $volumes
+     * @phpstan-pure
      */
     public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?array $volumes = null)
     {

@@ -1,4 +1,5 @@
 # SDKPaymentsV1
+(*payments->v1*)
 
 ## Overview
 
@@ -63,26 +64,28 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\AddAccountToPoolRequest(
+    addAccountToPoolRequest: new Shared\AddAccountToPoolRequest(
+        accountID: '<id>',
+    ),
+    poolId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->addAccountToPool(
+    request: $request
+);
 
-try {
-    $request = new Operations\AddAccountToPoolRequest(
-        addAccountToPoolRequest: new Shared\AddAccountToPoolRequest(
-            accountID: '<value>',
-        ),
-        poolId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->addAccountToPool($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -98,11 +101,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## connectorsTransfer
 
@@ -115,33 +117,36 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ConnectorsTransferRequest(
+    transferRequest: new Shared\TransferRequest(
+        amount: BigInteger::of('100'),
+        asset: 'USD',
+        destination: 'acct_1Gqj58KZcSIg2N2q',
+        source: 'acct_1Gqj58KZcSIg2N2q',
+    ),
+    connector: Shared\Connector::BankingCircle,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->connectorsTransfer(
+    request: $request
+);
 
-try {
-    $request = new Operations\ConnectorsTransferRequest(
-        transferRequest: new Shared\TransferRequest(
-            amount: 100,
-            asset: 'USD',
-            destination: 'acct_1Gqj58KZcSIg2N2q',
-            source: 'acct_1Gqj58KZcSIg2N2q',
-        ),
-        connector: Shared\Connector::BankingCircle,
-    );
-    $response = $sdk->paymentsV1->connectorsTransfer($request);
-
-    if ($response->transferResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->transferResponse !== null) {
+    // handle response
 }
 ```
 
@@ -157,11 +162,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## createAccount
 
@@ -178,26 +182,28 @@ use formance\stack;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\AccountRequest(
+    connectorID: '<id>',
+    createdAt: Utils\Utils::parseDateTime('2025-08-19T02:15:08.152Z'),
+    reference: '<value>',
+    type: Shared\AccountType::Internal,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->createAccount(
+    request: $request
+);
 
-try {
-    $request = new Shared\AccountRequest(
-        connectorID: '<value>',
-        createdAt: Utils\Utils::parseDateTime('2024-08-19T02:15:08.152Z'),
-        reference: '<value>',
-        type: Shared\AccountType::Internal,
-    );
-    $response = $sdk->paymentsV1->createAccount($request);
-
-    if ($response->paymentsAccountResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->paymentsAccountResponse !== null) {
+    // handle response
 }
 ```
 
@@ -213,11 +219,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## createBankAccount
 
@@ -233,25 +238,27 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\BankAccountRequest(
+    connectorID: '<id>',
+    country: 'GB',
+    name: 'My account',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->createBankAccount(
+    request: $request
+);
 
-try {
-    $request = new Shared\BankAccountRequest(
-        connectorID: '<value>',
-        country: 'GB',
-        name: 'My account',
-    );
-    $response = $sdk->paymentsV1->createBankAccount($request);
-
-    if ($response->bankAccountResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->bankAccountResponse !== null) {
+    // handle response
 }
 ```
 
@@ -267,11 +274,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## createPayment
 
@@ -284,34 +290,37 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\PaymentRequest(
+    amount: BigInteger::of('100'),
+    asset: 'USD',
+    connectorID: '<id>',
+    createdAt: Utils\Utils::parseDateTime('2025-11-09T01:03:21.011Z'),
+    reference: '<value>',
+    scheme: Shared\PaymentScheme::Molpay,
+    status: Shared\PaymentStatus::RefundedFailure,
+    type: Shared\PaymentType::Payout,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->createPayment(
+    request: $request
+);
 
-try {
-    $request = new Shared\PaymentRequest(
-        amount: 100,
-        asset: 'USD',
-        connectorID: '<value>',
-        createdAt: Utils\Utils::parseDateTime('2024-11-09T01:03:21.011Z'),
-        reference: '<value>',
-        scheme: Shared\PaymentScheme::Molpay,
-        status: Shared\PaymentStatus::RefundedFailure,
-        type: Shared\PaymentType::Payout,
-    );
-    $response = $sdk->paymentsV1->createPayment($request);
-
-    if ($response->paymentResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->paymentResponse !== null) {
+    // handle response
 }
 ```
 
@@ -327,11 +336,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## createPool
 
@@ -347,26 +355,28 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\PoolRequest(
+    accountIDs: [
+        '<value>',
+    ],
+    name: '<value>',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->createPool(
+    request: $request
+);
 
-try {
-    $request = new Shared\PoolRequest(
-        accountIDs: [
-            '<value>',
-        ],
-        name: '<value>',
-    );
-    $response = $sdk->paymentsV1->createPool($request);
-
-    if ($response->poolResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->poolResponse !== null) {
+    // handle response
 }
 ```
 
@@ -382,11 +392,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## createTransferInitiation
 
@@ -399,35 +408,38 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\TransferInitiationRequest(
+    amount: BigInteger::of('256698'),
+    asset: 'USD',
+    description: 'worthy pace vague ick liberalize between um',
+    destinationAccountID: '<id>',
+    reference: 'XXX',
+    scheduledAt: Utils\Utils::parseDateTime('2025-05-02T09:50:03.622Z'),
+    sourceAccountID: '<id>',
+    type: Shared\TransferInitiationRequestType::Payout,
+    validated: false,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->createTransferInitiation(
+    request: $request
+);
 
-try {
-    $request = new Shared\TransferInitiationRequest(
-        amount: 256698,
-        asset: 'USD',
-        description: 'Open-architected heuristic knowledge user',
-        destinationAccountID: '<value>',
-        reference: 'XXX',
-        scheduledAt: Utils\Utils::parseDateTime('2024-05-21T00:04:35.840Z'),
-        sourceAccountID: '<value>',
-        type: Shared\TransferInitiationRequestType::Payout,
-        validated: false,
-    );
-    $response = $sdk->paymentsV1->createTransferInitiation($request);
-
-    if ($response->transferInitiationResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->transferInitiationResponse !== null) {
+    // handle response
 }
 ```
 
@@ -443,11 +455,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## deletePool
 
@@ -464,23 +475,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeletePoolRequest(
+    poolId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->deletePool(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeletePoolRequest(
-        poolId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->deletePool($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -496,11 +509,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## deleteTransferInitiation
 
@@ -517,23 +529,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\DeleteTransferInitiationRequest(
+    transferId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->deleteTransferInitiation(
+    request: $request
+);
 
-try {
-    $request = new Operations\DeleteTransferInitiationRequest(
-        transferId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->deleteTransferInitiation($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -549,11 +563,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## forwardBankAccount
 
@@ -570,26 +583,28 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ForwardBankAccountRequest(
+    forwardBankAccountRequest: new Shared\ForwardBankAccountRequest(
+        connectorID: '<id>',
+    ),
+    bankAccountId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->forwardBankAccount(
+    request: $request
+);
 
-try {
-    $request = new Operations\ForwardBankAccountRequest(
-        forwardBankAccountRequest: new Shared\ForwardBankAccountRequest(
-            connectorID: '<value>',
-        ),
-        bankAccountId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->forwardBankAccount($request);
-
-    if ($response->bankAccountResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->bankAccountResponse !== null) {
+    // handle response
 }
 ```
 
@@ -605,11 +620,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getAccountBalances
 
@@ -626,29 +640,30 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetAccountBalancesRequest(
+    accountId: 'XXX',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getAccountBalances(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetAccountBalancesRequest(
-        accountId: 'XXX',
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        sort: [
-            'date:asc',
-            'status:desc',
-        ],
-    );
-    $response = $sdk->paymentsV1->getAccountBalances($request);
-
-    if ($response->balancesCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->balancesCursor !== null) {
+    // handle response
 }
 ```
 
@@ -664,11 +679,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getBankAccount
 
@@ -685,23 +699,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetBankAccountRequest(
+    bankAccountId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getBankAccount(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetBankAccountRequest(
-        bankAccountId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->getBankAccount($request);
-
-    if ($response->bankAccountResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->bankAccountResponse !== null) {
+    // handle response
 }
 ```
 
@@ -717,11 +733,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~getConnectorTask~~
 
@@ -740,24 +755,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetConnectorTaskRequest(
+    connector: Shared\Connector::Adyen,
+    taskId: 'task1',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getConnectorTask(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetConnectorTaskRequest(
-        connector: Shared\Connector::Adyen,
-        taskId: 'task1',
-    );
-    $response = $sdk->paymentsV1->getConnectorTask($request);
-
-    if ($response->taskResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->taskResponse !== null) {
+    // handle response
 }
 ```
 
@@ -773,11 +790,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getConnectorTaskV1
 
@@ -794,25 +810,27 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetConnectorTaskV1Request(
+    connector: Shared\Connector::BankingCircle,
+    connectorId: 'XXX',
+    taskId: 'task1',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getConnectorTaskV1(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetConnectorTaskV1Request(
-        connector: Shared\Connector::BankingCircle,
-        connectorId: 'XXX',
-        taskId: 'task1',
-    );
-    $response = $sdk->paymentsV1->getConnectorTaskV1($request);
-
-    if ($response->taskResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->taskResponse !== null) {
+    // handle response
 }
 ```
 
@@ -828,11 +846,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getPayment
 
@@ -849,23 +866,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetPaymentRequest(
+    paymentId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getPayment(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetPaymentRequest(
-        paymentId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->getPayment($request);
-
-    if ($response->paymentResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->paymentResponse !== null) {
+    // handle response
 }
 ```
 
@@ -881,11 +900,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getPool
 
@@ -902,23 +920,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetPoolRequest(
+    poolId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getPool(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetPoolRequest(
-        poolId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->getPool($request);
-
-    if ($response->poolResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->poolResponse !== null) {
+    // handle response
 }
 ```
 
@@ -934,11 +954,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getPoolBalances
 
@@ -956,24 +975,26 @@ use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetPoolBalancesRequest(
+    at: Utils\Utils::parseDateTime('2024-05-04T06:40:23.119Z'),
+    poolId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getPoolBalances(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetPoolBalancesRequest(
-        at: Utils\Utils::parseDateTime('2023-05-05T06:40:23.119Z'),
-        poolId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->getPoolBalances($request);
-
-    if ($response->poolBalancesResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->poolBalancesResponse !== null) {
+    // handle response
 }
 ```
 
@@ -989,11 +1010,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getTransferInitiation
 
@@ -1010,23 +1030,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetTransferInitiationRequest(
+    transferId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->getTransferInitiation(
+    request: $request
+);
 
-try {
-    $request = new Operations\GetTransferInitiationRequest(
-        transferId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->getTransferInitiation($request);
-
-    if ($response->transferInitiationResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->transferInitiationResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1042,11 +1064,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## installConnector
 
@@ -1063,28 +1084,29 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\InstallConnectorRequest(
+    connectorConfig: new Shared\WiseConfig(
+        apiKey: 'XXX',
+        name: 'My Wise Account',
+    ),
+    connector: Shared\Connector::Atlar,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->installConnector(
+    request: $request
+);
 
-try {
-    $request = new Operations\InstallConnectorRequest(
-        connectorConfig: new Shared\WiseConfig(
-            apiKey: 'XXX',
-            name: 'My Wise Account',
-            pollingPeriod: '60s',
-        ),
-        connector: Shared\Connector::Atlar,
-    );
-    $response = $sdk->paymentsV1->installConnector($request);
-
-    if ($response->connectorResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->connectorResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1100,11 +1122,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listAllConnectors
 
@@ -1120,20 +1141,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->payments->v1->listAllConnectors(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->paymentsV1->listAllConnectors();
-
-    if ($response->connectorsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->connectorsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1143,11 +1167,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listBankAccounts
 
@@ -1164,28 +1187,29 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListBankAccountsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->listBankAccounts(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListBankAccountsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        sort: [
-            'date:asc',
-            'status:desc',
-        ],
-    );
-    $response = $sdk->paymentsV1->listBankAccounts($request);
-
-    if ($response->bankAccountsCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->bankAccountsCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1201,11 +1225,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listConfigsAvailableConnectors
 
@@ -1221,20 +1244,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->payments->v1->listConfigsAvailableConnectors(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->paymentsV1->listConfigsAvailableConnectors();
-
-    if ($response->connectorsConfigsResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->connectorsConfigsResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1244,11 +1270,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~listConnectorTasks~~
 
@@ -1267,25 +1292,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListConnectorTasksRequest(
+    connector: Shared\Connector::Modulr,
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->listConnectorTasks(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListConnectorTasksRequest(
-        connector: Shared\Connector::Modulr,
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-    );
-    $response = $sdk->paymentsV1->listConnectorTasks($request);
-
-    if ($response->tasksCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->tasksCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1301,11 +1327,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listConnectorTasksV1
 
@@ -1322,26 +1347,27 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListConnectorTasksV1Request(
+    connector: Shared\Connector::BankingCircle,
+    connectorId: 'XXX',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->listConnectorTasksV1(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListConnectorTasksV1Request(
-        connector: Shared\Connector::BankingCircle,
-        connectorId: 'XXX',
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-    );
-    $response = $sdk->paymentsV1->listConnectorTasksV1($request);
-
-    if ($response->tasksCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->tasksCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1357,11 +1383,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listPayments
 
@@ -1378,28 +1403,29 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListPaymentsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->listPayments(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListPaymentsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        sort: [
-            'date:asc',
-            'status:desc',
-        ],
-    );
-    $response = $sdk->paymentsV1->listPayments($request);
-
-    if ($response->paymentsCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->paymentsCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1415,11 +1441,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listPools
 
@@ -1436,28 +1461,29 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListPoolsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->listPools(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListPoolsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        sort: [
-            'date:asc',
-            'status:desc',
-        ],
-    );
-    $response = $sdk->paymentsV1->listPools($request);
-
-    if ($response->poolsCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->poolsCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1473,11 +1499,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## listTransferInitiations
 
@@ -1494,28 +1519,29 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ListTransferInitiationsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->listTransferInitiations(
+    request: $request
+);
 
-try {
-    $request = new Operations\ListTransferInitiationsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        sort: [
-            'date:asc',
-            'status:desc',
-        ],
-    );
-    $response = $sdk->paymentsV1->listTransferInitiations($request);
-
-    if ($response->transferInitiationsCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->transferInitiationsCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1531,11 +1557,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## paymentsgetAccount
 
@@ -1552,23 +1577,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\PaymentsgetAccountRequest(
+    accountId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->paymentsgetAccount(
+    request: $request
+);
 
-try {
-    $request = new Operations\PaymentsgetAccountRequest(
-        accountId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->paymentsgetAccount($request);
-
-    if ($response->paymentsAccountResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->paymentsAccountResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1584,11 +1611,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## paymentsgetServerInfo
 
@@ -1604,20 +1630,23 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->payments->v1->paymentsgetServerInfo(
+
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
-
-try {
-    $response = $sdk->paymentsV1->paymentsgetServerInfo();
-
-    if ($response->serverInfo !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->serverInfo !== null) {
+    // handle response
 }
 ```
 
@@ -1627,11 +1656,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## paymentslistAccounts
 
@@ -1648,28 +1676,29 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\PaymentslistAccountsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->paymentslistAccounts(
+    request: $request
+);
 
-try {
-    $request = new Operations\PaymentslistAccountsRequest(
-        cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-        pageSize: 100,
-        sort: [
-            'date:asc',
-            'status:desc',
-        ],
-    );
-    $response = $sdk->paymentsV1->paymentslistAccounts($request);
-
-    if ($response->accountsCursor !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->accountsCursor !== null) {
+    // handle response
 }
 ```
 
@@ -1685,11 +1714,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~readConnectorConfig~~
 
@@ -1708,23 +1736,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReadConnectorConfigRequest(
+    connector: Shared\Connector::Generic,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->readConnectorConfig(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReadConnectorConfigRequest(
-        connector: Shared\Connector::Generic,
-    );
-    $response = $sdk->paymentsV1->readConnectorConfig($request);
-
-    if ($response->connectorConfigResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->connectorConfigResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1740,11 +1770,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## readConnectorConfigV1
 
@@ -1761,24 +1790,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReadConnectorConfigV1Request(
+    connector: Shared\Connector::CurrencyCloud,
+    connectorId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->readConnectorConfigV1(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReadConnectorConfigV1Request(
-        connector: Shared\Connector::CurrencyCloud,
-        connectorId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->readConnectorConfigV1($request);
-
-    if ($response->connectorConfigResponse !== null) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->connectorConfigResponse !== null) {
+    // handle response
 }
 ```
 
@@ -1794,11 +1825,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## removeAccountFromPool
 
@@ -1815,24 +1845,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\RemoveAccountFromPoolRequest(
+    accountId: 'XXX',
+    poolId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->removeAccountFromPool(
+    request: $request
+);
 
-try {
-    $request = new Operations\RemoveAccountFromPoolRequest(
-        accountId: 'XXX',
-        poolId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->removeAccountFromPool($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -1848,11 +1880,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~resetConnector~~
 
@@ -1873,23 +1904,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ResetConnectorRequest(
+    connector: Shared\Connector::Atlar,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->resetConnector(
+    request: $request
+);
 
-try {
-    $request = new Operations\ResetConnectorRequest(
-        connector: Shared\Connector::Atlar,
-    );
-    $response = $sdk->paymentsV1->resetConnector($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -1905,11 +1938,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## resetConnectorV1
 
@@ -1928,24 +1960,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ResetConnectorV1Request(
+    connector: Shared\Connector::Generic,
+    connectorId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->resetConnectorV1(
+    request: $request
+);
 
-try {
-    $request = new Operations\ResetConnectorV1Request(
-        connector: Shared\Connector::Generic,
-        connectorId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->resetConnectorV1($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -1961,11 +1995,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## retryTransferInitiation
 
@@ -1982,23 +2015,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\RetryTransferInitiationRequest(
+    transferId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->retryTransferInitiation(
+    request: $request
+);
 
-try {
-    $request = new Operations\RetryTransferInitiationRequest(
-        transferId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->retryTransferInitiation($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2014,11 +2049,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## reverseTransferInitiation
 
@@ -2031,36 +2065,39 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReverseTransferInitiationRequest(
+    reverseTransferInitiationRequest: new Shared\ReverseTransferInitiationRequest(
+        amount: BigInteger::of('327549'),
+        asset: 'USD',
+        description: 'till gosh how proselytise worriedly whoa',
+        reference: 'XXX',
+        metadata: [
+            'key' => '<value>',
+        ],
+    ),
+    transferId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->reverseTransferInitiation(
+    request: $request
+);
 
-try {
-    $request = new Operations\ReverseTransferInitiationRequest(
-        reverseTransferInitiationRequest: new Shared\ReverseTransferInitiationRequest(
-            amount: 327549,
-            asset: 'USD',
-            description: 'Multi-channelled responsive capability',
-            reference: 'XXX',
-            metadata: [
-                'key' => '<value>',
-            ],
-        ),
-        transferId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->reverseTransferInitiation($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2076,11 +2113,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## udpateTransferInitiationStatus
 
@@ -2097,26 +2133,28 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UdpateTransferInitiationStatusRequest(
+    updateTransferInitiationStatusRequest: new Shared\UpdateTransferInitiationStatusRequest(
+        status: Shared\Status::Validated,
+    ),
+    transferId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->udpateTransferInitiationStatus(
+    request: $request
+);
 
-try {
-    $request = new Operations\UdpateTransferInitiationStatusRequest(
-        updateTransferInitiationStatusRequest: new Shared\UpdateTransferInitiationStatusRequest(
-            status: Shared\Status::Validated,
-        ),
-        transferId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->udpateTransferInitiationStatus($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2132,11 +2170,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~uninstallConnector~~
 
@@ -2155,23 +2192,25 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UninstallConnectorRequest(
+    connector: Shared\Connector::Modulr,
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->uninstallConnector(
+    request: $request
+);
 
-try {
-    $request = new Operations\UninstallConnectorRequest(
-        connector: Shared\Connector::Modulr,
-    );
-    $response = $sdk->paymentsV1->uninstallConnector($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2187,11 +2226,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## uninstallConnectorV1
 
@@ -2208,24 +2246,26 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UninstallConnectorV1Request(
+    connector: Shared\Connector::Generic,
+    connectorId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->uninstallConnectorV1(
+    request: $request
+);
 
-try {
-    $request = new Operations\UninstallConnectorV1Request(
-        connector: Shared\Connector::Generic,
-        connectorId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->uninstallConnectorV1($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2241,11 +2281,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## updateBankAccountMetadata
 
@@ -2262,28 +2301,30 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdateBankAccountMetadataRequest(
+    updateBankAccountMetadataRequest: new Shared\UpdateBankAccountMetadataRequest(
+        metadata: [
+            'key' => '<value>',
+        ],
+    ),
+    bankAccountId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->updateBankAccountMetadata(
+    request: $request
+);
 
-try {
-    $request = new Operations\UpdateBankAccountMetadataRequest(
-        updateBankAccountMetadataRequest: new Shared\UpdateBankAccountMetadataRequest(
-            metadata: [
-                'key' => '<value>',
-            ],
-        ),
-        bankAccountId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->updateBankAccountMetadata($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2299,11 +2340,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## updateConnectorConfigV1
 
@@ -2320,30 +2360,30 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdateConnectorConfigV1Request(
+    connectorConfig: new Shared\StripeConfig(
+        apiKey: 'XXX',
+        name: 'My Stripe Account',
+    ),
+    connector: Shared\Connector::Adyen,
+    connectorId: 'XXX',
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->updateConnectorConfigV1(
+    request: $request
+);
 
-try {
-    $request = new Operations\UpdateConnectorConfigV1Request(
-        connectorConfig: new Shared\StripeConfig(
-            apiKey: 'XXX',
-            name: 'My Stripe Account',
-            pageSize: 50,
-            pollingPeriod: '60s',
-        ),
-        connector: Shared\Connector::Adyen,
-        connectorId: 'XXX',
-    );
-    $response = $sdk->paymentsV1->updateConnectorConfigV1($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2359,11 +2399,10 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
-
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## updateMetadata
 
@@ -2380,26 +2419,28 @@ use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
-$security = new Shared\Security(
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdateMetadataRequest(
+    paymentId: 'XXX',
+    requestBody: [
+        'key' => '<value>',
+    ],
 );
 
-$sdk = stack\SDK::builder()->setSecurity($security)->build();
+$response = $sdk->payments->v1->updateMetadata(
+    request: $request
+);
 
-try {
-    $request = new Operations\UpdateMetadataRequest(
-        paymentId: 'XXX',
-        requestBody: [
-            'key' => '<value>',
-        ],
-    );
-    $response = $sdk->paymentsV1->updateMetadata($request);
-
-    if ($response->statusCode === 200) {
-        // handle response
-    }
-} catch (Throwable $e) {
-    // handle exception
+if ($response->statusCode === 200) {
+    // handle response
 }
 ```
 
@@ -2415,7 +2456,7 @@ try {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| Errors\PaymentsErrorResponse              | default                                   | application/json                          |
-| formance\stack\Models\Errors.SDKException | 4xx-5xx                                   | */*                                       |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |

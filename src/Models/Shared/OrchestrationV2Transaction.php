@@ -16,8 +16,8 @@ class OrchestrationV2Transaction
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -25,40 +25,41 @@ class OrchestrationV2Transaction
      *
      * @var array<V2Posting> $postings
      */
-    #[\JMS\Serializer\Annotation\SerializedName('postings')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2Posting>')]
     public array $postings;
-
-    /**
-     *
-     * @var ?string $reference
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('reference')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $reference = null;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\JMS\Serializer\Annotation\SerializedName('timestamp')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
      *
-     * @var int $txid
+     * @var \Brick\Math\BigInteger $txid
      */
-    #[\JMS\Serializer\Annotation\SerializedName('txid')]
-    public int $txid;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('txid')]
+    public \Brick\Math\BigInteger $txid;
+
+    /**
+     *
+     * @var ?string $reference
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $reference = null;
 
     /**
      * @param  array<string, string>  $metadata
      * @param  array<V2Posting>  $postings
      * @param  \DateTime  $timestamp
-     * @param  int  $txid
+     * @param  \Brick\Math\BigInteger  $txid
      * @param  ?string  $reference
+     * @phpstan-pure
      */
-    public function __construct(array $metadata, array $postings, \DateTime $timestamp, int $txid, ?string $reference = null)
+    public function __construct(array $metadata, array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?string $reference = null)
     {
         $this->metadata = $metadata;
         $this->postings = $postings;

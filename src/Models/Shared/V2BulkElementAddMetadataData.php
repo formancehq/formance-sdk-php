@@ -16,32 +16,33 @@ class V2BulkElementAddMetadataData
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
      *
-     * @var string|int $targetId
+     * @var string|\Brick\Math\BigInteger $targetId
      */
-    #[\JMS\Serializer\Annotation\SerializedName('targetId')]
-    #[\JMS\Serializer\Annotation\Type('string|int')]
-    public string|int $targetId;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('targetId')]
+    #[\Speakeasy\Serializer\Annotation\Type('string|\Brick\Math\BigInteger')]
+    public string|\Brick\Math\BigInteger $targetId;
 
     /**
      *
      * @var V2TargetType $targetType
      */
-    #[\JMS\Serializer\Annotation\SerializedName('targetType')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2TargetType')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('targetType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2TargetType')]
     public V2TargetType $targetType;
 
     /**
      * @param  array<string, string>  $metadata
-     * @param  string|int  $targetId
+     * @param  string|\Brick\Math\BigInteger  $targetId
      * @param  V2TargetType  $targetType
+     * @phpstan-pure
      */
-    public function __construct(array $metadata, string|int $targetId, V2TargetType $targetType)
+    public function __construct(array $metadata, string|\Brick\Math\BigInteger $targetId, V2TargetType $targetType)
     {
         $this->metadata = $metadata;
         $this->targetId = $targetId;

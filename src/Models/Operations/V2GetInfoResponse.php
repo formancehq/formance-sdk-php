@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Errors;
 use formance\stack\Models\Shared;
 class V2GetInfoResponse
 {
@@ -43,18 +42,19 @@ class V2GetInfoResponse
     /**
      * Error
      *
-     * @var ?Errors\V2ErrorResponse $v2ErrorResponse
+     * @var ?Shared\V2ErrorResponse $v2ErrorResponse
      */
-    public ?Errors\V2ErrorResponse $v2ErrorResponse = null;
+    public ?Shared\V2ErrorResponse $v2ErrorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2ConfigInfoResponse  $v2ConfigInfoResponse
-     * @param  ?Errors\V2ErrorResponse  $v2ErrorResponse
+     * @param  ?Shared\V2ErrorResponse  $v2ErrorResponse
+     * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ConfigInfoResponse $v2ConfigInfoResponse = null, ?Errors\V2ErrorResponse $v2ErrorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ConfigInfoResponse $v2ConfigInfoResponse = null, ?Shared\V2ErrorResponse $v2ErrorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

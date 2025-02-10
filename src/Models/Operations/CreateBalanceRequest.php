@@ -14,6 +14,13 @@ class CreateBalanceRequest
 {
     /**
      *
+     * @var string $id
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    public string $id;
+
+    /**
+     *
      * @var ?Shared\CreateBalanceRequest $createBalanceRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
@@ -28,16 +35,10 @@ class CreateBalanceRequest
     public ?string $idempotencyKey = null;
 
     /**
-     *
-     * @var string $id
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public string $id;
-
-    /**
      * @param  string  $id
      * @param  ?Shared\CreateBalanceRequest  $createBalanceRequest
      * @param  ?string  $idempotencyKey
+     * @phpstan-pure
      */
     public function __construct(string $id, ?Shared\CreateBalanceRequest $createBalanceRequest = null, ?string $idempotencyKey = null)
     {

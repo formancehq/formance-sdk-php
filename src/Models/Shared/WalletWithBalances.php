@@ -15,15 +15,15 @@ class WalletWithBalances
      *
      * @var WalletWithBalancesBalances $balances
      */
-    #[\JMS\Serializer\Annotation\SerializedName('balances')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletWithBalancesBalances')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WalletWithBalancesBalances')]
     public WalletWithBalancesBalances $balances;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('createdAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -31,14 +31,14 @@ class WalletWithBalances
      *
      * @var string $id
      */
-    #[\JMS\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledger
      */
-    #[\JMS\Serializer\Annotation\SerializedName('ledger')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
     public string $ledger;
 
     /**
@@ -46,15 +46,15 @@ class WalletWithBalances
      *
      * @var array<string, string> $metadata
      */
-    #[\JMS\Serializer\Annotation\SerializedName('metadata')]
-    #[\JMS\Serializer\Annotation\Type('array<string, string>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
 
     /**
@@ -64,6 +64,7 @@ class WalletWithBalances
      * @param  string  $ledger
      * @param  array<string, string>  $metadata
      * @param  string  $name
+     * @phpstan-pure
      */
     public function __construct(WalletWithBalancesBalances $balances, \DateTime $createdAt, string $id, string $ledger, array $metadata, string $name)
     {

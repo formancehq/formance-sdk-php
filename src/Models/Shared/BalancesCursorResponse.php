@@ -15,12 +15,13 @@ class BalancesCursorResponse
      *
      * @var BalancesCursorResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\BalancesCursorResponseCursor')]
     public BalancesCursorResponseCursor $cursor;
 
     /**
      * @param  BalancesCursorResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(BalancesCursorResponseCursor $cursor)
     {

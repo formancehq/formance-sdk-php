@@ -15,12 +15,13 @@ class V2ListTriggersResponse
      *
      * @var V2ListTriggersResponseCursor $cursor
      */
-    #[\JMS\Serializer\Annotation\SerializedName('cursor')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListTriggersResponseCursor')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ListTriggersResponseCursor')]
     public V2ListTriggersResponseCursor $cursor;
 
     /**
      * @param  V2ListTriggersResponseCursor  $cursor
+     * @phpstan-pure
      */
     public function __construct(V2ListTriggersResponseCursor $cursor)
     {

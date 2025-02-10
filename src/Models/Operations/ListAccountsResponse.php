@@ -8,30 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Errors;
 use formance\stack\Models\Shared;
 class ListAccountsResponse
 {
-    /**
-     * OK
-     *
-     * @var ?Shared\AccountsCursorResponse $accountsCursorResponse
-     */
-    public ?Shared\AccountsCursorResponse $accountsCursorResponse = null;
-
     /**
      * HTTP response content type for this operation
      *
      * @var string $contentType
      */
     public string $contentType;
-
-    /**
-     * Not found
-     *
-     * @var ?Errors\ErrorResponse $errorResponse
-     */
-    public ?Errors\ErrorResponse $errorResponse = null;
 
     /**
      * HTTP response status code for this operation
@@ -48,13 +33,28 @@ class ListAccountsResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * OK
+     *
+     * @var ?Shared\AccountsCursorResponse $accountsCursorResponse
+     */
+    public ?Shared\AccountsCursorResponse $accountsCursorResponse = null;
+
+    /**
+     * Not found
+     *
+     * @var ?Shared\ErrorResponse $errorResponse
+     */
+    public ?Shared\ErrorResponse $errorResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\AccountsCursorResponse  $accountsCursorResponse
-     * @param  ?Errors\ErrorResponse  $errorResponse
+     * @param  ?Shared\ErrorResponse  $errorResponse
+     * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Errors\ErrorResponse $errorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AccountsCursorResponse $accountsCursorResponse = null, ?Shared\ErrorResponse $errorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

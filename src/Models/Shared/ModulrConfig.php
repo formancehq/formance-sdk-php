@@ -15,30 +15,30 @@ class ModulrConfig
      *
      * @var string $apiKey
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiKey')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
     public string $apiKey;
 
     /**
      *
      * @var string $apiSecret
      */
-    #[\JMS\Serializer\Annotation\SerializedName('apiSecret')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('apiSecret')]
     public string $apiSecret;
-
-    /**
-     *
-     * @var ?string $endpoint
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('endpoint')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $endpoint = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     *
+     * @var ?string $endpoint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $endpoint = null;
 
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
@@ -47,8 +47,8 @@ class ModulrConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\JMS\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
@@ -57,8 +57,9 @@ class ModulrConfig
      * @param  string  $name
      * @param  ?string  $endpoint
      * @param  ?string  $pollingPeriod
+     * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $apiSecret, string $name, ?string $endpoint = null, ?string $pollingPeriod = null)
+    public function __construct(string $apiKey, string $apiSecret, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s')
     {
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;

@@ -31,6 +31,7 @@ class UninstallConnectorV1Request
     /**
      * @param  Shared\Connector  $connector
      * @param  string  $connectorId
+     * @phpstan-pure
      */
     public function __construct(Shared\Connector $connector, string $connectorId)
     {

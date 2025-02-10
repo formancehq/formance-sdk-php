@@ -16,12 +16,13 @@ class TransactionsResponse
      *
      * @var array<Transaction> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Transaction>')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Transaction>')]
     public array $data;
 
     /**
      * @param  array<Transaction>  $data
+     * @phpstan-pure
      */
     public function __construct(array $data)
     {

@@ -12,6 +12,22 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2AddMetadataOnTransactionRequest
 {
     /**
+     * Transaction ID.
+     *
+     * @var \Brick\Math\BigInteger $id
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
+    public \Brick\Math\BigInteger $id;
+
+    /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * Use an idempotency key
      *
      * @var ?string $idempotencyKey
@@ -36,29 +52,14 @@ class V2AddMetadataOnTransactionRequest
     public ?bool $dryRun = null;
 
     /**
-     * Transaction ID.
-     *
-     * @var int $id
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public int $id;
-
-    /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
-
-    /**
-     * @param  int  $id
+     * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?array<string, string>  $requestBody
      * @param  ?bool  $dryRun
+     * @phpstan-pure
      */
-    public function __construct(int $id, string $ledger, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

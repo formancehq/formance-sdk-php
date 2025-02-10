@@ -44,6 +44,7 @@ class V2GetInstanceResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\V2GetWorkflowInstanceResponse  $v2GetWorkflowInstanceResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse = null)
     {

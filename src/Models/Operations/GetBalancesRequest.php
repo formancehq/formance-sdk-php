@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class GetBalancesRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * Filter balances involving given account, either as source or destination.
      *
      * @var ?string $address
@@ -41,14 +49,6 @@ class GetBalancesRequest
     public ?string $cursor = null;
 
     /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
-
-    /**
      * The maximum number of results to return per page.
      *
      *
@@ -64,6 +64,7 @@ class GetBalancesRequest
      * @param  ?string  $after
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $address = null, ?string $after = null, ?string $cursor = null, ?int $pageSize = null)
     {

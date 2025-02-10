@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class ListAccountsRequest
 {
     /**
+     * Name of the ledger.
+     *
+     * @var string $ledger
+     */
+    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
+    public string $ledger;
+
+    /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      *
      * @var ?string $address
@@ -47,14 +55,6 @@ class ListAccountsRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=cursor')]
     public ?string $cursor = null;
-
-    /**
-     * Name of the ledger.
-     *
-     * @var string $ledger
-     */
-    #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
-    public string $ledger;
 
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -98,6 +98,7 @@ class ListAccountsRequest
      * @param  ?array<string, mixed>  $metadata
      * @param  ?int  $pageSize
      * @param  ?string  $paginationToken
+     * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $address = null, ?string $after = null, ?int $balance = null, ?string $cursor = null, ?array $metadata = null, ?int $pageSize = null, ?string $paginationToken = null)
     {

@@ -15,28 +15,29 @@ class TaskStripeDescriptor
      *
      * @var string $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
     public string $account;
-
-    /**
-     *
-     * @var ?bool $main
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('main')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?bool $main = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
+
+    /**
+     *
+     * @var ?bool $main
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $main = null;
 
     /**
      * @param  string  $account
      * @param  string  $name
      * @param  ?bool  $main
+     * @phpstan-pure
      */
     public function __construct(string $account, string $name, ?bool $main = null)
     {

@@ -15,77 +15,77 @@ class WorkflowInstanceHistoryStage
      *
      * @var int $attempt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('attempt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('attempt')]
     public int $attempt;
-
-    /**
-     *
-     * @var ?string $error
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('error')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
 
     /**
      *
      * @var WorkflowInstanceHistoryStageInput $input
      */
-    #[\JMS\Serializer\Annotation\SerializedName('input')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageInput')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageInput')]
     public WorkflowInstanceHistoryStageInput $input;
-
-    /**
-     *
-     * @var ?string $lastFailure
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('lastFailure')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastFailure = null;
 
     /**
      *
      * @var string $name
      */
-    #[\JMS\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
-
-    /**
-     *
-     * @var ?\DateTime $nextExecution
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('nextExecution')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $nextExecution = null;
-
-    /**
-     *
-     * @var ?WorkflowInstanceHistoryStageOutput $output
-     */
-    #[\JMS\Serializer\Annotation\SerializedName('output')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
-    public ?WorkflowInstanceHistoryStageOutput $output = null;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('startedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
     public \DateTime $startedAt;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminated')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
     public bool $terminated;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
+
+    /**
+     *
+     * @var ?string $lastFailure
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('lastFailure')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastFailure = null;
+
+    /**
+     *
+     * @var ?\DateTime $nextExecution
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('nextExecution')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $nextExecution = null;
+
+    /**
+     *
+     * @var ?WorkflowInstanceHistoryStageOutput $output
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowInstanceHistoryStageOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?WorkflowInstanceHistoryStageOutput $output = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\JMS\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
@@ -99,6 +99,7 @@ class WorkflowInstanceHistoryStage
      * @param  ?\DateTime  $nextExecution
      * @param  ?WorkflowInstanceHistoryStageOutput  $output
      * @param  ?\DateTime  $terminatedAt
+     * @phpstan-pure
      */
     public function __construct(int $attempt, WorkflowInstanceHistoryStageInput $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?string $lastFailure = null, ?\DateTime $nextExecution = null, ?WorkflowInstanceHistoryStageOutput $output = null, ?\DateTime $terminatedAt = null)
     {

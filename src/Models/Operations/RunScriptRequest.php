@@ -39,6 +39,7 @@ class RunScriptRequest
      * @param  Shared\Script  $script
      * @param  string  $ledger
      * @param  ?bool  $preview
+     * @phpstan-pure
      */
     public function __construct(Shared\Script $script, string $ledger, ?bool $preview = null)
     {

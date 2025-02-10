@@ -9,18 +9,20 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** PolicyResponse - OK */
 class PolicyResponse
 {
     /**
      *
      * @var Policy $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\Policy')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Policy')]
     public Policy $data;
 
     /**
      * @param  Policy  $data
+     * @phpstan-pure
      */
     public function __construct(Policy $data)
     {

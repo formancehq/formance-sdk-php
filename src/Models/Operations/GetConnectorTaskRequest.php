@@ -31,6 +31,7 @@ class GetConnectorTaskRequest
     /**
      * @param  Shared\Connector  $connector
      * @param  string  $taskId
+     * @phpstan-pure
      */
     public function __construct(Shared\Connector $connector, string $taskId)
     {

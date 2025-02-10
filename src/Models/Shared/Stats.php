@@ -15,19 +15,20 @@ class Stats
      *
      * @var int $accounts
      */
-    #[\JMS\Serializer\Annotation\SerializedName('accounts')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts')]
     public int $accounts;
 
     /**
      *
      * @var int $transactions
      */
-    #[\JMS\Serializer\Annotation\SerializedName('transactions')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
     public int $transactions;
 
     /**
      * @param  int  $accounts
      * @param  int  $transactions
+     * @phpstan-pure
      */
     public function __construct(int $accounts, int $transactions)
     {

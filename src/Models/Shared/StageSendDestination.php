@@ -15,33 +15,34 @@ class StageSendDestination
      *
      * @var ?StageSendDestinationAccount $account
      */
-    #[\JMS\Serializer\Annotation\SerializedName('account')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationAccount|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestinationAccount $account = null;
 
     /**
      *
      * @var ?StageSendDestinationPayment $payment
      */
-    #[\JMS\Serializer\Annotation\SerializedName('payment')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationPayment|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('payment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationPayment|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestinationPayment $payment = null;
 
     /**
      *
      * @var ?StageSendDestinationWallet $wallet
      */
-    #[\JMS\Serializer\Annotation\SerializedName('wallet')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationWallet|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('wallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StageSendDestinationWallet $wallet = null;
 
     /**
      * @param  ?StageSendDestinationAccount  $account
      * @param  ?StageSendDestinationPayment  $payment
      * @param  ?StageSendDestinationWallet  $wallet
+     * @phpstan-pure
      */
     public function __construct(?StageSendDestinationAccount $account = null, ?StageSendDestinationPayment $payment = null, ?StageSendDestinationWallet $wallet = null)
     {

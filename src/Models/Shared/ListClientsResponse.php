@@ -16,13 +16,14 @@ class ListClientsResponse
      *
      * @var ?array<Client> $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Client>|null')]
-    #[\JMS\Serializer\Annotation\SkipWhenNull]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\Client>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $data = null;
 
     /**
      * @param  ?array<Client>  $data
+     * @phpstan-pure
      */
     public function __construct(?array $data = null)
     {

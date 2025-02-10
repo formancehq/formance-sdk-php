@@ -9,18 +9,20 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** BankAccountResponse - OK */
 class BankAccountResponse
 {
     /**
      *
      * @var BankAccount $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\BankAccount')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\BankAccount')]
     public BankAccount $data;
 
     /**
      * @param  BankAccount  $data
+     * @phpstan-pure
      */
     public function __construct(BankAccount $data)
     {

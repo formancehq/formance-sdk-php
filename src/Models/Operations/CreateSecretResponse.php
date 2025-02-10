@@ -19,13 +19,6 @@ class CreateSecretResponse
     public string $contentType;
 
     /**
-     * Created secret
-     *
-     * @var ?Shared\CreateSecretResponse $createSecretResponse
-     */
-    public ?Shared\CreateSecretResponse $createSecretResponse = null;
-
-    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -40,10 +33,18 @@ class CreateSecretResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Created secret
+     *
+     * @var ?Shared\CreateSecretResponse $createSecretResponse
+     */
+    public ?Shared\CreateSecretResponse $createSecretResponse = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\CreateSecretResponse  $createSecretResponse
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\CreateSecretResponse $createSecretResponse = null)
     {

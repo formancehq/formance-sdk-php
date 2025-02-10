@@ -30,6 +30,7 @@ class ForwardBankAccountRequest
     /**
      * @param  Shared\ForwardBankAccountRequest  $forwardBankAccountRequest
      * @param  string  $bankAccountId
+     * @phpstan-pure
      */
     public function __construct(Shared\ForwardBankAccountRequest $forwardBankAccountRequest, string $bankAccountId)
     {

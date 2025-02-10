@@ -15,12 +15,13 @@ class GetHoldResponse
      *
      * @var ExpandedDebitHold $data
      */
-    #[\JMS\Serializer\Annotation\SerializedName('data')]
-    #[\JMS\Serializer\Annotation\Type('\formance\stack\Models\Shared\ExpandedDebitHold')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ExpandedDebitHold')]
     public ExpandedDebitHold $data;
 
     /**
      * @param  ExpandedDebitHold  $data
+     * @phpstan-pure
      */
     public function __construct(ExpandedDebitHold $data)
     {
