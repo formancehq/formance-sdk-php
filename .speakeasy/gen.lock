@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 98f21a9b47a7a10e2efba8e8081d5312
-  docVersion: v3.0.0
-  speakeasyVersion: 1.487.1
-  generationVersion: 2.506.0
-  releaseVersion: 4.0.0
-  configChecksum: d76b7ba49e0f531445129182a8c24fc1
+  docChecksum: c41faf2a0390b8c6621c8b1cf31eb698
+  docVersion: v3.0.1
+  speakeasyVersion: 1.509.0
+  generationVersion: 2.539.0
+  releaseVersion: 4.0.1
+  configChecksum: fb3fb751d80b0b96705ce07ba792f1b0
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -15,16 +15,16 @@ features:
   php:
     bigint: 0.1.1
     constsAndDefaults: 0.2.0
-    core: 3.7.13
+    core: 3.7.9
     deprecations: 2.81.1
     errors: 0.3.0
     getRequestBodies: 2.81.1
-    globalSecurity: 2.81.7
+    globalSecurity: 2.81.8
     globalServerURLs: 2.82.1
     ignores: 2.81.1
     methodArguments: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 1.0.0
+    nullables: 1.0.1
     oauth2ClientCredentials: 0.1.1
     responseFormat: 0.1.0
     unions: 0.1.4
@@ -382,7 +382,6 @@ generatedFiles:
   - docs/Models/Operations/V3GetConnectorConfigResponse.md
   - docs/Models/Operations/V3GetConnectorScheduleRequest.md
   - docs/Models/Operations/V3GetConnectorScheduleResponse.md
-  - docs/Models/Operations/V3GetInfoResponse.md
   - docs/Models/Operations/V3GetPaymentInitiationRequest.md
   - docs/Models/Operations/V3GetPaymentInitiationResponse.md
   - docs/Models/Operations/V3GetPaymentRequest.md
@@ -876,7 +875,6 @@ generatedFiles:
   - docs/Models/Shared/V3BankAccountsCursorResponse.md
   - docs/Models/Shared/V3BankAccountsCursorResponseCursor.md
   - docs/Models/Shared/V3BankingcircleConfig.md
-  - docs/Models/Shared/V3ConfigInfoResponse.md
   - docs/Models/Shared/V3Connector.md
   - docs/Models/Shared/V3ConnectorConfig.md
   - docs/Models/Shared/V3ConnectorConfigsResponse.md
@@ -966,6 +964,7 @@ generatedFiles:
   - docs/Models/Shared/Wallet.md
   - docs/Models/Shared/WalletBalances.md
   - docs/Models/Shared/WalletSubject.md
+  - docs/Models/Shared/WalletSummary.md
   - docs/Models/Shared/WalletWithBalances.md
   - docs/Models/Shared/WalletWithBalancesBalances.md
   - docs/Models/Shared/WalletsTransaction.md
@@ -1383,7 +1382,6 @@ generatedFiles:
   - src/Models/Operations/V3GetConnectorConfigResponse.php
   - src/Models/Operations/V3GetConnectorScheduleRequest.php
   - src/Models/Operations/V3GetConnectorScheduleResponse.php
-  - src/Models/Operations/V3GetInfoResponse.php
   - src/Models/Operations/V3GetPaymentInitiationRequest.php
   - src/Models/Operations/V3GetPaymentInitiationResponse.php
   - src/Models/Operations/V3GetPaymentRequest.php
@@ -1867,7 +1865,6 @@ generatedFiles:
   - src/Models/Shared/V3BankAccountsCursorResponse.php
   - src/Models/Shared/V3BankAccountsCursorResponseCursor.php
   - src/Models/Shared/V3BankingcircleConfig.php
-  - src/Models/Shared/V3ConfigInfoResponse.php
   - src/Models/Shared/V3Connector.php
   - src/Models/Shared/V3ConnectorConfigsResponse.php
   - src/Models/Shared/V3ConnectorConfigsResponseConnector.php
@@ -1955,6 +1952,7 @@ generatedFiles:
   - src/Models/Shared/Wallet.php
   - src/Models/Shared/WalletBalances.php
   - src/Models/Shared/WalletSubject.php
+  - src/Models/Shared/WalletSummary.php
   - src/Models/Shared/WalletWithBalances.php
   - src/Models/Shared/WalletWithBalancesBalances.php
   - src/Models/Shared/WalletsTransaction.php
@@ -2154,7 +2152,7 @@ examples:
         application/json: [{"action": "<value>"}]
       responses:
         "200":
-          application/json: {"data": [{"logID": 642842, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+          application/json: {"data": [{"errorCode": "<value>", "errorDescription": "<value>", "logID": 314478, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
         "400":
           application/json: {"data": [], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
         default:
@@ -3151,7 +3149,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<id>"}}
@@ -3253,7 +3251,7 @@ examples:
           accountId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {"key": "<value>", "key1": "<value>"}, "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   paymentsgetServerInfo:
@@ -3336,7 +3334,7 @@ examples:
         path:
           transferId: "XXX"
       requestBody:
-        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "reference": "XXX"}
+        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "metadata": {"key": "<value>"}, "reference": "XXX"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -4008,7 +4006,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"availableFunds": {"key": 265270, "key1": 425645}, "balances": [{"assets": {}, "name": "<value>"}], "expirableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "holdFunds": {"key": 930990, "key1": 132783, "key2": 515347}}
+          application/json: {"data": {"availableFunds": {"key": 265270, "key1": 425645}, "balances": [{"assets": {}, "name": "<value>"}], "expirableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "holdFunds": {"key": 930990, "key1": 132783, "key2": 515347}}}
         default:
           application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   listBalances:

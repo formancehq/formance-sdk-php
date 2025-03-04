@@ -22,7 +22,6 @@
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
-* [getInfo](#getinfo) - Show server information
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
 * [getPool](#getpool) - Get a pool by ID
@@ -818,51 +817,6 @@ if ($response->v3ConnectorScheduleResponse !== null) {
 ### Response
 
 **[?Operations\V3GetConnectorScheduleResponse](../../Models/Operations/V3GetConnectorScheduleResponse.md)**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
-
-## getInfo
-
-Show server information
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->payments->v3->getInfo(
-
-);
-
-if ($response->v3ConfigInfoResponse !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\V3GetInfoResponse](../../Models/Operations/V3GetInfoResponse.md)**
 
 ### Errors
 
