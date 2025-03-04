@@ -52,6 +52,14 @@ class V3BankAccount
 
     /**
      *
+     * @var ?string $country
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $country = null;
+
+    /**
+     *
      * @var ?string $iban
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('iban')]
@@ -82,18 +90,20 @@ class V3BankAccount
      * @param  string  $name
      * @param  ?array<V3BankAccountRelatedAccount>  $relatedAccounts
      * @param  ?string  $accountNumber
+     * @param  ?string  $country
      * @param  ?string  $iban
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $swiftBicCode
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, string $name, ?array $relatedAccounts = null, ?string $accountNumber = null, ?string $iban = null, ?array $metadata = null, ?string $swiftBicCode = null)
+    public function __construct(\DateTime $createdAt, string $id, string $name, ?array $relatedAccounts = null, ?string $accountNumber = null, ?string $country = null, ?string $iban = null, ?array $metadata = null, ?string $swiftBicCode = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->name = $name;
         $this->relatedAccounts = $relatedAccounts;
         $this->accountNumber = $accountNumber;
+        $this->country = $country;
         $this->iban = $iban;
         $this->metadata = $metadata;
         $this->swiftBicCode = $swiftBicCode;

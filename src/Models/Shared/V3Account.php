@@ -64,14 +64,6 @@ class V3Account
 
     /**
      *
-     * @var ?string $name
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $name = null;
-
-    /**
-     *
      * @var ?string $defaultAsset
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
@@ -89,6 +81,14 @@ class V3Account
     public ?array $metadata = null;
 
     /**
+     *
+     * @var ?string $name
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $name = null;
+
+    /**
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $id
@@ -96,12 +96,12 @@ class V3Account
      * @param  V3AccountRaw  $raw
      * @param  string  $reference
      * @param  V3AccountTypeEnum  $type
-     * @param  ?string  $name
      * @param  ?string  $defaultAsset
      * @param  ?array<string, string>  $metadata
+     * @param  ?string  $name
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, V3AccountTypeEnum $type, ?string $name = null, ?string $defaultAsset = null, ?array $metadata = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, V3AccountTypeEnum $type, ?string $defaultAsset = null, ?array $metadata = null, ?string $name = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
@@ -110,8 +110,8 @@ class V3Account
         $this->raw = $raw;
         $this->reference = $reference;
         $this->type = $type;
-        $this->name = $name;
         $this->defaultAsset = $defaultAsset;
         $this->metadata = $metadata;
+        $this->name = $name;
     }
 }

@@ -1,0 +1,12 @@
+# WalletSummary
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `availableFunds`                                                            | array<string, *\Brick\Math\BigInteger*>                                     | :heavy_check_mark:                                                          | N/A                                                                         |
+| `balances`                                                                  | array<[Shared\BalanceWithAssets](../../Models/Shared/BalanceWithAssets.md)> | :heavy_check_mark:                                                          | N/A                                                                         |
+| `expirableFunds`                                                            | array<string, *\Brick\Math\BigInteger*>                                     | :heavy_check_mark:                                                          | N/A                                                                         |
+| `expiredFunds`                                                              | array<string, *\Brick\Math\BigInteger*>                                     | :heavy_check_mark:                                                          | N/A                                                                         |
+| `holdFunds`                                                                 | array<string, *\Brick\Math\BigInteger*>                                     | :heavy_check_mark:                                                          | N/A                                                                         |

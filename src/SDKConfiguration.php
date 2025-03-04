@@ -32,13 +32,13 @@ class SDKConfiguration
 
     public string $language = 'php';
 
-    public string $openapiDocVersion = 'v3.0.0';
+    public string $openapiDocVersion = 'v3.0.1';
 
-    public string $sdkVersion = '4.0.0';
+    public string $sdkVersion = '4.0.1';
 
-    public string $genVersion = '2.506.0';
+    public string $genVersion = '2.539.0';
 
-    public string $userAgent = 'speakeasy-sdk/php 4.0.0 2.506.0 v3.0.0 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 4.0.1 2.539.0 v3.0.1 formance/formance-sdk';
 
     public ?RetryConfig $retryConfig = null;
 

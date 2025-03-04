@@ -328,7 +328,6 @@ if ($response->getVersionsResponse !== null) {
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
-* [getInfo](docs/sdks/v3/README.md#getinfo) - Show server information
 * [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 * [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 * [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
@@ -450,6 +449,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Errors;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -486,14 +486,17 @@ try {
 
 You can override the default server globally using the `setServerIndex(int $serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                       | Default values                       |
-| --- | ----------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------ |
-| 0   | `http://localhost`                                    |                                                                 |                                      |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `stack\ServerEnvironment environment`<br/>`string organization` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
 
-If the selected server has variables, you may override their default values using their associated builder method(s):
- * `setEnvironment(stack\ServerEnvironment environment)`
- * `setOrganization(string organization)`
+If the selected server has variables, you may override its default values using the associated builder method(s):
+
+| Variable       | BuilderMethod                                         | Supported Values                                                           | Default           | Description                                                   |
+| -------------- | ----------------------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `setEnvironment(stack\ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `setOrganization(string organization)`                | string                                                                     | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -507,6 +510,8 @@ use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
     ->setServerIndex(1)
+    ->setEnvironment('us-east-1')
+    ->setOrganization('<value>')
     ->setSecurity(
         new Shared\Security(
             clientID: '<YOUR_CLIENT_ID_HERE>',
