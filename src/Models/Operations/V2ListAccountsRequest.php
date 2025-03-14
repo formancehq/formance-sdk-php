@@ -12,20 +12,20 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListAccountsRequest
 {
     /**
+     * $requestBody
+     *
+     * @var array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Name of the ledger.
      *
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-
-    /**
-     * $requestBody
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -65,18 +65,18 @@ class V2ListAccountsRequest
     public ?\DateTime $pit = null;
 
     /**
+     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
-     * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null)
+    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null)
     {
-        $this->ledger = $ledger;
         $this->requestBody = $requestBody;
+        $this->ledger = $ledger;
         $this->cursor = $cursor;
         $this->expand = $expand;
         $this->pageSize = $pageSize;

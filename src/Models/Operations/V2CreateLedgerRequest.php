@@ -13,6 +13,13 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateLedgerRequest
 {
     /**
+     *
+     * @var Shared\V2CreateLedgerRequest $v2CreateLedgerRequest
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public Shared\V2CreateLedgerRequest $v2CreateLedgerRequest;
+
+    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -21,20 +28,13 @@ class V2CreateLedgerRequest
     public string $ledger;
 
     /**
-     *
-     * @var ?Shared\V2CreateLedgerRequest $v2CreateLedgerRequest
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V2CreateLedgerRequest $v2CreateLedgerRequest = null;
-
-    /**
+     * @param  Shared\V2CreateLedgerRequest  $v2CreateLedgerRequest
      * @param  string  $ledger
-     * @param  ?Shared\V2CreateLedgerRequest  $v2CreateLedgerRequest
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?Shared\V2CreateLedgerRequest $v2CreateLedgerRequest = null)
+    public function __construct(Shared\V2CreateLedgerRequest $v2CreateLedgerRequest, string $ledger)
     {
-        $this->ledger = $ledger;
         $this->v2CreateLedgerRequest = $v2CreateLedgerRequest;
+        $this->ledger = $ledger;
     }
 }

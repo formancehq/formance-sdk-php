@@ -12,20 +12,20 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2GetBalancesAggregatedRequest
 {
     /**
+     * $requestBody
+     *
+     * @var array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Name of the ledger.
      *
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-
-    /**
-     * $requestBody
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
 
     /**
      *
@@ -43,16 +43,16 @@ class V2GetBalancesAggregatedRequest
     public ?bool $useInsertionDate = null;
 
     /**
+     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
-     * @param  ?array<string, mixed>  $requestBody
      * @param  ?\DateTime  $pit
      * @param  ?bool  $useInsertionDate
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?array $requestBody = null, ?\DateTime $pit = null, ?bool $useInsertionDate = null)
+    public function __construct(array $requestBody, string $ledger, ?\DateTime $pit = null, ?bool $useInsertionDate = null)
     {
-        $this->ledger = $ledger;
         $this->requestBody = $requestBody;
+        $this->ledger = $ledger;
         $this->pit = $pit;
         $this->useInsertionDate = $useInsertionDate;
     }

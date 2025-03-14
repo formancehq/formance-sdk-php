@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2UpdateLedgerMetadataRequest
 {
     /**
+     * $requestBody
+     *
+     * @var array<string, string> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -20,21 +28,13 @@ class V2UpdateLedgerMetadataRequest
     public string $ledger;
 
     /**
-     * $requestBody
-     *
-     * @var ?array<string, string> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
-
-    /**
+     * @param  array<string, string>  $requestBody
      * @param  string  $ledger
-     * @param  ?array<string, string>  $requestBody
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?array $requestBody = null)
+    public function __construct(array $requestBody, string $ledger)
     {
-        $this->ledger = $ledger;
         $this->requestBody = $requestBody;
+        $this->ledger = $ledger;
     }
 }

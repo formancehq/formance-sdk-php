@@ -12,20 +12,20 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2GetVolumesWithBalancesRequest
 {
     /**
+     * $requestBody
+     *
+     * @var array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Name of the ledger.
      *
      * @var string $ledger
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
-
-    /**
-     * $requestBody
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -81,8 +81,8 @@ class V2GetVolumesWithBalancesRequest
     public ?\DateTime $startTime = null;
 
     /**
+     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
-     * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?\DateTime  $endTime
      * @param  ?int  $groupBy
@@ -91,10 +91,10 @@ class V2GetVolumesWithBalancesRequest
      * @param  ?\DateTime  $startTime
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?array $requestBody = null, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $startTime = null)
+    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $startTime = null)
     {
-        $this->ledger = $ledger;
         $this->requestBody = $requestBody;
+        $this->ledger = $ledger;
         $this->cursor = $cursor;
         $this->endTime = $endTime;
         $this->groupBy = $groupBy;

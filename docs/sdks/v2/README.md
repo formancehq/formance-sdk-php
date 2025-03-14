@@ -104,11 +104,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2AddMetadataOnTransactionRequest(
-    id: BigInteger::of('1234'),
-    ledger: 'ledger001',
     requestBody: [
         'admin' => 'true',
     ],
+    id: BigInteger::of('1234'),
+    ledger: 'ledger001',
     dryRun: true,
 );
 
@@ -222,6 +222,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CountAccountsRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
 );
 
@@ -276,6 +279,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CountTransactionsRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
 );
 
@@ -330,12 +336,12 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CreateBulkRequest(
-    ledger: 'ledger001',
     requestBody: [
         new Shared\V2BulkElementAddMetadata(
             action: '<value>',
         ),
     ],
+    ledger: 'ledger001',
     atomic: true,
     continueOnFailure: true,
     parallel: true,
@@ -392,12 +398,12 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CreateLedgerRequest(
-    ledger: 'ledger001',
     v2CreateLedgerRequest: new Shared\V2CreateLedgerRequest(
         metadata: [
             'admin' => 'true',
         ],
     ),
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v2->createLedger(
@@ -811,6 +817,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2GetBalancesAggregatedRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
 );
 
@@ -1074,6 +1083,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2GetVolumesWithBalancesRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     groupBy: 3,
@@ -1129,6 +1141,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ImportLogsRequest(
+    v2ImportLogsRequest: '0xeC7ae8CBbd',
     ledger: 'ledger001',
 );
 
@@ -1183,6 +1196,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListAccountsRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
@@ -1294,6 +1310,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListLogsRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
@@ -1350,6 +1369,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListTransactionsRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
@@ -1518,10 +1540,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2UpdateLedgerMetadataRequest(
-    ledger: 'ledger001',
     requestBody: [
         'admin' => 'true',
     ],
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v2->updateLedgerMetadata(

@@ -124,6 +124,9 @@ $sdk = stack\SDK::builder()
 $request = new Operations\AddMetadataOnTransactionRequest(
     ledger: 'ledger001',
     txid: BigInteger::of('1234'),
+    requestBody: [
+        'key' => '<value>',
+    ],
 );
 
 $response = $sdk->ledger->v1->addMetadataOnTransaction(

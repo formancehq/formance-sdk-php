@@ -33,7 +33,7 @@ class AddMetadataOnTransactionRequest
      * @var ?array<string, mixed> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
+    public ?array $requestBody;
 
     /**
      * @param  string  $ledger
