@@ -7,4 +7,4 @@
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
 | `ledger`                 | *string*                 | :heavy_check_mark:       | Name of the ledger.      | ledger001                |
 | `txid`                   | *\Brick\Math\BigInteger* | :heavy_check_mark:       | Transaction ID.          | 1234                     |
-| `requestBody`            | array<string, *mixed*>   | :heavy_minus_sign:       | metadata                 |                          |
+| `requestBody`            | array<string, *mixed*>   | :heavy_check_mark:       | metadata                 |                          |

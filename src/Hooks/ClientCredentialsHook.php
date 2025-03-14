@@ -83,6 +83,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
             $sessionKey = $this->getSessionKey($credentials->clientID, $credentials->clientSecret);
 
             if (array_key_exists($sessionKey, $this->sessions)) {
+                // @phpstan-ignore unset.possiblyHookedProperty
                 unset($this->sessions[$sessionKey]);
             }
         }

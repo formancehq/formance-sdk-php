@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2AddMetadataOnTransactionRequest
 {
     /**
+     * metadata
+     *
+     * @var array<string, string> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Transaction ID.
      *
      * @var \Brick\Math\BigInteger $id
@@ -36,14 +44,6 @@ class V2AddMetadataOnTransactionRequest
     public ?string $idempotencyKey = null;
 
     /**
-     * metadata
-     *
-     * @var ?array<string, string> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
-
-    /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      *
      * @var ?bool $dryRun
@@ -52,19 +52,19 @@ class V2AddMetadataOnTransactionRequest
     public ?bool $dryRun = null;
 
     /**
+     * @param  array<string, string>  $requestBody
      * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
-     * @param  ?array<string, string>  $requestBody
      * @param  ?bool  $dryRun
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?array $requestBody = null, ?bool $dryRun = null)
+    public function __construct(array $requestBody, \Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
     {
+        $this->requestBody = $requestBody;
         $this->id = $id;
         $this->ledger = $ledger;
         $this->idempotencyKey = $idempotencyKey;
-        $this->requestBody = $requestBody;
         $this->dryRun = $dryRun;
     }
 }
