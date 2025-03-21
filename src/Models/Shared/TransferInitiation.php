@@ -112,6 +112,13 @@ class TransferInitiation
     public TransferInitiationType $type;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    public ?string $provider;
+
+    /**
      * $relatedAdjustments
      *
      * @var ?array<TransferInitiationAdjusments> $relatedAdjustments
@@ -156,12 +163,13 @@ class TransferInitiation
      * @param  string  $sourceAccountID
      * @param  TransferInitiationStatus  $status
      * @param  TransferInitiationType  $type
+     * @param  ?string  $provider
      * @param  ?array<TransferInitiationAdjusments>  $relatedAdjustments
      * @param  ?array<string, string>  $metadata
      * @param  ?array<TransferInitiationPayments>  $relatedPayments
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $error, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, TransferInitiationType $type, ?array $relatedAdjustments = null, ?array $metadata = null, ?array $relatedPayments = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $error, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, TransferInitiationType $type, ?string $provider = null, ?array $relatedAdjustments = null, ?array $metadata = null, ?array $relatedPayments = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -177,6 +185,7 @@ class TransferInitiation
         $this->sourceAccountID = $sourceAccountID;
         $this->status = $status;
         $this->type = $type;
+        $this->provider = $provider;
         $this->relatedAdjustments = $relatedAdjustments;
         $this->metadata = $metadata;
         $this->relatedPayments = $relatedPayments;

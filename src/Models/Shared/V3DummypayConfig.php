@@ -42,17 +42,27 @@ class V3DummypayConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $directory
      * @param  string  $name
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $directory, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m')
+    public function __construct(string $directory, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Dummypay')
     {
         $this->directory = $directory;
         $this->name = $name;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

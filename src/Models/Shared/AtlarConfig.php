@@ -74,6 +74,14 @@ class AtlarConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
      *
      *
@@ -91,10 +99,11 @@ class AtlarConfig
      * @param  ?string  $baseUrl
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @param  ?string  $transferInitiationStatusPollingPeriod
      * @phpstan-pure
      */
-    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = 'https://api.atlar.com', ?int $pageSize = 25, ?string $pollingPeriod = '120s', ?string $transferInitiationStatusPollingPeriod = '120s')
+    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = 'https://api.atlar.com', ?int $pageSize = 25, ?string $pollingPeriod = '120s', ?string $provider = 'Atlar', ?string $transferInitiationStatusPollingPeriod = '120s')
     {
         $this->accessKey = $accessKey;
         $this->name = $name;
@@ -102,6 +111,7 @@ class AtlarConfig
         $this->baseUrl = $baseUrl;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
         $this->transferInitiationStatusPollingPeriod = $transferInitiationStatusPollingPeriod;
     }
 }

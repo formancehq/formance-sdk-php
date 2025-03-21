@@ -59,15 +59,24 @@ class DummyPayConfig
     public ?string $filePollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $directory
      * @param  string  $name
      * @param  ?string  $filePollingPeriod
      * @param  ?int  $numberOfAccountsPreGenerated
      * @param  ?int  $numberOfPaymentsPreGenerated
      * @param  ?string  $prefixFileToIngest
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $directory, string $name, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null, ?string $filePollingPeriod = '10s')
+    public function __construct(string $directory, string $name, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null, ?string $filePollingPeriod = '10s', ?string $provider = 'Dummypay')
     {
         $this->directory = $directory;
         $this->name = $name;
@@ -75,5 +84,6 @@ class DummyPayConfig
         $this->numberOfPaymentsPreGenerated = $numberOfPaymentsPreGenerated;
         $this->prefixFileToIngest = $prefixFileToIngest;
         $this->filePollingPeriod = $filePollingPeriod;
+        $this->provider = $provider;
     }
 }

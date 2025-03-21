@@ -73,17 +73,26 @@ class V3AdyenConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $apiKey
      * @param  string  $companyID
      * @param  string  $name
      * @param  ?string  $liveEndpointPrefix
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @param  ?string  $webhookPassword
      * @param  ?string  $webhookUsername
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $companyID, string $name, ?string $liveEndpointPrefix = null, ?string $webhookPassword = null, ?string $webhookUsername = null, ?int $pageSize = 25, ?string $pollingPeriod = '2m')
+    public function __construct(string $apiKey, string $companyID, string $name, ?string $liveEndpointPrefix = null, ?string $webhookPassword = null, ?string $webhookUsername = null, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Adyen')
     {
         $this->apiKey = $apiKey;
         $this->companyID = $companyID;
@@ -93,5 +102,6 @@ class V3AdyenConfig
         $this->webhookUsername = $webhookUsername;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

@@ -49,19 +49,29 @@ class V3WiseConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $apiKey
      * @param  string  $name
      * @param  string  $webhookPublicKey
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, string $webhookPublicKey, ?int $pageSize = 25, ?string $pollingPeriod = '2m')
+    public function __construct(string $apiKey, string $name, string $webhookPublicKey, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Wise')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;
         $this->webhookPublicKey = $webhookPublicKey;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

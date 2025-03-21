@@ -44,17 +44,27 @@ class GenericConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $apiKey
      * @param  string  $endpoint
      * @param  string  $name
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $endpoint, string $name, ?string $pollingPeriod = '120s')
+    public function __construct(string $apiKey, string $endpoint, string $name, ?string $pollingPeriod = '120s', ?string $provider = 'Generic')
     {
         $this->apiKey = $apiKey;
         $this->endpoint = $endpoint;
         $this->name = $name;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

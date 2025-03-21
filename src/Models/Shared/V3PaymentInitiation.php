@@ -55,6 +55,13 @@ class V3PaymentInitiation
 
     /**
      *
+     * @var string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    public string $provider;
+
+    /**
+     *
      * @var string $reference
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
@@ -124,6 +131,7 @@ class V3PaymentInitiation
      * @param  \DateTime  $createdAt
      * @param  string  $description
      * @param  string  $id
+     * @param  string  $provider
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
      * @param  V3PaymentInitiationStatusEnum  $status
@@ -134,7 +142,7 @@ class V3PaymentInitiation
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $id, string $reference, \DateTime $scheduledAt, V3PaymentInitiationStatusEnum $status, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?string $error = null, ?string $sourceAccountID = null, ?array $metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $id, string $provider, string $reference, \DateTime $scheduledAt, V3PaymentInitiationStatusEnum $status, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?string $error = null, ?string $sourceAccountID = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -142,6 +150,7 @@ class V3PaymentInitiation
         $this->createdAt = $createdAt;
         $this->description = $description;
         $this->id = $id;
+        $this->provider = $provider;
         $this->reference = $reference;
         $this->scheduledAt = $scheduledAt;
         $this->status = $status;

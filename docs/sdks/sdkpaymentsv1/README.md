@@ -1094,9 +1094,14 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\InstallConnectorRequest(
-    connectorConfig: new Shared\WiseConfig(
-        apiKey: 'XXX',
-        name: 'My Wise Account',
+    connectorConfig: new Shared\BankingCircleConfig(
+        authorizationEndpoint: 'XXX',
+        endpoint: 'XXX',
+        name: 'My Banking Circle Account',
+        password: 'XXX',
+        userCertificate: 'XXX',
+        userCertificateKey: 'XXX',
+        username: 'XXX',
     ),
     connector: Shared\Connector::Atlar,
 );
@@ -2370,9 +2375,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateConnectorConfigV1Request(
-    connectorConfig: new Shared\StripeConfig(
+    connectorConfig: new Shared\AdyenConfig(
         apiKey: 'XXX',
-        name: 'My Stripe Account',
+        hmacKey: 'XXX',
+        name: 'My Adyen Account',
+        liveEndpointPrefix: 'XXX',
     ),
     connector: Shared\Connector::Adyen,
     connectorId: 'XXX',

@@ -84,15 +84,6 @@ class TransferInitiationRequest
     public ?string $connectorID = null;
 
     /**
-     *
-     * @var ?Connector $provider
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Connector|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Connector $provider = null;
-
-    /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
@@ -113,11 +104,10 @@ class TransferInitiationRequest
      * @param  TransferInitiationRequestType  $type
      * @param  bool  $validated
      * @param  ?string  $connectorID
-     * @param  ?Connector  $provider
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?Connector $provider = null, ?array $metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -129,7 +119,6 @@ class TransferInitiationRequest
         $this->type = $type;
         $this->validated = $validated;
         $this->connectorID = $connectorID;
-        $this->provider = $provider;
         $this->metadata = $metadata;
     }
 }

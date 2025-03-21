@@ -11,10 +11,6 @@ namespace formance\stack\Models\Shared;
 
 enum Status: string
 {
-    case WaitingForValidation = 'WAITING_FOR_VALIDATION';
-    case Processing = 'PROCESSING';
-    case Processed = 'PROCESSED';
-    case Failed = 'FAILED';
     case Rejected = 'REJECTED';
     case Validated = 'VALIDATED';
 }
