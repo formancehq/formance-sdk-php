@@ -72,6 +72,14 @@ class BankingCircleConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $authorizationEndpoint
      * @param  string  $endpoint
      * @param  string  $name
@@ -80,9 +88,10 @@ class BankingCircleConfig
      * @param  string  $userCertificateKey
      * @param  string  $username
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?string $pollingPeriod = '120s')
+    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?string $pollingPeriod = '120s', ?string $provider = 'Bankingcircle')
     {
         $this->authorizationEndpoint = $authorizationEndpoint;
         $this->endpoint = $endpoint;
@@ -92,5 +101,6 @@ class BankingCircleConfig
         $this->userCertificateKey = $userCertificateKey;
         $this->username = $username;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

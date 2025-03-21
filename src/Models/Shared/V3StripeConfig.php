@@ -42,17 +42,27 @@ class V3StripeConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $apiKey
      * @param  string  $name
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m')
+    public function __construct(string $apiKey, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Stripe')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

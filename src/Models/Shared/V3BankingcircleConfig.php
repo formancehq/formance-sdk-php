@@ -77,6 +77,14 @@ class V3BankingcircleConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $authorizationEndpoint
      * @param  string  $endpoint
      * @param  string  $name
@@ -86,9 +94,10 @@ class V3BankingcircleConfig
      * @param  string  $username
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?int $pageSize = 25, ?string $pollingPeriod = '2m')
+    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Bankingcircle')
     {
         $this->authorizationEndpoint = $authorizationEndpoint;
         $this->endpoint = $endpoint;
@@ -99,5 +108,6 @@ class V3BankingcircleConfig
         $this->username = $username;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

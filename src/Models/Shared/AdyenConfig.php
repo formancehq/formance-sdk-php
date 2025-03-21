@@ -52,19 +52,29 @@ class AdyenConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $apiKey
      * @param  string  $hmacKey
      * @param  string  $name
      * @param  ?string  $liveEndpointPrefix
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = '120s')
+    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = '120s', ?string $provider = 'Adyen')
     {
         $this->apiKey = $apiKey;
         $this->hmacKey = $hmacKey;
         $this->name = $name;
         $this->liveEndpointPrefix = $liveEndpointPrefix;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

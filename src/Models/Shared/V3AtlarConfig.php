@@ -20,10 +20,10 @@ class V3AtlarConfig
 
     /**
      *
-     * @var string $baseURL
+     * @var string $baseUrl
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('baseURL')]
-    public string $baseURL;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('baseUrl')]
+    public string $baseUrl;
 
     /**
      *
@@ -56,21 +56,31 @@ class V3AtlarConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $accessKey
-     * @param  string  $baseURL
+     * @param  string  $baseUrl
      * @param  string  $name
      * @param  string  $secret
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $accessKey, string $baseURL, string $name, string $secret, ?int $pageSize = 25, ?string $pollingPeriod = '2m')
+    public function __construct(string $accessKey, string $baseUrl, string $name, string $secret, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Atlar')
     {
         $this->accessKey = $accessKey;
-        $this->baseURL = $baseURL;
+        $this->baseUrl = $baseUrl;
         $this->name = $name;
         $this->secret = $secret;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }

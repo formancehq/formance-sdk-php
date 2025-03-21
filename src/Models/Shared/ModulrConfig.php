@@ -52,19 +52,29 @@ class ModulrConfig
     public ?string $pollingPeriod = null;
 
     /**
+     *
+     * @var ?string $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $provider = null;
+
+    /**
      * @param  string  $apiKey
      * @param  string  $apiSecret
      * @param  string  $name
      * @param  ?string  $endpoint
      * @param  ?string  $pollingPeriod
+     * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $apiSecret, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s')
+    public function __construct(string $apiKey, string $apiSecret, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s', ?string $provider = 'Modulr')
     {
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
         $this->name = $name;
         $this->endpoint = $endpoint;
         $this->pollingPeriod = $pollingPeriod;
+        $this->provider = $provider;
     }
 }
