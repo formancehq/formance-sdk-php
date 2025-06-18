@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [addAccountToPool](#addaccounttopool) - Add an account to a pool
+* [addBankAccountToPaymentServiceUser](#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
 * [approvePaymentInitiation](#approvepaymentinitiation) - Approve a payment initiation
 * [createAccount](#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
@@ -13,10 +14,12 @@
 
 * [createPayment](#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
+* [createPaymentServiceUser](#createpaymentserviceuser) - Create a formance payment service user object
 * [createPool](#createpool) - Create a formance pool object
 * [deletePaymentInitiation](#deletepaymentinitiation) - Delete a payment initiation by ID
 * [deletePool](#deletepool) - Delete a pool by ID
 * [forwardBankAccount](#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+* [forwardPaymentServiceUserBankAccount](#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
 * [getAccount](#getaccount) - Get an account by ID
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
@@ -24,8 +27,10 @@
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
+* [getPaymentServiceUser](#getpaymentserviceuser) - Get a payment service user by ID
 * [getPool](#getpool) - Get a pool by ID
-* [getPoolBalances](#getpoolbalances) - Get pool balances
+* [getPoolBalances](#getpoolbalances) - Get historical pool balances from a particular point in time
+* [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
 * [getTask](#gettask) - Get a task and its result by ID
 * [initiatePayment](#initiatepayment) - Initiate a payment
 * [installConnector](#installconnector) - Install a connector
@@ -38,6 +43,7 @@
 * [listPaymentInitiationAdjustments](#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUsers](#listpaymentserviceusers) - List all payment service users
 * [listPayments](#listpayments) - List all payments
 * [listPools](#listpools) - List all pools
 * [rejectPaymentInitiation](#rejectpaymentinitiation) - Reject a payment initiation
@@ -48,6 +54,7 @@
 * [uninstallConnector](#uninstallconnector) - Uninstall a connector
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update a bank account's metadata
 * [updatePaymentMetadata](#updatepaymentmetadata) - Update a payment's metadata
+* [v3UpdateConnectorConfig](#v3updateconnectorconfig) - Update the config of a connector
 
 ## addAccountToPool
 
@@ -96,6 +103,61 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\V3AddAccountToPoolResponse](../../Models/Operations/V3AddAccountToPoolResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## addBankAccountToPaymentServiceUser
+
+Add a bank account to a payment service user
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3AddBankAccountToPaymentServiceUserRequest(
+    bankAccountID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->addBankAccountToPaymentServiceUser(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                       | [Operations\V3AddBankAccountToPaymentServiceUserRequest](../../Models/Operations/V3AddBankAccountToPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
+
+### Response
+
+**[?Operations\V3AddBankAccountToPaymentServiceUserResponse](../../Models/Operations/V3AddBankAccountToPaymentServiceUserResponse.md)**
 
 ### Errors
 
@@ -172,7 +234,6 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -183,13 +244,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V3CreateAccountRequest(
-    accountName: '<value>',
-    connectorID: '<value>',
-    createdAt: Utils\Utils::parseDateTime('2023-08-09T11:34:36.410Z'),
-    reference: '<value>',
-    type: Shared\V3AccountTypeEnum::Unknown,
-);
+
 
 $response = $sdk->payments->v3->createAccount(
     request: $request
@@ -241,9 +296,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V3CreateBankAccountRequest(
-    name: '<value>',
-);
+
 
 $response = $sdk->payments->v3->createBankAccount(
     request: $request
@@ -283,10 +336,8 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Shared;
-use formance\stack\Utils;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -297,16 +348,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V3CreatePaymentRequest(
-    amount: BigInteger::of('252554'),
-    asset: '<value>',
-    connectorID: '<value>',
-    createdAt: Utils\Utils::parseDateTime('2024-12-31T19:31:25.838Z'),
-    initialAmount: BigInteger::of('581056'),
-    reference: '<value>',
-    scheme: '<value>',
-    type: Shared\V3PaymentTypeEnum::Payout,
-);
+
 
 $response = $sdk->payments->v3->createPayment(
     request: $request
@@ -326,6 +368,57 @@ if ($response->v3CreatePaymentResponse !== null) {
 ### Response
 
 **[?Operations\V3CreatePaymentResponse](../../Models/Operations/V3CreatePaymentResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## createPaymentServiceUser
+
+Create a formance payment service user object
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->payments->v3->createPaymentServiceUser(
+    request: $request
+);
+
+if ($response->v3CreatePaymentServiceUserResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                           | [Shared\V3CreatePaymentServiceUserRequest](../../Models/Shared/V3CreatePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+
+### Response
+
+**[?Operations\V3CreatePaymentServiceUserResponse](../../Models/Operations/V3CreatePaymentServiceUserResponse.md)**
 
 ### Errors
 
@@ -357,12 +450,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V3CreatePoolRequest(
-    accountIDs: [
-        '<value>',
-    ],
-    name: '<value>',
-);
+
 
 $response = $sdk->payments->v3->createPool(
     request: $request
@@ -544,6 +632,61 @@ if ($response->v3ForwardBankAccountResponse !== null) {
 ### Response
 
 **[?Operations\V3ForwardBankAccountResponse](../../Models/Operations/V3ForwardBankAccountResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## forwardPaymentServiceUserBankAccount
+
+Forward a payment service user's bank account to a connector
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ForwardPaymentServiceUserBankAccountRequest(
+    bankAccountID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->forwardPaymentServiceUserBankAccount(
+    request: $request
+);
+
+if ($response->v3ForwardPaymentServiceUserBankAccountResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                            | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                                           | [Operations\V3ForwardPaymentServiceUserBankAccountRequest](../../Models/Operations/V3ForwardPaymentServiceUserBankAccountRequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
+
+### Response
+
+**[?Operations\V3ForwardPaymentServiceUserBankAccountResponse](../../Models/Operations/V3ForwardPaymentServiceUserBankAccountResponse.md)**
 
 ### Errors
 
@@ -933,6 +1076,60 @@ if ($response->v3GetPaymentInitiationResponse !== null) {
 | Errors\V3ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## getPaymentServiceUser
+
+Get a payment service user by ID
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3GetPaymentServiceUserRequest(
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->getPaymentServiceUser(
+    request: $request
+);
+
+if ($response->v3GetPaymentServiceUserResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                             | [Operations\V3GetPaymentServiceUserRequest](../../Models/Operations/V3GetPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+### Response
+
+**[?Operations\V3GetPaymentServiceUserResponse](../../Models/Operations/V3GetPaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## getPool
 
 Get a pool by ID
@@ -989,7 +1186,7 @@ if ($response->v3GetPoolResponse !== null) {
 
 ## getPoolBalances
 
-Get pool balances
+Get historical pool balances from a particular point in time
 
 ### Example Usage
 
@@ -1033,6 +1230,60 @@ if ($response->v3PoolBalancesResponse !== null) {
 ### Response
 
 **[?Operations\V3GetPoolBalancesResponse](../../Models/Operations/V3GetPoolBalancesResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## getPoolBalancesLatest
+
+Get latest pool balances
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3GetPoolBalancesLatestRequest(
+    poolID: '<id>',
+);
+
+$response = $sdk->payments->v3->getPoolBalancesLatest(
+    request: $request
+);
+
+if ($response->v3PoolBalancesResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                             | [Operations\V3GetPoolBalancesLatestRequest](../../Models/Operations/V3GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+### Response
+
+**[?Operations\V3GetPoolBalancesLatestResponse](../../Models/Operations/V3GetPoolBalancesLatestResponse.md)**
 
 ### Errors
 
@@ -1382,9 +1633,9 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V3ListConnectorScheduleInstancesRequest(
     connectorID: '<id>',
-    scheduleID: '<id>',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
+    scheduleID: '<id>',
 );
 
 $response = $sdk->payments->v3->listConnectorScheduleInstances(
@@ -1549,9 +1800,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V3ListPaymentInitiationAdjustmentsRequest(
-    paymentInitiationID: '<id>',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
+    paymentInitiationID: '<id>',
 );
 
 $response = $sdk->payments->v3->listPaymentInitiationAdjustments(
@@ -1605,9 +1856,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V3ListPaymentInitiationRelatedPaymentsRequest(
-    paymentInitiationID: '<id>',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
+    paymentInitiationID: '<id>',
 );
 
 $response = $sdk->payments->v3->listPaymentInitiationRelatedPayments(
@@ -1683,6 +1934,61 @@ if ($response->v3PaymentInitiationsCursorResponse !== null) {
 ### Response
 
 **[?Operations\V3ListPaymentInitiationsResponse](../../Models/Operations/V3ListPaymentInitiationsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## listPaymentServiceUsers
+
+List all payment service users
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ListPaymentServiceUsersRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+);
+
+$response = $sdk->payments->v3->listPaymentServiceUsers(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUsersCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                 | [Operations\V3ListPaymentServiceUsersRequest](../../Models/Operations/V3ListPaymentServiceUsersRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+
+### Response
+
+**[?Operations\V3ListPaymentServiceUsersResponse](../../Models/Operations/V3ListPaymentServiceUsersResponse.md)**
 
 ### Errors
 
@@ -2233,3 +2539,57 @@ if ($response->statusCode === 200) {
 | ---------------------- | ---------------------- | ---------------------- |
 | Errors\V3ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## v3UpdateConnectorConfig
+
+Update connector config
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3UpdateConnectorConfigRequest(
+    connectorID: '<id>',
+);
+
+$response = $sdk->payments->v3->v3UpdateConnectorConfig(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                             | [Operations\V3UpdateConnectorConfigRequest](../../Models/Operations/V3UpdateConnectorConfigRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+### Response
+
+**[?Operations\V3UpdateConnectorConfigResponse](../../Models/Operations/V3UpdateConnectorConfigResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |

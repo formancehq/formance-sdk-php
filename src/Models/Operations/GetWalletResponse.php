@@ -35,22 +35,22 @@ class GetWalletResponse
     /**
      * Wallet
      *
-     * @var ?Shared\GetWalletResponse $getWalletResponse
+     * @var ?Shared\ActivityGetWalletOutput $activityGetWalletOutput
      */
-    public ?Shared\GetWalletResponse $getWalletResponse = null;
+    public ?Shared\ActivityGetWalletOutput $activityGetWalletOutput = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\GetWalletResponse  $getWalletResponse
+     * @param  ?Shared\ActivityGetWalletOutput  $activityGetWalletOutput
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetWalletResponse $getWalletResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ActivityGetWalletOutput $activityGetWalletOutput = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->getWalletResponse = $getWalletResponse;
+        $this->activityGetWalletOutput = $activityGetWalletOutput;
     }
 }

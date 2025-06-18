@@ -30,6 +30,15 @@ Shared\V3AtlarConfig $value = /* values here */
 Shared\V3BankingcircleConfig $value = /* values here */
 ```
 
+### `Shared\V3ColumnConfig`
+
+```php
+/**
+* @var Shared\V3ColumnConfig
+*/
+Shared\V3ColumnConfig $value = /* values here */
+```
+
 ### `Shared\V3CurrencycloudConfig`
 
 ```php
@@ -82,6 +91,15 @@ Shared\V3ModulrConfig $value = /* values here */
 * @var Shared\V3MoneycorpConfig
 */
 Shared\V3MoneycorpConfig $value = /* values here */
+```
+
+### `Shared\V3QontoConfig`
+
+```php
+/**
+* @var Shared\V3QontoConfig
+*/
+Shared\V3QontoConfig $value = /* values here */
 ```
 
 ### `Shared\V3StripeConfig`

@@ -100,10 +100,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\TriggerData(
-    event: '<value>',
-    workflowID: '<id>',
-);
+
 
 $response = $sdk->orchestration->v1->createTrigger(
     request: $request
@@ -154,13 +151,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\CreateWorkflowRequest(
-    stages: [
-        [
-            'key' => '<value>',
-        ],
-    ],
-);
+
 
 $response = $sdk->orchestration->v1->createWorkflow(
     request: $request
@@ -173,9 +164,9 @@ if ($response->createWorkflowResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `$request`                                                                   | [Shared\CreateWorkflowRequest](../../Models/Shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `$request`                                                     | [Shared\WorkflowConfig](../../Models/Shared/WorkflowConfig.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
 
 ### Response
 
@@ -580,7 +571,6 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -592,7 +582,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Operations\ListTriggersRequest();
+
 
 $response = $sdk->orchestration->v1->listTriggers(
     request: $request

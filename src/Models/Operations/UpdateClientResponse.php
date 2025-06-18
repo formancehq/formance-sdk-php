@@ -35,22 +35,22 @@ class UpdateClientResponse
     /**
      * Updated client
      *
-     * @var ?Shared\UpdateClientResponse $updateClientResponse
+     * @var ?Shared\CreateClientResponse $createClientResponse
      */
-    public ?Shared\UpdateClientResponse $updateClientResponse = null;
+    public ?Shared\CreateClientResponse $createClientResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\UpdateClientResponse  $updateClientResponse
+     * @param  ?Shared\CreateClientResponse  $createClientResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\UpdateClientResponse $updateClientResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\CreateClientResponse $createClientResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->updateClientResponse = $updateClientResponse;
+        $this->createClientResponse = $createClientResponse;
     }
 }

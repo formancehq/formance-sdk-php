@@ -13,18 +13,36 @@ class ConnectorsConfigsResponseData
 {
     /**
      *
-     * @var ConnectorsConfigsResponseConnector $connector
+     * @var string $dataType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connector')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseConnector')]
-    public ConnectorsConfigsResponseConnector $connector;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('dataType')]
+    public string $dataType;
 
     /**
-     * @param  ConnectorsConfigsResponseConnector  $connector
+     *
+     * @var bool $required
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('required')]
+    public bool $required;
+
+    /**
+     *
+     * @var ?string $defaultValue
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultValue')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $defaultValue = null;
+
+    /**
+     * @param  string  $dataType
+     * @param  bool  $required
+     * @param  ?string  $defaultValue
      * @phpstan-pure
      */
-    public function __construct(ConnectorsConfigsResponseConnector $connector)
+    public function __construct(string $dataType, bool $required, ?string $defaultValue = null)
     {
-        $this->connector = $connector;
+        $this->dataType = $dataType;
+        $this->required = $required;
+        $this->defaultValue = $defaultValue;
     }
 }

@@ -122,11 +122,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\AddMetadataOnTransactionRequest(
+    requestBody: [
+
+    ],
     ledger: 'ledger001',
     txid: BigInteger::of('1234'),
-    requestBody: [
-        'key' => '<value>',
-    ],
 );
 
 $response = $sdk->ledger->v1->addMetadataOnTransaction(
@@ -180,11 +180,13 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\AddMetadataToAccountRequest(
-    address: 'users:001',
-    ledger: 'ledger001',
     requestBody: [
         'key' => '<value>',
+        'key1' => '<value>',
+        'key2' => '<value>',
     ],
+    address: 'users:001',
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v1->addMetadataToAccount(
@@ -238,8 +240,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\CountAccountsRequest(
-    ledger: 'ledger001',
     address: 'users:.+',
+    ledger: 'ledger001',
     metadata: [
         '0' => 'm',
         '1' => 'e',
@@ -345,9 +347,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\CountTransactionsRequest(
-    ledger: 'ledger001',
     account: 'users:001',
     destination: 'users:001',
+    ledger: 'ledger001',
     metadata: new Operations\Metadata(),
     reference: 'ref:001',
     source: 'users:001',
@@ -539,10 +541,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetBalancesRequest(
-    ledger: 'ledger001',
     address: 'users:001',
     after: 'users:003',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v1->getBalances(
@@ -596,8 +598,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetBalancesAggregatedRequest(
-    ledger: 'ledger001',
     address: 'users:001',
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v1->getBalancesAggregated(
@@ -860,11 +862,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ListAccountsRequest(
-    ledger: 'ledger001',
     address: 'users:.+',
     after: 'users:003',
     balance: 2400,
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    ledger: 'ledger001',
     metadata: [
         '0' => 'm',
         '1' => 'e',
@@ -971,9 +973,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ListLogsRequest(
-    ledger: 'ledger001',
     after: '1234',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    ledger: 'ledger001',
     pageSize: 100,
 );
 
@@ -1028,11 +1030,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ListTransactionsRequest(
-    ledger: 'ledger001',
     account: 'users:001',
     after: '1234',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     destination: 'users:001',
+    ledger: 'ledger001',
     pageSize: 100,
     reference: 'ref:001',
     source: 'users:001',
@@ -1271,15 +1273,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateMappingRequest(
+    mapping: null,
     ledger: 'ledger001',
-    mapping: new Shared\Mapping(
-        contracts: [
-            new Shared\Contract(
-                expr: new Shared\Expr(),
-                account: 'users:001',
-            ),
-        ],
-    ),
 );
 
 $response = $sdk->ledger->v1->updateMapping(

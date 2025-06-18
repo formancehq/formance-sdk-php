@@ -13,17 +13,17 @@ class CreateBalanceResponse
 {
     /**
      *
-     * @var Balance $data
+     * @var CreateBalanceRequest $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Balance')]
-    public Balance $data;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\CreateBalanceRequest')]
+    public CreateBalanceRequest $data;
 
     /**
-     * @param  Balance  $data
+     * @param  CreateBalanceRequest  $data
      * @phpstan-pure
      */
-    public function __construct(Balance $data)
+    public function __construct(CreateBalanceRequest $data)
     {
         $this->data = $data;
     }

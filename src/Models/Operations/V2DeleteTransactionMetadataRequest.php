@@ -36,15 +36,25 @@ class V2DeleteTransactionMetadataRequest
     public string $ledger;
 
     /**
+     * Use an idempotency key
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
      * @param  \Brick\Math\BigInteger  $id
      * @param  string  $key
      * @param  string  $ledger
+     * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $key, string $ledger)
+    public function __construct(\Brick\Math\BigInteger $id, string $key, string $ledger, ?string $idempotencyKey = null)
     {
         $this->id = $id;
         $this->key = $key;
         $this->ledger = $ledger;
+        $this->idempotencyKey = $idempotencyKey;
     }
 }

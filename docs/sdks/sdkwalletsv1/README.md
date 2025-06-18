@@ -48,11 +48,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ConfirmHoldRequest(
-    holdId: '<id>',
     confirmHoldRequest: new Shared\ConfirmHoldRequest(
         amount: BigInteger::of('100'),
         final: true,
     ),
+    holdId: '<id>',
 );
 
 $response = $sdk->wallets->v1->confirmHold(
@@ -147,7 +147,6 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -159,7 +158,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Operations\CreateWalletRequest();
+
 
 $response = $sdk->wallets->v1->createWallet(
     request: $request
@@ -213,7 +212,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\CreditWalletRequest(
-    id: '<id>',
     creditWalletRequest: new Shared\CreditWalletRequest(
         amount: new Shared\Monetary(
             amount: BigInteger::of('100'),
@@ -222,10 +220,9 @@ $request = new Operations\CreditWalletRequest(
         metadata: [
             'key' => '',
         ],
-        sources: [
-
-        ],
+        sources: [],
     ),
+    id: '<id>',
 );
 
 $response = $sdk->wallets->v1->creditWallet(
@@ -280,7 +277,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\DebitWalletRequest(
-    id: '<id>',
     debitWalletRequest: new Shared\DebitWalletRequest(
         amount: new Shared\Monetary(
             amount: BigInteger::of('100'),
@@ -291,6 +287,7 @@ $request = new Operations\DebitWalletRequest(
         ],
         pending: true,
     ),
+    id: '<id>',
 );
 
 $response = $sdk->wallets->v1->debitWallet(
@@ -457,6 +454,7 @@ $request = new Operations\GetHoldsRequest(
     metadata: [
         'admin' => 'true',
     ],
+    pageSize: 100,
     walletID: 'wallet1',
 );
 
@@ -510,6 +508,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\GetTransactionsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     walletID: 'wallet1',
 );
 
@@ -571,7 +570,7 @@ $response = $sdk->wallets->v1->getWallet(
     request: $request
 );
 
-if ($response->getWalletResponse !== null) {
+if ($response->activityGetWalletOutput !== null) {
     // handle response
 }
 ```
@@ -731,6 +730,7 @@ $request = new Operations\ListWalletsRequest(
         'admin' => 'true',
     ],
     name: 'wallet1',
+    pageSize: 100,
 );
 
 $response = $sdk->wallets->v1->listWallets(

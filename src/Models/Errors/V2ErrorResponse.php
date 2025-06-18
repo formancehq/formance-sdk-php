@@ -14,6 +14,14 @@ class V2ErrorResponse
 {
     /**
      *
+     * @var ?string $details
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $details = null;
+
+    /**
+     *
      * @var Shared\V2ErrorsEnum $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
@@ -28,14 +36,6 @@ class V2ErrorResponse
     public string $errorMessage;
 
     /**
-     *
-     * @var ?string $details
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $details = null;
-
-    /**
      * @param  Shared\V2ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
@@ -43,9 +43,9 @@ class V2ErrorResponse
      */
     public function __construct(Shared\V2ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
+        $this->details = $details;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-        $this->details = $details;
     }
 
     public function toException(): V2ErrorResponseThrowable

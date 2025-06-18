@@ -13,18 +13,19 @@ namespace formance\stack\Models\Shared;
 class ConnectorsConfigsResponse
 {
     /**
+     * $data
      *
-     * @var ConnectorsConfigsResponseData $data
+     * @var array<string, array<string, ConnectorsConfigsResponseData>> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ConnectorsConfigsResponseData')]
-    public ConnectorsConfigsResponseData $data;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\ConnectorsConfigsResponseData>>')]
+    public array $data;
 
     /**
-     * @param  ConnectorsConfigsResponseData  $data
+     * @param  array<string, array<string, ConnectorsConfigsResponseData>>  $data
      * @phpstan-pure
      */
-    public function __construct(ConnectorsConfigsResponseData $data)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

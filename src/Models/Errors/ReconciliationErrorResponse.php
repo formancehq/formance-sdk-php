@@ -42,9 +42,9 @@ class ReconciliationErrorResponse
      */
     public function __construct(string $errorCode, string $errorMessage, ?string $details = null)
     {
+        $this->details = $details;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-        $this->details = $details;
     }
 
     public function toException(): ReconciliationErrorResponseThrowable

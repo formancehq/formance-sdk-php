@@ -35,22 +35,22 @@ class V2RevertTransactionResponse
     /**
      * OK
      *
-     * @var ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse
+     * @var ?Shared\V2CreateTransactionResponse $v2CreateTransactionResponse
      */
-    public ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null;
+    public ?Shared\V2CreateTransactionResponse $v2CreateTransactionResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2RevertTransactionResponse  $v2RevertTransactionResponse
+     * @param  ?Shared\V2CreateTransactionResponse  $v2CreateTransactionResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2CreateTransactionResponse $v2CreateTransactionResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->v2RevertTransactionResponse = $v2RevertTransactionResponse;
+        $this->v2CreateTransactionResponse = $v2CreateTransactionResponse;
     }
 }

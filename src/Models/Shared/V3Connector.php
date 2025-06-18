@@ -13,11 +13,11 @@ class V3Connector
 {
     /**
      *
-     * @var V3ConnectorSchemasConfig $config
+     * @var V3ConnectorConfig $config
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V3ConnectorSchemasConfig')]
-    public V3ConnectorSchemasConfig $config;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V3ConnectorConfig')]
+    public V3ConnectorConfig $config;
 
     /**
      *
@@ -62,7 +62,7 @@ class V3Connector
     public bool $scheduledForDeletion;
 
     /**
-     * @param  V3ConnectorSchemasConfig  $config
+     * @param  V3ConnectorConfig  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name
@@ -71,7 +71,7 @@ class V3Connector
      * @param  bool  $scheduledForDeletion
      * @phpstan-pure
      */
-    public function __construct(V3ConnectorSchemasConfig $config, \DateTime $createdAt, string $id, string $name, string $provider, string $reference, bool $scheduledForDeletion)
+    public function __construct(V3ConnectorConfig $config, \DateTime $createdAt, string $id, string $name, string $provider, string $reference, bool $scheduledForDeletion)
     {
         $this->config = $config;
         $this->createdAt = $createdAt;

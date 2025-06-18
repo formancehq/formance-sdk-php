@@ -55,13 +55,6 @@ class TransferInitiation
 
     /**
      *
-     * @var string $error
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    public string $error;
-
-    /**
-     *
      * @var string $id
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
@@ -129,6 +122,14 @@ class TransferInitiation
     public ?array $relatedAdjustments = null;
 
     /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
+
+    /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
@@ -155,7 +156,6 @@ class TransferInitiation
      * @param  \DateTime  $createdAt
      * @param  string  $description
      * @param  string  $destinationAccountID
-     * @param  string  $error
      * @param  string  $id
      * @param  \Brick\Math\BigInteger  $initialAmount
      * @param  string  $reference
@@ -165,11 +165,12 @@ class TransferInitiation
      * @param  TransferInitiationType  $type
      * @param  ?string  $provider
      * @param  ?array<TransferInitiationAdjusments>  $relatedAdjustments
+     * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @param  ?array<TransferInitiationPayments>  $relatedPayments
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $error, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, TransferInitiationType $type, ?string $provider = null, ?array $relatedAdjustments = null, ?array $metadata = null, ?array $relatedPayments = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, TransferInitiationType $type, ?string $provider = null, ?array $relatedAdjustments = null, ?string $error = null, ?array $metadata = null, ?array $relatedPayments = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -177,7 +178,6 @@ class TransferInitiation
         $this->createdAt = $createdAt;
         $this->description = $description;
         $this->destinationAccountID = $destinationAccountID;
-        $this->error = $error;
         $this->id = $id;
         $this->initialAmount = $initialAmount;
         $this->reference = $reference;
@@ -187,6 +187,7 @@ class TransferInitiation
         $this->type = $type;
         $this->provider = $provider;
         $this->relatedAdjustments = $relatedAdjustments;
+        $this->error = $error;
         $this->metadata = $metadata;
         $this->relatedPayments = $relatedPayments;
     }

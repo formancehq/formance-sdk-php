@@ -27,18 +27,19 @@ class TransferInitiationAdjusments
 
     /**
      *
-     * @var string $error
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    public string $error;
-
-    /**
-     *
      * @var TransferInitiationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationStatus')]
     public TransferInitiationStatus $status;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
 
     /**
      * $metadata
@@ -53,17 +54,17 @@ class TransferInitiationAdjusments
     /**
      * @param  string  $adjustmentID
      * @param  \DateTime  $createdAt
-     * @param  string  $error
      * @param  TransferInitiationStatus  $status
+     * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(string $adjustmentID, \DateTime $createdAt, string $error, TransferInitiationStatus $status, ?array $metadata = null)
+    public function __construct(string $adjustmentID, \DateTime $createdAt, TransferInitiationStatus $status, ?string $error = null, ?array $metadata = null)
     {
         $this->adjustmentID = $adjustmentID;
         $this->createdAt = $createdAt;
-        $this->error = $error;
         $this->status = $status;
+        $this->error = $error;
         $this->metadata = $metadata;
     }
 }

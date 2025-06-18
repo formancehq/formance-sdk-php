@@ -36,15 +36,25 @@ class V2DeleteAccountMetadataRequest
     public string $ledger;
 
     /**
+     * Use an idempotency key
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
      * @param  string  $address
      * @param  string  $key
      * @param  string  $ledger
+     * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(string $address, string $key, string $ledger)
+    public function __construct(string $address, string $key, string $ledger, ?string $idempotencyKey = null)
     {
         $this->address = $address;
         $this->key = $key;
         $this->ledger = $ledger;
+        $this->idempotencyKey = $idempotencyKey;
     }
 }

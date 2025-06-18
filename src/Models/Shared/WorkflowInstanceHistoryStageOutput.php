@@ -67,12 +67,12 @@ class WorkflowInstanceHistoryStageOutput
 
     /**
      *
-     * @var ?ActivityRevertTransactionOutput $revertTransaction
+     * @var ?ActivityCreateTransactionOutput $revertTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityRevertTransactionOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityRevertTransactionOutput $revertTransaction = null;
+    public ?ActivityCreateTransactionOutput $revertTransaction = null;
 
     /**
      * @param  ?ActivityCreateTransactionOutput  $createTransaction
@@ -81,10 +81,10 @@ class WorkflowInstanceHistoryStageOutput
      * @param  ?ActivityGetPaymentOutput  $getPayment
      * @param  ?ActivityGetWalletOutput  $getWallet
      * @param  ?OrchestrationListWalletsResponse  $listWallets
-     * @param  ?ActivityRevertTransactionOutput  $revertTransaction
+     * @param  ?ActivityCreateTransactionOutput  $revertTransaction
      * @phpstan-pure
      */
-    public function __construct(?ActivityCreateTransactionOutput $createTransaction = null, ?ActivityDebitWalletOutput $debitWallet = null, ?ActivityGetAccountOutput $getAccount = null, ?ActivityGetPaymentOutput $getPayment = null, ?ActivityGetWalletOutput $getWallet = null, ?OrchestrationListWalletsResponse $listWallets = null, ?ActivityRevertTransactionOutput $revertTransaction = null)
+    public function __construct(?ActivityCreateTransactionOutput $createTransaction = null, ?ActivityDebitWalletOutput $debitWallet = null, ?ActivityGetAccountOutput $getAccount = null, ?ActivityGetPaymentOutput $getPayment = null, ?ActivityGetWalletOutput $getWallet = null, ?OrchestrationListWalletsResponse $listWallets = null, ?ActivityCreateTransactionOutput $revertTransaction = null)
     {
         $this->createTransaction = $createTransaction;
         $this->debitWallet = $debitWallet;

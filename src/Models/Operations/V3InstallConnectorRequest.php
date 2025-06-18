@@ -22,17 +22,17 @@ class V3InstallConnectorRequest
 
     /**
      *
-     * @var Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null $v3InstallConnectorRequest
+     * @var Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null $v3InstallConnectorRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null $v3InstallConnectorRequest = null;
+    public Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null $v3InstallConnectorRequest = null;
 
     /**
      * @param  string  $connector
-     * @param  Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null  $v3InstallConnectorRequest
+     * @param  Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null  $v3InstallConnectorRequest
      * @phpstan-pure
      */
-    public function __construct(string $connector, Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null $v3InstallConnectorRequest = null)
+    public function __construct(string $connector, Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3WiseConfig|null $v3InstallConnectorRequest = null)
     {
         $this->connector = $connector;
         $this->v3InstallConnectorRequest = $v3InstallConnectorRequest;

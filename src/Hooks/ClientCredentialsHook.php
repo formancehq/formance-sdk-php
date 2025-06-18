@@ -8,6 +8,7 @@ namespace formance\stack\Hooks;
 
 use Brick\DateTime\LocalTime;
 use Brick\DateTime\TimeZone;
+use formance\stack\Models\Shared;
 use formance\stack\Utils;
 use GuzzleHttp\ClientInterface;
 use Psr\Http\Message\RequestInterface;
@@ -16,7 +17,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKInitHook
 {
-    public string $baseUrl;
     /**
      * @var array<string, Session> $sessions
      */
@@ -25,7 +25,6 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
 
     public function sdkInit(string $baseUrl, ClientInterface $client): SDKRequestContext
     {
-        $this->baseUrl = $baseUrl;
         $this->sessions = [];
         $this->client = $client;
 
@@ -39,7 +38,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
             return $request;
         }
 
-        $credentials = $this->getCredentials($context->securitySource);
+        $credentials = $this->getCredentials($context);
         if ($credentials == null) {
             return $request;
         }
@@ -49,6 +48,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         if (! array_key_exists($sessionKey, $this->sessions) || ! $this->hasRequiredScopes($this->sessions[$sessionKey]->scopes, $context->oauth2Scopes) || $this->hasTokenExpired($this->sessions[$sessionKey]->expiresAt)) {
             $value = isset($this->sessions[$sessionKey]) ? $this->sessions[$sessionKey] : null;
             $session = $this->doTokenRequest(
+                $context->baseURL,
                 $credentials,
                 $this->getScopes($context->oauth2Scopes, $value)
             );
@@ -74,7 +74,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
             return new ErrorResponseContext($response, $exception);
         }
 
-        $credentials = $this->getCredentials($context->securitySource);
+        $credentials = $this->getCredentials($context);
         if ($credentials === null) {
             return new ErrorResponseContext($response, $exception);
         }
@@ -91,15 +91,28 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         return new ErrorResponseContext($response, $exception);
     }
 
-    private function getCredentials(?\Closure $securitySource): ?Credentials
+    private function getCredentials(HookContext $context): ?Credentials
     {
-        if ($securitySource == null) {
+        if ($context->securitySource == null) {
             return null;
         }
 
+        return $this->getCredentialsGlobal($context->securitySource);
+    }
+
+    private function getCredentialsGlobal(\Closure $securitySource): ?Credentials
+    {
         $security = $securitySource();
 
-        if ($security->clientID == null || $security->clientSecret == null) {
+        if ($security == null) {
+            return null;
+        }
+
+        if (! $security instanceof Shared\Security) {
+            throw new \InvalidArgumentException('Invalid security type: expected Shared\Security, got '.get_class($security));
+        }
+
+        if ($security->clientID == null || $security->clientSecret == null || $security->tokenURL == null) {
             return null;
         }
 
@@ -111,12 +124,13 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
     }
 
     /**
+     * @param  string  $baseUrl
      * @param  Credentials  $credentials
      * @param  array<string>  $scopes
      *
      * @return Session
      */
-    private function doTokenRequest(Credentials $credentials, array $scopes): Session
+    private function doTokenRequest(string $baseUrl, Credentials $credentials, array $scopes): Session
     {
         $payload = ['grant_type' => 'client_credentials',
             'client_id' => $credentials->clientID,
@@ -127,7 +141,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
             $payload['scope'] = implode(' ', $scopes);
         }
         $options = ['form_params' => $payload];
-        $request = new \GuzzleHttp\Psr7\Request('POST', Utils\Utils::urljoin($this->baseUrl, $credentials->tokenURL));
+        $request = new \GuzzleHttp\Psr7\Request('POST', Utils\Utils::urljoin($baseUrl, $credentials->tokenURL));
 
         $response = $this->client->send($request, $options);
         $responseBody = $response->getBody();

@@ -43,9 +43,9 @@ class V3ErrorResponse
      */
     public function __construct(Shared\V3ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
+        $this->details = $details;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-        $this->details = $details;
     }
 
     public function toException(): V3ErrorResponseThrowable

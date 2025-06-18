@@ -12,18 +12,19 @@ namespace formance\stack\Models\Shared;
 class V3ConnectorConfigsResponse
 {
     /**
+     * $data
      *
-     * @var V3ConnectorConfigsResponseData $data
+     * @var array<string, array<string, V3ConnectorConfigsResponseData>> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V3ConnectorConfigsResponseData')]
-    public V3ConnectorConfigsResponseData $data;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Shared\V3ConnectorConfigsResponseData>>')]
+    public array $data;
 
     /**
-     * @param  V3ConnectorConfigsResponseData  $data
+     * @param  array<string, array<string, V3ConnectorConfigsResponseData>>  $data
      * @phpstan-pure
      */
-    public function __construct(V3ConnectorConfigsResponseData $data)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

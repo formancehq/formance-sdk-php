@@ -5,7 +5,6 @@
 
 ### Available Operations
 
-* [getMetrics](#getmetrics) - Read in memory metrics
 * [addMetadataOnTransaction](#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](#addmetadatatoaccount) - Add metadata to an account
 * [countAccounts](#countaccounts) - Count the accounts from a ledger
@@ -22,6 +21,7 @@
 * [getInfo](#getinfo) - Show server information
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
+* [getMetrics](#getmetrics) - Read in memory metrics
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
@@ -32,51 +32,6 @@
 * [readStats](#readstats) - Get statistics from a ledger
 * [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
 * [updateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
-
-## getMetrics
-
-Read in memory metrics
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->ledger->v2->getMetrics(
-
-);
-
-if ($response->object !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\GetMetricsResponse](../../Models/Operations/GetMetricsResponse.md)**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
 ## addMetadataOnTransaction
 
@@ -107,9 +62,9 @@ $request = new Operations\V2AddMetadataOnTransactionRequest(
     requestBody: [
         'admin' => 'true',
     ],
+    dryRun: true,
     id: BigInteger::of('1234'),
     ledger: 'ledger001',
-    dryRun: true,
 );
 
 $response = $sdk->ledger->v2->addMetadataOnTransaction(
@@ -167,8 +122,8 @@ $request = new Operations\V2AddMetadataToAccountRequest(
         'admin' => 'true',
     ],
     address: 'users:001',
-    ledger: 'ledger001',
     dryRun: true,
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v2->addMetadataToAccount(
@@ -224,6 +179,7 @@ $sdk = stack\SDK::builder()
 $request = new Operations\V2CountAccountsRequest(
     requestBody: [
         'key' => '<value>',
+        'key1' => '<value>',
     ],
     ledger: 'ledger001',
 );
@@ -337,13 +293,13 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateBulkRequest(
     requestBody: [
-        new Shared\V2BulkElementAddMetadata(
-            action: '<value>',
+        new Shared\V2BulkElementRevertTransaction(
+            action: 'REVERT_TRANSACTION',
         ),
     ],
-    ledger: 'ledger001',
     atomic: true,
     continueOnFailure: true,
+    ledger: 'ledger001',
     parallel: true,
 );
 
@@ -485,9 +441,9 @@ $request = new Operations\V2CreateTransactionRequest(
             ],
         ),
     ),
-    ledger: 'ledger001',
     dryRun: true,
     force: true,
+    ledger: 'ledger001',
 );
 
 $response = $sdk->ledger->v2->createTransaction(
@@ -541,7 +497,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2DeleteAccountMetadataRequest(
-    address: '96609 Cummings Canyon',
+    address: '6753 S Washington Street',
     key: 'foo',
     ledger: 'ledger001',
 );
@@ -819,6 +775,8 @@ $sdk = stack\SDK::builder()
 $request = new Operations\V2GetBalancesAggregatedRequest(
     requestBody: [
         'key' => '<value>',
+        'key1' => '<value>',
+        'key2' => '<value>',
     ],
     ledger: 'ledger001',
 );
@@ -1002,6 +960,51 @@ if ($response->v2LedgerInfoResponse !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## getMetrics
+
+Read in memory metrics
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->ledger->v2->getMetrics(
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetMetricsResponse](../../Models/Operations/GetMetricsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## getTransaction
 
 Get transaction from a ledger by its ID
@@ -1086,9 +1089,9 @@ $request = new Operations\V2GetVolumesWithBalancesRequest(
     requestBody: [
         'key' => '<value>',
     ],
-    ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     groupBy: 3,
+    ledger: 'ledger001',
     pageSize: 100,
 );
 
@@ -1141,7 +1144,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ImportLogsRequest(
-    v2ImportLogsRequest: '0xeC7ae8CBbd',
+    v2ImportLogsRequest: '0xde3EDEE9e6',
     ledger: 'ledger001',
 );
 
@@ -1197,10 +1200,10 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2ListAccountsRequest(
     requestBody: [
-        'key' => '<value>',
+
     ],
-    ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    ledger: 'ledger001',
     pageSize: 100,
 );
 
@@ -1311,10 +1314,10 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2ListLogsRequest(
     requestBody: [
-        'key' => '<value>',
+
     ],
-    ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    ledger: 'ledger001',
     pageSize: 100,
 );
 
@@ -1370,10 +1373,10 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2ListTransactionsRequest(
     requestBody: [
-        'key' => '<value>',
+
     ],
-    ledger: 'ledger001',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    ledger: 'ledger001',
     pageSize: 100,
 );
 
@@ -1484,16 +1487,16 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2RevertTransactionRequest(
+    dryRun: true,
     id: BigInteger::of('1234'),
     ledger: 'ledger001',
-    dryRun: true,
 );
 
 $response = $sdk->ledger->v2->revertTransaction(
     request: $request
 );
 
-if ($response->v2RevertTransactionResponse !== null) {
+if ($response->v2CreateTransactionResponse !== null) {
     // handle response
 }
 ```
