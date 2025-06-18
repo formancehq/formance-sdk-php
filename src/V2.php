@@ -52,14 +52,14 @@ class V2
      */
     public function getMetrics(?Options $options = null): Operations\GetMetricsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_/metrics');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('getMetrics', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'getMetrics', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -116,7 +116,7 @@ class V2
      */
     public function addMetadataOnTransaction(Operations\V2AddMetadataOnTransactionRequest $request, ?Options $options = null): Operations\V2AddMetadataOnTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata', Operations\V2AddMetadataOnTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -134,7 +134,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2AddMetadataOnTransaction', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2AddMetadataOnTransaction', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -183,7 +183,7 @@ class V2
      */
     public function addMetadataToAccount(Operations\V2AddMetadataToAccountRequest $request, ?Options $options = null): Operations\V2AddMetadataToAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata', Operations\V2AddMetadataToAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -201,7 +201,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2AddMetadataToAccount', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2AddMetadataToAccount', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -250,7 +250,7 @@ class V2
      */
     public function countAccounts(Operations\V2CountAccountsRequest $request, ?Options $options = null): Operations\V2CountAccountsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2CountAccountsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -264,7 +264,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('HEAD', $url);
-        $hookContext = new HookContext('v2CountAccounts', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CountAccounts', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -313,7 +313,7 @@ class V2
      */
     public function countTransactions(Operations\V2CountTransactionsRequest $request, ?Options $options = null): Operations\V2CountTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CountTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -327,7 +327,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('HEAD', $url);
-        $hookContext = new HookContext('v2CountTransactions', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CountTransactions', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -376,7 +376,7 @@ class V2
      */
     public function createBulk(Operations\V2CreateBulkRequest $request, ?Options $options = null): Operations\V2CreateBulkResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_bulk', Operations\V2CreateBulkRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -390,7 +390,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2CreateBulk', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CreateBulk', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -465,7 +465,7 @@ class V2
      */
     public function createLedger(Operations\V2CreateLedgerRequest $request, ?Options $options = null): Operations\V2CreateLedgerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2CreateLedgerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -477,7 +477,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2CreateLedger', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CreateLedger', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -525,7 +525,7 @@ class V2
      */
     public function createTransaction(Operations\V2CreateTransactionRequest $request, ?Options $options = null): Operations\V2CreateTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CreateTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -543,7 +543,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2CreateTransaction', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CreateTransaction', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -603,14 +603,18 @@ class V2
      */
     public function deleteAccountMetadata(Operations\V2DeleteAccountMetadataRequest $request, ?Options $options = null): Operations\V2DeleteAccountMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}', Operations\V2DeleteAccountMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
-        $hookContext = new HookContext('v2DeleteAccountMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2DeleteAccountMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -658,14 +662,14 @@ class V2
      */
     public function deleteLedgerMetadata(Operations\V2DeleteLedgerMetadataRequest $request, ?Options $options = null): Operations\V2DeleteLedgerMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata/{key}', Operations\V2DeleteLedgerMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
-        $hookContext = new HookContext('v2DeleteLedgerMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2DeleteLedgerMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -715,14 +719,18 @@ class V2
      */
     public function deleteTransactionMetadata(Operations\V2DeleteTransactionMetadataRequest $request, ?Options $options = null): Operations\V2DeleteTransactionMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}', Operations\V2DeleteTransactionMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
-        $hookContext = new HookContext('v2DeleteTransactionMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2DeleteTransactionMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -770,14 +778,14 @@ class V2
      */
     public function exportLogs(Operations\V2ExportLogsRequest $request, ?Options $options = null): Operations\V2ExportLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs/export', Operations\V2ExportLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = '*/*';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2ExportLogs', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ExportLogs', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -816,7 +824,7 @@ class V2
      */
     public function getAccount(Operations\V2GetAccountRequest $request, ?Options $options = null): Operations\V2GetAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}', Operations\V2GetAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -825,7 +833,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetAccount', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetAccount', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -883,7 +891,7 @@ class V2
      */
     public function getBalancesAggregated(Operations\V2GetBalancesAggregatedRequest $request, ?Options $options = null): Operations\V2GetBalancesAggregatedResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/aggregate/balances', Operations\V2GetBalancesAggregatedRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -897,7 +905,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetBalancesAggregated', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetBalancesAggregated', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -954,14 +962,14 @@ class V2
      */
     public function getInfo(?Options $options = null): Operations\V2GetInfoResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_/info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetInfo', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetInfo', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -1035,14 +1043,14 @@ class V2
      */
     public function getLedger(Operations\V2GetLedgerRequest $request, ?Options $options = null): Operations\V2GetLedgerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2GetLedgerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetLedger', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetLedger', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -1099,14 +1107,14 @@ class V2
      */
     public function getLedgerInfo(Operations\V2GetLedgerInfoRequest $request, ?Options $options = null): Operations\V2GetLedgerInfoResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_info', Operations\V2GetLedgerInfoRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetLedgerInfo', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetLedgerInfo', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -1163,7 +1171,7 @@ class V2
      */
     public function getTransaction(Operations\V2GetTransactionRequest $request, ?Options $options = null): Operations\V2GetTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}', Operations\V2GetTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1172,7 +1180,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetTransaction', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetTransaction', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1230,7 +1238,7 @@ class V2
      */
     public function getVolumesWithBalances(Operations\V2GetVolumesWithBalancesRequest $request, ?Options $options = null): Operations\V2GetVolumesWithBalancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/volumes', Operations\V2GetVolumesWithBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1244,7 +1252,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2GetVolumesWithBalances', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetVolumesWithBalances', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1302,7 +1310,7 @@ class V2
      */
     public function importLogs(Operations\V2ImportLogsRequest $request, ?Options $options = null): Operations\V2ImportLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs/import', Operations\V2ImportLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1314,7 +1322,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2ImportLogs', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ImportLogs', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -1364,7 +1372,7 @@ class V2
      */
     public function listAccounts(Operations\V2ListAccountsRequest $request, ?Options $options = null): Operations\V2ListAccountsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2ListAccountsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1378,7 +1386,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2ListAccounts', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListAccounts', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1436,7 +1444,7 @@ class V2
      */
     public function listLedgers(?Operations\V2ListLedgersRequest $request = null, ?Options $options = null): Operations\V2ListLedgersResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1445,7 +1453,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2ListLedgers', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListLedgers', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1505,7 +1513,7 @@ class V2
      */
     public function listLogs(Operations\V2ListLogsRequest $request, ?Options $options = null): Operations\V2ListLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs', Operations\V2ListLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1519,7 +1527,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2ListLogs', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListLogs', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1579,7 +1587,7 @@ class V2
      */
     public function listTransactions(Operations\V2ListTransactionsRequest $request, ?Options $options = null): Operations\V2ListTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2ListTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1593,7 +1601,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2ListTransactions', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListTransactions', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1654,14 +1662,14 @@ class V2
      */
     public function readStats(Operations\V2ReadStatsRequest $request, ?Options $options = null): Operations\V2ReadStatsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/stats', Operations\V2ReadStatsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('v2ReadStats', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ReadStats', ['auth:read', 'ledger:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -1718,7 +1726,7 @@ class V2
      */
     public function revertTransaction(Operations\V2RevertTransactionRequest $request, ?Options $options = null): Operations\V2RevertTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/revert', Operations\V2RevertTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1727,7 +1735,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('v2RevertTransaction', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2RevertTransaction', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -1751,12 +1759,12 @@ class V2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2RevertTransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2CreateTransactionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2RevertTransactionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    v2RevertTransactionResponse: $obj);
+                    v2CreateTransactionResponse: $obj);
 
                 return $response;
             } else {
@@ -1785,7 +1793,7 @@ class V2
      */
     public function updateLedgerMetadata(Operations\V2UpdateLedgerMetadataRequest $request, ?Options $options = null): Operations\V2UpdateLedgerMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata', Operations\V2UpdateLedgerMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1797,7 +1805,7 @@ class V2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
-        $hookContext = new HookContext('v2UpdateLedgerMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2UpdateLedgerMetadata', ['auth:read', 'ledger:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);

@@ -21,7 +21,8 @@
 * [getConnectorTaskV1](#getconnectortaskv1) - Read a specific task of the connector
 * [getPayment](#getpayment) - Get a payment
 * [getPool](#getpool) - Get a Pool
-* [getPoolBalances](#getpoolbalances) - Get pool balances
+* [getPoolBalances](#getpoolbalances) - Get historical pool balances at a particular point in time
+* [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
 * [getTransferInitiation](#gettransferinitiation) - Get a transfer initiation
 * [installConnector](#installconnector) - Install a connector
 * [listAllConnectors](#listallconnectors) - List all installed connectors
@@ -42,12 +43,12 @@
 * [resetConnectorV1](#resetconnectorv1) - Reset a connector
 * [retryTransferInitiation](#retrytransferinitiation) - Retry a failed transfer initiation
 * [reverseTransferInitiation](#reversetransferinitiation) - Reverse a transfer initiation
-* [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
+* [updateTransferInitiationStatus](#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
 ## addAccountToPool
 
@@ -138,7 +139,7 @@ $request = new Operations\ConnectorsTransferRequest(
         destination: 'acct_1Gqj58KZcSIg2N2q',
         source: 'acct_1Gqj58KZcSIg2N2q',
     ),
-    connector: Shared\Connector::BankingCircle,
+    connector: Shared\Connector::Generic,
 );
 
 $response = $sdk->payments->v1->connectorsTransfer(
@@ -193,9 +194,9 @@ $sdk = stack\SDK::builder()
 
 $request = new Shared\AccountRequest(
     connectorID: '<id>',
-    createdAt: Utils\Utils::parseDateTime('2025-08-19T02:15:08.152Z'),
+    createdAt: Utils\Utils::parseDateTime('2025-07-27T08:57:17.388Z'),
     reference: '<value>',
-    type: Shared\AccountType::Internal,
+    type: Shared\AccountType::Unknown,
 );
 
 $response = $sdk->payments->v1->createAccount(
@@ -248,7 +249,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Shared\BankAccountRequest(
-    connectorID: '<id>',
     country: 'GB',
     name: 'My account',
 );
@@ -308,9 +308,9 @@ $request = new Shared\PaymentRequest(
     amount: BigInteger::of('100'),
     asset: 'USD',
     connectorID: '<id>',
-    createdAt: Utils\Utils::parseDateTime('2025-11-09T01:03:21.011Z'),
+    createdAt: Utils\Utils::parseDateTime('2025-08-26T06:29:11.777Z'),
     reference: '<value>',
-    scheme: Shared\PaymentScheme::Molpay,
+    scheme: Shared\PaymentScheme::Rtp,
     status: Shared\PaymentStatus::RefundedFailure,
     type: Shared\PaymentType::Payout,
 );
@@ -366,7 +366,8 @@ $sdk = stack\SDK::builder()
 
 $request = new Shared\PoolRequest(
     accountIDs: [
-        '<value>',
+        '<value 1>',
+        '<value 2>',
     ],
     name: '<value>',
 );
@@ -423,14 +424,14 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Shared\TransferInitiationRequest(
-    amount: BigInteger::of('256698'),
+    amount: BigInteger::of('83093'),
     asset: 'USD',
-    description: 'worthy pace vague ick liberalize between um',
+    description: 'flowery yum keenly operating knavishly commemorate recent apropos',
     destinationAccountID: '<id>',
     reference: 'XXX',
-    scheduledAt: Utils\Utils::parseDateTime('2025-05-02T09:50:03.622Z'),
+    scheduledAt: Utils\Utils::parseDateTime('2025-07-09T05:18:01.065Z'),
     sourceAccountID: '<id>',
-    type: Shared\TransferInitiationRequestType::Payout,
+    type: Shared\TransferInitiationRequestType::Transfer,
     validated: false,
 );
 
@@ -652,6 +653,7 @@ $sdk = stack\SDK::builder()
 $request = new Operations\GetAccountBalancesRequest(
     accountId: 'XXX',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     sort: [
         'date:asc',
         'status:desc',
@@ -765,7 +767,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetConnectorTaskRequest(
-    connector: Shared\Connector::Adyen,
+    connector: Shared\Connector::Moneycorp,
     taskId: 'task1',
 );
 
@@ -820,7 +822,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetConnectorTaskV1Request(
-    connector: Shared\Connector::BankingCircle,
+    connector: Shared\Connector::Modulr,
     connectorId: 'XXX',
     taskId: 'task1',
 );
@@ -961,7 +963,7 @@ if ($response->poolResponse !== null) {
 
 ## getPoolBalances
 
-Get pool balances
+Get historical pool balances at a particular point in time
 
 ### Example Usage
 
@@ -985,7 +987,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetPoolBalancesRequest(
-    at: Utils\Utils::parseDateTime('2024-05-04T06:40:23.119Z'),
+    at: Utils\Utils::parseDateTime('2024-11-27T10:59:51.663Z'),
     poolId: 'XXX',
 );
 
@@ -1007,6 +1009,60 @@ if ($response->poolBalancesResponse !== null) {
 ### Response
 
 **[?Operations\GetPoolBalancesResponse](../../Models/Operations/GetPoolBalancesResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+
+## getPoolBalancesLatest
+
+Get latest pool balances
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetPoolBalancesLatestRequest(
+    poolId: 'XXX',
+);
+
+$response = $sdk->payments->v1->getPoolBalancesLatest(
+    request: $request
+);
+
+if ($response->poolBalancesResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                         | [Operations\GetPoolBalancesLatestRequest](../../Models/Operations/GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+
+### Response
+
+**[?Operations\GetPoolBalancesLatestResponse](../../Models/Operations/GetPoolBalancesLatestResponse.md)**
 
 ### Errors
 
@@ -1094,16 +1150,13 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\InstallConnectorRequest(
-    connectorConfig: new Shared\BankingCircleConfig(
-        authorizationEndpoint: 'XXX',
-        endpoint: 'XXX',
-        name: 'My Banking Circle Account',
-        password: 'XXX',
-        userCertificate: 'XXX',
-        userCertificateKey: 'XXX',
-        username: 'XXX',
+    connectorConfig: new Shared\CurrencyCloudConfig(
+        apiKey: 'XXX',
+        loginID: 'XXX',
+        name: 'My CurrencyCloud Account',
+        pollingPeriod: '60s',
     ),
-    connector: Shared\Connector::Atlar,
+    connector: Shared\Connector::Mangopay,
 );
 
 $response = $sdk->payments->v1->installConnector(
@@ -1203,6 +1256,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\ListBankAccountsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     sort: [
         'date:asc',
         'status:desc',
@@ -1309,6 +1363,7 @@ $sdk = stack\SDK::builder()
 $request = new Operations\ListConnectorTasksRequest(
     connector: Shared\Connector::Modulr,
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
 );
 
 $response = $sdk->payments->v1->listConnectorTasks(
@@ -1362,9 +1417,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ListConnectorTasksV1Request(
-    connector: Shared\Connector::BankingCircle,
+    connector: Shared\Connector::Wise,
     connectorId: 'XXX',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
 );
 
 $response = $sdk->payments->v1->listConnectorTasksV1(
@@ -1419,6 +1475,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\ListPaymentsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     sort: [
         'date:asc',
         'status:desc',
@@ -1477,6 +1534,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\ListPoolsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     sort: [
         'date:asc',
         'status:desc',
@@ -1535,6 +1593,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\ListTransferInitiationsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     sort: [
         'date:asc',
         'status:desc',
@@ -1650,7 +1709,7 @@ $response = $sdk->payments->v1->paymentsgetServerInfo(
 
 );
 
-if ($response->serverInfo !== null) {
+if ($response->paymentsServerInfo !== null) {
     // handle response
 }
 ```
@@ -1692,6 +1751,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\PaymentslistAccountsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
     sort: [
         'date:asc',
         'status:desc',
@@ -1751,7 +1811,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ReadConnectorConfigRequest(
-    connector: Shared\Connector::Generic,
+    connector: Shared\Connector::Modulr,
 );
 
 $response = $sdk->payments->v1->readConnectorConfig(
@@ -1805,7 +1865,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ReadConnectorConfigV1Request(
-    connector: Shared\Connector::CurrencyCloud,
+    connector: Shared\Connector::Mangopay,
     connectorId: 'XXX',
 );
 
@@ -1919,7 +1979,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ResetConnectorRequest(
-    connector: Shared\Connector::Atlar,
+    connector: Shared\Connector::Wise,
 );
 
 $response = $sdk->payments->v1->resetConnector(
@@ -1975,7 +2035,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ResetConnectorV1Request(
-    connector: Shared\Connector::Generic,
+    connector: Shared\Connector::Wise,
     connectorId: 'XXX',
 );
 
@@ -2086,13 +2146,13 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\ReverseTransferInitiationRequest(
     reverseTransferInitiationRequest: new Shared\ReverseTransferInitiationRequest(
-        amount: BigInteger::of('327549'),
+        amount: BigInteger::of('978875'),
         asset: 'USD',
-        description: 'till gosh how proselytise worriedly whoa',
-        reference: 'XXX',
+        description: 'whenever phooey a unlike tremendously whoever after when tight',
         metadata: [
             'key' => '<value>',
         ],
+        reference: 'XXX',
     ),
     transferId: 'XXX',
 );
@@ -2115,63 +2175,6 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\ReverseTransferInitiationResponse](../../Models/Operations/ReverseTransferInitiationResponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
-
-## udpateTransferInitiationStatus
-
-Update a transfer initiation status
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-$request = new Operations\UdpateTransferInitiationStatusRequest(
-    updateTransferInitiationStatusRequest: new Shared\UpdateTransferInitiationStatusRequest(
-        status: Shared\Status::Validated,
-    ),
-    transferId: 'XXX',
-);
-
-$response = $sdk->payments->v1->udpateTransferInitiationStatus(
-    request: $request
-);
-
-if ($response->statusCode === 200) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                           | [Operations\UdpateTransferInitiationStatusRequest](../../Models/Operations/UdpateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-
-### Response
-
-**[?Operations\UdpateTransferInitiationStatusResponse](../../Models/Operations/UdpateTransferInitiationStatusResponse.md)**
 
 ### Errors
 
@@ -2207,7 +2210,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UninstallConnectorRequest(
-    connector: Shared\Connector::Modulr,
+    connector: Shared\Connector::Generic,
 );
 
 $response = $sdk->payments->v1->uninstallConnector(
@@ -2261,7 +2264,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UninstallConnectorV1Request(
-    connector: Shared\Connector::Generic,
+    connector: Shared\Connector::BankingCircle,
     connectorId: 'XXX',
 );
 
@@ -2319,6 +2322,8 @@ $request = new Operations\UpdateBankAccountMetadataRequest(
     updateBankAccountMetadataRequest: new Shared\UpdateBankAccountMetadataRequest(
         metadata: [
             'key' => '<value>',
+            'key1' => '<value>',
+            'key2' => '<value>',
         ],
     ),
     bankAccountId: 'XXX',
@@ -2375,13 +2380,13 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateConnectorConfigV1Request(
-    connectorConfig: new Shared\AdyenConfig(
+    connectorConfig: new Shared\ModulrConfig(
         apiKey: 'XXX',
-        hmacKey: 'XXX',
-        name: 'My Adyen Account',
-        liveEndpointPrefix: 'XXX',
+        apiSecret: 'XXX',
+        name: 'My Modulr Account',
+        pollingPeriod: '60s',
     ),
-    connector: Shared\Connector::Adyen,
+    connector: Shared\Connector::Mangopay,
     connectorId: 'XXX',
 );
 
@@ -2436,10 +2441,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateMetadataRequest(
-    paymentId: 'XXX',
     requestBody: [
         'key' => '<value>',
     ],
+    paymentId: 'XXX',
 );
 
 $response = $sdk->payments->v1->updateMetadata(
@@ -2460,6 +2465,63 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\UpdateMetadataResponse](../../Models/Operations/UpdateMetadataResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+
+## updateTransferInitiationStatus
+
+Update a transfer initiation status
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdateTransferInitiationStatusRequest(
+    updateTransferInitiationStatusRequest: new Shared\UpdateTransferInitiationStatusRequest(
+        status: Shared\Status::Validated,
+    ),
+    transferId: 'XXX',
+);
+
+$response = $sdk->payments->v1->updateTransferInitiationStatus(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                           | [Operations\UpdateTransferInitiationStatusRequest](../../Models/Operations/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+
+### Response
+
+**[?Operations\UpdateTransferInitiationStatusResponse](../../Models/Operations/UpdateTransferInitiationStatusResponse.md)**
 
 ### Errors
 

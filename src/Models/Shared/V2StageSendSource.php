@@ -13,12 +13,12 @@ class V2StageSendSource
 {
     /**
      *
-     * @var ?V2StageSendSourceAccount $account
+     * @var ?V2StageSendDestinationAccount $account
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourceAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendDestinationAccount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2StageSendSourceAccount $account = null;
+    public ?V2StageSendDestinationAccount $account = null;
 
     /**
      *
@@ -31,20 +31,20 @@ class V2StageSendSource
 
     /**
      *
-     * @var ?V2StageSendSourceWallet $wallet
+     * @var ?V2StageSendDestinationWallet $wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('wallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendSourceWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2StageSendDestinationWallet|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2StageSendSourceWallet $wallet = null;
+    public ?V2StageSendDestinationWallet $wallet = null;
 
     /**
-     * @param  ?V2StageSendSourceAccount  $account
+     * @param  ?V2StageSendDestinationAccount  $account
      * @param  ?V2StageSendSourcePayment  $payment
-     * @param  ?V2StageSendSourceWallet  $wallet
+     * @param  ?V2StageSendDestinationWallet  $wallet
      * @phpstan-pure
      */
-    public function __construct(?V2StageSendSourceAccount $account = null, ?V2StageSendSourcePayment $payment = null, ?V2StageSendSourceWallet $wallet = null)
+    public function __construct(?V2StageSendDestinationAccount $account = null, ?V2StageSendSourcePayment $payment = null, ?V2StageSendDestinationWallet $wallet = null)
     {
         $this->account = $account;
         $this->payment = $payment;

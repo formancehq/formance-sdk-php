@@ -43,9 +43,9 @@ class ErrorResponse
      */
     public function __construct(Shared\ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
+        $this->details = $details;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-        $this->details = $details;
     }
 
     public function toException(): ErrorResponseThrowable

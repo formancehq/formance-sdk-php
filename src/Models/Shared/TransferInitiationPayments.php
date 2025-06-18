@@ -20,13 +20,6 @@ class TransferInitiationPayments
 
     /**
      *
-     * @var string $error
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    public string $error;
-
-    /**
-     *
      * @var string $paymentID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('paymentID')]
@@ -34,24 +27,32 @@ class TransferInitiationPayments
 
     /**
      *
-     * @var TransferInitiationStatus $status
+     * @var PaymentStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\TransferInitiationStatus')]
-    public TransferInitiationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
+    public PaymentStatus $status;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
 
     /**
      * @param  \DateTime  $createdAt
-     * @param  string  $error
      * @param  string  $paymentID
-     * @param  TransferInitiationStatus  $status
+     * @param  PaymentStatus  $status
+     * @param  ?string  $error
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $error, string $paymentID, TransferInitiationStatus $status)
+    public function __construct(\DateTime $createdAt, string $paymentID, PaymentStatus $status, ?string $error = null)
     {
         $this->createdAt = $createdAt;
-        $this->error = $error;
         $this->paymentID = $paymentID;
         $this->status = $status;
+        $this->error = $error;
     }
 }

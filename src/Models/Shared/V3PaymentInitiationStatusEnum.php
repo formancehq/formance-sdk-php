@@ -13,6 +13,7 @@ enum V3PaymentInitiationStatusEnum: string
 {
     case Unknown = 'UNKNOWN';
     case WaitingForValidation = 'WAITING_FOR_VALIDATION';
+    case ScheduledForProcessing = 'SCHEDULED_FOR_PROCESSING';
     case Processing = 'PROCESSING';
     case Processed = 'PROCESSED';
     case Failed = 'FAILED';

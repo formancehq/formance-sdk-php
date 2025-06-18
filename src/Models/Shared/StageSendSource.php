@@ -13,12 +13,12 @@ class StageSendSource
 {
     /**
      *
-     * @var ?StageSendSourceAccount $account
+     * @var ?StageSendDestinationAccount $account
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourceAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationAccount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendSourceAccount $account = null;
+    public ?StageSendDestinationAccount $account = null;
 
     /**
      *
@@ -31,20 +31,20 @@ class StageSendSource
 
     /**
      *
-     * @var ?StageSendSourceWallet $wallet
+     * @var ?StageSendDestinationWallet $wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('wallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendSourceWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\StageSendDestinationWallet|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendSourceWallet $wallet = null;
+    public ?StageSendDestinationWallet $wallet = null;
 
     /**
-     * @param  ?StageSendSourceAccount  $account
+     * @param  ?StageSendDestinationAccount  $account
      * @param  ?StageSendSourcePayment  $payment
-     * @param  ?StageSendSourceWallet  $wallet
+     * @param  ?StageSendDestinationWallet  $wallet
      * @phpstan-pure
      */
-    public function __construct(?StageSendSourceAccount $account = null, ?StageSendSourcePayment $payment = null, ?StageSendSourceWallet $wallet = null)
+    public function __construct(?StageSendDestinationAccount $account = null, ?StageSendSourcePayment $payment = null, ?StageSendDestinationWallet $wallet = null)
     {
         $this->account = $account;
         $this->payment = $payment;

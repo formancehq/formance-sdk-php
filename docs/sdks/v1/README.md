@@ -40,9 +40,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\CreateClientRequest(
-    name: '<value>',
-);
+
 
 $response = $sdk->auth->v1->createClient(
     request: $request
@@ -55,9 +53,9 @@ if ($response->createClientResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `$request`                                                               | [Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `$request`                                                   | [Shared\ClientOptions](../../Models/Shared/ClientOptions.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
 ### Response
 
@@ -543,7 +541,7 @@ $response = $sdk->auth->v1->updateClient(
     request: $request
 );
 
-if ($response->updateClientResponse !== null) {
+if ($response->createClientResponse !== null) {
     // handle response
 }
 ```

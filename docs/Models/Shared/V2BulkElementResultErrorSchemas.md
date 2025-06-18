@@ -7,6 +7,6 @@
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `errorCode`        | *string*           | :heavy_check_mark: | N/A                |
 | `errorDescription` | *string*           | :heavy_check_mark: | N/A                |
+| `errorDetails`     | *?string*          | :heavy_minus_sign: | N/A                |
 | `logID`            | *int*              | :heavy_check_mark: | N/A                |
 | `responseType`     | *string*           | :heavy_check_mark: | N/A                |
-| `errorDetails`     | *?string*          | :heavy_minus_sign: | N/A                |

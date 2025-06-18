@@ -35,22 +35,22 @@ class PaymentsgetServerInfoResponse
     /**
      * Server information
      *
-     * @var ?Shared\ServerInfo $serverInfo
+     * @var ?Shared\PaymentsServerInfo $paymentsServerInfo
      */
-    public ?Shared\ServerInfo $serverInfo = null;
+    public ?Shared\PaymentsServerInfo $paymentsServerInfo = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ServerInfo  $serverInfo
+     * @param  ?Shared\PaymentsServerInfo  $paymentsServerInfo
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ServerInfo $serverInfo = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PaymentsServerInfo $paymentsServerInfo = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->serverInfo = $serverInfo;
+        $this->paymentsServerInfo = $paymentsServerInfo;
     }
 }

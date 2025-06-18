@@ -1,0 +1,12 @@
+# V3CreatePaymentServiceUserRequest
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `address`                                                                         | [?Shared\V3AddressRequest](../../Models/Shared/V3AddressRequest.md)               | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `bankAccountIDs`                                                                  | array<*string*>                                                                   | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `contactDetails`                                                                  | [?Shared\V3ContactDetailsRequest](../../Models/Shared/V3ContactDetailsRequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `metadata`                                                                        | array<string, *string*>                                                           | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `name`                                                                            | *string*                                                                          | :heavy_check_mark:                                                                | N/A                                                                               |

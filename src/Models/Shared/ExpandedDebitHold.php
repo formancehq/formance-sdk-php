@@ -13,6 +13,13 @@ class ExpandedDebitHold
 {
     /**
      *
+     * @var string $asset
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    public string $asset;
+
+    /**
+     *
      * @var string $description
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
@@ -70,6 +77,7 @@ class ExpandedDebitHold
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
+     * @param  string  $asset
      * @param  string  $description
      * @param  string  $id
      * @param  array<string, string>  $metadata
@@ -79,8 +87,9 @@ class ExpandedDebitHold
      * @param  LedgerAccountSubject|WalletSubject|null  $destination
      * @phpstan-pure
      */
-    public function __construct(string $description, string $id, array $metadata, \Brick\Math\BigInteger $originalAmount, \Brick\Math\BigInteger $remaining, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
+    public function __construct(string $asset, string $description, string $id, array $metadata, \Brick\Math\BigInteger $originalAmount, \Brick\Math\BigInteger $remaining, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
     {
+        $this->asset = $asset;
         $this->description = $description;
         $this->id = $id;
         $this->metadata = $metadata;

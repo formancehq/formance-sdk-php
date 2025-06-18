@@ -100,19 +100,19 @@ class V3PaymentInitiation
 
     /**
      *
-     * @var ?string $error
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
-
-    /**
-     *
      * @var ?string $sourceAccountID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $sourceAccountID = null;
+
+    /**
+     *
+     * @var ?string $error
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $error = null;
 
     /**
      * $metadata
@@ -137,12 +137,12 @@ class V3PaymentInitiation
      * @param  V3PaymentInitiationStatusEnum  $status
      * @param  V3PaymentInitiationTypeEnum  $type
      * @param  ?string  $destinationAccountID
-     * @param  ?string  $error
      * @param  ?string  $sourceAccountID
+     * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $id, string $provider, string $reference, \DateTime $scheduledAt, V3PaymentInitiationStatusEnum $status, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?string $error = null, ?string $sourceAccountID = null, ?array $metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $id, string $provider, string $reference, \DateTime $scheduledAt, V3PaymentInitiationStatusEnum $status, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null, ?string $error = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
@@ -156,8 +156,8 @@ class V3PaymentInitiation
         $this->status = $status;
         $this->type = $type;
         $this->destinationAccountID = $destinationAccountID;
-        $this->error = $error;
         $this->sourceAccountID = $sourceAccountID;
+        $this->error = $error;
         $this->metadata = $metadata;
     }
 }

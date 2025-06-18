@@ -5,7 +5,6 @@
 
 ### Available Operations
 
-* [testTrigger](#testtrigger) - Test trigger
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createTrigger](#createtrigger) - Create trigger
 * [createWorkflow](#createworkflow) - Create workflow
@@ -23,60 +22,7 @@
 * [readTrigger](#readtrigger) - Read trigger
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
-
-## testTrigger
-
-Test trigger
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-$request = new Operations\TestTriggerRequest(
-    triggerID: '<id>',
-);
-
-$response = $sdk->orchestration->v2->testTrigger(
-    request: $request
-);
-
-if ($response->v2TestTriggerResponse !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `$request`                                                                     | [Operations\TestTriggerRequest](../../Models/Operations/TestTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
-### Response
-
-**[?Operations\TestTriggerResponse](../../Models/Operations/TestTriggerResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+* [testTrigger](#testtrigger) - Test trigger
 
 ## cancelEvent
 
@@ -155,10 +101,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V2TriggerData(
-    event: '<value>',
-    workflowID: '<id>',
-);
+
 
 $response = $sdk->orchestration->v2->createTrigger(
     request: $request
@@ -209,13 +152,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V2CreateWorkflowRequest(
-    stages: [
-        [
-            'key' => '<value>',
-        ],
-    ],
-);
+
 
 $response = $sdk->orchestration->v2->createWorkflow(
     request: $request
@@ -228,9 +165,9 @@ if ($response->v2CreateWorkflowResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `$request`                                                                       | [Shared\V2CreateWorkflowRequest](../../Models/Shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `$request`                                                         | [Shared\V2WorkflowConfig](../../Models/Shared/V2WorkflowConfig.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
 
 ### Response
 
@@ -750,9 +687,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListTriggersOccurrencesRequest(
-    triggerID: '<id>',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
+    triggerID: '<id>',
 );
 
 $response = $sdk->orchestration->v2->listTriggersOccurrences(
@@ -990,6 +927,60 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\V2SendEventResponse](../../Models/Operations/V2SendEventResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\V2Error      | default             | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## testTrigger
+
+Test trigger
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\TestTriggerRequest(
+    triggerID: '<id>',
+);
+
+$response = $sdk->orchestration->v2->testTrigger(
+    request: $request
+);
+
+if ($response->v2TestTriggerResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\TestTriggerRequest](../../Models/Operations/TestTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+
+### Response
+
+**[?Operations\TestTriggerResponse](../../Models/Operations/TestTriggerResponse.md)**
 
 ### Errors
 

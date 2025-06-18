@@ -14,47 +14,40 @@ class V2BulkResponse
     /**
      * $data
      *
-     * @var array<V2BulkElementResultCreateTransactionSchemas|Schemas|V2BulkElementResultRevertTransactionSchemas|V2BulkElementResultDeleteMetadataSchemas|V2BulkElementResultErrorSchemas> $data
+     * @var ?array<V2BulkElementResultCreateTransactionSchemas|Schemas|V2BulkElementResultRevertTransactionSchemas|V2BulkElementResultDeleteMetadataSchemas|V2BulkElementResultErrorSchemas> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2BulkElementResultCreateTransactionSchemas|\formance\stack\Models\Shared\Schemas|\formance\stack\Models\Shared\V2BulkElementResultRevertTransactionSchemas|\formance\stack\Models\Shared\V2BulkElementResultDeleteMetadataSchemas|\formance\stack\Models\Shared\V2BulkElementResultErrorSchemas>')]
-    public array $data;
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\V2BulkElementResultCreateTransactionSchemas|\formance\stack\Models\Shared\Schemas|\formance\stack\Models\Shared\V2BulkElementResultRevertTransactionSchemas|\formance\stack\Models\Shared\V2BulkElementResultDeleteMetadataSchemas|\formance\stack\Models\Shared\V2BulkElementResultErrorSchemas>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $data = null;
 
     /**
      *
-     * @var V2ErrorsEnum $errorCode
+     * @var ?V2ErrorsEnum $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ErrorsEnum')]
-    public V2ErrorsEnum $errorCode;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ErrorsEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2ErrorsEnum $errorCode = null;
 
     /**
      *
-     * @var string $errorMessage
+     * @var ?string $errorMessage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
-    public string $errorMessage;
-
-    /**
-     *
-     * @var ?string $details
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $details = null;
+    public ?string $errorMessage = null;
 
     /**
-     * @param  array<V2BulkElementResultCreateTransactionSchemas|Schemas|V2BulkElementResultRevertTransactionSchemas|V2BulkElementResultDeleteMetadataSchemas|V2BulkElementResultErrorSchemas>  $data
-     * @param  V2ErrorsEnum  $errorCode
-     * @param  string  $errorMessage
-     * @param  ?string  $details
+     * @param  ?array<V2BulkElementResultCreateTransactionSchemas|Schemas|V2BulkElementResultRevertTransactionSchemas|V2BulkElementResultDeleteMetadataSchemas|V2BulkElementResultErrorSchemas>  $data
+     * @param  ?V2ErrorsEnum  $errorCode
+     * @param  ?string  $errorMessage
      * @phpstan-pure
      */
-    public function __construct(array $data, V2ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
+    public function __construct(?array $data = null, ?V2ErrorsEnum $errorCode = null, ?string $errorMessage = null)
     {
         $this->data = $data;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-        $this->details = $details;
     }
 }

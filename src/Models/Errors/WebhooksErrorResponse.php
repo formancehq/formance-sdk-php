@@ -43,9 +43,9 @@ class WebhooksErrorResponse
      */
     public function __construct(Shared\WebhooksErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
+        $this->details = $details;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-        $this->details = $details;
     }
 
     public function toException(): WebhooksErrorResponseThrowable

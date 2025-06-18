@@ -77,8 +77,17 @@ class SDK
         $this->search = new Search($this->sdkConfiguration);
         $this->wallets = new Wallets($this->sdkConfiguration);
         $this->webhooks = new Webhooks($this->sdkConfiguration);
-        $this->sdkConfiguration->client = $this->sdkConfiguration->initHooks($this->sdkConfiguration->client);
+        $this->initHooks();
 
+    }
+
+    private function initHooks(): void
+    {
+        $preHooksUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $ret = $this->sdkConfiguration->hooks->sdkInit($preHooksUrl, $this->sdkConfiguration->client);
+        if ($preHooksUrl != $ret->url) {
+            $this->sdkConfiguration->serverUrl = $ret->url;
+        }
     }
 
     /**
@@ -89,14 +98,14 @@ class SDK
      */
     public function getVersions(?Options $options = null): Operations\GetVersionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl($this->sdkConfiguration->getServerUrl(), $this->sdkConfiguration->getServerDefaults());
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/versions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('getVersions', ['auth:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'getVersions', ['auth:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);

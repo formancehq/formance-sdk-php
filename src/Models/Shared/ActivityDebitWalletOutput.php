@@ -13,17 +13,17 @@ class ActivityDebitWalletOutput
 {
     /**
      *
-     * @var Hold $data
+     * @var OrchestrationHold $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Hold')]
-    public Hold $data;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\OrchestrationHold')]
+    public OrchestrationHold $data;
 
     /**
-     * @param  Hold  $data
+     * @param  OrchestrationHold  $data
      * @phpstan-pure
      */
-    public function __construct(Hold $data)
+    public function __construct(OrchestrationHold $data)
     {
         $this->data = $data;
     }

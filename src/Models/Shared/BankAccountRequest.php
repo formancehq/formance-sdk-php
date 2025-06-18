@@ -13,13 +13,6 @@ class BankAccountRequest
 {
     /**
      *
-     * @var string $connectorID
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
-    public string $connectorID;
-
-    /**
-     *
      * @var string $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
@@ -39,6 +32,14 @@ class BankAccountRequest
     #[\Speakeasy\Serializer\Annotation\SerializedName('accountNumber')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $accountNumber = null;
+
+    /**
+     *
+     * @var ?string $connectorID
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $connectorID = null;
 
     /**
      *
@@ -67,21 +68,21 @@ class BankAccountRequest
     public ?array $metadata = null;
 
     /**
-     * @param  string  $connectorID
      * @param  string  $country
      * @param  string  $name
      * @param  ?string  $accountNumber
+     * @param  ?string  $connectorID
      * @param  ?string  $iban
      * @param  ?string  $swiftBicCode
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, string $country, string $name, ?string $accountNumber = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $metadata = null)
+    public function __construct(string $country, string $name, ?string $accountNumber = null, ?string $connectorID = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $metadata = null)
     {
-        $this->connectorID = $connectorID;
         $this->country = $country;
         $this->name = $name;
         $this->accountNumber = $accountNumber;
+        $this->connectorID = $connectorID;
         $this->iban = $iban;
         $this->swiftBicCode = $swiftBicCode;
         $this->metadata = $metadata;

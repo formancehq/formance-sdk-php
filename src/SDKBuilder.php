@@ -95,11 +95,11 @@ class SDKBuilder
      */
     public function setEnvironment(ServerEnvironment $environment): SDKBuilder
     {
-        foreach ($this->sdkConfig->serverDefaults as $idx => $serverDefaults) {
-            if (! array_key_exists('environment', $serverDefaults)) {
+        foreach ($this->sdkConfig->serverVariables as $idx => $serverVariables) {
+            if (! array_key_exists('environment', $serverVariables)) {
                 continue;
             }
-            $this->sdkConfig->serverDefaults[$idx]['environment'] = $environment->value;
+            $this->sdkConfig->serverVariables[$idx]['environment'] = $environment->value;
         }
 
         return $this;
@@ -113,11 +113,11 @@ class SDKBuilder
      */
     public function setOrganization(string $organization): SDKBuilder
     {
-        foreach ($this->sdkConfig->serverDefaults as $idx => $serverDefaults) {
-            if (! array_key_exists('organization', $serverDefaults)) {
+        foreach ($this->sdkConfig->serverVariables as $idx => $serverVariables) {
+            if (! array_key_exists('organization', $serverVariables)) {
                 continue;
             }
-            $this->sdkConfig->serverDefaults[$idx]['organization'] = $organization;
+            $this->sdkConfig->serverVariables[$idx]['organization'] = $organization;
         }
 
         return $this;

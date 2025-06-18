@@ -3,6 +3,8 @@
 
 ## Fields
 
-| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `connector`                                                                                            | [Shared\ConnectorsConfigsResponseConnector](../../Models/Shared/ConnectorsConfigsResponseConnector.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `dataType`         | *string*           | :heavy_check_mark: | N/A                |
+| `defaultValue`     | *?string*          | :heavy_minus_sign: | N/A                |
+| `required`         | *bool*             | :heavy_check_mark: | N/A                |

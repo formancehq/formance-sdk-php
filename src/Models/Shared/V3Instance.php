@@ -48,11 +48,10 @@ class V3Instance
 
     /**
      *
-     * @var ?string $error
+     * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $error = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    public \DateTime $updatedAt;
 
     /**
      *
@@ -64,11 +63,11 @@ class V3Instance
 
     /**
      *
-     * @var ?\DateTime $updatedAt
+     * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $updatedAt = null;
+    public ?string $error = null;
 
     /**
      * @param  string  $connectorID
@@ -76,20 +75,20 @@ class V3Instance
      * @param  string  $id
      * @param  string  $scheduleID
      * @param  bool  $terminated
-     * @param  ?string  $error
+     * @param  \DateTime  $updatedAt
      * @param  ?\DateTime  $terminatedAt
-     * @param  ?\DateTime  $updatedAt
+     * @param  ?string  $error
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $scheduleID, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null, ?\DateTime $updatedAt = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $scheduleID, bool $terminated, \DateTime $updatedAt, ?\DateTime $terminatedAt = null, ?string $error = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->scheduleID = $scheduleID;
         $this->terminated = $terminated;
-        $this->error = $error;
-        $this->terminatedAt = $terminatedAt;
         $this->updatedAt = $updatedAt;
+        $this->terminatedAt = $terminatedAt;
+        $this->error = $error;
     }
 }
