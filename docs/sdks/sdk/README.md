@@ -25,6 +25,7 @@ Show stack version information
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getVersions" method="get" path="/versions" -->
 ```php
 declare(strict_types=1);
 

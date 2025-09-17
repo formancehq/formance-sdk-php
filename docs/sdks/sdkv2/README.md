@@ -30,6 +30,7 @@ Cancel a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2CancelEvent" method="put" path="/api/orchestration/v2/instances/{instanceID}/abort" -->
 ```php
 declare(strict_types=1);
 
@@ -84,6 +85,7 @@ Create trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2CreateTrigger" method="post" path="/api/orchestration/v2/triggers" -->
 ```php
 declare(strict_types=1);
 
@@ -135,6 +137,7 @@ Create a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2CreateWorkflow" method="post" path="/api/orchestration/v2/workflows" -->
 ```php
 declare(strict_types=1);
 
@@ -186,6 +189,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2DeleteTrigger" method="delete" path="/api/orchestration/v2/triggers/{triggerID}" -->
 ```php
 declare(strict_types=1);
 
@@ -240,6 +244,7 @@ Delete a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2DeleteWorkflow" method="delete" path="/api/orchestration/v2/workflows/{flowId}" -->
 ```php
 declare(strict_types=1);
 
@@ -294,6 +299,7 @@ Get a workflow instance by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2GetInstance" method="get" path="/api/orchestration/v2/instances/{instanceID}" -->
 ```php
 declare(strict_types=1);
 
@@ -348,6 +354,7 @@ Get a workflow instance history by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2GetInstanceHistory" method="get" path="/api/orchestration/v2/instances/{instanceID}/history" -->
 ```php
 declare(strict_types=1);
 
@@ -402,6 +409,7 @@ Get a workflow instance stage history
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2GetInstanceStageHistory" method="get" path="/api/orchestration/v2/instances/{instanceID}/stages/{number}/history" -->
 ```php
 declare(strict_types=1);
 
@@ -457,6 +465,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2GetServerInfo" method="get" path="/api/orchestration/v2/_info" -->
 ```php
 declare(strict_types=1);
 
@@ -502,6 +511,7 @@ Get a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2GetWorkflow" method="get" path="/api/orchestration/v2/workflows/{flowId}" -->
 ```php
 declare(strict_types=1);
 
@@ -556,6 +566,7 @@ List instances of a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2ListInstances" method="get" path="/api/orchestration/v2/instances" -->
 ```php
 declare(strict_types=1);
 
@@ -613,6 +624,7 @@ List triggers
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2ListTriggers" method="get" path="/api/orchestration/v2/triggers" -->
 ```php
 declare(strict_types=1);
 
@@ -668,6 +680,7 @@ List triggers occurrences
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2ListTriggersOccurrences" method="get" path="/api/orchestration/v2/triggers/{triggerID}/occurrences" -->
 ```php
 declare(strict_types=1);
 
@@ -724,6 +737,7 @@ List registered workflows
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2ListWorkflows" method="get" path="/api/orchestration/v2/workflows" -->
 ```php
 declare(strict_types=1);
 
@@ -779,6 +793,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2ReadTrigger" method="get" path="/api/orchestration/v2/triggers/{triggerID}" -->
 ```php
 declare(strict_types=1);
 
@@ -833,6 +848,7 @@ Run workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2RunWorkflow" method="post" path="/api/orchestration/v2/workflows/{workflowID}/instances" -->
 ```php
 declare(strict_types=1);
 
@@ -887,6 +903,7 @@ Send an event to a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v2SendEvent" method="post" path="/api/orchestration/v2/instances/{instanceID}/events" -->
 ```php
 declare(strict_types=1);
 
@@ -941,6 +958,7 @@ Test trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="testTrigger" method="post" path="/api/orchestration/v2/triggers/{triggerID}/test" -->
 ```php
 declare(strict_types=1);
 

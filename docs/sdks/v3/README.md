@@ -62,6 +62,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3AddAccountToPool" method="post" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```php
 declare(strict_types=1);
 
@@ -117,6 +118,7 @@ Add a bank account to a payment service user
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3AddBankAccountToPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}" -->
 ```php
 declare(strict_types=1);
 
@@ -172,6 +174,7 @@ Approve a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ApprovePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/approve" -->
 ```php
 declare(strict_types=1);
 
@@ -227,6 +230,7 @@ Create a formance account object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3CreateAccount" method="post" path="/api/payments/v3/accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -279,6 +283,7 @@ Create a formance bank account object. This object will not be forwarded to the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3CreateBankAccount" method="post" path="/api/payments/v3/bank-accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -331,6 +336,7 @@ Create a formance payment object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3CreatePayment" method="post" path="/api/payments/v3/payments" -->
 ```php
 declare(strict_types=1);
 
@@ -382,6 +388,7 @@ Create a formance payment service user object
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3CreatePaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users" -->
 ```php
 declare(strict_types=1);
 
@@ -433,6 +440,7 @@ Create a formance pool object
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3CreatePool" method="post" path="/api/payments/v3/pools" -->
 ```php
 declare(strict_types=1);
 
@@ -484,6 +492,7 @@ Delete a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3DeletePaymentInitiation" method="delete" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```php
 declare(strict_types=1);
 
@@ -538,6 +547,7 @@ Delete a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3DeletePool" method="delete" path="/api/payments/v3/pools/{poolID}" -->
 ```php
 declare(strict_types=1);
 
@@ -592,6 +602,7 @@ Forward a Bank Account to a PSP for creation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ForwardBankAccount" method="post" path="/api/payments/v3/bank-accounts/{bankAccountID}/forward" -->
 ```php
 declare(strict_types=1);
 
@@ -646,6 +657,7 @@ Forward a payment service user's bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ForwardPaymentServiceUserBankAccount" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward" -->
 ```php
 declare(strict_types=1);
 
@@ -701,6 +713,7 @@ Get an account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetAccount" method="get" path="/api/payments/v3/accounts/{accountID}" -->
 ```php
 declare(strict_types=1);
 
@@ -755,6 +768,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetAccountBalances" method="get" path="/api/payments/v3/accounts/{accountID}/balances" -->
 ```php
 declare(strict_types=1);
 
@@ -811,6 +825,7 @@ Get a Bank Account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetBankAccount" method="get" path="/api/payments/v3/bank-accounts/{bankAccountID}" -->
 ```php
 declare(strict_types=1);
 
@@ -865,6 +880,7 @@ Get a connector configuration by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetConnectorConfig" method="get" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```php
 declare(strict_types=1);
 
@@ -919,6 +935,7 @@ Get a connector schedule by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetConnectorSchedule" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}" -->
 ```php
 declare(strict_types=1);
 
@@ -974,6 +991,7 @@ Get a payment by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetPayment" method="get" path="/api/payments/v3/payments/{paymentID}" -->
 ```php
 declare(strict_types=1);
 
@@ -1028,6 +1046,7 @@ Get a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetPaymentInitiation" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```php
 declare(strict_types=1);
 
@@ -1082,6 +1101,7 @@ Get a payment service user by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetPaymentServiceUser" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
 ```php
 declare(strict_types=1);
 
@@ -1136,6 +1156,7 @@ Get a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetPool" method="get" path="/api/payments/v3/pools/{poolID}" -->
 ```php
 declare(strict_types=1);
 
@@ -1190,6 +1211,7 @@ Get historical pool balances from a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetPoolBalances" method="get" path="/api/payments/v3/pools/{poolID}/balances" -->
 ```php
 declare(strict_types=1);
 
@@ -1244,6 +1266,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetPoolBalancesLatest" method="get" path="/api/payments/v3/pools/{poolID}/balances/latest" -->
 ```php
 declare(strict_types=1);
 
@@ -1298,6 +1321,7 @@ Get a task and its result by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3GetTask" method="get" path="/api/payments/v3/tasks/{taskID}" -->
 ```php
 declare(strict_types=1);
 
@@ -1352,6 +1376,7 @@ Initiate a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3InitiatePayment" method="post" path="/api/payments/v3/payment-initiations" -->
 ```php
 declare(strict_types=1);
 
@@ -1404,6 +1429,7 @@ Install a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3InstallConnector" method="post" path="/api/payments/v3/connectors/install/{connector}" -->
 ```php
 declare(strict_types=1);
 
@@ -1458,6 +1484,7 @@ List all accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListAccounts" method="get" path="/api/payments/v3/accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -1513,6 +1540,7 @@ List all bank accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListBankAccounts" method="get" path="/api/payments/v3/bank-accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -1568,6 +1596,7 @@ List all connector configurations
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListConnectorConfigs" method="get" path="/api/payments/v3/connectors/configs" -->
 ```php
 declare(strict_types=1);
 
@@ -1613,6 +1642,7 @@ List all connector schedule instances
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListConnectorScheduleInstances" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances" -->
 ```php
 declare(strict_types=1);
 
@@ -1670,6 +1700,7 @@ List all connector schedules
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListConnectorSchedules" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules" -->
 ```php
 declare(strict_types=1);
 
@@ -1726,6 +1757,7 @@ List all connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListConnectors" method="get" path="/api/payments/v3/connectors" -->
 ```php
 declare(strict_types=1);
 
@@ -1781,6 +1813,7 @@ List all payment initiation adjustments
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListPaymentInitiationAdjustments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments" -->
 ```php
 declare(strict_types=1);
 
@@ -1837,6 +1870,7 @@ List all payments related to a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListPaymentInitiationRelatedPayments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/payments" -->
 ```php
 declare(strict_types=1);
 
@@ -1893,6 +1927,7 @@ List all payment initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListPaymentInitiations" method="get" path="/api/payments/v3/payment-initiations" -->
 ```php
 declare(strict_types=1);
 
@@ -1948,6 +1983,7 @@ List all payment service users
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListPaymentServiceUsers" method="get" path="/api/payments/v3/payment-service-users" -->
 ```php
 declare(strict_types=1);
 
@@ -2003,6 +2039,7 @@ List all payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListPayments" method="get" path="/api/payments/v3/payments" -->
 ```php
 declare(strict_types=1);
 
@@ -2058,6 +2095,7 @@ List all pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ListPools" method="get" path="/api/payments/v3/pools" -->
 ```php
 declare(strict_types=1);
 
@@ -2113,6 +2151,7 @@ Reject a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3RejectPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reject" -->
 ```php
 declare(strict_types=1);
 
@@ -2167,6 +2206,7 @@ Remove an account from a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3RemoveAccountFromPool" method="delete" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```php
 declare(strict_types=1);
 
@@ -2222,6 +2262,7 @@ Reset a connector. Be aware that this will delete all data and stop all existing
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ResetConnector" method="post" path="/api/payments/v3/connectors/{connectorID}/reset" -->
 ```php
 declare(strict_types=1);
 
@@ -2276,6 +2317,7 @@ Retry a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3RetryPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/retry" -->
 ```php
 declare(strict_types=1);
 
@@ -2330,6 +2372,7 @@ Reverse a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3ReversePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse" -->
 ```php
 declare(strict_types=1);
 
@@ -2384,6 +2427,7 @@ Uninstall a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3UninstallConnector" method="delete" path="/api/payments/v3/connectors/{connectorID}" -->
 ```php
 declare(strict_types=1);
 
@@ -2438,6 +2482,7 @@ Update a bank account's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3UpdateBankAccountMetadata" method="patch" path="/api/payments/v3/bank-accounts/{bankAccountID}/metadata" -->
 ```php
 declare(strict_types=1);
 
@@ -2492,6 +2537,7 @@ Update a payment's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3UpdatePaymentMetadata" method="patch" path="/api/payments/v3/payments/{paymentID}/metadata" -->
 ```php
 declare(strict_types=1);
 
@@ -2546,6 +2592,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="v3UpdateConnectorConfig" method="patch" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```php
 declare(strict_types=1);
 

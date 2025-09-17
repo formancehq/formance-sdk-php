@@ -32,6 +32,7 @@ Create a new batch of transactions to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateTransactions" method="post" path="/api/ledger/{ledger}/transactions/batch" -->
 ```php
 declare(strict_types=1);
 
@@ -102,6 +103,7 @@ Set the metadata of a transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="addMetadataOnTransaction" method="post" path="/api/ledger/{ledger}/transactions/{txid}/metadata" -->
 ```php
 declare(strict_types=1);
 
@@ -161,6 +163,7 @@ Add metadata to an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="addMetadataToAccount" method="post" path="/api/ledger/{ledger}/accounts/{address}/metadata" -->
 ```php
 declare(strict_types=1);
 
@@ -221,6 +224,7 @@ Count the accounts from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="countAccounts" method="head" path="/api/ledger/{ledger}/accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -328,6 +332,7 @@ Count the transactions from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="countTransactions" method="head" path="/api/ledger/{ledger}/transactions" -->
 ```php
 declare(strict_types=1);
 
@@ -387,6 +392,7 @@ Create a new transaction to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createTransaction" method="post" path="/api/ledger/{ledger}/transactions" -->
 ```php
 declare(strict_types=1);
 
@@ -467,6 +473,7 @@ Get account by its address
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getAccount" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
 ```php
 declare(strict_types=1);
 
@@ -522,6 +529,7 @@ Get the balances from a ledger's account
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getBalances" method="get" path="/api/ledger/{ledger}/balances" -->
 ```php
 declare(strict_types=1);
 
@@ -579,6 +587,7 @@ Get the aggregated balances from selected accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getBalancesAggregated" method="get" path="/api/ledger/{ledger}/aggregate/balances" -->
 ```php
 declare(strict_types=1);
 
@@ -634,6 +643,7 @@ Show server information
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getInfo" method="get" path="/api/ledger/_info" -->
 ```php
 declare(strict_types=1);
 
@@ -679,6 +689,7 @@ Get information about a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getLedgerInfo" method="get" path="/api/ledger/{ledger}/_info" -->
 ```php
 declare(strict_types=1);
 
@@ -733,6 +744,7 @@ Get the mapping of a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getMapping" method="get" path="/api/ledger/{ledger}/mapping" -->
 ```php
 declare(strict_types=1);
 
@@ -787,6 +799,7 @@ Get transaction from a ledger by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getTransaction" method="get" path="/api/ledger/{ledger}/transactions/{txid}" -->
 ```php
 declare(strict_types=1);
 
@@ -843,6 +856,7 @@ List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listAccounts" method="get" path="/api/ledger/{ledger}/accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -954,6 +968,7 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listLogs" method="get" path="/api/ledger/{ledger}/logs" -->
 ```php
 declare(strict_types=1);
 
@@ -1011,6 +1026,7 @@ List transactions from a ledger, sorted by txid in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listTransactions" method="get" path="/api/ledger/{ledger}/transactions" -->
 ```php
 declare(strict_types=1);
 
@@ -1073,6 +1089,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="readStats" method="get" path="/api/ledger/{ledger}/stats" -->
 ```php
 declare(strict_types=1);
 
@@ -1127,6 +1144,7 @@ Revert a ledger transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="revertTransaction" method="post" path="/api/ledger/{ledger}/transactions/{txid}/revert" -->
 ```php
 declare(strict_types=1);
 
@@ -1186,6 +1204,7 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="runScript" method="post" path="/api/ledger/{ledger}/script" -->
 ```php
 declare(strict_types=1);
 
@@ -1254,6 +1273,7 @@ Update the mapping of a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="updateMapping" method="put" path="/api/ledger/{ledger}/mapping" -->
 ```php
 declare(strict_types=1);
 

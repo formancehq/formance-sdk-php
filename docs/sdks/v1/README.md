@@ -23,6 +23,7 @@ Create client
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createClient" method="post" path="/api/auth/clients" -->
 ```php
 declare(strict_types=1);
 
@@ -73,6 +74,7 @@ Add a secret to a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createSecret" method="post" path="/api/auth/clients/{clientId}/secrets" -->
 ```php
 declare(strict_types=1);
 
@@ -126,6 +128,7 @@ Delete client
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deleteClient" method="delete" path="/api/auth/clients/{clientId}" -->
 ```php
 declare(strict_types=1);
 
@@ -179,6 +182,7 @@ Delete a secret from a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deleteSecret" method="delete" path="/api/auth/clients/{clientId}/secrets/{secretId}" -->
 ```php
 declare(strict_types=1);
 
@@ -233,6 +237,7 @@ Retrieve OpenID connect well-knowns.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getOIDCWellKnowns" method="get" path="/api/auth/.well-known/openid-configuration" -->
 ```php
 declare(strict_types=1);
 
@@ -277,6 +282,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
 ```php
 declare(strict_types=1);
 
@@ -321,6 +327,7 @@ List clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listClients" method="get" path="/api/auth/clients" -->
 ```php
 declare(strict_types=1);
 
@@ -365,6 +372,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listUsers" method="get" path="/api/auth/users" -->
 ```php
 declare(strict_types=1);
 
@@ -409,6 +417,7 @@ Read client
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="readClient" method="get" path="/api/auth/clients/{clientId}" -->
 ```php
 declare(strict_types=1);
 
@@ -462,6 +471,7 @@ Read user
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="readUser" method="get" path="/api/auth/users/{userId}" -->
 ```php
 declare(strict_types=1);
 
@@ -515,6 +525,7 @@ Update client
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="updateClient" method="put" path="/api/auth/clients/{clientId}" -->
 ```php
 declare(strict_types=1);
 
