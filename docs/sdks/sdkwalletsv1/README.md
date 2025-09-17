@@ -28,6 +28,7 @@ Confirm a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="confirmHold" method="post" path="/api/wallets/holds/{hold_id}/confirm" -->
 ```php
 declare(strict_types=1);
 
@@ -87,6 +88,7 @@ Create a balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createBalance" method="post" path="/api/wallets/wallets/{id}/balances" -->
 ```php
 declare(strict_types=1);
 
@@ -141,6 +143,7 @@ Create a new wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createWallet" method="post" path="/api/wallets/wallets" -->
 ```php
 declare(strict_types=1);
 
@@ -192,6 +195,7 @@ Credit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="creditWallet" method="post" path="/api/wallets/wallets/{id}/credit" -->
 ```php
 declare(strict_types=1);
 
@@ -257,6 +261,7 @@ Debit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="debitWallet" method="post" path="/api/wallets/wallets/{id}/debit" -->
 ```php
 declare(strict_types=1);
 
@@ -322,6 +327,7 @@ Get detailed balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getBalance" method="get" path="/api/wallets/wallets/{id}/balances/{balanceName}" -->
 ```php
 declare(strict_types=1);
 
@@ -377,6 +383,7 @@ Get a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getHold" method="get" path="/api/wallets/holds/{holdID}" -->
 ```php
 declare(strict_types=1);
 
@@ -431,6 +438,7 @@ Get all holds for a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getHolds" method="get" path="/api/wallets/holds" -->
 ```php
 declare(strict_types=1);
 
@@ -488,6 +496,7 @@ if ($response->getHoldsResponse !== null) {
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getTransactions" method="get" path="/api/wallets/transactions" -->
 ```php
 declare(strict_types=1);
 
@@ -544,6 +553,7 @@ Get a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getWallet" method="get" path="/api/wallets/wallets/{id}" -->
 ```php
 declare(strict_types=1);
 
@@ -598,6 +608,7 @@ Get wallet summary
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getWalletSummary" method="get" path="/api/wallets/wallets/{id}/summary" -->
 ```php
 declare(strict_types=1);
 
@@ -652,6 +663,7 @@ List balances of a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listBalances" method="get" path="/api/wallets/wallets/{id}/balances" -->
 ```php
 declare(strict_types=1);
 
@@ -705,6 +717,7 @@ List all wallets
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listWallets" method="get" path="/api/wallets/wallets" -->
 ```php
 declare(strict_types=1);
 
@@ -765,6 +778,7 @@ Update a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="updateWallet" method="patch" path="/api/wallets/wallets/{id}" -->
 ```php
 declare(strict_types=1);
 
@@ -819,6 +833,7 @@ Cancel a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="voidHold" method="post" path="/api/wallets/holds/{hold_id}/void" -->
 ```php
 declare(strict_types=1);
 
@@ -873,6 +888,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
 ```php
 declare(strict_types=1);
 

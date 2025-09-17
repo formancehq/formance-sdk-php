@@ -16,6 +16,7 @@ Elasticsearch.v1 query engine
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="search" method="post" path="/api/search/" -->
 ```php
 declare(strict_types=1);
 
@@ -82,6 +83,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="searchgetServerInfo" method="get" path="/api/search/_info" -->
 ```php
 declare(strict_types=1);
 

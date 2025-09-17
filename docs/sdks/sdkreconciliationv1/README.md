@@ -20,6 +20,7 @@ Create a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createPolicy" method="post" path="/api/reconciliation/policies" -->
 ```php
 declare(strict_types=1);
 
@@ -78,6 +79,7 @@ Delete a policy by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deletePolicy" method="delete" path="/api/reconciliation/policies/{policyID}" -->
 ```php
 declare(strict_types=1);
 
@@ -132,6 +134,7 @@ Get a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getPolicy" method="get" path="/api/reconciliation/policies/{policyID}" -->
 ```php
 declare(strict_types=1);
 
@@ -186,6 +189,7 @@ Get a reconciliation
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getReconciliation" method="get" path="/api/reconciliation/reconciliations/{reconciliationID}" -->
 ```php
 declare(strict_types=1);
 
@@ -240,6 +244,7 @@ List policies
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listPolicies" method="get" path="/api/reconciliation/policies" -->
 ```php
 declare(strict_types=1);
 
@@ -295,6 +300,7 @@ List reconciliations
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listReconciliations" method="get" path="/api/reconciliation/reconciliations" -->
 ```php
 declare(strict_types=1);
 
@@ -350,6 +356,7 @@ Reconcile using a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="reconcile" method="post" path="/api/reconciliation/policies/{policyID}/reconciliation" -->
 ```php
 declare(strict_types=1);
 
@@ -409,6 +416,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
 ```php
 declare(strict_types=1);
 

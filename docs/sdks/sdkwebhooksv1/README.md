@@ -20,6 +20,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="activateConfig" method="put" path="/api/webhooks/configs/{id}/activate" -->
 ```php
 declare(strict_types=1);
 
@@ -78,6 +79,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="changeConfigSecret" method="put" path="/api/webhooks/configs/{id}/secret/change" -->
 ```php
 declare(strict_types=1);
 
@@ -135,6 +137,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deactivateConfig" method="put" path="/api/webhooks/configs/{id}/deactivate" -->
 ```php
 declare(strict_types=1);
 
@@ -189,6 +192,7 @@ Delete a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deleteConfig" method="delete" path="/api/webhooks/configs/{id}" -->
 ```php
 declare(strict_types=1);
 
@@ -243,6 +247,7 @@ Sorted by updated date descending
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getManyConfigs" method="get" path="/api/webhooks/configs" -->
 ```php
 declare(strict_types=1);
 
@@ -307,6 +312,7 @@ All eventTypes are converted to lower-case when inserted.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="insertConfig" method="post" path="/api/webhooks/configs" -->
 ```php
 declare(strict_types=1);
 
@@ -366,6 +372,7 @@ Test a config by sending a webhook to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="testConfig" method="get" path="/api/webhooks/configs/{id}/test" -->
 ```php
 declare(strict_types=1);
 
@@ -420,6 +427,7 @@ Update a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="updateConfig" method="put" path="/api/webhooks/configs/{id}" -->
 ```php
 declare(strict_types=1);
 

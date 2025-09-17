@@ -29,6 +29,7 @@ Cancel a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="cancelEvent" method="put" path="/api/orchestration/instances/{instanceID}/abort" -->
 ```php
 declare(strict_types=1);
 
@@ -83,6 +84,7 @@ Create trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createTrigger" method="post" path="/api/orchestration/triggers" -->
 ```php
 declare(strict_types=1);
 
@@ -134,6 +136,7 @@ Create a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="createWorkflow" method="post" path="/api/orchestration/workflows" -->
 ```php
 declare(strict_types=1);
 
@@ -185,6 +188,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deleteTrigger" method="delete" path="/api/orchestration/triggers/{triggerID}" -->
 ```php
 declare(strict_types=1);
 
@@ -239,6 +243,7 @@ Delete a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="deleteWorkflow" method="delete" path="/api/orchestration/workflows/{flowId}" -->
 ```php
 declare(strict_types=1);
 
@@ -293,6 +298,7 @@ Get a workflow instance by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getInstance" method="get" path="/api/orchestration/instances/{instanceID}" -->
 ```php
 declare(strict_types=1);
 
@@ -347,6 +353,7 @@ Get a workflow instance history by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getInstanceHistory" method="get" path="/api/orchestration/instances/{instanceID}/history" -->
 ```php
 declare(strict_types=1);
 
@@ -401,6 +408,7 @@ Get a workflow instance stage history
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getInstanceStageHistory" method="get" path="/api/orchestration/instances/{instanceID}/stages/{number}/history" -->
 ```php
 declare(strict_types=1);
 
@@ -456,6 +464,7 @@ Get a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="getWorkflow" method="get" path="/api/orchestration/workflows/{flowId}" -->
 ```php
 declare(strict_types=1);
 
@@ -510,6 +519,7 @@ List instances of a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listInstances" method="get" path="/api/orchestration/instances" -->
 ```php
 declare(strict_types=1);
 
@@ -565,6 +575,7 @@ List triggers
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listTriggers" method="get" path="/api/orchestration/triggers" -->
 ```php
 declare(strict_types=1);
 
@@ -616,6 +627,7 @@ List triggers occurrences
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listTriggersOccurrences" method="get" path="/api/orchestration/triggers/{triggerID}/occurrences" -->
 ```php
 declare(strict_types=1);
 
@@ -670,6 +682,7 @@ List registered workflows
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="listWorkflows" method="get" path="/api/orchestration/workflows" -->
 ```php
 declare(strict_types=1);
 
@@ -715,6 +728,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
 ```php
 declare(strict_types=1);
 
@@ -760,6 +774,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="readTrigger" method="get" path="/api/orchestration/triggers/{triggerID}" -->
 ```php
 declare(strict_types=1);
 
@@ -814,6 +829,7 @@ Run workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="runWorkflow" method="post" path="/api/orchestration/workflows/{workflowID}/instances" -->
 ```php
 declare(strict_types=1);
 
@@ -868,6 +884,7 @@ Send an event to a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="sendEvent" method="post" path="/api/orchestration/instances/{instanceID}/events" -->
 ```php
 declare(strict_types=1);
 
