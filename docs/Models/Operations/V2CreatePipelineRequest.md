@@ -1,0 +1,9 @@
+# V2CreatePipelineRequest
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `v2CreatePipelineRequest`                                                         | [?Shared\V2CreatePipelineRequest](../../Models/Shared/V2CreatePipelineRequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
+| `ledger`                                                                          | *string*                                                                          | :heavy_check_mark:                                                                | Name of the ledger.                                                               | ledger001                                                                         |

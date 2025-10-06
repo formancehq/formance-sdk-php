@@ -10,27 +10,36 @@
 * [countAccounts](#countaccounts) - Count the accounts from a ledger
 * [countTransactions](#counttransactions) - Count the transactions from a ledger
 * [createBulk](#createbulk) - Bulk request
+* [createExporter](#createexporter) - Create exporter
 * [createLedger](#createledger) - Create a ledger
+* [createPipeline](#createpipeline) - Create pipeline
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](#deleteaccountmetadata) - Delete metadata by key
+* [deleteExporter](#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](#deleteledgermetadata) - Delete ledger metadata by key
+* [deletePipeline](#deletepipeline) - Delete pipeline
 * [deleteTransactionMetadata](#deletetransactionmetadata) - Delete metadata by key
 * [exportLogs](#exportlogs) - Export logs
 * [getAccount](#getaccount) - Get account by its address
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](#getinfo) - Show server information
+* [getExporterState](#getexporterstate) - Get exporter state
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
-* [getMetrics](#getmetrics) - Read in memory metrics
+* [getPipelineState](#getpipelinestate) - Get pipeline state
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
 * [listAccounts](#listaccounts) - List accounts from a ledger
+* [listExporters](#listexporters) - List exporters
 * [listLedgers](#listledgers) - List ledgers
 * [listLogs](#listlogs) - List the logs from a ledger
+* [listPipelines](#listpipelines) - List pipelines
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
+* [resetPipeline](#resetpipeline) - Reset pipeline
 * [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
+* [startPipeline](#startpipeline) - Start pipeline
+* [stopPipeline](#stoppipeline) - Stop pipeline
 * [updateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
 
 ## addMetadataOnTransaction
@@ -334,6 +343,63 @@ if ($response->v2BulkResponse !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## createExporter
+
+Create exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2CreateExporter" method="post" path="/api/ledger/v2/_/exporters" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Shared\V2ExporterConfiguration(
+    config: [
+        'key' => '<value>',
+    ],
+    driver: '<value>',
+);
+
+$response = $sdk->ledger->v2->createExporter(
+    request: $request
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Shared\V2ExporterConfiguration](../../Models/Shared/V2ExporterConfiguration.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+### Response
+
+**[?Operations\V2CreateExporterResponse](../../Models/Operations/V2CreateExporterResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## createLedger
 
 Create a ledger
@@ -394,6 +460,61 @@ if ($response->statusCode === 200) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## createPipeline
+
+Create pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2CreatePipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2CreatePipelineRequest(
+    ledger: 'ledger001',
+);
+
+$response = $sdk->ledger->v2->createPipeline(
+    request: $request
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\V2CreatePipelineRequest](../../Models/Operations/V2CreatePipelineRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+### Response
+
+**[?Operations\V2CreatePipelineResponse](../../Models/Operations/V2CreatePipelineResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## createTransaction
 
 Create a new transaction to a ledger
@@ -422,6 +543,17 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateTransactionRequest(
     v2PostTransaction: new Shared\V2PostTransaction(
+        accountMetadata: [
+            'key' => [
+                'admin' => 'true',
+            ],
+            'key1' => [
+                'admin' => 'true',
+            ],
+            'key2' => [
+                'admin' => 'true',
+            ],
+        ],
         metadata: [
             'admin' => 'true',
         ],
@@ -536,6 +668,61 @@ if ($response->statusCode === 200) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## deleteExporter
+
+Delete exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2DeleteExporter" method="delete" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2DeleteExporterRequest(
+    exporterID: '<id>',
+);
+
+$response = $sdk->ledger->v2->deleteExporter(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\V2DeleteExporterRequest](../../Models/Operations/V2DeleteExporterRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+### Response
+
+**[?Operations\V2DeleteExporterResponse](../../Models/Operations/V2DeleteExporterResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## deleteLedgerMetadata
 
 Delete ledger metadata by key
@@ -584,6 +771,62 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\V2DeleteLedgerMetadataResponse](../../Models/Operations/V2DeleteLedgerMetadataResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## deletePipeline
+
+Delete pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2DeletePipeline" method="delete" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2DeletePipelineRequest(
+    ledger: 'ledger001',
+    pipelineID: '<id>',
+);
+
+$response = $sdk->ledger->v2->deletePipeline(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\V2DeletePipelineRequest](../../Models/Operations/V2DeletePipelineRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+### Response
+
+**[?Operations\V2DeletePipelineResponse](../../Models/Operations/V2DeletePipelineResponse.md)**
 
 ### Errors
 
@@ -820,19 +1063,20 @@ if ($response->v2AggregateBalancesResponse !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
-## getInfo
+## getExporterState
 
-Show server information
+Get exporter state
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+<!-- UsageSnippet language="php" operationID="v2GetExporterState" method="get" path="/api/ledger/v2/_/exporters/{exporterID}" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -844,20 +1088,28 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-
-
-$response = $sdk->ledger->v2->getInfo(
-
+$request = new Operations\V2GetExporterStateRequest(
+    exporterID: '<id>',
 );
 
-if ($response->v2ConfigInfoResponse !== null) {
+$response = $sdk->ledger->v2->getExporterState(
+    request: $request
+);
+
+if ($response->object !== null) {
     // handle response
 }
 ```
 
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `$request`                                                                                   | [Operations\V2GetExporterStateRequest](../../Models/Operations/V2GetExporterStateRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
 ### Response
 
-**[?Operations\V2GetInfoResponse](../../Models/Operations/V2GetInfoResponse.md)**
+**[?Operations\V2GetExporterStateResponse](../../Models/Operations/V2GetExporterStateResponse.md)**
 
 ### Errors
 
@@ -976,19 +1228,20 @@ if ($response->v2LedgerInfoResponse !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
-## getMetrics
+## getPipelineState
 
-Read in memory metrics
+Get pipeline state
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+<!-- UsageSnippet language="php" operationID="v2GetPipelineState" method="get" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -1000,10 +1253,13 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
+$request = new Operations\V2GetPipelineStateRequest(
+    ledger: 'ledger001',
+    pipelineID: '<id>',
+);
 
-
-$response = $sdk->ledger->v2->getMetrics(
-
+$response = $sdk->ledger->v2->getPipelineState(
+    request: $request
 );
 
 if ($response->object !== null) {
@@ -1011,9 +1267,15 @@ if ($response->object !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `$request`                                                                                   | [Operations\V2GetPipelineStateRequest](../../Models/Operations/V2GetPipelineStateRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
 ### Response
 
-**[?Operations\GetMetricsResponse](../../Models/Operations/GetMetricsResponse.md)**
+**[?Operations\V2GetPipelineStateResponse](../../Models/Operations/V2GetPipelineStateResponse.md)**
 
 ### Errors
 
@@ -1112,6 +1374,7 @@ $request = new Operations\V2GetVolumesWithBalancesRequest(
     groupBy: 3,
     ledger: 'ledger001',
     pageSize: 100,
+    sort: 'id:desc',
 );
 
 $response = $sdk->ledger->v2->getVolumesWithBalances(
@@ -1226,6 +1489,7 @@ $request = new Operations\V2ListAccountsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
+    sort: 'id:desc',
 );
 
 $response = $sdk->ledger->v2->listAccounts(
@@ -1246,6 +1510,52 @@ if ($response->v2AccountsCursorResponse !== null) {
 ### Response
 
 **[?Operations\V2ListAccountsResponse](../../Models/Operations/V2ListAccountsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## listExporters
+
+List exporters
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2ListExporters" method="get" path="/api/ledger/v2/_/exporters" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->ledger->v2->listExporters(
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\V2ListExportersResponse](../../Models/Operations/V2ListExportersResponse.md)**
 
 ### Errors
 
@@ -1280,8 +1590,14 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListLedgersRequest(
+    requestBody: [
+        'key' => '<value>',
+        'key1' => '<value>',
+        'key2' => '<value>',
+    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
+    sort: 'id:desc',
 );
 
 $response = $sdk->ledger->v2->listLedgers(
@@ -1342,6 +1658,7 @@ $request = new Operations\V2ListLogsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
+    sort: 'id:desc',
 );
 
 $response = $sdk->ledger->v2->listLogs(
@@ -1362,6 +1679,61 @@ if ($response->v2LogsCursorResponse !== null) {
 ### Response
 
 **[?Operations\V2ListLogsResponse](../../Models/Operations/V2ListLogsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## listPipelines
+
+List pipelines
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2ListPipelines" method="get" path="/api/ledger/v2/{ledger}/pipelines" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2ListPipelinesRequest(
+    ledger: 'ledger001',
+);
+
+$response = $sdk->ledger->v2->listPipelines(
+    request: $request
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2ListPipelinesRequest](../../Models/Operations/V2ListPipelinesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+### Response
+
+**[?Operations\V2ListPipelinesResponse](../../Models/Operations/V2ListPipelinesResponse.md)**
 
 ### Errors
 
@@ -1402,6 +1774,7 @@ $request = new Operations\V2ListTransactionsRequest(
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
+    sort: 'id:desc',
 );
 
 $response = $sdk->ledger->v2->listTransactions(
@@ -1486,6 +1859,62 @@ if ($response->v2StatsResponse !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## resetPipeline
+
+Reset pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2ResetPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2ResetPipelineRequest(
+    ledger: 'ledger001',
+    pipelineID: '<id>',
+);
+
+$response = $sdk->ledger->v2->resetPipeline(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2ResetPipelineRequest](../../Models/Operations/V2ResetPipelineRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+### Response
+
+**[?Operations\V2ResetPipelineResponse](../../Models/Operations/V2ResetPipelineResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## revertTransaction
 
 Revert a ledger transaction by its ID
@@ -1544,6 +1973,118 @@ if ($response->v2CreateTransactionResponse !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## startPipeline
+
+Start pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2StartPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2StartPipelineRequest(
+    ledger: 'ledger001',
+    pipelineID: '<id>',
+);
+
+$response = $sdk->ledger->v2->startPipeline(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2StartPipelineRequest](../../Models/Operations/V2StartPipelineRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+### Response
+
+**[?Operations\V2StartPipelineResponse](../../Models/Operations/V2StartPipelineResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## stopPipeline
+
+Stop pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2StopPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2StopPipelineRequest(
+    ledger: 'ledger001',
+    pipelineID: '<id>',
+);
+
+$response = $sdk->ledger->v2->stopPipeline(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\V2StopPipelineRequest](../../Models/Operations/V2StopPipelineRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+### Response
+
+**[?Operations\V2StopPipelineResponse](../../Models/Operations/V2StopPipelineResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## updateLedgerMetadata
 
 Update ledger metadata
@@ -1580,7 +2121,7 @@ $response = $sdk->ledger->v2->updateLedgerMetadata(
     request: $request
 );
 
-if ($response->statusCode === 200) {
+if ($response->v2ErrorResponse !== null) {
     // handle response
 }
 ```

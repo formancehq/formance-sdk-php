@@ -319,3 +319,13 @@ Based on:
 - [php v4.2.1] .
 ### Releases
 - [Composer v4.2.1] https://packagist.org/packages/formance/formance-sdk#v4.2.1 - .
+
+## 2025-10-06 11:36:40
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.634.2 (2.721.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v4.2.2] .
+### Releases
+- [Composer v4.2.2] https://packagist.org/packages/formance/formance-sdk#v4.2.2 - .

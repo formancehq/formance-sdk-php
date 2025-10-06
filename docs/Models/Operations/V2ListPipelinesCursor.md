@@ -1,0 +1,9 @@
+# V2ListPipelinesCursor
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                             | [Operations\V2ListPipelinesLedgerV2Cursor](../../Models/Operations/V2ListPipelinesLedgerV2Cursor.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `data`                                                                                               | array<[Shared\V2Pipeline](../../Models/Shared/V2Pipeline.md)>                                        | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

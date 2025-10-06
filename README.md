@@ -28,7 +28,6 @@ and standard method from web, mobile and desktop applications.
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [formance-sdk-php](#formance-sdk-php)
-  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
 * [Introduction](#introduction)
 * [Authentication](#authentication)
   * [SDK Installation](#sdk-installation)
@@ -154,6 +153,8 @@ if ($response->getVersionsResponse !== null) {
 
 ### [ledger](docs/sdks/ledger/README.md)
 
+* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
+* [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 
 #### [ledger->v1](docs/sdks/sdkv1/README.md)
 
@@ -185,27 +186,36 @@ if ($response->getVersionsResponse !== null) {
 * [countAccounts](docs/sdks/v2/README.md#countaccounts) - Count the accounts from a ledger
 * [countTransactions](docs/sdks/v2/README.md#counttransactions) - Count the transactions from a ledger
 * [createBulk](docs/sdks/v2/README.md#createbulk) - Bulk request
+* [createExporter](docs/sdks/v2/README.md#createexporter) - Create exporter
 * [createLedger](docs/sdks/v2/README.md#createledger) - Create a ledger
+* [createPipeline](docs/sdks/v2/README.md#createpipeline) - Create pipeline
 * [createTransaction](docs/sdks/v2/README.md#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](docs/sdks/v2/README.md#deleteaccountmetadata) - Delete metadata by key
+* [deleteExporter](docs/sdks/v2/README.md#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](docs/sdks/v2/README.md#deleteledgermetadata) - Delete ledger metadata by key
+* [deletePipeline](docs/sdks/v2/README.md#deletepipeline) - Delete pipeline
 * [deleteTransactionMetadata](docs/sdks/v2/README.md#deletetransactionmetadata) - Delete metadata by key
 * [exportLogs](docs/sdks/v2/README.md#exportlogs) - Export logs
 * [getAccount](docs/sdks/v2/README.md#getaccount) - Get account by its address
 * [getBalancesAggregated](docs/sdks/v2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](docs/sdks/v2/README.md#getinfo) - Show server information
+* [getExporterState](docs/sdks/v2/README.md#getexporterstate) - Get exporter state
 * [getLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
-* [getMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
+* [getPipelineState](docs/sdks/v2/README.md#getpipelinestate) - Get pipeline state
 * [getTransaction](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/v2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/v2/README.md#importlogs)
 * [listAccounts](docs/sdks/v2/README.md#listaccounts) - List accounts from a ledger
+* [listExporters](docs/sdks/v2/README.md#listexporters) - List exporters
 * [listLedgers](docs/sdks/v2/README.md#listledgers) - List ledgers
 * [listLogs](docs/sdks/v2/README.md#listlogs) - List the logs from a ledger
+* [listPipelines](docs/sdks/v2/README.md#listpipelines) - List pipelines
 * [listTransactions](docs/sdks/v2/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/v2/README.md#readstats) - Get statistics from a ledger
+* [resetPipeline](docs/sdks/v2/README.md#resetpipeline) - Reset pipeline
 * [revertTransaction](docs/sdks/v2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+* [startPipeline](docs/sdks/v2/README.md#startpipeline) - Start pipeline
+* [stopPipeline](docs/sdks/v2/README.md#stoppipeline) - Stop pipeline
 * [updateLedgerMetadata](docs/sdks/v2/README.md#updateledgermetadata) - Update ledger metadata
 
 ### [orchestration](docs/sdks/orchestration/README.md)
@@ -434,7 +444,7 @@ By default an API error will raise a `Errors\SDKException` exception, which has 
 | `$rawResponse` | *?\Psr\Http\Message\ResponseInterface*  | The raw HTTP response |
 | `$body`        | *string*                                | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `addMetadataOnTransaction` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `getInfo` method throws the following exceptions:
 
 | Error Type             | Status Code | Content Type     |
 | ---------------------- | ----------- | ---------------- |
@@ -448,10 +458,8 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Errors;
-use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -464,20 +472,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 try {
-    $request = new Operations\V2AddMetadataOnTransactionRequest(
-        requestBody: [
-            'admin' => 'true',
-        ],
-        dryRun: true,
-        id: BigInteger::of('1234'),
-        ledger: 'ledger001',
+    $response = $sdk->ledger->getInfo(
+
     );
 
-    $response = $sdk->ledger->v2->addMetadataOnTransaction(
-        request: $request
-    );
-
-    if ($response->statusCode === 200) {
+    if ($response->v2ConfigInfoResponse !== null) {
         // handle response
     }
 } catch (Errors\V2ErrorResponseThrowable $e) {
@@ -504,10 +503,10 @@ You can override the default server globally using the `setServerIndex(int $serv
 
 If the selected server has variables, you may override its default values using the associated builder method(s):
 
-| Variable       | BuilderMethod                                         | Supported Values                                                           | Default           | Description                                                   |
-| -------------- | ----------------------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `setEnvironment(stack\ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `setOrganization(string organization)`                | string                                                                     | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | BuilderMethod                                         | Supported Values                                      | Default           | Description                                                   |
+| -------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `setEnvironment(stack\ServerEnvironment environment)` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
+| `organization` | `setOrganization(string organization)`                | string                                                | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -554,7 +553,7 @@ use formance\stack;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
-    ->setServerURL('https://orgID-stackID.eu.sandbox.formance.cloud')
+    ->setServerURL('https://orgID-stackID.sandbox.formance.cloud')
     ->setSecurity(
         new Shared\Security(
             clientID: '<YOUR_CLIENT_ID_HERE>',

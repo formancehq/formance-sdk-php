@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 
-
+/** Deprecated: Use sort param */
 enum Order: string
 {
     case Effective = 'effective';

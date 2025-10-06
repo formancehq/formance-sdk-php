@@ -9,4 +9,5 @@
 | `filter`               | *?string*              | :heavy_minus_sign:     | N/A                    |
 | `name`                 | *?string*              | :heavy_minus_sign:     | N/A                    |
 | `vars`                 | array<string, *mixed*> | :heavy_minus_sign:     | N/A                    |
+| `version`              | *?string*              | :heavy_minus_sign:     | N/A                    |
 | `workflowID`           | *string*               | :heavy_check_mark:     | N/A                    |

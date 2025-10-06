@@ -65,15 +65,27 @@ class V2ListAccountsRequest
     public ?\DateTime $pit = null;
 
     /**
+     * Sort results using a field name and order (ascending or descending). 
+     *
+     * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+     *
+     *
+     * @var ?string $sort
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
+    public ?string $sort = null;
+
+    /**
      * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
      * @param  ?string  $cursor
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
+     * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null)
+    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null)
     {
         $this->requestBody = $requestBody;
         $this->ledger = $ledger;
@@ -81,5 +93,6 @@ class V2ListAccountsRequest
         $this->expand = $expand;
         $this->pageSize = $pageSize;
         $this->pit = $pit;
+        $this->sort = $sort;
     }
 }

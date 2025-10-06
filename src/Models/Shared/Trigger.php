@@ -66,6 +66,14 @@ class Trigger
     public ?array $vars = null;
 
     /**
+     *
+     * @var ?string $version
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $version = null;
+
+    /**
      * @param  \DateTime  $createdAt
      * @param  string  $event
      * @param  string  $id
@@ -73,9 +81,10 @@ class Trigger
      * @param  ?string  $filter
      * @param  ?string  $name
      * @param  ?array<string, mixed>  $vars
+     * @param  ?string  $version
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $event, string $id, string $workflowID, ?string $filter = null, ?string $name = null, ?array $vars = null)
+    public function __construct(\DateTime $createdAt, string $event, string $id, string $workflowID, ?string $filter = null, ?string $name = null, ?array $vars = null, ?string $version = null)
     {
         $this->createdAt = $createdAt;
         $this->event = $event;
@@ -84,5 +93,6 @@ class Trigger
         $this->filter = $filter;
         $this->name = $name;
         $this->vars = $vars;
+        $this->version = $version;
     }
 }

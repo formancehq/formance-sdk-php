@@ -52,6 +52,7 @@ class V2CreateTransactionRequest
      * Disable balance checks when passing postings
      *
      * @var ?bool $force
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
     public ?bool $force = null;

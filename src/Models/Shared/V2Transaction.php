@@ -115,6 +115,14 @@ class V2Transaction
     public ?\DateTime $revertedAt = null;
 
     /**
+     *
+     * @var ?\DateTime $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $updatedAt = null;
+
+    /**
      * @param  \Brick\Math\BigInteger  $id
      * @param  array<string, string>  $metadata
      * @param  array<V2Posting>  $postings
@@ -127,9 +135,10 @@ class V2Transaction
      * @param  ?array<string, array<string, V2Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?\DateTime  $revertedAt
+     * @param  ?\DateTime  $updatedAt
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?\DateTime $insertedAt = null, ?array $postCommitEffectiveVolumes = null, ?array $postCommitVolumes = null, ?array $preCommitEffectiveVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?\DateTime $revertedAt = null)
+    public function __construct(\Brick\Math\BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?\DateTime $insertedAt = null, ?array $postCommitEffectiveVolumes = null, ?array $postCommitVolumes = null, ?array $preCommitEffectiveVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?\DateTime $revertedAt = null, ?\DateTime $updatedAt = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;
@@ -143,5 +152,6 @@ class V2Transaction
         $this->preCommitVolumes = $preCommitVolumes;
         $this->reference = $reference;
         $this->revertedAt = $revertedAt;
+        $this->updatedAt = $updatedAt;
     }
 }
