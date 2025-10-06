@@ -25,20 +25,20 @@ class SDKConfiguration
         [
         ],
         [
-            'environment' => 'eu.sandbox',
+            'environment' => 'sandbox',
             'organization' => 'orgID-stackID',
         ],
     ];
 
     public string $language = 'php';
 
-    public string $openapiDocVersion = 'v3.0.5';
+    public string $openapiDocVersion = 'v3.1.0';
 
-    public string $sdkVersion = '4.2.1';
+    public string $sdkVersion = '4.2.2';
 
-    public string $genVersion = '2.701.8';
+    public string $genVersion = '2.721.3';
 
-    public string $userAgent = 'speakeasy-sdk/php 4.2.1 2.701.8 v3.0.5 formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 4.2.2 2.721.3 v3.1.0 formance/formance-sdk';
 
     public ?RetryConfig $retryConfig = null;
 

@@ -31,12 +31,12 @@ class V2WorkflowInstanceHistoryStageOutput
 
     /**
      *
-     * @var ?V2AccountResponse $getAccount
+     * @var ?V2ActivityGetAccountOutput $getAccount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2AccountResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2ActivityGetAccountOutput|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2AccountResponse $getAccount = null;
+    public ?V2ActivityGetAccountOutput $getAccount = null;
 
     /**
      *
@@ -68,13 +68,13 @@ class V2WorkflowInstanceHistoryStageOutput
     /**
      * @param  ?V2ActivityCreateTransactionOutput  $createTransaction
      * @param  ?V2ActivityDebitWalletOutput  $debitWallet
-     * @param  ?V2AccountResponse  $getAccount
+     * @param  ?V2ActivityGetAccountOutput  $getAccount
      * @param  ?V2ActivityGetPaymentOutput  $getPayment
      * @param  ?V2ActivityGetWalletOutput  $getWallet
      * @param  ?V2ListWalletsResponse  $listWallets
      * @phpstan-pure
      */
-    public function __construct(?V2ActivityCreateTransactionOutput $createTransaction = null, ?V2ActivityDebitWalletOutput $debitWallet = null, ?V2AccountResponse $getAccount = null, ?V2ActivityGetPaymentOutput $getPayment = null, ?V2ActivityGetWalletOutput $getWallet = null, ?V2ListWalletsResponse $listWallets = null)
+    public function __construct(?V2ActivityCreateTransactionOutput $createTransaction = null, ?V2ActivityDebitWalletOutput $debitWallet = null, ?V2ActivityGetAccountOutput $getAccount = null, ?V2ActivityGetPaymentOutput $getPayment = null, ?V2ActivityGetWalletOutput $getWallet = null, ?V2ListWalletsResponse $listWallets = null)
     {
         $this->createTransaction = $createTransaction;
         $this->debitWallet = $debitWallet;

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2RevertTransactionRequest
 {
@@ -26,6 +27,13 @@ class V2RevertTransactionRequest
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=ledger')]
     public string $ledger;
+
+    /**
+     *
+     * @var ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest = null;
 
     /**
      * Revert transaction at effective date of the original tx
@@ -54,15 +62,17 @@ class V2RevertTransactionRequest
     /**
      * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
+     * @param  ?Shared\V2RevertTransactionRequest  $v2RevertTransactionRequest
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $dryRun
      * @param  ?bool  $force
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;
+        $this->v2RevertTransactionRequest = $v2RevertTransactionRequest;
         $this->atEffectiveDate = $atEffectiveDate;
         $this->dryRun = $dryRun;
         $this->force = $force;

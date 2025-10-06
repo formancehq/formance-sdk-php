@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: 2303b8447e474d428256a66f5ab2f945
+  docChecksum: fb444f688b96b35960ea0ebe55aa834f
   docVersion: v3.1.0
-  speakeasyVersion: 1.617.1
-  generationVersion: 2.701.8
-  releaseVersion: 4.2.1
-  configChecksum: 59cd45a9477efccdd3ec0fa0fc71a658
+  speakeasyVersion: 1.634.2
+  generationVersion: 2.721.3
+  releaseVersion: 4.2.2
+  configChecksum: 504a376825849a1a5cce98414665b52d
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php
@@ -15,7 +15,7 @@ features:
   php:
     bigint: 0.1.1
     constsAndDefaults: 0.2.0
-    core: 3.8.10
+    core: 3.8.11
     deprecations: 2.81.1
     errors: 0.3.0
     getRequestBodies: 2.81.1
@@ -85,6 +85,7 @@ generatedFiles:
   - docs/Models/Operations/CreateWorkflowResponse.md
   - docs/Models/Operations/CreditWalletRequest.md
   - docs/Models/Operations/CreditWalletResponse.md
+  - docs/Models/Operations/Cursor.md
   - docs/Models/Operations/DeactivateConfigRequest.md
   - docs/Models/Operations/DeactivateConfigResponse.md
   - docs/Models/Operations/DebitWalletRequest.md
@@ -289,16 +290,25 @@ generatedFiles:
   - docs/Models/Operations/V2CountTransactionsResponse.md
   - docs/Models/Operations/V2CreateBulkRequest.md
   - docs/Models/Operations/V2CreateBulkResponse.md
+  - docs/Models/Operations/V2CreateExporterResponse.md
+  - docs/Models/Operations/V2CreateExporterResponseBody.md
   - docs/Models/Operations/V2CreateLedgerRequest.md
   - docs/Models/Operations/V2CreateLedgerResponse.md
+  - docs/Models/Operations/V2CreatePipelineRequest.md
+  - docs/Models/Operations/V2CreatePipelineResponse.md
+  - docs/Models/Operations/V2CreatePipelineResponseBody.md
   - docs/Models/Operations/V2CreateTransactionRequest.md
   - docs/Models/Operations/V2CreateTransactionResponse.md
   - docs/Models/Operations/V2CreateTriggerResponse.md
   - docs/Models/Operations/V2CreateWorkflowResponse.md
   - docs/Models/Operations/V2DeleteAccountMetadataRequest.md
   - docs/Models/Operations/V2DeleteAccountMetadataResponse.md
+  - docs/Models/Operations/V2DeleteExporterRequest.md
+  - docs/Models/Operations/V2DeleteExporterResponse.md
   - docs/Models/Operations/V2DeleteLedgerMetadataRequest.md
   - docs/Models/Operations/V2DeleteLedgerMetadataResponse.md
+  - docs/Models/Operations/V2DeletePipelineRequest.md
+  - docs/Models/Operations/V2DeletePipelineResponse.md
   - docs/Models/Operations/V2DeleteTransactionMetadataRequest.md
   - docs/Models/Operations/V2DeleteTransactionMetadataResponse.md
   - docs/Models/Operations/V2DeleteTriggerRequest.md
@@ -311,6 +321,9 @@ generatedFiles:
   - docs/Models/Operations/V2GetAccountResponse.md
   - docs/Models/Operations/V2GetBalancesAggregatedRequest.md
   - docs/Models/Operations/V2GetBalancesAggregatedResponse.md
+  - docs/Models/Operations/V2GetExporterStateRequest.md
+  - docs/Models/Operations/V2GetExporterStateResponse.md
+  - docs/Models/Operations/V2GetExporterStateResponseBody.md
   - docs/Models/Operations/V2GetInfoResponse.md
   - docs/Models/Operations/V2GetInstanceHistoryRequest.md
   - docs/Models/Operations/V2GetInstanceHistoryResponse.md
@@ -322,6 +335,9 @@ generatedFiles:
   - docs/Models/Operations/V2GetLedgerInfoResponse.md
   - docs/Models/Operations/V2GetLedgerRequest.md
   - docs/Models/Operations/V2GetLedgerResponse.md
+  - docs/Models/Operations/V2GetPipelineStateRequest.md
+  - docs/Models/Operations/V2GetPipelineStateResponse.md
+  - docs/Models/Operations/V2GetPipelineStateResponseBody.md
   - docs/Models/Operations/V2GetServerInfoResponse.md
   - docs/Models/Operations/V2GetTransactionRequest.md
   - docs/Models/Operations/V2GetTransactionResponse.md
@@ -333,12 +349,20 @@ generatedFiles:
   - docs/Models/Operations/V2ImportLogsResponse.md
   - docs/Models/Operations/V2ListAccountsRequest.md
   - docs/Models/Operations/V2ListAccountsResponse.md
+  - docs/Models/Operations/V2ListExportersCursor.md
+  - docs/Models/Operations/V2ListExportersResponse.md
+  - docs/Models/Operations/V2ListExportersResponseBody.md
   - docs/Models/Operations/V2ListInstancesRequest.md
   - docs/Models/Operations/V2ListInstancesResponse.md
   - docs/Models/Operations/V2ListLedgersRequest.md
   - docs/Models/Operations/V2ListLedgersResponse.md
   - docs/Models/Operations/V2ListLogsRequest.md
   - docs/Models/Operations/V2ListLogsResponse.md
+  - docs/Models/Operations/V2ListPipelinesCursor.md
+  - docs/Models/Operations/V2ListPipelinesLedgerV2Cursor.md
+  - docs/Models/Operations/V2ListPipelinesRequest.md
+  - docs/Models/Operations/V2ListPipelinesResponse.md
+  - docs/Models/Operations/V2ListPipelinesResponseBody.md
   - docs/Models/Operations/V2ListTransactionsRequest.md
   - docs/Models/Operations/V2ListTransactionsResponse.md
   - docs/Models/Operations/V2ListTriggersOccurrencesRequest.md
@@ -351,6 +375,8 @@ generatedFiles:
   - docs/Models/Operations/V2ReadStatsResponse.md
   - docs/Models/Operations/V2ReadTriggerRequest.md
   - docs/Models/Operations/V2ReadTriggerResponse.md
+  - docs/Models/Operations/V2ResetPipelineRequest.md
+  - docs/Models/Operations/V2ResetPipelineResponse.md
   - docs/Models/Operations/V2RevertTransactionRequest.md
   - docs/Models/Operations/V2RevertTransactionResponse.md
   - docs/Models/Operations/V2RunWorkflowRequest.md
@@ -358,6 +384,10 @@ generatedFiles:
   - docs/Models/Operations/V2SendEventRequest.md
   - docs/Models/Operations/V2SendEventRequestBody.md
   - docs/Models/Operations/V2SendEventResponse.md
+  - docs/Models/Operations/V2StartPipelineRequest.md
+  - docs/Models/Operations/V2StartPipelineResponse.md
+  - docs/Models/Operations/V2StopPipelineRequest.md
+  - docs/Models/Operations/V2StopPipelineResponse.md
   - docs/Models/Operations/V2UpdateLedgerMetadataRequest.md
   - docs/Models/Operations/V2UpdateLedgerMetadataResponse.md
   - docs/Models/Operations/V3AddAccountToPoolRequest.md
@@ -598,6 +628,7 @@ generatedFiles:
   - docs/Models/Shared/OrchestrationPostTransaction.md
   - docs/Models/Shared/OrchestrationPostTransactionScript.md
   - docs/Models/Shared/OrchestrationTransaction.md
+  - docs/Models/Shared/OrchestrationV2Account.md
   - docs/Models/Shared/OrchestrationV2PostTransaction.md
   - docs/Models/Shared/OrchestrationV2PostTransactionScript.md
   - docs/Models/Shared/OrchestrationV2Transaction.md
@@ -648,6 +679,7 @@ generatedFiles:
   - docs/Models/Shared/ResponseCursor.md
   - docs/Models/Shared/ReverseTransferInitiationRequest.md
   - docs/Models/Shared/RunWorkflowResponse.md
+  - docs/Models/Shared/Runtime.md
   - docs/Models/Shared/Schemas.md
   - docs/Models/Shared/Scheme.md
   - docs/Models/Shared/Script.md
@@ -743,6 +775,7 @@ generatedFiles:
   - docs/Models/Shared/V2ActivityDebitWallet.md
   - docs/Models/Shared/V2ActivityDebitWalletOutput.md
   - docs/Models/Shared/V2ActivityGetAccount.md
+  - docs/Models/Shared/V2ActivityGetAccountOutput.md
   - docs/Models/Shared/V2ActivityGetPayment.md
   - docs/Models/Shared/V2ActivityGetPaymentOutput.md
   - docs/Models/Shared/V2ActivityGetWallet.md
@@ -770,6 +803,7 @@ generatedFiles:
   - docs/Models/Shared/V2ConfigInfoResponse.md
   - docs/Models/Shared/V2Connector.md
   - docs/Models/Shared/V2CreateLedgerRequest.md
+  - docs/Models/Shared/V2CreatePipelineRequest.md
   - docs/Models/Shared/V2CreateTransactionResponse.md
   - docs/Models/Shared/V2CreateTriggerResponse.md
   - docs/Models/Shared/V2CreateWorkflowResponse.md
@@ -777,6 +811,8 @@ generatedFiles:
   - docs/Models/Shared/V2DebitWalletRequest.md
   - docs/Models/Shared/V2ErrorResponse.md
   - docs/Models/Shared/V2ErrorsEnum.md
+  - docs/Models/Shared/V2Exporter.md
+  - docs/Models/Shared/V2ExporterConfiguration.md
   - docs/Models/Shared/V2GetLedgerResponse.md
   - docs/Models/Shared/V2GetTransactionResponse.md
   - docs/Models/Shared/V2GetWorkflowInstanceHistoryResponse.md
@@ -815,10 +851,12 @@ generatedFiles:
   - docs/Models/Shared/V2PaymentRaw.md
   - docs/Models/Shared/V2PaymentStatus.md
   - docs/Models/Shared/V2PaymentType.md
+  - docs/Models/Shared/V2Pipeline.md
   - docs/Models/Shared/V2PostTransaction.md
   - docs/Models/Shared/V2PostTransactionScript.md
   - docs/Models/Shared/V2Posting.md
   - docs/Models/Shared/V2ReadTriggerResponse.md
+  - docs/Models/Shared/V2RevertTransactionRequest.md
   - docs/Models/Shared/V2RunWorkflowResponse.md
   - docs/Models/Shared/V2ServerInfo.md
   - docs/Models/Shared/V2Stage.md
@@ -1100,6 +1138,7 @@ generatedFiles:
   - src/Models/Operations/CreateWorkflowResponse.php
   - src/Models/Operations/CreditWalletRequest.php
   - src/Models/Operations/CreditWalletResponse.php
+  - src/Models/Operations/Cursor.php
   - src/Models/Operations/DeactivateConfigRequest.php
   - src/Models/Operations/DeactivateConfigResponse.php
   - src/Models/Operations/DebitWalletRequest.php
@@ -1304,16 +1343,25 @@ generatedFiles:
   - src/Models/Operations/V2CountTransactionsResponse.php
   - src/Models/Operations/V2CreateBulkRequest.php
   - src/Models/Operations/V2CreateBulkResponse.php
+  - src/Models/Operations/V2CreateExporterResponse.php
+  - src/Models/Operations/V2CreateExporterResponseBody.php
   - src/Models/Operations/V2CreateLedgerRequest.php
   - src/Models/Operations/V2CreateLedgerResponse.php
+  - src/Models/Operations/V2CreatePipelineRequest.php
+  - src/Models/Operations/V2CreatePipelineResponse.php
+  - src/Models/Operations/V2CreatePipelineResponseBody.php
   - src/Models/Operations/V2CreateTransactionRequest.php
   - src/Models/Operations/V2CreateTransactionResponse.php
   - src/Models/Operations/V2CreateTriggerResponse.php
   - src/Models/Operations/V2CreateWorkflowResponse.php
   - src/Models/Operations/V2DeleteAccountMetadataRequest.php
   - src/Models/Operations/V2DeleteAccountMetadataResponse.php
+  - src/Models/Operations/V2DeleteExporterRequest.php
+  - src/Models/Operations/V2DeleteExporterResponse.php
   - src/Models/Operations/V2DeleteLedgerMetadataRequest.php
   - src/Models/Operations/V2DeleteLedgerMetadataResponse.php
+  - src/Models/Operations/V2DeletePipelineRequest.php
+  - src/Models/Operations/V2DeletePipelineResponse.php
   - src/Models/Operations/V2DeleteTransactionMetadataRequest.php
   - src/Models/Operations/V2DeleteTransactionMetadataResponse.php
   - src/Models/Operations/V2DeleteTriggerRequest.php
@@ -1326,6 +1374,9 @@ generatedFiles:
   - src/Models/Operations/V2GetAccountResponse.php
   - src/Models/Operations/V2GetBalancesAggregatedRequest.php
   - src/Models/Operations/V2GetBalancesAggregatedResponse.php
+  - src/Models/Operations/V2GetExporterStateRequest.php
+  - src/Models/Operations/V2GetExporterStateResponse.php
+  - src/Models/Operations/V2GetExporterStateResponseBody.php
   - src/Models/Operations/V2GetInfoResponse.php
   - src/Models/Operations/V2GetInstanceHistoryRequest.php
   - src/Models/Operations/V2GetInstanceHistoryResponse.php
@@ -1337,6 +1388,9 @@ generatedFiles:
   - src/Models/Operations/V2GetLedgerInfoResponse.php
   - src/Models/Operations/V2GetLedgerRequest.php
   - src/Models/Operations/V2GetLedgerResponse.php
+  - src/Models/Operations/V2GetPipelineStateRequest.php
+  - src/Models/Operations/V2GetPipelineStateResponse.php
+  - src/Models/Operations/V2GetPipelineStateResponseBody.php
   - src/Models/Operations/V2GetServerInfoResponse.php
   - src/Models/Operations/V2GetTransactionRequest.php
   - src/Models/Operations/V2GetTransactionResponse.php
@@ -1348,12 +1402,20 @@ generatedFiles:
   - src/Models/Operations/V2ImportLogsResponse.php
   - src/Models/Operations/V2ListAccountsRequest.php
   - src/Models/Operations/V2ListAccountsResponse.php
+  - src/Models/Operations/V2ListExportersCursor.php
+  - src/Models/Operations/V2ListExportersResponse.php
+  - src/Models/Operations/V2ListExportersResponseBody.php
   - src/Models/Operations/V2ListInstancesRequest.php
   - src/Models/Operations/V2ListInstancesResponse.php
   - src/Models/Operations/V2ListLedgersRequest.php
   - src/Models/Operations/V2ListLedgersResponse.php
   - src/Models/Operations/V2ListLogsRequest.php
   - src/Models/Operations/V2ListLogsResponse.php
+  - src/Models/Operations/V2ListPipelinesCursor.php
+  - src/Models/Operations/V2ListPipelinesLedgerV2Cursor.php
+  - src/Models/Operations/V2ListPipelinesRequest.php
+  - src/Models/Operations/V2ListPipelinesResponse.php
+  - src/Models/Operations/V2ListPipelinesResponseBody.php
   - src/Models/Operations/V2ListTransactionsRequest.php
   - src/Models/Operations/V2ListTransactionsResponse.php
   - src/Models/Operations/V2ListTriggersOccurrencesRequest.php
@@ -1366,6 +1428,8 @@ generatedFiles:
   - src/Models/Operations/V2ReadStatsResponse.php
   - src/Models/Operations/V2ReadTriggerRequest.php
   - src/Models/Operations/V2ReadTriggerResponse.php
+  - src/Models/Operations/V2ResetPipelineRequest.php
+  - src/Models/Operations/V2ResetPipelineResponse.php
   - src/Models/Operations/V2RevertTransactionRequest.php
   - src/Models/Operations/V2RevertTransactionResponse.php
   - src/Models/Operations/V2RunWorkflowRequest.php
@@ -1373,6 +1437,10 @@ generatedFiles:
   - src/Models/Operations/V2SendEventRequest.php
   - src/Models/Operations/V2SendEventRequestBody.php
   - src/Models/Operations/V2SendEventResponse.php
+  - src/Models/Operations/V2StartPipelineRequest.php
+  - src/Models/Operations/V2StartPipelineResponse.php
+  - src/Models/Operations/V2StopPipelineRequest.php
+  - src/Models/Operations/V2StopPipelineResponse.php
   - src/Models/Operations/V2UpdateLedgerMetadataRequest.php
   - src/Models/Operations/V2UpdateLedgerMetadataResponse.php
   - src/Models/Operations/V3AddAccountToPoolRequest.php
@@ -1612,6 +1680,7 @@ generatedFiles:
   - src/Models/Shared/OrchestrationPostTransaction.php
   - src/Models/Shared/OrchestrationPostTransactionScript.php
   - src/Models/Shared/OrchestrationTransaction.php
+  - src/Models/Shared/OrchestrationV2Account.php
   - src/Models/Shared/OrchestrationV2PostTransaction.php
   - src/Models/Shared/OrchestrationV2PostTransactionScript.php
   - src/Models/Shared/OrchestrationV2Transaction.php
@@ -1662,6 +1731,7 @@ generatedFiles:
   - src/Models/Shared/ResponseCursor.php
   - src/Models/Shared/ReverseTransferInitiationRequest.php
   - src/Models/Shared/RunWorkflowResponse.php
+  - src/Models/Shared/Runtime.php
   - src/Models/Shared/Schemas.php
   - src/Models/Shared/Scheme.php
   - src/Models/Shared/Script.php
@@ -1753,6 +1823,7 @@ generatedFiles:
   - src/Models/Shared/V2ActivityDebitWallet.php
   - src/Models/Shared/V2ActivityDebitWalletOutput.php
   - src/Models/Shared/V2ActivityGetAccount.php
+  - src/Models/Shared/V2ActivityGetAccountOutput.php
   - src/Models/Shared/V2ActivityGetPayment.php
   - src/Models/Shared/V2ActivityGetPaymentOutput.php
   - src/Models/Shared/V2ActivityGetWallet.php
@@ -1778,6 +1849,7 @@ generatedFiles:
   - src/Models/Shared/V2ConfigInfoResponse.php
   - src/Models/Shared/V2Connector.php
   - src/Models/Shared/V2CreateLedgerRequest.php
+  - src/Models/Shared/V2CreatePipelineRequest.php
   - src/Models/Shared/V2CreateTransactionResponse.php
   - src/Models/Shared/V2CreateTriggerResponse.php
   - src/Models/Shared/V2CreateWorkflowResponse.php
@@ -1785,6 +1857,8 @@ generatedFiles:
   - src/Models/Shared/V2DebitWalletRequest.php
   - src/Models/Shared/V2ErrorResponse.php
   - src/Models/Shared/V2ErrorsEnum.php
+  - src/Models/Shared/V2Exporter.php
+  - src/Models/Shared/V2ExporterConfiguration.php
   - src/Models/Shared/V2GetLedgerResponse.php
   - src/Models/Shared/V2GetTransactionResponse.php
   - src/Models/Shared/V2GetWorkflowInstanceHistoryResponse.php
@@ -1823,10 +1897,12 @@ generatedFiles:
   - src/Models/Shared/V2PaymentRaw.php
   - src/Models/Shared/V2PaymentStatus.php
   - src/Models/Shared/V2PaymentType.php
+  - src/Models/Shared/V2Pipeline.php
   - src/Models/Shared/V2PostTransaction.php
   - src/Models/Shared/V2PostTransactionScript.php
   - src/Models/Shared/V2Posting.php
   - src/Models/Shared/V2ReadTriggerResponse.php
+  - src/Models/Shared/V2RevertTransactionRequest.php
   - src/Models/Shared/V2RunWorkflowResponse.php
   - src/Models/Shared/V2ServerInfo.php
   - src/Models/Shared/V2StageDelay.php
@@ -2207,7 +2283,7 @@ examples:
           dryRun: true
           force: true
       requestBody:
-        application/json: {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
+        application/json: {"accountMetadata": {"key": {"admin": "true"}, "key1": {"admin": "true"}, "key2": {"admin": "true"}}, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
       responses:
         "200":
           application/json: {"data": {"id": 863659, "metadata": {"admin": "true"}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "reverted": false, "timestamp": "2024-01-08T03:47:56.227Z"}}
@@ -2255,7 +2331,7 @@ examples:
           address: "users:001"
       responses:
         "200":
-          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}
+          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "firstUsage": "2023-01-01T00:00:00Z", "insertionDate": "2023-01-01T00:00:00Z", "metadata": {"admin": "true"}, "updatedAt": "2023-01-01T00:00:00Z", "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2GetBalancesAggregated:
@@ -2326,6 +2402,7 @@ examples:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
           groupBy: 3
+          sort: "id:desc"
       requestBody:
         application/json: {"key": "<value>"}
       responses:
@@ -2351,6 +2428,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       requestBody:
         application/json: {}
       responses:
@@ -2364,6 +2442,9 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
+      requestBody:
+        application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
       responses:
         "200":
           application/json: {"cursor": {"data": [{"addedAt": "2024-03-14T02:30:05.506Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2377,6 +2458,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       requestBody:
         application/json: {}
       responses:
@@ -2392,6 +2474,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       requestBody:
         application/json: {}
       responses:
@@ -4238,5 +4321,107 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreateExporter:
+    speakeasy-default-v2-create-exporter:
+      requestBody:
+        application/json: {"config": {"key": "<value>"}, "driver": "<value>"}
+      responses:
+        "201":
+          application/json: {"data": {"config": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "createdAt": "2023-09-20T22:58:09.492Z", "driver": "<value>", "id": "<id>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreatePipeline:
+    speakeasy-default-v2-create-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2023-10-13T04:07:21.184Z", "exporterID": "<id>", "id": "<id>", "ledger": "<value>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeleteExporter:
+    speakeasy-default-v2-delete-exporter:
+      parameters:
+        path:
+          exporterID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeletePipeline:
+    speakeasy-default-v2-delete-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetExporterState:
+    speakeasy-default-v2-get-exporter-state:
+      parameters:
+        path:
+          exporterID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"config": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "createdAt": "2025-12-16T02:14:09.876Z", "driver": "<value>", "id": "<id>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetPipelineState:
+    speakeasy-default-v2-get-pipeline-state:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2024-06-04T21:05:32.605Z", "exporterID": "<id>", "id": "<id>", "ledger": "<value>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListExporters:
+    speakeasy-default-v2-list-exporters:
+      responses:
+        "200":
+          application/json: {"cursor": {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListPipelines:
+    speakeasy-default-v2-list-pipelines:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "200":
+          application/json: {"cursor": {"cursor": {"data": [{"createdAt": "2023-07-10T16:30:37.234Z", "exporterID": "<id>", "id": "<id>", "ledger": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ResetPipeline:
+    speakeasy-default-v2-reset-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2StartPipeline:
+    speakeasy-default-v2-start-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2StopPipeline:
+    speakeasy-default-v2-stop-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Php SDK Changes Detected:\n* `sdk->ledger->v2->listLedgers()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response.cursor->data->[]` **Changed**\n* `sdk->ledger->v1->countAccounts()`:  `response` **Changed** **Breaking** :warning:\n* `sdk->ledger->v2->getVolumesWithBalances()`: \n  *  `request->sort` **Added**\n* `sdk->ledger->v2->getLedger()`:  `response.data` **Changed**\n* `sdk->ledger->v2->deleteExporter()`: **Added**\n* `sdk->ledger->v2->deletePipeline()`: **Added**\n* `sdk->ledger->v2->getExporterState()`: **Added**\n* `sdk->ledger->v2->getPipelineState()`: **Added**\n* `sdk->ledger->v2->listExporters()`: **Added**\n* `sdk->ledger->v2->listPipelines()`: **Added**\n* `sdk->ledger->v2->resetPipeline()`: **Added**\n* `sdk->ledger->v2->startPipeline()`: **Added**\n* `sdk->ledger->v2->stopPipeline()`: **Added**\n* `sdk->ledger->v2->getInfo()`: **Deleted** **Breaking** :warning:\n* `sdk->ledger->v2->getMetrics()`: **Deleted** **Breaking** :warning:\n* `sdk->ledger->v2->createBulk()`: \n  *  `request->requestBody->[]->[addMetadata]->data` **Changed**\n  *  `response.data->[]` **Changed**\n* `sdk->ledger->v2->createTransaction()`: \n  *  `request->v2PostTransaction` **Changed**\n  *  `response.data->updatedAt` **Added**\n* `sdk->ledger->v2->getAccount()`:  `response.data` **Changed**\n* `sdk->ledger->v2->listAccounts()`: \n  *  `request->sort` **Added**\n  *  `response.cursor->data->[]` **Changed**\n* `sdk->ledger->v2->getTransaction()`:  `response.data->updatedAt` **Added**\n* `sdk->ledger->v2->createPipeline()`: **Added**\n* `sdk->ledger->getInfo()`: **Added**\n* `sdk->ledger->v2->revertTransaction()`: \n  *  `request->v2RevertTransactionRequest` **Added**\n  *  `response.data->updatedAt` **Added**\n* `sdk->ledger->v2->listLogs()`: \n  *  `request->sort` **Added**\n* `sdk->ledger->v2->listTransactions()`: \n  *  `request->sort` **Added**\n  *  `response.cursor->data->[]->updatedAt` **Added**\n* `sdk->ledger->v2->createExporter()`: **Added**\n* `sdk->ledger->getMetrics()`: **Added**\n* `sdk->orchestration->v1->createTrigger()`: \n  *  `request->version` **Added**\n  *  `response.data->version` **Added**\n* `sdk->orchestration->v1->getInstance()`:  `response.data->workflow` **Added**\n* `sdk->orchestration->v1->listInstances()`:  `response.data->[]->workflow` **Added**\n* `sdk->orchestration->v1->listTriggers()`:  `response.data->[]->version` **Added**\n* `sdk->orchestration->v1->listTriggersOccurrences()`:  `response.data->[]->workflowInstance->workflow` **Added**\n* `sdk->orchestration->v1->readTrigger()`:  `response.data->version` **Added**\n* `sdk->orchestration->v1->runWorkflow()`:  `response.data->workflow` **Added**\n* `sdk->orchestration->v2->createTrigger()`: \n  *  `request->version` **Added**\n  *  `response.data->version` **Added**\n* `sdk->orchestration->v2->getInstance()`:  `response.data->workflow` **Added**\n* `sdk->orchestration->v2->listInstances()`:  `response.cursor->data->[]->workflow` **Added**\n* `sdk->orchestration->v2->listTriggers()`:  `response.cursor->data->[]->version` **Added**\n* `sdk->orchestration->v2->listTriggersOccurrences()`:  `response.cursor->data->[]->workflowInstance->workflow` **Added**\n* `sdk->orchestration->v2->readTrigger()`:  `response.data->version` **Added**\n* `sdk->orchestration->v2->runWorkflow()`:  `response.data->workflow` **Added**\n"

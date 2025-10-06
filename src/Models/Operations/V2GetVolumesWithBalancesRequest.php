@@ -74,6 +74,17 @@ class V2GetVolumesWithBalancesRequest
     public ?int $pageSize = null;
 
     /**
+     * Sort results using a field name and order (ascending or descending). 
+     *
+     * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+     *
+     *
+     * @var ?string $sort
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
+    public ?string $sort = null;
+
+    /**
      *
      * @var ?\DateTime $startTime
      */
@@ -88,10 +99,11 @@ class V2GetVolumesWithBalancesRequest
      * @param  ?int  $groupBy
      * @param  ?bool  $insertionDate
      * @param  ?int  $pageSize
+     * @param  ?string  $sort
      * @param  ?\DateTime  $startTime
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $startTime = null)
+    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?string $sort = null, ?\DateTime $startTime = null)
     {
         $this->requestBody = $requestBody;
         $this->ledger = $ledger;
@@ -100,6 +112,7 @@ class V2GetVolumesWithBalancesRequest
         $this->groupBy = $groupBy;
         $this->insertionDate = $insertionDate;
         $this->pageSize = $pageSize;
+        $this->sort = $sort;
         $this->startTime = $startTime;
     }
 }

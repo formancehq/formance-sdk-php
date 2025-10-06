@@ -73,6 +73,15 @@ class WorkflowInstance
     public ?\DateTime $terminatedAt = null;
 
     /**
+     *
+     * @var ?Workflow $workflow
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflow')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Workflow|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Workflow $workflow = null;
+
+    /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  bool  $terminated
@@ -81,9 +90,10 @@ class WorkflowInstance
      * @param  ?string  $error
      * @param  ?array<StageStatus>  $status
      * @param  ?\DateTime  $terminatedAt
+     * @param  ?Workflow  $workflow
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, bool $terminated, \DateTime $updatedAt, string $workflowID, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null)
+    public function __construct(\DateTime $createdAt, string $id, bool $terminated, \DateTime $updatedAt, string $workflowID, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null, ?Workflow $workflow = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;
@@ -93,5 +103,6 @@ class WorkflowInstance
         $this->error = $error;
         $this->status = $status;
         $this->terminatedAt = $terminatedAt;
+        $this->workflow = $workflow;
     }
 }

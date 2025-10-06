@@ -38,6 +38,30 @@ class V2Account
     public ?array $effectiveVolumes = null;
 
     /**
+     *
+     * @var ?\DateTime $firstUsage
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('firstUsage')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $firstUsage = null;
+
+    /**
+     *
+     * @var ?\DateTime $insertionDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('insertionDate')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $insertionDate = null;
+
+    /**
+     *
+     * @var ?\DateTime $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $updatedAt = null;
+
+    /**
      * $volumes
      *
      * @var ?array<string, V2Volume> $volumes
@@ -51,14 +75,20 @@ class V2Account
      * @param  string  $address
      * @param  array<string, string>  $metadata
      * @param  ?array<string, V2Volume>  $effectiveVolumes
+     * @param  ?\DateTime  $firstUsage
+     * @param  ?\DateTime  $insertionDate
+     * @param  ?\DateTime  $updatedAt
      * @param  ?array<string, V2Volume>  $volumes
      * @phpstan-pure
      */
-    public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?array $volumes = null)
+    public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?\DateTime $firstUsage = null, ?\DateTime $insertionDate = null, ?\DateTime $updatedAt = null, ?array $volumes = null)
     {
         $this->address = $address;
         $this->metadata = $metadata;
         $this->effectiveVolumes = $effectiveVolumes;
+        $this->firstUsage = $firstUsage;
+        $this->insertionDate = $insertionDate;
+        $this->updatedAt = $updatedAt;
         $this->volumes = $volumes;
     }
 }

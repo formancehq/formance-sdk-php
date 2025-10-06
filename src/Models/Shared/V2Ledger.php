@@ -33,6 +33,24 @@ class V2Ledger
     public string $name;
 
     /**
+     * $features
+     *
+     * @var ?array<string, string> $features
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $features = null;
+
+    /**
+     *
+     * @var ?int $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $id = null;
+
+    /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
@@ -46,14 +64,18 @@ class V2Ledger
      * @param  \DateTime  $addedAt
      * @param  string  $bucket
      * @param  string  $name
+     * @param  ?array<string, string>  $features
+     * @param  ?int  $id
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\DateTime $addedAt, string $bucket, string $name, ?array $metadata = null)
+    public function __construct(\DateTime $addedAt, string $bucket, string $name, ?array $features = null, ?int $id = null, ?array $metadata = null)
     {
         $this->addedAt = $addedAt;
         $this->bucket = $bucket;
         $this->name = $name;
+        $this->features = $features;
+        $this->id = $id;
         $this->metadata = $metadata;
     }
 }

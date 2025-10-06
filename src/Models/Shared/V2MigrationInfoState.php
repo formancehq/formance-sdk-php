@@ -13,4 +13,5 @@ enum V2MigrationInfoState: string
 {
     case ToDo = 'TO DO';
     case Done = 'DONE';
+    case Progress = 'PROGRESS';
 }

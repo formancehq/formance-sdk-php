@@ -21,6 +21,24 @@ class V2PostTransaction
     public array $metadata;
 
     /**
+     * $accountMetadata
+     *
+     * @var ?array<string, array<string, string>> $accountMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountMetadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, string>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $accountMetadata = null;
+
+    /**
+     *
+     * @var ?bool $force
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('force')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $force = null;
+
+    /**
      * $postings
      *
      * @var ?array<V2Posting> $postings
@@ -37,6 +55,16 @@ class V2PostTransaction
     #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $reference = null;
+
+    /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
+     *
+     * @var ?Runtime $runtime
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Runtime|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Runtime $runtime = null;
 
     /**
      *
@@ -57,17 +85,23 @@ class V2PostTransaction
 
     /**
      * @param  array<string, string>  $metadata
+     * @param  ?array<string, array<string, string>>  $accountMetadata
+     * @param  ?bool  $force
      * @param  ?array<V2Posting>  $postings
      * @param  ?string  $reference
+     * @param  ?Runtime  $runtime
      * @param  ?V2PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(array $metadata, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
+    public function __construct(array $metadata, ?array $accountMetadata = null, ?bool $force = null, ?array $postings = null, ?string $reference = null, ?Runtime $runtime = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
     {
         $this->metadata = $metadata;
+        $this->accountMetadata = $accountMetadata;
+        $this->force = $force;
         $this->postings = $postings;
         $this->reference = $reference;
+        $this->runtime = $runtime;
         $this->script = $script;
         $this->timestamp = $timestamp;
     }
