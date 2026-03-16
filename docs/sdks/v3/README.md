@@ -1,5 +1,4 @@
-# V3
-(*payments->v3*)
+# Payments.V3
 
 ## Overview
 
@@ -12,14 +11,19 @@
 
 * [createBankAccount](#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+* [createLinkForPaymentServiceUser](#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
 * [createPayment](#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [createPaymentServiceUser](#createpaymentserviceuser) - Create a formance payment service user object
 * [createPool](#createpool) - Create a formance pool object
 * [deletePaymentInitiation](#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePaymentServiceUser](#deletepaymentserviceuser) - Delete a payment service user by ID
+* [deletePaymentServiceUserConnectionFromConnectorID](#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+* [deletePaymentServiceUserConnector](#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 * [deletePool](#deletepool) - Delete a pool by ID
 * [forwardBankAccount](#forwardbankaccount) - Forward a Bank Account to a PSP for creation
 * [forwardPaymentServiceUserBankAccount](#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
+* [forwardPaymentServiceUserToProvider](#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
 * [getAccount](#getaccount) - Get an account by ID
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
@@ -28,6 +32,7 @@
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
 * [getPaymentServiceUser](#getpaymentserviceuser) - Get a payment service user by ID
+* [getPaymentServiceUserLinkAttemptFromConnectorID](#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
 * [getPool](#getpool) - Get a pool by ID
 * [getPoolBalances](#getpoolbalances) - Get historical pool balances from a particular point in time
 * [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
@@ -43,6 +48,11 @@
 * [listPaymentInitiationAdjustments](#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUserConnections](#listpaymentserviceuserconnections) - List all connections for a payment service user
+* [listPaymentServiceUserConnectionsFromConnectorID](#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [listPaymentServiceUserLinkAttemptsFromConnectorID](#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 * [listPaymentServiceUsers](#listpaymentserviceusers) - List all payment service users
 * [listPayments](#listpayments) - List all payments
 * [listPools](#listpools) - List all pools
@@ -53,7 +63,9 @@
 * [reversePaymentInitiation](#reversepaymentinitiation) - Reverse a payment initiation
 * [uninstallConnector](#uninstallconnector) - Uninstall a connector
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update a bank account's metadata
+* [updateLinkForPaymentServiceUserOnConnector](#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
 * [updatePaymentMetadata](#updatepaymentmetadata) - Update a payment's metadata
+* [updatePoolQuery](#updatepoolquery) - Update the query of a pool
 * [v3UpdateConnectorConfig](#v3updateconnectorconfig) - Update the config of a connector
 
 ## addAccountToPool
@@ -329,6 +341,62 @@ if ($response->v3CreateBankAccountResponse !== null) {
 | Errors\V3ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## createLinkForPaymentServiceUser
+
+Create an authentication link for a payment service user on a connector, for oauth flow
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3CreateLinkForPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3CreateLinkForPaymentServiceUserRequest(
+    connectorID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->createLinkForPaymentServiceUser(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserCreateLinkResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                 | [Operations\V3CreateLinkForPaymentServiceUserRequest](../../Models/Operations/V3CreateLinkForPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+
+### Response
+
+**[?Operations\V3CreateLinkForPaymentServiceUserResponse](../../Models/Operations/V3CreateLinkForPaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## createPayment
 
 Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
@@ -541,6 +609,174 @@ if ($response->statusCode === 200) {
 | Errors\V3ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## deletePaymentServiceUser
+
+Delete a payment service user by ID
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3DeletePaymentServiceUser" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3DeletePaymentServiceUserRequest(
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->deletePaymentServiceUser(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserDeleteResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                   | [Operations\V3DeletePaymentServiceUserRequest](../../Models/Operations/V3DeletePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+
+### Response
+
+**[?Operations\V3DeletePaymentServiceUserResponse](../../Models/Operations/V3DeletePaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## deletePaymentServiceUserConnectionFromConnectorID
+
+Delete a connection for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3DeletePaymentServiceUserConnectionFromConnectorID" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest(
+    connectionID: '<id>',
+    connectorID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->deletePaymentServiceUserConnectionFromConnectorID(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserDeleteConnectionResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                                                     | [Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../Models/Operations/V3DeletePaymentServiceUserConnectionFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
+
+### Response
+
+**[?Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse](../../Models/Operations/V3DeletePaymentServiceUserConnectionFromConnectorIDResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## deletePaymentServiceUserConnector
+
+Remove a payment service user from a connector, the PSU will still exist in Formance
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3DeletePaymentServiceUserConnector" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3DeletePaymentServiceUserConnectorRequest(
+    connectorID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->deletePaymentServiceUserConnector(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserDeleteConnectorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                                     | [Operations\V3DeletePaymentServiceUserConnectorRequest](../../Models/Operations/V3DeletePaymentServiceUserConnectorRequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+
+### Response
+
+**[?Operations\V3DeletePaymentServiceUserConnectorResponse](../../Models/Operations/V3DeletePaymentServiceUserConnectorResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## deletePool
 
 Delete a pool by ID
@@ -699,6 +935,62 @@ if ($response->v3ForwardPaymentServiceUserBankAccountResponse !== null) {
 ### Response
 
 **[?Operations\V3ForwardPaymentServiceUserBankAccountResponse](../../Models/Operations/V3ForwardPaymentServiceUserBankAccountResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## forwardPaymentServiceUserToProvider
+
+Register/forward a payment service user on/to a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ForwardPaymentServiceUserToProvider" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ForwardPaymentServiceUserToProviderRequest(
+    connectorID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->forwardPaymentServiceUserToProvider(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                         | [Operations\V3ForwardPaymentServiceUserToProviderRequest](../../Models/Operations/V3ForwardPaymentServiceUserToProviderRequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
+
+### Response
+
+**[?Operations\V3ForwardPaymentServiceUserToProviderResponse](../../Models/Operations/V3ForwardPaymentServiceUserToProviderResponse.md)**
 
 ### Errors
 
@@ -1142,6 +1434,63 @@ if ($response->v3GetPaymentServiceUserResponse !== null) {
 ### Response
 
 **[?Operations\V3GetPaymentServiceUserResponse](../../Models/Operations/V3GetPaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## getPaymentServiceUserLinkAttemptFromConnectorID
+
+Get a link attempt for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3GetPaymentServiceUserLinkAttemptFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest(
+    attemptID: '<id>',
+    connectorID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->getPaymentServiceUserLinkAttemptFromConnectorID(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserLinkAttempt !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                  | Type                                                                                                                                                       | Required                                                                                                                                                   | Description                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                                                 | [Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../Models/Operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                         | The request object to use for the request.                                                                                                                 |
+
+### Response
+
+**[?Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse](../../Models/Operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse.md)**
 
 ### Errors
 
@@ -1977,6 +2326,181 @@ if ($response->v3PaymentInitiationsCursorResponse !== null) {
 | Errors\V3ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## listPaymentServiceUserConnections
+
+List all connections for a payment service user
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ListPaymentServiceUserConnections" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ListPaymentServiceUserConnectionsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->listPaymentServiceUserConnections(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserConnectionsCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                                     | [Operations\V3ListPaymentServiceUserConnectionsRequest](../../Models/Operations/V3ListPaymentServiceUserConnectionsRequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+
+### Response
+
+**[?Operations\V3ListPaymentServiceUserConnectionsResponse](../../Models/Operations/V3ListPaymentServiceUserConnectionsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## listPaymentServiceUserConnectionsFromConnectorID
+
+List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ListPaymentServiceUserConnectionsFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest(
+    connectorID: '<id>',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->listPaymentServiceUserConnectionsFromConnectorID(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserConnectionsCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                    | Type                                                                                                                                                         | Required                                                                                                                                                     | Description                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                                                                   | [Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../Models/Operations/V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                           | The request object to use for the request.                                                                                                                   |
+
+### Response
+
+**[?Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse](../../Models/Operations/V3ListPaymentServiceUserConnectionsFromConnectorIDResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## listPaymentServiceUserLinkAttemptsFromConnectorID
+
+List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ListPaymentServiceUserLinkAttemptsFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest(
+    connectorID: '<id>',
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->listPaymentServiceUserLinkAttemptsFromConnectorID(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserLinkAttemptsCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                                                     | [Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../Models/Operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
+
+### Response
+
+**[?Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse](../../Models/Operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## listPaymentServiceUsers
 
 List all payment service users
@@ -2531,6 +3055,63 @@ if ($response->statusCode === 200) {
 | Errors\V3ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## updateLinkForPaymentServiceUserOnConnector
+
+Update/Regenerate a link for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3UpdateLinkForPaymentServiceUserOnConnector" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest(
+    connectionID: '<id>',
+    connectorID: '<id>',
+    paymentServiceUserID: '<id>',
+);
+
+$response = $sdk->payments->v3->updateLinkForPaymentServiceUserOnConnector(
+    request: $request
+);
+
+if ($response->v3PaymentServiceUserUpdateLinkResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                        | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                                                       | [Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../Models/Operations/V3UpdateLinkForPaymentServiceUserOnConnectorRequest.md) | :heavy_check_mark:                                                                                                                               | The request object to use for the request.                                                                                                       |
+
+### Response
+
+**[?Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse](../../Models/Operations/V3UpdateLinkForPaymentServiceUserOnConnectorResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## updatePaymentMetadata
 
 Update a payment's metadata
@@ -2578,6 +3159,61 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\V3UpdatePaymentMetadataResponse](../../Models/Operations/V3UpdatePaymentMetadataResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V3ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## updatePoolQuery
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3UpdatePoolQuery" method="patch" path="/api/payments/v3/pools/{poolID}/query" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3UpdatePoolQueryRequest(
+    poolID: '<id>',
+);
+
+$response = $sdk->payments->v3->updatePoolQuery(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `$request`                                                                                 | [Operations\V3UpdatePoolQueryRequest](../../Models/Operations/V3UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+
+### Response
+
+**[?Operations\V3UpdatePoolQueryResponse](../../Models/Operations/V3UpdatePoolQueryResponse.md)**
 
 ### Errors
 

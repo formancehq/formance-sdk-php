@@ -28,6 +28,7 @@ class V3StripeConfig
     /**
      *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -57,7 +58,7 @@ class V3StripeConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Stripe')
+    public function __construct(string $apiKey, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Stripe')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;

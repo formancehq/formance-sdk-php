@@ -27,7 +27,24 @@ class V3DummypayConfig
 
     /**
      *
+     * @var ?bool $linkFlowError
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('linkFlowError')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $linkFlowError = null;
+
+    /**
+     *
+     * @var ?bool $updateLinkFlowError
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updateLinkFlowError')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $updateLinkFlowError = null;
+
+    /**
+     *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -52,15 +69,19 @@ class V3DummypayConfig
     /**
      * @param  string  $directory
      * @param  string  $name
+     * @param  ?bool  $linkFlowError
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
      * @param  ?string  $provider
+     * @param  ?bool  $updateLinkFlowError
      * @phpstan-pure
      */
-    public function __construct(string $directory, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Dummypay')
+    public function __construct(string $directory, string $name, ?bool $linkFlowError = null, ?bool $updateLinkFlowError = null, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Dummypay')
     {
         $this->directory = $directory;
         $this->name = $name;
+        $this->linkFlowError = $linkFlowError;
+        $this->updateLinkFlowError = $updateLinkFlowError;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;
         $this->provider = $provider;

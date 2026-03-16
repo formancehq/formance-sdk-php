@@ -42,10 +42,10 @@ class Secret
     /**
      * $metadata
      *
-     * @var ?array<string, mixed> $metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
@@ -54,7 +54,7 @@ class Secret
      * @param  string  $id
      * @param  string  $lastDigits
      * @param  string  $name
-     * @param  ?array<string, mixed>  $metadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
     public function __construct(string $clear, string $id, string $lastDigits, string $name, ?array $metadata = null)

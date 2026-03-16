@@ -1,5 +1,4 @@
-# SDKWalletsV1
-(*wallets->v1*)
+# Wallets.V1
 
 ## Overview
 
@@ -580,7 +579,7 @@ $response = $sdk->wallets->v1->getWallet(
     request: $request
 );
 
-if ($response->activityGetWalletOutput !== null) {
+if ($response->getWalletResponse !== null) {
     // handle response
 }
 ```

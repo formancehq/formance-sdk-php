@@ -63,6 +63,7 @@ class V3BankingcircleConfig
     /**
      *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -97,7 +98,7 @@ class V3BankingcircleConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Bankingcircle')
+    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Bankingcircle')
     {
         $this->authorizationEndpoint = $authorizationEndpoint;
         $this->endpoint = $endpoint;

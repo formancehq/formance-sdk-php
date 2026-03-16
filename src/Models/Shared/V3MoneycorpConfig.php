@@ -42,6 +42,7 @@ class V3MoneycorpConfig
     /**
      *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -73,7 +74,7 @@ class V3MoneycorpConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Moneycorp')
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Moneycorp')
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;

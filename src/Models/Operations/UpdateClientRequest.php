@@ -22,19 +22,19 @@ class UpdateClientRequest
 
     /**
      *
-     * @var ?Shared\ClientOptions $clientOptions
+     * @var ?Shared\CreateClientRequest $createClientRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\ClientOptions $clientOptions = null;
+    public ?Shared\CreateClientRequest $createClientRequest = null;
 
     /**
      * @param  string  $clientId
-     * @param  ?Shared\ClientOptions  $clientOptions
+     * @param  ?Shared\CreateClientRequest  $createClientRequest
      * @phpstan-pure
      */
-    public function __construct(string $clientId, ?Shared\ClientOptions $clientOptions = null)
+    public function __construct(string $clientId, ?Shared\CreateClientRequest $createClientRequest = null)
     {
         $this->clientId = $clientId;
-        $this->clientOptions = $clientOptions;
+        $this->createClientRequest = $createClientRequest;
     }
 }

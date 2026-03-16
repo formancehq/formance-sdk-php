@@ -35,6 +35,7 @@ class V3WiseConfig
     /**
      *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -65,7 +66,7 @@ class V3WiseConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, string $webhookPublicKey, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Wise')
+    public function __construct(string $apiKey, string $name, string $webhookPublicKey, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Wise')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;

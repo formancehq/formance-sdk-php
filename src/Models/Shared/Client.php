@@ -92,10 +92,10 @@ class Client
     /**
      * $metadata
      *
-     * @var ?array<string, mixed> $metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $metadata = null;
 
@@ -109,7 +109,7 @@ class Client
      * @param  ?array<string>  $scopes
      * @param  ?array<ClientSecret>  $secrets
      * @param  ?bool  $trusted
-     * @param  ?array<string, mixed>  $metadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
     public function __construct(string $id, string $name, ?string $description = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?array $secrets = null, ?bool $trusted = null, ?array $metadata = null)

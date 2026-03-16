@@ -13,12 +13,12 @@ class WorkflowInstanceHistoryStageOutput
 {
     /**
      *
-     * @var ?ActivityCreateTransactionOutput $createTransaction
+     * @var ?RevertTransactionResponse $createTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\RevertTransactionResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityCreateTransactionOutput $createTransaction = null;
+    public ?RevertTransactionResponse $createTransaction = null;
 
     /**
      *
@@ -67,24 +67,24 @@ class WorkflowInstanceHistoryStageOutput
 
     /**
      *
-     * @var ?ActivityCreateTransactionOutput $revertTransaction
+     * @var ?RevertTransactionResponse $revertTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\ActivityCreateTransactionOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\RevertTransactionResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityCreateTransactionOutput $revertTransaction = null;
+    public ?RevertTransactionResponse $revertTransaction = null;
 
     /**
-     * @param  ?ActivityCreateTransactionOutput  $createTransaction
+     * @param  ?RevertTransactionResponse  $createTransaction
      * @param  ?ActivityDebitWalletOutput  $debitWallet
      * @param  ?ActivityGetAccountOutput  $getAccount
      * @param  ?ActivityGetPaymentOutput  $getPayment
      * @param  ?ActivityGetWalletOutput  $getWallet
      * @param  ?OrchestrationListWalletsResponse  $listWallets
-     * @param  ?ActivityCreateTransactionOutput  $revertTransaction
+     * @param  ?RevertTransactionResponse  $revertTransaction
      * @phpstan-pure
      */
-    public function __construct(?ActivityCreateTransactionOutput $createTransaction = null, ?ActivityDebitWalletOutput $debitWallet = null, ?ActivityGetAccountOutput $getAccount = null, ?ActivityGetPaymentOutput $getPayment = null, ?ActivityGetWalletOutput $getWallet = null, ?OrchestrationListWalletsResponse $listWallets = null, ?ActivityCreateTransactionOutput $revertTransaction = null)
+    public function __construct(?RevertTransactionResponse $createTransaction = null, ?ActivityDebitWalletOutput $debitWallet = null, ?ActivityGetAccountOutput $getAccount = null, ?ActivityGetPaymentOutput $getPayment = null, ?ActivityGetWalletOutput $getWallet = null, ?OrchestrationListWalletsResponse $listWallets = null, ?RevertTransactionResponse $revertTransaction = null)
     {
         $this->createTransaction = $createTransaction;
         $this->debitWallet = $debitWallet;

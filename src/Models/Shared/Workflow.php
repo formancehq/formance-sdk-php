@@ -13,11 +13,11 @@ class Workflow
 {
     /**
      *
-     * @var WorkflowConfig $config
+     * @var CreateWorkflowRequest $config
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\WorkflowConfig')]
-    public WorkflowConfig $config;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\CreateWorkflowRequest')]
+    public CreateWorkflowRequest $config;
 
     /**
      *
@@ -41,13 +41,13 @@ class Workflow
     public \DateTime $updatedAt;
 
     /**
-     * @param  WorkflowConfig  $config
+     * @param  CreateWorkflowRequest  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  \DateTime  $updatedAt
      * @phpstan-pure
      */
-    public function __construct(WorkflowConfig $config, \DateTime $createdAt, string $id, \DateTime $updatedAt)
+    public function __construct(CreateWorkflowRequest $config, \DateTime $createdAt, string $id, \DateTime $updatedAt)
     {
         $this->config = $config;
         $this->createdAt = $createdAt;

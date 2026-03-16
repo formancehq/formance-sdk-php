@@ -20,11 +20,22 @@ class V2VolumesWithBalanceCursorResponse
     public V2VolumesWithBalanceCursorResponseCursor $cursor;
 
     /**
+     *
+     * @var ?V2VolumesWithBalanceCursorResponseResource $resource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2VolumesWithBalanceCursorResponseResource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2VolumesWithBalanceCursorResponseResource $resource = null;
+
+    /**
      * @param  V2VolumesWithBalanceCursorResponseCursor  $cursor
+     * @param  ?V2VolumesWithBalanceCursorResponseResource  $resource
      * @phpstan-pure
      */
-    public function __construct(V2VolumesWithBalanceCursorResponseCursor $cursor)
+    public function __construct(V2VolumesWithBalanceCursorResponseCursor $cursor, ?V2VolumesWithBalanceCursorResponseResource $resource = null)
     {
         $this->cursor = $cursor;
+        $this->resource = $resource;
     }
 }

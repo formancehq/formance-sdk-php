@@ -64,6 +64,15 @@ class V3Account
 
     /**
      *
+     * @var ?V3ConnectorBase $connector
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connector')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V3ConnectorBase|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V3ConnectorBase $connector = null;
+
+    /**
+     *
      * @var ?string $defaultAsset
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
@@ -96,12 +105,13 @@ class V3Account
      * @param  V3AccountRaw  $raw
      * @param  string  $reference
      * @param  V3AccountTypeEnum  $type
+     * @param  ?V3ConnectorBase  $connector
      * @param  ?string  $defaultAsset
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $name
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, V3AccountTypeEnum $type, ?string $defaultAsset = null, ?array $metadata = null, ?string $name = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, V3AccountTypeEnum $type, ?V3ConnectorBase $connector = null, ?string $defaultAsset = null, ?array $metadata = null, ?string $name = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
@@ -110,6 +120,7 @@ class V3Account
         $this->raw = $raw;
         $this->reference = $reference;
         $this->type = $type;
+        $this->connector = $connector;
         $this->defaultAsset = $defaultAsset;
         $this->metadata = $metadata;
         $this->name = $name;

@@ -18,7 +18,7 @@ use Speakeasy\Serializer\DeserializationContext;
 class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKInitHook
 {
     /**
-     * @var array<string, Session> $sessions
+     * @var array<string, array<string, Session>> $sessions
      */
     public array $sessions;
     public ClientInterface $client;
@@ -33,8 +33,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
 
     public function beforeRequest(BeforeRequestContext $context, RequestInterface $request): RequestInterface
     {
-        if ($context->oauth2Scopes == null) {
-            // OAuth2 not in use
+        if ($this->isHookDisabled($context)) {
             return $request;
         }
 
@@ -44,28 +43,34 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         }
 
         $sessionKey = $this->getSessionKey($credentials->clientID, $credentials->clientSecret);
+        $scopes = $this->getRequiredScopes($credentials, $context);
+        $session = $this->getExistingSession($sessionKey, $scopes);
 
-        if (! array_key_exists($sessionKey, $this->sessions) || ! $this->hasRequiredScopes($this->sessions[$sessionKey]->scopes, $context->oauth2Scopes) || $this->hasTokenExpired($this->sessions[$sessionKey]->expiresAt)) {
-            $value = isset($this->sessions[$sessionKey]) ? $this->sessions[$sessionKey] : null;
+        if ($session === null) {
+            // Create new session
             $session = $this->doTokenRequest(
                 $context->baseURL,
                 $credentials,
-                $this->getScopes($context->oauth2Scopes, $value)
+                $scopes
             );
 
-            $this->sessions[$sessionKey] = $session;
+            if (! array_key_exists($sessionKey, $this->sessions)) {
+                $this->sessions[$sessionKey] = [];
+            }
+
+            $scopeKey = $this->getScopeKey($scopes);
+            $this->sessions[$sessionKey][$scopeKey] = $session;
         }
 
         $request = $request->withoutHeader('Authorization');
-        $request = $request->withHeader('Authorization', 'Bearer '.$this->sessions[$sessionKey]->token);
+        $request = $request->withHeader('Authorization', 'Bearer '.$session->token);
 
         return $request;
     }
 
     public function afterError(AfterErrorContext $context, ?ResponseInterface $response, ?\Throwable $exception): ErrorResponseContext
     {
-        if ($context->oauth2Scopes === null) {
-            // OAuth2 not in use
+        if ($this->isHookDisabled($context)) {
             return new ErrorResponseContext($response, $exception);
         }
 
@@ -79,18 +84,34 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
             return new ErrorResponseContext($response, $exception);
         }
 
+        $scopes = $this->getRequiredScopes($credentials, $context);
+
         if ($response !== null && $response->getStatusCode() === 401) {
             $sessionKey = $this->getSessionKey($credentials->clientID, $credentials->clientSecret);
+            $scopeKey = $this->getScopeKey($scopes);
 
-            if (array_key_exists($sessionKey, $this->sessions)) {
-                // @phpstan-ignore unset.possiblyHookedProperty
-                unset($this->sessions[$sessionKey]);
+            if (array_key_exists($sessionKey, $this->sessions) &&
+                array_key_exists($scopeKey, $this->sessions[$sessionKey])) {
+                $this->removeSession($sessionKey, $scopeKey);
             }
         }
 
         return new ErrorResponseContext($response, $exception);
     }
 
+    /**
+     * @param  HookContext  $context
+     * @return bool
+     */
+    private function isHookDisabled(HookContext $context): bool
+    {
+        return $context->oauth2Scopes === null;
+    }
+
+    /**
+     * @param  HookContext  $context
+     * @return Credentials|null
+     */
     private function getCredentials(HookContext $context): ?Credentials
     {
         if ($context->securitySource == null) {
@@ -100,6 +121,10 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         return $this->getCredentialsGlobal($context->securitySource);
     }
 
+    /**
+     * @param  \Closure  $securitySource
+     * @return Credentials|null
+     */
     private function getCredentialsGlobal(\Closure $securitySource): ?Credentials
     {
         $security = $securitySource();
@@ -119,7 +144,8 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         return new Credentials(
             $security->clientID,
             $security->clientSecret,
-            $security->tokenURL
+            $security->tokenURL,
+            null
         );
     }
 
@@ -140,8 +166,19 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         if (count($scopes) > 0) {
             $payload['scope'] = implode(' ', $scopes);
         }
-        $options = ['form_params' => $payload];
-        $request = new \GuzzleHttp\Psr7\Request('POST', Utils\Utils::urljoin($baseUrl, $credentials->tokenURL));
+
+        $options = [
+            'body' => http_build_query($payload),
+            'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
+        ];
+
+        $tokenUrl = Utils\Utils::urljoin($baseUrl, $credentials->tokenURL);
+        $urlParts = explode('?', $tokenUrl);
+        if (count($urlParts) > 1) {
+            $options['query'] = Utils\Utils::proper_parse_str($urlParts[1]);
+        }
+
+        $request = new \GuzzleHttp\Psr7\Request('POST', $urlParts[0]);
 
         $response = $this->client->send($request, $options);
         $responseBody = $response->getBody();
@@ -162,16 +199,107 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
         }
 
         $expiresAt = null;
-        if ($tokenResponse->expiresIn != null) {
-            $expiresAt = LocalTime::now(TimeZone::utc())->plusSeconds($tokenResponse->expiresIn->value);
+        if ($tokenResponse->expiresIn !== null) {
+            $expiresAt = LocalTime::now(TimeZone::utc())->plusSeconds((int) $tokenResponse->expiresIn);
         }
 
         return new Session($credentials, $tokenResponse->accessToken, $scopes, $expiresAt);
     }
 
+    /**
+     * @param  string  $clientID
+     * @param  string  $clientSecret
+     *
+     * @return string
+     */
     private function getSessionKey(string $clientID, string $clientSecret): string
     {
         return md5("{$clientID}:{$clientSecret}");
+    }
+
+    /**
+     * @param  Credentials  $credentials
+     * @param  HookContext  $context
+     *
+     * @return array<string>
+     */
+    private function getRequiredScopes(Credentials $credentials, HookContext $context): array
+    {
+        return $credentials->scopes ?? $context->oauth2Scopes ?? [];
+    }
+
+    /**
+     * @param  array<string>  $scopes
+     *
+     * @return string
+     */
+    private function getScopeKey(array $scopes): string
+    {
+        if (empty($scopes)) {
+            return 'none';
+        }
+
+        sort($scopes);
+
+        return implode('&', $scopes);
+    }
+
+    /**
+     * @param  string  $sessionKey
+     * @param  array<string>  $requiredScopes
+     *
+     * @return Session|null
+     */
+    private function getExistingSession(string $sessionKey, array $requiredScopes): ?Session
+    {
+        if (! array_key_exists($sessionKey, $this->sessions)) {
+            return null;
+        }
+
+        $clientSessions = $this->sessions[$sessionKey];
+        $scopeKey = $this->getScopeKey($requiredScopes);
+
+        // First look for an exact match
+        if (array_key_exists($scopeKey, $clientSessions)) {
+            $session = $clientSessions[$scopeKey];
+
+            if ($this->hasTokenExpired($session->expiresAt)) {
+                $this->removeSession($sessionKey, $scopeKey);
+
+                return null;
+            }
+
+            return $session;
+        }
+
+        // If no exact match was found, look for a superset match
+        foreach ($clientSessions as $key => $session) {
+            if ($this->hasTokenExpired($session->expiresAt)) {
+                $this->removeSession($sessionKey, $key);
+            } elseif ($this->hasRequiredScopes($session->scopes, $requiredScopes)) {
+                return $session;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param  string  $sessionKey
+     * @param  string  $scopeKey
+     */
+    private function removeSession(string $sessionKey, string $scopeKey): void
+    {
+        if (array_key_exists($sessionKey, $this->sessions) &&
+            array_key_exists($scopeKey, $this->sessions[$sessionKey])) {
+            // @phpstan-ignore unset.possiblyHookedProperty
+            unset($this->sessions[$sessionKey][$scopeKey]);
+
+            if (empty($this->sessions[$sessionKey])) {
+                // @phpstan-ignore unset.possiblyHookedProperty
+                unset($this->sessions[$sessionKey]);
+            }
+        }
     }
 
     /**
@@ -183,7 +311,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
     private function hasRequiredScopes(array $sessionScopes, array $requiredScopes): bool
     {
         foreach ($requiredScopes as $requiredScope) {
-            if (! array_search($requiredScope, $sessionScopes)) {
+            if (array_search($requiredScope, $sessionScopes, true) === false) {
                 return false;
             }
         }
@@ -192,24 +320,16 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
     }
 
     /**
-     * @param  array<string>  $requiredScopes
-     * @param  Session|null  $session
+     * Check if a token has expired.
+     * If no expires_in field was returned by the authorization server, the token is considered to never expire.
+     * A 60-second buffer is applied to refresh tokens before they actually expire.
      *
-     * @return array<string>
+     * @param  LocalTime|null  $expiresAt  The token expiration time, or null if no expiration
+     *
+     * @return bool True if the token is expired or will expire within 60 seconds
      */
-    private function getScopes(array $requiredScopes, ?Session $session): array
-    {
-        if ($session != null) {
-            $scopes = array_unique(array_merge($requiredScopes, $session->scopes));
-
-            return $scopes;
-        }
-
-        return $requiredScopes;
-    }
-
     private function hasTokenExpired(?LocalTime $expiresAt): bool
     {
-        return $expiresAt === null || LocalTime::now(TimeZone::utc())->plusSeconds(60) >= $expiresAt;
+        return $expiresAt !== null && LocalTime::now(TimeZone::utc())->plusSeconds(60) >= $expiresAt;
     }
 }

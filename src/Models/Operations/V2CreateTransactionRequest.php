@@ -52,10 +52,17 @@ class V2CreateTransactionRequest
      * Disable balance checks when passing postings
      *
      * @var ?bool $force
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=force')]
     public ?bool $force = null;
+
+    /**
+     * Schema version to use for validation
+     *
+     * @var ?string $schemaVersion
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=schemaVersion')]
+    public ?string $schemaVersion = null;
 
     /**
      * @param  Shared\V2PostTransaction  $v2PostTransaction
@@ -63,14 +70,16 @@ class V2CreateTransactionRequest
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
      * @param  ?bool  $force
+     * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(Shared\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?bool $force = null)
+    public function __construct(Shared\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
     {
         $this->v2PostTransaction = $v2PostTransaction;
         $this->ledger = $ledger;
         $this->idempotencyKey = $idempotencyKey;
         $this->dryRun = $dryRun;
         $this->force = $force;
+        $this->schemaVersion = $schemaVersion;
     }
 }

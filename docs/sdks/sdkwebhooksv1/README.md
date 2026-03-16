@@ -1,5 +1,4 @@
-# SDKWebhooksV1
-(*webhooks->v1*)
+# Webhooks.V1
 
 ## Overview
 

@@ -35,15 +35,38 @@ class Pool
     public string $name;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $query = null;
+
+    /**
+     *
+     * @var ?PoolTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PoolTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?PoolTypeEnum $type = null;
+
+    /**
      * @param  array<string>  $accounts
      * @param  string  $id
      * @param  string  $name
+     * @param  ?array<string, mixed>  $query
+     * @param  ?PoolTypeEnum  $type
      * @phpstan-pure
      */
-    public function __construct(array $accounts, string $id, string $name)
+    public function __construct(array $accounts, string $id, string $name, ?array $query = null, ?PoolTypeEnum $type = null)
     {
         $this->accounts = $accounts;
         $this->id = $id;
         $this->name = $name;
+        $this->query = $query;
+        $this->type = $type;
     }
 }

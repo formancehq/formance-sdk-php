@@ -87,6 +87,7 @@ class AtlarConfig
      *
      *
      * @var ?string $transferInitiationStatusPollingPeriod
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -103,7 +104,7 @@ class AtlarConfig
      * @param  ?string  $transferInitiationStatusPollingPeriod
      * @phpstan-pure
      */
-    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = 'https://api.atlar.com', ?int $pageSize = 25, ?string $pollingPeriod = '120s', ?string $provider = 'Atlar', ?string $transferInitiationStatusPollingPeriod = '120s')
+    public function __construct(string $accessKey, string $name, string $secret, ?string $baseUrl = 'https://api.atlar.com', ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Atlar', ?string $transferInitiationStatusPollingPeriod = '120s')
     {
         $this->accessKey = $accessKey;
         $this->name = $name;

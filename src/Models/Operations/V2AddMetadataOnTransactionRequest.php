@@ -52,19 +52,29 @@ class V2AddMetadataOnTransactionRequest
     public ?bool $dryRun = null;
 
     /**
+     * Schema version to use for validation
+     *
+     * @var ?string $schemaVersion
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=schemaVersion')]
+    public ?string $schemaVersion = null;
+
+    /**
      * @param  array<string, string>  $requestBody
      * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
+     * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, \Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
+    public function __construct(array $requestBody, \Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?string $schemaVersion = null)
     {
         $this->requestBody = $requestBody;
         $this->id = $id;
         $this->ledger = $ledger;
         $this->idempotencyKey = $idempotencyKey;
         $this->dryRun = $dryRun;
+        $this->schemaVersion = $schemaVersion;
     }
 }

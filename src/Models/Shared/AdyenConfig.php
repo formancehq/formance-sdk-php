@@ -68,7 +68,7 @@ class AdyenConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = '120s', ?string $provider = 'Adyen')
+    public function __construct(string $apiKey, string $hmacKey, string $name, ?string $liveEndpointPrefix = null, ?string $pollingPeriod = '30m', ?string $provider = 'Adyen')
     {
         $this->apiKey = $apiKey;
         $this->hmacKey = $hmacKey;

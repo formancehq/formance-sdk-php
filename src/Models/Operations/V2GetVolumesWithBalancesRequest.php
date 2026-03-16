@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2GetVolumesWithBalancesRequest
 {
     /**
-     * $requestBody
-     *
-     * @var array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public array $requestBody;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -74,7 +66,7 @@ class V2GetVolumesWithBalancesRequest
     public ?int $pageSize = null;
 
     /**
-     * Sort results using a field name and order (ascending or descending). 
+     * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
      *
@@ -92,7 +84,6 @@ class V2GetVolumesWithBalancesRequest
     public ?\DateTime $startTime = null;
 
     /**
-     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
      * @param  ?string  $cursor
      * @param  ?\DateTime  $endTime
@@ -103,9 +94,8 @@ class V2GetVolumesWithBalancesRequest
      * @param  ?\DateTime  $startTime
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?string $sort = null, ?\DateTime $startTime = null)
+    public function __construct(string $ledger, ?string $cursor = null, ?\DateTime $endTime = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?string $sort = null, ?\DateTime $startTime = null)
     {
-        $this->requestBody = $requestBody;
         $this->ledger = $ledger;
         $this->cursor = $cursor;
         $this->endTime = $endTime;

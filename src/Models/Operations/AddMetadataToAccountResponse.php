@@ -19,6 +19,13 @@ class AddMetadataToAccountResponse
     public string $contentType;
 
     /**
+     * $headers
+     *
+     * @var array<string, array<string>> $headers
+     */
+    public array $headers;
+
+    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -34,13 +41,15 @@ class AddMetadataToAccountResponse
 
     /**
      * @param  string  $contentType
+     * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $headers = [])
     {
         $this->contentType = $contentType;
+        $this->headers = $headers;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
     }

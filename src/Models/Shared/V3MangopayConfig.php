@@ -42,6 +42,7 @@ class V3MangopayConfig
     /**
      *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -73,7 +74,7 @@ class V3MangopayConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Mangopay')
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Mangopay')
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;

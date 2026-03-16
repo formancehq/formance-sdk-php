@@ -19,6 +19,13 @@ class V2RevertTransactionResponse
     public string $contentType;
 
     /**
+     * $headers
+     *
+     * @var array<string, array<string>> $headers
+     */
+    public array $headers;
+
+    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -35,22 +42,24 @@ class V2RevertTransactionResponse
     /**
      * OK
      *
-     * @var ?Shared\V2CreateTransactionResponse $v2CreateTransactionResponse
+     * @var ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse
      */
-    public ?Shared\V2CreateTransactionResponse $v2CreateTransactionResponse = null;
+    public ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null;
 
     /**
      * @param  string  $contentType
+     * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2CreateTransactionResponse  $v2CreateTransactionResponse
+     * @param  ?Shared\V2RevertTransactionResponse  $v2RevertTransactionResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2CreateTransactionResponse $v2CreateTransactionResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null, ?array $headers = [])
     {
         $this->contentType = $contentType;
+        $this->headers = $headers;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->v2CreateTransactionResponse = $v2CreateTransactionResponse;
+        $this->v2RevertTransactionResponse = $v2RevertTransactionResponse;
     }
 }

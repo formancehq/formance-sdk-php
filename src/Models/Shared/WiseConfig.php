@@ -51,7 +51,7 @@ class WiseConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, ?string $pollingPeriod = '120s', ?string $provider = 'Wise')
+    public function __construct(string $apiKey, string $name, ?string $pollingPeriod = '30m', ?string $provider = 'Wise')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;

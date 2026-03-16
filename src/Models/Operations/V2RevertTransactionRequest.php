@@ -29,6 +29,14 @@ class V2RevertTransactionRequest
     public string $ledger;
 
     /**
+     * Use an idempotency key
+     *
+     * @var ?string $idempotencyKey
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=Idempotency-Key')]
+    public ?string $idempotencyKey = null;
+
+    /**
      *
      * @var ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest
      */
@@ -60,21 +68,33 @@ class V2RevertTransactionRequest
     public ?bool $force = null;
 
     /**
+     * Schema version to use for validation
+     *
+     * @var ?string $schemaVersion
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=schemaVersion')]
+    public ?string $schemaVersion = null;
+
+    /**
      * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
+     * @param  ?string  $idempotencyKey
      * @param  ?Shared\V2RevertTransactionRequest  $v2RevertTransactionRequest
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $dryRun
      * @param  ?bool  $force
+     * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;
+        $this->idempotencyKey = $idempotencyKey;
         $this->v2RevertTransactionRequest = $v2RevertTransactionRequest;
         $this->atEffectiveDate = $atEffectiveDate;
         $this->dryRun = $dryRun;
         $this->force = $force;
+        $this->schemaVersion = $schemaVersion;
     }
 }

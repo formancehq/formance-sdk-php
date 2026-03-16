@@ -27,11 +27,11 @@ class TransferInitiationPayments
 
     /**
      *
-     * @var PaymentStatus $status
+     * @var LegacyPaymentStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\PaymentStatus')]
-    public PaymentStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\LegacyPaymentStatus')]
+    public LegacyPaymentStatus $status;
 
     /**
      *
@@ -44,11 +44,11 @@ class TransferInitiationPayments
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $paymentID
-     * @param  PaymentStatus  $status
+     * @param  LegacyPaymentStatus  $status
      * @param  ?string  $error
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $paymentID, PaymentStatus $status, ?string $error = null)
+    public function __construct(\DateTime $createdAt, string $paymentID, LegacyPaymentStatus $status, ?string $error = null)
     {
         $this->createdAt = $createdAt;
         $this->paymentID = $paymentID;

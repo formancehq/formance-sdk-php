@@ -1,5 +1,4 @@
-# SDKV2
-(*orchestration->v2*)
+# Orchestration.V2
 
 ## Overview
 
@@ -168,9 +167,9 @@ if ($response->v2CreateWorkflowResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `$request`                                                         | [Shared\V2WorkflowConfig](../../Models/Shared/V2WorkflowConfig.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Shared\V2CreateWorkflowRequest](../../Models/Shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 

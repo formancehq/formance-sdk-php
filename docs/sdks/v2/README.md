@@ -1,5 +1,4 @@
-# V2
-(*ledger->v2*)
+# Ledger.V2
 
 ## Overview
 
@@ -15,6 +14,7 @@
 * [createPipeline](#createpipeline) - Create pipeline
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](#deleteaccountmetadata) - Delete metadata by key
+* [deleteBucket](#deletebucket) - Delete bucket
 * [deleteExporter](#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](#deleteledgermetadata) - Delete ledger metadata by key
 * [deletePipeline](#deletepipeline) - Delete pipeline
@@ -26,20 +26,26 @@
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getPipelineState](#getpipelinestate) - Get pipeline state
+* [getSchema](#getschema) - Get a schema for a ledger by version
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
+* [insertSchema](#insertschema) - Insert a schema for a ledger
 * [listAccounts](#listaccounts) - List accounts from a ledger
 * [listExporters](#listexporters) - List exporters
 * [listLedgers](#listledgers) - List ledgers
 * [listLogs](#listlogs) - List the logs from a ledger
 * [listPipelines](#listpipelines) - List pipelines
+* [listSchemas](#listschemas) - List all schemas for a ledger
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
 * [resetPipeline](#resetpipeline) - Reset pipeline
+* [restoreBucket](#restorebucket) - Restore bucket
 * [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
+* [runQuery](#runquery) - Run a query template
 * [startPipeline](#startpipeline) - Start pipeline
 * [stopPipeline](#stoppipeline) - Stop pipeline
+* [updateExporter](#updateexporter) - Update exporter
 * [updateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
 
 ## addMetadataOnTransaction
@@ -75,6 +81,7 @@ $request = new Operations\V2AddMetadataOnTransactionRequest(
     dryRun: true,
     id: BigInteger::of('1234'),
     ledger: 'ledger001',
+    schemaVersion: 'v1.0.0',
 );
 
 $response = $sdk->ledger->v2->addMetadataOnTransaction(
@@ -135,6 +142,7 @@ $request = new Operations\V2AddMetadataToAccountRequest(
     address: 'users:001',
     dryRun: true,
     ledger: 'ledger001',
+    schemaVersion: 'v1.0.0',
 );
 
 $response = $sdk->ledger->v2->addMetadataToAccount(
@@ -189,10 +197,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CountAccountsRequest(
-    requestBody: [
-        'key' => '<value>',
-        'key1' => '<value>',
-    ],
     ledger: 'ledger001',
 );
 
@@ -248,9 +252,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CountTransactionsRequest(
-    requestBody: [
-        'key' => '<value>',
-    ],
     ledger: 'ledger001',
 );
 
@@ -315,6 +316,7 @@ $request = new Operations\V2CreateBulkRequest(
     continueOnFailure: true,
     ledger: 'ledger001',
     parallel: true,
+    schemaVersion: 'v1.0.0',
 );
 
 $response = $sdk->ledger->v2->createBulk(
@@ -367,7 +369,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\V2ExporterConfiguration(
+$request = new Shared\V2CreateExporterRequest(
     config: [
         'key' => '<value>',
     ],
@@ -387,7 +389,7 @@ if ($response->object !== null) {
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `$request`                                                                       | [Shared\V2ExporterConfiguration](../../Models/Shared/V2ExporterConfiguration.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$request`                                                                       | [Shared\V2CreateExporterRequest](../../Models/Shared/V2CreateExporterRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
@@ -567,14 +569,8 @@ $request = new Operations\V2CreateTransactionRequest(
         ],
         reference: 'ref:001',
         script: new Shared\V2PostTransactionScript(
-            plain: 'vars {\n' .
-            'account $user\n' .
-            '}\n' .
-            'send [COIN 10] (\n' .
-            '	source = @world\n' .
-            '	destination = $user\n' .
-            ')\n' .
-            '',
+            plain: 'vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n',
+            template: 'CUSTOMER_DEPOSIT',
             vars: [
                 'user' => 'users:042',
             ],
@@ -583,6 +579,7 @@ $request = new Operations\V2CreateTransactionRequest(
     dryRun: true,
     force: true,
     ledger: 'ledger001',
+    schemaVersion: 'v1.0.0',
 );
 
 $response = $sdk->ledger->v2->createTransaction(
@@ -660,6 +657,61 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\V2DeleteAccountMetadataResponse](../../Models/Operations/V2DeleteAccountMetadataResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## deleteBucket
+
+Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2DeleteBucket" method="delete" path="/api/ledger/v2/_/buckets/{bucket}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2DeleteBucketRequest(
+    bucket: '<value>',
+);
+
+$response = $sdk->ledger->v2->deleteBucket(
+    request: $request
+);
+
+if ($response->v2ErrorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\V2DeleteBucketRequest](../../Models/Operations/V2DeleteBucketRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+### Response
+
+**[?Operations\V2DeleteBucketResponse](../../Models/Operations/V2DeleteBucketResponse.md)**
 
 ### Errors
 
@@ -1029,11 +1081,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2GetBalancesAggregatedRequest(
-    requestBody: [
-        'key' => '<value>',
-        'key1' => '<value>',
-        'key2' => '<value>',
-    ],
     ledger: 'ledger001',
 );
 
@@ -1284,6 +1331,62 @@ if ($response->object !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## getSchema
+
+Get a schema for a ledger by version
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2GetSchema" method="get" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2GetSchemaRequest(
+    ledger: 'ledger001',
+    version: 'v1.0.0',
+);
+
+$response = $sdk->ledger->v2->getSchema(
+    request: $request
+);
+
+if ($response->v2SchemaResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\V2GetSchemaRequest](../../Models/Operations/V2GetSchemaRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+
+### Response
+
+**[?Operations\V2GetSchemaResponse](../../Models/Operations/V2GetSchemaResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## getTransaction
 
 Get transaction from a ledger by its ID
@@ -1367,9 +1470,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2GetVolumesWithBalancesRequest(
-    requestBody: [
-        'key' => '<value>',
-    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     groupBy: 3,
     ledger: 'ledger001',
@@ -1457,6 +1557,82 @@ if ($response->statusCode === 200) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## insertSchema
+
+Insert a schema for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2InsertSchema" method="post" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2InsertSchemaRequest(
+    v2SchemaData: new Shared\V2SchemaData(
+        chart: [
+            'users' => new Shared\V2ChartSegment(
+                additionalProperties: [
+                    '$userID' => new Shared\V2ChartSegment(
+                        dotPattern: '^[0-9]{16}$',
+                    ),
+                ],
+            ),
+        ],
+        queries: [
+            'key' => new Shared\V2QueryTemplate(
+                params: new Shared\QueryTemplateAccountParams(
+                    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+                    pageSize: 100,
+                    sort: 'id:desc',
+                ),
+            ),
+        ],
+    ),
+    ledger: 'ledger001',
+    version: 'v1.0.0',
+);
+
+$response = $sdk->ledger->v2->insertSchema(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\V2InsertSchemaRequest](../../Models/Operations/V2InsertSchemaRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+### Response
+
+**[?Operations\V2InsertSchemaResponse](../../Models/Operations/V2InsertSchemaResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## listAccounts
 
 List accounts from a ledger, sorted by address in descending order.
@@ -1483,9 +1659,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListAccountsRequest(
-    requestBody: [
-
-    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
@@ -1590,11 +1763,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListLedgersRequest(
-    requestBody: [
-        'key' => '<value>',
-        'key1' => '<value>',
-        'key2' => '<value>',
-    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
     sort: 'id:desc',
@@ -1652,9 +1820,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListLogsRequest(
-    requestBody: [
-
-    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
@@ -1742,6 +1907,61 @@ if ($response->object !== null) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## listSchemas
+
+List all schemas for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2ListSchemas" method="get" path="/api/ledger/v2/{ledger}/schemas" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2ListSchemasRequest(
+    ledger: 'ledger001',
+);
+
+$response = $sdk->ledger->v2->listSchemas(
+    request: $request
+);
+
+if ($response->v2SchemasCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\V2ListSchemasRequest](../../Models/Operations/V2ListSchemasRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+
+### Response
+
+**[?Operations\V2ListSchemasResponse](../../Models/Operations/V2ListSchemasResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## listTransactions
 
 List transactions from a ledger, sorted by id in descending order.
@@ -1768,9 +1988,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListTransactionsRequest(
-    requestBody: [
-
-    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
@@ -1915,6 +2132,61 @@ if ($response->statusCode === 200) {
 | Errors\V2ErrorResponse | default                | application/json       |
 | Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
 
+## restoreBucket
+
+Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2RestoreBucket" method="post" path="/api/ledger/v2/_/buckets/{bucket}/restore" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2RestoreBucketRequest(
+    bucket: '<value>',
+);
+
+$response = $sdk->ledger->v2->restoreBucket(
+    request: $request
+);
+
+if ($response->v2ErrorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V2RestoreBucketRequest](../../Models/Operations/V2RestoreBucketRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+### Response
+
+**[?Operations\V2RestoreBucketResponse](../../Models/Operations/V2RestoreBucketResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
 ## revertTransaction
 
 Revert a ledger transaction by its ID
@@ -1945,13 +2217,14 @@ $request = new Operations\V2RevertTransactionRequest(
     dryRun: true,
     id: BigInteger::of('1234'),
     ledger: 'ledger001',
+    schemaVersion: 'v1.0.0',
 );
 
 $response = $sdk->ledger->v2->revertTransaction(
     request: $request
 );
 
-if ($response->v2CreateTransactionResponse !== null) {
+if ($response->v2RevertTransactionResponse !== null) {
     // handle response
 }
 ```
@@ -1965,6 +2238,73 @@ if ($response->v2CreateTransactionResponse !== null) {
 ### Response
 
 **[?Operations\V2RevertTransactionResponse](../../Models/Operations/V2RevertTransactionResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## runQuery
+
+Run a query template on a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2RunQuery" method="post" path="/api/ledger/v2/{ledger}/queries/{id}/run" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2RunQueryRequest(
+    requestBody: new Operations\V2RunQueryRequestBody(
+        params: new Shared\QueryTemplateAccountParams(
+            cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+            pageSize: 100,
+            sort: 'id:desc',
+        ),
+    ),
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    id: 'CUSTOMER_DEPOSIT',
+    ledger: 'ledger001',
+    pageSize: 100,
+    schemaVersion: 'v1.0.0',
+    sort: 'id:desc',
+);
+
+$response = $sdk->ledger->v2->runQuery(
+    request: $request
+);
+
+if ($response->oneOf !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Operations\V2RunQueryRequest](../../Models/Operations/V2RunQueryRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+
+### Response
+
+**[?Operations\V2RunQueryResponse](../../Models/Operations/V2RunQueryResponse.md)**
 
 ### Errors
 
@@ -2077,6 +2417,69 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\V2StopPipelineResponse](../../Models/Operations/V2StopPipelineResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| Errors\V2ErrorResponse | default                | application/json       |
+| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+
+## updateExporter
+
+Update exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2UpdateExporter" method="put" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V2UpdateExporterRequest(
+    v2CreateExporterRequest: new Shared\V2CreateExporterRequest(
+        config: [
+            'key' => '<value>',
+            'key1' => '<value>',
+            'key2' => '<value>',
+        ],
+        driver: '<value>',
+    ),
+    exporterID: '<id>',
+);
+
+$response = $sdk->ledger->v2->updateExporter(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\V2UpdateExporterRequest](../../Models/Operations/V2UpdateExporterRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+### Response
+
+**[?Operations\V2UpdateExporterResponse](../../Models/Operations/V2UpdateExporterResponse.md)**
 
 ### Errors
 

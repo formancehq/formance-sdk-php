@@ -9,17 +9,9 @@ declare(strict_types=1);
 namespace formance\stack\Models\Shared;
 
 
+/** PoolRequest - Query and dynamic pools are available from Connectivity v3.1 */
 class PoolRequest
 {
-    /**
-     * $accountIDs
-     *
-     * @var array<string> $accountIDs
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountIDs')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
-    public array $accountIDs;
-
     /**
      *
      * @var string $name
@@ -28,13 +20,35 @@ class PoolRequest
     public string $name;
 
     /**
-     * @param  array<string>  $accountIDs
+     * $accountIDs
+     *
+     * @var ?array<string> $accountIDs
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('accountIDs')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $accountIDs = null;
+
+    /**
+     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $query = null;
+
+    /**
      * @param  string  $name
+     * @param  ?array<string>  $accountIDs
+     * @param  ?array<string, mixed>  $query
      * @phpstan-pure
      */
-    public function __construct(array $accountIDs, string $name)
+    public function __construct(string $name, ?array $accountIDs = null, ?array $query = null)
     {
-        $this->accountIDs = $accountIDs;
         $this->name = $name;
+        $this->accountIDs = $accountIDs;
+        $this->query = $query;
     }
 }

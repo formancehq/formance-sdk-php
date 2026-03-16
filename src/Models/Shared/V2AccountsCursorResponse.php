@@ -20,11 +20,22 @@ class V2AccountsCursorResponse
     public V2AccountsCursorResponseCursor $cursor;
 
     /**
+     *
+     * @var ?Resource $resource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\Resource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Resource $resource = null;
+
+    /**
      * @param  V2AccountsCursorResponseCursor  $cursor
+     * @param  ?Resource  $resource
      * @phpstan-pure
      */
-    public function __construct(V2AccountsCursorResponseCursor $cursor)
+    public function __construct(V2AccountsCursorResponseCursor $cursor, ?Resource $resource = null)
     {
         $this->cursor = $cursor;
+        $this->resource = $resource;
     }
 }

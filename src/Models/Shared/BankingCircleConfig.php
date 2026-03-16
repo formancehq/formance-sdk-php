@@ -91,7 +91,7 @@ class BankingCircleConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?string $pollingPeriod = '120s', ?string $provider = 'Bankingcircle')
+    public function __construct(string $authorizationEndpoint, string $endpoint, string $name, string $password, string $userCertificate, string $userCertificateKey, string $username, ?string $pollingPeriod = '30m', ?string $provider = 'Bankingcircle')
     {
         $this->authorizationEndpoint = $authorizationEndpoint;
         $this->endpoint = $endpoint;

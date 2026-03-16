@@ -68,7 +68,7 @@ class ModulrConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $apiSecret, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s', ?string $provider = 'Modulr')
+    public function __construct(string $apiKey, string $apiSecret, string $name, ?string $endpoint = null, ?string $pollingPeriod = '30m', ?string $provider = 'Modulr')
     {
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;

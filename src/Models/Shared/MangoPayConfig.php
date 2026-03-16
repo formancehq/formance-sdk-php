@@ -67,7 +67,7 @@ class MangoPayConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = '120s', ?string $provider = 'Mangopay')
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = '30m', ?string $provider = 'Mangopay')
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;

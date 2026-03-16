@@ -114,10 +114,10 @@ class TransferInitiation
     /**
      * $relatedAdjustments
      *
-     * @var ?array<TransferInitiationAdjusments> $relatedAdjustments
+     * @var ?array<TransferInitiationAdjustments> $relatedAdjustments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAdjustments')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TransferInitiationAdjusments>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Shared\TransferInitiationAdjustments>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $relatedAdjustments = null;
 
@@ -164,7 +164,7 @@ class TransferInitiation
      * @param  TransferInitiationStatus  $status
      * @param  TransferInitiationType  $type
      * @param  ?string  $provider
-     * @param  ?array<TransferInitiationAdjusments>  $relatedAdjustments
+     * @param  ?array<TransferInitiationAdjustments>  $relatedAdjustments
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @param  ?array<TransferInitiationPayments>  $relatedPayments

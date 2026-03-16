@@ -26,13 +26,25 @@ class V3PoolBalance
     public string $asset;
 
     /**
+     * $relatedAccounts
+     *
+     * @var ?array<string> $relatedAccounts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAccounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $relatedAccounts = null;
+
+    /**
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
+     * @param  ?array<string>  $relatedAccounts
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, ?array $relatedAccounts = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
+        $this->relatedAccounts = $relatedAccounts;
     }
 }

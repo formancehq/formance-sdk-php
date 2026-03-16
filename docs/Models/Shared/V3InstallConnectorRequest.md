@@ -30,6 +30,15 @@ Shared\V3AtlarConfig $value = /* values here */
 Shared\V3BankingcircleConfig $value = /* values here */
 ```
 
+### `Shared\V3CoinbaseprimeConfig`
+
+```php
+/**
+* @var Shared\V3CoinbaseprimeConfig
+*/
+Shared\V3CoinbaseprimeConfig $value = /* values here */
+```
+
 ### `Shared\V3ColumnConfig`
 
 ```php
@@ -57,6 +66,15 @@ Shared\V3CurrencycloudConfig $value = /* values here */
 Shared\V3DummypayConfig $value = /* values here */
 ```
 
+### `Shared\V3FireblocksConfig`
+
+```php
+/**
+* @var Shared\V3FireblocksConfig
+*/
+Shared\V3FireblocksConfig $value = /* values here */
+```
+
 ### `Shared\V3GenericConfig`
 
 ```php
@@ -64,6 +82,15 @@ Shared\V3DummypayConfig $value = /* values here */
 * @var Shared\V3GenericConfig
 */
 Shared\V3GenericConfig $value = /* values here */
+```
+
+### `Shared\V3IncreaseConfig`
+
+```php
+/**
+* @var Shared\V3IncreaseConfig
+*/
+Shared\V3IncreaseConfig $value = /* values here */
 ```
 
 ### `Shared\V3MangopayConfig`
@@ -93,6 +120,24 @@ Shared\V3ModulrConfig $value = /* values here */
 Shared\V3MoneycorpConfig $value = /* values here */
 ```
 
+### `Shared\V3PlaidConfig`
+
+```php
+/**
+* @var Shared\V3PlaidConfig
+*/
+Shared\V3PlaidConfig $value = /* values here */
+```
+
+### `Shared\V3PowensConfig`
+
+```php
+/**
+* @var Shared\V3PowensConfig
+*/
+Shared\V3PowensConfig $value = /* values here */
+```
+
 ### `Shared\V3QontoConfig`
 
 ```php
@@ -109,6 +154,15 @@ Shared\V3QontoConfig $value = /* values here */
 * @var Shared\V3StripeConfig
 */
 Shared\V3StripeConfig $value = /* values here */
+```
+
+### `Shared\V3TinkConfig`
+
+```php
+/**
+* @var Shared\V3TinkConfig
+*/
+Shared\V3TinkConfig $value = /* values here */
 ```
 
 ### `Shared\V3WiseConfig`
