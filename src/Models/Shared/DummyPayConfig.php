@@ -76,7 +76,7 @@ class DummyPayConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $directory, string $name, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null, ?string $filePollingPeriod = '10s', ?string $provider = 'Dummypay')
+    public function __construct(string $directory, string $name, ?int $numberOfAccountsPreGenerated = null, ?int $numberOfPaymentsPreGenerated = null, ?string $prefixFileToIngest = null, ?string $filePollingPeriod = '30s', ?string $provider = 'Dummypay')
     {
         $this->directory = $directory;
         $this->name = $name;

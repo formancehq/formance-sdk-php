@@ -49,7 +49,7 @@ class V2Hold
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V2LedgerAccountSubject|\formance\stack\Models\Shared\V2WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['V2LedgerAccountSubject' => '\formance\stack\Models\Shared\V2LedgerAccountSubject', 'V2WalletSubject' => '\formance\stack\Models\Shared\V2WalletSubject'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['ACCOUNT' => '\formance\stack\Models\Shared\V2LedgerAccountSubject', 'WALLET' => '\formance\stack\Models\Shared\V2WalletSubject'])]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 

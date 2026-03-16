@@ -63,7 +63,7 @@ class StripeConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $name, ?int $pageSize = 10, ?string $pollingPeriod = '120s', ?string $provider = 'Stripe')
+    public function __construct(string $apiKey, string $name, ?int $pageSize = 100, ?string $pollingPeriod = '30m', ?string $provider = 'Stripe')
     {
         $this->apiKey = $apiKey;
         $this->name = $name;

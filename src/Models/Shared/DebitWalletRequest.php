@@ -52,7 +52,7 @@ class DebitWalletRequest
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\LedgerAccountSubject|\formance\stack\Models\Shared\WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['LedgerAccountSubject' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WalletSubject' => '\formance\stack\Models\Shared\WalletSubject'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['ACCOUNT' => '\formance\stack\Models\Shared\LedgerAccountSubject', 'WALLET' => '\formance\stack\Models\Shared\WalletSubject'])]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 

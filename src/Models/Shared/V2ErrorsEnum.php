@@ -28,5 +28,7 @@ enum V2ErrorsEnum: string
     case InterpreterParse = 'INTERPRETER_PARSE';
     case InterpreterRuntime = 'INTERPRETER_RUNTIME';
     case LedgerAlreadyExists = 'LEDGER_ALREADY_EXISTS';
+    case SchemaAlreadyExists = 'SCHEMA_ALREADY_EXISTS';
+    case SchemaNotSpecified = 'SCHEMA_NOT_SPECIFIED';
     case OutdatedSchema = 'OUTDATED_SCHEMA';
 }

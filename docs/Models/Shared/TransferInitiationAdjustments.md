@@ -1,0 +1,12 @@
+# TransferInitiationAdjustments
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `adjustmentID`                                                                     | *string*                                                                           | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `createdAt`                                                                        | [\DateTime](https://www.php.net/manual/en/class.datetime.php)                      | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `error`                                                                            | *?string*                                                                          | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `metadata`                                                                         | array<string, *string*>                                                            | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `status`                                                                           | [Shared\TransferInitiationStatus](../../Models/Shared/TransferInitiationStatus.md) | :heavy_check_mark:                                                                 | N/A                                                                                |

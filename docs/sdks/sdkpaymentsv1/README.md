@@ -1,5 +1,4 @@
-# SDKPaymentsV1
-(*payments->v1*)
+# Payments.V1
 
 ## Overview
 
@@ -48,6 +47,7 @@
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
+* [updatePoolQuery](#updatepoolquery) - Update the query of a pool
 * [updateTransferInitiationStatus](#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
 ## addAccountToPool
@@ -371,10 +371,6 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Shared\PoolRequest(
-    accountIDs: [
-        '<value 1>',
-        '<value 2>',
-    ],
     name: '<value>',
 );
 
@@ -1067,7 +1063,7 @@ $response = $sdk->payments->v1->getPoolBalancesLatest(
     request: $request
 );
 
-if ($response->poolBalancesResponse !== null) {
+if ($response->poolBalancesLatestResponse !== null) {
     // handle response
 }
 ```
@@ -2508,6 +2504,66 @@ if ($response->statusCode === 200) {
 ### Response
 
 **[?Operations\UpdateMetadataResponse](../../Models/Operations/UpdateMetadataResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\PaymentsErrorResponse | default                      | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+
+## updatePoolQuery
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="updatePoolQuery" method="patch" path="/api/payments/pools/{poolId}/query" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\UpdatePoolQueryRequest(
+    updatePoolQueryRequest: new Shared\UpdatePoolQueryRequest(
+        query: [
+            'key' => '<value>',
+        ],
+    ),
+    poolId: 'XXX',
+);
+
+$response = $sdk->payments->v1->updatePoolQuery(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\UpdatePoolQueryRequest](../../Models/Operations/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+
+### Response
+
+**[?Operations\UpdatePoolQueryResponse](../../Models/Operations/UpdatePoolQueryResponse.md)**
 
 ### Errors
 

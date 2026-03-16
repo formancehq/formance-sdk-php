@@ -68,7 +68,7 @@ class CurrencyCloudConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = '120s', ?string $provider = 'Currencycloud')
+    public function __construct(string $apiKey, string $loginID, string $name, ?string $endpoint = null, ?string $pollingPeriod = '30m', ?string $provider = 'Currencycloud')
     {
         $this->apiKey = $apiKey;
         $this->loginID = $loginID;

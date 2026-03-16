@@ -50,6 +50,7 @@ class V3QontoConfig
     /**
      *
      * @var ?int $pageSize
+     * @deprecated  field: From v3.1, this parameter will be ignored.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -82,7 +83,7 @@ class V3QontoConfig
      * @param  ?string  $stagingToken
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $stagingToken = null, ?int $pageSize = 25, ?string $pollingPeriod = '2m', ?string $provider = 'Qonto')
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $stagingToken = null, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Qonto')
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;

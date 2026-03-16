@@ -1,5 +1,4 @@
-# V1
-(*auth->v1*)
+# Auth.V1
 
 ## Overview
 
@@ -54,9 +53,9 @@ if ($response->createClientResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `$request`                                                   | [Shared\ClientOptions](../../Models/Shared/ClientOptions.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `$request`                                                               | [Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 
 ### Response
 
@@ -552,7 +551,7 @@ $response = $sdk->auth->v1->updateClient(
     request: $request
 );
 
-if ($response->createClientResponse !== null) {
+if ($response->updateClientResponse !== null) {
     // handle response
 }
 ```

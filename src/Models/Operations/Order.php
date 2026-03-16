@@ -9,8 +9,9 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 
-/** Deprecated: Use sort param */
+/** The sort order */
 enum Order: string
 {
-    case Effective = 'effective';
+    case Asc = 'asc';
+    case Desc = 'desc';
 }

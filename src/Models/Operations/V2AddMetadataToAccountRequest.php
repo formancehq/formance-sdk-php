@@ -57,19 +57,29 @@ class V2AddMetadataToAccountRequest
     public ?bool $dryRun = null;
 
     /**
+     * Schema version to use for validation
+     *
+     * @var ?string $schemaVersion
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=schemaVersion')]
+    public ?string $schemaVersion = null;
+
+    /**
      * @param  array<string, string>  $requestBody
      * @param  string  $address
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
+     * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $address, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null)
+    public function __construct(array $requestBody, string $address, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?string $schemaVersion = null)
     {
         $this->requestBody = $requestBody;
         $this->address = $address;
         $this->ledger = $ledger;
         $this->idempotencyKey = $idempotencyKey;
         $this->dryRun = $dryRun;
+        $this->schemaVersion = $schemaVersion;
     }
 }

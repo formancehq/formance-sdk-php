@@ -53,19 +53,29 @@ class V2CreateBulkRequest
     public ?bool $parallel = null;
 
     /**
+     * Default schema version to use for validation (can be overridden per element)
+     *
+     * @var ?string $schemaVersion
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=schemaVersion')]
+    public ?string $schemaVersion = null;
+
+    /**
      * @param  array<Shared\V2BulkElementCreateTransaction|Shared\V2BulkElementAddMetadata|Shared\V2BulkElementRevertTransaction|Shared\V2BulkElementDeleteMetadata>  $requestBody
      * @param  string  $ledger
      * @param  ?bool  $atomic
      * @param  ?bool  $continueOnFailure
      * @param  ?bool  $parallel
+     * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $ledger, ?bool $atomic = null, ?bool $continueOnFailure = null, ?bool $parallel = null)
+    public function __construct(array $requestBody, string $ledger, ?bool $atomic = null, ?bool $continueOnFailure = null, ?bool $parallel = null, ?string $schemaVersion = null)
     {
         $this->requestBody = $requestBody;
         $this->ledger = $ledger;
         $this->atomic = $atomic;
         $this->continueOnFailure = $continueOnFailure;
         $this->parallel = $parallel;
+        $this->schemaVersion = $schemaVersion;
     }
 }

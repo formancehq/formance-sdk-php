@@ -1,5 +1,4 @@
-# SDKOrchestrationV1
-(*orchestration->v1*)
+# Orchestration.V1
 
 ## Overview
 
@@ -167,9 +166,9 @@ if ($response->createWorkflowResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `$request`                                                     | [Shared\WorkflowConfig](../../Models/Shared/WorkflowConfig.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Shared\CreateWorkflowRequest](../../Models/Shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 ### Response
 

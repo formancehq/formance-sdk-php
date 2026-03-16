@@ -19,6 +19,13 @@ class RevertTransactionResponse
     public string $contentType;
 
     /**
+     * $headers
+     *
+     * @var array<string, array<string>> $headers
+     */
+    public array $headers;
+
+    /**
      * HTTP response status code for this operation
      *
      * @var int $statusCode
@@ -41,14 +48,16 @@ class RevertTransactionResponse
 
     /**
      * @param  string  $contentType
+     * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Shared\TransactionResponse  $transactionResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransactionResponse $transactionResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransactionResponse $transactionResponse = null, ?array $headers = [])
     {
         $this->contentType = $contentType;
+        $this->headers = $headers;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
         $this->transactionResponse = $transactionResponse;

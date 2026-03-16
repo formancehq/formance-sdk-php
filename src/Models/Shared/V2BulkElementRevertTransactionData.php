@@ -35,15 +35,27 @@ class V2BulkElementRevertTransactionData
     public ?bool $force = null;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  \Brick\Math\BigInteger  $id
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $force
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, ?bool $atEffectiveDate = null, ?bool $force = null)
+    public function __construct(\Brick\Math\BigInteger $id, ?bool $atEffectiveDate = null, ?bool $force = null, ?array $metadata = null)
     {
         $this->id = $id;
         $this->atEffectiveDate = $atEffectiveDate;
         $this->force = $force;
+        $this->metadata = $metadata;
     }
 }

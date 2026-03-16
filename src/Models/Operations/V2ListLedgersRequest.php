@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListLedgersRequest
 {
     /**
-     * $requestBody
-     *
-     * @var array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public array $requestBody;
-
-    /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      *
      * Set to the value of next for the next page of results.
@@ -43,7 +35,7 @@ class V2ListLedgersRequest
     public ?int $pageSize = null;
 
     /**
-     * Sort results using a field name and order (ascending or descending). 
+     * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
      *
@@ -54,17 +46,27 @@ class V2ListLedgersRequest
     public ?string $sort = null;
 
     /**
-     * @param  array<string, mixed>  $requestBody
+     * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+     *
+     *
+     *
+     * @var ?bool $includeDeleted
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=includeDeleted')]
+    public ?bool $includeDeleted = null;
+
+    /**
      * @param  ?string  $cursor
+     * @param  ?bool  $includeDeleted
      * @param  ?int  $pageSize
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, ?string $cursor = null, ?int $pageSize = null, ?string $sort = null)
+    public function __construct(?string $cursor = null, ?int $pageSize = null, ?string $sort = null, ?bool $includeDeleted = false)
     {
-        $this->requestBody = $requestBody;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
         $this->sort = $sort;
+        $this->includeDeleted = $includeDeleted;
     }
 }

@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class PaymentslistAccountsRequest
 {
     /**
-     * $requestBody
-     *
-     * @var ?array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?array $requestBody = null;
-
-    /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      *
      * Set to the value of next for the next page of results.
@@ -61,16 +53,14 @@ class PaymentslistAccountsRequest
     public ?int $pageSize = null;
 
     /**
-     * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @param  ?string  $query
      * @param  ?array<string>  $sort
      * @phpstan-pure
      */
-    public function __construct(?array $requestBody = null, ?string $cursor = null, ?string $query = null, ?array $sort = null, ?int $pageSize = 15)
+    public function __construct(?string $cursor = null, ?string $query = null, ?array $sort = null, ?int $pageSize = 15)
     {
-        $this->requestBody = $requestBody;
         $this->cursor = $cursor;
         $this->query = $query;
         $this->sort = $sort;

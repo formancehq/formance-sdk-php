@@ -1,0 +1,9 @@
+# UpdatePoolQueryRequest
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `updatePoolQueryRequest`                                                       | [Shared\UpdatePoolQueryRequest](../../Models/Shared/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |                                                                                |
+| `poolId`                                                                       | *string*                                                                       | :heavy_check_mark:                                                             | The pool ID.                                                                   | XXX                                                                            |

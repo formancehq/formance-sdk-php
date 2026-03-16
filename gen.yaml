@@ -10,10 +10,17 @@ generation:
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
@@ -21,7 +28,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 php:
-  version: 4.2.2
+  version: 5.0.0
   additionalDependencies:
     autoload: {}
     autoload-dev: {}
@@ -39,12 +46,14 @@ php:
       operations: Models/Operations
       shared: Models/Shared
       webhooks: Models/Webhooks
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   laravelServiceProvider:
     enabled: false
     svcName: openapi
   maxMethodParams: 0
   methodArguments: infer-optional-args
+  multipartArrayFormat: legacy
   namespace: formance\stack
   outputModelSuffix: output
   packageName: formance/formance-sdk

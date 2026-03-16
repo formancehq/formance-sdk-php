@@ -13,10 +13,19 @@ class V2PostTransactionScript
 {
     /**
      *
-     * @var string $plain
+     * @var ?string $plain
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plain')]
-    public string $plain;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $plain = null;
+
+    /**
+     *
+     * @var ?string $template
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('template')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $template = null;
 
     /**
      * $vars
@@ -29,13 +38,15 @@ class V2PostTransactionScript
     public ?array $vars = null;
 
     /**
-     * @param  string  $plain
+     * @param  ?string  $plain
+     * @param  ?string  $template
      * @param  ?array<string, string>  $vars
      * @phpstan-pure
      */
-    public function __construct(string $plain, ?array $vars = null)
+    public function __construct(?string $plain = null, ?string $template = null, ?array $vars = null)
     {
         $this->plain = $plain;
+        $this->template = $template;
         $this->vars = $vars;
     }
 }

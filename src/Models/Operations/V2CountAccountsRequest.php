@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2CountAccountsRequest
 {
     /**
-     * $requestBody
-     *
-     * @var array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public array $requestBody;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -35,14 +27,12 @@ class V2CountAccountsRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
      * @param  ?\DateTime  $pit
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $ledger, ?\DateTime $pit = null)
+    public function __construct(string $ledger, ?\DateTime $pit = null)
     {
-        $this->requestBody = $requestBody;
         $this->ledger = $ledger;
         $this->pit = $pit;
     }

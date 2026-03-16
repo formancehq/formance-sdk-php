@@ -12,14 +12,6 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListAccountsRequest
 {
     /**
-     * $requestBody
-     *
-     * @var array<string, mixed> $requestBody
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public array $requestBody;
-
-    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -65,7 +57,7 @@ class V2ListAccountsRequest
     public ?\DateTime $pit = null;
 
     /**
-     * Sort results using a field name and order (ascending or descending). 
+     * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
      *
@@ -76,7 +68,6 @@ class V2ListAccountsRequest
     public ?string $sort = null;
 
     /**
-     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
      * @param  ?string  $cursor
      * @param  ?string  $expand
@@ -85,9 +76,8 @@ class V2ListAccountsRequest
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null)
+    public function __construct(string $ledger, ?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null)
     {
-        $this->requestBody = $requestBody;
         $this->ledger = $ledger;
         $this->cursor = $cursor;
         $this->expand = $expand;

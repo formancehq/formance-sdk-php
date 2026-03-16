@@ -61,15 +61,24 @@ class V2Ledger
     public ?array $metadata = null;
 
     /**
+     *
+     * @var ?\DateTime $deletedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deletedAt')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $deletedAt = null;
+
+    /**
      * @param  \DateTime  $addedAt
      * @param  string  $bucket
      * @param  string  $name
      * @param  ?array<string, string>  $features
      * @param  ?int  $id
      * @param  ?array<string, string>  $metadata
+     * @param  ?\DateTime  $deletedAt
      * @phpstan-pure
      */
-    public function __construct(\DateTime $addedAt, string $bucket, string $name, ?array $features = null, ?int $id = null, ?array $metadata = null)
+    public function __construct(\DateTime $addedAt, string $bucket, string $name, ?array $features = null, ?int $id = null, ?array $metadata = null, ?\DateTime $deletedAt = null)
     {
         $this->addedAt = $addedAt;
         $this->bucket = $bucket;
@@ -77,5 +86,6 @@ class V2Ledger
         $this->features = $features;
         $this->id = $id;
         $this->metadata = $metadata;
+        $this->deletedAt = $deletedAt;
     }
 }

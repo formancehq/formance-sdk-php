@@ -42,17 +42,40 @@ class V3Pool
     public array $poolAccounts;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $query = null;
+
+    /**
+     *
+     * @var ?V3PoolTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Shared\V3PoolTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V3PoolTypeEnum $type = null;
+
+    /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name
      * @param  array<string>  $poolAccounts
+     * @param  ?array<string, mixed>  $query
+     * @param  ?V3PoolTypeEnum  $type
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, string $name, array $poolAccounts)
+    public function __construct(\DateTime $createdAt, string $id, string $name, array $poolAccounts, ?array $query = null, ?V3PoolTypeEnum $type = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->name = $name;
         $this->poolAccounts = $poolAccounts;
+        $this->query = $query;
+        $this->type = $type;
     }
 }

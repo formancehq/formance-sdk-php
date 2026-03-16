@@ -59,7 +59,7 @@ class GenericConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $endpoint, string $name, ?string $pollingPeriod = '120s', ?string $provider = 'Generic')
+    public function __construct(string $apiKey, string $endpoint, string $name, ?string $pollingPeriod = '30m', ?string $provider = 'Generic')
     {
         $this->apiKey = $apiKey;
         $this->endpoint = $endpoint;

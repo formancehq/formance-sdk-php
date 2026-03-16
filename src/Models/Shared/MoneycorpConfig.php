@@ -67,7 +67,7 @@ class MoneycorpConfig
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = '120s', ?string $provider = 'Moneycorp')
+    public function __construct(string $apiKey, string $clientID, string $endpoint, string $name, ?string $pollingPeriod = '30m', ?string $provider = 'Moneycorp')
     {
         $this->apiKey = $apiKey;
         $this->clientID = $clientID;
