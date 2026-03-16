@@ -6,6 +6,6 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     
     ignoreErrors:
-        - '#.*?class ReflectionProperty constructor expects object\|string.*?#'
+        - '#.*?class ReflectionProperty constructor expects.*?string given\.#'
         - '#^Strict comparison using === between .*? will always evaluate to false\.$#'
         - identifier: missingType.generics
