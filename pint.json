@@ -1,6 +1,7 @@
 {
     "preset": "laravel",
     "rules": {
+        "phpdoc_types": false,
         "no_superfluous_phpdoc_tags": false,
         "phpdoc_separation": false,
         "phpdoc_trim": false,
