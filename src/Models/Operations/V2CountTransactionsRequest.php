@@ -27,13 +27,23 @@ class V2CountTransactionsRequest
     public ?\DateTime $pit = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      * @param  string  $ledger
      * @param  ?\DateTime  $pit
+     * @param  ?array<string, mixed>  $query
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?\DateTime $pit = null)
+    public function __construct(string $ledger, ?\DateTime $pit = null, ?array $query = null)
     {
         $this->ledger = $ledger;
         $this->pit = $pit;
+        $this->query = $query;
     }
 }

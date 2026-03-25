@@ -50,6 +50,14 @@ class V2ListLogsRequest
     public ?\DateTime $pit = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -65,15 +73,17 @@ class V2ListLogsRequest
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
+     * @param  ?array<string, mixed>  $query
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null)
+    public function __construct(string $ledger, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null, ?array $query = null, ?string $sort = null)
     {
         $this->ledger = $ledger;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
         $this->pit = $pit;
+        $this->query = $query;
         $this->sort = $sort;
     }
 }

@@ -27,6 +27,14 @@ class V2GetBalancesAggregatedRequest
     public ?\DateTime $pit = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      * Use insertion date instead of effective date
      *
      * @var ?bool $useInsertionDate
@@ -37,13 +45,15 @@ class V2GetBalancesAggregatedRequest
     /**
      * @param  string  $ledger
      * @param  ?\DateTime  $pit
+     * @param  ?array<string, mixed>  $query
      * @param  ?bool  $useInsertionDate
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?\DateTime $pit = null, ?bool $useInsertionDate = null)
+    public function __construct(string $ledger, ?\DateTime $pit = null, ?array $query = null, ?bool $useInsertionDate = null)
     {
         $this->ledger = $ledger;
         $this->pit = $pit;
+        $this->query = $query;
         $this->useInsertionDate = $useInsertionDate;
     }
 }

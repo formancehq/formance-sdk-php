@@ -66,6 +66,14 @@ class V2ListTransactionsRequest
     public ?\DateTime $pit = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      *
      * @var ?bool $reverse
      */
@@ -90,11 +98,12 @@ class V2ListTransactionsRequest
      * @param  ?QueryParamOrder  $order
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
+     * @param  ?array<string, mixed>  $query
      * @param  ?bool  $reverse
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?string $cursor = null, ?string $expand = null, ?QueryParamOrder $order = null, ?int $pageSize = null, ?\DateTime $pit = null, ?bool $reverse = null, ?string $sort = null)
+    public function __construct(string $ledger, ?string $cursor = null, ?string $expand = null, ?QueryParamOrder $order = null, ?int $pageSize = null, ?\DateTime $pit = null, ?array $query = null, ?bool $reverse = null, ?string $sort = null)
     {
         $this->ledger = $ledger;
         $this->cursor = $cursor;
@@ -102,6 +111,7 @@ class V2ListTransactionsRequest
         $this->order = $order;
         $this->pageSize = $pageSize;
         $this->pit = $pit;
+        $this->query = $query;
         $this->reverse = $reverse;
         $this->sort = $sort;
     }

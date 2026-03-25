@@ -38,15 +38,25 @@ class V3ListPaymentInitiationRelatedPaymentsRequest
     public ?int $pageSize = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      * @param  string  $paymentInitiationID
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
+     * @param  ?array<string, mixed>  $query
      * @phpstan-pure
      */
-    public function __construct(string $paymentInitiationID, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(string $paymentInitiationID, ?string $cursor = null, ?int $pageSize = null, ?array $query = null)
     {
         $this->paymentInitiationID = $paymentInitiationID;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
+        $this->query = $query;
     }
 }

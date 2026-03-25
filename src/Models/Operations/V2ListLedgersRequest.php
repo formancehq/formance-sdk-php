@@ -35,6 +35,14 @@ class V2ListLedgersRequest
     public ?int $pageSize = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -59,13 +67,15 @@ class V2ListLedgersRequest
      * @param  ?string  $cursor
      * @param  ?bool  $includeDeleted
      * @param  ?int  $pageSize
+     * @param  ?array<string, mixed>  $query
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null, ?string $sort = null, ?bool $includeDeleted = false)
+    public function __construct(?string $cursor = null, ?int $pageSize = null, ?array $query = null, ?string $sort = null, ?bool $includeDeleted = false)
     {
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
+        $this->query = $query;
         $this->sort = $sort;
         $this->includeDeleted = $includeDeleted;
     }

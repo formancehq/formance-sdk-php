@@ -38,15 +38,25 @@ class V3ListConnectorSchedulesRequest
     public ?int $pageSize = null;
 
     /**
+     * $query
+     *
+     * @var ?array<string, mixed> $query
+     */
+    #[SpeakeasyMetadata('queryParam:serialization=json,name=query')]
+    public ?array $query = null;
+
+    /**
      * @param  string  $connectorID
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
+     * @param  ?array<string, mixed>  $query
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(string $connectorID, ?string $cursor = null, ?int $pageSize = null, ?array $query = null)
     {
         $this->connectorID = $connectorID;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
+        $this->query = $query;
     }
 }
