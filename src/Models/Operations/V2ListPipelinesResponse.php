@@ -35,22 +35,22 @@ class V2ListPipelinesResponse
     /**
      * Pipelines list
      *
-     * @var ?V2ListPipelinesResponseBody $object
+     * @var ?\formance\stack\Models\Ledger\V2PipelinesCursorResponse $v2PipelinesCursorResponse
      */
-    public ?V2ListPipelinesResponseBody $object = null;
+    public ?\formance\stack\Models\Ledger\V2PipelinesCursorResponse $v2PipelinesCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?V2ListPipelinesResponseBody  $object
+     * @param  ?\formance\stack\Models\Ledger\V2PipelinesCursorResponse  $v2PipelinesCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?V2ListPipelinesResponseBody $object = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2PipelinesCursorResponse $v2PipelinesCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->object = $object;
+        $this->v2PipelinesCursorResponse = $v2PipelinesCursorResponse;
     }
 }

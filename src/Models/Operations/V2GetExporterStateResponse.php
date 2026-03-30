@@ -35,22 +35,22 @@ class V2GetExporterStateResponse
     /**
      * Exporter information
      *
-     * @var ?V2GetExporterStateResponseBody $object
+     * @var ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse
      */
-    public ?V2GetExporterStateResponseBody $object = null;
+    public ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?V2GetExporterStateResponseBody  $object
+     * @param  ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse  $v2GetExporterStateResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?V2GetExporterStateResponseBody $object = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->object = $object;
+        $this->v2GetExporterStateResponse = $v2GetExporterStateResponse;
     }
 }

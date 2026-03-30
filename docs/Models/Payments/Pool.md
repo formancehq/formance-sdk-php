@@ -1,0 +1,12 @@
+# Pool
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `poolTypeEnum`                                                                         | [?\formance\stack\Models\Payments\PoolTypeEnum](../../Models/payments/PoolTypeEnum.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `accounts`                                                                             | array<*string*>                                                                        | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `id`                                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `name`                                                                                 | *string*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `query`                                                                                | array<string, *mixed*>                                                                 | :heavy_minus_sign:                                                                     | N/A                                                                                    |

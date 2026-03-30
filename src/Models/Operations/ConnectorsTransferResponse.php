@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ConnectorsTransferResponse
 {
     /**
@@ -35,18 +35,18 @@ class ConnectorsTransferResponse
     /**
      * OK
      *
-     * @var ?Shared\TransferResponse $transferResponse
+     * @var ?\formance\stack\Models\Payments\TransferResponse $transferResponse
      */
-    public ?Shared\TransferResponse $transferResponse = null;
+    public ?\formance\stack\Models\Payments\TransferResponse $transferResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\TransferResponse  $transferResponse
+     * @param  ?\formance\stack\Models\Payments\TransferResponse  $transferResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransferResponse $transferResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\TransferResponse $transferResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

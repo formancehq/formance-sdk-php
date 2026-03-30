@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class CreateTransactionsRequest
 {
     /**
      *
-     * @var Shared\Transactions $transactions
+     * @var \formance\stack\Models\Ledger\Transactions $transactions
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\Transactions $transactions;
+    public \formance\stack\Models\Ledger\Transactions $transactions;
 
     /**
      * Name of the ledger.
@@ -28,11 +27,11 @@ class CreateTransactionsRequest
     public string $ledger;
 
     /**
-     * @param  Shared\Transactions  $transactions
+     * @param  \formance\stack\Models\Ledger\Transactions  $transactions
      * @param  string  $ledger
      * @phpstan-pure
      */
-    public function __construct(Shared\Transactions $transactions, string $ledger)
+    public function __construct(\formance\stack\Models\Ledger\Transactions $transactions, string $ledger)
     {
         $this->transactions = $transactions;
         $this->ledger = $ledger;

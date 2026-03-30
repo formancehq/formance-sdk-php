@@ -87,42 +87,6 @@ class SDKBuilder
         return $this;
     }
 
-    /**
-     * setEnvironment is used to configure the environment variable for url substitution
-     *
-     * @param  ServerEnvironment  $environment
-     * @return SDKBuilder
-     */
-    public function setEnvironment(ServerEnvironment $environment): SDKBuilder
-    {
-        foreach ($this->sdkConfig->serverVariables as $idx => $serverVariables) {
-            if (! array_key_exists('environment', $serverVariables)) {
-                continue;
-            }
-            $this->sdkConfig->serverVariables[$idx]['environment'] = $environment->value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * setOrganization is used to configure the organization variable for url substitution
-     *
-     * @param  string  $organization
-     * @return SDKBuilder
-     */
-    public function setOrganization(string $organization): SDKBuilder
-    {
-        foreach ($this->sdkConfig->serverVariables as $idx => $serverVariables) {
-            if (! array_key_exists('organization', $serverVariables)) {
-                continue;
-            }
-            $this->sdkConfig->serverVariables[$idx]['organization'] = $organization;
-        }
-
-        return $this;
-    }
-
     public function setRetryConfig(Retry\RetryConfig $config): SDKBuilder
     {
         $this->sdkConfig->retryConfig = $config;

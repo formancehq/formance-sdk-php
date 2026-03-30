@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateTransferInitiationStatusRequest
 {
     /**
      *
-     * @var Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest
+     * @var \formance\stack\Models\Payments\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest;
+    public \formance\stack\Models\Payments\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest;
 
     /**
      * The transfer ID.
@@ -28,11 +27,11 @@ class UpdateTransferInitiationStatusRequest
     public string $transferId;
 
     /**
-     * @param  Shared\UpdateTransferInitiationStatusRequest  $updateTransferInitiationStatusRequest
+     * @param  \formance\stack\Models\Payments\UpdateTransferInitiationStatusRequest  $updateTransferInitiationStatusRequest
      * @param  string  $transferId
      * @phpstan-pure
      */
-    public function __construct(Shared\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest, string $transferId)
+    public function __construct(\formance\stack\Models\Payments\UpdateTransferInitiationStatusRequest $updateTransferInitiationStatusRequest, string $transferId)
     {
         $this->updateTransferInitiationStatusRequest = $updateTransferInitiationStatusRequest;
         $this->transferId = $transferId;

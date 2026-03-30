@@ -8,31 +8,30 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class InstallConnectorRequest
 {
     /**
      *
-     * @var Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig
+     * @var \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $connectorConfig
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig;
+    public \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $connectorConfig;
 
     /**
      * The name of the connector.
      *
-     * @var Shared\Connector $connector
+     * @var \formance\stack\Models\Payments\Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public Shared\Connector $connector;
+    public \formance\stack\Models\Payments\Connector $connector;
 
     /**
-     * @param  Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig  $connectorConfig
-     * @param  Shared\Connector  $connector
+     * @param  \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig  $connectorConfig
+     * @param  \formance\stack\Models\Payments\Connector  $connector
      * @phpstan-pure
      */
-    public function __construct(Shared\StripeConfig|Shared\DummyPayConfig|Shared\WiseConfig|Shared\ModulrConfig|Shared\CurrencyCloudConfig|Shared\BankingCircleConfig|Shared\MangoPayConfig|Shared\MoneycorpConfig|Shared\AtlarConfig|Shared\AdyenConfig|Shared\GenericConfig $connectorConfig, Shared\Connector $connector)
+    public function __construct(\formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $connectorConfig, \formance\stack\Models\Payments\Connector $connector)
     {
         $this->connectorConfig = $connectorConfig;
         $this->connector = $connector;
