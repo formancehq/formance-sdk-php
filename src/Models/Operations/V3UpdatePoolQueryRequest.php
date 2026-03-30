@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3UpdatePoolQueryRequest
 {
@@ -22,17 +21,17 @@ class V3UpdatePoolQueryRequest
 
     /**
      *
-     * @var ?Shared\V3UpdatePoolQueryRequest $v3UpdatePoolQueryRequest
+     * @var ?\formance\stack\Models\Payments\V3UpdatePoolQueryRequest $v3UpdatePoolQueryRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V3UpdatePoolQueryRequest $v3UpdatePoolQueryRequest = null;
+    public ?\formance\stack\Models\Payments\V3UpdatePoolQueryRequest $v3UpdatePoolQueryRequest = null;
 
     /**
      * @param  string  $poolID
-     * @param  ?Shared\V3UpdatePoolQueryRequest  $v3UpdatePoolQueryRequest
+     * @param  ?\formance\stack\Models\Payments\V3UpdatePoolQueryRequest  $v3UpdatePoolQueryRequest
      * @phpstan-pure
      */
-    public function __construct(string $poolID, ?Shared\V3UpdatePoolQueryRequest $v3UpdatePoolQueryRequest = null)
+    public function __construct(string $poolID, ?\formance\stack\Models\Payments\V3UpdatePoolQueryRequest $v3UpdatePoolQueryRequest = null)
     {
         $this->poolID = $poolID;
         $this->v3UpdatePoolQueryRequest = $v3UpdatePoolQueryRequest;

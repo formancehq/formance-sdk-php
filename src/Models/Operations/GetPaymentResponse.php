@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetPaymentResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetPaymentResponse
     /**
      * OK
      *
-     * @var ?Shared\PaymentResponse $paymentResponse
+     * @var ?\formance\stack\Models\Payments\PaymentResponse $paymentResponse
      */
-    public ?Shared\PaymentResponse $paymentResponse = null;
+    public ?\formance\stack\Models\Payments\PaymentResponse $paymentResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\PaymentResponse  $paymentResponse
+     * @param  ?\formance\stack\Models\Payments\PaymentResponse  $paymentResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PaymentResponse $paymentResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\PaymentResponse $paymentResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

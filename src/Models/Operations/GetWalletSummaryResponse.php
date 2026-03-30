@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetWalletSummaryResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetWalletSummaryResponse
     /**
      * Wallet summary
      *
-     * @var ?Shared\GetWalletSummaryResponse $getWalletSummaryResponse
+     * @var ?\formance\stack\Models\Wallets\GetWalletSummaryResponse $getWalletSummaryResponse
      */
-    public ?Shared\GetWalletSummaryResponse $getWalletSummaryResponse = null;
+    public ?\formance\stack\Models\Wallets\GetWalletSummaryResponse $getWalletSummaryResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\GetWalletSummaryResponse  $getWalletSummaryResponse
+     * @param  ?\formance\stack\Models\Wallets\GetWalletSummaryResponse  $getWalletSummaryResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetWalletSummaryResponse $getWalletSummaryResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Wallets\GetWalletSummaryResponse $getWalletSummaryResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

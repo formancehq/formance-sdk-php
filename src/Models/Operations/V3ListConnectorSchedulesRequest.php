@@ -20,6 +20,14 @@ class V3ListConnectorSchedulesRequest
     public string $connectorID;
 
     /**
+     * $requestBody
+     *
+     * @var ?array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody = null;
+
+    /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
      *
      *
@@ -39,13 +47,15 @@ class V3ListConnectorSchedulesRequest
 
     /**
      * @param  string  $connectorID
+     * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, ?string $cursor = null, ?int $pageSize = null)
+    public function __construct(string $connectorID, ?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null)
     {
         $this->connectorID = $connectorID;
+        $this->requestBody = $requestBody;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
     }

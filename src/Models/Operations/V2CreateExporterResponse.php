@@ -35,22 +35,22 @@ class V2CreateExporterResponse
     /**
      * Created exporter
      *
-     * @var ?V2CreateExporterResponseBody $object
+     * @var ?\formance\stack\Models\Ledger\V2CreateExporterV2CreateExporterResponse $v2CreateExporterResponse
      */
-    public ?V2CreateExporterResponseBody $object = null;
+    public ?\formance\stack\Models\Ledger\V2CreateExporterV2CreateExporterResponse $v2CreateExporterResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?V2CreateExporterResponseBody  $object
+     * @param  ?\formance\stack\Models\Ledger\V2CreateExporterV2CreateExporterResponse  $v2CreateExporterResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?V2CreateExporterResponseBody $object = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2CreateExporterV2CreateExporterResponse $v2CreateExporterResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->object = $object;
+        $this->v2CreateExporterResponse = $v2CreateExporterResponse;
     }
 }

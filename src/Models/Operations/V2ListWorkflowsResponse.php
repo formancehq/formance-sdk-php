@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2ListWorkflowsResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2ListWorkflowsResponse
     /**
      * List of workflows
      *
-     * @var ?Shared\V2ListWorkflowsResponse $v2ListWorkflowsResponse
+     * @var ?\formance\stack\Models\Orchestration\V2ListWorkflowsResponse $v2ListWorkflowsResponse
      */
-    public ?Shared\V2ListWorkflowsResponse $v2ListWorkflowsResponse = null;
+    public ?\formance\stack\Models\Orchestration\V2ListWorkflowsResponse $v2ListWorkflowsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2ListWorkflowsResponse  $v2ListWorkflowsResponse
+     * @param  ?\formance\stack\Models\Orchestration\V2ListWorkflowsResponse  $v2ListWorkflowsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ListWorkflowsResponse $v2ListWorkflowsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2ListWorkflowsResponse $v2ListWorkflowsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class RevertTransactionResponse
 {
     /**
@@ -42,19 +42,19 @@ class RevertTransactionResponse
     /**
      * OK
      *
-     * @var ?Shared\TransactionResponse $transactionResponse
+     * @var ?\formance\stack\Models\Ledger\TransactionResponse $transactionResponse
      */
-    public ?Shared\TransactionResponse $transactionResponse = null;
+    public ?\formance\stack\Models\Ledger\TransactionResponse $transactionResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\TransactionResponse  $transactionResponse
+     * @param  ?\formance\stack\Models\Ledger\TransactionResponse  $transactionResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransactionResponse $transactionResponse = null, ?array $headers = [])
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\TransactionResponse $transactionResponse = null, ?array $headers = [])
     {
         $this->contentType = $contentType;
         $this->headers = $headers;

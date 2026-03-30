@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2GetAccountResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2GetAccountResponse
     /**
      * OK
      *
-     * @var ?Shared\V2AccountResponse $v2AccountResponse
+     * @var ?\formance\stack\Models\Ledger\V2AccountResponse $v2AccountResponse
      */
-    public ?Shared\V2AccountResponse $v2AccountResponse = null;
+    public ?\formance\stack\Models\Ledger\V2AccountResponse $v2AccountResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2AccountResponse  $v2AccountResponse
+     * @param  ?\formance\stack\Models\Ledger\V2AccountResponse  $v2AccountResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2AccountResponse $v2AccountResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2AccountResponse $v2AccountResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
