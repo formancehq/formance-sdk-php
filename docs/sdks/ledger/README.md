@@ -37,10 +37,16 @@ $response = $sdk->ledger->getInfo(
 
 );
 
-if ($response->v2ConfigInfoResponse !== null) {
+if ($response->v2ConfigInfo !== null) {
     // handle response
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -48,10 +54,10 @@ if ($response->v2ConfigInfoResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getMetrics
 
@@ -88,13 +94,19 @@ if ($response->object !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\GetMetricsResponse](../../Models/Operations/GetMetricsResponse.md)**
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |

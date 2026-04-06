@@ -1,0 +1,12 @@
+# V2LogDataSetMetadata
+
+Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set.
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    | Example                                                                                        |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `v2Metadata`                                                                                   | array<string, *string*>                                                                        | :heavy_check_mark:                                                                             | N/A                                                                                            | {<br/>"admin": "true"<br/>}                                                                    |
+| `targetId`                                                                                     | [string\|\Brick\Math\BigInteger](../../Models/ledger/V2LogDataSetMetadataTargetId.md)          | :heavy_check_mark:                                                                             | N/A                                                                                            |                                                                                                |
+| `targetType`                                                                                   | [Ledger\V2LogDataSetMetadataTargetType](../../Models/ledger/V2LogDataSetMetadataTargetType.md) | :heavy_check_mark:                                                                             | Type of the target entity                                                                      |                                                                                                |

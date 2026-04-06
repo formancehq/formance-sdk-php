@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetInstanceResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetInstanceResponse
     /**
      * The workflow instance
      *
-     * @var ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse
+     * @var ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse $getWorkflowInstanceResponse
      */
-    public ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null;
+    public ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\GetWorkflowInstanceResponse  $getWorkflowInstanceResponse
+     * @param  ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse  $getWorkflowInstanceResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

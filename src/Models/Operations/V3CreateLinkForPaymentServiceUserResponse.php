@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3CreateLinkForPaymentServiceUserResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3CreateLinkForPaymentServiceUserResponse
     /**
      * Created
      *
-     * @var ?Shared\V3PaymentServiceUserCreateLinkResponse $v3PaymentServiceUserCreateLinkResponse
+     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkResponse $v3PaymentServiceUserCreateLinkResponse
      */
-    public ?Shared\V3PaymentServiceUserCreateLinkResponse $v3PaymentServiceUserCreateLinkResponse = null;
+    public ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkResponse $v3PaymentServiceUserCreateLinkResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3PaymentServiceUserCreateLinkResponse  $v3PaymentServiceUserCreateLinkResponse
+     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkResponse  $v3PaymentServiceUserCreateLinkResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3PaymentServiceUserCreateLinkResponse $v3PaymentServiceUserCreateLinkResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkResponse $v3PaymentServiceUserCreateLinkResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V3ListBankAccountsRequest
 {
     /**
+     * $requestBody
+     *
+     * @var ?array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?array $requestBody = null;
+
+    /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
      *
      *
@@ -30,12 +38,14 @@ class V3ListBankAccountsRequest
     public ?int $pageSize = null;
 
     /**
+     * @param  ?array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null)
+    public function __construct(?array $requestBody = null, ?string $cursor = null, ?int $pageSize = null)
     {
+        $this->requestBody = $requestBody;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
     }

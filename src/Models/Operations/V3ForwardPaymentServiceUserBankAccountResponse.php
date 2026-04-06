@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3ForwardPaymentServiceUserBankAccountResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3ForwardPaymentServiceUserBankAccountResponse
     /**
      * Accepted
      *
-     * @var ?Shared\V3ForwardPaymentServiceUserBankAccountResponse $v3ForwardPaymentServiceUserBankAccountResponse
+     * @var ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountResponse $v3ForwardPaymentServiceUserBankAccountResponse
      */
-    public ?Shared\V3ForwardPaymentServiceUserBankAccountResponse $v3ForwardPaymentServiceUserBankAccountResponse = null;
+    public ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountResponse $v3ForwardPaymentServiceUserBankAccountResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3ForwardPaymentServiceUserBankAccountResponse  $v3ForwardPaymentServiceUserBankAccountResponse
+     * @param  ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountResponse  $v3ForwardPaymentServiceUserBankAccountResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3ForwardPaymentServiceUserBankAccountResponse $v3ForwardPaymentServiceUserBankAccountResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountResponse $v3ForwardPaymentServiceUserBankAccountResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

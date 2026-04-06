@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ListTriggersResponse
 {
     /**
@@ -35,18 +35,18 @@ class ListTriggersResponse
     /**
      * List of triggers
      *
-     * @var ?Shared\ListTriggersResponse $listTriggersResponse
+     * @var ?\formance\stack\Models\Orchestration\ListTriggersResponse $listTriggersResponse
      */
-    public ?Shared\ListTriggersResponse $listTriggersResponse = null;
+    public ?\formance\stack\Models\Orchestration\ListTriggersResponse $listTriggersResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ListTriggersResponse  $listTriggersResponse
+     * @param  ?\formance\stack\Models\Orchestration\ListTriggersResponse  $listTriggersResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ListTriggersResponse $listTriggersResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\ListTriggersResponse $listTriggersResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

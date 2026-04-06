@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreatePipelineRequest
 {
@@ -22,17 +21,17 @@ class V2CreatePipelineRequest
 
     /**
      *
-     * @var ?Shared\V2CreatePipelineRequest $v2CreatePipelineRequest
+     * @var ?\formance\stack\Models\Ledger\V2CreatePipelineRequest $v2CreatePipelineRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V2CreatePipelineRequest $v2CreatePipelineRequest = null;
+    public ?\formance\stack\Models\Ledger\V2CreatePipelineRequest $v2CreatePipelineRequest = null;
 
     /**
      * @param  string  $ledger
-     * @param  ?Shared\V2CreatePipelineRequest  $v2CreatePipelineRequest
+     * @param  ?\formance\stack\Models\Ledger\V2CreatePipelineRequest  $v2CreatePipelineRequest
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?Shared\V2CreatePipelineRequest $v2CreatePipelineRequest = null)
+    public function __construct(string $ledger, ?\formance\stack\Models\Ledger\V2CreatePipelineRequest $v2CreatePipelineRequest = null)
     {
         $this->ledger = $ledger;
         $this->v2CreatePipelineRequest = $v2CreatePipelineRequest;
