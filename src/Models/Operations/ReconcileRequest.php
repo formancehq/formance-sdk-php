@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ReconcileRequest
 {
     /**
      *
-     * @var Shared\ReconciliationRequest $reconciliationRequest
+     * @var \formance\stack\Models\Reconciliation\ReconciliationRequest $reconciliationRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\ReconciliationRequest $reconciliationRequest;
+    public \formance\stack\Models\Reconciliation\ReconciliationRequest $reconciliationRequest;
 
     /**
      * The policy ID.
@@ -28,11 +27,11 @@ class ReconcileRequest
     public string $policyID;
 
     /**
-     * @param  Shared\ReconciliationRequest  $reconciliationRequest
+     * @param  \formance\stack\Models\Reconciliation\ReconciliationRequest  $reconciliationRequest
      * @param  string  $policyID
      * @phpstan-pure
      */
-    public function __construct(Shared\ReconciliationRequest $reconciliationRequest, string $policyID)
+    public function __construct(\formance\stack\Models\Reconciliation\ReconciliationRequest $reconciliationRequest, string $policyID)
     {
         $this->reconciliationRequest = $reconciliationRequest;
         $this->policyID = $policyID;

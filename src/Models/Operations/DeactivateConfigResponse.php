@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class DeactivateConfigResponse
 {
     /**
@@ -35,18 +35,18 @@ class DeactivateConfigResponse
     /**
      * Config successfully deactivated.
      *
-     * @var ?Shared\ConfigResponse $configResponse
+     * @var ?\formance\stack\Models\Webhooks\ConfigResponse $configResponse
      */
-    public ?Shared\ConfigResponse $configResponse = null;
+    public ?\formance\stack\Models\Webhooks\ConfigResponse $configResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ConfigResponse  $configResponse
+     * @param  ?\formance\stack\Models\Webhooks\ConfigResponse  $configResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConfigResponse $configResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Webhooks\ConfigResponse $configResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

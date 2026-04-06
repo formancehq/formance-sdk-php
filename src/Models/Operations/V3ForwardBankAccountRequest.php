@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3ForwardBankAccountRequest
 {
@@ -22,17 +21,17 @@ class V3ForwardBankAccountRequest
 
     /**
      *
-     * @var ?Shared\V3ForwardBankAccountRequest $v3ForwardBankAccountRequest
+     * @var ?\formance\stack\Models\Payments\V3ForwardBankAccountRequest $v3ForwardBankAccountRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V3ForwardBankAccountRequest $v3ForwardBankAccountRequest = null;
+    public ?\formance\stack\Models\Payments\V3ForwardBankAccountRequest $v3ForwardBankAccountRequest = null;
 
     /**
      * @param  string  $bankAccountID
-     * @param  ?Shared\V3ForwardBankAccountRequest  $v3ForwardBankAccountRequest
+     * @param  ?\formance\stack\Models\Payments\V3ForwardBankAccountRequest  $v3ForwardBankAccountRequest
      * @phpstan-pure
      */
-    public function __construct(string $bankAccountID, ?Shared\V3ForwardBankAccountRequest $v3ForwardBankAccountRequest = null)
+    public function __construct(string $bankAccountID, ?\formance\stack\Models\Payments\V3ForwardBankAccountRequest $v3ForwardBankAccountRequest = null)
     {
         $this->bankAccountID = $bankAccountID;
         $this->v3ForwardBankAccountRequest = $v3ForwardBankAccountRequest;

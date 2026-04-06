@@ -15,6 +15,7 @@
 * [deleteTransferInitiation](#deletetransferinitiation) - Delete a transfer initiation
 * [forwardBankAccount](#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](#getaccountbalances) - Get account balances
+* [getAccountPayments](#getaccountpayments) - Get an account
 * [getBankAccount](#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
 * [getConnectorTaskV1](#getconnectortaskv1) - Read a specific task of the connector
@@ -22,8 +23,10 @@
 * [getPool](#getpool) - Get a Pool
 * [getPoolBalances](#getpoolbalances) - Get historical pool balances at a particular point in time
 * [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
+* [getServerInfoPayments](#getserverinfopayments) - Get server info
 * [getTransferInitiation](#gettransferinitiation) - Get a transfer initiation
 * [installConnector](#installconnector) - Install a connector
+* [listAccountsPayments](#listaccountspayments) - List accounts
 * [listAllConnectors](#listallconnectors) - List all installed connectors
 * [listBankAccounts](#listbankaccounts) - List bank accounts created by user on Formance
 * [listConfigsAvailableConnectors](#listconfigsavailableconnectors) - List the configs of each available connector
@@ -32,9 +35,6 @@
 * [listPayments](#listpayments) - List payments
 * [listPools](#listpools) - List Pools
 * [listTransferInitiations](#listtransferinitiations) - List Transfer Initiations
-* [paymentsgetAccount](#paymentsgetaccount) - Get an account
-* [paymentsgetServerInfo](#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
@@ -64,6 +64,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -76,7 +77,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\AddAccountToPoolRequest(
-    addAccountToPoolRequest: new Shared\AddAccountToPoolRequest(
+    addAccountToPoolRequest: new \formance\stack\Models\Payments\AddAccountToPoolRequest(
         accountID: '<id>',
     ),
     poolId: 'XXX',
@@ -96,6 +97,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\AddAccountToPoolRequest](../../Models/Operations/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -103,10 +105,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## connectorsTransfer
 
@@ -123,6 +125,7 @@ require 'vendor/autoload.php';
 use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -135,13 +138,13 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ConnectorsTransferRequest(
-    transferRequest: new Shared\TransferRequest(
+    transferRequest: new \formance\stack\Models\Payments\TransferRequest(
         amount: BigInteger::of('100'),
         asset: 'USD',
         destination: 'acct_1Gqj58KZcSIg2N2q',
         source: 'acct_1Gqj58KZcSIg2N2q',
     ),
-    connector: Shared\Connector::Generic,
+    connector: \formance\stack\Models\Payments\Connector::Generic,
 );
 
 $response = $sdk->payments->v1->connectorsTransfer(
@@ -158,6 +161,7 @@ if ($response->transferResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ConnectorsTransferRequest](../../Models/Operations/ConnectorsTransferRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -165,10 +169,10 @@ if ($response->transferResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## createAccount
 
@@ -183,6 +187,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
@@ -195,27 +200,28 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\AccountRequest(
+$request = new \formance\stack\Models\Payments\AccountRequest(
+    accountType: \formance\stack\Models\Payments\AccountType::Unknown,
     connectorID: '<id>',
     createdAt: Utils\Utils::parseDateTime('2025-07-27T08:57:17.388Z'),
     reference: '<value>',
-    type: Shared\AccountType::Unknown,
 );
 
 $response = $sdk->payments->v1->createAccount(
     request: $request
 );
 
-if ($response->paymentsAccountResponse !== null) {
+if ($response->accountResponse !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `$request`                                                     | [Shared\AccountRequest](../../Models/Shared/AccountRequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `$request`                                                                                | [\formance\stack\Models\Payments\AccountRequest](../../Models/payments/AccountRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `$serverURL`                                                                              | *string*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -223,10 +229,10 @@ if ($response->paymentsAccountResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## createBankAccount
 
@@ -241,6 +247,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -252,7 +259,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\BankAccountRequest(
+$request = new \formance\stack\Models\Payments\BankAccountRequest(
     country: 'GB',
     name: 'My account',
 );
@@ -268,9 +275,10 @@ if ($response->bankAccountResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `$request`                                                             | [Shared\BankAccountRequest](../../Models/Shared/BankAccountRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                        | [\formance\stack\Models\Payments\BankAccountRequest](../../Models/payments/BankAccountRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `$serverURL`                                                                                      | *string*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -278,10 +286,10 @@ if ($response->bankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## createPayment
 
@@ -297,6 +305,7 @@ require 'vendor/autoload.php';
 
 use Brick\Math\BigInteger;
 use formance\stack;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
@@ -309,15 +318,15 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\PaymentRequest(
+$request = new \formance\stack\Models\Payments\PaymentRequest(
+    paymentScheme: \formance\stack\Models\Payments\PaymentScheme::Rtp,
+    paymentStatus: \formance\stack\Models\Payments\PaymentStatus::RefundedFailure,
+    paymentType: \formance\stack\Models\Payments\PaymentType::Payout,
     amount: BigInteger::of('100'),
     asset: 'USD',
     connectorID: '<id>',
     createdAt: Utils\Utils::parseDateTime('2025-08-26T06:29:11.777Z'),
     reference: '<value>',
-    scheme: Shared\PaymentScheme::Rtp,
-    status: Shared\PaymentStatus::RefundedFailure,
-    type: Shared\PaymentType::Payout,
 );
 
 $response = $sdk->payments->v1->createPayment(
@@ -331,9 +340,10 @@ if ($response->paymentResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `$request`                                                     | [Shared\PaymentRequest](../../Models/Shared/PaymentRequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `$request`                                                                                | [\formance\stack\Models\Payments\PaymentRequest](../../Models/payments/PaymentRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `$serverURL`                                                                              | *string*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -341,10 +351,10 @@ if ($response->paymentResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## createPool
 
@@ -359,6 +369,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -370,7 +381,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\PoolRequest(
+$request = new \formance\stack\Models\Payments\PoolRequest(
     name: '<value>',
 );
 
@@ -385,9 +396,10 @@ if ($response->poolResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `$request`                                               | [Shared\PoolRequest](../../Models/Shared/PoolRequest.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `$request`                                                                          | [\formance\stack\Models\Payments\PoolRequest](../../Models/payments/PoolRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `$serverURL`                                                                        | *string*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -395,10 +407,10 @@ if ($response->poolResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## createTransferInitiation
 
@@ -414,6 +426,7 @@ require 'vendor/autoload.php';
 
 use Brick\Math\BigInteger;
 use formance\stack;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
@@ -426,7 +439,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\TransferInitiationRequest(
+$request = new \formance\stack\Models\Payments\TransferInitiationRequest(
     amount: BigInteger::of('83093'),
     asset: 'USD',
     description: 'flowery yum keenly operating knavishly commemorate recent apropos',
@@ -434,7 +447,7 @@ $request = new Shared\TransferInitiationRequest(
     reference: 'XXX',
     scheduledAt: Utils\Utils::parseDateTime('2025-07-09T05:18:01.065Z'),
     sourceAccountID: '<id>',
-    type: Shared\TransferInitiationRequestType::Transfer,
+    type: Payments\TransferInitiationRequestType::Transfer,
     validated: false,
 );
 
@@ -449,9 +462,10 @@ if ($response->transferInitiationResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `$request`                                                                           | [Shared\TransferInitiationRequest](../../Models/Shared/TransferInitiationRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                      | [\formance\stack\Models\Payments\TransferInitiationRequest](../../Models/payments/TransferInitiationRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `$serverURL`                                                                                                    | *string*                                                                                                        | :heavy_minus_sign:                                                                                              | An optional server URL to use.                                                                                  |
 
 ### Response
 
@@ -459,10 +473,10 @@ if ($response->transferInitiationResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## deletePool
 
@@ -507,6 +521,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\DeletePoolRequest](../../Models/Operations/DeletePoolRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -514,10 +529,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## deleteTransferInitiation
 
@@ -562,6 +577,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\DeleteTransferInitiationRequest](../../Models/Operations/DeleteTransferInitiationRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -569,10 +585,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## forwardBankAccount
 
@@ -588,6 +604,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -600,7 +617,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ForwardBankAccountRequest(
-    forwardBankAccountRequest: new Shared\ForwardBankAccountRequest(
+    forwardBankAccountRequest: new \formance\stack\Models\Payments\ForwardBankAccountRequest(
         connectorID: '<id>',
     ),
     bankAccountId: 'XXX',
@@ -620,6 +637,7 @@ if ($response->bankAccountResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ForwardBankAccountRequest](../../Models/Operations/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -627,10 +645,10 @@ if ($response->bankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getAccountBalances
 
@@ -681,6 +699,7 @@ if ($response->balancesCursor !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetAccountBalancesRequest](../../Models/Operations/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -688,10 +707,66 @@ if ($response->balancesCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
+
+## getAccountPayments
+
+Get an account
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getAccount_payments" method="get" path="/api/payments/accounts/{accountId}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetAccountPaymentsRequest(
+    accountId: 'XXX',
+);
+
+$response = $sdk->payments->v1->getAccountPayments(
+    request: $request
+);
+
+if ($response->accountResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `$request`                                                                                   | [Operations\GetAccountPaymentsRequest](../../Models/Operations/GetAccountPaymentsRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
+
+### Response
+
+**[?Operations\GetAccountPaymentsResponse](../../Models/Operations/GetAccountPaymentsResponse.md)**
+
+### Errors
+
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getBankAccount
 
@@ -736,6 +811,7 @@ if ($response->bankAccountResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetBankAccountRequest](../../Models/Operations/GetBankAccountRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -743,10 +819,10 @@ if ($response->bankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ~~getConnectorTask~~
 
@@ -764,6 +840,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -776,7 +853,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetConnectorTaskRequest(
-    connector: Shared\Connector::Moneycorp,
+    connector: \formance\stack\Models\Payments\Connector::Moneycorp,
     taskId: 'task1',
 );
 
@@ -794,6 +871,7 @@ if ($response->taskResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\GetConnectorTaskRequest](../../Models/Operations/GetConnectorTaskRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -801,10 +879,10 @@ if ($response->taskResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getConnectorTaskV1
 
@@ -820,6 +898,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -832,7 +911,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\GetConnectorTaskV1Request(
-    connector: Shared\Connector::Modulr,
+    connector: \formance\stack\Models\Payments\Connector::Modulr,
     connectorId: 'XXX',
     taskId: 'task1',
 );
@@ -851,6 +930,7 @@ if ($response->taskResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetConnectorTaskV1Request](../../Models/Operations/GetConnectorTaskV1Request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -858,10 +938,10 @@ if ($response->taskResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getPayment
 
@@ -906,6 +986,7 @@ if ($response->paymentResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\GetPaymentRequest](../../Models/Operations/GetPaymentRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -913,10 +994,10 @@ if ($response->paymentResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getPool
 
@@ -961,6 +1042,7 @@ if ($response->poolResponse !== null) {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `$request`                                                             | [Operations\GetPoolRequest](../../Models/Operations/GetPoolRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `$serverURL`                                                           | *string*                                                               | :heavy_minus_sign:                                                     | An optional server URL to use.                                         |
 
 ### Response
 
@@ -968,10 +1050,10 @@ if ($response->poolResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getPoolBalances
 
@@ -1018,6 +1100,7 @@ if ($response->poolBalancesResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\GetPoolBalancesRequest](../../Models/Operations/GetPoolBalancesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -1025,10 +1108,10 @@ if ($response->poolBalancesResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getPoolBalancesLatest
 
@@ -1073,6 +1156,7 @@ if ($response->poolBalancesLatestResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\GetPoolBalancesLatestRequest](../../Models/Operations/GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1080,10 +1164,62 @@ if ($response->poolBalancesLatestResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
+
+## getServerInfoPayments
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getServerInfo_payments" method="get" path="/api/payments/_info" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->payments->v1->getServerInfoPayments(
+
+);
+
+if ($response->serverInfo !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[?Operations\GetServerInfoPaymentsResponse](../../Models/Operations/GetServerInfoPaymentsResponse.md)**
+
+### Errors
+
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## getTransferInitiation
 
@@ -1128,6 +1264,7 @@ if ($response->transferInitiationResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\GetTransferInitiationRequest](../../Models/Operations/GetTransferInitiationRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1135,10 +1272,10 @@ if ($response->transferInitiationResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## installConnector
 
@@ -1147,6 +1284,69 @@ Install a connector by its name and config.
 ### Example Usage
 
 <!-- UsageSnippet language="php" operationID="installConnector" method="post" path="/api/payments/connectors/{connector}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\InstallConnectorRequest(
+    connectorConfig: new \formance\stack\Models\Payments\CurrencyCloudConfig(
+        apiKey: 'XXX',
+        loginID: 'XXX',
+        name: 'My CurrencyCloud Account',
+        pollingPeriod: '60s',
+    ),
+    connector: \formance\stack\Models\Payments\Connector::Mangopay,
+);
+
+$response = $sdk->payments->v1->installConnector(
+    request: $request
+);
+
+if ($response->connectorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\InstallConnectorRequest](../../Models/Operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
+
+### Response
+
+**[?Operations\InstallConnectorResponse](../../Models/Operations/InstallConnectorResponse.md)**
+
+### Errors
+
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
+
+## listAccountsPayments
+
+List accounts
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="listAccounts_payments" method="get" path="/api/payments/accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -1165,41 +1365,41 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Operations\InstallConnectorRequest(
-    connectorConfig: new Shared\CurrencyCloudConfig(
-        apiKey: 'XXX',
-        loginID: 'XXX',
-        name: 'My CurrencyCloud Account',
-        pollingPeriod: '60s',
-    ),
-    connector: Shared\Connector::Mangopay,
+$request = new Operations\ListAccountsPaymentsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+    sort: [
+        'date:asc',
+        'status:desc',
+    ],
 );
 
-$response = $sdk->payments->v1->installConnector(
+$response = $sdk->payments->v1->listAccountsPayments(
     request: $request
 );
 
-if ($response->connectorResponse !== null) {
+if ($response->accountsCursor !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `$request`                                                                               | [Operations\InstallConnectorRequest](../../Models/Operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                       | [Operations\ListAccountsPaymentsRequest](../../Models/Operations/ListAccountsPaymentsRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
-**[?Operations\InstallConnectorResponse](../../Models/Operations/InstallConnectorResponse.md)**
+**[?Operations\ListAccountsPaymentsResponse](../../Models/Operations/ListAccountsPaymentsResponse.md)**
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listAllConnectors
 
@@ -1236,16 +1436,22 @@ if ($response->connectorsResponse !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\ListAllConnectorsResponse](../../Models/Operations/ListAllConnectorsResponse.md)**
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listBankAccounts
 
@@ -1295,6 +1501,7 @@ if ($response->bankAccountsCursor !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ListBankAccountsRequest](../../Models/Operations/ListBankAccountsRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1302,10 +1509,10 @@ if ($response->bankAccountsCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listConfigsAvailableConnectors
 
@@ -1342,16 +1549,22 @@ if ($response->connectorsConfigsResponse !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\ListConfigsAvailableConnectorsResponse](../../Models/Operations/ListConfigsAvailableConnectorsResponse.md)**
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ~~listConnectorTasks~~
 
@@ -1369,6 +1582,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -1381,7 +1595,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ListConnectorTasksRequest(
-    connector: Shared\Connector::Modulr,
+    connector: \formance\stack\Models\Payments\Connector::Modulr,
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
 );
@@ -1400,6 +1614,7 @@ if ($response->tasksCursor !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ListConnectorTasksRequest](../../Models/Operations/ListConnectorTasksRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1407,10 +1622,10 @@ if ($response->tasksCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listConnectorTasksV1
 
@@ -1426,6 +1641,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -1438,7 +1654,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ListConnectorTasksV1Request(
-    connector: Shared\Connector::Wise,
+    connector: \formance\stack\Models\Payments\Connector::Wise,
     connectorId: 'XXX',
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
@@ -1458,6 +1674,7 @@ if ($response->tasksCursor !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\ListConnectorTasksV1Request](../../Models/Operations/ListConnectorTasksV1Request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1465,10 +1682,10 @@ if ($response->tasksCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listPayments
 
@@ -1518,6 +1735,7 @@ if ($response->paymentsCursor !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListPaymentsRequest](../../Models/Operations/ListPaymentsRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1525,10 +1743,10 @@ if ($response->paymentsCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listPools
 
@@ -1578,6 +1796,7 @@ if ($response->poolsCursor !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\ListPoolsRequest](../../Models/Operations/ListPoolsRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1585,10 +1804,10 @@ if ($response->poolsCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## listTransferInitiations
 
@@ -1638,6 +1857,7 @@ if ($response->transferInitiationsCursor !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\ListTransferInitiationsRequest](../../Models/Operations/ListTransferInitiationsRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1645,171 +1865,10 @@ if ($response->transferInitiationsCursor !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
-
-## paymentsgetAccount
-
-Get an account
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="paymentsgetAccount" method="get" path="/api/payments/accounts/{accountId}" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-$request = new Operations\PaymentsgetAccountRequest(
-    accountId: 'XXX',
-);
-
-$response = $sdk->payments->v1->paymentsgetAccount(
-    request: $request
-);
-
-if ($response->paymentsAccountResponse !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `$request`                                                                                   | [Operations\PaymentsgetAccountRequest](../../Models/Operations/PaymentsgetAccountRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-
-### Response
-
-**[?Operations\PaymentsgetAccountResponse](../../Models/Operations/PaymentsgetAccountResponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
-
-## paymentsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="paymentsgetServerInfo" method="get" path="/api/payments/_info" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->payments->v1->paymentsgetServerInfo(
-
-);
-
-if ($response->paymentsServerInfo !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\PaymentsgetServerInfoResponse](../../Models/Operations/PaymentsgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
-
-## paymentslistAccounts
-
-List accounts
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="paymentslistAccounts" method="get" path="/api/payments/accounts" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-$request = new Operations\PaymentslistAccountsRequest(
-    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
-    pageSize: 100,
-    sort: [
-        'date:asc',
-        'status:desc',
-    ],
-);
-
-$response = $sdk->payments->v1->paymentslistAccounts(
-    request: $request
-);
-
-if ($response->accountsCursor !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `$request`                                                                                       | [Operations\PaymentslistAccountsRequest](../../Models/Operations/PaymentslistAccountsRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-
-### Response
-
-**[?Operations\PaymentslistAccountsResponse](../../Models/Operations/PaymentslistAccountsResponse.md)**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ~~readConnectorConfig~~
 
@@ -1827,6 +1886,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -1839,7 +1899,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ReadConnectorConfigRequest(
-    connector: Shared\Connector::Modulr,
+    connector: \formance\stack\Models\Payments\Connector::Modulr,
 );
 
 $response = $sdk->payments->v1->readConnectorConfig(
@@ -1856,6 +1916,7 @@ if ($response->connectorConfigResponse !== null) {
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\ReadConnectorConfigRequest](../../Models/Operations/ReadConnectorConfigRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `$serverURL`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -1863,10 +1924,10 @@ if ($response->connectorConfigResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## readConnectorConfigV1
 
@@ -1882,6 +1943,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -1894,7 +1956,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ReadConnectorConfigV1Request(
-    connector: Shared\Connector::Mangopay,
+    connector: \formance\stack\Models\Payments\Connector::Mangopay,
     connectorId: 'XXX',
 );
 
@@ -1912,6 +1974,7 @@ if ($response->connectorConfigResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\ReadConnectorConfigV1Request](../../Models/Operations/ReadConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1919,10 +1982,10 @@ if ($response->connectorConfigResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## removeAccountFromPool
 
@@ -1968,6 +2031,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\RemoveAccountFromPoolRequest](../../Models/Operations/RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1975,10 +2039,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ~~resetConnector~~
 
@@ -1998,6 +2062,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2010,7 +2075,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ResetConnectorRequest(
-    connector: Shared\Connector::Wise,
+    connector: \formance\stack\Models\Payments\Connector::Wise,
 );
 
 $response = $sdk->payments->v1->resetConnector(
@@ -2027,6 +2092,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\ResetConnectorRequest](../../Models/Operations/ResetConnectorRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2034,10 +2100,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## resetConnectorV1
 
@@ -2055,6 +2121,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2067,7 +2134,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ResetConnectorV1Request(
-    connector: Shared\Connector::Wise,
+    connector: \formance\stack\Models\Payments\Connector::Wise,
     connectorId: 'XXX',
 );
 
@@ -2085,6 +2152,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ResetConnectorV1Request](../../Models/Operations/ResetConnectorV1Request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -2092,10 +2160,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## retryTransferInitiation
 
@@ -2140,6 +2208,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\RetryTransferInitiationRequest](../../Models/Operations/RetryTransferInitiationRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2147,10 +2216,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## reverseTransferInitiation
 
@@ -2167,6 +2236,7 @@ require 'vendor/autoload.php';
 use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2179,7 +2249,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ReverseTransferInitiationRequest(
-    reverseTransferInitiationRequest: new Shared\ReverseTransferInitiationRequest(
+    reverseTransferInitiationRequest: new \formance\stack\Models\Payments\ReverseTransferInitiationRequest(
         amount: BigInteger::of('978875'),
         asset: 'USD',
         description: 'whenever phooey a unlike tremendously whoever after when tight',
@@ -2205,6 +2275,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\ReverseTransferInitiationRequest](../../Models/Operations/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2212,10 +2283,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ~~uninstallConnector~~
 
@@ -2233,6 +2304,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2245,7 +2317,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UninstallConnectorRequest(
-    connector: Shared\Connector::Generic,
+    connector: \formance\stack\Models\Payments\Connector::Generic,
 );
 
 $response = $sdk->payments->v1->uninstallConnector(
@@ -2262,6 +2334,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\UninstallConnectorRequest](../../Models/Operations/UninstallConnectorRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -2269,10 +2342,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## uninstallConnectorV1
 
@@ -2288,6 +2361,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2300,7 +2374,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UninstallConnectorV1Request(
-    connector: Shared\Connector::BankingCircle,
+    connector: \formance\stack\Models\Payments\Connector::BankingCircle,
     connectorId: 'XXX',
 );
 
@@ -2318,6 +2392,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\UninstallConnectorV1Request](../../Models/Operations/UninstallConnectorV1Request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -2325,10 +2400,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## updateBankAccountMetadata
 
@@ -2344,6 +2419,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2356,8 +2432,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateBankAccountMetadataRequest(
-    updateBankAccountMetadataRequest: new Shared\UpdateBankAccountMetadataRequest(
-        metadata: [
+    updateBankAccountMetadataRequest: new \formance\stack\Models\Payments\UpdateBankAccountMetadataRequest(
+        bankAccountMetadata: [
             'key' => '<value>',
             'key1' => '<value>',
             'key2' => '<value>',
@@ -2380,6 +2456,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\UpdateBankAccountMetadataRequest](../../Models/Operations/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2387,10 +2464,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## updateConnectorConfigV1
 
@@ -2406,6 +2483,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2418,13 +2496,13 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateConnectorConfigV1Request(
-    connectorConfig: new Shared\ModulrConfig(
+    connectorConfig: new \formance\stack\Models\Payments\ModulrConfig(
         apiKey: 'XXX',
         apiSecret: 'XXX',
         name: 'My Modulr Account',
         pollingPeriod: '60s',
     ),
-    connector: Shared\Connector::Mangopay,
+    connector: \formance\stack\Models\Payments\Connector::Mangopay,
     connectorId: 'XXX',
 );
 
@@ -2442,6 +2520,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\UpdateConnectorConfigV1Request](../../Models/Operations/UpdateConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2449,10 +2528,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## updateMetadata
 
@@ -2500,6 +2579,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\UpdateMetadataRequest](../../Models/Operations/UpdateMetadataRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2507,10 +2587,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## updatePoolQuery
 
@@ -2526,6 +2606,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2538,7 +2619,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdatePoolQueryRequest(
-    updatePoolQueryRequest: new Shared\UpdatePoolQueryRequest(
+    updatePoolQueryRequest: new \formance\stack\Models\Payments\UpdatePoolQueryRequest(
         query: [
             'key' => '<value>',
         ],
@@ -2560,6 +2641,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\UpdatePoolQueryRequest](../../Models/Operations/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -2567,10 +2649,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## updateTransferInitiationStatus
 
@@ -2586,6 +2668,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Payments;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -2598,8 +2681,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateTransferInitiationStatusRequest(
-    updateTransferInitiationStatusRequest: new Shared\UpdateTransferInitiationStatusRequest(
-        status: Shared\Status::Validated,
+    updateTransferInitiationStatusRequest: new \formance\stack\Models\Payments\UpdateTransferInitiationStatusRequest(
+        status: Payments\Status::Validated,
     ),
     transferId: 'XXX',
 );
@@ -2618,6 +2701,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                           | [Operations\UpdateTransferInitiationStatusRequest](../../Models/Operations/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `$serverURL`                                                                                                         | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | An optional server URL to use.                                                                                       |
 
 ### Response
 
@@ -2625,7 +2709,7 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |

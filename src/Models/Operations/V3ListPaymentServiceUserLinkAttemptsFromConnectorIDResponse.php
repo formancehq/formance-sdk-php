@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
     /**
      * OK
      *
-     * @var ?Shared\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse
+     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse
      */
-    public ?Shared\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null;
+    public ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3PaymentServiceUserLinkAttemptsCursorResponse  $v3PaymentServiceUserLinkAttemptsCursorResponse
+     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse  $v3PaymentServiceUserLinkAttemptsCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

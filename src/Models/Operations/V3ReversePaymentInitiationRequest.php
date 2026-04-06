@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3ReversePaymentInitiationRequest
 {
@@ -22,17 +21,17 @@ class V3ReversePaymentInitiationRequest
 
     /**
      *
-     * @var ?Shared\V3ReversePaymentInitiationRequest $v3ReversePaymentInitiationRequest
+     * @var ?\formance\stack\Models\Payments\V3ReversePaymentInitiationRequest $v3ReversePaymentInitiationRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V3ReversePaymentInitiationRequest $v3ReversePaymentInitiationRequest = null;
+    public ?\formance\stack\Models\Payments\V3ReversePaymentInitiationRequest $v3ReversePaymentInitiationRequest = null;
 
     /**
      * @param  string  $paymentInitiationID
-     * @param  ?Shared\V3ReversePaymentInitiationRequest  $v3ReversePaymentInitiationRequest
+     * @param  ?\formance\stack\Models\Payments\V3ReversePaymentInitiationRequest  $v3ReversePaymentInitiationRequest
      * @phpstan-pure
      */
-    public function __construct(string $paymentInitiationID, ?Shared\V3ReversePaymentInitiationRequest $v3ReversePaymentInitiationRequest = null)
+    public function __construct(string $paymentInitiationID, ?\formance\stack\Models\Payments\V3ReversePaymentInitiationRequest $v3ReversePaymentInitiationRequest = null)
     {
         $this->paymentInitiationID = $paymentInitiationID;
         $this->v3ReversePaymentInitiationRequest = $v3ReversePaymentInitiationRequest;

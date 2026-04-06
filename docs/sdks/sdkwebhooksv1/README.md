@@ -56,6 +56,7 @@ if ($response->configResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\ActivateConfigRequest](../../Models/Operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -63,10 +64,10 @@ if ($response->configResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## changeConfigSecret
 
@@ -87,6 +88,7 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
+use formance\stack\Models\Webhooks;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -98,7 +100,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ChangeConfigSecretRequest(
-    configChangeSecret: new Shared\ConfigChangeSecret(
+    configChangeSecret: new \formance\stack\Models\Webhooks\ConfigChangeSecret(
         secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
     ),
     id: '4997257d-dfb6-445b-929c-cbe2ab182818',
@@ -118,6 +120,7 @@ if ($response->configResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ChangeConfigSecretRequest](../../Models/Operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -125,10 +128,10 @@ if ($response->configResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## deactivateConfig
 
@@ -173,6 +176,7 @@ if ($response->configResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\DeactivateConfigRequest](../../Models/Operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -180,10 +184,10 @@ if ($response->configResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## deleteConfig
 
@@ -228,6 +232,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteConfigRequest](../../Models/Operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -235,10 +240,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## getManyConfigs
 
@@ -284,6 +289,7 @@ if ($response->configsResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetManyConfigsRequest](../../Models/Operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -291,10 +297,10 @@ if ($response->configsResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## insertConfig
 
@@ -319,6 +325,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Shared;
+use formance\stack\Models\Webhooks;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -329,7 +336,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\ConfigUser(
+$request = new \formance\stack\Models\Webhooks\ConfigUser(
     endpoint: 'https://example.com',
     eventTypes: [
         'TYPE1',
@@ -350,9 +357,10 @@ if ($response->configResponse !== null) {
 
 ### Parameters
 
-| Parameter                                              | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `$request`                                             | [Shared\ConfigUser](../../Models/Shared/ConfigUser.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `$request`                                                                        | [\formance\stack\Models\Webhooks\ConfigUser](../../Models/webhooks/ConfigUser.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `$serverURL`                                                                      | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -360,10 +368,10 @@ if ($response->configResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## testConfig
 
@@ -408,6 +416,7 @@ if ($response->attemptResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\TestConfigRequest](../../Models/Operations/TestConfigRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -415,10 +424,10 @@ if ($response->attemptResponse !== null) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
 ## updateConfig
 
@@ -435,6 +444,7 @@ require 'vendor/autoload.php';
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
+use formance\stack\Models\Webhooks;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -446,7 +456,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\UpdateConfigRequest(
-    configUser: new Shared\ConfigUser(
+    configUser: new \formance\stack\Models\Webhooks\ConfigUser(
         endpoint: 'https://example.com',
         eventTypes: [
             'TYPE1',
@@ -472,6 +482,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\UpdateConfigRequest](../../Models/Operations/UpdateConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -479,7 +490,7 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\WebhooksErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |

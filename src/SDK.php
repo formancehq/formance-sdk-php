@@ -26,17 +26,17 @@ use Speakeasy\Serializer\DeserializationContext;
  * OAuth2 - an open protocol to allow secure authorization in a simple
  * and standard method from web, mobile and desktop applications.
  * <SecurityDefinitions />
- *
  */
 class SDK
 {
     public const SERVERS = [
-        /** local server */
-        'http://localhost',
-        /** A per-organization and per-environment API */
-        'https://{organization}.{environment}.formance.cloud',
+        '/',
     ];
 
+    public const GET_VERSIONS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
     public Auth $auth;
 
     public Ledger $ledger;
@@ -94,12 +94,17 @@ class SDK
     /**
      * Show stack version information
      *
+     * @param  ?string  $serverURL
      * @return Operations\GetVersionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getVersions(?Options $options = null): Operations\GetVersionsResponse
+    public function getVersions(?string $serverURL = null, ?Options $options = null): Operations\GetVersionsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDK::GET_VERSIONS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/versions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -129,7 +134,7 @@ class SDK
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\GetVersionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Gateway\GetVersionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetVersionsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,

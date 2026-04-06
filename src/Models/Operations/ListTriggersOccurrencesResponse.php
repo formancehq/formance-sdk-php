@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ListTriggersOccurrencesResponse
 {
     /**
@@ -35,18 +35,18 @@ class ListTriggersOccurrencesResponse
     /**
      * List of triggers occurrences
      *
-     * @var ?Shared\ListTriggersOccurrencesResponse $listTriggersOccurrencesResponse
+     * @var ?\formance\stack\Models\Orchestration\ListTriggersOccurrencesResponse $listTriggersOccurrencesResponse
      */
-    public ?Shared\ListTriggersOccurrencesResponse $listTriggersOccurrencesResponse = null;
+    public ?\formance\stack\Models\Orchestration\ListTriggersOccurrencesResponse $listTriggersOccurrencesResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ListTriggersOccurrencesResponse  $listTriggersOccurrencesResponse
+     * @param  ?\formance\stack\Models\Orchestration\ListTriggersOccurrencesResponse  $listTriggersOccurrencesResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ListTriggersOccurrencesResponse $listTriggersOccurrencesResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\ListTriggersOccurrencesResponse $listTriggersOccurrencesResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

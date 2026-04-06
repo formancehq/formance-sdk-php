@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetLedgerInfoResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetLedgerInfoResponse
     /**
      * OK
      *
-     * @var ?Shared\LedgerInfoResponse $ledgerInfoResponse
+     * @var ?\formance\stack\Models\Ledger\LedgerInfoResponse $ledgerInfoResponse
      */
-    public ?Shared\LedgerInfoResponse $ledgerInfoResponse = null;
+    public ?\formance\stack\Models\Ledger\LedgerInfoResponse $ledgerInfoResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\LedgerInfoResponse  $ledgerInfoResponse
+     * @param  ?\formance\stack\Models\Ledger\LedgerInfoResponse  $ledgerInfoResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\LedgerInfoResponse $ledgerInfoResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\LedgerInfoResponse $ledgerInfoResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

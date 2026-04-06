@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetHoldsResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetHoldsResponse
     /**
      * Holds
      *
-     * @var ?Shared\GetHoldsResponse $getHoldsResponse
+     * @var ?\formance\stack\Models\Wallets\GetHoldsResponse $getHoldsResponse
      */
-    public ?Shared\GetHoldsResponse $getHoldsResponse = null;
+    public ?\formance\stack\Models\Wallets\GetHoldsResponse $getHoldsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\GetHoldsResponse  $getHoldsResponse
+     * @param  ?\formance\stack\Models\Wallets\GetHoldsResponse  $getHoldsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\GetHoldsResponse $getHoldsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Wallets\GetHoldsResponse $getHoldsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
