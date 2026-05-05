@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
     /**
      * OK
      *
-     * @var ?Shared\V3PaymentServiceUserLinkAttempt $v3PaymentServiceUserLinkAttempt
+     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt $v3PaymentServiceUserLinkAttempt
      */
-    public ?Shared\V3PaymentServiceUserLinkAttempt $v3PaymentServiceUserLinkAttempt = null;
+    public ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt $v3PaymentServiceUserLinkAttempt = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3PaymentServiceUserLinkAttempt  $v3PaymentServiceUserLinkAttempt
+     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt  $v3PaymentServiceUserLinkAttempt
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3PaymentServiceUserLinkAttempt $v3PaymentServiceUserLinkAttempt = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt $v3PaymentServiceUserLinkAttempt = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

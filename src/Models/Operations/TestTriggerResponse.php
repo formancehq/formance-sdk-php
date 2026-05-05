@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class TestTriggerResponse
 {
     /**
@@ -35,18 +35,18 @@ class TestTriggerResponse
     /**
      * Test a trigger
      *
-     * @var ?Shared\V2TestTriggerResponse $v2TestTriggerResponse
+     * @var ?\formance\stack\Models\Orchestration\V2TestTriggerResponse $v2TestTriggerResponse
      */
-    public ?Shared\V2TestTriggerResponse $v2TestTriggerResponse = null;
+    public ?\formance\stack\Models\Orchestration\V2TestTriggerResponse $v2TestTriggerResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2TestTriggerResponse  $v2TestTriggerResponse
+     * @param  ?\formance\stack\Models\Orchestration\V2TestTriggerResponse  $v2TestTriggerResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2TestTriggerResponse $v2TestTriggerResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2TestTriggerResponse $v2TestTriggerResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

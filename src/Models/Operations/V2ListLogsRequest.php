@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListLogsRequest
 {
     /**
+     * $requestBody
+     *
+     * @var array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Name of the ledger.
      *
      * @var string $ledger
@@ -61,6 +69,7 @@ class V2ListLogsRequest
     public ?string $sort = null;
 
     /**
+     * @param  array<string, mixed>  $requestBody
      * @param  string  $ledger
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
@@ -68,8 +77,9 @@ class V2ListLogsRequest
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null)
+    public function __construct(array $requestBody, string $ledger, ?string $cursor = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null)
     {
+        $this->requestBody = $requestBody;
         $this->ledger = $ledger;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;

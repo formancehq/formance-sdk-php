@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ReadTriggerResponse
 {
     /**
@@ -35,18 +35,18 @@ class ReadTriggerResponse
     /**
      * A specific trigger
      *
-     * @var ?Shared\ReadTriggerResponse $readTriggerResponse
+     * @var ?\formance\stack\Models\Orchestration\ReadTriggerResponse $readTriggerResponse
      */
-    public ?Shared\ReadTriggerResponse $readTriggerResponse = null;
+    public ?\formance\stack\Models\Orchestration\ReadTriggerResponse $readTriggerResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ReadTriggerResponse  $readTriggerResponse
+     * @param  ?\formance\stack\Models\Orchestration\ReadTriggerResponse  $readTriggerResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ReadTriggerResponse $readTriggerResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\ReadTriggerResponse $readTriggerResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
