@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ListConnectorTasksResponse
 {
     /**
@@ -35,18 +35,18 @@ class ListConnectorTasksResponse
     /**
      * OK
      *
-     * @var ?Shared\TasksCursor $tasksCursor
+     * @var ?\formance\stack\Models\Payments\TasksCursor $tasksCursor
      */
-    public ?Shared\TasksCursor $tasksCursor = null;
+    public ?\formance\stack\Models\Payments\TasksCursor $tasksCursor = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\TasksCursor  $tasksCursor
+     * @param  ?\formance\stack\Models\Payments\TasksCursor  $tasksCursor
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TasksCursor $tasksCursor = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\TasksCursor $tasksCursor = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

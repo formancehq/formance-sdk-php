@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ListBankAccountsResponse
 {
     /**
@@ -35,18 +35,18 @@ class ListBankAccountsResponse
     /**
      * OK
      *
-     * @var ?Shared\BankAccountsCursor $bankAccountsCursor
+     * @var ?\formance\stack\Models\Payments\BankAccountsCursor $bankAccountsCursor
      */
-    public ?Shared\BankAccountsCursor $bankAccountsCursor = null;
+    public ?\formance\stack\Models\Payments\BankAccountsCursor $bankAccountsCursor = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\BankAccountsCursor  $bankAccountsCursor
+     * @param  ?\formance\stack\Models\Payments\BankAccountsCursor  $bankAccountsCursor
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\BankAccountsCursor $bankAccountsCursor = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\BankAccountsCursor $bankAccountsCursor = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

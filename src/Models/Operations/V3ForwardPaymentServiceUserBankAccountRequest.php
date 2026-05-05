@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3ForwardPaymentServiceUserBankAccountRequest
 {
@@ -30,18 +29,18 @@ class V3ForwardPaymentServiceUserBankAccountRequest
 
     /**
      *
-     * @var ?Shared\V3ForwardPaymentServiceUserBankAccountRequest $v3ForwardPaymentServiceUserBankAccountRequest
+     * @var ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountRequest $v3ForwardPaymentServiceUserBankAccountRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V3ForwardPaymentServiceUserBankAccountRequest $v3ForwardPaymentServiceUserBankAccountRequest = null;
+    public ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountRequest $v3ForwardPaymentServiceUserBankAccountRequest = null;
 
     /**
      * @param  string  $bankAccountID
      * @param  string  $paymentServiceUserID
-     * @param  ?Shared\V3ForwardPaymentServiceUserBankAccountRequest  $v3ForwardPaymentServiceUserBankAccountRequest
+     * @param  ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountRequest  $v3ForwardPaymentServiceUserBankAccountRequest
      * @phpstan-pure
      */
-    public function __construct(string $bankAccountID, string $paymentServiceUserID, ?Shared\V3ForwardPaymentServiceUserBankAccountRequest $v3ForwardPaymentServiceUserBankAccountRequest = null)
+    public function __construct(string $bankAccountID, string $paymentServiceUserID, ?\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountRequest $v3ForwardPaymentServiceUserBankAccountRequest = null)
     {
         $this->bankAccountID = $bankAccountID;
         $this->paymentServiceUserID = $paymentServiceUserID;

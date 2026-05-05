@@ -12,6 +12,14 @@ use formance\stack\Utils\SpeakeasyMetadata;
 class V2ListLedgersRequest
 {
     /**
+     * $requestBody
+     *
+     * @var array<string, mixed> $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public array $requestBody;
+
+    /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      *
      * Set to the value of next for the next page of results.
@@ -56,14 +64,16 @@ class V2ListLedgersRequest
     public ?bool $includeDeleted = null;
 
     /**
+     * @param  array<string, mixed>  $requestBody
      * @param  ?string  $cursor
      * @param  ?bool  $includeDeleted
      * @param  ?int  $pageSize
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?int $pageSize = null, ?string $sort = null, ?bool $includeDeleted = false)
+    public function __construct(array $requestBody, ?string $cursor = null, ?int $pageSize = null, ?string $sort = null, ?bool $includeDeleted = false)
     {
+        $this->requestBody = $requestBody;
         $this->cursor = $cursor;
         $this->pageSize = $pageSize;
         $this->sort = $sort;

@@ -15,6 +15,14 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class Ledger
 {
+    public const GET_METRICS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_GET_INFO_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
     private SDKConfiguration $sdkConfiguration;
     public SDKV1 $v1;
 
@@ -53,12 +61,17 @@ class Ledger
     /**
      * Read in memory metrics
      *
+     * @param  ?string  $serverURL
      * @return Operations\GetMetricsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getMetrics(?Options $options = null): Operations\GetMetricsResponse
+    public function getMetrics(?string $serverURL = null, ?Options $options = null): Operations\GetMetricsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(Ledger::GET_METRICS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_/metrics');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -105,7 +118,7 @@ class Ledger
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Ledger\V2ErrorResponseError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -116,12 +129,17 @@ class Ledger
     /**
      * Show server information
      *
+     * @param  ?string  $serverURL
      * @return Operations\V2GetInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInfo(?Options $options = null): Operations\V2GetInfoResponse
+    public function getInfo(?string $serverURL = null, ?Options $options = null): Operations\V2GetInfoResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(Ledger::V2_GET_INFO_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_/info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -151,12 +169,12 @@ class Ledger
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ConfigInfoResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Ledger\V2ConfigInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetInfoResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    v2ConfigInfoResponse: $obj);
+                    v2ConfigInfo: $obj);
 
                 return $response;
             } else {
@@ -168,7 +186,7 @@ class Ledger
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Ledger\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetInfoResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -185,7 +203,7 @@ class Ledger
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Ledger\V2ErrorResponseError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

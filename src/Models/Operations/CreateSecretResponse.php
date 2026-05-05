@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class CreateSecretResponse
 {
     /**
@@ -35,18 +35,18 @@ class CreateSecretResponse
     /**
      * Created secret
      *
-     * @var ?Shared\CreateSecretResponse $createSecretResponse
+     * @var ?\formance\stack\Models\Auth\CreateSecretResponse $createSecretResponse
      */
-    public ?Shared\CreateSecretResponse $createSecretResponse = null;
+    public ?\formance\stack\Models\Auth\CreateSecretResponse $createSecretResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\CreateSecretResponse  $createSecretResponse
+     * @param  ?\formance\stack\Models\Auth\CreateSecretResponse  $createSecretResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\CreateSecretResponse $createSecretResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Auth\CreateSecretResponse $createSecretResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

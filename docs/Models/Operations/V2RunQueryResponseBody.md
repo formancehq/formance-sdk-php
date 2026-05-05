@@ -5,39 +5,39 @@ OK
 
 ## Supported Types
 
-### `Shared\V2TransactionsCursorResponse`
+### `\formance\stack\Models\Ledger\V2TransactionsCursorResponse`
 
 ```php
 /**
-* @var Shared\V2TransactionsCursorResponse
+* @var \formance\stack\Models\Ledger\V2TransactionsCursorResponse
 */
-Shared\V2TransactionsCursorResponse $value = /* values here */
+\formance\stack\Models\Ledger\V2TransactionsCursorResponse $value = /* values here */
 ```
 
-### `Shared\V2AccountsCursorResponse`
+### `\formance\stack\Models\Ledger\V2AccountsCursorResponse`
 
 ```php
 /**
-* @var Shared\V2AccountsCursorResponse
+* @var \formance\stack\Models\Ledger\V2AccountsCursorResponse
 */
-Shared\V2AccountsCursorResponse $value = /* values here */
+\formance\stack\Models\Ledger\V2AccountsCursorResponse $value = /* values here */
 ```
 
-### `Shared\V2LogsCursorResponse`
+### `\formance\stack\Models\Ledger\V2LogsCursorResponse`
 
 ```php
 /**
-* @var Shared\V2LogsCursorResponse
+* @var \formance\stack\Models\Ledger\V2LogsCursorResponse
 */
-Shared\V2LogsCursorResponse $value = /* values here */
+\formance\stack\Models\Ledger\V2LogsCursorResponse $value = /* values here */
 ```
 
-### `Shared\V2VolumesWithBalanceCursorResponse`
+### `\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse`
 
 ```php
 /**
-* @var Shared\V2VolumesWithBalanceCursorResponse
+* @var \formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse
 */
-Shared\V2VolumesWithBalanceCursorResponse $value = /* values here */
+\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse $value = /* values here */
 ```
 

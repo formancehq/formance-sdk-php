@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2RunQueryResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2RunQueryResponse
     /**
      * OK
      *
-     * @var Shared\V2TransactionsCursorResponse|Shared\V2AccountsCursorResponse|Shared\V2LogsCursorResponse|Shared\V2VolumesWithBalanceCursorResponse|null $oneOf
+     * @var \formance\stack\Models\Ledger\V2TransactionsCursorResponse|\formance\stack\Models\Ledger\V2AccountsCursorResponse|\formance\stack\Models\Ledger\V2LogsCursorResponse|\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse|null $oneOf
      */
-    public Shared\V2TransactionsCursorResponse|Shared\V2AccountsCursorResponse|Shared\V2LogsCursorResponse|Shared\V2VolumesWithBalanceCursorResponse|null $oneOf = null;
+    public \formance\stack\Models\Ledger\V2TransactionsCursorResponse|\formance\stack\Models\Ledger\V2AccountsCursorResponse|\formance\stack\Models\Ledger\V2LogsCursorResponse|\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse|null $oneOf = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  Shared\V2TransactionsCursorResponse|Shared\V2AccountsCursorResponse|Shared\V2LogsCursorResponse|Shared\V2VolumesWithBalanceCursorResponse|null  $oneOf
+     * @param  \formance\stack\Models\Ledger\V2TransactionsCursorResponse|\formance\stack\Models\Ledger\V2AccountsCursorResponse|\formance\stack\Models\Ledger\V2LogsCursorResponse|\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse|null  $oneOf
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, Shared\V2TransactionsCursorResponse|Shared\V2AccountsCursorResponse|Shared\V2LogsCursorResponse|Shared\V2VolumesWithBalanceCursorResponse|null $oneOf = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, \formance\stack\Models\Ledger\V2TransactionsCursorResponse|\formance\stack\Models\Ledger\V2AccountsCursorResponse|\formance\stack\Models\Ledger\V2LogsCursorResponse|\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponse|null $oneOf = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -1,0 +1,14 @@
+# V2Ledger
+
+
+## Fields
+
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `v2Metadata`                                                  | array<string, *string*>                                       | :heavy_minus_sign:                                            | N/A                                                           | {<br/>"admin": "true"<br/>}                                   |
+| `addedAt`                                                     | [\DateTime](https://www.php.net/manual/en/class.datetime.php) | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `bucket`                                                      | *string*                                                      | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `deletedAt`                                                   | [\DateTime](https://www.php.net/manual/en/class.datetime.php) | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
+| `features`                                                    | array<string, *string*>                                       | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
+| `id`                                                          | *?int*                                                        | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
+| `name`                                                        | *string*                                                      | :heavy_check_mark:                                            | N/A                                                           |                                                               |

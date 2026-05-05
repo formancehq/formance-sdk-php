@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class CreateSecretRequest
 {
@@ -22,19 +21,19 @@ class CreateSecretRequest
 
     /**
      *
-     * @var ?Shared\CreateSecretRequest $createSecretRequest
+     * @var ?\formance\stack\Models\Auth\SecretOptions $secretOptions
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\CreateSecretRequest $createSecretRequest = null;
+    public ?\formance\stack\Models\Auth\SecretOptions $secretOptions = null;
 
     /**
      * @param  string  $clientId
-     * @param  ?Shared\CreateSecretRequest  $createSecretRequest
+     * @param  ?\formance\stack\Models\Auth\SecretOptions  $secretOptions
      * @phpstan-pure
      */
-    public function __construct(string $clientId, ?Shared\CreateSecretRequest $createSecretRequest = null)
+    public function __construct(string $clientId, ?\formance\stack\Models\Auth\SecretOptions $secretOptions = null)
     {
         $this->clientId = $clientId;
-        $this->createSecretRequest = $createSecretRequest;
+        $this->secretOptions = $secretOptions;
     }
 }

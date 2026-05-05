@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3InstallConnectorResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3InstallConnectorResponse
     /**
      * Accepted
      *
-     * @var ?Shared\V3InstallConnectorResponse $v3InstallConnectorResponse
+     * @var ?\formance\stack\Models\Payments\V3InstallConnectorResponse $v3InstallConnectorResponse
      */
-    public ?Shared\V3InstallConnectorResponse $v3InstallConnectorResponse = null;
+    public ?\formance\stack\Models\Payments\V3InstallConnectorResponse $v3InstallConnectorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3InstallConnectorResponse  $v3InstallConnectorResponse
+     * @param  ?\formance\stack\Models\Payments\V3InstallConnectorResponse  $v3InstallConnectorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3InstallConnectorResponse $v3InstallConnectorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3InstallConnectorResponse $v3InstallConnectorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

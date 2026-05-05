@@ -10,12 +10,83 @@ namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 use formance\stack\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
 
 class SDKV2
 {
+    public const TEST_TRIGGER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_CANCEL_EVENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_CREATE_TRIGGER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_CREATE_WORKFLOW_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_DELETE_TRIGGER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_DELETE_WORKFLOW_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_GET_INSTANCE_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_GET_INSTANCE_HISTORY_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_GET_INSTANCE_STAGE_HISTORY_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_GET_SERVER_INFO_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_GET_WORKFLOW_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_LIST_INSTANCES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_LIST_TRIGGERS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_LIST_TRIGGERS_OCCURRENCES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_LIST_WORKFLOWS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_READ_TRIGGER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_RUN_WORKFLOW_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V2_SEND_EVENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -51,12 +122,17 @@ class SDKV2
      * Test trigger
      *
      * @param  Operations\TestTriggerRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\TestTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function testTrigger(Operations\TestTriggerRequest $request, ?Options $options = null): Operations\TestTriggerResponse
+    public function testTrigger(Operations\TestTriggerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\TestTriggerResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::TEST_TRIGGER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/test', Operations\TestTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -90,7 +166,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2TestTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2TestTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\TestTriggerResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -107,7 +183,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -121,12 +197,17 @@ class SDKV2
      * Cancel a running workflow
      *
      * @param  Operations\V2CancelEventRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2CancelEventResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function cancelEvent(Operations\V2CancelEventRequest $request, ?Options $options = null): Operations\V2CancelEventResponse
+    public function cancelEvent(Operations\V2CancelEventRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CancelEventResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_CANCEL_EVENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/abort', Operations\V2CancelEventRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -164,7 +245,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -177,13 +258,18 @@ class SDKV2
      *
      * Create trigger
      *
-     * @param  ?Shared\V2TriggerData  $request
+     * @param  ?\formance\stack\Models\Orchestration\V2TriggerData1  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2CreateTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTrigger(?Shared\V2TriggerData $request = null, ?Options $options = null): Operations\V2CreateTriggerResponse
+    public function createTrigger(?\formance\stack\Models\Orchestration\V2TriggerData1 $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V2CreateTriggerResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_CREATE_TRIGGER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -217,7 +303,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2CreateTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2CreateTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2CreateTriggerResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -234,7 +320,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -247,13 +333,18 @@ class SDKV2
      *
      * Create a workflow
      *
-     * @param  ?Shared\V2CreateWorkflowRequest  $request
+     * @param  ?\formance\stack\Models\Orchestration\V2WorkflowConfig  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2CreateWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createWorkflow(?Shared\V2CreateWorkflowRequest $request = null, ?Options $options = null): Operations\V2CreateWorkflowResponse
+    public function createWorkflow(?\formance\stack\Models\Orchestration\V2WorkflowConfig $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V2CreateWorkflowResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_CREATE_WORKFLOW_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -287,7 +378,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2CreateWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2CreateWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2CreateWorkflowResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -304,7 +395,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -318,12 +409,17 @@ class SDKV2
      * Read trigger
      *
      * @param  Operations\V2DeleteTriggerRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2DeleteTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteTrigger(Operations\V2DeleteTriggerRequest $request, ?Options $options = null): Operations\V2DeleteTriggerResponse
+    public function deleteTrigger(Operations\V2DeleteTriggerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteTriggerResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_DELETE_TRIGGER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', Operations\V2DeleteTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -361,7 +457,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -375,12 +471,17 @@ class SDKV2
      * Delete a flow by id
      *
      * @param  Operations\V2DeleteWorkflowRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2DeleteWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteWorkflow(Operations\V2DeleteWorkflowRequest $request, ?Options $options = null): Operations\V2DeleteWorkflowResponse
+    public function deleteWorkflow(Operations\V2DeleteWorkflowRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteWorkflowResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_DELETE_WORKFLOW_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', Operations\V2DeleteWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -418,7 +519,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -432,12 +533,17 @@ class SDKV2
      * Get a workflow instance by id
      *
      * @param  Operations\V2GetInstanceRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2GetInstanceResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInstance(Operations\V2GetInstanceRequest $request, ?Options $options = null): Operations\V2GetInstanceResponse
+    public function getInstance(Operations\V2GetInstanceRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetInstanceResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_GET_INSTANCE_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}', Operations\V2GetInstanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -467,7 +573,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2GetWorkflowInstanceResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetInstanceResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -484,7 +590,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -498,12 +604,17 @@ class SDKV2
      * Get a workflow instance history by id
      *
      * @param  Operations\V2GetInstanceHistoryRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2GetInstanceHistoryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInstanceHistory(Operations\V2GetInstanceHistoryRequest $request, ?Options $options = null): Operations\V2GetInstanceHistoryResponse
+    public function getInstanceHistory(Operations\V2GetInstanceHistoryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetInstanceHistoryResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_GET_INSTANCE_HISTORY_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/history', Operations\V2GetInstanceHistoryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -533,7 +644,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2GetWorkflowInstanceHistoryResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetInstanceHistoryResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -550,7 +661,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -564,12 +675,17 @@ class SDKV2
      * Get a workflow instance stage history
      *
      * @param  Operations\V2GetInstanceStageHistoryRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2GetInstanceStageHistoryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInstanceStageHistory(Operations\V2GetInstanceStageHistoryRequest $request, ?Options $options = null): Operations\V2GetInstanceStageHistoryResponse
+    public function getInstanceStageHistory(Operations\V2GetInstanceStageHistoryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetInstanceStageHistoryResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_GET_INSTANCE_STAGE_HISTORY_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/stages/{number}/history', Operations\V2GetInstanceStageHistoryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -599,7 +715,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2GetWorkflowInstanceHistoryStageResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetInstanceStageHistoryResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -616,7 +732,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -627,12 +743,17 @@ class SDKV2
     /**
      * Get server info
      *
+     * @param  ?string  $serverURL
      * @return Operations\V2GetServerInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfo(?Options $options = null): Operations\V2GetServerInfoResponse
+    public function getServerInfo(?string $serverURL = null, ?Options $options = null): Operations\V2GetServerInfoResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_GET_SERVER_INFO_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -662,7 +783,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetServerInfoResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -679,7 +800,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -693,12 +814,17 @@ class SDKV2
      * Get a flow by id
      *
      * @param  Operations\V2GetWorkflowRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2GetWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getWorkflow(Operations\V2GetWorkflowRequest $request, ?Options $options = null): Operations\V2GetWorkflowResponse
+    public function getWorkflow(Operations\V2GetWorkflowRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetWorkflowResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_GET_WORKFLOW_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', Operations\V2GetWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -728,7 +854,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2GetWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2GetWorkflowResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -745,7 +871,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -759,12 +885,17 @@ class SDKV2
      * List instances of a workflow
      *
      * @param  ?Operations\V2ListInstancesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2ListInstancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listInstances(?Operations\V2ListInstancesRequest $request = null, ?Options $options = null): Operations\V2ListInstancesResponse
+    public function listInstances(?Operations\V2ListInstancesRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V2ListInstancesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_LIST_INSTANCES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -797,7 +928,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ListRunsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListRunsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2ListInstancesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -814,7 +945,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -828,12 +959,17 @@ class SDKV2
      * List triggers
      *
      * @param  ?Operations\V2ListTriggersRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2ListTriggersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTriggers(?Operations\V2ListTriggersRequest $request = null, ?Options $options = null): Operations\V2ListTriggersResponse
+    public function listTriggers(?Operations\V2ListTriggersRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V2ListTriggersResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_LIST_TRIGGERS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -866,7 +1002,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ListTriggersResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListTriggersResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2ListTriggersResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -883,7 +1019,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -897,12 +1033,17 @@ class SDKV2
      * List triggers occurrences
      *
      * @param  Operations\V2ListTriggersOccurrencesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2ListTriggersOccurrencesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTriggersOccurrences(Operations\V2ListTriggersOccurrencesRequest $request, ?Options $options = null): Operations\V2ListTriggersOccurrencesResponse
+    public function listTriggersOccurrences(Operations\V2ListTriggersOccurrencesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListTriggersOccurrencesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_LIST_TRIGGERS_OCCURRENCES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/occurrences', Operations\V2ListTriggersOccurrencesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -935,7 +1076,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ListTriggersOccurrencesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListTriggersOccurrencesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2ListTriggersOccurrencesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -952,7 +1093,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -966,12 +1107,17 @@ class SDKV2
      * List registered workflows
      *
      * @param  ?Operations\V2ListWorkflowsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2ListWorkflowsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listWorkflows(?Operations\V2ListWorkflowsRequest $request = null, ?Options $options = null): Operations\V2ListWorkflowsResponse
+    public function listWorkflows(?Operations\V2ListWorkflowsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V2ListWorkflowsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_LIST_WORKFLOWS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1004,7 +1150,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ListWorkflowsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListWorkflowsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2ListWorkflowsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1021,7 +1167,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1035,12 +1181,17 @@ class SDKV2
      * Read trigger
      *
      * @param  Operations\V2ReadTriggerRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2ReadTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readTrigger(Operations\V2ReadTriggerRequest $request, ?Options $options = null): Operations\V2ReadTriggerResponse
+    public function readTrigger(Operations\V2ReadTriggerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ReadTriggerResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_READ_TRIGGER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', Operations\V2ReadTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1070,7 +1221,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2ReadTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ReadTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2ReadTriggerResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1087,7 +1238,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1101,12 +1252,17 @@ class SDKV2
      * Run workflow
      *
      * @param  Operations\V2RunWorkflowRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2RunWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function runWorkflow(Operations\V2RunWorkflowRequest $request, ?Options $options = null): Operations\V2RunWorkflowResponse
+    public function runWorkflow(Operations\V2RunWorkflowRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2RunWorkflowResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_RUN_WORKFLOW_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{workflowID}/instances', Operations\V2RunWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1143,7 +1299,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V2RunWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2RunWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V2RunWorkflowResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1160,7 +1316,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1174,12 +1330,17 @@ class SDKV2
      * Send an event to a running workflow
      *
      * @param  Operations\V2SendEventRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V2SendEventResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function sendEvent(Operations\V2SendEventRequest $request, ?Options $options = null): Operations\V2SendEventResponse
+    public function sendEvent(Operations\V2SendEventRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2SendEventResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKV2::V2_SEND_EVENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/events', Operations\V2SendEventRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1221,7 +1382,7 @@ class SDKV2
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

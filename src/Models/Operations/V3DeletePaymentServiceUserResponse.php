@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3DeletePaymentServiceUserResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3DeletePaymentServiceUserResponse
     /**
      * Accepted
      *
-     * @var ?Shared\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse
+     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse
      */
-    public ?Shared\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null;
+    public ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3PaymentServiceUserDeleteResponse  $v3PaymentServiceUserDeleteResponse
+     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse  $v3PaymentServiceUserDeleteResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
