@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ConfirmHoldRequest
 {
@@ -21,10 +20,10 @@ class ConfirmHoldRequest
 
     /**
      *
-     * @var ?Shared\ConfirmHoldRequest $confirmHoldRequest
+     * @var ?\formance\stack\Models\Wallets\ConfirmHoldRequest $confirmHoldRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\ConfirmHoldRequest $confirmHoldRequest = null;
+    public ?\formance\stack\Models\Wallets\ConfirmHoldRequest $confirmHoldRequest = null;
 
     /**
      * Use an idempotency key
@@ -36,11 +35,11 @@ class ConfirmHoldRequest
 
     /**
      * @param  string  $holdId
-     * @param  ?Shared\ConfirmHoldRequest  $confirmHoldRequest
+     * @param  ?\formance\stack\Models\Wallets\ConfirmHoldRequest  $confirmHoldRequest
      * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(string $holdId, ?Shared\ConfirmHoldRequest $confirmHoldRequest = null, ?string $idempotencyKey = null)
+    public function __construct(string $holdId, ?\formance\stack\Models\Wallets\ConfirmHoldRequest $confirmHoldRequest = null, ?string $idempotencyKey = null)
     {
         $this->holdId = $holdId;
         $this->confirmHoldRequest = $confirmHoldRequest;

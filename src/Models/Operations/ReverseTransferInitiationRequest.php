@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ReverseTransferInitiationRequest
 {
     /**
      *
-     * @var Shared\ReverseTransferInitiationRequest $reverseTransferInitiationRequest
+     * @var \formance\stack\Models\Payments\ReverseTransferInitiationRequest $reverseTransferInitiationRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\ReverseTransferInitiationRequest $reverseTransferInitiationRequest;
+    public \formance\stack\Models\Payments\ReverseTransferInitiationRequest $reverseTransferInitiationRequest;
 
     /**
      * The transfer ID.
@@ -28,11 +27,11 @@ class ReverseTransferInitiationRequest
     public string $transferId;
 
     /**
-     * @param  Shared\ReverseTransferInitiationRequest  $reverseTransferInitiationRequest
+     * @param  \formance\stack\Models\Payments\ReverseTransferInitiationRequest  $reverseTransferInitiationRequest
      * @param  string  $transferId
      * @phpstan-pure
      */
-    public function __construct(Shared\ReverseTransferInitiationRequest $reverseTransferInitiationRequest, string $transferId)
+    public function __construct(\formance\stack\Models\Payments\ReverseTransferInitiationRequest $reverseTransferInitiationRequest, string $transferId)
     {
         $this->reverseTransferInitiationRequest = $reverseTransferInitiationRequest;
         $this->transferId = $transferId;

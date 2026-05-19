@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class CreatePoolResponse
 {
     /**
@@ -35,18 +35,18 @@ class CreatePoolResponse
     /**
      * OK
      *
-     * @var ?Shared\PoolResponse $poolResponse
+     * @var ?\formance\stack\Models\Payments\PoolResponse $poolResponse
      */
-    public ?Shared\PoolResponse $poolResponse = null;
+    public ?\formance\stack\Models\Payments\PoolResponse $poolResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\PoolResponse  $poolResponse
+     * @param  ?\formance\stack\Models\Payments\PoolResponse  $poolResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\PoolResponse $poolResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\PoolResponse $poolResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

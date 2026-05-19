@@ -12,6 +12,7 @@
 * [getBalance](#getbalance) - Get detailed balance
 * [getHold](#gethold) - Get a hold
 * [getHolds](#getholds) - Get all holds for a wallet
+* [getServerInfoWallets](#getserverinfowallets) - Get server info
 * [getTransactions](#gettransactions)
 * [getWallet](#getwallet) - Get a wallet
 * [getWalletSummary](#getwalletsummary) - Get wallet summary
@@ -19,7 +20,6 @@
 * [listWallets](#listwallets) - List all wallets
 * [updateWallet](#updatewallet) - Update a wallet
 * [voidHold](#voidhold) - Cancel a hold
-* [walletsgetServerInfo](#walletsgetserverinfo) - Get server info
 
 ## confirmHold
 
@@ -37,6 +37,7 @@ use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
+use formance\stack\Models\Wallets;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -48,7 +49,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ConfirmHoldRequest(
-    confirmHoldRequest: new Shared\ConfirmHoldRequest(
+    confirmHoldRequest: new \formance\stack\Models\Wallets\ConfirmHoldRequest(
         amount: BigInteger::of('100'),
         final: true,
     ),
@@ -69,6 +70,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\ConfirmHoldRequest](../../Models/Operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -76,10 +78,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## createBalance
 
@@ -124,6 +126,7 @@ if ($response->createBalanceResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\CreateBalanceRequest](../../Models/Operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -131,10 +134,10 @@ if ($response->createBalanceResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## createWallet
 
@@ -176,6 +179,7 @@ if ($response->createWalletResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\CreateWalletRequest](../../Models/Operations/CreateWalletRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -183,10 +187,10 @@ if ($response->createWalletResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## creditWallet
 
@@ -204,6 +208,7 @@ use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
+use formance\stack\Models\Wallets;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -215,8 +220,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\CreditWalletRequest(
-    creditWalletRequest: new Shared\CreditWalletRequest(
-        amount: new Shared\Monetary(
+    creditWalletRequest: new \formance\stack\Models\Wallets\CreditWalletRequest(
+        monetary: new \formance\stack\Models\Wallets\Monetary(
             amount: BigInteger::of('100'),
             asset: 'USD/2',
         ),
@@ -242,6 +247,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\CreditWalletRequest](../../Models/Operations/CreditWalletRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -249,10 +255,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## debitWallet
 
@@ -270,6 +276,7 @@ use Brick\Math\BigInteger;
 use formance\stack;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
+use formance\stack\Models\Wallets;
 
 $sdk = stack\SDK::builder()
     ->setSecurity(
@@ -281,8 +288,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\DebitWalletRequest(
-    debitWalletRequest: new Shared\DebitWalletRequest(
-        amount: new Shared\Monetary(
+    debitWalletRequest: new \formance\stack\Models\Wallets\DebitWalletRequest(
+        monetary: new \formance\stack\Models\Wallets\Monetary(
             amount: BigInteger::of('100'),
             asset: 'USD/2',
         ),
@@ -308,6 +315,7 @@ if ($response->debitWalletResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\DebitWalletRequest](../../Models/Operations/DebitWalletRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -315,10 +323,10 @@ if ($response->debitWalletResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getBalance
 
@@ -364,6 +372,7 @@ if ($response->getBalanceResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\GetBalanceRequest](../../Models/Operations/GetBalanceRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -371,10 +380,10 @@ if ($response->getBalanceResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getHold
 
@@ -419,6 +428,7 @@ if ($response->getHoldResponse !== null) {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `$request`                                                             | [Operations\GetHoldRequest](../../Models/Operations/GetHoldRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `$serverURL`                                                           | *string*                                                               | :heavy_minus_sign:                                                     | An optional server URL to use.                                         |
 
 ### Response
 
@@ -426,10 +436,10 @@ if ($response->getHoldResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getHolds
 
@@ -479,6 +489,7 @@ if ($response->getHoldsResponse !== null) {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\GetHoldsRequest](../../Models/Operations/GetHoldsRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `$serverURL`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -486,10 +497,62 @@ if ($response->getHoldsResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
+
+## getServerInfoWallets
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getServerInfo_wallets" method="get" path="/api/wallets/_info" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->wallets->v1->getServerInfoWallets(
+
+);
+
+if ($response->serverInfo !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[?Operations\GetServerInfoWalletsResponse](../../Models/Operations/GetServerInfoWalletsResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getTransactions
 
@@ -534,6 +597,7 @@ if ($response->getTransactionsResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\GetTransactionsRequest](../../Models/Operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -541,10 +605,10 @@ if ($response->getTransactionsResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getWallet
 
@@ -589,6 +653,7 @@ if ($response->getWalletResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\GetWalletRequest](../../Models/Operations/GetWalletRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -596,10 +661,10 @@ if ($response->getWalletResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getWalletSummary
 
@@ -644,6 +709,7 @@ if ($response->getWalletSummaryResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\GetWalletSummaryRequest](../../Models/Operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -651,10 +717,10 @@ if ($response->getWalletSummaryResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## listBalances
 
@@ -699,6 +765,7 @@ if ($response->listBalancesResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListBalancesRequest](../../Models/Operations/ListBalancesRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -759,6 +826,7 @@ if ($response->listWalletsResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\ListWalletsRequest](../../Models/Operations/ListWalletsRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -766,10 +834,10 @@ if ($response->listWalletsResponse !== null) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## updateWallet
 
@@ -814,6 +882,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\UpdateWalletRequest](../../Models/Operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -821,10 +890,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## voidHold
 
@@ -869,6 +938,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\VoidHoldRequest](../../Models/Operations/VoidHoldRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `$serverURL`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -876,53 +946,7 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
-
-## walletsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->wallets->v1->walletsgetServerInfo(
-
-);
-
-if ($response->serverInfo !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\WalletsgetServerInfoResponse](../../Models/Operations/WalletsgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| Errors\WalletsErrorResponse | default                     | application/json            |
-| Errors\SDKException         | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Wallets\ErrorResponse | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |

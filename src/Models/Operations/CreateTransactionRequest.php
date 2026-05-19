@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class CreateTransactionRequest
 {
@@ -19,10 +18,10 @@ class CreateTransactionRequest
      *   - `script`: enabling more complex transactions with Numscript
      *
      *
-     * @var Shared\PostTransaction $postTransaction
+     * @var \formance\stack\Models\Ledger\PostTransaction $postTransaction
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\PostTransaction $postTransaction;
+    public \formance\stack\Models\Ledger\PostTransaction $postTransaction;
 
     /**
      * Name of the ledger.
@@ -41,12 +40,12 @@ class CreateTransactionRequest
     public ?bool $preview = null;
 
     /**
-     * @param  Shared\PostTransaction  $postTransaction
+     * @param  \formance\stack\Models\Ledger\PostTransaction  $postTransaction
      * @param  string  $ledger
      * @param  ?bool  $preview
      * @phpstan-pure
      */
-    public function __construct(Shared\PostTransaction $postTransaction, string $ledger, ?bool $preview = null)
+    public function __construct(\formance\stack\Models\Ledger\PostTransaction $postTransaction, string $ledger, ?bool $preview = null)
     {
         $this->postTransaction = $postTransaction;
         $this->ledger = $ledger;

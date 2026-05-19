@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3ReversePaymentInitiationResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3ReversePaymentInitiationResponse
     /**
      * Accepted
      *
-     * @var ?Shared\V3ReversePaymentInitiationResponse $v3ReversePaymentInitiationResponse
+     * @var ?\formance\stack\Models\Payments\V3ReversePaymentInitiationResponse $v3ReversePaymentInitiationResponse
      */
-    public ?Shared\V3ReversePaymentInitiationResponse $v3ReversePaymentInitiationResponse = null;
+    public ?\formance\stack\Models\Payments\V3ReversePaymentInitiationResponse $v3ReversePaymentInitiationResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3ReversePaymentInitiationResponse  $v3ReversePaymentInitiationResponse
+     * @param  ?\formance\stack\Models\Payments\V3ReversePaymentInitiationResponse  $v3ReversePaymentInitiationResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3ReversePaymentInitiationResponse $v3ReversePaymentInitiationResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3ReversePaymentInitiationResponse $v3ReversePaymentInitiationResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

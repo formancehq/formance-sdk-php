@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdatePoolQueryRequest
 {
     /**
      *
-     * @var Shared\UpdatePoolQueryRequest $updatePoolQueryRequest
+     * @var \formance\stack\Models\Payments\UpdatePoolQueryRequest $updatePoolQueryRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\UpdatePoolQueryRequest $updatePoolQueryRequest;
+    public \formance\stack\Models\Payments\UpdatePoolQueryRequest $updatePoolQueryRequest;
 
     /**
      * The pool ID.
@@ -28,11 +27,11 @@ class UpdatePoolQueryRequest
     public string $poolId;
 
     /**
-     * @param  Shared\UpdatePoolQueryRequest  $updatePoolQueryRequest
+     * @param  \formance\stack\Models\Payments\UpdatePoolQueryRequest  $updatePoolQueryRequest
      * @param  string  $poolId
      * @phpstan-pure
      */
-    public function __construct(Shared\UpdatePoolQueryRequest $updatePoolQueryRequest, string $poolId)
+    public function __construct(\formance\stack\Models\Payments\UpdatePoolQueryRequest $updatePoolQueryRequest, string $poolId)
     {
         $this->updatePoolQueryRequest = $updatePoolQueryRequest;
         $this->poolId = $poolId;

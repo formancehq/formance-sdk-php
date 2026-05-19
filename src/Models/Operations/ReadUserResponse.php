@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ReadUserResponse
 {
     /**
@@ -35,18 +35,18 @@ class ReadUserResponse
     /**
      * Retrieved user
      *
-     * @var ?Shared\ReadUserResponse $readUserResponse
+     * @var ?\formance\stack\Models\Auth\ReadUserResponse $readUserResponse
      */
-    public ?Shared\ReadUserResponse $readUserResponse = null;
+    public ?\formance\stack\Models\Auth\ReadUserResponse $readUserResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ReadUserResponse  $readUserResponse
+     * @param  ?\formance\stack\Models\Auth\ReadUserResponse  $readUserResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ReadUserResponse $readUserResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Auth\ReadUserResponse $readUserResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateTransactionRequest
 {
@@ -19,10 +18,10 @@ class V2CreateTransactionRequest
      *   - `script`: enabling more complex transactions with Numscript
      *
      *
-     * @var Shared\V2PostTransaction $v2PostTransaction
+     * @var \formance\stack\Models\Ledger\V2PostTransaction $v2PostTransaction
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\V2PostTransaction $v2PostTransaction;
+    public \formance\stack\Models\Ledger\V2PostTransaction $v2PostTransaction;
 
     /**
      * Name of the ledger.
@@ -65,7 +64,7 @@ class V2CreateTransactionRequest
     public ?string $schemaVersion = null;
 
     /**
-     * @param  Shared\V2PostTransaction  $v2PostTransaction
+     * @param  \formance\stack\Models\Ledger\V2PostTransaction  $v2PostTransaction
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
@@ -73,7 +72,7 @@ class V2CreateTransactionRequest
      * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(Shared\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
+    public function __construct(\formance\stack\Models\Ledger\V2PostTransaction $v2PostTransaction, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
     {
         $this->v2PostTransaction = $v2PostTransaction;
         $this->ledger = $ledger;

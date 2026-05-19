@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3UpdateConnectorConfigRequest
 {
@@ -22,19 +21,19 @@ class V3UpdateConnectorConfigRequest
 
     /**
      *
-     * @var Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3IncreaseConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3PlaidConfig|Shared\V3PowensConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3TinkConfig|Shared\V3WiseConfig|Shared\V3CoinbaseprimeConfig|Shared\V3FireblocksConfig|null $v3InstallConnectorRequest
+     * @var \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|null $v3ConnectorConfig
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3IncreaseConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3PlaidConfig|Shared\V3PowensConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3TinkConfig|Shared\V3WiseConfig|Shared\V3CoinbaseprimeConfig|Shared\V3FireblocksConfig|null $v3InstallConnectorRequest = null;
+    public \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|null $v3ConnectorConfig = null;
 
     /**
      * @param  string  $connectorID
-     * @param  Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3IncreaseConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3PlaidConfig|Shared\V3PowensConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3TinkConfig|Shared\V3WiseConfig|Shared\V3CoinbaseprimeConfig|Shared\V3FireblocksConfig|null  $v3InstallConnectorRequest
+     * @param  \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|null  $v3ConnectorConfig
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, Shared\V3AdyenConfig|Shared\V3AtlarConfig|Shared\V3BankingcircleConfig|Shared\V3ColumnConfig|Shared\V3CurrencycloudConfig|Shared\V3DummypayConfig|Shared\V3GenericConfig|Shared\V3IncreaseConfig|Shared\V3MangopayConfig|Shared\V3ModulrConfig|Shared\V3MoneycorpConfig|Shared\V3PlaidConfig|Shared\V3PowensConfig|Shared\V3QontoConfig|Shared\V3StripeConfig|Shared\V3TinkConfig|Shared\V3WiseConfig|Shared\V3CoinbaseprimeConfig|Shared\V3FireblocksConfig|null $v3InstallConnectorRequest = null)
+    public function __construct(string $connectorID, \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|null $v3ConnectorConfig = null)
     {
         $this->connectorID = $connectorID;
-        $this->v3InstallConnectorRequest = $v3InstallConnectorRequest;
+        $this->v3ConnectorConfig = $v3ConnectorConfig;
     }
 }

@@ -1,0 +1,11 @@
+# ConnectorsResponseData
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `connector`                                                                     | [\formance\stack\Models\Payments\Connector](../../Models/payments/Connector.md) | :heavy_check_mark:                                                              | N/A                                                                             |
+| `connectorID`                                                                   | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
+| `enabled`                                                                       | *?bool*                                                                         | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `name`                                                                          | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |

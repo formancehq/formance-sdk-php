@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2RevertTransactionResponse
 {
     /**
@@ -42,24 +42,24 @@ class V2RevertTransactionResponse
     /**
      * OK
      *
-     * @var ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse
+     * @var ?\formance\stack\Models\Ledger\V2CreateTransactionResponse $v2CreateTransactionResponse
      */
-    public ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null;
+    public ?\formance\stack\Models\Ledger\V2CreateTransactionResponse $v2CreateTransactionResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2RevertTransactionResponse  $v2RevertTransactionResponse
+     * @param  ?\formance\stack\Models\Ledger\V2CreateTransactionResponse  $v2CreateTransactionResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2RevertTransactionResponse $v2RevertTransactionResponse = null, ?array $headers = [])
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2CreateTransactionResponse $v2CreateTransactionResponse = null, ?array $headers = [])
     {
         $this->contentType = $contentType;
         $this->headers = $headers;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->v2RevertTransactionResponse = $v2RevertTransactionResponse;
+        $this->v2CreateTransactionResponse = $v2CreateTransactionResponse;
     }
 }

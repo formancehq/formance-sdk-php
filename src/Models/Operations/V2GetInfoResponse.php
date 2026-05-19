@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2GetInfoResponse
 {
     /**
@@ -35,31 +35,31 @@ class V2GetInfoResponse
     /**
      * OK
      *
-     * @var ?Shared\V2ConfigInfoResponse $v2ConfigInfoResponse
+     * @var ?\formance\stack\Models\Ledger\V2ConfigInfo $v2ConfigInfo
      */
-    public ?Shared\V2ConfigInfoResponse $v2ConfigInfoResponse = null;
+    public ?\formance\stack\Models\Ledger\V2ConfigInfo $v2ConfigInfo = null;
 
     /**
      * Error
      *
-     * @var ?Shared\V2ErrorResponse $v2ErrorResponse
+     * @var ?\formance\stack\Models\Ledger\V2ErrorResponse $v2ErrorResponse
      */
-    public ?Shared\V2ErrorResponse $v2ErrorResponse = null;
+    public ?\formance\stack\Models\Ledger\V2ErrorResponse $v2ErrorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2ConfigInfoResponse  $v2ConfigInfoResponse
-     * @param  ?Shared\V2ErrorResponse  $v2ErrorResponse
+     * @param  ?\formance\stack\Models\Ledger\V2ConfigInfo  $v2ConfigInfo
+     * @param  ?\formance\stack\Models\Ledger\V2ErrorResponse  $v2ErrorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ConfigInfoResponse $v2ConfigInfoResponse = null, ?Shared\V2ErrorResponse $v2ErrorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2ConfigInfo $v2ConfigInfo = null, ?\formance\stack\Models\Ledger\V2ErrorResponse $v2ErrorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->v2ConfigInfoResponse = $v2ConfigInfoResponse;
+        $this->v2ConfigInfo = $v2ConfigInfo;
         $this->v2ErrorResponse = $v2ErrorResponse;
     }
 }

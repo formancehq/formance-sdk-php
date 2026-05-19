@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetManyConfigsResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetManyConfigsResponse
     /**
      * OK
      *
-     * @var ?Shared\ConfigsResponse $configsResponse
+     * @var ?\formance\stack\Models\Webhooks\ConfigsResponse $configsResponse
      */
-    public ?Shared\ConfigsResponse $configsResponse = null;
+    public ?\formance\stack\Models\Webhooks\ConfigsResponse $configsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ConfigsResponse  $configsResponse
+     * @param  ?\formance\stack\Models\Webhooks\ConfigsResponse  $configsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConfigsResponse $configsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Webhooks\ConfigsResponse $configsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -12,12 +12,12 @@
 * [getInstance](#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
+* [getServerInfoOrchestration](#getserverinfoorchestration) - Get server info
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listTriggers](#listtriggers) - List triggers
 * [listTriggersOccurrences](#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [readTrigger](#readtrigger) - Read trigger
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
@@ -65,6 +65,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\CancelEventRequest](../../Models/Operations/CancelEventRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -72,10 +73,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## createTrigger
 
@@ -114,9 +115,10 @@ if ($response->createTriggerResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `$request`                                               | [Shared\TriggerData](../../Models/Shared/TriggerData.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `$request`                                                                                      | [\formance\stack\Models\Orchestration\TriggerData1](../../Models/orchestration/TriggerData1.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `$serverURL`                                                                                    | *string*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -124,10 +126,10 @@ if ($response->createTriggerResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## createWorkflow
 
@@ -166,9 +168,10 @@ if ($response->createWorkflowResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `$request`                                                                   | [Shared\CreateWorkflowRequest](../../Models/Shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                          | [\formance\stack\Models\Orchestration\WorkflowConfig](../../Models/orchestration/WorkflowConfig.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$serverURL`                                                                                        | *string*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -176,10 +179,10 @@ if ($response->createWorkflowResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## deleteTrigger
 
@@ -224,6 +227,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\DeleteTriggerRequest](../../Models/Operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -231,10 +235,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## deleteWorkflow
 
@@ -279,6 +283,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\DeleteWorkflowRequest](../../Models/Operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -286,10 +291,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## getInstance
 
@@ -334,6 +339,7 @@ if ($response->getWorkflowInstanceResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\GetInstanceRequest](../../Models/Operations/GetInstanceRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -341,10 +347,10 @@ if ($response->getWorkflowInstanceResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## getInstanceHistory
 
@@ -389,6 +395,7 @@ if ($response->getWorkflowInstanceHistoryResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetInstanceHistoryRequest](../../Models/Operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -396,10 +403,10 @@ if ($response->getWorkflowInstanceHistoryResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## getInstanceStageHistory
 
@@ -445,6 +452,7 @@ if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\GetInstanceStageHistoryRequest](../../Models/Operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -452,10 +460,62 @@ if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
+
+## getServerInfoOrchestration
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getServerInfo_orchestration" method="get" path="/api/orchestration/_info" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->orchestration->v1->getServerInfoOrchestration(
+
+);
+
+if ($response->serverInfo !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[?Operations\GetServerInfoOrchestrationResponse](../../Models/Operations/GetServerInfoOrchestrationResponse.md)**
+
+### Errors
+
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## getWorkflow
 
@@ -500,6 +560,7 @@ if ($response->getWorkflowResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\GetWorkflowRequest](../../Models/Operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -507,10 +568,10 @@ if ($response->getWorkflowResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## listInstances
 
@@ -556,6 +617,7 @@ if ($response->listRunsResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\ListInstancesRequest](../../Models/Operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -563,10 +625,10 @@ if ($response->listRunsResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## listTriggers
 
@@ -608,6 +670,7 @@ if ($response->listTriggersResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListTriggersRequest](../../Models/Operations/ListTriggersRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -615,10 +678,10 @@ if ($response->listTriggersResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## listTriggersOccurrences
 
@@ -663,6 +726,7 @@ if ($response->listTriggersOccurrencesResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\ListTriggersOccurrencesRequest](../../Models/Operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -670,10 +734,10 @@ if ($response->listTriggersOccurrencesResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## listWorkflows
 
@@ -710,62 +774,22 @@ if ($response->listWorkflowsResponse !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\ListWorkflowsResponse](../../Models/Operations/ListWorkflowsResponse.md)**
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## orchestrationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->orchestration->v1->orchestrationgetServerInfo(
-
-);
-
-if ($response->serverInfo !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\OrchestrationgetServerInfoResponse](../../Models/Operations/OrchestrationgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## readTrigger
 
@@ -810,6 +834,7 @@ if ($response->readTriggerResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\ReadTriggerRequest](../../Models/Operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -817,10 +842,10 @@ if ($response->readTriggerResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## runWorkflow
 
@@ -865,6 +890,7 @@ if ($response->runWorkflowResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\RunWorkflowRequest](../../Models/Operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -872,10 +898,10 @@ if ($response->runWorkflowResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |
 
 ## sendEvent
 
@@ -920,6 +946,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\SendEventRequest](../../Models/Operations/SendEventRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -927,7 +954,7 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\Error        | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| \formance\stack\Models\Orchestration\Error | default                                    | application/json                           |
+| Errors\SDKException                        | 4XX, 5XX                                   | \*/\*                                      |

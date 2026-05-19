@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class CreateTransferInitiationResponse
 {
     /**
@@ -35,18 +35,18 @@ class CreateTransferInitiationResponse
     /**
      * OK
      *
-     * @var ?Shared\TransferInitiationResponse $transferInitiationResponse
+     * @var ?\formance\stack\Models\Payments\TransferInitiationResponse $transferInitiationResponse
      */
-    public ?Shared\TransferInitiationResponse $transferInitiationResponse = null;
+    public ?\formance\stack\Models\Payments\TransferInitiationResponse $transferInitiationResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\TransferInitiationResponse  $transferInitiationResponse
+     * @param  ?\formance\stack\Models\Payments\TransferInitiationResponse  $transferInitiationResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\TransferInitiationResponse $transferInitiationResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\TransferInitiationResponse $transferInitiationResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
