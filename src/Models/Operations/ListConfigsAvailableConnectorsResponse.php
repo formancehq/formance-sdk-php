@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class ListConfigsAvailableConnectorsResponse
 {
     /**
@@ -35,18 +35,18 @@ class ListConfigsAvailableConnectorsResponse
     /**
      * OK
      *
-     * @var ?Shared\ConnectorsConfigsResponse $connectorsConfigsResponse
+     * @var ?\formance\stack\Models\Payments\ConnectorsConfigsResponse $connectorsConfigsResponse
      */
-    public ?Shared\ConnectorsConfigsResponse $connectorsConfigsResponse = null;
+    public ?\formance\stack\Models\Payments\ConnectorsConfigsResponse $connectorsConfigsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ConnectorsConfigsResponse  $connectorsConfigsResponse
+     * @param  ?\formance\stack\Models\Payments\ConnectorsConfigsResponse  $connectorsConfigsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ConnectorsConfigsResponse $connectorsConfigsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\ConnectorsConfigsResponse $connectorsConfigsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -35,7 +35,6 @@ and standard method from web, mobile and desktop applications.
   * [Authentication](#authentication-1)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -137,7 +136,7 @@ if ($response->getVersionsResponse !== null) {
 * [deleteClient](docs/sdks/v1/README.md#deleteclient) - Delete client
 * [deleteSecret](docs/sdks/v1/README.md#deletesecret) - Delete a secret from a client
 * [getOIDCWellKnowns](docs/sdks/v1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getServerInfo](docs/sdks/v1/README.md#getserverinfo) - Get server info
+* [getServerInfoAuth](docs/sdks/v1/README.md#getserverinfoauth) - Get server info
 * [listClients](docs/sdks/v1/README.md#listclients) - List clients
 * [listUsers](docs/sdks/v1/README.md#listusers) - List users
 * [readClient](docs/sdks/v1/README.md#readclient) - Read client
@@ -157,14 +156,14 @@ if ($response->getVersionsResponse !== null) {
 * [countAccounts](docs/sdks/sdkv1/README.md#countaccounts) - Count the accounts from a ledger
 * [countTransactions](docs/sdks/sdkv1/README.md#counttransactions) - Count the transactions from a ledger
 * [createTransaction](docs/sdks/sdkv1/README.md#createtransaction) - Create a new transaction to a ledger
-* [getAccount](docs/sdks/sdkv1/README.md#getaccount) - Get account by its address
+* [getAccountLedger](docs/sdks/sdkv1/README.md#getaccountledger) - Get account by its address
 * [getBalances](docs/sdks/sdkv1/README.md#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](docs/sdks/sdkv1/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getInfo](docs/sdks/sdkv1/README.md#getinfo) - Show server information
 * [getLedgerInfo](docs/sdks/sdkv1/README.md#getledgerinfo) - Get information about a ledger
 * [getMapping](docs/sdks/sdkv1/README.md#getmapping) - Get the mapping of a ledger
 * [getTransaction](docs/sdks/sdkv1/README.md#gettransaction) - Get transaction from a ledger by its ID
-* [listAccounts](docs/sdks/sdkv1/README.md#listaccounts) - List accounts from a ledger
+* [listAccountsLedger](docs/sdks/sdkv1/README.md#listaccountsledger) - List accounts from a ledger
 * [listLogs](docs/sdks/sdkv1/README.md#listlogs) - List the logs from a ledger
 * [listTransactions](docs/sdks/sdkv1/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/sdkv1/README.md#readstats) - Get statistics from a ledger
@@ -228,12 +227,12 @@ if ($response->getVersionsResponse !== null) {
 * [getInstance](docs/sdks/sdkorchestrationv1/README.md#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](docs/sdks/sdkorchestrationv1/README.md#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](docs/sdks/sdkorchestrationv1/README.md#getinstancestagehistory) - Get a workflow instance stage history
+* [getServerInfoOrchestration](docs/sdks/sdkorchestrationv1/README.md#getserverinfoorchestration) - Get server info
 * [getWorkflow](docs/sdks/sdkorchestrationv1/README.md#getworkflow) - Get a flow by id
 * [listInstances](docs/sdks/sdkorchestrationv1/README.md#listinstances) - List instances of a workflow
 * [listTriggers](docs/sdks/sdkorchestrationv1/README.md#listtriggers) - List triggers
 * [listTriggersOccurrences](docs/sdks/sdkorchestrationv1/README.md#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](docs/sdks/sdkorchestrationv1/README.md#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](docs/sdks/sdkorchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
 * [readTrigger](docs/sdks/sdkorchestrationv1/README.md#readtrigger) - Read trigger
 * [runWorkflow](docs/sdks/sdkorchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/sdkorchestrationv1/README.md#sendevent) - Send an event to a running workflow
@@ -272,6 +271,7 @@ if ($response->getVersionsResponse !== null) {
 * [deleteTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#deletetransferinitiation) - Delete a transfer initiation
 * [forwardBankAccount](docs/sdks/sdkpaymentsv1/README.md#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](docs/sdks/sdkpaymentsv1/README.md#getaccountbalances) - Get account balances
+* [getAccountPayments](docs/sdks/sdkpaymentsv1/README.md#getaccountpayments) - Get an account
 * [getBankAccount](docs/sdks/sdkpaymentsv1/README.md#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](docs/sdks/sdkpaymentsv1/README.md#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
 * [getConnectorTaskV1](docs/sdks/sdkpaymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
@@ -279,8 +279,10 @@ if ($response->getVersionsResponse !== null) {
 * [getPool](docs/sdks/sdkpaymentsv1/README.md#getpool) - Get a Pool
 * [getPoolBalances](docs/sdks/sdkpaymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
 * [getPoolBalancesLatest](docs/sdks/sdkpaymentsv1/README.md#getpoolbalanceslatest) - Get latest pool balances
+* [getServerInfoPayments](docs/sdks/sdkpaymentsv1/README.md#getserverinfopayments) - Get server info
 * [getTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#gettransferinitiation) - Get a transfer initiation
 * [installConnector](docs/sdks/sdkpaymentsv1/README.md#installconnector) - Install a connector
+* [listAccountsPayments](docs/sdks/sdkpaymentsv1/README.md#listaccountspayments) - List accounts
 * [listAllConnectors](docs/sdks/sdkpaymentsv1/README.md#listallconnectors) - List all installed connectors
 * [listBankAccounts](docs/sdks/sdkpaymentsv1/README.md#listbankaccounts) - List bank accounts created by user on Formance
 * [listConfigsAvailableConnectors](docs/sdks/sdkpaymentsv1/README.md#listconfigsavailableconnectors) - List the configs of each available connector
@@ -289,9 +291,6 @@ if ($response->getVersionsResponse !== null) {
 * [listPayments](docs/sdks/sdkpaymentsv1/README.md#listpayments) - List payments
 * [listPools](docs/sdks/sdkpaymentsv1/README.md#listpools) - List Pools
 * [listTransferInitiations](docs/sdks/sdkpaymentsv1/README.md#listtransferinitiations) - List Transfer Initiations
-* [paymentsgetAccount](docs/sdks/sdkpaymentsv1/README.md#paymentsgetaccount) - Get an account
-* [paymentsgetServerInfo](docs/sdks/sdkpaymentsv1/README.md#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](docs/sdks/sdkpaymentsv1/README.md#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](docs/sdks/sdkpaymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
@@ -379,15 +378,15 @@ Allows to check if users used the link and completed the oauth flow.
 * [deletePolicy](docs/sdks/sdkreconciliationv1/README.md#deletepolicy) - Delete a policy
 * [getPolicy](docs/sdks/sdkreconciliationv1/README.md#getpolicy) - Get a policy
 * [getReconciliation](docs/sdks/sdkreconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [getServerInfoReconciliation](docs/sdks/sdkreconciliationv1/README.md#getserverinforeconciliation) - Get server info
 * [listPolicies](docs/sdks/sdkreconciliationv1/README.md#listpolicies) - List policies
 * [listReconciliations](docs/sdks/sdkreconciliationv1/README.md#listreconciliations) - List reconciliations
 * [reconcile](docs/sdks/sdkreconciliationv1/README.md#reconcile) - Reconcile using a policy
-* [reconciliationgetServerInfo](docs/sdks/sdkreconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 
 ### [~~Search.V1~~](docs/sdks/sdksearchv1/README.md)
 
+* [~~getServerInfoSearch~~](docs/sdks/sdksearchv1/README.md#getserverinfosearch) - Get server info :warning: **Deprecated**
 * [~~search~~](docs/sdks/sdksearchv1/README.md#search) - search.v1 :warning: **Deprecated**
-* [~~searchgetServerInfo~~](docs/sdks/sdksearchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
 ### [Wallets.V1](docs/sdks/sdkwalletsv1/README.md)
 
@@ -399,6 +398,7 @@ Allows to check if users used the link and completed the oauth flow.
 * [getBalance](docs/sdks/sdkwalletsv1/README.md#getbalance) - Get detailed balance
 * [getHold](docs/sdks/sdkwalletsv1/README.md#gethold) - Get a hold
 * [getHolds](docs/sdks/sdkwalletsv1/README.md#getholds) - Get all holds for a wallet
+* [getServerInfoWallets](docs/sdks/sdkwalletsv1/README.md#getserverinfowallets) - Get server info
 * [getTransactions](docs/sdks/sdkwalletsv1/README.md#gettransactions)
 * [getWallet](docs/sdks/sdkwalletsv1/README.md#getwallet) - Get a wallet
 * [getWalletSummary](docs/sdks/sdkwalletsv1/README.md#getwalletsummary) - Get wallet summary
@@ -406,7 +406,6 @@ Allows to check if users used the link and completed the oauth flow.
 * [listWallets](docs/sdks/sdkwalletsv1/README.md#listwallets) - List all wallets
 * [updateWallet](docs/sdks/sdkwalletsv1/README.md#updatewallet) - Update a wallet
 * [voidHold](docs/sdks/sdkwalletsv1/README.md#voidhold) - Cancel a hold
-* [walletsgetServerInfo](docs/sdks/sdkwalletsv1/README.md#walletsgetserverinfo) - Get server info
 
 ### [Webhooks.V1](docs/sdks/sdkwebhooksv1/README.md)
 
@@ -438,10 +437,10 @@ By default an API error will raise a `Errors\SDKException` exception, which has 
 
 When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `getInfo` method throws the following exceptions:
 
-| Error Type             | Status Code | Content Type     |
-| ---------------------- | ----------- | ---------------- |
-| Errors\V2ErrorResponse | default     | application/json |
-| Errors\SDKException    | 4XX, 5XX    | \*/\*            |
+| Error Type                                         | Status Code | Content Type     |
+| -------------------------------------------------- | ----------- | ---------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default     | application/json |
+| Errors\SDKException                                | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -451,7 +450,6 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Errors;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -468,10 +466,10 @@ try {
 
     );
 
-    if ($response->v2ConfigInfoResponse !== null) {
+    if ($response->v2ConfigInfo !== null) {
         // handle response
     }
-} catch (Errors\V2ErrorResponseThrowable $e) {
+} catch (\formance\stack\Models\Ledger\V2ErrorResponseErrorThrowable $e) {
     // handle $e->$container data
     throw $e;
 } catch (Errors\SDKException $e) {
@@ -480,77 +478,6 @@ try {
 }
 ```
 <!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally using the `setServerIndex(int $serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| #   | Server                                                | Variables                        | Description                                |
-| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
-| 0   | `http://localhost`                                    |                                  | local server                               |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
-
-If the selected server has variables, you may override its default values using the associated builder method(s):
-
-| Variable       | BuilderMethod                                         | Supported Values                                         | Default           | Description                                                   |
-| -------------- | ----------------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `setEnvironment(stack\ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `setOrganization(string organization)`                | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-
-#### Example
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-
-$sdk = stack\SDK::builder()
-    ->setServerIndex(1)
-    ->setEnvironment('us-east-1')
-    ->setOrganization('orgID-stackID')
-    ->build();
-
-
-
-$response = $sdk->getVersions(
-
-);
-
-if ($response->getVersionsResponse !== null) {
-    // handle response
-}
-```
-
-### Override Server URL Per-Client
-
-The default server can also be overridden globally using the `setServerUrl(string $serverUrl)` builder method when initializing the SDK client instance. For example:
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-
-$sdk = stack\SDK::builder()
-    ->setServerURL('https://orgID-stackID.eu.sandbox.formance.cloud')
-    ->build();
-
-
-
-$response = $sdk->getVersions(
-
-);
-
-if ($response->getVersionsResponse !== null) {
-    // handle response
-}
-```
-<!-- End Server Selection [server] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

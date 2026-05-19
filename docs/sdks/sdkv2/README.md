@@ -66,6 +66,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2CancelEventRequest](../../Models/Operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -73,10 +74,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## createTrigger
 
@@ -115,9 +116,10 @@ if ($response->v2CreateTriggerResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `$request`                                                   | [Shared\V2TriggerData](../../Models/Shared/V2TriggerData.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                          | [\formance\stack\Models\Orchestration\V2TriggerData1](../../Models/orchestration/V2TriggerData1.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$serverURL`                                                                                        | *string*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -125,10 +127,10 @@ if ($response->v2CreateTriggerResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## createWorkflow
 
@@ -167,9 +169,10 @@ if ($response->v2CreateWorkflowResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `$request`                                                                       | [Shared\V2CreateWorkflowRequest](../../Models/Shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                              | [\formance\stack\Models\Orchestration\V2WorkflowConfig](../../Models/orchestration/V2WorkflowConfig.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| `$serverURL`                                                                                            | *string*                                                                                                | :heavy_minus_sign:                                                                                      | An optional server URL to use.                                                                          |
 
 ### Response
 
@@ -177,10 +180,10 @@ if ($response->v2CreateWorkflowResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## deleteTrigger
 
@@ -225,6 +228,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2DeleteTriggerRequest](../../Models/Operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -232,10 +236,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## deleteWorkflow
 
@@ -280,6 +284,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V2DeleteWorkflowRequest](../../Models/Operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -287,10 +292,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getInstance
 
@@ -335,6 +340,7 @@ if ($response->v2GetWorkflowInstanceResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2GetInstanceRequest](../../Models/Operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -342,10 +348,10 @@ if ($response->v2GetWorkflowInstanceResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getInstanceHistory
 
@@ -390,6 +396,7 @@ if ($response->v2GetWorkflowInstanceHistoryResponse !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\V2GetInstanceHistoryRequest](../../Models/Operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -397,10 +404,10 @@ if ($response->v2GetWorkflowInstanceHistoryResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getInstanceStageHistory
 
@@ -446,6 +453,7 @@ if ($response->v2GetWorkflowInstanceHistoryStageResponse !== null) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\V2GetInstanceStageHistoryRequest](../../Models/Operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -453,10 +461,10 @@ if ($response->v2GetWorkflowInstanceHistoryStageResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getServerInfo
 
@@ -493,16 +501,22 @@ if ($response->v2ServerInfo !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\V2GetServerInfoResponse](../../Models/Operations/V2GetServerInfoResponse.md)**
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getWorkflow
 
@@ -547,6 +561,7 @@ if ($response->v2GetWorkflowResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2GetWorkflowRequest](../../Models/Operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -554,10 +569,10 @@ if ($response->v2GetWorkflowResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## listInstances
 
@@ -605,6 +620,7 @@ if ($response->v2ListRunsResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2ListInstancesRequest](../../Models/Operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -612,10 +628,10 @@ if ($response->v2ListRunsResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## listTriggers
 
@@ -661,6 +677,7 @@ if ($response->v2ListTriggersResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V2ListTriggersRequest](../../Models/Operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -668,10 +685,10 @@ if ($response->v2ListTriggersResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## listTriggersOccurrences
 
@@ -718,6 +735,7 @@ if ($response->v2ListTriggersOccurrencesResponse !== null) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\V2ListTriggersOccurrencesRequest](../../Models/Operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -725,10 +743,10 @@ if ($response->v2ListTriggersOccurrencesResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## listWorkflows
 
@@ -774,6 +792,7 @@ if ($response->v2ListWorkflowsResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2ListWorkflowsRequest](../../Models/Operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -781,10 +800,10 @@ if ($response->v2ListWorkflowsResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## readTrigger
 
@@ -829,6 +848,7 @@ if ($response->v2ReadTriggerResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2ReadTriggerRequest](../../Models/Operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -836,10 +856,10 @@ if ($response->v2ReadTriggerResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## runWorkflow
 
@@ -884,6 +904,7 @@ if ($response->v2RunWorkflowResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2RunWorkflowRequest](../../Models/Operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -891,10 +912,10 @@ if ($response->v2RunWorkflowResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## sendEvent
 
@@ -939,6 +960,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\V2SendEventRequest](../../Models/Operations/V2SendEventRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -946,10 +968,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## testTrigger
 
@@ -994,6 +1016,7 @@ if ($response->v2TestTriggerResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\TestTriggerRequest](../../Models/Operations/TestTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -1001,7 +1024,7 @@ if ($response->v2TestTriggerResponse !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\V2Error      | default             | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| \formance\stack\Models\Orchestration\V2Error | default                                      | application/json                             |
+| Errors\SDKException                          | 4XX, 5XX                                     | \*/\*                                        |

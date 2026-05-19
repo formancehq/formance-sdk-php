@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2GetServerInfoResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2GetServerInfoResponse
     /**
      * Server information
      *
-     * @var ?Shared\V2ServerInfo $v2ServerInfo
+     * @var ?\formance\stack\Models\Orchestration\V2ServerInfo $v2ServerInfo
      */
-    public ?Shared\V2ServerInfo $v2ServerInfo = null;
+    public ?\formance\stack\Models\Orchestration\V2ServerInfo $v2ServerInfo = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2ServerInfo  $v2ServerInfo
+     * @param  ?\formance\stack\Models\Orchestration\V2ServerInfo  $v2ServerInfo
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2ServerInfo $v2ServerInfo = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2ServerInfo $v2ServerInfo = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2GetInstanceStageHistoryResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2GetInstanceStageHistoryResponse
     /**
      * The workflow instance stage history
      *
-     * @var ?Shared\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse
+     * @var ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse
      */
-    public ?Shared\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null;
+    public ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2GetWorkflowInstanceHistoryStageResponse  $v2GetWorkflowInstanceHistoryStageResponse
+     * @param  ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse  $v2GetWorkflowInstanceHistoryStageResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

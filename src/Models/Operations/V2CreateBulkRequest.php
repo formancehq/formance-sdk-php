@@ -8,14 +8,13 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateBulkRequest
 {
     /**
      * $requestBody
      *
-     * @var array<Shared\V2BulkElementCreateTransaction|Shared\V2BulkElementAddMetadata|Shared\V2BulkElementRevertTransaction|Shared\V2BulkElementDeleteMetadata> $requestBody
+     * @var array<mixed> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public array $requestBody;
@@ -61,7 +60,7 @@ class V2CreateBulkRequest
     public ?string $schemaVersion = null;
 
     /**
-     * @param  array<Shared\V2BulkElementCreateTransaction|Shared\V2BulkElementAddMetadata|Shared\V2BulkElementRevertTransaction|Shared\V2BulkElementDeleteMetadata>  $requestBody
+     * @param  array<mixed>  $requestBody
      * @param  string  $ledger
      * @param  ?bool  $atomic
      * @param  ?bool  $continueOnFailure

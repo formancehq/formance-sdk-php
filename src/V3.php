@@ -10,12 +10,243 @@ namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 use formance\stack\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
 
 class V3
 {
+    public const V3_ADD_ACCOUNT_TO_POOL_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_ADD_BANK_ACCOUNT_TO_PAYMENT_SERVICE_USER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_APPROVE_PAYMENT_INITIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_CREATE_ACCOUNT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_CREATE_BANK_ACCOUNT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_CREATE_LINK_FOR_PAYMENT_SERVICE_USER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_CREATE_PAYMENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_CREATE_PAYMENT_SERVICE_USER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_CREATE_POOL_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_DELETE_PAYMENT_INITIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_DELETE_PAYMENT_SERVICE_USER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_DELETE_PAYMENT_SERVICE_USER_CONNECTION_FROM_CONNECTOR_ID_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_DELETE_PAYMENT_SERVICE_USER_CONNECTOR_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_DELETE_POOL_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_FORWARD_BANK_ACCOUNT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_FORWARD_PAYMENT_SERVICE_USER_BANK_ACCOUNT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_FORWARD_PAYMENT_SERVICE_USER_TO_PROVIDER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_ACCOUNT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_ACCOUNT_BALANCES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_BANK_ACCOUNT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_CONNECTOR_CONFIG_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_CONNECTOR_SCHEDULE_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_PAYMENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_PAYMENT_INITIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_PAYMENT_SERVICE_USER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_PAYMENT_SERVICE_USER_LINK_ATTEMPT_FROM_CONNECTOR_ID_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_POOL_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_POOL_BALANCES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_POOL_BALANCES_LATEST_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_GET_TASK_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_INITIATE_PAYMENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_INSTALL_CONNECTOR_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_ACCOUNTS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_BANK_ACCOUNTS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_CONNECTOR_CONFIGS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_CONNECTOR_SCHEDULE_INSTANCES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_CONNECTOR_SCHEDULES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_CONNECTORS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_INITIATION_ADJUSTMENTS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_INITIATION_RELATED_PAYMENTS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_INITIATIONS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_SERVICE_USER_CONNECTIONS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_SERVICE_USER_CONNECTIONS_FROM_CONNECTOR_ID_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_SERVICE_USER_LINK_ATTEMPTS_FROM_CONNECTOR_ID_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENT_SERVICE_USERS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_PAYMENTS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_LIST_POOLS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_REJECT_PAYMENT_INITIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_REMOVE_ACCOUNT_FROM_POOL_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_RESET_CONNECTOR_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_RETRY_PAYMENT_INITIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_REVERSE_PAYMENT_INITIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_UNINSTALL_CONNECTOR_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_UPDATE_BANK_ACCOUNT_METADATA_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_UPDATE_CONNECTOR_CONFIG_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_UPDATE_LINK_FOR_PAYMENT_SERVICE_USER_ON_CONNECTOR_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_UPDATE_PAYMENT_METADATA_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const V3_UPDATE_POOL_QUERY_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -49,12 +280,17 @@ class V3
      * Add an account to a pool
      *
      * @param  Operations\V3AddAccountToPoolRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3AddAccountToPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addAccountToPool(Operations\V3AddAccountToPoolRequest $request, ?Options $options = null): Operations\V3AddAccountToPoolResponse
+    public function addAccountToPool(Operations\V3AddAccountToPoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3AddAccountToPoolResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_ADD_ACCOUNT_TO_POOL_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}/accounts/{accountID}', Operations\V3AddAccountToPoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -92,7 +328,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -104,12 +340,17 @@ class V3
      * Add a bank account to a payment service user
      *
      * @param  Operations\V3AddBankAccountToPaymentServiceUserRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3AddBankAccountToPaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addBankAccountToPaymentServiceUser(Operations\V3AddBankAccountToPaymentServiceUserRequest $request, ?Options $options = null): Operations\V3AddBankAccountToPaymentServiceUserResponse
+    public function addBankAccountToPaymentServiceUser(Operations\V3AddBankAccountToPaymentServiceUserRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3AddBankAccountToPaymentServiceUserResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_ADD_BANK_ACCOUNT_TO_PAYMENT_SERVICE_USER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}', Operations\V3AddBankAccountToPaymentServiceUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -147,7 +388,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -159,12 +400,17 @@ class V3
      * Approve a payment initiation
      *
      * @param  Operations\V3ApprovePaymentInitiationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ApprovePaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function approvePaymentInitiation(Operations\V3ApprovePaymentInitiationRequest $request, ?Options $options = null): Operations\V3ApprovePaymentInitiationResponse
+    public function approvePaymentInitiation(Operations\V3ApprovePaymentInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ApprovePaymentInitiationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_APPROVE_PAYMENT_INITIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}/approve', Operations\V3ApprovePaymentInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -194,7 +440,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ApprovePaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ApprovePaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ApprovePaymentInitiationResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -211,7 +457,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -223,13 +469,18 @@ class V3
      * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
      *
      *
-     * @param  ?Shared\V3CreateAccountRequest  $request
+     * @param  ?\formance\stack\Models\Payments\V3CreateAccountRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3CreateAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createAccount(?Shared\V3CreateAccountRequest $request = null, ?Options $options = null): Operations\V3CreateAccountResponse
+    public function createAccount(?\formance\stack\Models\Payments\V3CreateAccountRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3CreateAccountResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_CREATE_ACCOUNT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -263,7 +514,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3CreateAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3CreateAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3CreateAccountResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -280,7 +531,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -292,13 +543,18 @@ class V3
      * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
      *
      *
-     * @param  ?Shared\V3CreateBankAccountRequest  $request
+     * @param  ?\formance\stack\Models\Payments\V3CreateBankAccountRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3CreateBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createBankAccount(?Shared\V3CreateBankAccountRequest $request = null, ?Options $options = null): Operations\V3CreateBankAccountResponse
+    public function createBankAccount(?\formance\stack\Models\Payments\V3CreateBankAccountRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3CreateBankAccountResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_CREATE_BANK_ACCOUNT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/bank-accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -332,7 +588,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3CreateBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3CreateBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3CreateBankAccountResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -349,7 +605,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -361,12 +617,17 @@ class V3
      * Create an authentication link for a payment service user on a connector, for oauth flow
      *
      * @param  Operations\V3CreateLinkForPaymentServiceUserRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3CreateLinkForPaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createLinkForPaymentServiceUser(Operations\V3CreateLinkForPaymentServiceUserRequest $request, ?Options $options = null): Operations\V3CreateLinkForPaymentServiceUserResponse
+    public function createLinkForPaymentServiceUser(Operations\V3CreateLinkForPaymentServiceUserRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3CreateLinkForPaymentServiceUserResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_CREATE_LINK_FOR_PAYMENT_SERVICE_USER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link', Operations\V3CreateLinkForPaymentServiceUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -400,7 +661,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserCreateLinkResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3CreateLinkForPaymentServiceUserResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -417,7 +678,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -429,13 +690,18 @@ class V3
      * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
      *
      *
-     * @param  ?Shared\V3CreatePaymentRequest  $request
+     * @param  ?\formance\stack\Models\Payments\V3CreatePaymentRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3CreatePaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPayment(?Shared\V3CreatePaymentRequest $request = null, ?Options $options = null): Operations\V3CreatePaymentResponse
+    public function createPayment(?\formance\stack\Models\Payments\V3CreatePaymentRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3CreatePaymentResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_CREATE_PAYMENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payments');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -469,7 +735,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3CreatePaymentResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3CreatePaymentResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3CreatePaymentResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -486,7 +752,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -497,13 +763,18 @@ class V3
     /**
      * Create a formance payment service user object
      *
-     * @param  ?Shared\V3CreatePaymentServiceUserRequest  $request
+     * @param  ?\formance\stack\Models\Payments\V3CreatePaymentServiceUserRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3CreatePaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPaymentServiceUser(?Shared\V3CreatePaymentServiceUserRequest $request = null, ?Options $options = null): Operations\V3CreatePaymentServiceUserResponse
+    public function createPaymentServiceUser(?\formance\stack\Models\Payments\V3CreatePaymentServiceUserRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3CreatePaymentServiceUserResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_CREATE_PAYMENT_SERVICE_USER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -537,7 +808,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3CreatePaymentServiceUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3CreatePaymentServiceUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3CreatePaymentServiceUserResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -554,7 +825,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -565,13 +836,18 @@ class V3
     /**
      * Create a formance pool object
      *
-     * @param  ?Shared\V3CreatePoolRequest  $request
+     * @param  ?\formance\stack\Models\Payments\V3CreatePoolRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3CreatePoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPool(?Shared\V3CreatePoolRequest $request = null, ?Options $options = null): Operations\V3CreatePoolResponse
+    public function createPool(?\formance\stack\Models\Payments\V3CreatePoolRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3CreatePoolResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_CREATE_POOL_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -605,7 +881,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3CreatePoolResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3CreatePoolResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3CreatePoolResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -622,7 +898,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -634,12 +910,17 @@ class V3
      * Delete a payment initiation by ID
      *
      * @param  Operations\V3DeletePaymentInitiationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3DeletePaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePaymentInitiation(Operations\V3DeletePaymentInitiationRequest $request, ?Options $options = null): Operations\V3DeletePaymentInitiationResponse
+    public function deletePaymentInitiation(Operations\V3DeletePaymentInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3DeletePaymentInitiationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_DELETE_PAYMENT_INITIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}', Operations\V3DeletePaymentInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -677,7 +958,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -689,12 +970,17 @@ class V3
      * Delete a payment service user by ID
      *
      * @param  Operations\V3DeletePaymentServiceUserRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3DeletePaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePaymentServiceUser(Operations\V3DeletePaymentServiceUserRequest $request, ?Options $options = null): Operations\V3DeletePaymentServiceUserResponse
+    public function deletePaymentServiceUser(Operations\V3DeletePaymentServiceUserRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3DeletePaymentServiceUserResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_DELETE_PAYMENT_SERVICE_USER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}', Operations\V3DeletePaymentServiceUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -724,7 +1010,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserDeleteResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3DeletePaymentServiceUserResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -741,7 +1027,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -753,12 +1039,17 @@ class V3
      * Delete a connection for a payment service user on a connector
      *
      * @param  Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePaymentServiceUserConnectionFromConnectorID(Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest $request, ?Options $options = null): Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
+    public function deletePaymentServiceUserConnectionFromConnectorID(Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_DELETE_PAYMENT_SERVICE_USER_CONNECTION_FROM_CONNECTOR_ID_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}', Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -788,7 +1079,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserDeleteConnectionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectionResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -805,7 +1096,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -817,12 +1108,17 @@ class V3
      * Remove a payment service user from a connector, the PSU will still exist in Formance
      *
      * @param  Operations\V3DeletePaymentServiceUserConnectorRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3DeletePaymentServiceUserConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePaymentServiceUserConnector(Operations\V3DeletePaymentServiceUserConnectorRequest $request, ?Options $options = null): Operations\V3DeletePaymentServiceUserConnectorResponse
+    public function deletePaymentServiceUserConnector(Operations\V3DeletePaymentServiceUserConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3DeletePaymentServiceUserConnectorResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_DELETE_PAYMENT_SERVICE_USER_CONNECTOR_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}', Operations\V3DeletePaymentServiceUserConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -852,7 +1148,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserDeleteConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3DeletePaymentServiceUserConnectorResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -869,7 +1165,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -881,12 +1177,17 @@ class V3
      * Delete a pool by ID
      *
      * @param  Operations\V3DeletePoolRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3DeletePoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePool(Operations\V3DeletePoolRequest $request, ?Options $options = null): Operations\V3DeletePoolResponse
+    public function deletePool(Operations\V3DeletePoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3DeletePoolResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_DELETE_POOL_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}', Operations\V3DeletePoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -924,7 +1225,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -936,12 +1237,17 @@ class V3
      * Forward a Bank Account to a PSP for creation
      *
      * @param  Operations\V3ForwardBankAccountRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ForwardBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function forwardBankAccount(Operations\V3ForwardBankAccountRequest $request, ?Options $options = null): Operations\V3ForwardBankAccountResponse
+    public function forwardBankAccount(Operations\V3ForwardBankAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ForwardBankAccountResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_FORWARD_BANK_ACCOUNT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/bank-accounts/{bankAccountID}/forward', Operations\V3ForwardBankAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -952,7 +1258,7 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ForwardBankAccount', ['auth:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ForwardBankAccount', null, null);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -975,7 +1281,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ForwardBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ForwardBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ForwardBankAccountResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -992,7 +1298,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1004,12 +1310,17 @@ class V3
      * Forward a payment service user's bank account to a connector
      *
      * @param  Operations\V3ForwardPaymentServiceUserBankAccountRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ForwardPaymentServiceUserBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function forwardPaymentServiceUserBankAccount(Operations\V3ForwardPaymentServiceUserBankAccountRequest $request, ?Options $options = null): Operations\V3ForwardPaymentServiceUserBankAccountResponse
+    public function forwardPaymentServiceUserBankAccount(Operations\V3ForwardPaymentServiceUserBankAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ForwardPaymentServiceUserBankAccountResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_FORWARD_PAYMENT_SERVICE_USER_BANK_ACCOUNT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward', Operations\V3ForwardPaymentServiceUserBankAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1043,7 +1354,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ForwardPaymentServiceUserBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ForwardPaymentServiceUserBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ForwardPaymentServiceUserBankAccountResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1060,7 +1371,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1072,12 +1383,17 @@ class V3
      * Register/forward a payment service user on/to a connector
      *
      * @param  Operations\V3ForwardPaymentServiceUserToProviderRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ForwardPaymentServiceUserToProviderResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function forwardPaymentServiceUserToProvider(Operations\V3ForwardPaymentServiceUserToProviderRequest $request, ?Options $options = null): Operations\V3ForwardPaymentServiceUserToProviderResponse
+    public function forwardPaymentServiceUserToProvider(Operations\V3ForwardPaymentServiceUserToProviderRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ForwardPaymentServiceUserToProviderResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_FORWARD_PAYMENT_SERVICE_USER_TO_PROVIDER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward', Operations\V3ForwardPaymentServiceUserToProviderRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1115,7 +1431,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1127,12 +1443,17 @@ class V3
      * Get an account by ID
      *
      * @param  Operations\V3GetAccountRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getAccount(Operations\V3GetAccountRequest $request, ?Options $options = null): Operations\V3GetAccountResponse
+    public function getAccount(Operations\V3GetAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetAccountResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_ACCOUNT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/accounts/{accountID}', Operations\V3GetAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1162,7 +1483,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetAccountResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1179,7 +1500,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1191,12 +1512,17 @@ class V3
      * Get account balances
      *
      * @param  Operations\V3GetAccountBalancesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetAccountBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getAccountBalances(Operations\V3GetAccountBalancesRequest $request, ?Options $options = null): Operations\V3GetAccountBalancesResponse
+    public function getAccountBalances(Operations\V3GetAccountBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetAccountBalancesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_ACCOUNT_BALANCES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/accounts/{accountID}/balances', Operations\V3GetAccountBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1229,7 +1555,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3BalancesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3BalancesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetAccountBalancesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1246,7 +1572,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1258,19 +1584,24 @@ class V3
      * Get a Bank Account by ID
      *
      * @param  Operations\V3GetBankAccountRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getBankAccount(Operations\V3GetBankAccountRequest $request, ?Options $options = null): Operations\V3GetBankAccountResponse
+    public function getBankAccount(Operations\V3GetBankAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetBankAccountResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_BANK_ACCOUNT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/bank-accounts/{bankAccountID}', Operations\V3GetBankAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetBankAccount', ['auth:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetBankAccount', null, null);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -1293,7 +1624,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetBankAccountResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetBankAccountResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1310,7 +1641,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1322,12 +1653,17 @@ class V3
      * Get a connector configuration by ID
      *
      * @param  Operations\V3GetConnectorConfigRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetConnectorConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getConnectorConfig(Operations\V3GetConnectorConfigRequest $request, ?Options $options = null): Operations\V3GetConnectorConfigResponse
+    public function getConnectorConfig(Operations\V3GetConnectorConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetConnectorConfigResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_CONNECTOR_CONFIG_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}/config', Operations\V3GetConnectorConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1357,7 +1693,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetConnectorConfigResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetConnectorConfigResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetConnectorConfigResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1374,7 +1710,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1386,12 +1722,17 @@ class V3
      * Get a connector schedule by ID
      *
      * @param  Operations\V3GetConnectorScheduleRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetConnectorScheduleResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getConnectorSchedule(Operations\V3GetConnectorScheduleRequest $request, ?Options $options = null): Operations\V3GetConnectorScheduleResponse
+    public function getConnectorSchedule(Operations\V3GetConnectorScheduleRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetConnectorScheduleResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_CONNECTOR_SCHEDULE_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}', Operations\V3GetConnectorScheduleRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1421,7 +1762,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ConnectorScheduleResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ConnectorScheduleResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetConnectorScheduleResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1438,7 +1779,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1450,12 +1791,17 @@ class V3
      * Get a payment by ID
      *
      * @param  Operations\V3GetPaymentRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPayment(Operations\V3GetPaymentRequest $request, ?Options $options = null): Operations\V3GetPaymentResponse
+    public function getPayment(Operations\V3GetPaymentRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPaymentResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_PAYMENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payments/{paymentID}', Operations\V3GetPaymentRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1485,7 +1831,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetPaymentResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetPaymentResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPaymentResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1502,7 +1848,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1514,12 +1860,17 @@ class V3
      * Get a payment initiation by ID
      *
      * @param  Operations\V3GetPaymentInitiationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPaymentInitiation(Operations\V3GetPaymentInitiationRequest $request, ?Options $options = null): Operations\V3GetPaymentInitiationResponse
+    public function getPaymentInitiation(Operations\V3GetPaymentInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPaymentInitiationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_PAYMENT_INITIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}', Operations\V3GetPaymentInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1549,7 +1900,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetPaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetPaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPaymentInitiationResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1566,7 +1917,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1578,12 +1929,17 @@ class V3
      * Get a payment service user by ID
      *
      * @param  Operations\V3GetPaymentServiceUserRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPaymentServiceUser(Operations\V3GetPaymentServiceUserRequest $request, ?Options $options = null): Operations\V3GetPaymentServiceUserResponse
+    public function getPaymentServiceUser(Operations\V3GetPaymentServiceUserRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPaymentServiceUserResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_PAYMENT_SERVICE_USER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}', Operations\V3GetPaymentServiceUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1613,7 +1969,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetPaymentServiceUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetPaymentServiceUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPaymentServiceUserResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1630,7 +1986,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1642,12 +1998,17 @@ class V3
      * Get a link attempt for a payment service user on a connector
      *
      * @param  Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPaymentServiceUserLinkAttemptFromConnectorID(Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest $request, ?Options $options = null): Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
+    public function getPaymentServiceUserLinkAttemptFromConnectorID(Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_PAYMENT_SERVICE_USER_LINK_ATTEMPT_FROM_CONNECTOR_ID_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}', Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1677,7 +2038,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserLinkAttempt', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1694,7 +2055,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1706,12 +2067,17 @@ class V3
      * Get a pool by ID
      *
      * @param  Operations\V3GetPoolRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPool(Operations\V3GetPoolRequest $request, ?Options $options = null): Operations\V3GetPoolResponse
+    public function getPool(Operations\V3GetPoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPoolResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_POOL_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}', Operations\V3GetPoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1741,7 +2107,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetPoolResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetPoolResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPoolResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1758,7 +2124,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1770,12 +2136,17 @@ class V3
      * Get historical pool balances from a particular point in time
      *
      * @param  Operations\V3GetPoolBalancesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPoolBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPoolBalances(Operations\V3GetPoolBalancesRequest $request, ?Options $options = null): Operations\V3GetPoolBalancesResponse
+    public function getPoolBalances(Operations\V3GetPoolBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPoolBalancesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_POOL_BALANCES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}/balances', Operations\V3GetPoolBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1808,7 +2179,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PoolBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PoolBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPoolBalancesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1825,7 +2196,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1837,12 +2208,17 @@ class V3
      * Get latest pool balances
      *
      * @param  Operations\V3GetPoolBalancesLatestRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetPoolBalancesLatestResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPoolBalancesLatest(Operations\V3GetPoolBalancesLatestRequest $request, ?Options $options = null): Operations\V3GetPoolBalancesLatestResponse
+    public function getPoolBalancesLatest(Operations\V3GetPoolBalancesLatestRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetPoolBalancesLatestResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_POOL_BALANCES_LATEST_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}/balances/latest', Operations\V3GetPoolBalancesLatestRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1872,7 +2248,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PoolBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PoolBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetPoolBalancesLatestResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1889,7 +2265,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1901,12 +2277,17 @@ class V3
      * Get a task and its result by ID
      *
      * @param  Operations\V3GetTaskRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3GetTaskResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getTask(Operations\V3GetTaskRequest $request, ?Options $options = null): Operations\V3GetTaskResponse
+    public function getTask(Operations\V3GetTaskRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3GetTaskResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_GET_TASK_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/tasks/{taskID}', Operations\V3GetTaskRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1936,7 +2317,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3GetTaskResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3GetTaskResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3GetTaskResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -1953,7 +2334,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -1965,12 +2346,17 @@ class V3
      * Initiate a payment
      *
      * @param  ?Operations\V3InitiatePaymentRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3InitiatePaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function initiatePayment(?Operations\V3InitiatePaymentRequest $request = null, ?Options $options = null): Operations\V3InitiatePaymentResponse
+    public function initiatePayment(?Operations\V3InitiatePaymentRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3InitiatePaymentResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_INITIATE_PAYMENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2007,7 +2393,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3InitiatePaymentResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3InitiatePaymentResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3InitiatePaymentResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2024,7 +2410,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2036,16 +2422,21 @@ class V3
      * Install a connector
      *
      * @param  Operations\V3InstallConnectorRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3InstallConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function installConnector(Operations\V3InstallConnectorRequest $request, ?Options $options = null): Operations\V3InstallConnectorResponse
+    public function installConnector(Operations\V3InstallConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3InstallConnectorResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_INSTALL_CONNECTOR_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/install/{connector}', Operations\V3InstallConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'v3InstallConnectorRequest', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'v3ConnectorConfig', 'json');
         if ($body !== null) {
             $httpOptions = array_merge_recursive($httpOptions, $body);
         }
@@ -2075,7 +2466,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3InstallConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3InstallConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3InstallConnectorResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2092,7 +2483,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2104,15 +2495,24 @@ class V3
      * List all accounts
      *
      * @param  ?Operations\V3ListAccountsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listAccounts(?Operations\V3ListAccountsRequest $request = null, ?Options $options = null): Operations\V3ListAccountsResponse
+    public function listAccounts(?Operations\V3ListAccountsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListAccountsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_ACCOUNTS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListAccountsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2142,7 +2542,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3AccountsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3AccountsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListAccountsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2159,7 +2559,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2171,15 +2571,24 @@ class V3
      * List all bank accounts
      *
      * @param  ?Operations\V3ListBankAccountsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListBankAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listBankAccounts(?Operations\V3ListBankAccountsRequest $request = null, ?Options $options = null): Operations\V3ListBankAccountsResponse
+    public function listBankAccounts(?Operations\V3ListBankAccountsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListBankAccountsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_BANK_ACCOUNTS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/bank-accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListBankAccountsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2209,7 +2618,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3BankAccountsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3BankAccountsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListBankAccountsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2226,7 +2635,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2237,12 +2646,17 @@ class V3
     /**
      * List all connector configurations
      *
+     * @param  ?string  $serverURL
      * @return Operations\V3ListConnectorConfigsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listConnectorConfigs(?Options $options = null): Operations\V3ListConnectorConfigsResponse
+    public function listConnectorConfigs(?string $serverURL = null, ?Options $options = null): Operations\V3ListConnectorConfigsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_CONNECTOR_CONFIGS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/configs');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2272,7 +2686,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ConnectorConfigsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ConnectorConfigsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListConnectorConfigsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2289,7 +2703,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2301,12 +2715,17 @@ class V3
      * List all connector schedule instances
      *
      * @param  Operations\V3ListConnectorScheduleInstancesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListConnectorScheduleInstancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listConnectorScheduleInstances(Operations\V3ListConnectorScheduleInstancesRequest $request, ?Options $options = null): Operations\V3ListConnectorScheduleInstancesResponse
+    public function listConnectorScheduleInstances(Operations\V3ListConnectorScheduleInstancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListConnectorScheduleInstancesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_CONNECTOR_SCHEDULE_INSTANCES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances', Operations\V3ListConnectorScheduleInstancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2339,7 +2758,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ConnectorScheduleInstancesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ConnectorScheduleInstancesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListConnectorScheduleInstancesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2356,7 +2775,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2368,15 +2787,24 @@ class V3
      * List all connector schedules
      *
      * @param  Operations\V3ListConnectorSchedulesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListConnectorSchedulesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listConnectorSchedules(Operations\V3ListConnectorSchedulesRequest $request, ?Options $options = null): Operations\V3ListConnectorSchedulesResponse
+    public function listConnectorSchedules(Operations\V3ListConnectorSchedulesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListConnectorSchedulesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_CONNECTOR_SCHEDULES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}/schedules', Operations\V3ListConnectorSchedulesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListConnectorSchedulesRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2406,7 +2834,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ConnectorSchedulesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListConnectorSchedulesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2423,7 +2851,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2435,15 +2863,24 @@ class V3
      * List all connectors
      *
      * @param  ?Operations\V3ListConnectorsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListConnectorsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listConnectors(?Operations\V3ListConnectorsRequest $request = null, ?Options $options = null): Operations\V3ListConnectorsResponse
+    public function listConnectors(?Operations\V3ListConnectorsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListConnectorsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_CONNECTORS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListConnectorsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2473,7 +2910,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ConnectorsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ConnectorsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListConnectorsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2490,7 +2927,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2502,15 +2939,24 @@ class V3
      * List all payment initiation adjustments
      *
      * @param  Operations\V3ListPaymentInitiationAdjustmentsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentInitiationAdjustmentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentInitiationAdjustments(Operations\V3ListPaymentInitiationAdjustmentsRequest $request, ?Options $options = null): Operations\V3ListPaymentInitiationAdjustmentsResponse
+    public function listPaymentInitiationAdjustments(Operations\V3ListPaymentInitiationAdjustmentsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentInitiationAdjustmentsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_INITIATION_ADJUSTMENTS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments', Operations\V3ListPaymentInitiationAdjustmentsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentInitiationAdjustmentsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2540,7 +2986,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentInitiationAdjustmentsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentInitiationAdjustmentsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentInitiationAdjustmentsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2557,7 +3003,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2569,15 +3015,24 @@ class V3
      * List all payments related to a payment initiation
      *
      * @param  Operations\V3ListPaymentInitiationRelatedPaymentsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentInitiationRelatedPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentInitiationRelatedPayments(Operations\V3ListPaymentInitiationRelatedPaymentsRequest $request, ?Options $options = null): Operations\V3ListPaymentInitiationRelatedPaymentsResponse
+    public function listPaymentInitiationRelatedPayments(Operations\V3ListPaymentInitiationRelatedPaymentsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentInitiationRelatedPaymentsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_INITIATION_RELATED_PAYMENTS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}/payments', Operations\V3ListPaymentInitiationRelatedPaymentsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentInitiationRelatedPaymentsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2607,7 +3062,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentInitiationRelatedPaymentsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentInitiationRelatedPaymentsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentInitiationRelatedPaymentsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2624,7 +3079,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2636,15 +3091,24 @@ class V3
      * List all payment initiations
      *
      * @param  ?Operations\V3ListPaymentInitiationsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentInitiationsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentInitiations(?Operations\V3ListPaymentInitiationsRequest $request = null, ?Options $options = null): Operations\V3ListPaymentInitiationsResponse
+    public function listPaymentInitiations(?Operations\V3ListPaymentInitiationsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentInitiationsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_INITIATIONS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentInitiationsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2674,7 +3138,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentInitiationsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentInitiationsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentInitiationsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2691,7 +3155,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2703,15 +3167,24 @@ class V3
      * List all connections for a payment service user
      *
      * @param  Operations\V3ListPaymentServiceUserConnectionsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentServiceUserConnectionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentServiceUserConnections(Operations\V3ListPaymentServiceUserConnectionsRequest $request, ?Options $options = null): Operations\V3ListPaymentServiceUserConnectionsResponse
+    public function listPaymentServiceUserConnections(Operations\V3ListPaymentServiceUserConnectionsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentServiceUserConnectionsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_SERVICE_USER_CONNECTIONS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections', Operations\V3ListPaymentServiceUserConnectionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentServiceUserConnectionsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2741,7 +3214,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserConnectionsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserConnectionsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentServiceUserConnectionsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2758,7 +3231,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2770,15 +3243,24 @@ class V3
      * List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
      *
      * @param  Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentServiceUserConnectionsFromConnectorID(Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest $request, ?Options $options = null): Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
+    public function listPaymentServiceUserConnectionsFromConnectorID(Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_SERVICE_USER_CONNECTIONS_FROM_CONNECTOR_ID_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections', Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2808,7 +3290,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserConnectionsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserConnectionsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2825,7 +3307,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2839,15 +3321,24 @@ class V3
      *
      *
      * @param  Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentServiceUserLinkAttemptsFromConnectorID(Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest $request, ?Options $options = null): Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
+    public function listPaymentServiceUserLinkAttemptsFromConnectorID(Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_SERVICE_USER_LINK_ATTEMPTS_FROM_CONNECTOR_ID_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts', Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2877,7 +3368,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserLinkAttemptsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2894,7 +3385,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2906,15 +3397,24 @@ class V3
      * List all payment service users
      *
      * @param  ?Operations\V3ListPaymentServiceUsersRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentServiceUsersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPaymentServiceUsers(?Operations\V3ListPaymentServiceUsersRequest $request = null, ?Options $options = null): Operations\V3ListPaymentServiceUsersResponse
+    public function listPaymentServiceUsers(?Operations\V3ListPaymentServiceUsersRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentServiceUsersResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENT_SERVICE_USERS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentServiceUsersRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -2944,7 +3444,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUsersCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUsersCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentServiceUsersResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -2961,7 +3461,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -2973,15 +3473,24 @@ class V3
      * List all payments
      *
      * @param  ?Operations\V3ListPaymentsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPayments(?Operations\V3ListPaymentsRequest $request = null, ?Options $options = null): Operations\V3ListPaymentsResponse
+    public function listPayments(?Operations\V3ListPaymentsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPaymentsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_PAYMENTS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payments');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPaymentsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -3011,7 +3520,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPaymentsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3028,7 +3537,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3040,15 +3549,24 @@ class V3
      * List all pools
      *
      * @param  ?Operations\V3ListPoolsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ListPoolsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPools(?Operations\V3ListPoolsRequest $request = null, ?Options $options = null): Operations\V3ListPoolsResponse
+    public function listPools(?Operations\V3ListPoolsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\V3ListPoolsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_LIST_POOLS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\V3ListPoolsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -3078,7 +3596,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PoolsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PoolsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ListPoolsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3095,7 +3613,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3107,12 +3625,17 @@ class V3
      * Reject a payment initiation
      *
      * @param  Operations\V3RejectPaymentInitiationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3RejectPaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function rejectPaymentInitiation(Operations\V3RejectPaymentInitiationRequest $request, ?Options $options = null): Operations\V3RejectPaymentInitiationResponse
+    public function rejectPaymentInitiation(Operations\V3RejectPaymentInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3RejectPaymentInitiationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_REJECT_PAYMENT_INITIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}/reject', Operations\V3RejectPaymentInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3150,7 +3673,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3162,12 +3685,17 @@ class V3
      * Remove an account from a pool
      *
      * @param  Operations\V3RemoveAccountFromPoolRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3RemoveAccountFromPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function removeAccountFromPool(Operations\V3RemoveAccountFromPoolRequest $request, ?Options $options = null): Operations\V3RemoveAccountFromPoolResponse
+    public function removeAccountFromPool(Operations\V3RemoveAccountFromPoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3RemoveAccountFromPoolResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_REMOVE_ACCOUNT_FROM_POOL_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}/accounts/{accountID}', Operations\V3RemoveAccountFromPoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3205,7 +3733,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3217,12 +3745,17 @@ class V3
      * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
      *
      * @param  Operations\V3ResetConnectorRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ResetConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function resetConnector(Operations\V3ResetConnectorRequest $request, ?Options $options = null): Operations\V3ResetConnectorResponse
+    public function resetConnector(Operations\V3ResetConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ResetConnectorResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_RESET_CONNECTOR_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}/reset', Operations\V3ResetConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3252,7 +3785,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ResetConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ResetConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ResetConnectorResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3269,7 +3802,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3281,12 +3814,17 @@ class V3
      * Retry a payment initiation
      *
      * @param  Operations\V3RetryPaymentInitiationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3RetryPaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function retryPaymentInitiation(Operations\V3RetryPaymentInitiationRequest $request, ?Options $options = null): Operations\V3RetryPaymentInitiationResponse
+    public function retryPaymentInitiation(Operations\V3RetryPaymentInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3RetryPaymentInitiationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_RETRY_PAYMENT_INITIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}/retry', Operations\V3RetryPaymentInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3316,7 +3854,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3RetryPaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3RetryPaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3RetryPaymentInitiationResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3333,7 +3871,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3345,12 +3883,17 @@ class V3
      * Reverse a payment initiation
      *
      * @param  Operations\V3ReversePaymentInitiationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3ReversePaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function reversePaymentInitiation(Operations\V3ReversePaymentInitiationRequest $request, ?Options $options = null): Operations\V3ReversePaymentInitiationResponse
+    public function reversePaymentInitiation(Operations\V3ReversePaymentInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3ReversePaymentInitiationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_REVERSE_PAYMENT_INITIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse', Operations\V3ReversePaymentInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3384,7 +3927,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3ReversePaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ReversePaymentInitiationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3ReversePaymentInitiationResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3401,7 +3944,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3413,12 +3956,17 @@ class V3
      * Uninstall a connector
      *
      * @param  Operations\V3UninstallConnectorRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3UninstallConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function uninstallConnector(Operations\V3UninstallConnectorRequest $request, ?Options $options = null): Operations\V3UninstallConnectorResponse
+    public function uninstallConnector(Operations\V3UninstallConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3UninstallConnectorResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_UNINSTALL_CONNECTOR_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}', Operations\V3UninstallConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3448,7 +3996,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3UninstallConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3UninstallConnectorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3UninstallConnectorResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3465,7 +4013,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3477,12 +4025,17 @@ class V3
      * Update a bank account's metadata
      *
      * @param  Operations\V3UpdateBankAccountMetadataRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3UpdateBankAccountMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateBankAccountMetadata(Operations\V3UpdateBankAccountMetadataRequest $request, ?Options $options = null): Operations\V3UpdateBankAccountMetadataResponse
+    public function updateBankAccountMetadata(Operations\V3UpdateBankAccountMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3UpdateBankAccountMetadataResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/bank-accounts/{bankAccountID}/metadata', Operations\V3UpdateBankAccountMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3493,7 +4046,7 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UpdateBankAccountMetadata', ['auth:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UpdateBankAccountMetadata', null, null);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -3524,7 +4077,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3538,16 +4091,21 @@ class V3
      * Update connector config
      *
      * @param  Operations\V3UpdateConnectorConfigRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3UpdateConnectorConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function v3UpdateConnectorConfig(Operations\V3UpdateConnectorConfigRequest $request, ?Options $options = null): Operations\V3UpdateConnectorConfigResponse
+    public function v3UpdateConnectorConfig(Operations\V3UpdateConnectorConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3UpdateConnectorConfigResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_UPDATE_CONNECTOR_CONFIG_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/connectors/{connectorID}/config', Operations\V3UpdateConnectorConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'v3InstallConnectorRequest', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'v3ConnectorConfig', 'json');
         if ($body !== null) {
             $httpOptions = array_merge_recursive($httpOptions, $body);
         }
@@ -3585,7 +4143,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\PaymentsErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\PaymentsErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3597,12 +4155,17 @@ class V3
      * Update/Regenerate a link for a payment service user on a connector
      *
      * @param  Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateLinkForPaymentServiceUserOnConnector(Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest $request, ?Options $options = null): Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse
+    public function updateLinkForPaymentServiceUserOnConnector(Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_UPDATE_LINK_FOR_PAYMENT_SERVICE_USER_ON_CONNECTOR_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link', Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3636,7 +4199,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\V3PaymentServiceUserUpdateLinkResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -3653,7 +4216,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3665,12 +4228,17 @@ class V3
      * Update a payment's metadata
      *
      * @param  Operations\V3UpdatePaymentMetadataRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3UpdatePaymentMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updatePaymentMetadata(Operations\V3UpdatePaymentMetadataRequest $request, ?Options $options = null): Operations\V3UpdatePaymentMetadataResponse
+    public function updatePaymentMetadata(Operations\V3UpdatePaymentMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3UpdatePaymentMetadataResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_UPDATE_PAYMENT_METADATA_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/payments/{paymentID}/metadata', Operations\V3UpdatePaymentMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3712,7 +4280,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -3724,12 +4292,17 @@ class V3
      * Update the query of a pool
      *
      * @param  Operations\V3UpdatePoolQueryRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\V3UpdatePoolQueryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updatePoolQuery(Operations\V3UpdatePoolQueryRequest $request, ?Options $options = null): Operations\V3UpdatePoolQueryResponse
+    public function updatePoolQuery(Operations\V3UpdatePoolQueryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V3UpdatePoolQueryResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V3::V3_UPDATE_POOL_QUERY_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/v3/pools/{poolID}/query', Operations\V3UpdatePoolQueryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3771,7 +4344,7 @@ class V3
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Payments\V3ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

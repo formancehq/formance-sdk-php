@@ -1,0 +1,11 @@
+# PaymentsErrorResponse
+
+Error
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `paymentsErrorsEnum`                                                                              | [\formance\stack\Models\Payments\PaymentsErrorsEnum](../../Models/payments/PaymentsErrorsEnum.md) | :heavy_check_mark:                                                                                | N/A                                                                                               | VALIDATION                                                                                        |
+| `errorMessage`                                                                                    | *string*                                                                                          | :heavy_check_mark:                                                                                | N/A                                                                                               | [VALIDATION] missing reference                                                                    |

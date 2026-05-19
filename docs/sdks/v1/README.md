@@ -9,7 +9,7 @@
 * [deleteClient](#deleteclient) - Delete client
 * [deleteSecret](#deletesecret) - Delete a secret from a client
 * [getOIDCWellKnowns](#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getServerInfo](#getserverinfo) - Get server info
+* [getServerInfoAuth](#getserverinfoauth) - Get server info
 * [listClients](#listclients) - List clients
 * [listUsers](#listusers) - List users
 * [readClient](#readclient) - Read client
@@ -53,9 +53,10 @@ if ($response->createClientResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `$request`                                                               | [Shared\CreateClientRequest](../../Models/Shared/CreateClientRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `$request`                                                                        | [\formance\stack\Models\Auth\ClientOptions1](../../Models/auth/ClientOptions1.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `$serverURL`                                                                      | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -110,6 +111,7 @@ if ($response->createSecretResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\CreateSecretRequest](../../Models/Operations/CreateSecretRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -164,6 +166,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteClientRequest](../../Models/Operations/DeleteClientRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -219,6 +222,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteSecretRequest](../../Models/Operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -265,6 +269,12 @@ if ($response->statusCode === 200) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\GetOIDCWellKnownsResponse](../../Models/Operations/GetOIDCWellKnownsResponse.md)**
@@ -275,13 +285,13 @@ if ($response->statusCode === 200) {
 | ------------------- | ------------------- | ------------------- |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## getServerInfo
+## getServerInfoAuth
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
+<!-- UsageSnippet language="php" operationID="getServerInfo_auth" method="get" path="/api/auth/_info" -->
 ```php
 declare(strict_types=1);
 
@@ -301,7 +311,7 @@ $sdk = stack\SDK::builder()
 
 
 
-$response = $sdk->auth->v1->getServerInfo(
+$response = $sdk->auth->v1->getServerInfoAuth(
 
 );
 
@@ -310,9 +320,15 @@ if ($response->serverInfo !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[?Operations\GetServerInfoResponse](../../Models/Operations/GetServerInfoResponse.md)**
+**[?Operations\GetServerInfoAuthResponse](../../Models/Operations/GetServerInfoAuthResponse.md)**
 
 ### Errors
 
@@ -354,6 +370,12 @@ if ($response->listClientsResponse !== null) {
     // handle response
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -399,6 +421,12 @@ if ($response->listUsersResponse !== null) {
     // handle response
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -453,6 +481,7 @@ if ($response->readClientResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\ReadClientRequest](../../Models/Operations/ReadClientRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -507,6 +536,7 @@ if ($response->readUserResponse !== null) {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\ReadUserRequest](../../Models/Operations/ReadUserRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `$serverURL`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -551,7 +581,7 @@ $response = $sdk->auth->v1->updateClient(
     request: $request
 );
 
-if ($response->updateClientResponse !== null) {
+if ($response->createClientResponse !== null) {
     // handle response
 }
 ```
@@ -561,6 +591,7 @@ if ($response->updateClientResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\UpdateClientRequest](../../Models/Operations/UpdateClientRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 

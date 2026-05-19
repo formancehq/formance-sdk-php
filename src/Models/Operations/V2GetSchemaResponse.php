@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2GetSchemaResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2GetSchemaResponse
     /**
      * Schema retrieved successfully
      *
-     * @var ?Shared\V2SchemaResponse $v2SchemaResponse
+     * @var ?\formance\stack\Models\Ledger\V2SchemaResponse $v2SchemaResponse
      */
-    public ?Shared\V2SchemaResponse $v2SchemaResponse = null;
+    public ?\formance\stack\Models\Ledger\V2SchemaResponse $v2SchemaResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2SchemaResponse  $v2SchemaResponse
+     * @param  ?\formance\stack\Models\Ledger\V2SchemaResponse  $v2SchemaResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2SchemaResponse $v2SchemaResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2SchemaResponse $v2SchemaResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

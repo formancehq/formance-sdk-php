@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateClientRequest
 {
@@ -22,19 +21,19 @@ class UpdateClientRequest
 
     /**
      *
-     * @var ?Shared\CreateClientRequest $createClientRequest
+     * @var ?\formance\stack\Models\Auth\ClientOptions1 $clientOptions
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\CreateClientRequest $createClientRequest = null;
+    public ?\formance\stack\Models\Auth\ClientOptions1 $clientOptions = null;
 
     /**
      * @param  string  $clientId
-     * @param  ?Shared\CreateClientRequest  $createClientRequest
+     * @param  ?\formance\stack\Models\Auth\ClientOptions1  $clientOptions
      * @phpstan-pure
      */
-    public function __construct(string $clientId, ?Shared\CreateClientRequest $createClientRequest = null)
+    public function __construct(string $clientId, ?\formance\stack\Models\Auth\ClientOptions1 $clientOptions = null)
     {
         $this->clientId = $clientId;
-        $this->createClientRequest = $createClientRequest;
+        $this->clientOptions = $clientOptions;
     }
 }

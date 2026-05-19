@@ -10,14 +10,14 @@
 * [countAccounts](#countaccounts) - Count the accounts from a ledger
 * [countTransactions](#counttransactions) - Count the transactions from a ledger
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
-* [getAccount](#getaccount) - Get account by its address
+* [getAccountLedger](#getaccountledger) - Get account by its address
 * [getBalances](#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getInfo](#getinfo) - Show server information
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getMapping](#getmapping) - Get the mapping of a ledger
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
-* [listAccounts](#listaccounts) - List accounts from a ledger
+* [listAccountsLedger](#listaccountsledger) - List accounts from a ledger
 * [listLogs](#listlogs) - List the logs from a ledger
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
@@ -39,6 +39,7 @@ require 'vendor/autoload.php';
 
 use Brick\Math\BigInteger;
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -52,11 +53,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\CreateTransactionsRequest(
-    transactions: new Shared\Transactions(
+    transactions: new \formance\stack\Models\Ledger\Transactions(
         transactions: [
-            new Shared\TransactionData(
+            new \formance\stack\Models\Ledger\TransactionData(
                 postings: [
-                    new Shared\Posting(
+                    new \formance\stack\Models\Ledger\Posting(
                         amount: BigInteger::of('100'),
                         asset: 'COIN',
                         destination: 'users:002',
@@ -84,6 +85,7 @@ if ($response->transactionsResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\CreateTransactionsRequest](../../Models/Operations/CreateTransactionsRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -91,10 +93,10 @@ if ($response->transactionsResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## addMetadataOnTransaction
 
@@ -144,6 +146,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\AddMetadataOnTransactionRequest](../../Models/Operations/AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -151,10 +154,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## addMetadataToAccount
 
@@ -205,6 +208,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\AddMetadataToAccountRequest](../../Models/Operations/AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -212,10 +216,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## countAccounts
 
@@ -313,6 +317,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\CountAccountsRequest](../../Models/Operations/CountAccountsRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -320,10 +325,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## countTransactions
 
@@ -373,6 +378,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\CountTransactionsRequest](../../Models/Operations/CountTransactionsRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -380,10 +386,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## createTransaction
 
@@ -399,6 +405,7 @@ require 'vendor/autoload.php';
 
 use Brick\Math\BigInteger;
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -412,9 +419,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\CreateTransactionRequest(
-    postTransaction: new Shared\PostTransaction(
+    postTransaction: new \formance\stack\Models\Ledger\PostTransaction(
         postings: [
-            new Shared\Posting(
+            new \formance\stack\Models\Ledger\Posting(
                 amount: BigInteger::of('100'),
                 asset: 'COIN',
                 destination: 'users:002',
@@ -422,7 +429,7 @@ $request = new Operations\CreateTransactionRequest(
             ),
         ],
         reference: 'ref:001',
-        script: new Shared\PostTransactionScript(
+        script: new Ledger\PostTransactionScript(
             plain: 'vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n',
             vars: [
                 'user' => 'users:042',
@@ -447,6 +454,7 @@ if ($response->transactionsResponse !== null) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\CreateTransactionRequest](../../Models/Operations/CreateTransactionRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -454,18 +462,18 @@ if ($response->transactionsResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
-## getAccount
+## getAccountLedger
 
 Get account by its address
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="getAccount" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
+<!-- UsageSnippet language="php" operationID="getAccount_ledger" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
 ```php
 declare(strict_types=1);
 
@@ -484,12 +492,12 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Operations\GetAccountRequest(
+$request = new Operations\GetAccountLedgerRequest(
     address: 'users:001',
     ledger: 'ledger001',
 );
 
-$response = $sdk->ledger->v1->getAccount(
+$response = $sdk->ledger->v1->getAccountLedger(
     request: $request
 );
 
@@ -500,20 +508,21 @@ if ($response->accountResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `$request`                                                                   | [Operations\GetAccountRequest](../../Models/Operations/GetAccountRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\GetAccountLedgerRequest](../../Models/Operations/GetAccountLedgerRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
-**[?Operations\GetAccountResponse](../../Models/Operations/GetAccountResponse.md)**
+**[?Operations\GetAccountLedgerResponse](../../Models/Operations/GetAccountLedgerResponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## getBalances
 
@@ -561,6 +570,7 @@ if ($response->balancesCursorResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\GetBalancesRequest](../../Models/Operations/GetBalancesRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -568,10 +578,10 @@ if ($response->balancesCursorResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## getBalancesAggregated
 
@@ -617,6 +627,7 @@ if ($response->aggregateBalancesResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\GetBalancesAggregatedRequest](../../Models/Operations/GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -624,10 +635,10 @@ if ($response->aggregateBalancesResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## getInfo
 
@@ -664,16 +675,22 @@ if ($response->configInfoResponse !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\GetInfoResponse](../../Models/Operations/GetInfoResponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## getLedgerInfo
 
@@ -718,6 +735,7 @@ if ($response->ledgerInfoResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\GetLedgerInfoRequest](../../Models/Operations/GetLedgerInfoRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -725,10 +743,10 @@ if ($response->ledgerInfoResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## getMapping
 
@@ -773,6 +791,7 @@ if ($response->mappingResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\GetMappingRequest](../../Models/Operations/GetMappingRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -780,10 +799,10 @@ if ($response->mappingResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## getTransaction
 
@@ -830,6 +849,7 @@ if ($response->transactionResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetTransactionRequest](../../Models/Operations/GetTransactionRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -837,18 +857,18 @@ if ($response->transactionResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
-## listAccounts
+## listAccountsLedger
 
 List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="listAccounts" method="get" path="/api/ledger/{ledger}/accounts" -->
+<!-- UsageSnippet language="php" operationID="listAccounts_ledger" method="get" path="/api/ledger/{ledger}/accounts" -->
 ```php
 declare(strict_types=1);
 
@@ -867,7 +887,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Operations\ListAccountsRequest(
+$request = new Operations\ListAccountsLedgerRequest(
     address: 'users:.+',
     after: 'users:003',
     balance: 2400,
@@ -928,7 +948,7 @@ $request = new Operations\ListAccountsRequest(
     pageSize: 100,
 );
 
-$response = $sdk->ledger->v1->listAccounts(
+$response = $sdk->ledger->v1->listAccountsLedger(
     request: $request
 );
 
@@ -939,20 +959,21 @@ if ($response->accountsCursorResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `$request`                                                                       | [Operations\ListAccountsRequest](../../Models/Operations/ListAccountsRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `$request`                                                                                   | [Operations\ListAccountsLedgerRequest](../../Models/Operations/ListAccountsLedgerRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
-**[?Operations\ListAccountsResponse](../../Models/Operations/ListAccountsResponse.md)**
+**[?Operations\ListAccountsLedgerResponse](../../Models/Operations/ListAccountsLedgerResponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## listLogs
 
@@ -1000,6 +1021,7 @@ if ($response->logsCursorResponse !== null) {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\ListLogsRequest](../../Models/Operations/ListLogsRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `$serverURL`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -1007,10 +1029,10 @@ if ($response->logsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## listTransactions
 
@@ -1062,6 +1084,7 @@ if ($response->transactionsCursorResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ListTransactionsRequest](../../Models/Operations/ListTransactionsRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1069,10 +1092,10 @@ if ($response->transactionsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## readStats
 
@@ -1118,6 +1141,7 @@ if ($response->statsResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\ReadStatsRequest](../../Models/Operations/ReadStatsRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1125,10 +1149,10 @@ if ($response->statsResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## revertTransaction
 
@@ -1175,6 +1199,7 @@ if ($response->transactionResponse !== null) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\RevertTransactionRequest](../../Models/Operations/RevertTransactionRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -1182,10 +1207,10 @@ if ($response->transactionResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
 
 ## ~~runScript~~
 
@@ -1203,6 +1228,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -1216,7 +1242,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\RunScriptRequest(
-    script: new Shared\Script(
+    script: new \formance\stack\Models\Ledger\Script(
         plain: 'vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n',
         reference: 'order_1234',
         vars: [
@@ -1241,6 +1267,7 @@ if ($response->scriptResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\RunScriptRequest](../../Models/Operations/RunScriptRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1296,6 +1323,7 @@ if ($response->mappingResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\UpdateMappingRequest](../../Models/Operations/UpdateMappingRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -1303,7 +1331,7 @@ if ($response->mappingResponse !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ErrorResponse | default              | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| \formance\stack\Models\Ledger\ErrorResponseError | default                                          | application/json                                 |
+| Errors\SDKException                              | 4XX, 5XX                                         | \*/\*                                            |
