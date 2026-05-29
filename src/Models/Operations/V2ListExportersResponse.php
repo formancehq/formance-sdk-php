@@ -35,22 +35,22 @@ class V2ListExportersResponse
     /**
      * Exporters list
      *
-     * @var ?V2ListExportersResponseBody $object
+     * @var ?\formance\stack\Models\Ledger\V2ExportersCursorResponse $v2ExportersCursorResponse
      */
-    public ?V2ListExportersResponseBody $object = null;
+    public ?\formance\stack\Models\Ledger\V2ExportersCursorResponse $v2ExportersCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?V2ListExportersResponseBody  $object
+     * @param  ?\formance\stack\Models\Ledger\V2ExportersCursorResponse  $v2ExportersCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?V2ListExportersResponseBody $object = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2ExportersCursorResponse $v2ExportersCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->object = $object;
+        $this->v2ExportersCursorResponse = $v2ExportersCursorResponse;
     }
 }

@@ -8,10 +8,10 @@
 * [deletePolicy](#deletepolicy) - Delete a policy
 * [getPolicy](#getpolicy) - Get a policy
 * [getReconciliation](#getreconciliation) - Get a reconciliation
+* [getServerInfoReconciliation](#getserverinforeconciliation) - Get server info
 * [listPolicies](#listpolicies) - List policies
 * [listReconciliations](#listreconciliations) - List reconciliations
 * [reconcile](#reconcile) - Reconcile using a policy
-* [reconciliationgetServerInfo](#reconciliationgetserverinfo) - Get server info
 
 ## createPolicy
 
@@ -26,6 +26,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Reconciliation;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -37,7 +38,7 @@ $sdk = stack\SDK::builder()
     )
     ->build();
 
-$request = new Shared\PolicyRequest(
+$request = new \formance\stack\Models\Reconciliation\PolicyRequest(
     ledgerName: 'default',
     ledgerQuery: [
         'key' => '<value>',
@@ -57,9 +58,10 @@ if ($response->policyResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `$request`                                                   | [Shared\PolicyRequest](../../Models/Shared/PolicyRequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                          | [\formance\stack\Models\Reconciliation\PolicyRequest](../../Models/reconciliation/PolicyRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$serverURL`                                                                                        | *string*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -67,10 +69,10 @@ if ($response->policyResponse !== null) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
 
 ## deletePolicy
 
@@ -115,6 +117,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeletePolicyRequest](../../Models/Operations/DeletePolicyRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -122,10 +125,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
 
 ## getPolicy
 
@@ -170,6 +173,7 @@ if ($response->policyResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\GetPolicyRequest](../../Models/Operations/GetPolicyRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -177,10 +181,10 @@ if ($response->policyResponse !== null) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
 
 ## getReconciliation
 
@@ -225,6 +229,7 @@ if ($response->reconciliationResponse !== null) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\GetReconciliationRequest](../../Models/Operations/GetReconciliationRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -232,10 +237,62 @@ if ($response->reconciliationResponse !== null) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
+
+## getServerInfoReconciliation
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getServerInfo_reconciliation" method="get" path="/api/reconciliation/_info" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->reconciliation->v1->getServerInfoReconciliation(
+
+);
+
+if ($response->serverInfo !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[?Operations\GetServerInfoReconciliationResponse](../../Models/Operations/GetServerInfoReconciliationResponse.md)**
+
+### Errors
+
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
 
 ## listPolicies
 
@@ -281,6 +338,7 @@ if ($response->policiesCursorResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListPoliciesRequest](../../Models/Operations/ListPoliciesRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -288,10 +346,10 @@ if ($response->policiesCursorResponse !== null) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
 
 ## listReconciliations
 
@@ -337,6 +395,7 @@ if ($response->reconciliationsCursorResponse !== null) {
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\ListReconciliationsRequest](../../Models/Operations/ListReconciliationsRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `$serverURL`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -344,10 +403,10 @@ if ($response->reconciliationsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |
 
 ## reconcile
 
@@ -363,6 +422,7 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
+use formance\stack\Models\Reconciliation;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 
@@ -376,7 +436,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\ReconcileRequest(
-    reconciliationRequest: new Shared\ReconciliationRequest(
+    reconciliationRequest: new \formance\stack\Models\Reconciliation\ReconciliationRequest(
         reconciledAtLedger: Utils\Utils::parseDateTime('2021-01-01T00:00:00.000Z'),
         reconciledAtPayments: Utils\Utils::parseDateTime('2021-01-01T00:00:00.000Z'),
     ),
@@ -397,6 +457,7 @@ if ($response->reconciliationResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\ReconcileRequest](../../Models/Operations/ReconcileRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -404,53 +465,7 @@ if ($response->reconciliationResponse !== null) {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
-
-## reconciliationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use formance\stack;
-use formance\stack\Models\Shared;
-
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->reconciliation->v1->reconciliationgetServerInfo(
-
-);
-
-if ($response->serverInfo !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ReconciliationgetServerInfoResponse](../../Models/Operations/ReconciliationgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| Errors\ReconciliationErrorResponse | default                            | application/json                   |
-| Errors\SDKException                | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| \formance\stack\Models\Reconciliation\ErrorResponse | default                                             | application/json                                    |
+| Errors\SDKException                                 | 4XX, 5XX                                            | \*/\*                                               |

@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ChangeConfigSecretRequest
 {
@@ -22,17 +21,17 @@ class ChangeConfigSecretRequest
 
     /**
      *
-     * @var ?Shared\ConfigChangeSecret $configChangeSecret
+     * @var ?\formance\stack\Models\Webhooks\ConfigChangeSecret $configChangeSecret
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\ConfigChangeSecret $configChangeSecret = null;
+    public ?\formance\stack\Models\Webhooks\ConfigChangeSecret $configChangeSecret = null;
 
     /**
      * @param  string  $id
-     * @param  ?Shared\ConfigChangeSecret  $configChangeSecret
+     * @param  ?\formance\stack\Models\Webhooks\ConfigChangeSecret  $configChangeSecret
      * @phpstan-pure
      */
-    public function __construct(string $id, ?Shared\ConfigChangeSecret $configChangeSecret = null)
+    public function __construct(string $id, ?\formance\stack\Models\Webhooks\ConfigChangeSecret $configChangeSecret = null)
     {
         $this->id = $id;
         $this->configChangeSecret = $configChangeSecret;

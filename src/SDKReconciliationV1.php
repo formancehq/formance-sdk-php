@@ -10,12 +10,43 @@ namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 use formance\stack\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
 
 class SDKReconciliationV1
 {
+    public const CREATE_POLICY_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const DELETE_POLICY_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const GET_POLICY_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const GET_RECONCILIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const GET_SERVER_INFO_RECONCILIATION_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const LIST_POLICIES_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const LIST_RECONCILIATIONS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const RECONCILE_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -50,13 +81,18 @@ class SDKReconciliationV1
      *
      * Create a policy
      *
-     * @param  Shared\PolicyRequest  $request
+     * @param  \formance\stack\Models\Reconciliation\PolicyRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\CreatePolicyResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPolicy(Shared\PolicyRequest $request, ?Options $options = null): Operations\CreatePolicyResponse
+    public function createPolicy(\formance\stack\Models\Reconciliation\PolicyRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreatePolicyResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::CREATE_POLICY_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -91,7 +127,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\PolicyResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\PolicyResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\CreatePolicyResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -108,7 +144,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -122,12 +158,17 @@ class SDKReconciliationV1
      * Delete a policy by its id.
      *
      * @param  Operations\DeletePolicyRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\DeletePolicyResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePolicy(Operations\DeletePolicyRequest $request, ?Options $options = null): Operations\DeletePolicyResponse
+    public function deletePolicy(Operations\DeletePolicyRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeletePolicyResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::DELETE_POLICY_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}', Operations\DeletePolicyRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -165,7 +206,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -177,12 +218,17 @@ class SDKReconciliationV1
      * Get a policy
      *
      * @param  Operations\GetPolicyRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\GetPolicyResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPolicy(Operations\GetPolicyRequest $request, ?Options $options = null): Operations\GetPolicyResponse
+    public function getPolicy(Operations\GetPolicyRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetPolicyResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::GET_POLICY_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}', Operations\GetPolicyRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -212,7 +258,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\PolicyResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\PolicyResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetPolicyResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -229,7 +275,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -241,12 +287,17 @@ class SDKReconciliationV1
      * Get a reconciliation
      *
      * @param  Operations\GetReconciliationRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\GetReconciliationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getReconciliation(Operations\GetReconciliationRequest $request, ?Options $options = null): Operations\GetReconciliationResponse
+    public function getReconciliation(Operations\GetReconciliationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetReconciliationResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::GET_RECONCILIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/reconciliations/{reconciliationID}', Operations\GetReconciliationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -276,7 +327,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ReconciliationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ReconciliationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetReconciliationResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -293,7 +344,75 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        }
+    }
+
+    /**
+     * Get server info
+     *
+     * @param  ?string  $serverURL
+     * @return Operations\GetServerInfoReconciliationResponse
+     * @throws \formance\stack\Models\Errors\SDKException
+     */
+    public function getServerInfoReconciliation(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoReconciliationResponse
+    {
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::GET_SERVER_INFO_RECONCILIATION_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/_info');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'getServerInfo_reconciliation', ['reconciliation:read'], $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetServerInfoReconciliationResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    serverInfo: $obj);
+
+                return $response;
+            } else {
+                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } else {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -305,15 +424,24 @@ class SDKReconciliationV1
      * List policies
      *
      * @param  ?Operations\ListPoliciesRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\ListPoliciesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPolicies(?Operations\ListPoliciesRequest $request = null, ?Options $options = null): Operations\ListPoliciesResponse
+    public function listPolicies(?Operations\ListPoliciesRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListPoliciesResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::LIST_POLICIES_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\ListPoliciesRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -343,7 +471,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\PoliciesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\PoliciesCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ListPoliciesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -360,7 +488,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -372,15 +500,24 @@ class SDKReconciliationV1
      * List reconciliations
      *
      * @param  ?Operations\ListReconciliationsRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\ListReconciliationsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listReconciliations(?Operations\ListReconciliationsRequest $request = null, ?Options $options = null): Operations\ListReconciliationsResponse
+    public function listReconciliations(?Operations\ListReconciliationsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListReconciliationsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::LIST_RECONCILIATIONS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/reconciliations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
 
         $qp = Utils\Utils::getQueryParams(Operations\ListReconciliationsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
@@ -410,7 +547,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ReconciliationsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ReconciliationsCursorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ListReconciliationsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -427,7 +564,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -441,12 +578,17 @@ class SDKReconciliationV1
      * Reconcile using a policy
      *
      * @param  Operations\ReconcileRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\ReconcileResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function reconcile(Operations\ReconcileRequest $request, ?Options $options = null): Operations\ReconcileResponse
+    public function reconcile(Operations\ReconcileRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReconcileResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::RECONCILE_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}/reconciliation', Operations\ReconcileRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -481,7 +623,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ReconciliationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ReconciliationResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ReconcileResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -498,70 +640,7 @@ class SDKReconciliationV1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj->toException();
-            } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-            }
-        }
-    }
-
-    /**
-     * Get server info
-     *
-     * @return Operations\ReconciliationgetServerInfoResponse
-     * @throws \formance\stack\Models\Errors\SDKException
-     */
-    public function reconciliationgetServerInfo(?Options $options = null): Operations\ReconciliationgetServerInfoResponse
-    {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/_info');
-        $urlOverride = null;
-        $httpOptions = ['http_errors' => false];
-        $httpOptions['headers']['Accept'] = 'application/json';
-        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'reconciliationgetServerInfo', ['reconciliation:read'], $this->sdkConfiguration->securitySource);
-        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
-        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
-        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
-        try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
-            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
-            $httpResponse = $res;
-        }
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
-            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
-            $httpResponse = $res;
-        }
-        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
-
-                $serializer = Utils\JSON::createSerializer();
-                $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ReconciliationgetServerInfoResponse(
-                    statusCode: $statusCode,
-                    contentType: $contentType,
-                    rawResponse: $httpResponse,
-                    serverInfo: $obj);
-
-                return $response;
-            } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-            }
-        } else {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
-
-                $serializer = Utils\JSON::createSerializer();
-                $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Errors\ReconciliationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Reconciliation\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

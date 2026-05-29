@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateBankAccountMetadataRequest
 {
     /**
      *
-     * @var Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest
+     * @var \formance\stack\Models\Payments\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest;
+    public \formance\stack\Models\Payments\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest;
 
     /**
      * The bank account ID.
@@ -28,11 +27,11 @@ class UpdateBankAccountMetadataRequest
     public string $bankAccountId;
 
     /**
-     * @param  Shared\UpdateBankAccountMetadataRequest  $updateBankAccountMetadataRequest
+     * @param  \formance\stack\Models\Payments\UpdateBankAccountMetadataRequest  $updateBankAccountMetadataRequest
      * @param  string  $bankAccountId
      * @phpstan-pure
      */
-    public function __construct(Shared\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest, string $bankAccountId)
+    public function __construct(\formance\stack\Models\Payments\UpdateBankAccountMetadataRequest $updateBankAccountMetadataRequest, string $bankAccountId)
     {
         $this->updateBankAccountMetadataRequest = $updateBankAccountMetadataRequest;
         $this->bankAccountId = $bankAccountId;

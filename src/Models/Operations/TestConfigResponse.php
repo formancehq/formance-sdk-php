@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class TestConfigResponse
 {
     /**
@@ -35,18 +35,18 @@ class TestConfigResponse
     /**
      * OK
      *
-     * @var ?Shared\AttemptResponse $attemptResponse
+     * @var ?\formance\stack\Models\Webhooks\AttemptResponse $attemptResponse
      */
-    public ?Shared\AttemptResponse $attemptResponse = null;
+    public ?\formance\stack\Models\Webhooks\AttemptResponse $attemptResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\AttemptResponse  $attemptResponse
+     * @param  ?\formance\stack\Models\Webhooks\AttemptResponse  $attemptResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\AttemptResponse $attemptResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Webhooks\AttemptResponse $attemptResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

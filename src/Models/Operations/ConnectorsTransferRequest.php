@@ -8,31 +8,30 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ConnectorsTransferRequest
 {
     /**
      *
-     * @var Shared\TransferRequest $transferRequest
+     * @var \formance\stack\Models\Payments\TransferRequest $transferRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\TransferRequest $transferRequest;
+    public \formance\stack\Models\Payments\TransferRequest $transferRequest;
 
     /**
      * The name of the connector.
      *
-     * @var Shared\Connector $connector
+     * @var \formance\stack\Models\Payments\Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public Shared\Connector $connector;
+    public \formance\stack\Models\Payments\Connector $connector;
 
     /**
-     * @param  Shared\TransferRequest  $transferRequest
-     * @param  Shared\Connector  $connector
+     * @param  \formance\stack\Models\Payments\TransferRequest  $transferRequest
+     * @param  \formance\stack\Models\Payments\Connector  $connector
      * @phpstan-pure
      */
-    public function __construct(Shared\TransferRequest $transferRequest, Shared\Connector $connector)
+    public function __construct(\formance\stack\Models\Payments\TransferRequest $transferRequest, \formance\stack\Models\Payments\Connector $connector)
     {
         $this->transferRequest = $transferRequest;
         $this->connector = $connector;

@@ -10,12 +10,55 @@ namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 use formance\stack\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
 
 class V1
 {
+    public const CREATE_CLIENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const CREATE_SECRET_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const DELETE_CLIENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const DELETE_SECRET_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const GET_OIDC_WELL_KNOWNS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const GET_SERVER_INFO_AUTH_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const LIST_CLIENTS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const LIST_USERS_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const READ_CLIENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const READ_USER_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
+    public const UPDATE_CLIENT_SERVERS = [
+
+        'http://localhost:8080/',
+    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -48,13 +91,18 @@ class V1
     /**
      * Create client
      *
-     * @param  ?Shared\CreateClientRequest  $request
+     * @param  ?\formance\stack\Models\Auth\ClientOptions1  $request
+     * @param  ?string  $serverURL
      * @return Operations\CreateClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createClient(?Shared\CreateClientRequest $request = null, ?Options $options = null): Operations\CreateClientResponse
+    public function createClient(?\formance\stack\Models\Auth\ClientOptions1 $request = null, ?string $serverURL = null, ?Options $options = null): Operations\CreateClientResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::CREATE_CLIENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -88,7 +136,7 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\CreateClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\CreateClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\CreateClientResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -108,16 +156,21 @@ class V1
      * Add a secret to a client
      *
      * @param  Operations\CreateSecretRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\CreateSecretResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createSecret(Operations\CreateSecretRequest $request, ?Options $options = null): Operations\CreateSecretResponse
+    public function createSecret(Operations\CreateSecretRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateSecretResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::CREATE_SECRET_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', Operations\CreateSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'createSecretRequest', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'secretOptions', 'json');
         if ($body !== null) {
             $httpOptions = array_merge_recursive($httpOptions, $body);
         }
@@ -147,7 +200,7 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\CreateSecretResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\CreateSecretResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\CreateSecretResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -167,12 +220,17 @@ class V1
      * Delete client
      *
      * @param  Operations\DeleteClientRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\DeleteClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteClient(Operations\DeleteClientRequest $request, ?Options $options = null): Operations\DeleteClientResponse
+    public function deleteClient(Operations\DeleteClientRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteClientResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::DELETE_CLIENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\DeleteClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -213,12 +271,17 @@ class V1
      * Delete a secret from a client
      *
      * @param  Operations\DeleteSecretRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\DeleteSecretResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteSecret(Operations\DeleteSecretRequest $request, ?Options $options = null): Operations\DeleteSecretResponse
+    public function deleteSecret(Operations\DeleteSecretRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteSecretResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::DELETE_SECRET_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', Operations\DeleteSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -258,12 +321,17 @@ class V1
     /**
      * Retrieve OpenID connect well-knowns.
      *
+     * @param  ?string  $serverURL
      * @return Operations\GetOIDCWellKnownsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getOIDCWellKnowns(?Options $options = null): Operations\GetOIDCWellKnownsResponse
+    public function getOIDCWellKnowns(?string $serverURL = null, ?Options $options = null): Operations\GetOIDCWellKnownsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::GET_OIDC_WELL_KNOWNS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -303,19 +371,24 @@ class V1
     /**
      * Get server info
      *
-     * @return Operations\GetServerInfoResponse
+     * @param  ?string  $serverURL
+     * @return Operations\GetServerInfoAuthResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfo(?Options $options = null): Operations\GetServerInfoResponse
+    public function getServerInfoAuth(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoAuthResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::GET_SERVER_INFO_AUTH_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'getServerInfo', ['auth:read'], $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'getServerInfo_auth', ['auth:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -338,8 +411,8 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetServerInfoResponse(
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetServerInfoAuthResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -357,12 +430,17 @@ class V1
     /**
      * List clients
      *
+     * @param  ?string  $serverURL
      * @return Operations\ListClientsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listClients(?Options $options = null): Operations\ListClientsResponse
+    public function listClients(?string $serverURL = null, ?Options $options = null): Operations\ListClientsResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::LIST_CLIENTS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -392,7 +470,7 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ListClientsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ListClientsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ListClientsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -413,12 +491,17 @@ class V1
      *
      * List users
      *
+     * @param  ?string  $serverURL
      * @return Operations\ListUsersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listUsers(?Options $options = null): Operations\ListUsersResponse
+    public function listUsers(?string $serverURL = null, ?Options $options = null): Operations\ListUsersResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::LIST_USERS_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -448,7 +531,7 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ListUsersResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ListUsersResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ListUsersResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -468,12 +551,17 @@ class V1
      * Read client
      *
      * @param  Operations\ReadClientRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\ReadClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readClient(Operations\ReadClientRequest $request, ?Options $options = null): Operations\ReadClientResponse
+    public function readClient(Operations\ReadClientRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadClientResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::READ_CLIENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\ReadClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -503,7 +591,7 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ReadClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ReadClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ReadClientResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -525,12 +613,17 @@ class V1
      * Read user
      *
      * @param  Operations\ReadUserRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\ReadUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readUser(Operations\ReadUserRequest $request, ?Options $options = null): Operations\ReadUserResponse
+    public function readUser(Operations\ReadUserRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadUserResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::READ_USER_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', Operations\ReadUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -560,7 +653,7 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\ReadUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ReadUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ReadUserResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -580,16 +673,21 @@ class V1
      * Update client
      *
      * @param  Operations\UpdateClientRequest  $request
+     * @param  ?string  $serverURL
      * @return Operations\UpdateClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateClient(Operations\UpdateClientRequest $request, ?Options $options = null): Operations\UpdateClientResponse
+    public function updateClient(Operations\UpdateClientRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateClientResponse
     {
-        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $baseUrl = Utils\Utils::templateUrl(V1::UPDATE_CLIENT_SERVERS[0], [
+        ]);
+        if (! empty($serverURL)) {
+            $baseUrl = $serverURL;
+        }
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\UpdateClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'createClientRequest', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'clientOptions', 'json');
         if ($body !== null) {
             $httpOptions = array_merge_recursive($httpOptions, $body);
         }
@@ -619,12 +717,12 @@ class V1
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Shared\UpdateClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\CreateClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\UpdateClientResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    updateClientResponse: $obj);
+                    createClientResponse: $obj);
 
                 return $response;
             } else {

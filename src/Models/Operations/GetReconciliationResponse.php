@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetReconciliationResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetReconciliationResponse
     /**
      * OK
      *
-     * @var ?Shared\ReconciliationResponse $reconciliationResponse
+     * @var ?\formance\stack\Models\Reconciliation\ReconciliationResponse $reconciliationResponse
      */
-    public ?Shared\ReconciliationResponse $reconciliationResponse = null;
+    public ?\formance\stack\Models\Reconciliation\ReconciliationResponse $reconciliationResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\ReconciliationResponse  $reconciliationResponse
+     * @param  ?\formance\stack\Models\Reconciliation\ReconciliationResponse  $reconciliationResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\ReconciliationResponse $reconciliationResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Reconciliation\ReconciliationResponse $reconciliationResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
