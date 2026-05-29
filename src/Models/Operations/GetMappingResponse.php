@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetMappingResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetMappingResponse
     /**
      * OK
      *
-     * @var ?Shared\MappingResponse $mappingResponse
+     * @var ?\formance\stack\Models\Ledger\MappingResponse $mappingResponse
      */
-    public ?Shared\MappingResponse $mappingResponse = null;
+    public ?\formance\stack\Models\Ledger\MappingResponse $mappingResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\MappingResponse  $mappingResponse
+     * @param  ?\formance\stack\Models\Ledger\MappingResponse  $mappingResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\MappingResponse $mappingResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\MappingResponse $mappingResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

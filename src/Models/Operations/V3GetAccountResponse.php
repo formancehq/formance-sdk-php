@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3GetAccountResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3GetAccountResponse
     /**
      * OK
      *
-     * @var ?Shared\V3GetAccountResponse $v3GetAccountResponse
+     * @var ?\formance\stack\Models\Payments\V3GetAccountResponse $v3GetAccountResponse
      */
-    public ?Shared\V3GetAccountResponse $v3GetAccountResponse = null;
+    public ?\formance\stack\Models\Payments\V3GetAccountResponse $v3GetAccountResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3GetAccountResponse  $v3GetAccountResponse
+     * @param  ?\formance\stack\Models\Payments\V3GetAccountResponse  $v3GetAccountResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3GetAccountResponse $v3GetAccountResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3GetAccountResponse $v3GetAccountResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

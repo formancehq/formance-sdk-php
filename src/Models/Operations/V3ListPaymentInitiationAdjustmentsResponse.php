@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3ListPaymentInitiationAdjustmentsResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3ListPaymentInitiationAdjustmentsResponse
     /**
      * OK
      *
-     * @var ?Shared\V3PaymentInitiationAdjustmentsCursorResponse $v3PaymentInitiationAdjustmentsCursorResponse
+     * @var ?\formance\stack\Models\Payments\V3PaymentInitiationAdjustmentsCursorResponse $v3PaymentInitiationAdjustmentsCursorResponse
      */
-    public ?Shared\V3PaymentInitiationAdjustmentsCursorResponse $v3PaymentInitiationAdjustmentsCursorResponse = null;
+    public ?\formance\stack\Models\Payments\V3PaymentInitiationAdjustmentsCursorResponse $v3PaymentInitiationAdjustmentsCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3PaymentInitiationAdjustmentsCursorResponse  $v3PaymentInitiationAdjustmentsCursorResponse
+     * @param  ?\formance\stack\Models\Payments\V3PaymentInitiationAdjustmentsCursorResponse  $v3PaymentInitiationAdjustmentsCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3PaymentInitiationAdjustmentsCursorResponse $v3PaymentInitiationAdjustmentsCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentInitiationAdjustmentsCursorResponse $v3PaymentInitiationAdjustmentsCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

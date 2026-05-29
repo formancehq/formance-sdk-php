@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2RevertTransactionRequest
 {
@@ -38,10 +37,10 @@ class V2RevertTransactionRequest
 
     /**
      *
-     * @var ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest
+     * @var ?\formance\stack\Models\Ledger\V2RevertTransactionRequest $v2RevertTransactionRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest = null;
+    public ?\formance\stack\Models\Ledger\V2RevertTransactionRequest $v2RevertTransactionRequest = null;
 
     /**
      * Revert transaction at effective date of the original tx
@@ -79,14 +78,14 @@ class V2RevertTransactionRequest
      * @param  \Brick\Math\BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
-     * @param  ?Shared\V2RevertTransactionRequest  $v2RevertTransactionRequest
+     * @param  ?\formance\stack\Models\Ledger\V2RevertTransactionRequest  $v2RevertTransactionRequest
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $dryRun
      * @param  ?bool  $force
      * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?Shared\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
+    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?\formance\stack\Models\Ledger\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

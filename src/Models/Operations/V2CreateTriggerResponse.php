@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V2CreateTriggerResponse
 {
     /**
@@ -35,18 +35,18 @@ class V2CreateTriggerResponse
     /**
      * Created trigger
      *
-     * @var ?Shared\V2CreateTriggerResponse $v2CreateTriggerResponse
+     * @var ?\formance\stack\Models\Orchestration\V2CreateTriggerResponse $v2CreateTriggerResponse
      */
-    public ?Shared\V2CreateTriggerResponse $v2CreateTriggerResponse = null;
+    public ?\formance\stack\Models\Orchestration\V2CreateTriggerResponse $v2CreateTriggerResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V2CreateTriggerResponse  $v2CreateTriggerResponse
+     * @param  ?\formance\stack\Models\Orchestration\V2CreateTriggerResponse  $v2CreateTriggerResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V2CreateTriggerResponse $v2CreateTriggerResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2CreateTriggerResponse $v2CreateTriggerResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

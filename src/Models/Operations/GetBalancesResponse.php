@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class GetBalancesResponse
 {
     /**
@@ -35,18 +35,18 @@ class GetBalancesResponse
     /**
      * OK
      *
-     * @var ?Shared\BalancesCursorResponse $balancesCursorResponse
+     * @var ?\formance\stack\Models\Ledger\BalancesCursorResponse $balancesCursorResponse
      */
-    public ?Shared\BalancesCursorResponse $balancesCursorResponse = null;
+    public ?\formance\stack\Models\Ledger\BalancesCursorResponse $balancesCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\BalancesCursorResponse  $balancesCursorResponse
+     * @param  ?\formance\stack\Models\Ledger\BalancesCursorResponse  $balancesCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\BalancesCursorResponse $balancesCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\BalancesCursorResponse $balancesCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

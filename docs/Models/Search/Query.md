@@ -1,0 +1,16 @@
+# Query
+
+
+## Fields
+
+| Field                                        | Type                                         | Required                                     | Description                                  | Example                                      |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| `after`                                      | array<*string*>                              | :heavy_minus_sign:                           | N/A                                          |                                              |
+| `cursor`                                     | *?string*                                    | :heavy_minus_sign:                           | N/A                                          | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol= |
+| `ledgers`                                    | array<*string*>                              | :heavy_minus_sign:                           | N/A                                          |                                              |
+| `pageSize`                                   | *?int*                                       | :heavy_minus_sign:                           | N/A                                          |                                              |
+| `policy`                                     | *?string*                                    | :heavy_minus_sign:                           | N/A                                          | OR                                           |
+| `raw`                                        | [?Search\Raw](../../Models/search/Raw.md)    | :heavy_minus_sign:                           | N/A                                          | {<br/>"query": {<br/>"match_all": {}<br/>}<br/>} |
+| `sort`                                       | *?string*                                    | :heavy_minus_sign:                           | N/A                                          | id:asc                                       |
+| `target`                                     | *?string*                                    | :heavy_minus_sign:                           | N/A                                          |                                              |
+| `terms`                                      | array<*string*>                              | :heavy_minus_sign:                           | N/A                                          |                                              |

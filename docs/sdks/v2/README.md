@@ -98,6 +98,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                   | [Operations\V2AddMetadataOnTransactionRequest](../../Models/Operations/V2AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `$serverURL`                                                                                                 | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -105,10 +106,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## addMetadataToAccount
 
@@ -159,6 +160,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                           | [Operations\V2AddMetadataToAccountRequest](../../Models/Operations/V2AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `$serverURL`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -166,10 +168,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## countAccounts
 
@@ -197,6 +199,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CountAccountsRequest(
+    requestBody: [
+        'key' => '<value>',
+        'key1' => '<value>',
+    ],
     ledger: 'ledger001',
 );
 
@@ -214,6 +220,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2CountAccountsRequest](../../Models/Operations/V2CountAccountsRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -221,10 +228,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## countTransactions
 
@@ -252,6 +259,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CountTransactionsRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     ledger: 'ledger001',
 );
 
@@ -269,6 +279,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\V2CountTransactionsRequest](../../Models/Operations/V2CountTransactionsRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `$serverURL`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -276,10 +287,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## createBulk
 
@@ -294,6 +305,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -308,7 +320,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateBulkRequest(
     requestBody: [
-        new Shared\V2BulkElementRevertTransaction(
+        new \formance\stack\Models\Ledger\V2BaseBulkElement(
             action: 'REVERT_TRANSACTION',
         ),
     ],
@@ -333,6 +345,7 @@ if ($response->v2BulkResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V2CreateBulkRequest](../../Models/Operations/V2CreateBulkRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -340,10 +353,10 @@ if ($response->v2BulkResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## createExporter
 
@@ -358,18 +371,11 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Shared;
+use formance\stack\Models\Ledger;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
-$request = new Shared\V2CreateExporterRequest(
+$request = new \formance\stack\Models\Ledger\V2ExporterConfiguration1(
     config: [
         'key' => '<value>',
     ],
@@ -380,16 +386,17 @@ $response = $sdk->ledger->v2->createExporter(
     request: $request
 );
 
-if ($response->object !== null) {
+if ($response->v2CreateExporterResponse !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `$request`                                                                       | [Shared\V2CreateExporterRequest](../../Models/Shared/V2CreateExporterRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                | [\formance\stack\Models\Ledger\V2ExporterConfiguration1](../../Models/ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$serverURL`                                                                                              | *string*                                                                                                  | :heavy_minus_sign:                                                                                        | An optional server URL to use.                                                                            |
 
 ### Response
 
@@ -397,10 +404,10 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## createLedger
 
@@ -415,6 +422,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -428,8 +436,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CreateLedgerRequest(
-    v2CreateLedgerRequest: new Shared\V2CreateLedgerRequest(
-        metadata: [
+    v2CreateLedgerRequest: new \formance\stack\Models\Ledger\V2CreateLedgerRequest(
+        v2Metadata: [
             'admin' => 'true',
         ],
     ),
@@ -450,6 +458,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V2CreateLedgerRequest](../../Models/Operations/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -457,10 +466,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## createPipeline
 
@@ -476,16 +485,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2CreatePipelineRequest(
     ledger: 'ledger001',
@@ -495,7 +496,7 @@ $response = $sdk->ledger->v2->createPipeline(
     request: $request
 );
 
-if ($response->object !== null) {
+if ($response->v2CreatePipelineResponse !== null) {
     // handle response
 }
 ```
@@ -505,6 +506,7 @@ if ($response->object !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V2CreatePipelineRequest](../../Models/Operations/V2CreatePipelineRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -512,10 +514,10 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## createTransaction
 
@@ -531,6 +533,7 @@ require 'vendor/autoload.php';
 
 use Brick\Math\BigInteger;
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -544,7 +547,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2CreateTransactionRequest(
-    v2PostTransaction: new Shared\V2PostTransaction(
+    v2PostTransaction: new \formance\stack\Models\Ledger\V2PostTransaction(
+        v2Metadata: [
+            'admin' => 'true',
+        ],
         accountMetadata: [
             'key' => [
                 'admin' => 'true',
@@ -556,11 +562,8 @@ $request = new Operations\V2CreateTransactionRequest(
                 'admin' => 'true',
             ],
         ],
-        metadata: [
-            'admin' => 'true',
-        ],
         postings: [
-            new Shared\V2Posting(
+            new \formance\stack\Models\Ledger\V2Posting(
                 amount: BigInteger::of('100'),
                 asset: 'COIN',
                 destination: 'users:002',
@@ -568,7 +571,7 @@ $request = new Operations\V2CreateTransactionRequest(
             ),
         ],
         reference: 'ref:001',
-        script: new Shared\V2PostTransactionScript(
+        script: new Ledger\V2PostTransactionScript(
             plain: 'vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n',
             template: 'CUSTOMER_DEPOSIT',
             vars: [
@@ -596,6 +599,7 @@ if ($response->v2CreateTransactionResponse !== null) {
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\V2CreateTransactionRequest](../../Models/Operations/V2CreateTransactionRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `$serverURL`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -603,10 +607,10 @@ if ($response->v2CreateTransactionResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## deleteAccountMetadata
 
@@ -653,6 +657,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V2DeleteAccountMetadataRequest](../../Models/Operations/V2DeleteAccountMetadataRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -660,10 +665,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## deleteBucket
 
@@ -708,6 +713,7 @@ if ($response->v2ErrorResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V2DeleteBucketRequest](../../Models/Operations/V2DeleteBucketRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -715,10 +721,10 @@ if ($response->v2ErrorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## deleteExporter
 
@@ -734,16 +740,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2DeleteExporterRequest(
     exporterID: '<id>',
@@ -763,6 +761,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V2DeleteExporterRequest](../../Models/Operations/V2DeleteExporterRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -770,10 +769,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## deleteLedgerMetadata
 
@@ -819,6 +818,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                           | [Operations\V2DeleteLedgerMetadataRequest](../../Models/Operations/V2DeleteLedgerMetadataRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `$serverURL`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -826,10 +826,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## deletePipeline
 
@@ -845,16 +845,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2DeletePipelineRequest(
     ledger: 'ledger001',
@@ -875,6 +867,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V2DeletePipelineRequest](../../Models/Operations/V2DeletePipelineRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -882,10 +875,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## deleteTransactionMetadata
 
@@ -933,6 +926,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                     | [Operations\V2DeleteTransactionMetadataRequest](../../Models/Operations/V2DeleteTransactionMetadataRequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `$serverURL`                                                                                                   | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | An optional server URL to use.                                                                                 |
 
 ### Response
 
@@ -940,10 +934,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## exportLogs
 
@@ -988,6 +982,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V2ExportLogsRequest](../../Models/Operations/V2ExportLogsRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1043,6 +1038,7 @@ if ($response->v2AccountResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V2GetAccountRequest](../../Models/Operations/V2GetAccountRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1050,10 +1046,10 @@ if ($response->v2AccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getBalancesAggregated
 
@@ -1081,6 +1077,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2GetBalancesAggregatedRequest(
+    requestBody: [
+        'key' => '<value>',
+        'key1' => '<value>',
+        'key2' => '<value>',
+    ],
     ledger: 'ledger001',
 );
 
@@ -1098,6 +1099,7 @@ if ($response->v2AggregateBalancesResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V2GetBalancesAggregatedRequest](../../Models/Operations/V2GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1105,10 +1107,10 @@ if ($response->v2AggregateBalancesResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getExporterState
 
@@ -1124,16 +1126,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2GetExporterStateRequest(
     exporterID: '<id>',
@@ -1143,7 +1137,7 @@ $response = $sdk->ledger->v2->getExporterState(
     request: $request
 );
 
-if ($response->object !== null) {
+if ($response->v2GetExporterStateResponse !== null) {
     // handle response
 }
 ```
@@ -1153,6 +1147,7 @@ if ($response->object !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\V2GetExporterStateRequest](../../Models/Operations/V2GetExporterStateRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1160,10 +1155,10 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getLedger
 
@@ -1208,6 +1203,7 @@ if ($response->v2GetLedgerResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\V2GetLedgerRequest](../../Models/Operations/V2GetLedgerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -1215,10 +1211,10 @@ if ($response->v2GetLedgerResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getLedgerInfo
 
@@ -1263,6 +1259,7 @@ if ($response->v2LedgerInfoResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2GetLedgerInfoRequest](../../Models/Operations/V2GetLedgerInfoRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -1270,10 +1267,10 @@ if ($response->v2LedgerInfoResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getPipelineState
 
@@ -1289,16 +1286,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2GetPipelineStateRequest(
     ledger: 'ledger001',
@@ -1309,7 +1298,7 @@ $response = $sdk->ledger->v2->getPipelineState(
     request: $request
 );
 
-if ($response->object !== null) {
+if ($response->v2GetPipelineStateResponse !== null) {
     // handle response
 }
 ```
@@ -1319,6 +1308,7 @@ if ($response->object !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\V2GetPipelineStateRequest](../../Models/Operations/V2GetPipelineStateRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1326,10 +1316,10 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getSchema
 
@@ -1375,6 +1365,7 @@ if ($response->v2SchemaResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\V2GetSchemaRequest](../../Models/Operations/V2GetSchemaRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -1382,10 +1373,10 @@ if ($response->v2SchemaResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getTransaction
 
@@ -1432,6 +1423,7 @@ if ($response->v2GetTransactionResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V2GetTransactionRequest](../../Models/Operations/V2GetTransactionRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1439,10 +1431,10 @@ if ($response->v2GetTransactionResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## getVolumesWithBalances
 
@@ -1470,6 +1462,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2GetVolumesWithBalancesRequest(
+    requestBody: [
+        'key' => '<value>',
+    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     groupBy: 3,
     ledger: 'ledger001',
@@ -1491,6 +1486,7 @@ if ($response->v2VolumesWithBalanceCursorResponse !== null) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\V2GetVolumesWithBalancesRequest](../../Models/Operations/V2GetVolumesWithBalancesRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -1498,10 +1494,10 @@ if ($response->v2VolumesWithBalanceCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## importLogs
 
@@ -1545,6 +1541,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V2ImportLogsRequest](../../Models/Operations/V2ImportLogsRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1552,10 +1549,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## insertSchema
 
@@ -1570,6 +1567,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -1583,19 +1581,19 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2InsertSchemaRequest(
-    v2SchemaData: new Shared\V2SchemaData(
-        chart: [
-            'users' => new Shared\V2ChartSegment(
+    v2SchemaData: new \formance\stack\Models\Ledger\V2SchemaDataInput(
+        v2ChartOfAccounts: [
+            'users' => new \formance\stack\Models\Ledger\V2ChartSegment(
                 additionalProperties: [
-                    '$userID' => new Shared\V2ChartSegment(
+                    '$userID' => new \formance\stack\Models\Ledger\V2ChartSegment(
                         dotPattern: '^[0-9]{16}$',
                     ),
                 ],
             ),
         ],
-        queries: [
-            'key' => new Shared\V2QueryTemplate(
-                params: new Shared\QueryTemplateAccountParams(
+        v2QueryTemplates: [
+            'key' => new \formance\stack\Models\Ledger\V2QueryTemplate(
+                v2QueryParams: new Ledger\QueryTemplateAccountParams(
                     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
                     pageSize: 100,
                     sort: 'id:desc',
@@ -1621,6 +1619,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V2InsertSchemaRequest](../../Models/Operations/V2InsertSchemaRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -1628,10 +1627,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listAccounts
 
@@ -1659,6 +1658,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListAccountsRequest(
+    requestBody: [
+
+    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
@@ -1679,6 +1681,7 @@ if ($response->v2AccountsCursorResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V2ListAccountsRequest](../../Models/Operations/V2ListAccountsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -1686,10 +1689,10 @@ if ($response->v2AccountsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listExporters
 
@@ -1704,16 +1707,8 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 
 
@@ -1721,10 +1716,16 @@ $response = $sdk->ledger->v2->listExporters(
 
 );
 
-if ($response->object !== null) {
+if ($response->v2ExportersCursorResponse !== null) {
     // handle response
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1732,10 +1733,10 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listLedgers
 
@@ -1763,6 +1764,11 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListLedgersRequest(
+    requestBody: [
+        'key' => '<value>',
+        'key1' => '<value>',
+        'key2' => '<value>',
+    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     pageSize: 100,
     sort: 'id:desc',
@@ -1782,6 +1788,7 @@ if ($response->v2LedgerListResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2ListLedgersRequest](../../Models/Operations/V2ListLedgersRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -1789,10 +1796,10 @@ if ($response->v2LedgerListResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listLogs
 
@@ -1820,6 +1827,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListLogsRequest(
+    requestBody: [
+
+    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
@@ -1840,6 +1850,7 @@ if ($response->v2LogsCursorResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\V2ListLogsRequest](../../Models/Operations/V2ListLogsRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -1847,10 +1858,10 @@ if ($response->v2LogsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listPipelines
 
@@ -1866,16 +1877,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2ListPipelinesRequest(
     ledger: 'ledger001',
@@ -1885,7 +1888,7 @@ $response = $sdk->ledger->v2->listPipelines(
     request: $request
 );
 
-if ($response->object !== null) {
+if ($response->v2PipelinesCursorResponse !== null) {
     // handle response
 }
 ```
@@ -1895,6 +1898,7 @@ if ($response->object !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2ListPipelinesRequest](../../Models/Operations/V2ListPipelinesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -1902,10 +1906,10 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listSchemas
 
@@ -1950,6 +1954,7 @@ if ($response->v2SchemasCursorResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\V2ListSchemasRequest](../../Models/Operations/V2ListSchemasRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -1957,10 +1962,10 @@ if ($response->v2SchemasCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listTransactions
 
@@ -1988,6 +1993,9 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2ListTransactionsRequest(
+    requestBody: [
+
+    ],
     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
     ledger: 'ledger001',
     pageSize: 100,
@@ -2008,6 +2016,7 @@ if ($response->v2TransactionsCursorResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\V2ListTransactionsRequest](../../Models/Operations/V2ListTransactionsRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -2015,10 +2024,10 @@ if ($response->v2TransactionsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## readStats
 
@@ -2064,6 +2073,7 @@ if ($response->v2StatsResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\V2ReadStatsRequest](../../Models/Operations/V2ReadStatsRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -2071,10 +2081,10 @@ if ($response->v2StatsResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## resetPipeline
 
@@ -2090,16 +2100,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2ResetPipelineRequest(
     ledger: 'ledger001',
@@ -2120,6 +2122,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2ResetPipelineRequest](../../Models/Operations/V2ResetPipelineRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -2127,10 +2130,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## restoreBucket
 
@@ -2175,6 +2178,7 @@ if ($response->v2ErrorResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2RestoreBucketRequest](../../Models/Operations/V2RestoreBucketRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -2182,10 +2186,10 @@ if ($response->v2ErrorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## revertTransaction
 
@@ -2224,7 +2228,7 @@ $response = $sdk->ledger->v2->revertTransaction(
     request: $request
 );
 
-if ($response->v2RevertTransactionResponse !== null) {
+if ($response->v2CreateTransactionResponse !== null) {
     // handle response
 }
 ```
@@ -2234,6 +2238,7 @@ if ($response->v2RevertTransactionResponse !== null) {
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\V2RevertTransactionRequest](../../Models/Operations/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `$serverURL`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -2241,10 +2246,10 @@ if ($response->v2RevertTransactionResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## runQuery
 
@@ -2259,6 +2264,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -2273,7 +2279,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2RunQueryRequest(
     requestBody: new Operations\V2RunQueryRequestBody(
-        params: new Shared\QueryTemplateAccountParams(
+        v2QueryParams: new Ledger\QueryTemplateAccountParams(
             cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
             pageSize: 100,
             sort: 'id:desc',
@@ -2301,6 +2307,7 @@ if ($response->oneOf !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\V2RunQueryRequest](../../Models/Operations/V2RunQueryRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -2308,10 +2315,10 @@ if ($response->oneOf !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## startPipeline
 
@@ -2327,16 +2334,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2StartPipelineRequest(
     ledger: 'ledger001',
@@ -2357,6 +2356,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\V2StartPipelineRequest](../../Models/Operations/V2StartPipelineRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -2364,10 +2364,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## stopPipeline
 
@@ -2383,16 +2383,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V2StopPipelineRequest(
     ledger: 'ledger001',
@@ -2413,6 +2405,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V2StopPipelineRequest](../../Models/Operations/V2StopPipelineRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2420,10 +2413,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## updateExporter
 
@@ -2438,6 +2431,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use formance\stack;
+use formance\stack\Models\Ledger;
 use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
@@ -2451,7 +2445,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2UpdateExporterRequest(
-    v2CreateExporterRequest: new Shared\V2CreateExporterRequest(
+    v2ExporterConfiguration: new \formance\stack\Models\Ledger\V2ExporterConfiguration1(
         config: [
             'key' => '<value>',
             'key1' => '<value>',
@@ -2476,6 +2470,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V2UpdateExporterRequest](../../Models/Operations/V2UpdateExporterRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -2483,10 +2478,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## updateLedgerMetadata
 
@@ -2534,6 +2529,7 @@ if ($response->v2ErrorResponse !== null) {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                           | [Operations\V2UpdateLedgerMetadataRequest](../../Models/Operations/V2UpdateLedgerMetadataRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `$serverURL`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -2541,7 +2537,7 @@ if ($response->v2ErrorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V2ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |

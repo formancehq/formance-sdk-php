@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class V3ListConnectorSchedulesResponse
 {
     /**
@@ -35,18 +35,18 @@ class V3ListConnectorSchedulesResponse
     /**
      * OK
      *
-     * @var ?Shared\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse
+     * @var ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse
      */
-    public ?Shared\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null;
+    public ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\V3ConnectorSchedulesCursorResponse  $v3ConnectorSchedulesCursorResponse
+     * @param  ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse  $v3ConnectorSchedulesCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

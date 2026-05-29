@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateConfigRequest
 {
     /**
      *
-     * @var Shared\ConfigUser $configUser
+     * @var \formance\stack\Models\Webhooks\ConfigUser $configUser
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\ConfigUser $configUser;
+    public \formance\stack\Models\Webhooks\ConfigUser $configUser;
 
     /**
      * Config ID
@@ -28,11 +27,11 @@ class UpdateConfigRequest
     public string $id;
 
     /**
-     * @param  Shared\ConfigUser  $configUser
+     * @param  \formance\stack\Models\Webhooks\ConfigUser  $configUser
      * @param  string  $id
      * @phpstan-pure
      */
-    public function __construct(Shared\ConfigUser $configUser, string $id)
+    public function __construct(\formance\stack\Models\Webhooks\ConfigUser $configUser, string $id)
     {
         $this->configUser = $configUser;
         $this->id = $id;

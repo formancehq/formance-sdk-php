@@ -8,16 +8,15 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateLedgerRequest
 {
     /**
      *
-     * @var Shared\V2CreateLedgerRequest $v2CreateLedgerRequest
+     * @var \formance\stack\Models\Ledger\V2CreateLedgerRequest $v2CreateLedgerRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Shared\V2CreateLedgerRequest $v2CreateLedgerRequest;
+    public \formance\stack\Models\Ledger\V2CreateLedgerRequest $v2CreateLedgerRequest;
 
     /**
      * Name of the ledger.
@@ -28,11 +27,11 @@ class V2CreateLedgerRequest
     public string $ledger;
 
     /**
-     * @param  Shared\V2CreateLedgerRequest  $v2CreateLedgerRequest
+     * @param  \formance\stack\Models\Ledger\V2CreateLedgerRequest  $v2CreateLedgerRequest
      * @param  string  $ledger
      * @phpstan-pure
      */
-    public function __construct(Shared\V2CreateLedgerRequest $v2CreateLedgerRequest, string $ledger)
+    public function __construct(\formance\stack\Models\Ledger\V2CreateLedgerRequest $v2CreateLedgerRequest, string $ledger)
     {
         $this->v2CreateLedgerRequest = $v2CreateLedgerRequest;
         $this->ledger = $ledger;

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
-use formance\stack\Models\Shared;
+
 class UpdateClientResponse
 {
     /**
@@ -35,22 +35,22 @@ class UpdateClientResponse
     /**
      * Updated client
      *
-     * @var ?Shared\UpdateClientResponse $updateClientResponse
+     * @var ?\formance\stack\Models\Auth\CreateClientResponse $createClientResponse
      */
-    public ?Shared\UpdateClientResponse $updateClientResponse = null;
+    public ?\formance\stack\Models\Auth\CreateClientResponse $createClientResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Shared\UpdateClientResponse  $updateClientResponse
+     * @param  ?\formance\stack\Models\Auth\CreateClientResponse  $createClientResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Shared\UpdateClientResponse $updateClientResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Auth\CreateClientResponse $createClientResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->updateClientResponse = $updateClientResponse;
+        $this->createClientResponse = $createClientResponse;
     }
 }

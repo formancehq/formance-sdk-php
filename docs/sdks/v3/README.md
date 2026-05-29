@@ -29,6 +29,8 @@
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
+* [getConversion](#getconversion) - Get a single conversion by its Formance ID
+* [getOrder](#getorder) - Get a single order by its Formance ID
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
 * [getPaymentServiceUser](#getpaymentserviceuser) - Get a payment service user by ID
@@ -45,6 +47,8 @@
 * [listConnectorScheduleInstances](#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](#listconnectorschedules) - List all connector schedules
 * [listConnectors](#listconnectors) - List all connectors
+* [listConversions](#listconversions) - List currency and asset conversions ingested from connectors
+* [listOrders](#listorders) - List orders ingested from exchange-style connectors
 * [listPaymentInitiationAdjustments](#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](#listpaymentinitiations) - List all payment initiations
@@ -112,6 +116,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\V3AddAccountToPoolRequest](../../Models/Operations/V3AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -119,10 +124,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## addBankAccountToPaymentServiceUser
 
@@ -168,6 +173,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                       | [Operations\V3AddBankAccountToPaymentServiceUserRequest](../../Models/Operations/V3AddBankAccountToPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
+| `$serverURL`                                                                                                                     | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | An optional server URL to use.                                                                                                   |
 
 ### Response
 
@@ -175,10 +181,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## approvePaymentInitiation
 
@@ -223,6 +229,7 @@ if ($response->v3ApprovePaymentInitiationResponse !== null) {
 | Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                   | [Operations\V3ApprovePaymentInitiationRequest](../../Models/Operations/V3ApprovePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `$serverURL`                                                                                                 | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -230,10 +237,10 @@ if ($response->v3ApprovePaymentInitiationResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## createAccount
 
@@ -273,9 +280,10 @@ if ($response->v3CreateAccountResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `$request`                                                                     | [Shared\V3CreateAccountRequest](../../Models/Shared/V3CreateAccountRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                | [\formance\stack\Models\Payments\V3CreateAccountRequest](../../Models/payments/V3CreateAccountRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$serverURL`                                                                                              | *string*                                                                                                  | :heavy_minus_sign:                                                                                        | An optional server URL to use.                                                                            |
 
 ### Response
 
@@ -283,10 +291,10 @@ if ($response->v3CreateAccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## createBankAccount
 
@@ -326,9 +334,10 @@ if ($response->v3CreateBankAccountResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `$request`                                                                             | [Shared\V3CreateBankAccountRequest](../../Models/Shared/V3CreateBankAccountRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                        | [\formance\stack\Models\Payments\V3CreateBankAccountRequest](../../Models/payments/V3CreateBankAccountRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| `$serverURL`                                                                                                      | *string*                                                                                                          | :heavy_minus_sign:                                                                                                | An optional server URL to use.                                                                                    |
 
 ### Response
 
@@ -336,10 +345,10 @@ if ($response->v3CreateBankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## createLinkForPaymentServiceUser
 
@@ -385,6 +394,7 @@ if ($response->v3PaymentServiceUserCreateLinkResponse !== null) {
 | Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                 | [Operations\V3CreateLinkForPaymentServiceUserRequest](../../Models/Operations/V3CreateLinkForPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `$serverURL`                                                                                                               | *string*                                                                                                                   | :heavy_minus_sign:                                                                                                         | An optional server URL to use.                                                                                             |
 
 ### Response
 
@@ -392,10 +402,10 @@ if ($response->v3PaymentServiceUserCreateLinkResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## createPayment
 
@@ -435,9 +445,10 @@ if ($response->v3CreatePaymentResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `$request`                                                                     | [Shared\V3CreatePaymentRequest](../../Models/Shared/V3CreatePaymentRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                | [\formance\stack\Models\Payments\V3CreatePaymentRequest](../../Models/payments/V3CreatePaymentRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `$serverURL`                                                                                              | *string*                                                                                                  | :heavy_minus_sign:                                                                                        | An optional server URL to use.                                                                            |
 
 ### Response
 
@@ -445,10 +456,10 @@ if ($response->v3CreatePaymentResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## createPaymentServiceUser
 
@@ -487,9 +498,10 @@ if ($response->v3CreatePaymentServiceUserResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                           | [Shared\V3CreatePaymentServiceUserRequest](../../Models/Shared/V3CreatePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                      | [\formance\stack\Models\Payments\V3CreatePaymentServiceUserRequest](../../Models/payments/V3CreatePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
+| `$serverURL`                                                                                                                    | *string*                                                                                                                        | :heavy_minus_sign:                                                                                                              | An optional server URL to use.                                                                                                  |
 
 ### Response
 
@@ -497,10 +509,10 @@ if ($response->v3CreatePaymentServiceUserResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## createPool
 
@@ -539,9 +551,10 @@ if ($response->v3CreatePoolResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `$request`                                                               | [Shared\V3CreatePoolRequest](../../Models/Shared/V3CreatePoolRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                          | [\formance\stack\Models\Payments\V3CreatePoolRequest](../../Models/payments/V3CreatePoolRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `$serverURL`                                                                                        | *string*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -549,10 +562,10 @@ if ($response->v3CreatePoolResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## deletePaymentInitiation
 
@@ -597,6 +610,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\V3DeletePaymentInitiationRequest](../../Models/Operations/V3DeletePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -604,10 +618,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## deletePaymentServiceUser
 
@@ -652,6 +666,7 @@ if ($response->v3PaymentServiceUserDeleteResponse !== null) {
 | Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                   | [Operations\V3DeletePaymentServiceUserRequest](../../Models/Operations/V3DeletePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `$serverURL`                                                                                                 | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -659,10 +674,10 @@ if ($response->v3PaymentServiceUserDeleteResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## deletePaymentServiceUserConnectionFromConnectorID
 
@@ -709,6 +724,7 @@ if ($response->v3PaymentServiceUserDeleteConnectionResponse !== null) {
 | Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                                                     | [Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../Models/Operations/V3DeletePaymentServiceUserConnectionFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
+| `$serverURL`                                                                                                                                                   | *string*                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                             | An optional server URL to use.                                                                                                                                 |
 
 ### Response
 
@@ -716,10 +732,10 @@ if ($response->v3PaymentServiceUserDeleteConnectionResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## deletePaymentServiceUserConnector
 
@@ -765,6 +781,7 @@ if ($response->v3PaymentServiceUserDeleteConnectorResponse !== null) {
 | Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                                     | [Operations\V3DeletePaymentServiceUserConnectorRequest](../../Models/Operations/V3DeletePaymentServiceUserConnectorRequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| `$serverURL`                                                                                                                   | *string*                                                                                                                       | :heavy_minus_sign:                                                                                                             | An optional server URL to use.                                                                                                 |
 
 ### Response
 
@@ -772,10 +789,10 @@ if ($response->v3PaymentServiceUserDeleteConnectorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## deletePool
 
@@ -820,6 +837,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V3DeletePoolRequest](../../Models/Operations/V3DeletePoolRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -827,10 +845,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## forwardBankAccount
 
@@ -846,16 +864,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V3ForwardBankAccountRequest(
     bankAccountID: '<id>',
@@ -875,6 +885,7 @@ if ($response->v3ForwardBankAccountResponse !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\V3ForwardBankAccountRequest](../../Models/Operations/V3ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -882,10 +893,10 @@ if ($response->v3ForwardBankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## forwardPaymentServiceUserBankAccount
 
@@ -931,6 +942,7 @@ if ($response->v3ForwardPaymentServiceUserBankAccountResponse !== null) {
 | Parameter                                                                                                                            | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                                           | [Operations\V3ForwardPaymentServiceUserBankAccountRequest](../../Models/Operations/V3ForwardPaymentServiceUserBankAccountRequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
+| `$serverURL`                                                                                                                         | *string*                                                                                                                             | :heavy_minus_sign:                                                                                                                   | An optional server URL to use.                                                                                                       |
 
 ### Response
 
@@ -938,10 +950,10 @@ if ($response->v3ForwardPaymentServiceUserBankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## forwardPaymentServiceUserToProvider
 
@@ -987,6 +999,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                         | [Operations\V3ForwardPaymentServiceUserToProviderRequest](../../Models/Operations/V3ForwardPaymentServiceUserToProviderRequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
+| `$serverURL`                                                                                                                       | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | An optional server URL to use.                                                                                                     |
 
 ### Response
 
@@ -994,10 +1007,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getAccount
 
@@ -1042,6 +1055,7 @@ if ($response->v3GetAccountResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V3GetAccountRequest](../../Models/Operations/V3GetAccountRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1049,10 +1063,10 @@ if ($response->v3GetAccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getAccountBalances
 
@@ -1099,6 +1113,7 @@ if ($response->v3BalancesCursorResponse !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\V3GetAccountBalancesRequest](../../Models/Operations/V3GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1106,10 +1121,10 @@ if ($response->v3BalancesCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getBankAccount
 
@@ -1125,16 +1140,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V3GetBankAccountRequest(
     bankAccountID: '<id>',
@@ -1154,6 +1161,7 @@ if ($response->v3GetBankAccountResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V3GetBankAccountRequest](../../Models/Operations/V3GetBankAccountRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1161,10 +1169,10 @@ if ($response->v3GetBankAccountResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getConnectorConfig
 
@@ -1209,6 +1217,7 @@ if ($response->v3GetConnectorConfigResponse !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\V3GetConnectorConfigRequest](../../Models/Operations/V3GetConnectorConfigRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1216,10 +1225,10 @@ if ($response->v3GetConnectorConfigResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getConnectorSchedule
 
@@ -1265,6 +1274,7 @@ if ($response->v3ConnectorScheduleResponse !== null) {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                           | [Operations\V3GetConnectorScheduleRequest](../../Models/Operations/V3GetConnectorScheduleRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `$serverURL`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -1272,10 +1282,138 @@ if ($response->v3ConnectorScheduleResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
+
+## getConversion
+
+Returns one conversion identified by its Formance-assigned `id`
+(**not** the PSP's native `reference`). See `V3Conversion` for the
+response shape — on `COMPLETED` status the `destinationAmount` and
+`fee` fields reflect the settled values; on `FAILED` the `error`
+field carries the PSP's rejection reason.
+
+Returns an error via `V3ErrorResponse` when no conversion exists
+for the given ID.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3GetConversion" method="get" path="/api/payments/v3/conversions/{conversionID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3GetConversionRequest(
+    conversionID: '<id>',
+);
+
+$response = $sdk->payments->v3->getConversion(
+    request: $request
+);
+
+if ($response->v3GetConversionResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\V3GetConversionRequest](../../Models/Operations/V3GetConversionRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
+
+### Response
+
+**[?Operations\V3GetConversionResponse](../../Models/Operations/V3GetConversionResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
+
+## getOrder
+
+Returns one order identified by its Formance-assigned `id` (composed
+from the PSP `reference` and the connector ID — **not** the PSP's
+native reference). The response includes the full `adjustments`
+history ordered from oldest to most recent; the last adjustment
+reflects the order's current top-level `status`.
+
+Returns an error via `V3ErrorResponse` when no order exists for the
+given ID, or when the ID cannot be decoded.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3GetOrder" method="get" path="/api/payments/v3/orders/{orderID}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3GetOrderRequest(
+    orderID: '<id>',
+);
+
+$response = $sdk->payments->v3->getOrder(
+    request: $request
+);
+
+if ($response->v3GetOrderResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Operations\V3GetOrderRequest](../../Models/Operations/V3GetOrderRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
+
+### Response
+
+**[?Operations\V3GetOrderResponse](../../Models/Operations/V3GetOrderResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPayment
 
@@ -1320,6 +1458,7 @@ if ($response->v3GetPaymentResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\V3GetPaymentRequest](../../Models/Operations/V3GetPaymentRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1327,10 +1466,10 @@ if ($response->v3GetPaymentResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPaymentInitiation
 
@@ -1375,6 +1514,7 @@ if ($response->v3GetPaymentInitiationResponse !== null) {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                           | [Operations\V3GetPaymentInitiationRequest](../../Models/Operations/V3GetPaymentInitiationRequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `$serverURL`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | An optional server URL to use.                                                                       |
 
 ### Response
 
@@ -1382,10 +1522,10 @@ if ($response->v3GetPaymentInitiationResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPaymentServiceUser
 
@@ -1430,6 +1570,7 @@ if ($response->v3GetPaymentServiceUserResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V3GetPaymentServiceUserRequest](../../Models/Operations/V3GetPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1437,10 +1578,10 @@ if ($response->v3GetPaymentServiceUserResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPaymentServiceUserLinkAttemptFromConnectorID
 
@@ -1487,6 +1628,7 @@ if ($response->v3PaymentServiceUserLinkAttempt !== null) {
 | Parameter                                                                                                                                                  | Type                                                                                                                                                       | Required                                                                                                                                                   | Description                                                                                                                                                |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                                                 | [Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../Models/Operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                         | The request object to use for the request.                                                                                                                 |
+| `$serverURL`                                                                                                                                               | *string*                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                         | An optional server URL to use.                                                                                                                             |
 
 ### Response
 
@@ -1494,10 +1636,10 @@ if ($response->v3PaymentServiceUserLinkAttempt !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPool
 
@@ -1542,6 +1684,7 @@ if ($response->v3GetPoolResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\V3GetPoolRequest](../../Models/Operations/V3GetPoolRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1549,10 +1692,10 @@ if ($response->v3GetPoolResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPoolBalances
 
@@ -1597,6 +1740,7 @@ if ($response->v3PoolBalancesResponse !== null) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\V3GetPoolBalancesRequest](../../Models/Operations/V3GetPoolBalancesRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -1604,10 +1748,10 @@ if ($response->v3PoolBalancesResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getPoolBalancesLatest
 
@@ -1652,6 +1796,7 @@ if ($response->v3PoolBalancesResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V3GetPoolBalancesLatestRequest](../../Models/Operations/V3GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1659,10 +1804,10 @@ if ($response->v3PoolBalancesResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## getTask
 
@@ -1707,6 +1852,7 @@ if ($response->v3GetTaskResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\V3GetTaskRequest](../../Models/Operations/V3GetTaskRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1714,10 +1860,10 @@ if ($response->v3GetTaskResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## initiatePayment
 
@@ -1760,6 +1906,7 @@ if ($response->v3InitiatePaymentResponse !== null) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\V3InitiatePaymentRequest](../../Models/Operations/V3InitiatePaymentRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -1767,10 +1914,10 @@ if ($response->v3InitiatePaymentResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## installConnector
 
@@ -1815,6 +1962,7 @@ if ($response->v3InstallConnectorResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\V3InstallConnectorRequest](../../Models/Operations/V3InstallConnectorRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1822,10 +1970,10 @@ if ($response->v3InstallConnectorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listAccounts
 
@@ -1871,6 +2019,7 @@ if ($response->v3AccountsCursorResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V3ListAccountsRequest](../../Models/Operations/V3ListAccountsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -1878,10 +2027,10 @@ if ($response->v3AccountsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listBankAccounts
 
@@ -1927,6 +2076,7 @@ if ($response->v3BankAccountsCursorResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\V3ListBankAccountsRequest](../../Models/Operations/V3ListBankAccountsRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1934,10 +2084,10 @@ if ($response->v3BankAccountsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listConnectorConfigs
 
@@ -1974,16 +2124,22 @@ if ($response->v3ConnectorConfigsResponse !== null) {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[?Operations\V3ListConnectorConfigsResponse](../../Models/Operations/V3ListConnectorConfigsResponse.md)**
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listConnectorScheduleInstances
 
@@ -2031,6 +2187,7 @@ if ($response->v3ConnectorScheduleInstancesCursorResponse !== null) {
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                               | [Operations\V3ListConnectorScheduleInstancesRequest](../../Models/Operations/V3ListConnectorScheduleInstancesRequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
+| `$serverURL`                                                                                                             | *string*                                                                                                                 | :heavy_minus_sign:                                                                                                       | An optional server URL to use.                                                                                           |
 
 ### Response
 
@@ -2038,10 +2195,10 @@ if ($response->v3ConnectorScheduleInstancesCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listConnectorSchedules
 
@@ -2088,6 +2245,7 @@ if ($response->v3ConnectorSchedulesCursorResponse !== null) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\V3ListConnectorSchedulesRequest](../../Models/Operations/V3ListConnectorSchedulesRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -2095,10 +2253,10 @@ if ($response->v3ConnectorSchedulesCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listConnectors
 
@@ -2144,6 +2302,7 @@ if ($response->v3ConnectorsCursorResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V3ListConnectorsRequest](../../Models/Operations/V3ListConnectorsRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -2151,10 +2310,152 @@ if ($response->v3ConnectorsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
+
+## listConversions
+
+Returns the full list of conversions ingested by Formance from
+connectors that implement the conversions capability. A conversion
+is a direct swap between two assets on a PSP (e.g. USD → USDC on
+Coinbase Prime). Conversions are **read-only** through the Formance
+API.
+
+Unlike orders, conversions do not carry an adjustment history —
+Formance records only the final observed state (`status`,
+`destinationAmount`, and `fee` when settled).
+
+Results are cursor-paginated. The optional request body accepts a
+query builder for filtering over top-level `V3Conversion` fields
+such as `connectorID`, `reference`, `status`, `sourceAsset`,
+`destinationAsset`, and `createdAt`.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ListConversions" method="get" path="/api/payments/v3/conversions" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ListConversionsRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+);
+
+$response = $sdk->payments->v3->listConversions(
+    request: $request
+);
+
+if ($response->v3ConversionsCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `$request`                                                                                 | [Operations\V3ListConversionsRequest](../../Models/Operations/V3ListConversionsRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
+
+### Response
+
+**[?Operations\V3ListConversionsResponse](../../Models/Operations/V3ListConversionsResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
+
+## listOrders
+
+Returns the full list of orders ingested by Formance from connectors
+that implement the orders capability (e.g. `coinbaseprime`). Orders
+represent trade placements on an exchange-style PSP and are
+**read-only** through the Formance API — submission, cancellation,
+and lifecycle transitions are owned by the underlying connector.
+
+Results are cursor-paginated. The optional request body accepts a
+query builder for filtering over top-level `V3Order` fields such as
+`connectorID`, `reference`, `direction`, `status`, `type`,
+`sourceAsset`, `destinationAsset`, and `createdAt`.
+
+See `V3Order` for the full response shape, including the
+`adjustments` array that captures each observed state transition on
+the exchange.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ListOrders" method="get" path="/api/payments/v3/orders" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3ListOrdersRequest(
+    cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
+    pageSize: 100,
+);
+
+$response = $sdk->payments->v3->listOrders(
+    request: $request
+);
+
+if ($response->v3OrdersCursorResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\V3ListOrdersRequest](../../Models/Operations/V3ListOrdersRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
+
+### Response
+
+**[?Operations\V3ListOrdersResponse](../../Models/Operations/V3ListOrdersResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentInitiationAdjustments
 
@@ -2201,6 +2502,7 @@ if ($response->v3PaymentInitiationAdjustmentsCursorResponse !== null) {
 | Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                   | [Operations\V3ListPaymentInitiationAdjustmentsRequest](../../Models/Operations/V3ListPaymentInitiationAdjustmentsRequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
+| `$serverURL`                                                                                                                 | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | An optional server URL to use.                                                                                               |
 
 ### Response
 
@@ -2208,10 +2510,10 @@ if ($response->v3PaymentInitiationAdjustmentsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentInitiationRelatedPayments
 
@@ -2258,6 +2560,7 @@ if ($response->v3PaymentInitiationRelatedPaymentsCursorResponse !== null) {
 | Parameter                                                                                                                            | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                                           | [Operations\V3ListPaymentInitiationRelatedPaymentsRequest](../../Models/Operations/V3ListPaymentInitiationRelatedPaymentsRequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
+| `$serverURL`                                                                                                                         | *string*                                                                                                                             | :heavy_minus_sign:                                                                                                                   | An optional server URL to use.                                                                                                       |
 
 ### Response
 
@@ -2265,10 +2568,10 @@ if ($response->v3PaymentInitiationRelatedPaymentsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentInitiations
 
@@ -2314,6 +2617,7 @@ if ($response->v3PaymentInitiationsCursorResponse !== null) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\V3ListPaymentInitiationsRequest](../../Models/Operations/V3ListPaymentInitiationsRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -2321,10 +2625,10 @@ if ($response->v3PaymentInitiationsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentServiceUserConnections
 
@@ -2371,6 +2675,7 @@ if ($response->v3PaymentServiceUserConnectionsCursorResponse !== null) {
 | Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                                     | [Operations\V3ListPaymentServiceUserConnectionsRequest](../../Models/Operations/V3ListPaymentServiceUserConnectionsRequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| `$serverURL`                                                                                                                   | *string*                                                                                                                       | :heavy_minus_sign:                                                                                                             | An optional server URL to use.                                                                                                 |
 
 ### Response
 
@@ -2378,10 +2683,10 @@ if ($response->v3PaymentServiceUserConnectionsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentServiceUserConnectionsFromConnectorID
 
@@ -2429,6 +2734,7 @@ if ($response->v3PaymentServiceUserConnectionsCursorResponse !== null) {
 | Parameter                                                                                                                                                    | Type                                                                                                                                                         | Required                                                                                                                                                     | Description                                                                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                                                                   | [Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../Models/Operations/V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                           | The request object to use for the request.                                                                                                                   |
+| `$serverURL`                                                                                                                                                 | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | An optional server URL to use.                                                                                                                               |
 
 ### Response
 
@@ -2436,10 +2742,10 @@ if ($response->v3PaymentServiceUserConnectionsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentServiceUserLinkAttemptsFromConnectorID
 
@@ -2489,6 +2795,7 @@ if ($response->v3PaymentServiceUserLinkAttemptsCursorResponse !== null) {
 | Parameter                                                                                                                                                      | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                                                                     | [Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../Models/Operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                             | The request object to use for the request.                                                                                                                     |
+| `$serverURL`                                                                                                                                                   | *string*                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                             | An optional server URL to use.                                                                                                                                 |
 
 ### Response
 
@@ -2496,10 +2803,10 @@ if ($response->v3PaymentServiceUserLinkAttemptsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPaymentServiceUsers
 
@@ -2545,6 +2852,7 @@ if ($response->v3PaymentServiceUsersCursorResponse !== null) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\V3ListPaymentServiceUsersRequest](../../Models/Operations/V3ListPaymentServiceUsersRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2552,10 +2860,10 @@ if ($response->v3PaymentServiceUsersCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPayments
 
@@ -2601,6 +2909,7 @@ if ($response->v3PaymentsCursorResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\V3ListPaymentsRequest](../../Models/Operations/V3ListPaymentsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2608,10 +2917,10 @@ if ($response->v3PaymentsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listPools
 
@@ -2657,6 +2966,7 @@ if ($response->v3PoolsCursorResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\V3ListPoolsRequest](../../Models/Operations/V3ListPoolsRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -2664,10 +2974,10 @@ if ($response->v3PoolsCursorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## rejectPaymentInitiation
 
@@ -2712,6 +3022,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\V3RejectPaymentInitiationRequest](../../Models/Operations/V3RejectPaymentInitiationRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2719,10 +3030,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## removeAccountFromPool
 
@@ -2768,6 +3079,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V3RemoveAccountFromPoolRequest](../../Models/Operations/V3RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2775,10 +3087,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## resetConnector
 
@@ -2823,6 +3135,7 @@ if ($response->v3ResetConnectorResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\V3ResetConnectorRequest](../../Models/Operations/V3ResetConnectorRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -2830,10 +3143,10 @@ if ($response->v3ResetConnectorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## retryPaymentInitiation
 
@@ -2878,6 +3191,7 @@ if ($response->v3RetryPaymentInitiationResponse !== null) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\V3RetryPaymentInitiationRequest](../../Models/Operations/V3RetryPaymentInitiationRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -2885,10 +3199,10 @@ if ($response->v3RetryPaymentInitiationResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## reversePaymentInitiation
 
@@ -2933,6 +3247,7 @@ if ($response->v3ReversePaymentInitiationResponse !== null) {
 | Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                   | [Operations\V3ReversePaymentInitiationRequest](../../Models/Operations/V3ReversePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `$serverURL`                                                                                                 | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               |
 
 ### Response
 
@@ -2940,10 +3255,10 @@ if ($response->v3ReversePaymentInitiationResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## uninstallConnector
 
@@ -2988,6 +3303,7 @@ if ($response->v3UninstallConnectorResponse !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\V3UninstallConnectorRequest](../../Models/Operations/V3UninstallConnectorRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -2995,10 +3311,10 @@ if ($response->v3UninstallConnectorResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## updateBankAccountMetadata
 
@@ -3014,16 +3330,8 @@ require 'vendor/autoload.php';
 
 use formance\stack;
 use formance\stack\Models\Operations;
-use formance\stack\Models\Shared;
 
-$sdk = stack\SDK::builder()
-    ->setSecurity(
-        new Shared\Security(
-            clientID: '<YOUR_CLIENT_ID_HERE>',
-            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
-        )
-    )
-    ->build();
+$sdk = stack\SDK::builder()->build();
 
 $request = new Operations\V3UpdateBankAccountMetadataRequest(
     bankAccountID: '<id>',
@@ -3043,6 +3351,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                     | [Operations\V3UpdateBankAccountMetadataRequest](../../Models/Operations/V3UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `$serverURL`                                                                                                   | *string*                                                                                                       | :heavy_minus_sign:                                                                                             | An optional server URL to use.                                                                                 |
 
 ### Response
 
@@ -3050,10 +3359,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## updateLinkForPaymentServiceUserOnConnector
 
@@ -3100,6 +3409,7 @@ if ($response->v3PaymentServiceUserUpdateLinkResponse !== null) {
 | Parameter                                                                                                                                        | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                                                                       | [Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../Models/Operations/V3UpdateLinkForPaymentServiceUserOnConnectorRequest.md) | :heavy_check_mark:                                                                                                                               | The request object to use for the request.                                                                                                       |
+| `$serverURL`                                                                                                                                     | *string*                                                                                                                                         | :heavy_minus_sign:                                                                                                                               | An optional server URL to use.                                                                                                                   |
 
 ### Response
 
@@ -3107,10 +3417,10 @@ if ($response->v3PaymentServiceUserUpdateLinkResponse !== null) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## updatePaymentMetadata
 
@@ -3155,6 +3465,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V3UpdatePaymentMetadataRequest](../../Models/Operations/V3UpdatePaymentMetadataRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -3162,10 +3473,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## updatePoolQuery
 
@@ -3210,6 +3521,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `$request`                                                                                 | [Operations\V3UpdatePoolQueryRequest](../../Models/Operations/V3UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `$serverURL`                                                                               | *string*                                                                                   | :heavy_minus_sign:                                                                         | An optional server URL to use.                                                             |
 
 ### Response
 
@@ -3217,10 +3529,10 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| Errors\V3ErrorResponse | default                | application/json       |
-| Errors\SDKException    | 4XX, 5XX               | \*/\*                  |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
 ## v3UpdateConnectorConfig
 
@@ -3265,6 +3577,7 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\V3UpdateConnectorConfigRequest](../../Models/Operations/V3UpdateConnectorConfigRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -3272,7 +3585,7 @@ if ($response->statusCode === 200) {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| Errors\PaymentsErrorResponse | default                      | application/json             |
-| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| \formance\stack\Models\Payments\PaymentsErrorResponse | default                                               | application/json                                      |
+| Errors\SDKException                                   | 4XX, 5XX                                              | \*/\*                                                 |
