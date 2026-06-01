@@ -35,6 +35,7 @@ and standard method from web, mobile and desktop applications.
   * [Authentication](#authentication-1)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -482,6 +483,77 @@ try {
 }
 ```
 <!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally using the `setServerIndex(int $serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
+
+If the selected server has variables, you may override its default values using the associated builder method(s):
+
+| Variable       | BuilderMethod                                         | Supported Values                                         | Default           | Description                                                   |
+| -------------- | ----------------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `setEnvironment(stack\ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `setOrganization(string organization)`                | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+
+#### Example
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+
+$sdk = stack\SDK::builder()
+    ->setServerIndex(1)
+    ->setEnvironment('us-east-1')
+    ->setOrganization('orgID-stackID')
+    ->build();
+
+
+
+$response = $sdk->getVersions(
+
+);
+
+if ($response->getVersionsResponse !== null) {
+    // handle response
+}
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally using the `setServerUrl(string $serverUrl)` builder method when initializing the SDK client instance. For example:
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+
+$sdk = stack\SDK::builder()
+    ->setServerURL('https://orgID-stackID.eu.sandbox.formance.cloud')
+    ->build();
+
+
+
+$response = $sdk->getVersions(
+
+);
+
+if ($response->getVersionsResponse !== null) {
+    // handle response
+}
+```
+<!-- End Server Selection [server] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

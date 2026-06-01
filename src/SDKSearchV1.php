@@ -15,14 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKSearchV1
 {
-    public const GET_SERVER_INFO_SEARCH_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const SEARCH_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -55,19 +47,14 @@ class SDKSearchV1
     /**
      * Get server info
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetServerInfoSearchResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function getServerInfoSearch(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoSearchResponse
+    public function getServerInfoSearch(?Options $options = null): Operations\GetServerInfoSearchResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKSearchV1::GET_SERVER_INFO_SEARCH_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/search/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -119,19 +106,14 @@ class SDKSearchV1
      * Elasticsearch.v1 query engine
      *
      * @param  \formance\stack\Models\Search\Query  $request
-     * @param  ?string  $serverURL
      * @return Operations\SearchResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function search(\formance\stack\Models\Search\Query $request, ?string $serverURL = null, ?Options $options = null): Operations\SearchResponse
+    public function search(\formance\stack\Models\Search\Query $request, ?Options $options = null): Operations\SearchResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKSearchV1::SEARCH_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/search/');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

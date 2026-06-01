@@ -15,86 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKV1
 {
-    public const CREATE_TRANSACTIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const ADD_METADATA_ON_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const ADD_METADATA_TO_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const COUNT_ACCOUNTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const COUNT_TRANSACTIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_ACCOUNT_LEDGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_BALANCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_BALANCES_AGGREGATED_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_INFO_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_LEDGER_INFO_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_MAPPING_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_ACCOUNTS_LEDGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_LOGS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_TRANSACTIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const READ_STATS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const REVERT_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const RUN_SCRIPT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_MAPPING_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -128,17 +48,12 @@ class SDKV1
      * Create a new batch of transactions to a ledger
      *
      * @param  Operations\CreateTransactionsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateTransactionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTransactions(Operations\CreateTransactionsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateTransactionsResponse
+    public function createTransactions(Operations\CreateTransactionsRequest $request, ?Options $options = null): Operations\CreateTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::CREATE_TRANSACTIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/batch', Operations\CreateTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -202,17 +117,12 @@ class SDKV1
      * Set the metadata of a transaction by its ID
      *
      * @param  Operations\AddMetadataOnTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\AddMetadataOnTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addMetadataOnTransaction(Operations\AddMetadataOnTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\AddMetadataOnTransactionResponse
+    public function addMetadataOnTransaction(Operations\AddMetadataOnTransactionRequest $request, ?Options $options = null): Operations\AddMetadataOnTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::ADD_METADATA_ON_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/metadata', Operations\AddMetadataOnTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -267,17 +177,12 @@ class SDKV1
      * Add metadata to an account
      *
      * @param  Operations\AddMetadataToAccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\AddMetadataToAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addMetadataToAccount(Operations\AddMetadataToAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\AddMetadataToAccountResponse
+    public function addMetadataToAccount(Operations\AddMetadataToAccountRequest $request, ?Options $options = null): Operations\AddMetadataToAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::ADD_METADATA_TO_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}/metadata', Operations\AddMetadataToAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -332,17 +237,12 @@ class SDKV1
      * Count the accounts from a ledger
      *
      * @param  Operations\CountAccountsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CountAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function countAccounts(Operations\CountAccountsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CountAccountsResponse
+    public function countAccounts(Operations\CountAccountsRequest $request, ?Options $options = null): Operations\CountAccountsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::COUNT_ACCOUNTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', Operations\CountAccountsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -395,17 +295,12 @@ class SDKV1
      * Count the transactions from a ledger
      *
      * @param  Operations\CountTransactionsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CountTransactionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function countTransactions(Operations\CountTransactionsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CountTransactionsResponse
+    public function countTransactions(Operations\CountTransactionsRequest $request, ?Options $options = null): Operations\CountTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::COUNT_TRANSACTIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\CountTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -458,17 +353,12 @@ class SDKV1
      * Create a new transaction to a ledger
      *
      * @param  Operations\CreateTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTransaction(Operations\CreateTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateTransactionResponse
+    public function createTransaction(Operations\CreateTransactionRequest $request, ?Options $options = null): Operations\CreateTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::CREATE_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\CreateTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -536,17 +426,12 @@ class SDKV1
      * Get account by its address
      *
      * @param  Operations\GetAccountLedgerRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetAccountLedgerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getAccountLedger(Operations\GetAccountLedgerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetAccountLedgerResponse
+    public function getAccountLedger(Operations\GetAccountLedgerRequest $request, ?Options $options = null): Operations\GetAccountLedgerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_ACCOUNT_LEDGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts/{address}', Operations\GetAccountLedgerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -605,17 +490,12 @@ class SDKV1
      * Get the balances from a ledger's account
      *
      * @param  Operations\GetBalancesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getBalances(Operations\GetBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetBalancesResponse
+    public function getBalances(Operations\GetBalancesRequest $request, ?Options $options = null): Operations\GetBalancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_BALANCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/balances', Operations\GetBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -677,17 +557,12 @@ class SDKV1
      * Get the aggregated balances from selected accounts
      *
      * @param  Operations\GetBalancesAggregatedRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetBalancesAggregatedResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getBalancesAggregated(Operations\GetBalancesAggregatedRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetBalancesAggregatedResponse
+    public function getBalancesAggregated(Operations\GetBalancesAggregatedRequest $request, ?Options $options = null): Operations\GetBalancesAggregatedResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_BALANCES_AGGREGATED_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/aggregate/balances', Operations\GetBalancesAggregatedRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -748,17 +623,12 @@ class SDKV1
     /**
      * Show server information
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInfo(?string $serverURL = null, ?Options $options = null): Operations\GetInfoResponse
+    public function getInfo(?Options $options = null): Operations\GetInfoResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_INFO_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -817,17 +687,12 @@ class SDKV1
      * Get information about a ledger
      *
      * @param  Operations\GetLedgerInfoRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetLedgerInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getLedgerInfo(Operations\GetLedgerInfoRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetLedgerInfoResponse
+    public function getLedgerInfo(Operations\GetLedgerInfoRequest $request, ?Options $options = null): Operations\GetLedgerInfoResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_LEDGER_INFO_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/_info', Operations\GetLedgerInfoRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -886,17 +751,12 @@ class SDKV1
      * Get the mapping of a ledger
      *
      * @param  Operations\GetMappingRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetMappingResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getMapping(Operations\GetMappingRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetMappingResponse
+    public function getMapping(Operations\GetMappingRequest $request, ?Options $options = null): Operations\GetMappingResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_MAPPING_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', Operations\GetMappingRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -955,17 +815,12 @@ class SDKV1
      * Get transaction from a ledger by its ID
      *
      * @param  Operations\GetTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getTransaction(Operations\GetTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetTransactionResponse
+    public function getTransaction(Operations\GetTransactionRequest $request, ?Options $options = null): Operations\GetTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::GET_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}', Operations\GetTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1026,17 +881,12 @@ class SDKV1
      * List accounts from a ledger, sorted by address in descending order.
      *
      * @param  Operations\ListAccountsLedgerRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListAccountsLedgerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listAccountsLedger(Operations\ListAccountsLedgerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ListAccountsLedgerResponse
+    public function listAccountsLedger(Operations\ListAccountsLedgerRequest $request, ?Options $options = null): Operations\ListAccountsLedgerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::LIST_ACCOUNTS_LEDGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/accounts', Operations\ListAccountsLedgerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1117,17 +967,12 @@ class SDKV1
      * List the logs from a ledger, sorted by ID in descending order.
      *
      * @param  Operations\ListLogsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListLogsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listLogs(Operations\ListLogsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ListLogsResponse
+    public function listLogs(Operations\ListLogsRequest $request, ?Options $options = null): Operations\ListLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::LIST_LOGS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/logs', Operations\ListLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1191,17 +1036,12 @@ class SDKV1
      * List transactions from a ledger, sorted by txid in descending order.
      *
      * @param  Operations\ListTransactionsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListTransactionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTransactions(Operations\ListTransactionsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ListTransactionsResponse
+    public function listTransactions(Operations\ListTransactionsRequest $request, ?Options $options = null): Operations\ListTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::LIST_TRANSACTIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions', Operations\ListTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1266,17 +1106,12 @@ class SDKV1
      *
      *
      * @param  Operations\ReadStatsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReadStatsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readStats(Operations\ReadStatsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadStatsResponse
+    public function readStats(Operations\ReadStatsRequest $request, ?Options $options = null): Operations\ReadStatsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::READ_STATS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/stats', Operations\ReadStatsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1335,17 +1170,12 @@ class SDKV1
      * Revert a ledger transaction by its ID
      *
      * @param  Operations\RevertTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\RevertTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function revertTransaction(Operations\RevertTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\RevertTransactionResponse
+    public function revertTransaction(Operations\RevertTransactionRequest $request, ?Options $options = null): Operations\RevertTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::REVERT_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/transactions/{txid}/revert', Operations\RevertTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1411,19 +1241,14 @@ class SDKV1
      *
      *
      * @param  Operations\RunScriptRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\RunScriptResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function runScript(Operations\RunScriptRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\RunScriptResponse
+    public function runScript(Operations\RunScriptRequest $request, ?Options $options = null): Operations\RunScriptResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::RUN_SCRIPT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/script', Operations\RunScriptRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1481,17 +1306,12 @@ class SDKV1
      * Update the mapping of a ledger
      *
      * @param  Operations\UpdateMappingRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateMappingResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateMapping(Operations\UpdateMappingRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateMappingResponse
+    public function updateMapping(Operations\UpdateMappingRequest $request, ?Options $options = null): Operations\UpdateMappingResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKV1::UPDATE_MAPPING_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/{ledger}/mapping', Operations\UpdateMappingRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

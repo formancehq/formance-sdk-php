@@ -47,12 +47,6 @@ if ($response->serverInfo !== null) {
 }
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[?Operations\GetServerInfoSearchResponse](../../Models/Operations/GetServerInfoSearchResponse.md)**
@@ -120,7 +114,6 @@ if ($response->response !== null) {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `$request`                                                          | [\formance\stack\Models\Search\Query](../../Models/search/Query.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `$serverURL`                                                        | *string*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 

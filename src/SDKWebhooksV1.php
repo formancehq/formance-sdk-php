@@ -15,38 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKWebhooksV1
 {
-    public const ACTIVATE_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CHANGE_CONFIG_SECRET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DEACTIVATE_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_MANY_CONFIGS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const INSERT_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const TEST_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -82,17 +50,12 @@ class SDKWebhooksV1
      * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      *
      * @param  Operations\ActivateConfigRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ActivateConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function activateConfig(Operations\ActivateConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ActivateConfigResponse
+    public function activateConfig(Operations\ActivateConfigRequest $request, ?Options $options = null): Operations\ActivateConfigResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::ACTIVATE_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/activate', Operations\ActivateConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -157,17 +120,12 @@ class SDKWebhooksV1
      *
      *
      * @param  Operations\ChangeConfigSecretRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ChangeConfigSecretResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function changeConfigSecret(Operations\ChangeConfigSecretRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ChangeConfigSecretResponse
+    public function changeConfigSecret(Operations\ChangeConfigSecretRequest $request, ?Options $options = null): Operations\ChangeConfigSecretResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::CHANGE_CONFIG_SECRET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/secret/change', Operations\ChangeConfigSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -232,17 +190,12 @@ class SDKWebhooksV1
      * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      *
      * @param  Operations\DeactivateConfigRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeactivateConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deactivateConfig(Operations\DeactivateConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeactivateConfigResponse
+    public function deactivateConfig(Operations\DeactivateConfigRequest $request, ?Options $options = null): Operations\DeactivateConfigResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::DEACTIVATE_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/deactivate', Operations\DeactivateConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -303,17 +256,12 @@ class SDKWebhooksV1
      * Delete a webhooks config by ID.
      *
      * @param  Operations\DeleteConfigRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeleteConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteConfig(Operations\DeleteConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteConfigResponse
+    public function deleteConfig(Operations\DeleteConfigRequest $request, ?Options $options = null): Operations\DeleteConfigResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::DELETE_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}', Operations\DeleteConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -365,17 +313,12 @@ class SDKWebhooksV1
      * Sorted by updated date descending
      *
      * @param  ?Operations\GetManyConfigsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetManyConfigsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getManyConfigs(?Operations\GetManyConfigsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\GetManyConfigsResponse
+    public function getManyConfigs(?Operations\GetManyConfigsRequest $request = null, ?Options $options = null): Operations\GetManyConfigsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::GET_MANY_CONFIGS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -448,17 +391,12 @@ class SDKWebhooksV1
      *
      *
      * @param  \formance\stack\Models\Webhooks\ConfigUser  $request
-     * @param  ?string  $serverURL
      * @return Operations\InsertConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function insertConfig(\formance\stack\Models\Webhooks\ConfigUser $request, ?string $serverURL = null, ?Options $options = null): Operations\InsertConfigResponse
+    public function insertConfig(\formance\stack\Models\Webhooks\ConfigUser $request, ?Options $options = null): Operations\InsertConfigResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::INSERT_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -524,17 +462,12 @@ class SDKWebhooksV1
      * Test a config by sending a webhook to its endpoint.
      *
      * @param  Operations\TestConfigRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\TestConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function testConfig(Operations\TestConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\TestConfigResponse
+    public function testConfig(Operations\TestConfigRequest $request, ?Options $options = null): Operations\TestConfigResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::TEST_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}/test', Operations\TestConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -595,17 +528,12 @@ class SDKWebhooksV1
      * Update a webhooks config by ID.
      *
      * @param  Operations\UpdateConfigRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateConfig(Operations\UpdateConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateConfigResponse
+    public function updateConfig(Operations\UpdateConfigRequest $request, ?Options $options = null): Operations\UpdateConfigResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWebhooksV1::UPDATE_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/webhooks/configs/{id}', Operations\UpdateConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

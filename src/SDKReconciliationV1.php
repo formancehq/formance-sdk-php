@@ -15,38 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKReconciliationV1
 {
-    public const CREATE_POLICY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_POLICY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_POLICY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_RECONCILIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_SERVER_INFO_RECONCILIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_POLICIES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_RECONCILIATIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const RECONCILE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -82,17 +50,12 @@ class SDKReconciliationV1
      * Create a policy
      *
      * @param  \formance\stack\Models\Reconciliation\PolicyRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreatePolicyResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPolicy(\formance\stack\Models\Reconciliation\PolicyRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreatePolicyResponse
+    public function createPolicy(\formance\stack\Models\Reconciliation\PolicyRequest $request, ?Options $options = null): Operations\CreatePolicyResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::CREATE_POLICY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -158,17 +121,12 @@ class SDKReconciliationV1
      * Delete a policy by its id.
      *
      * @param  Operations\DeletePolicyRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeletePolicyResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePolicy(Operations\DeletePolicyRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeletePolicyResponse
+    public function deletePolicy(Operations\DeletePolicyRequest $request, ?Options $options = null): Operations\DeletePolicyResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::DELETE_POLICY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}', Operations\DeletePolicyRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -218,17 +176,12 @@ class SDKReconciliationV1
      * Get a policy
      *
      * @param  Operations\GetPolicyRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetPolicyResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPolicy(Operations\GetPolicyRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetPolicyResponse
+    public function getPolicy(Operations\GetPolicyRequest $request, ?Options $options = null): Operations\GetPolicyResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::GET_POLICY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}', Operations\GetPolicyRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -287,17 +240,12 @@ class SDKReconciliationV1
      * Get a reconciliation
      *
      * @param  Operations\GetReconciliationRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetReconciliationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getReconciliation(Operations\GetReconciliationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetReconciliationResponse
+    public function getReconciliation(Operations\GetReconciliationRequest $request, ?Options $options = null): Operations\GetReconciliationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::GET_RECONCILIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/reconciliations/{reconciliationID}', Operations\GetReconciliationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -355,17 +303,12 @@ class SDKReconciliationV1
     /**
      * Get server info
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetServerInfoReconciliationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfoReconciliation(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoReconciliationResponse
+    public function getServerInfoReconciliation(?Options $options = null): Operations\GetServerInfoReconciliationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::GET_SERVER_INFO_RECONCILIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -424,17 +367,12 @@ class SDKReconciliationV1
      * List policies
      *
      * @param  ?Operations\ListPoliciesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListPoliciesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPolicies(?Operations\ListPoliciesRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListPoliciesResponse
+    public function listPolicies(?Operations\ListPoliciesRequest $request = null, ?Options $options = null): Operations\ListPoliciesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::LIST_POLICIES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -500,17 +438,12 @@ class SDKReconciliationV1
      * List reconciliations
      *
      * @param  ?Operations\ListReconciliationsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListReconciliationsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listReconciliations(?Operations\ListReconciliationsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListReconciliationsResponse
+    public function listReconciliations(?Operations\ListReconciliationsRequest $request = null, ?Options $options = null): Operations\ListReconciliationsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::LIST_RECONCILIATIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/reconciliations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -578,17 +511,12 @@ class SDKReconciliationV1
      * Reconcile using a policy
      *
      * @param  Operations\ReconcileRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReconcileResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function reconcile(Operations\ReconcileRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReconcileResponse
+    public function reconcile(Operations\ReconcileRequest $request, ?Options $options = null): Operations\ReconcileResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKReconciliationV1::RECONCILE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/reconciliation/policies/{policyID}/reconciliation', Operations\ReconcileRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

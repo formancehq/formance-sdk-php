@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 0b9e0548-6a63-426d-aa19-95795ea55543
 management:
-  docChecksum: bbc9998a879e3617766121aa7fa4ff8e
+  docChecksum: 5a14b806afe8a80f055354bc7f17f3d5
   docVersion: SDK_VERSION
   speakeasyVersion: 1.755.1
   generationVersion: 2.865.2
-  releaseVersion: 6.0.0
-  configChecksum: 714db07948bd6293c5c02a59c8865521
+  releaseVersion: 6.1.0
+  configChecksum: db5f22cb6ba148355893b509621ff9eb
   repoURL: https://github.com/formancehq/formance-sdk-php.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-php.git
   published: true
 persistentEdits:
-  generation_id: 7dc8302a-1598-46a7-8da6-578981a81aaf
-  pristine_commit_hash: 2475a33373a1ebbd969c9bcc78c6e7e187eb4a82
-  pristine_tree_hash: ed032448cdf95a203fa6753c62632f5f431fce17
+  generation_id: 212bd734-6983-41ef-b4ad-7aaec241041f
+  pristine_commit_hash: 3078074c43ef09294000509a6b99b89d17e7a6eb
+  pristine_tree_hash: 55ae15b42ab0fd03b111cb522b55bee687c7f257
 features:
   php:
     additionalProperties: 0.1.0
@@ -29,7 +29,6 @@ features:
     ignores: 2.81.1
     inputOutputModels: 2.83.0
     methodArguments: 0.1.0
-    methodServerURLs: 2.82.2
     nameOverrides: 2.81.4
     nullables: 1.0.1
     oauth2ClientCredentials: 1.1.4
@@ -1478,8 +1477,8 @@ trackedFiles:
     pristine_git_object: efe389f2da18946cd67738d9fbe4c782e97b138f
   docs/Models/Operations/RunScriptResponse.md:
     id: 192247cb709d
-    last_write_checksum: sha1:562a8d814fe30c6bacb19c17af38df61d459c488
-    pristine_git_object: 08ee3b8bddd7354626508ce903bf6c447d912372
+    last_write_checksum: sha1:0b184644a0cf86db4f074c7e195d4388cb875fd9
+    pristine_git_object: 31f75f6c9ecb8b7f7dc5b166c695f13f95db2f89
   docs/Models/Operations/RunWorkflowRequest.md:
     id: 133cd219f5cb
     last_write_checksum: sha1:60f8acd6debe942461c816da35b76458e574ba81
@@ -4562,56 +4561,56 @@ trackedFiles:
     pristine_git_object: 8f8cc8b3fc9e80a039ef717396b9b656dc4a0693
   docs/sdks/ledger/README.md:
     id: 9fd00c5da17c
-    last_write_checksum: sha1:191ffea811b5361b8b1a7800b86f70d619daf82e
-    pristine_git_object: 37961040da6f9e30e5ae6f26ec7a68a532c274a5
+    last_write_checksum: sha1:ea50415ce1881009278d9e32085fd37050d0ca8a
+    pristine_git_object: 60444975b803896fe08e78e82d82eff30ff32fd6
   docs/sdks/sdk/README.md:
     id: 623e0731a2f1
-    last_write_checksum: sha1:d74c4ec2a44bb67fdfda26a85d907c19ae7a2427
-    pristine_git_object: 1fe756d5285f5de23de3fe924a034884c31f97cb
+    last_write_checksum: sha1:a4a38b6ca2a2765622b1bd21f963df35afc8eaaf
+    pristine_git_object: 1bedcdd9c0198bb8da8e271bfcaf9fcb3cf115c7
   docs/sdks/sdkorchestrationv1/README.md:
     id: 33528698f5c1
-    last_write_checksum: sha1:f985886ed5f2c299629dc390942f81531c040499
-    pristine_git_object: 6d6b201cffe80f045ff12a9e69e3f1a0780fe0bb
+    last_write_checksum: sha1:91c35c299c6591794670cb42162f7689ec561bb4
+    pristine_git_object: e01332f055a69da2728e22778d41eaa26061d0de
   docs/sdks/sdkpaymentsv1/README.md:
     id: a486c09a2924
-    last_write_checksum: sha1:e54353ecbbc39c309af2ec78a6b815f7d00861c4
-    pristine_git_object: e34cfa17473854a1fe11ca55eb423a298eeb3fd9
+    last_write_checksum: sha1:35c7b047d7acc5248c9a71c7fb616f1aac5c9caf
+    pristine_git_object: 55ab8afa265fe16493e0137ffa517fcf07271f0c
   docs/sdks/sdkreconciliationv1/README.md:
     id: 258ef0f170c8
-    last_write_checksum: sha1:8199273e89f53323bea705597b2266eaae044409
-    pristine_git_object: c46d7cc9d63a95bdeb7218661824c80444bfcb98
+    last_write_checksum: sha1:b34519529aeba55e7a30c33c2e09d7ca14a68a22
+    pristine_git_object: e9a0d015baf93bef08b84410965db28e3a4af03f
   docs/sdks/sdksearchv1/README.md:
     id: ff1aca381a9f
-    last_write_checksum: sha1:dd18d0c418311366a2b12fa94281b9b010a77c08
-    pristine_git_object: 19468f0914e14a9e77ee5cca7e02f9c1bd4cb51f
+    last_write_checksum: sha1:324bdc4b2d4b5d7c549bf14c835353560f20e159
+    pristine_git_object: 93e03a74ef8705f0c53f0041bfe08e15e4c219ff
   docs/sdks/sdkv1/README.md:
     id: fccdc42e6232
-    last_write_checksum: sha1:461aa0b73de4d30d5cb557bcd5d99926b5e2cb74
-    pristine_git_object: a3bd46a73cee0d8b4511fbf4f70b100289b5abd6
+    last_write_checksum: sha1:9ce83ee753885590f17dc3aca12fd19f2af2d90f
+    pristine_git_object: 4b09f3725d129328f62713d5e79e6120c294ae87
   docs/sdks/sdkv2/README.md:
     id: 3a91fcc9914d
-    last_write_checksum: sha1:df3d2cab497a5c4ed06e8346c48097ee47bbdaee
-    pristine_git_object: 44336cb77f11077372be6a20e5bdde8f7c3779e5
+    last_write_checksum: sha1:80226f63c2cdfd34d41b0f949e019c8c97f47923
+    pristine_git_object: 696c747918c0e8f2c1ce755f9a5b874b8a71da6e
   docs/sdks/sdkwalletsv1/README.md:
     id: ad490a52713b
-    last_write_checksum: sha1:f9ff9e8f37fdc82e58c8f1ae26ffdec479e427d7
-    pristine_git_object: b6b13af27b2d63b4fdacfa1ad31b95acdc51742f
+    last_write_checksum: sha1:2e95b10ba5d107fc599e9f9e6f994adb4f34282b
+    pristine_git_object: 1ba44fc6da2fea847ae6d2e922d1f989ff0445cc
   docs/sdks/sdkwebhooksv1/README.md:
     id: 66804234040f
-    last_write_checksum: sha1:1076ae71ee387e2b8fce76b15944be11f1c26b0b
-    pristine_git_object: 3b842bc9f0f2f61400968fb4d0687d90ebd5e1aa
+    last_write_checksum: sha1:f7348561cdd0dafce5f13896edb08dd93ac28728
+    pristine_git_object: 51f6e2fc66884dacc3dc752985d2f561c2dff699
   docs/sdks/v1/README.md:
     id: 3c6f40f6217a
-    last_write_checksum: sha1:cfc5f83e1032c8371e7ddd6c270dc8cf8a0e0ef7
-    pristine_git_object: 6d215a6b1e1c5ef072adface29e48feee991e205
+    last_write_checksum: sha1:b49a930477a43e73cf7d89eb9bc77e6e6e3c39f0
+    pristine_git_object: 56cd638262bfdf236c01989be56f897b96ce9e7d
   docs/sdks/v2/README.md:
     id: 1fff216d9073
-    last_write_checksum: sha1:30209d593c7b073d2b33f0e6a662048e60e91728
-    pristine_git_object: d076a919b7f2dcba8309ddf2becf95c8a417ec0d
+    last_write_checksum: sha1:d10d70c1de9cc4ada331c8db6c40275bb9521ff9
+    pristine_git_object: a093096c9a2490f30c2500cd77b3c5450f55cf67
   docs/sdks/v3/README.md:
     id: ee683463fcdd
-    last_write_checksum: sha1:6e2b845a3aa733e16083362a226ddef004404d4f
-    pristine_git_object: f99a71ac92832c22587a7c3d3d31683827fbfec0
+    last_write_checksum: sha1:053d4b7d15c9eb90265cfdd59b5fd08f1726be5d
+    pristine_git_object: fde3cf03b5fb3124096dcae9966cf0f7ac2655c1
   phpunit.xml:
     id: 357499abc6fd
     last_write_checksum: sha1:1a2f73f76c0929634baf4e48f5718b9a2449be79
@@ -4694,8 +4693,8 @@ trackedFiles:
     pristine_git_object: 04635af80dc1bc043cb3d69b8615126adb7738cc
   src/Ledger.php:
     id: 4027bb764ae9
-    last_write_checksum: sha1:dc15f6ec7aee70b2b0f1f6b34d7360e20f448088
-    pristine_git_object: d3bd1b5aad423ccbf47a77ccd92271088c4b1274
+    last_write_checksum: sha1:12b3ee9fb097825e985a79d5989102e6c665d6aa
+    pristine_git_object: e08f8a73647be9b86fbc1febb319d4e632b64635
   src/Models/Auth/ClientOptions.php:
     id: 1c9b707d1fcd
     last_write_checksum: sha1:7bb31adf07b66d8ce74f49d81bd4584b4401ad1d
@@ -6118,8 +6117,8 @@ trackedFiles:
     pristine_git_object: 45d8f99677594b10ea5de0f0fe0d85044fbbc204
   src/Models/Operations/RunScriptResponse.php:
     id: ad8ce7481c4d
-    last_write_checksum: sha1:41de1ea9a9dd07e6e2777413e935963ccad3e003
-    pristine_git_object: a1f24b017f2a9dcd3f9d972ac4004c2b64a0c417
+    last_write_checksum: sha1:679b0a92961d82f525cdb90359799b4bc8b193f4
+    pristine_git_object: 61b103b5161755f866c0a2d31b78e2c87f4d6902
   src/Models/Operations/RunWorkflowRequest.php:
     id: bbbf8b912893
     last_write_checksum: sha1:b53671c657649ccbf0659278f9abfa1e1d3eb16c
@@ -9210,52 +9209,56 @@ trackedFiles:
     pristine_git_object: f032c2721c74bf4de206238190a0d4fbdfc061e2
   src/SDK.php:
     id: 7b5eb956165f
-    last_write_checksum: sha1:2d05a6ea48391fb0f4f70aa5c534823bf75cf380
-    pristine_git_object: 62f8b011b74a45c064883d4ff0a6adf00f2c4278
+    last_write_checksum: sha1:97c146309baaf0d32f748b495ecebba287641dd8
+    pristine_git_object: 23dd1c6ba8eeec27ab8522d61553670e752b9b9d
   src/SDKBuilder.php:
     id: 3a8d6469b037
-    last_write_checksum: sha1:31cc79ea94dbd4676be7cd6bd4dad4593b83bf52
-    pristine_git_object: b02dd0dc4e4b1abfc6eda6085a97d0701d4ca5e7
+    last_write_checksum: sha1:c157b46c37a5201bb5a0cb4a8970b27102f42039
+    pristine_git_object: 450eb8257de4d6dfe537483531fa3f47d3df8426
   src/SDKConfiguration.php:
     id: 9d60ab0bec0b
-    last_write_checksum: sha1:dcb655892ded2a14c060e9fd9daa6c168e8c955f
-    pristine_git_object: 3374fe0ad93d6885c485b68a9f25f4f102be272b
+    last_write_checksum: sha1:37329258b320cdaa24766b1473ce3f1ff5d76f6f
+    pristine_git_object: 6beede390c9ee0c70c3d05d8eb2ca91fb390efaa
   src/SDKOrchestrationV1.php:
     id: 40e512bca502
-    last_write_checksum: sha1:91589636ee5105976588a5d055fca9619e982a06
-    pristine_git_object: ff28e2b04dd8842e5b0f117ae466e3d95b9939fc
+    last_write_checksum: sha1:586d3178a2731de1e88784071d4c3a44d7ddf554
+    pristine_git_object: e8cfdaa8f42775dbc9e1af5f3d96bb1b512a7cab
   src/SDKPaymentsV1.php:
     id: 225a08acf063
-    last_write_checksum: sha1:79618b1e113dcb1dababe3f77727bf72d08f04db
-    pristine_git_object: 63a37202ba6ccedbd1122aa3f8066b6229597bcc
+    last_write_checksum: sha1:e46aa2b91f9bb8b3e911d1cd28b7e748d65e9b6f
+    pristine_git_object: 97d3f06e94c2fea0aca7bcbe64a7740286402454
   src/SDKReconciliationV1.php:
     id: 5551b09cd4b9
-    last_write_checksum: sha1:5087b78fe91474141d19afd1d62dfdee2990628f
-    pristine_git_object: 7a099bf55a5ebe2dcc059702e76d740ee7a0a9c0
+    last_write_checksum: sha1:5516fcdc86faf2e13ab5d48675430c190329fa1a
+    pristine_git_object: 304b3ed88d1c3fc28ce0bf5b118edaa1417a29e7
   src/SDKSearchV1.php:
     id: fafc49c73a4e
-    last_write_checksum: sha1:b08cde641290d5512f95e71b8bf961b6a6bde50a
-    pristine_git_object: c0959d8755ffd0a554b8ba4e9a2787e483bf91c0
+    last_write_checksum: sha1:b86b898e5052fd75a76069647f2fe48316ab84f8
+    pristine_git_object: 1b7dd400d5f3446f7fe317e8f3bf221d0c39da65
   src/SDKV1.php:
     id: 70b1fdb891fb
-    last_write_checksum: sha1:68bfb29d8dc5db8cd2ef0be83afd85f4db3bde5b
-    pristine_git_object: 32ae814501658cad75e675e6a1914c25b0cffe4e
+    last_write_checksum: sha1:ace29cea597cbffebac5f2a3ae69e95701e769c0
+    pristine_git_object: 4a773c39766342b507adb56912bce5a31e8732b5
   src/SDKV2.php:
     id: f450c8bc8a97
-    last_write_checksum: sha1:0760eec48cf6a0b2ed0cda13d65650754b530d98
-    pristine_git_object: 3f339c0d1a2a243a057115728ac975917d56ac91
+    last_write_checksum: sha1:445eab59b3ab4238a9d24b18e02997ad252a31b6
+    pristine_git_object: 2bd6d5901622a005eb666eda17e26897e95f9ee0
   src/SDKWalletsV1.php:
     id: ed7279bfe528
-    last_write_checksum: sha1:d1152ae7c6fe907cb2e78f922c089e9dc69773fc
-    pristine_git_object: e785f9d701b63921f6d98c82e11278266438b3db
+    last_write_checksum: sha1:091ed15210481fe4e9cdbd64373b3a17728e0462
+    pristine_git_object: 1c6796226daf997e5effdb40b605772826f2f9b8
   src/SDKWebhooksV1.php:
     id: ad0689b561fe
-    last_write_checksum: sha1:ad3cbf7c30e1b6c2a14a597055e3646cbd8573bc
-    pristine_git_object: e06a145e72562acecf7cd05731bd69453f6c4611
+    last_write_checksum: sha1:ac18b9f2d4d857e4a630c1bd5ca19d8a7cd7ff6b
+    pristine_git_object: 42e7d23378ba2bbfde4aeeeac9fd56d8c3926f57
   src/Search.php:
     id: 4c7a03f137cc
     last_write_checksum: sha1:952d332a99feed7e40426cee25ab2950fe1e6f58
     pristine_git_object: 1eb9f1e62041ed01ff632a57618e87f764d53b1a
+  src/ServerEnvironment.php:
+    id: 9d58ca490741
+    last_write_checksum: sha1:8591297c46f8537f36c7131feaf9d9ddfd0f9e25
+    pristine_git_object: 43989155bfa42a0f15bba7876b3e5bb383849489
   src/Utils/BigDecimalHandler.php:
     id: cdcca3718e2e
     last_write_checksum: sha1:90a95b7ee18842a4ae9dc974f3194e0702ef6ad8
@@ -9398,16 +9401,16 @@ trackedFiles:
     pristine_git_object: 1a24a909e012d05527c61b4afe8f388836eccf64
   src/V1.php:
     id: 7a69dfc2c18e
-    last_write_checksum: sha1:852ef72f381aa5fa66e4328b90173beebf434319
-    pristine_git_object: e5f6a4f56dd15fff6efac48f11013e953119edf3
+    last_write_checksum: sha1:b8ad41de818136bdfd5daba4e3c7a223563fe87f
+    pristine_git_object: 4f29bd428bdfdd5abc35f5460cc0993619c6de3f
   src/V2.php:
     id: 55e5806f708e
-    last_write_checksum: sha1:58580e3af2519b081e01e322a78370b1fdec22b6
-    pristine_git_object: 24b6a85f1163f49856abfce45bc82738f6e732b6
+    last_write_checksum: sha1:ff412fc985eabbaa663665986304e03ce721591d
+    pristine_git_object: 5213ec7511b5b7fa2a22b9cf9a8cb9a6071b44c0
   src/V3.php:
     id: 24ac665d5a79
-    last_write_checksum: sha1:dcd5cd972fd1e136704a86823a61d1162a281132
-    pristine_git_object: a493dcbb507ebab11db060abba3624c052fb1c09
+    last_write_checksum: sha1:dc96d52f012fd05f241e9a45af9e05830d73af16
+    pristine_git_object: 5a73a14b6c54af51abf3b7c105681b77da43d4d8
   src/Wallets.php:
     id: 7ee0c0f185f4
     last_write_checksum: sha1:7d05b44454c5fd1988bc2501256f187d4928aac4
@@ -12068,7 +12071,6 @@ examples:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Php SDK Changes:\n* `sdk->payments->v1->getAccountBalances()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->resetConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->auth->v1->createClient()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `sdk->auth->v1->readClient()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->auth->v1->readUser()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->updateConfig()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->testConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->insertConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->getManyConfigs()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->deleteConfig()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->deactivateConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->changeConfigSecret()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->webhooks->v1->activateConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->listWallets()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->listBalances()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->getWalletSummary()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->getWallet()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->getTransactions()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->getHolds()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->getHold()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->getBalance()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->debitWallet()`: \n  *  `request->debitWalletRequest` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->creditWallet()`: \n  *  `request->creditWalletRequest` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->createWallet()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->auth->v1->updateClient()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `sdk->ledger->getInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->getMetrics()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->createTransactions()`: \n  *  `request->transactions->transactions[]` **Changed** (Breaking ⚠️)\n  *  `response.data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->addMetadataOnTransaction()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->addMetadataToAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->countAccounts()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->countTransactions()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->createTransaction()`: \n  *  `request->postTransaction` **Changed** (Breaking ⚠️)\n  *  `response.data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->getBalances()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->getBalancesAggregated()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->getInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->getLedgerInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->getMapping()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->getTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->listLogs()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->listTransactions()`: \n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->readStats()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->revertTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->runScript()`: \n  *  `request->script` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->updateMapping()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->addMetadataOnTransaction()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->addMetadataToAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->countAccounts()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->countTransactions()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->createBulk()`: \n  *  `request->requestBody[]` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->createExporter()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->createLedger()`: \n  *  `request->v2CreateLedgerRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->createPipeline()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->createTransaction()`: \n  *  `request->v2PostTransaction` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->deleteAccountMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->deleteBucket()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->deleteExporter()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->deleteLedgerMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->deletePipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->deleteTransactionMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getBalancesAggregated()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getExporterState()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getLedger()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getLedgerInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getPipelineState()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getSchema()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->getVolumesWithBalances()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->importLogs()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->insertSchema()`: \n  *  `request->v2SchemaData` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listAccounts()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listExporters()`: \n  *  `response.cursor` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listLedgers()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listLogs()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `response.cursor->data[]->data` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listPipelines()`: \n  *  `response.cursor` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listSchemas()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->listTransactions()`: \n  *  `request->requestBody` **Added** (Breaking ⚠️)\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->readStats()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->resetPipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->restoreBucket()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->revertTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->runQuery()`: \n  *  `request->requestBody` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->startPipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->stopPipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->updateExporter()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v2->updateLedgerMetadata()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->createTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->createWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->getInstance()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->getInstanceHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->getInstanceStageHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->getWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->listInstances()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->listTriggersOccurrences()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->listWorkflows()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->readTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v1->runWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->createTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->createWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->getInstance()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->getInstanceHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->getInstanceStageHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->getWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->listInstances()`:  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->listTriggersOccurrences()`:  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->listWorkflows()`:  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->readTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->runWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->orchestration->v2->testTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->addAccountToPool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->connectorsTransfer()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->createAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->createBankAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->createPayment()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->createPool()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->createTransferInitiation()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->deletePool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->deleteTransferInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->forwardBankAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->auth->v1->listClients()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `sdk->auth->v1->createSecret()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getConnectorTask()`: \n  *  `response.data` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getConnectorTaskV1()`: \n  *  `response.data` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getPayment()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getPool()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getPoolBalances()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getPoolBalancesLatest()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getTransferInitiation()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->installConnector()`: \n  *  `request->connectorConfig` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listAllConnectors()`: \n  *  `response.data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listBankAccounts()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listConfigsAvailableConnectors()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listConnectorTasks()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listConnectorTasksV1()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listPayments()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listPools()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->listTransferInitiations()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->readConnectorConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->readConnectorConfigV1()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->removeAccountFromPool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->resetConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->resetConnectorV1()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->retryTransferInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->reverseTransferInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->uninstallConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->uninstallConnectorV1()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->updateBankAccountMetadata()`: \n  *  `request->updateBankAccountMetadataRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->updateConnectorConfigV1()`: \n  *  `request->connectorConfig` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->updateMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->updatePoolQuery()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->updateTransferInitiationStatus()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->addAccountToPool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->addBankAccountToPaymentServiceUser()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->approvePaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->createAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->createBankAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->createLinkForPaymentServiceUser()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->createPayment()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->createPaymentServiceUser()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->createPool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->deletePaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->deletePaymentServiceUser()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->deletePaymentServiceUserConnectionFromConnectorId()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->deletePaymentServiceUserConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->deletePool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->forwardBankAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->forwardPaymentServiceUserBankAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->forwardPaymentServiceUserToProvider()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getAccountBalances()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getBankAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getConnectorConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getConnectorSchedule()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPayment()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPaymentInitiation()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPaymentServiceUser()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPaymentServiceUserLinkAttemptFromConnectorId()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPool()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPoolBalances()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getPoolBalancesLatest()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->getTask()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->initiatePayment()`: \n  *  `request->v3InitiatePaymentRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->installConnector()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listAccounts()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listBankAccounts()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listConnectorConfigs()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listConnectorScheduleInstances()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listConnectorSchedules()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed**\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listConnectors()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]->updatedAt` **Added**\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentInitiationAdjustments()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentInitiationRelatedPayments()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentInitiations()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentServiceUserConnections()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentServiceUserConnectionsFromConnectorId()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentServiceUserLinkAttemptsFromConnectorId()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPaymentServiceUsers()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPayments()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->listPools()`: \n  *  `request->requestBody` **Added**\n  *  `response.cursor->data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->rejectPaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->removeAccountFromPool()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v1->getBankAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->retryPaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->reversePaymentInitiation()`: \n  *  `request->v3ReversePaymentInitiationRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->uninstallConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->updateBankAccountMetadata()`: \n  *  `request->v3UpdateBankAccountMetadataRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->updateLinkForPaymentServiceUserOnConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->updatePaymentMetadata()`: \n  *  `request->v3UpdatePaymentMetadataRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->updatePoolQuery()`:  `error` **Changed** (Breaking ⚠️)\n* `sdk->payments->v3->v3UpdateConnectorConfig()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `sdk->reconciliation->v1->createPolicy()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->reconciliation->v1->getPolicy()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->reconciliation->v1->getReconciliation()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->wallets->v1->createBalance()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `sdk->reconciliation->v1->reconcile()`:  `response` **Changed** (Breaking ⚠️)\n* `sdk->ledger->v1->listAccountsLedger()`: **Added**\n* `sdk->orchestration->v1->getServerInfoOrchestration()`: **Added**\n* `sdk->wallets->v1->walletsgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `sdk->reconciliation->v1->listPolicies()`: \n  *  `request->requestBody` **Added**\n* `sdk->reconciliation->v1->listReconciliations()`: \n  *  `request->requestBody` **Added**\n* `sdk->payments->v1->paymentslistAccounts()`: **Removed** (Breaking ⚠️)\n* `sdk->payments->v1->paymentsgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `sdk->payments->v1->paymentsgetAccount()`: **Removed** (Breaking ⚠️)\n* `sdk->orchestration->v1->orchestrationgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `sdk->ledger->v1->listAccounts()`: **Removed** (Breaking ⚠️)\n* `sdk->search->v1->getServerInfoSearch()`: **Added**\n* `sdk->reconciliation->v1->reconciliationgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `sdk->search->v1->searchgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `sdk->auth->v1->getServerInfo()`: **Removed** (Breaking ⚠️)\n* `sdk->payments->v3->getConversion()`: **Added**\n* `sdk->payments->v3->listOrders()`: **Added**\n* `sdk->payments->v3->listConversions()`: **Added**\n* `sdk->payments->v3->getOrder()`: **Added**\n* `sdk->reconciliation->v1->getServerInfoReconciliation()`: **Added**\n* `sdk->payments->v1->listAccountsPayments()`: **Added**\n* `sdk->payments->v1->getServerInfoPayments()`: **Added**\n* `sdk->payments->v1->getAccountPayments()`: **Added**\n* `sdk->ledger->v1->getAccount()`: **Removed** (Breaking ⚠️)\n* `sdk->wallets->v1->getServerInfoWallets()`: **Added**\n* `sdk->ledger->v1->getAccountLedger()`: **Added**\n* `sdk->auth->v1->getServerInfoAuth()`: **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
