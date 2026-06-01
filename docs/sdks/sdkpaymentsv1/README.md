@@ -97,7 +97,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\AddAccountToPoolRequest](../../Models/Operations/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -161,7 +160,6 @@ if ($response->transferResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ConnectorsTransferRequest](../../Models/Operations/ConnectorsTransferRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -221,7 +219,6 @@ if ($response->accountResponse !== null) {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `$request`                                                                                | [\formance\stack\Models\Payments\AccountRequest](../../Models/payments/AccountRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
-| `$serverURL`                                                                              | *string*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -278,7 +275,6 @@ if ($response->bankAccountResponse !== null) {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                        | [\formance\stack\Models\Payments\BankAccountRequest](../../Models/payments/BankAccountRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-| `$serverURL`                                                                                      | *string*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -343,7 +339,6 @@ if ($response->paymentResponse !== null) {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `$request`                                                                                | [\formance\stack\Models\Payments\PaymentRequest](../../Models/payments/PaymentRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
-| `$serverURL`                                                                              | *string*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -399,7 +394,6 @@ if ($response->poolResponse !== null) {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `$request`                                                                          | [\formance\stack\Models\Payments\PoolRequest](../../Models/payments/PoolRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
-| `$serverURL`                                                                        | *string*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -465,7 +459,6 @@ if ($response->transferInitiationResponse !== null) {
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                      | [\formance\stack\Models\Payments\TransferInitiationRequest](../../Models/payments/TransferInitiationRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
-| `$serverURL`                                                                                                    | *string*                                                                                                        | :heavy_minus_sign:                                                                                              | An optional server URL to use.                                                                                  |
 
 ### Response
 
@@ -521,7 +514,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\DeletePoolRequest](../../Models/Operations/DeletePoolRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -577,7 +569,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                               | [Operations\DeleteTransferInitiationRequest](../../Models/Operations/DeleteTransferInitiationRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `$serverURL`                                                                                             | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | An optional server URL to use.                                                                           |
 
 ### Response
 
@@ -637,7 +628,6 @@ if ($response->bankAccountResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ForwardBankAccountRequest](../../Models/Operations/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -699,7 +689,6 @@ if ($response->balancesCursor !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetAccountBalancesRequest](../../Models/Operations/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -755,7 +744,6 @@ if ($response->accountResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetAccountPaymentsRequest](../../Models/Operations/GetAccountPaymentsRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -811,7 +799,6 @@ if ($response->bankAccountResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetBankAccountRequest](../../Models/Operations/GetBankAccountRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -871,7 +858,6 @@ if ($response->taskResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\GetConnectorTaskRequest](../../Models/Operations/GetConnectorTaskRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -930,7 +916,6 @@ if ($response->taskResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetConnectorTaskV1Request](../../Models/Operations/GetConnectorTaskV1Request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -986,7 +971,6 @@ if ($response->paymentResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\GetPaymentRequest](../../Models/Operations/GetPaymentRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -1042,7 +1026,6 @@ if ($response->poolResponse !== null) {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `$request`                                                             | [Operations\GetPoolRequest](../../Models/Operations/GetPoolRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `$serverURL`                                                           | *string*                                                               | :heavy_minus_sign:                                                     | An optional server URL to use.                                         |
 
 ### Response
 
@@ -1100,7 +1083,6 @@ if ($response->poolBalancesResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\GetPoolBalancesRequest](../../Models/Operations/GetPoolBalancesRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -1156,7 +1138,6 @@ if ($response->poolBalancesLatestResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\GetPoolBalancesLatestRequest](../../Models/Operations/GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1203,12 +1184,6 @@ if ($response->serverInfo !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1264,7 +1239,6 @@ if ($response->transferInitiationResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\GetTransferInitiationRequest](../../Models/Operations/GetTransferInitiationRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -1327,7 +1301,6 @@ if ($response->connectorResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\InstallConnectorRequest](../../Models/Operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1388,7 +1361,6 @@ if ($response->accountsCursor !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\ListAccountsPaymentsRequest](../../Models/Operations/ListAccountsPaymentsRequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1435,12 +1407,6 @@ if ($response->connectorsResponse !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1501,7 +1467,6 @@ if ($response->bankAccountsCursor !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ListBankAccountsRequest](../../Models/Operations/ListBankAccountsRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -1548,12 +1513,6 @@ if ($response->connectorsConfigsResponse !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1614,7 +1573,6 @@ if ($response->tasksCursor !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ListConnectorTasksRequest](../../Models/Operations/ListConnectorTasksRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -1674,7 +1632,6 @@ if ($response->tasksCursor !== null) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\ListConnectorTasksV1Request](../../Models/Operations/ListConnectorTasksV1Request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -1735,7 +1692,6 @@ if ($response->paymentsCursor !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListPaymentsRequest](../../Models/Operations/ListPaymentsRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -1796,7 +1752,6 @@ if ($response->poolsCursor !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\ListPoolsRequest](../../Models/Operations/ListPoolsRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -1857,7 +1812,6 @@ if ($response->transferInitiationsCursor !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\ListTransferInitiationsRequest](../../Models/Operations/ListTransferInitiationsRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -1916,7 +1870,6 @@ if ($response->connectorConfigResponse !== null) {
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `$request`                                                                                     | [Operations\ReadConnectorConfigRequest](../../Models/Operations/ReadConnectorConfigRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `$serverURL`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | An optional server URL to use.                                                                 |
 
 ### Response
 
@@ -1974,7 +1927,6 @@ if ($response->connectorConfigResponse !== null) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\ReadConnectorConfigV1Request](../../Models/Operations/ReadConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -2031,7 +1983,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                         | [Operations\RemoveAccountFromPoolRequest](../../Models/Operations/RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `$serverURL`                                                                                       | *string*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     |
 
 ### Response
 
@@ -2092,7 +2043,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\ResetConnectorRequest](../../Models/Operations/ResetConnectorRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2152,7 +2102,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\ResetConnectorV1Request](../../Models/Operations/ResetConnectorV1Request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -2208,7 +2157,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\RetryTransferInitiationRequest](../../Models/Operations/RetryTransferInitiationRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2275,7 +2223,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\ReverseTransferInitiationRequest](../../Models/Operations/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2334,7 +2281,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\UninstallConnectorRequest](../../Models/Operations/UninstallConnectorRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -2392,7 +2338,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                       | [Operations\UninstallConnectorV1Request](../../Models/Operations/UninstallConnectorV1Request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `$serverURL`                                                                                     | *string*                                                                                         | :heavy_minus_sign:                                                                               | An optional server URL to use.                                                                   |
 
 ### Response
 
@@ -2456,7 +2401,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                 | [Operations\UpdateBankAccountMetadataRequest](../../Models/Operations/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `$serverURL`                                                                                               | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | An optional server URL to use.                                                                             |
 
 ### Response
 
@@ -2520,7 +2464,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\UpdateConnectorConfigV1Request](../../Models/Operations/UpdateConnectorConfigV1Request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -2579,7 +2522,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\UpdateMetadataRequest](../../Models/Operations/UpdateMetadataRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -2641,7 +2583,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\UpdatePoolQueryRequest](../../Models/Operations/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -2701,7 +2642,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                                           | [Operations\UpdateTransferInitiationStatusRequest](../../Models/Operations/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `$serverURL`                                                                                                         | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | An optional server URL to use.                                                                                       |
 
 ### Response
 

@@ -15,70 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKWalletsV1
 {
-    public const CONFIRM_HOLD_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_BALANCE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_WALLET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREDIT_WALLET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DEBIT_WALLET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_BALANCE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_HOLD_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_HOLDS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_SERVER_INFO_WALLETS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_TRANSACTIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_WALLET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_WALLET_SUMMARY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_BALANCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_WALLETS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_WALLET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const VOID_HOLD_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -112,17 +48,12 @@ class SDKWalletsV1
      * Confirm a hold
      *
      * @param  Operations\ConfirmHoldRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ConfirmHoldResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function confirmHold(Operations\ConfirmHoldRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ConfirmHoldResponse
+    public function confirmHold(Operations\ConfirmHoldRequest $request, ?Options $options = null): Operations\ConfirmHoldResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::CONFIRM_HOLD_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/confirm', Operations\ConfirmHoldRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -180,17 +111,12 @@ class SDKWalletsV1
      * Create a balance
      *
      * @param  Operations\CreateBalanceRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateBalanceResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createBalance(Operations\CreateBalanceRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateBalanceResponse
+    public function createBalance(Operations\CreateBalanceRequest $request, ?Options $options = null): Operations\CreateBalanceResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::CREATE_BALANCE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', Operations\CreateBalanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -257,17 +183,12 @@ class SDKWalletsV1
      * Create a new wallet
      *
      * @param  ?Operations\CreateWalletRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateWalletResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createWallet(?Operations\CreateWalletRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\CreateWalletResponse
+    public function createWallet(?Operations\CreateWalletRequest $request = null, ?Options $options = null): Operations\CreateWalletResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::CREATE_WALLET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -334,17 +255,12 @@ class SDKWalletsV1
      * Credit a wallet
      *
      * @param  Operations\CreditWalletRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreditWalletResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function creditWallet(Operations\CreditWalletRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreditWalletResponse
+    public function creditWallet(Operations\CreditWalletRequest $request, ?Options $options = null): Operations\CreditWalletResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::CREDIT_WALLET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/credit', Operations\CreditWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -402,17 +318,12 @@ class SDKWalletsV1
      * Debit a wallet
      *
      * @param  Operations\DebitWalletRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DebitWalletResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function debitWallet(Operations\DebitWalletRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DebitWalletResponse
+    public function debitWallet(Operations\DebitWalletRequest $request, ?Options $options = null): Operations\DebitWalletResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::DEBIT_WALLET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/debit', Operations\DebitWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -487,17 +398,12 @@ class SDKWalletsV1
      * Get detailed balance
      *
      * @param  Operations\GetBalanceRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetBalanceResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getBalance(Operations\GetBalanceRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetBalanceResponse
+    public function getBalance(Operations\GetBalanceRequest $request, ?Options $options = null): Operations\GetBalanceResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_BALANCE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances/{balanceName}', Operations\GetBalanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -556,17 +462,12 @@ class SDKWalletsV1
      * Get a hold
      *
      * @param  Operations\GetHoldRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetHoldResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getHold(Operations\GetHoldRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetHoldResponse
+    public function getHold(Operations\GetHoldRequest $request, ?Options $options = null): Operations\GetHoldResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_HOLD_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{holdID}', Operations\GetHoldRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -625,17 +526,12 @@ class SDKWalletsV1
      * Get all holds for a wallet
      *
      * @param  ?Operations\GetHoldsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetHoldsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getHolds(?Operations\GetHoldsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\GetHoldsResponse
+    public function getHolds(?Operations\GetHoldsRequest $request = null, ?Options $options = null): Operations\GetHoldsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_HOLDS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -696,17 +592,12 @@ class SDKWalletsV1
     /**
      * Get server info
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetServerInfoWalletsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfoWallets(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoWalletsResponse
+    public function getServerInfoWallets(?Options $options = null): Operations\GetServerInfoWalletsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_SERVER_INFO_WALLETS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -765,17 +656,12 @@ class SDKWalletsV1
      * getTransactions
      *
      * @param  ?Operations\GetTransactionsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetTransactionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getTransactions(?Operations\GetTransactionsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\GetTransactionsResponse
+    public function getTransactions(?Operations\GetTransactionsRequest $request = null, ?Options $options = null): Operations\GetTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_TRANSACTIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/transactions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -837,17 +723,12 @@ class SDKWalletsV1
      * Get a wallet
      *
      * @param  Operations\GetWalletRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetWalletResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getWallet(Operations\GetWalletRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetWalletResponse
+    public function getWallet(Operations\GetWalletRequest $request, ?Options $options = null): Operations\GetWalletResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_WALLET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', Operations\GetWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -914,17 +795,12 @@ class SDKWalletsV1
      * Get wallet summary
      *
      * @param  Operations\GetWalletSummaryRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetWalletSummaryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getWalletSummary(Operations\GetWalletSummaryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetWalletSummaryResponse
+    public function getWalletSummary(Operations\GetWalletSummaryRequest $request, ?Options $options = null): Operations\GetWalletSummaryResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::GET_WALLET_SUMMARY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/summary', Operations\GetWalletSummaryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -991,17 +867,12 @@ class SDKWalletsV1
      * List balances of a wallet
      *
      * @param  Operations\ListBalancesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listBalances(Operations\ListBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ListBalancesResponse
+    public function listBalances(Operations\ListBalancesRequest $request, ?Options $options = null): Operations\ListBalancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::LIST_BALANCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', Operations\ListBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1051,17 +922,12 @@ class SDKWalletsV1
      * List all wallets
      *
      * @param  ?Operations\ListWalletsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListWalletsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listWallets(?Operations\ListWalletsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListWalletsResponse
+    public function listWallets(?Operations\ListWalletsRequest $request = null, ?Options $options = null): Operations\ListWalletsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::LIST_WALLETS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1123,17 +989,12 @@ class SDKWalletsV1
      * Update a wallet
      *
      * @param  Operations\UpdateWalletRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateWalletResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateWallet(Operations\UpdateWalletRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateWalletResponse
+    public function updateWallet(Operations\UpdateWalletRequest $request, ?Options $options = null): Operations\UpdateWalletResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::UPDATE_WALLET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', Operations\UpdateWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1191,17 +1052,12 @@ class SDKWalletsV1
      * Cancel a hold
      *
      * @param  Operations\VoidHoldRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\VoidHoldResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function voidHold(Operations\VoidHoldRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\VoidHoldResponse
+    public function voidHold(Operations\VoidHoldRequest $request, ?Options $options = null): Operations\VoidHoldResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKWalletsV1::VOID_HOLD_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/void', Operations\VoidHoldRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

@@ -15,14 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class Ledger
 {
-    public const GET_METRICS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_INFO_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     public SDKV1 $v1;
 
@@ -61,17 +53,12 @@ class Ledger
     /**
      * Read in memory metrics
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetMetricsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getMetrics(?string $serverURL = null, ?Options $options = null): Operations\GetMetricsResponse
+    public function getMetrics(?Options $options = null): Operations\GetMetricsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(Ledger::GET_METRICS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_/metrics');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -129,17 +116,12 @@ class Ledger
     /**
      * Show server information
      *
-     * @param  ?string  $serverURL
      * @return Operations\V2GetInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInfo(?string $serverURL = null, ?Options $options = null): Operations\V2GetInfoResponse
+    public function getInfo(?Options $options = null): Operations\V2GetInfoResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(Ledger::V2_GET_INFO_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/_/info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

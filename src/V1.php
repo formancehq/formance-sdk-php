@@ -15,50 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class V1
 {
-    public const CREATE_CLIENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_SECRET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_CLIENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_SECRET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_OIDC_WELL_KNOWNS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_SERVER_INFO_AUTH_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_CLIENTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_USERS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const READ_CLIENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const READ_USER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_CLIENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -92,17 +48,12 @@ class V1
      * Create client
      *
      * @param  ?\formance\stack\Models\Auth\ClientOptions1  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createClient(?\formance\stack\Models\Auth\ClientOptions1 $request = null, ?string $serverURL = null, ?Options $options = null): Operations\CreateClientResponse
+    public function createClient(?\formance\stack\Models\Auth\ClientOptions1 $request = null, ?Options $options = null): Operations\CreateClientResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::CREATE_CLIENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -156,17 +107,12 @@ class V1
      * Add a secret to a client
      *
      * @param  Operations\CreateSecretRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateSecretResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createSecret(Operations\CreateSecretRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateSecretResponse
+    public function createSecret(Operations\CreateSecretRequest $request, ?Options $options = null): Operations\CreateSecretResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::CREATE_SECRET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', Operations\CreateSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -220,17 +166,12 @@ class V1
      * Delete client
      *
      * @param  Operations\DeleteClientRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeleteClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteClient(Operations\DeleteClientRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteClientResponse
+    public function deleteClient(Operations\DeleteClientRequest $request, ?Options $options = null): Operations\DeleteClientResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::DELETE_CLIENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\DeleteClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -271,17 +212,12 @@ class V1
      * Delete a secret from a client
      *
      * @param  Operations\DeleteSecretRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeleteSecretResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteSecret(Operations\DeleteSecretRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteSecretResponse
+    public function deleteSecret(Operations\DeleteSecretRequest $request, ?Options $options = null): Operations\DeleteSecretResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::DELETE_SECRET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', Operations\DeleteSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -321,17 +257,12 @@ class V1
     /**
      * Retrieve OpenID connect well-knowns.
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetOIDCWellKnownsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getOIDCWellKnowns(?string $serverURL = null, ?Options $options = null): Operations\GetOIDCWellKnownsResponse
+    public function getOIDCWellKnowns(?Options $options = null): Operations\GetOIDCWellKnownsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::GET_OIDC_WELL_KNOWNS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -371,17 +302,12 @@ class V1
     /**
      * Get server info
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetServerInfoAuthResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfoAuth(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoAuthResponse
+    public function getServerInfoAuth(?Options $options = null): Operations\GetServerInfoAuthResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::GET_SERVER_INFO_AUTH_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -430,17 +356,12 @@ class V1
     /**
      * List clients
      *
-     * @param  ?string  $serverURL
      * @return Operations\ListClientsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listClients(?string $serverURL = null, ?Options $options = null): Operations\ListClientsResponse
+    public function listClients(?Options $options = null): Operations\ListClientsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::LIST_CLIENTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -491,17 +412,12 @@ class V1
      *
      * List users
      *
-     * @param  ?string  $serverURL
      * @return Operations\ListUsersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listUsers(?string $serverURL = null, ?Options $options = null): Operations\ListUsersResponse
+    public function listUsers(?Options $options = null): Operations\ListUsersResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::LIST_USERS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -551,17 +467,12 @@ class V1
      * Read client
      *
      * @param  Operations\ReadClientRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReadClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readClient(Operations\ReadClientRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadClientResponse
+    public function readClient(Operations\ReadClientRequest $request, ?Options $options = null): Operations\ReadClientResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::READ_CLIENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\ReadClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -613,17 +524,12 @@ class V1
      * Read user
      *
      * @param  Operations\ReadUserRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReadUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readUser(Operations\ReadUserRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadUserResponse
+    public function readUser(Operations\ReadUserRequest $request, ?Options $options = null): Operations\ReadUserResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::READ_USER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', Operations\ReadUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -673,17 +579,12 @@ class V1
      * Update client
      *
      * @param  Operations\UpdateClientRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateClientResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateClient(Operations\UpdateClientRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateClientResponse
+    public function updateClient(Operations\UpdateClientRequest $request, ?Options $options = null): Operations\UpdateClientResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V1::UPDATE_CLIENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\UpdateClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

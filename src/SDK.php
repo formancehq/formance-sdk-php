@@ -30,13 +30,12 @@ use Speakeasy\Serializer\DeserializationContext;
 class SDK
 {
     public const SERVERS = [
-        '/',
+        /** local server */
+        'http://localhost',
+        /** A per-organization and per-environment API */
+        'https://{organization}.{environment}.formance.cloud',
     ];
 
-    public const GET_VERSIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     public Auth $auth;
 
     public Ledger $ledger;
@@ -94,17 +93,12 @@ class SDK
     /**
      * Show stack version information
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetVersionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getVersions(?string $serverURL = null, ?Options $options = null): Operations\GetVersionsResponse
+    public function getVersions(?Options $options = null): Operations\GetVersionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDK::GET_VERSIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/versions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

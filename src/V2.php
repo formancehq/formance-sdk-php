@@ -15,178 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class V2
 {
-    public const V2_ADD_METADATA_ON_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_ADD_METADATA_TO_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_COUNT_ACCOUNTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_COUNT_TRANSACTIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_CREATE_BULK_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_CREATE_EXPORTER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_CREATE_LEDGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_CREATE_PIPELINE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_CREATE_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_DELETE_ACCOUNT_METADATA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_DELETE_BUCKET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_DELETE_EXPORTER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_DELETE_LEDGER_METADATA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_DELETE_PIPELINE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_DELETE_TRANSACTION_METADATA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_EXPORT_LOGS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_BALANCES_AGGREGATED_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_EXPORTER_STATE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_LEDGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_LEDGER_INFO_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_PIPELINE_STATE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_SCHEMA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_GET_VOLUMES_WITH_BALANCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_IMPORT_LOGS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_INSERT_SCHEMA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_ACCOUNTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_EXPORTERS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_LEDGERS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_LOGS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_PIPELINES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_SCHEMAS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_LIST_TRANSACTIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_READ_STATS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_RESET_PIPELINE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_RESTORE_BUCKET_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_REVERT_TRANSACTION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_RUN_QUERY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_START_PIPELINE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_STOP_PIPELINE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_UPDATE_EXPORTER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const V2_UPDATE_LEDGER_METADATA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -220,17 +48,12 @@ class V2
      * Set the metadata of a transaction by its ID
      *
      * @param  Operations\V2AddMetadataOnTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2AddMetadataOnTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addMetadataOnTransaction(Operations\V2AddMetadataOnTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2AddMetadataOnTransactionResponse
+    public function addMetadataOnTransaction(Operations\V2AddMetadataOnTransactionRequest $request, ?Options $options = null): Operations\V2AddMetadataOnTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_ADD_METADATA_ON_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata', Operations\V2AddMetadataOnTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -292,17 +115,12 @@ class V2
      * Add metadata to an account
      *
      * @param  Operations\V2AddMetadataToAccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2AddMetadataToAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addMetadataToAccount(Operations\V2AddMetadataToAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2AddMetadataToAccountResponse
+    public function addMetadataToAccount(Operations\V2AddMetadataToAccountRequest $request, ?Options $options = null): Operations\V2AddMetadataToAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_ADD_METADATA_TO_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata', Operations\V2AddMetadataToAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -364,17 +182,12 @@ class V2
      * Count the accounts from a ledger
      *
      * @param  Operations\V2CountAccountsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CountAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function countAccounts(Operations\V2CountAccountsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CountAccountsResponse
+    public function countAccounts(Operations\V2CountAccountsRequest $request, ?Options $options = null): Operations\V2CountAccountsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_COUNT_ACCOUNTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2CountAccountsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -432,17 +245,12 @@ class V2
      * Count the transactions from a ledger
      *
      * @param  Operations\V2CountTransactionsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CountTransactionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function countTransactions(Operations\V2CountTransactionsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CountTransactionsResponse
+    public function countTransactions(Operations\V2CountTransactionsRequest $request, ?Options $options = null): Operations\V2CountTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_COUNT_TRANSACTIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CountTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -500,17 +308,12 @@ class V2
      * Bulk request
      *
      * @param  Operations\V2CreateBulkRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CreateBulkResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createBulk(Operations\V2CreateBulkRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CreateBulkResponse
+    public function createBulk(Operations\V2CreateBulkRequest $request, ?Options $options = null): Operations\V2CreateBulkResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_CREATE_BULK_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_bulk', Operations\V2CreateBulkRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -594,17 +397,12 @@ class V2
      * Create exporter
      *
      * @param  \formance\stack\Models\Ledger\V2ExporterConfiguration1  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CreateExporterResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createExporter(\formance\stack\Models\Ledger\V2ExporterConfiguration1 $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CreateExporterResponse
+    public function createExporter(\formance\stack\Models\Ledger\V2ExporterConfiguration1 $request, ?Options $options = null): Operations\V2CreateExporterResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_CREATE_EXPORTER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/exporters');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -668,17 +466,12 @@ class V2
      * Create a ledger
      *
      * @param  Operations\V2CreateLedgerRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CreateLedgerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createLedger(Operations\V2CreateLedgerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CreateLedgerResponse
+    public function createLedger(Operations\V2CreateLedgerRequest $request, ?Options $options = null): Operations\V2CreateLedgerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_CREATE_LEDGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2CreateLedgerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -733,17 +526,12 @@ class V2
      * Create pipeline
      *
      * @param  Operations\V2CreatePipelineRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CreatePipelineResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPipeline(Operations\V2CreatePipelineRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CreatePipelineResponse
+    public function createPipeline(Operations\V2CreatePipelineRequest $request, ?Options $options = null): Operations\V2CreatePipelineResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_CREATE_PIPELINE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines', Operations\V2CreatePipelineRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -806,17 +594,12 @@ class V2
      * Create a new transaction to a ledger
      *
      * @param  Operations\V2CreateTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2CreateTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTransaction(Operations\V2CreateTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2CreateTransactionResponse
+    public function createTransaction(Operations\V2CreateTransactionRequest $request, ?Options $options = null): Operations\V2CreateTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_CREATE_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2CreateTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -890,17 +673,12 @@ class V2
      * Delete metadata by key
      *
      * @param  Operations\V2DeleteAccountMetadataRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2DeleteAccountMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteAccountMetadata(Operations\V2DeleteAccountMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteAccountMetadataResponse
+    public function deleteAccountMetadata(Operations\V2DeleteAccountMetadataRequest $request, ?Options $options = null): Operations\V2DeleteAccountMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_DELETE_ACCOUNT_METADATA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}', Operations\V2DeleteAccountMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -956,17 +734,12 @@ class V2
      * Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
      *
      * @param  Operations\V2DeleteBucketRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2DeleteBucketResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteBucket(Operations\V2DeleteBucketRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteBucketResponse
+    public function deleteBucket(Operations\V2DeleteBucketRequest $request, ?Options $options = null): Operations\V2DeleteBucketResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_DELETE_BUCKET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/buckets/{bucket}', Operations\V2DeleteBucketRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1033,17 +806,12 @@ class V2
      * Delete exporter
      *
      * @param  Operations\V2DeleteExporterRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2DeleteExporterResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteExporter(Operations\V2DeleteExporterRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteExporterResponse
+    public function deleteExporter(Operations\V2DeleteExporterRequest $request, ?Options $options = null): Operations\V2DeleteExporterResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_DELETE_EXPORTER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/exporters/{exporterID}', Operations\V2DeleteExporterRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1093,17 +861,12 @@ class V2
      * Delete ledger metadata by key
      *
      * @param  Operations\V2DeleteLedgerMetadataRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2DeleteLedgerMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteLedgerMetadata(Operations\V2DeleteLedgerMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteLedgerMetadataResponse
+    public function deleteLedgerMetadata(Operations\V2DeleteLedgerMetadataRequest $request, ?Options $options = null): Operations\V2DeleteLedgerMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_DELETE_LEDGER_METADATA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata/{key}', Operations\V2DeleteLedgerMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1153,17 +916,12 @@ class V2
      * Delete pipeline
      *
      * @param  Operations\V2DeletePipelineRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2DeletePipelineResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePipeline(Operations\V2DeletePipelineRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeletePipelineResponse
+    public function deletePipeline(Operations\V2DeletePipelineRequest $request, ?Options $options = null): Operations\V2DeletePipelineResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_DELETE_PIPELINE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines/{pipelineID}', Operations\V2DeletePipelineRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1215,17 +973,12 @@ class V2
      * Delete metadata by key
      *
      * @param  Operations\V2DeleteTransactionMetadataRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2DeleteTransactionMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteTransactionMetadata(Operations\V2DeleteTransactionMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2DeleteTransactionMetadataResponse
+    public function deleteTransactionMetadata(Operations\V2DeleteTransactionMetadataRequest $request, ?Options $options = null): Operations\V2DeleteTransactionMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_DELETE_TRANSACTION_METADATA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}', Operations\V2DeleteTransactionMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1279,17 +1032,12 @@ class V2
      * Export logs
      *
      * @param  Operations\V2ExportLogsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ExportLogsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function exportLogs(Operations\V2ExportLogsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ExportLogsResponse
+    public function exportLogs(Operations\V2ExportLogsRequest $request, ?Options $options = null): Operations\V2ExportLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_EXPORT_LOGS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs/export', Operations\V2ExportLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1330,17 +1078,12 @@ class V2
      * Get account by its address
      *
      * @param  Operations\V2GetAccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getAccount(Operations\V2GetAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetAccountResponse
+    public function getAccount(Operations\V2GetAccountRequest $request, ?Options $options = null): Operations\V2GetAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts/{address}', Operations\V2GetAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1402,17 +1145,12 @@ class V2
      * Get the aggregated balances from selected accounts
      *
      * @param  Operations\V2GetBalancesAggregatedRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetBalancesAggregatedResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getBalancesAggregated(Operations\V2GetBalancesAggregatedRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetBalancesAggregatedResponse
+    public function getBalancesAggregated(Operations\V2GetBalancesAggregatedRequest $request, ?Options $options = null): Operations\V2GetBalancesAggregatedResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_BALANCES_AGGREGATED_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/aggregate/balances', Operations\V2GetBalancesAggregatedRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1479,17 +1217,12 @@ class V2
      * Get exporter state
      *
      * @param  Operations\V2GetExporterStateRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetExporterStateResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getExporterState(Operations\V2GetExporterStateRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetExporterStateResponse
+    public function getExporterState(Operations\V2GetExporterStateRequest $request, ?Options $options = null): Operations\V2GetExporterStateResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_EXPORTER_STATE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/exporters/{exporterID}', Operations\V2GetExporterStateRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1548,17 +1281,12 @@ class V2
      * Get a ledger
      *
      * @param  Operations\V2GetLedgerRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetLedgerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getLedger(Operations\V2GetLedgerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetLedgerResponse
+    public function getLedger(Operations\V2GetLedgerRequest $request, ?Options $options = null): Operations\V2GetLedgerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_LEDGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}', Operations\V2GetLedgerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1617,17 +1345,12 @@ class V2
      * Get information about a ledger
      *
      * @param  Operations\V2GetLedgerInfoRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetLedgerInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getLedgerInfo(Operations\V2GetLedgerInfoRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetLedgerInfoResponse
+    public function getLedgerInfo(Operations\V2GetLedgerInfoRequest $request, ?Options $options = null): Operations\V2GetLedgerInfoResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_LEDGER_INFO_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/_info', Operations\V2GetLedgerInfoRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1686,17 +1409,12 @@ class V2
      * Get pipeline state
      *
      * @param  Operations\V2GetPipelineStateRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetPipelineStateResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPipelineState(Operations\V2GetPipelineStateRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetPipelineStateResponse
+    public function getPipelineState(Operations\V2GetPipelineStateRequest $request, ?Options $options = null): Operations\V2GetPipelineStateResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_PIPELINE_STATE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines/{pipelineID}', Operations\V2GetPipelineStateRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1755,17 +1473,12 @@ class V2
      * Get a schema for a ledger by version
      *
      * @param  Operations\V2GetSchemaRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetSchemaResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getSchema(Operations\V2GetSchemaRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetSchemaResponse
+    public function getSchema(Operations\V2GetSchemaRequest $request, ?Options $options = null): Operations\V2GetSchemaResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_SCHEMA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/schemas/{version}', Operations\V2GetSchemaRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1824,17 +1537,12 @@ class V2
      * Get transaction from a ledger by its ID
      *
      * @param  Operations\V2GetTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getTransaction(Operations\V2GetTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetTransactionResponse
+    public function getTransaction(Operations\V2GetTransactionRequest $request, ?Options $options = null): Operations\V2GetTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}', Operations\V2GetTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1896,17 +1604,12 @@ class V2
      * Get list of volumes with balances for (account/asset)
      *
      * @param  Operations\V2GetVolumesWithBalancesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2GetVolumesWithBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getVolumesWithBalances(Operations\V2GetVolumesWithBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2GetVolumesWithBalancesResponse
+    public function getVolumesWithBalances(Operations\V2GetVolumesWithBalancesRequest $request, ?Options $options = null): Operations\V2GetVolumesWithBalancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_GET_VOLUMES_WITH_BALANCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/volumes', Operations\V2GetVolumesWithBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1973,17 +1676,12 @@ class V2
      * importLogs
      *
      * @param  Operations\V2ImportLogsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ImportLogsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function importLogs(Operations\V2ImportLogsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ImportLogsResponse
+    public function importLogs(Operations\V2ImportLogsRequest $request, ?Options $options = null): Operations\V2ImportLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_IMPORT_LOGS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs/import', Operations\V2ImportLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2038,17 +1736,12 @@ class V2
      * Insert a schema for a ledger
      *
      * @param  Operations\V2InsertSchemaRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2InsertSchemaResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function insertSchema(Operations\V2InsertSchemaRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2InsertSchemaResponse
+    public function insertSchema(Operations\V2InsertSchemaRequest $request, ?Options $options = null): Operations\V2InsertSchemaResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_INSERT_SCHEMA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/schemas/{version}', Operations\V2InsertSchemaRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2109,17 +1802,12 @@ class V2
      * List accounts from a ledger, sorted by address in descending order.
      *
      * @param  Operations\V2ListAccountsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ListAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listAccounts(Operations\V2ListAccountsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListAccountsResponse
+    public function listAccounts(Operations\V2ListAccountsRequest $request, ?Options $options = null): Operations\V2ListAccountsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_ACCOUNTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/accounts', Operations\V2ListAccountsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2185,17 +1873,12 @@ class V2
     /**
      * List exporters
      *
-     * @param  ?string  $serverURL
      * @return Operations\V2ListExportersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listExporters(?string $serverURL = null, ?Options $options = null): Operations\V2ListExportersResponse
+    public function listExporters(?Options $options = null): Operations\V2ListExportersResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_EXPORTERS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/exporters');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2254,17 +1937,12 @@ class V2
      * List ledgers
      *
      * @param  Operations\V2ListLedgersRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ListLedgersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listLedgers(Operations\V2ListLedgersRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListLedgersResponse
+    public function listLedgers(Operations\V2ListLedgersRequest $request, ?Options $options = null): Operations\V2ListLedgersResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_LEDGERS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2333,17 +2011,12 @@ class V2
      * List the logs from a ledger, sorted by ID in descending order.
      *
      * @param  Operations\V2ListLogsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ListLogsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listLogs(Operations\V2ListLogsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListLogsResponse
+    public function listLogs(Operations\V2ListLogsRequest $request, ?Options $options = null): Operations\V2ListLogsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_LOGS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/logs', Operations\V2ListLogsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2410,17 +2083,12 @@ class V2
      * List pipelines
      *
      * @param  Operations\V2ListPipelinesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ListPipelinesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPipelines(Operations\V2ListPipelinesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListPipelinesResponse
+    public function listPipelines(Operations\V2ListPipelinesRequest $request, ?Options $options = null): Operations\V2ListPipelinesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_PIPELINES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines', Operations\V2ListPipelinesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2479,17 +2147,12 @@ class V2
      * List all schemas for a ledger
      *
      * @param  Operations\V2ListSchemasRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ListSchemasResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listSchemas(Operations\V2ListSchemasRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListSchemasResponse
+    public function listSchemas(Operations\V2ListSchemasRequest $request, ?Options $options = null): Operations\V2ListSchemasResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_SCHEMAS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/schemas', Operations\V2ListSchemasRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2553,17 +2216,12 @@ class V2
      * List transactions from a ledger, sorted by id in descending order.
      *
      * @param  Operations\V2ListTransactionsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ListTransactionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTransactions(Operations\V2ListTransactionsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ListTransactionsResponse
+    public function listTransactions(Operations\V2ListTransactionsRequest $request, ?Options $options = null): Operations\V2ListTransactionsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_LIST_TRANSACTIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions', Operations\V2ListTransactionsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2633,17 +2291,12 @@ class V2
      *
      *
      * @param  Operations\V2ReadStatsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ReadStatsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readStats(Operations\V2ReadStatsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ReadStatsResponse
+    public function readStats(Operations\V2ReadStatsRequest $request, ?Options $options = null): Operations\V2ReadStatsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_READ_STATS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/stats', Operations\V2ReadStatsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2702,17 +2355,12 @@ class V2
      * Reset pipeline
      *
      * @param  Operations\V2ResetPipelineRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2ResetPipelineResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function resetPipeline(Operations\V2ResetPipelineRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2ResetPipelineResponse
+    public function resetPipeline(Operations\V2ResetPipelineRequest $request, ?Options $options = null): Operations\V2ResetPipelineResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_RESET_PIPELINE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset', Operations\V2ResetPipelineRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2764,17 +2412,12 @@ class V2
      * Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
      *
      * @param  Operations\V2RestoreBucketRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2RestoreBucketResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function restoreBucket(Operations\V2RestoreBucketRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2RestoreBucketResponse
+    public function restoreBucket(Operations\V2RestoreBucketRequest $request, ?Options $options = null): Operations\V2RestoreBucketResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_RESTORE_BUCKET_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/buckets/{bucket}/restore', Operations\V2RestoreBucketRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2841,17 +2484,12 @@ class V2
      * Revert a ledger transaction by its ID
      *
      * @param  Operations\V2RevertTransactionRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2RevertTransactionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function revertTransaction(Operations\V2RevertTransactionRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2RevertTransactionResponse
+    public function revertTransaction(Operations\V2RevertTransactionRequest $request, ?Options $options = null): Operations\V2RevertTransactionResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_REVERT_TRANSACTION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/transactions/{id}/revert', Operations\V2RevertTransactionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2924,17 +2562,12 @@ class V2
      * Run a query template on a ledger
      *
      * @param  Operations\V2RunQueryRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2RunQueryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function runQuery(Operations\V2RunQueryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2RunQueryResponse
+    public function runQuery(Operations\V2RunQueryRequest $request, ?Options $options = null): Operations\V2RunQueryResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_RUN_QUERY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/queries/{id}/run', Operations\V2RunQueryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3001,17 +2634,12 @@ class V2
      * Start pipeline
      *
      * @param  Operations\V2StartPipelineRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2StartPipelineResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function startPipeline(Operations\V2StartPipelineRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2StartPipelineResponse
+    public function startPipeline(Operations\V2StartPipelineRequest $request, ?Options $options = null): Operations\V2StartPipelineResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_START_PIPELINE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start', Operations\V2StartPipelineRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3061,17 +2689,12 @@ class V2
      * Stop pipeline
      *
      * @param  Operations\V2StopPipelineRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2StopPipelineResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function stopPipeline(Operations\V2StopPipelineRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2StopPipelineResponse
+    public function stopPipeline(Operations\V2StopPipelineRequest $request, ?Options $options = null): Operations\V2StopPipelineResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_STOP_PIPELINE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop', Operations\V2StopPipelineRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3121,17 +2744,12 @@ class V2
      * Update exporter
      *
      * @param  Operations\V2UpdateExporterRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2UpdateExporterResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateExporter(Operations\V2UpdateExporterRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2UpdateExporterResponse
+    public function updateExporter(Operations\V2UpdateExporterRequest $request, ?Options $options = null): Operations\V2UpdateExporterResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_UPDATE_EXPORTER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/_/exporters/{exporterID}', Operations\V2UpdateExporterRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3186,17 +2804,12 @@ class V2
      * Update ledger metadata
      *
      * @param  Operations\V2UpdateLedgerMetadataRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\V2UpdateLedgerMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateLedgerMetadata(Operations\V2UpdateLedgerMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\V2UpdateLedgerMetadataResponse
+    public function updateLedgerMetadata(Operations\V2UpdateLedgerMetadataRequest $request, ?Options $options = null): Operations\V2UpdateLedgerMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(V2::V2_UPDATE_LEDGER_METADATA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/ledger/v2/{ledger}/metadata', Operations\V2UpdateLedgerMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

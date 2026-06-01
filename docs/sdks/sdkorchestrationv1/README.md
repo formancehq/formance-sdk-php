@@ -65,7 +65,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\CancelEventRequest](../../Models/Operations/CancelEventRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -118,7 +117,6 @@ if ($response->createTriggerResponse !== null) {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `$request`                                                                                      | [\formance\stack\Models\Orchestration\TriggerData1](../../Models/orchestration/TriggerData1.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-| `$serverURL`                                                                                    | *string*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -171,7 +169,6 @@ if ($response->createWorkflowResponse !== null) {
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `$request`                                                                                          | [\formance\stack\Models\Orchestration\WorkflowConfig](../../Models/orchestration/WorkflowConfig.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
-| `$serverURL`                                                                                        | *string*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -227,7 +224,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\DeleteTriggerRequest](../../Models/Operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -283,7 +279,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\DeleteWorkflowRequest](../../Models/Operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -339,7 +334,6 @@ if ($response->getWorkflowInstanceResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\GetInstanceRequest](../../Models/Operations/GetInstanceRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -395,7 +389,6 @@ if ($response->getWorkflowInstanceHistoryResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\GetInstanceHistoryRequest](../../Models/Operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -452,7 +445,6 @@ if ($response->getWorkflowInstanceHistoryStageResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\GetInstanceStageHistoryRequest](../../Models/Operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -499,12 +491,6 @@ if ($response->serverInfo !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -560,7 +546,6 @@ if ($response->getWorkflowResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\GetWorkflowRequest](../../Models/Operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -617,7 +602,6 @@ if ($response->listRunsResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\ListInstancesRequest](../../Models/Operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -670,7 +654,6 @@ if ($response->listTriggersResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListTriggersRequest](../../Models/Operations/ListTriggersRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -726,7 +709,6 @@ if ($response->listTriggersOccurrencesResponse !== null) {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `$request`                                                                                             | [Operations\ListTriggersOccurrencesRequest](../../Models/Operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `$serverURL`                                                                                           | *string*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         |
 
 ### Response
 
@@ -773,12 +755,6 @@ if ($response->listWorkflowsResponse !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -834,7 +810,6 @@ if ($response->readTriggerResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\ReadTriggerRequest](../../Models/Operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -890,7 +865,6 @@ if ($response->runWorkflowResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\RunWorkflowRequest](../../Models/Operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -946,7 +920,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\SendEventRequest](../../Models/Operations/SendEventRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 

@@ -15,186 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKPaymentsV1
 {
-    public const ADD_ACCOUNT_TO_POOL_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CONNECTORS_TRANSFER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_BANK_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_PAYMENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_POOL_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_TRANSFER_INITIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_POOL_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_TRANSFER_INITIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const FORWARD_BANK_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_ACCOUNT_BALANCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_ACCOUNT_PAYMENTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_BANK_ACCOUNT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_CONNECTOR_TASK_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_CONNECTOR_TASK_V1_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_PAYMENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_POOL_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_POOL_BALANCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_POOL_BALANCES_LATEST_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_SERVER_INFO_PAYMENTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_TRANSFER_INITIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const INSTALL_CONNECTOR_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_ACCOUNTS_PAYMENTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_ALL_CONNECTORS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_BANK_ACCOUNTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_CONNECTOR_TASKS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_CONNECTOR_TASKS_V1_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_PAYMENTS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_POOLS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_TRANSFER_INITIATIONS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const READ_CONNECTOR_CONFIG_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const READ_CONNECTOR_CONFIG_V1_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const REMOVE_ACCOUNT_FROM_POOL_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const RESET_CONNECTOR_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const RESET_CONNECTOR_V1_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const RETRY_TRANSFER_INITIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const REVERSE_TRANSFER_INITIATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UNINSTALL_CONNECTOR_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UNINSTALL_CONNECTOR_V1_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_BANK_ACCOUNT_METADATA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_CONNECTOR_CONFIG_V1_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_METADATA_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_POOL_QUERY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const UPDATE_TRANSFER_INITIATION_STATUS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -230,17 +50,12 @@ class SDKPaymentsV1
      * Add an account to a pool
      *
      * @param  Operations\AddAccountToPoolRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\AddAccountToPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function addAccountToPool(Operations\AddAccountToPoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\AddAccountToPoolResponse
+    public function addAccountToPool(Operations\AddAccountToPoolRequest $request, ?Options $options = null): Operations\AddAccountToPoolResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::ADD_ACCOUNT_TO_POOL_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/accounts', Operations\AddAccountToPoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -297,17 +112,12 @@ class SDKPaymentsV1
      * Execute a transfer between two accounts.
      *
      * @param  Operations\ConnectorsTransferRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ConnectorsTransferResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function connectorsTransfer(Operations\ConnectorsTransferRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ConnectorsTransferResponse
+    public function connectorsTransfer(Operations\ConnectorsTransferRequest $request, ?Options $options = null): Operations\ConnectorsTransferResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::CONNECTORS_TRANSFER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/transfers', Operations\ConnectorsTransferRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -373,17 +183,12 @@ class SDKPaymentsV1
      * Create an account
      *
      * @param  \formance\stack\Models\Payments\AccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createAccount(\formance\stack\Models\Payments\AccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateAccountResponse
+    public function createAccount(\formance\stack\Models\Payments\AccountRequest $request, ?Options $options = null): Operations\CreateAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::CREATE_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -449,17 +254,12 @@ class SDKPaymentsV1
      * Create a bank account in Payments and on the PSP.
      *
      * @param  \formance\stack\Models\Payments\BankAccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createBankAccount(\formance\stack\Models\Payments\BankAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateBankAccountResponse
+    public function createBankAccount(\formance\stack\Models\Payments\BankAccountRequest $request, ?Options $options = null): Operations\CreateBankAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::CREATE_BANK_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -525,17 +325,12 @@ class SDKPaymentsV1
      * Create a payment
      *
      * @param  \formance\stack\Models\Payments\PaymentRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreatePaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPayment(\formance\stack\Models\Payments\PaymentRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreatePaymentResponse
+    public function createPayment(\formance\stack\Models\Payments\PaymentRequest $request, ?Options $options = null): Operations\CreatePaymentResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::CREATE_PAYMENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -601,17 +396,12 @@ class SDKPaymentsV1
      * Create a Pool
      *
      * @param  \formance\stack\Models\Payments\PoolRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreatePoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createPool(\formance\stack\Models\Payments\PoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreatePoolResponse
+    public function createPool(\formance\stack\Models\Payments\PoolRequest $request, ?Options $options = null): Operations\CreatePoolResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::CREATE_POOL_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -677,17 +467,12 @@ class SDKPaymentsV1
      * Create a transfer initiation
      *
      * @param  \formance\stack\Models\Payments\TransferInitiationRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateTransferInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTransferInitiation(\formance\stack\Models\Payments\TransferInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CreateTransferInitiationResponse
+    public function createTransferInitiation(\formance\stack\Models\Payments\TransferInitiationRequest $request, ?Options $options = null): Operations\CreateTransferInitiationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::CREATE_TRANSFER_INITIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -753,17 +538,12 @@ class SDKPaymentsV1
      * Delete a pool by its id.
      *
      * @param  Operations\DeletePoolRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeletePoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deletePool(Operations\DeletePoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeletePoolResponse
+    public function deletePool(Operations\DeletePoolRequest $request, ?Options $options = null): Operations\DeletePoolResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::DELETE_POOL_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}', Operations\DeletePoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -815,17 +595,12 @@ class SDKPaymentsV1
      * Delete a transfer initiation by its id.
      *
      * @param  Operations\DeleteTransferInitiationRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeleteTransferInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteTransferInitiation(Operations\DeleteTransferInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteTransferInitiationResponse
+    public function deleteTransferInitiation(Operations\DeleteTransferInitiationRequest $request, ?Options $options = null): Operations\DeleteTransferInitiationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::DELETE_TRANSFER_INITIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}', Operations\DeleteTransferInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -875,17 +650,12 @@ class SDKPaymentsV1
      * Forward a bank account to a connector
      *
      * @param  Operations\ForwardBankAccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ForwardBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function forwardBankAccount(Operations\ForwardBankAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ForwardBankAccountResponse
+    public function forwardBankAccount(Operations\ForwardBankAccountRequest $request, ?Options $options = null): Operations\ForwardBankAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::FORWARD_BANK_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}/forward', Operations\ForwardBankAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -949,17 +719,12 @@ class SDKPaymentsV1
      * Get account balances
      *
      * @param  Operations\GetAccountBalancesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetAccountBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getAccountBalances(Operations\GetAccountBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetAccountBalancesResponse
+    public function getAccountBalances(Operations\GetAccountBalancesRequest $request, ?Options $options = null): Operations\GetAccountBalancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_ACCOUNT_BALANCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts/{accountId}/balances', Operations\GetAccountBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1021,17 +786,12 @@ class SDKPaymentsV1
      * Get an account
      *
      * @param  Operations\GetAccountPaymentsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetAccountPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getAccountPayments(Operations\GetAccountPaymentsRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetAccountPaymentsResponse
+    public function getAccountPayments(Operations\GetAccountPaymentsRequest $request, ?Options $options = null): Operations\GetAccountPaymentsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_ACCOUNT_PAYMENTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts/{accountId}', Operations\GetAccountPaymentsRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1090,17 +850,12 @@ class SDKPaymentsV1
      * Get a bank account created by user on Formance
      *
      * @param  Operations\GetBankAccountRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getBankAccount(Operations\GetBankAccountRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetBankAccountResponse
+    public function getBankAccount(Operations\GetBankAccountRequest $request, ?Options $options = null): Operations\GetBankAccountResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_BANK_ACCOUNT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}', Operations\GetBankAccountRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1161,19 +916,14 @@ class SDKPaymentsV1
      * Get a specific task associated to the connector.
      *
      * @param  Operations\GetConnectorTaskRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetConnectorTaskResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function getConnectorTask(Operations\GetConnectorTaskRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetConnectorTaskResponse
+    public function getConnectorTask(Operations\GetConnectorTaskRequest $request, ?Options $options = null): Operations\GetConnectorTaskResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_CONNECTOR_TASK_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/tasks/{taskId}', Operations\GetConnectorTaskRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1234,17 +984,12 @@ class SDKPaymentsV1
      * Get a specific task associated to the connector.
      *
      * @param  Operations\GetConnectorTaskV1Request  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetConnectorTaskV1Response
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getConnectorTaskV1(Operations\GetConnectorTaskV1Request $request, ?string $serverURL = null, ?Options $options = null): Operations\GetConnectorTaskV1Response
+    public function getConnectorTaskV1(Operations\GetConnectorTaskV1Request $request, ?Options $options = null): Operations\GetConnectorTaskV1Response
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_CONNECTOR_TASK_V1_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}', Operations\GetConnectorTaskV1Request::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1303,17 +1048,12 @@ class SDKPaymentsV1
      * Get a payment
      *
      * @param  Operations\GetPaymentRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetPaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPayment(Operations\GetPaymentRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetPaymentResponse
+    public function getPayment(Operations\GetPaymentRequest $request, ?Options $options = null): Operations\GetPaymentResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_PAYMENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments/{paymentId}', Operations\GetPaymentRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1372,17 +1112,12 @@ class SDKPaymentsV1
      * Get a Pool
      *
      * @param  Operations\GetPoolRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPool(Operations\GetPoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetPoolResponse
+    public function getPool(Operations\GetPoolRequest $request, ?Options $options = null): Operations\GetPoolResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_POOL_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}', Operations\GetPoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1441,17 +1176,12 @@ class SDKPaymentsV1
      * Get historical pool balances at a particular point in time
      *
      * @param  Operations\GetPoolBalancesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetPoolBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPoolBalances(Operations\GetPoolBalancesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetPoolBalancesResponse
+    public function getPoolBalances(Operations\GetPoolBalancesRequest $request, ?Options $options = null): Operations\GetPoolBalancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_POOL_BALANCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/balances', Operations\GetPoolBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1513,17 +1243,12 @@ class SDKPaymentsV1
      * Get latest pool balances
      *
      * @param  Operations\GetPoolBalancesLatestRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetPoolBalancesLatestResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getPoolBalancesLatest(Operations\GetPoolBalancesLatestRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetPoolBalancesLatestResponse
+    public function getPoolBalancesLatest(Operations\GetPoolBalancesLatestRequest $request, ?Options $options = null): Operations\GetPoolBalancesLatestResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_POOL_BALANCES_LATEST_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/balances/latest', Operations\GetPoolBalancesLatestRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1581,17 +1306,12 @@ class SDKPaymentsV1
     /**
      * Get server info
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetServerInfoPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfoPayments(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoPaymentsResponse
+    public function getServerInfoPayments(?Options $options = null): Operations\GetServerInfoPaymentsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_SERVER_INFO_PAYMENTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1650,17 +1370,12 @@ class SDKPaymentsV1
      * Get a transfer initiation
      *
      * @param  Operations\GetTransferInitiationRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetTransferInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getTransferInitiation(Operations\GetTransferInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetTransferInitiationResponse
+    public function getTransferInitiation(Operations\GetTransferInitiationRequest $request, ?Options $options = null): Operations\GetTransferInitiationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::GET_TRANSFER_INITIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}', Operations\GetTransferInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1721,17 +1436,12 @@ class SDKPaymentsV1
      * Install a connector by its name and config.
      *
      * @param  Operations\InstallConnectorRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\InstallConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function installConnector(Operations\InstallConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\InstallConnectorResponse
+    public function installConnector(Operations\InstallConnectorRequest $request, ?Options $options = null): Operations\InstallConnectorResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::INSTALL_CONNECTOR_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}', Operations\InstallConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1795,17 +1505,12 @@ class SDKPaymentsV1
      * List accounts
      *
      * @param  ?Operations\ListAccountsPaymentsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListAccountsPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listAccountsPayments(?Operations\ListAccountsPaymentsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListAccountsPaymentsResponse
+    public function listAccountsPayments(?Operations\ListAccountsPaymentsRequest $request = null, ?Options $options = null): Operations\ListAccountsPaymentsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_ACCOUNTS_PAYMENTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1872,17 +1577,12 @@ class SDKPaymentsV1
      *
      * List all installed connectors.
      *
-     * @param  ?string  $serverURL
      * @return Operations\ListAllConnectorsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listAllConnectors(?string $serverURL = null, ?Options $options = null): Operations\ListAllConnectorsResponse
+    public function listAllConnectors(?Options $options = null): Operations\ListAllConnectorsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_ALL_CONNECTORS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1943,17 +1643,12 @@ class SDKPaymentsV1
      * List all bank accounts created by user on Formance.
      *
      * @param  ?Operations\ListBankAccountsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListBankAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listBankAccounts(?Operations\ListBankAccountsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListBankAccountsResponse
+    public function listBankAccounts(?Operations\ListBankAccountsRequest $request = null, ?Options $options = null): Operations\ListBankAccountsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_BANK_ACCOUNTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2016,17 +1711,12 @@ class SDKPaymentsV1
      *
      * List the configs of each available connector.
      *
-     * @param  ?string  $serverURL
      * @return Operations\ListConfigsAvailableConnectorsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listConfigsAvailableConnectors(?string $serverURL = null, ?Options $options = null): Operations\ListConfigsAvailableConnectorsResponse
+    public function listConfigsAvailableConnectors(?Options $options = null): Operations\ListConfigsAvailableConnectorsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_CONFIGS_AVAILABLE_CONNECTORS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/configs');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2087,19 +1777,14 @@ class SDKPaymentsV1
      * List all tasks associated with this connector.
      *
      * @param  Operations\ListConnectorTasksRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListConnectorTasksResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function listConnectorTasks(Operations\ListConnectorTasksRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ListConnectorTasksResponse
+    public function listConnectorTasks(Operations\ListConnectorTasksRequest $request, ?Options $options = null): Operations\ListConnectorTasksResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_CONNECTOR_TASKS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/tasks', Operations\ListConnectorTasksRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2163,17 +1848,12 @@ class SDKPaymentsV1
      * List all tasks associated with this connector.
      *
      * @param  Operations\ListConnectorTasksV1Request  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListConnectorTasksV1Response
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listConnectorTasksV1(Operations\ListConnectorTasksV1Request $request, ?string $serverURL = null, ?Options $options = null): Operations\ListConnectorTasksV1Response
+    public function listConnectorTasksV1(Operations\ListConnectorTasksV1Request $request, ?Options $options = null): Operations\ListConnectorTasksV1Response
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_CONNECTOR_TASKS_V1_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/tasks', Operations\ListConnectorTasksV1Request::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2235,17 +1915,12 @@ class SDKPaymentsV1
      * List payments
      *
      * @param  ?Operations\ListPaymentsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPayments(?Operations\ListPaymentsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListPaymentsResponse
+    public function listPayments(?Operations\ListPaymentsRequest $request = null, ?Options $options = null): Operations\ListPaymentsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_PAYMENTS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2307,17 +1982,12 @@ class SDKPaymentsV1
      * List Pools
      *
      * @param  ?Operations\ListPoolsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListPoolsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listPools(?Operations\ListPoolsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListPoolsResponse
+    public function listPools(?Operations\ListPoolsRequest $request = null, ?Options $options = null): Operations\ListPoolsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_POOLS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2379,17 +2049,12 @@ class SDKPaymentsV1
      * List Transfer Initiations
      *
      * @param  ?Operations\ListTransferInitiationsRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListTransferInitiationsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTransferInitiations(?Operations\ListTransferInitiationsRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListTransferInitiationsResponse
+    public function listTransferInitiations(?Operations\ListTransferInitiationsRequest $request = null, ?Options $options = null): Operations\ListTransferInitiationsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::LIST_TRANSFER_INITIATIONS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2453,19 +2118,14 @@ class SDKPaymentsV1
      * Read connector config
      *
      * @param  Operations\ReadConnectorConfigRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReadConnectorConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function readConnectorConfig(Operations\ReadConnectorConfigRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadConnectorConfigResponse
+    public function readConnectorConfig(Operations\ReadConnectorConfigRequest $request, ?Options $options = null): Operations\ReadConnectorConfigResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::READ_CONNECTOR_CONFIG_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/config', Operations\ReadConnectorConfigRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2526,17 +2186,12 @@ class SDKPaymentsV1
      * Read connector config
      *
      * @param  Operations\ReadConnectorConfigV1Request  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReadConnectorConfigV1Response
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readConnectorConfigV1(Operations\ReadConnectorConfigV1Request $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadConnectorConfigV1Response
+    public function readConnectorConfigV1(Operations\ReadConnectorConfigV1Request $request, ?Options $options = null): Operations\ReadConnectorConfigV1Response
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::READ_CONNECTOR_CONFIG_V1_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/config', Operations\ReadConnectorConfigV1Request::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2597,17 +2252,12 @@ class SDKPaymentsV1
      * Remove an account from a pool by its id.
      *
      * @param  Operations\RemoveAccountFromPoolRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\RemoveAccountFromPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function removeAccountFromPool(Operations\RemoveAccountFromPoolRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\RemoveAccountFromPoolResponse
+    public function removeAccountFromPool(Operations\RemoveAccountFromPoolRequest $request, ?Options $options = null): Operations\RemoveAccountFromPoolResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::REMOVE_ACCOUNT_FROM_POOL_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/accounts/{accountId}', Operations\RemoveAccountFromPoolRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2661,19 +2311,14 @@ class SDKPaymentsV1
      *
      *
      * @param  Operations\ResetConnectorRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ResetConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function resetConnector(Operations\ResetConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ResetConnectorResponse
+    public function resetConnector(Operations\ResetConnectorRequest $request, ?Options $options = null): Operations\ResetConnectorResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::RESET_CONNECTOR_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/reset', Operations\ResetConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2727,17 +2372,12 @@ class SDKPaymentsV1
      *
      *
      * @param  Operations\ResetConnectorV1Request  $request
-     * @param  ?string  $serverURL
      * @return Operations\ResetConnectorV1Response
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function resetConnectorV1(Operations\ResetConnectorV1Request $request, ?string $serverURL = null, ?Options $options = null): Operations\ResetConnectorV1Response
+    public function resetConnectorV1(Operations\ResetConnectorV1Request $request, ?Options $options = null): Operations\ResetConnectorV1Response
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::RESET_CONNECTOR_V1_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/reset', Operations\ResetConnectorV1Request::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2789,17 +2429,12 @@ class SDKPaymentsV1
      * Retry a failed transfer initiation
      *
      * @param  Operations\RetryTransferInitiationRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\RetryTransferInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function retryTransferInitiation(Operations\RetryTransferInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\RetryTransferInitiationResponse
+    public function retryTransferInitiation(Operations\RetryTransferInitiationRequest $request, ?Options $options = null): Operations\RetryTransferInitiationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::RETRY_TRANSFER_INITIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/retry', Operations\RetryTransferInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2851,17 +2486,12 @@ class SDKPaymentsV1
      * Reverse transfer initiation
      *
      * @param  Operations\ReverseTransferInitiationRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReverseTransferInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function reverseTransferInitiation(Operations\ReverseTransferInitiationRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReverseTransferInitiationResponse
+    public function reverseTransferInitiation(Operations\ReverseTransferInitiationRequest $request, ?Options $options = null): Operations\ReverseTransferInitiationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::REVERSE_TRANSFER_INITIATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/reverse', Operations\ReverseTransferInitiationRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2918,19 +2548,14 @@ class SDKPaymentsV1
      * Uninstall a connector by its name.
      *
      * @param  Operations\UninstallConnectorRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UninstallConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function uninstallConnector(Operations\UninstallConnectorRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UninstallConnectorResponse
+    public function uninstallConnector(Operations\UninstallConnectorRequest $request, ?Options $options = null): Operations\UninstallConnectorResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UNINSTALL_CONNECTOR_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}', Operations\UninstallConnectorRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -2982,17 +2607,12 @@ class SDKPaymentsV1
      * Uninstall a connector by its name.
      *
      * @param  Operations\UninstallConnectorV1Request  $request
-     * @param  ?string  $serverURL
      * @return Operations\UninstallConnectorV1Response
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function uninstallConnectorV1(Operations\UninstallConnectorV1Request $request, ?string $serverURL = null, ?Options $options = null): Operations\UninstallConnectorV1Response
+    public function uninstallConnectorV1(Operations\UninstallConnectorV1Request $request, ?Options $options = null): Operations\UninstallConnectorV1Response
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UNINSTALL_CONNECTOR_V1_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}', Operations\UninstallConnectorV1Request::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3042,17 +2662,12 @@ class SDKPaymentsV1
      * Update metadata of a bank account
      *
      * @param  Operations\UpdateBankAccountMetadataRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateBankAccountMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateBankAccountMetadata(Operations\UpdateBankAccountMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateBankAccountMetadataResponse
+    public function updateBankAccountMetadata(Operations\UpdateBankAccountMetadataRequest $request, ?Options $options = null): Operations\UpdateBankAccountMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/bank-accounts/{bankAccountId}/metadata', Operations\UpdateBankAccountMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3109,17 +2724,12 @@ class SDKPaymentsV1
      * Update connector config
      *
      * @param  Operations\UpdateConnectorConfigV1Request  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateConnectorConfigV1Response
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateConnectorConfigV1(Operations\UpdateConnectorConfigV1Request $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateConnectorConfigV1Response
+    public function updateConnectorConfigV1(Operations\UpdateConnectorConfigV1Request $request, ?Options $options = null): Operations\UpdateConnectorConfigV1Response
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UPDATE_CONNECTOR_CONFIG_V1_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/connectors/{connector}/{connectorId}/config', Operations\UpdateConnectorConfigV1Request::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3174,17 +2784,12 @@ class SDKPaymentsV1
      * Update metadata
      *
      * @param  Operations\UpdateMetadataRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateMetadata(Operations\UpdateMetadataRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateMetadataResponse
+    public function updateMetadata(Operations\UpdateMetadataRequest $request, ?Options $options = null): Operations\UpdateMetadataResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UPDATE_METADATA_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/payments/{paymentId}/metadata', Operations\UpdateMetadataRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3239,17 +2844,12 @@ class SDKPaymentsV1
      * Update the query of a pool
      *
      * @param  Operations\UpdatePoolQueryRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdatePoolQueryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updatePoolQuery(Operations\UpdatePoolQueryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdatePoolQueryResponse
+    public function updatePoolQuery(Operations\UpdatePoolQueryRequest $request, ?Options $options = null): Operations\UpdatePoolQueryResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UPDATE_POOL_QUERY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/pools/{poolId}/query', Operations\UpdatePoolQueryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -3306,17 +2906,12 @@ class SDKPaymentsV1
      * Update a transfer initiation status
      *
      * @param  Operations\UpdateTransferInitiationStatusRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\UpdateTransferInitiationStatusResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function updateTransferInitiationStatus(Operations\UpdateTransferInitiationStatusRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\UpdateTransferInitiationStatusResponse
+    public function updateTransferInitiationStatus(Operations\UpdateTransferInitiationStatusRequest $request, ?Options $options = null): Operations\UpdateTransferInitiationStatusResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKPaymentsV1::UPDATE_TRANSFER_INITIATION_STATUS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/payments/transfer-initiations/{transferId}/status', Operations\UpdateTransferInitiationStatusRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

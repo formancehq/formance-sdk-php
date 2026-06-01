@@ -56,7 +56,6 @@ if ($response->configResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\ActivateConfigRequest](../../Models/Operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -120,7 +119,6 @@ if ($response->configResponse !== null) {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `$request`                                                                                   | [Operations\ChangeConfigSecretRequest](../../Models/Operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `$serverURL`                                                                                 | *string*                                                                                     | :heavy_minus_sign:                                                                           | An optional server URL to use.                                                               |
 
 ### Response
 
@@ -176,7 +174,6 @@ if ($response->configResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\DeactivateConfigRequest](../../Models/Operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -232,7 +229,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\DeleteConfigRequest](../../Models/Operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -289,7 +285,6 @@ if ($response->configsResponse !== null) {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `$request`                                                                           | [Operations\GetManyConfigsRequest](../../Models/Operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `$serverURL`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | An optional server URL to use.                                                       |
 
 ### Response
 
@@ -360,7 +355,6 @@ if ($response->configResponse !== null) {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `$request`                                                                        | [\formance\stack\Models\Webhooks\ConfigUser](../../Models/webhooks/ConfigUser.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-| `$serverURL`                                                                      | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -416,7 +410,6 @@ if ($response->attemptResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\TestConfigRequest](../../Models/Operations/TestConfigRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -482,7 +475,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\UpdateConfigRequest](../../Models/Operations/UpdateConfigRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 

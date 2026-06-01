@@ -70,7 +70,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\ConfirmHoldRequest](../../Models/Operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -126,7 +125,6 @@ if ($response->createBalanceResponse !== null) {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `$request`                                                                         | [Operations\CreateBalanceRequest](../../Models/Operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `$serverURL`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | An optional server URL to use.                                                     |
 
 ### Response
 
@@ -179,7 +177,6 @@ if ($response->createWalletResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\CreateWalletRequest](../../Models/Operations/CreateWalletRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -247,7 +244,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\CreditWalletRequest](../../Models/Operations/CreditWalletRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -315,7 +311,6 @@ if ($response->debitWalletResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\DebitWalletRequest](../../Models/Operations/DebitWalletRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -372,7 +367,6 @@ if ($response->getBalanceResponse !== null) {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `$request`                                                                   | [Operations\GetBalanceRequest](../../Models/Operations/GetBalanceRequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `$serverURL`                                                                 | *string*                                                                     | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 ### Response
 
@@ -428,7 +422,6 @@ if ($response->getHoldResponse !== null) {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `$request`                                                             | [Operations\GetHoldRequest](../../Models/Operations/GetHoldRequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `$serverURL`                                                           | *string*                                                               | :heavy_minus_sign:                                                     | An optional server URL to use.                                         |
 
 ### Response
 
@@ -489,7 +482,6 @@ if ($response->getHoldsResponse !== null) {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\GetHoldsRequest](../../Models/Operations/GetHoldsRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `$serverURL`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 
@@ -536,12 +528,6 @@ if ($response->serverInfo !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -597,7 +583,6 @@ if ($response->getTransactionsResponse !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `$request`                                                                             | [Operations\GetTransactionsRequest](../../Models/Operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `$serverURL`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | An optional server URL to use.                                                         |
 
 ### Response
 
@@ -653,7 +638,6 @@ if ($response->getWalletResponse !== null) {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `$request`                                                                 | [Operations\GetWalletRequest](../../Models/Operations/GetWalletRequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `$serverURL`                                                               | *string*                                                                   | :heavy_minus_sign:                                                         | An optional server URL to use.                                             |
 
 ### Response
 
@@ -709,7 +693,6 @@ if ($response->getWalletSummaryResponse !== null) {
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `$request`                                                                               | [Operations\GetWalletSummaryRequest](../../Models/Operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `$serverURL`                                                                             | *string*                                                                                 | :heavy_minus_sign:                                                                       | An optional server URL to use.                                                           |
 
 ### Response
 
@@ -765,7 +748,6 @@ if ($response->listBalancesResponse !== null) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\ListBalancesRequest](../../Models/Operations/ListBalancesRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -826,7 +808,6 @@ if ($response->listWalletsResponse !== null) {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `$request`                                                                     | [Operations\ListWalletsRequest](../../Models/Operations/ListWalletsRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `$serverURL`                                                                   | *string*                                                                       | :heavy_minus_sign:                                                             | An optional server URL to use.                                                 |
 
 ### Response
 
@@ -882,7 +863,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `$request`                                                                       | [Operations\UpdateWalletRequest](../../Models/Operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `$serverURL`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | An optional server URL to use.                                                   |
 
 ### Response
 
@@ -938,7 +918,6 @@ if ($response->statusCode === 200) {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `$request`                                                               | [Operations\VoidHoldRequest](../../Models/Operations/VoidHoldRequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `$serverURL`                                                             | *string*                                                                 | :heavy_minus_sign:                                                       | An optional server URL to use.                                           |
 
 ### Response
 

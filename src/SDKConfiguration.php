@@ -20,15 +20,25 @@ class SDKConfiguration
 
     public int $serverIndex = 0;
 
+    /** @var array<array<string, string>> */
+    public ?array $serverVariables = [
+        [
+        ],
+        [
+            'environment' => 'eu.sandbox',
+            'organization' => 'orgID-stackID',
+        ],
+    ];
+
     public string $language = 'php';
 
     public string $openapiDocVersion = 'SDK_VERSION';
 
-    public string $sdkVersion = '6.0.0';
+    public string $sdkVersion = '6.1.0';
 
     public string $genVersion = '2.865.2';
 
-    public string $userAgent = 'speakeasy-sdk/php 6.0.0 2.865.2 SDK_VERSION formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 6.1.0 2.865.2 SDK_VERSION formance/formance-sdk';
 
     public ?RetryConfig $retryConfig = null;
 
@@ -49,6 +59,14 @@ class SDKConfiguration
         } else {
             throw new \OutOfBoundsException('Server index '.$this->serverIndex.' is out of bounds');
         }
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getServerVariables(): ?array
+    {
+        return $this->serverVariables[$this->serverIndex];
     }
     public function hasSecurity(): bool
     {
@@ -72,7 +90,7 @@ class SDKConfiguration
             $this->serverIndex = 0;
         }
 
-        return new Utils\ServerDetails(SDK::SERVERS[$this->serverIndex], []);
+        return new Utils\ServerDetails(SDK::SERVERS[$this->serverIndex], $this->serverVariables[$this->serverIndex]);
 
     }
 
@@ -82,6 +100,6 @@ class SDKConfiguration
             return Utils\Utils::templateUrl($this->serverUrl.trim('/'), []);
         }
 
-        return Utils\Utils::templateUrl($this->getServerUrl(), []);
+        return Utils\Utils::templateUrl($this->getServerUrl(), $this->getServerVariables());
     }
 }

@@ -42,12 +42,6 @@ if ($response->v2ConfigInfo !== null) {
 }
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[?Operations\V2GetInfoResponse](../../Models/Operations/V2GetInfoResponse.md)**
@@ -93,12 +87,6 @@ if ($response->object !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 

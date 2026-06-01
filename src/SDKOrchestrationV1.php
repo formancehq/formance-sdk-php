@@ -15,74 +15,6 @@ use Speakeasy\Serializer\DeserializationContext;
 
 class SDKOrchestrationV1
 {
-    public const CANCEL_EVENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_TRIGGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const CREATE_WORKFLOW_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_TRIGGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const DELETE_WORKFLOW_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_INSTANCE_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_INSTANCE_HISTORY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_INSTANCE_STAGE_HISTORY_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_SERVER_INFO_ORCHESTRATION_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const GET_WORKFLOW_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_INSTANCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_TRIGGERS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_TRIGGERS_OCCURRENCES_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const LIST_WORKFLOWS_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const READ_TRIGGER_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const RUN_WORKFLOW_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
-    public const SEND_EVENT_SERVERS = [
-
-        'http://localhost:8080/',
-    ];
     private SDKConfiguration $sdkConfiguration;
     /**
      * @param  SDKConfiguration  $sdkConfig
@@ -118,17 +50,12 @@ class SDKOrchestrationV1
      * Cancel a running workflow
      *
      * @param  Operations\CancelEventRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\CancelEventResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function cancelEvent(Operations\CancelEventRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\CancelEventResponse
+    public function cancelEvent(Operations\CancelEventRequest $request, ?Options $options = null): Operations\CancelEventResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::CANCEL_EVENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/abort', Operations\CancelEventRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -180,17 +107,12 @@ class SDKOrchestrationV1
      * Create trigger
      *
      * @param  ?\formance\stack\Models\Orchestration\TriggerData1  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTrigger(?\formance\stack\Models\Orchestration\TriggerData1 $request = null, ?string $serverURL = null, ?Options $options = null): Operations\CreateTriggerResponse
+    public function createTrigger(?\formance\stack\Models\Orchestration\TriggerData1 $request = null, ?Options $options = null): Operations\CreateTriggerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::CREATE_TRIGGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -255,17 +177,12 @@ class SDKOrchestrationV1
      * Create a workflow
      *
      * @param  ?\formance\stack\Models\Orchestration\WorkflowConfig  $request
-     * @param  ?string  $serverURL
      * @return Operations\CreateWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createWorkflow(?\formance\stack\Models\Orchestration\WorkflowConfig $request = null, ?string $serverURL = null, ?Options $options = null): Operations\CreateWorkflowResponse
+    public function createWorkflow(?\formance\stack\Models\Orchestration\WorkflowConfig $request = null, ?Options $options = null): Operations\CreateWorkflowResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::CREATE_WORKFLOW_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -330,17 +247,12 @@ class SDKOrchestrationV1
      * Read trigger
      *
      * @param  Operations\DeleteTriggerRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeleteTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteTrigger(Operations\DeleteTriggerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteTriggerResponse
+    public function deleteTrigger(Operations\DeleteTriggerRequest $request, ?Options $options = null): Operations\DeleteTriggerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::DELETE_TRIGGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}', Operations\DeleteTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -392,17 +304,12 @@ class SDKOrchestrationV1
      * Delete a flow by id
      *
      * @param  Operations\DeleteWorkflowRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\DeleteWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function deleteWorkflow(Operations\DeleteWorkflowRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\DeleteWorkflowResponse
+    public function deleteWorkflow(Operations\DeleteWorkflowRequest $request, ?Options $options = null): Operations\DeleteWorkflowResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::DELETE_WORKFLOW_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', Operations\DeleteWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -454,17 +361,12 @@ class SDKOrchestrationV1
      * Get a workflow instance by id
      *
      * @param  Operations\GetInstanceRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetInstanceResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInstance(Operations\GetInstanceRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetInstanceResponse
+    public function getInstance(Operations\GetInstanceRequest $request, ?Options $options = null): Operations\GetInstanceResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::GET_INSTANCE_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}', Operations\GetInstanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -525,17 +427,12 @@ class SDKOrchestrationV1
      * Get a workflow instance history by id
      *
      * @param  Operations\GetInstanceHistoryRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetInstanceHistoryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInstanceHistory(Operations\GetInstanceHistoryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetInstanceHistoryResponse
+    public function getInstanceHistory(Operations\GetInstanceHistoryRequest $request, ?Options $options = null): Operations\GetInstanceHistoryResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::GET_INSTANCE_HISTORY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/history', Operations\GetInstanceHistoryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -596,17 +493,12 @@ class SDKOrchestrationV1
      * Get a workflow instance stage history
      *
      * @param  Operations\GetInstanceStageHistoryRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetInstanceStageHistoryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getInstanceStageHistory(Operations\GetInstanceStageHistoryRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetInstanceStageHistoryResponse
+    public function getInstanceStageHistory(Operations\GetInstanceStageHistoryRequest $request, ?Options $options = null): Operations\GetInstanceStageHistoryResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::GET_INSTANCE_STAGE_HISTORY_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/stages/{number}/history', Operations\GetInstanceStageHistoryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -664,17 +556,12 @@ class SDKOrchestrationV1
     /**
      * Get server info
      *
-     * @param  ?string  $serverURL
      * @return Operations\GetServerInfoOrchestrationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getServerInfoOrchestration(?string $serverURL = null, ?Options $options = null): Operations\GetServerInfoOrchestrationResponse
+    public function getServerInfoOrchestration(?Options $options = null): Operations\GetServerInfoOrchestrationResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::GET_SERVER_INFO_ORCHESTRATION_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/_info');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -735,17 +622,12 @@ class SDKOrchestrationV1
      * Get a flow by id
      *
      * @param  Operations\GetWorkflowRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\GetWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function getWorkflow(Operations\GetWorkflowRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\GetWorkflowResponse
+    public function getWorkflow(Operations\GetWorkflowRequest $request, ?Options $options = null): Operations\GetWorkflowResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::GET_WORKFLOW_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{flowId}', Operations\GetWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -806,17 +688,12 @@ class SDKOrchestrationV1
      * List instances of a workflow
      *
      * @param  ?Operations\ListInstancesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListInstancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listInstances(?Operations\ListInstancesRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListInstancesResponse
+    public function listInstances(?Operations\ListInstancesRequest $request = null, ?Options $options = null): Operations\ListInstancesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::LIST_INSTANCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -880,17 +757,12 @@ class SDKOrchestrationV1
      * List triggers
      *
      * @param  ?Operations\ListTriggersRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListTriggersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTriggers(?Operations\ListTriggersRequest $request = null, ?string $serverURL = null, ?Options $options = null): Operations\ListTriggersResponse
+    public function listTriggers(?Operations\ListTriggersRequest $request = null, ?Options $options = null): Operations\ListTriggersResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::LIST_TRIGGERS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -954,17 +826,12 @@ class SDKOrchestrationV1
      * List triggers occurrences
      *
      * @param  Operations\ListTriggersOccurrencesRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ListTriggersOccurrencesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listTriggersOccurrences(Operations\ListTriggersOccurrencesRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ListTriggersOccurrencesResponse
+    public function listTriggersOccurrences(Operations\ListTriggersOccurrencesRequest $request, ?Options $options = null): Operations\ListTriggersOccurrencesResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::LIST_TRIGGERS_OCCURRENCES_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}/occurrences', Operations\ListTriggersOccurrencesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1024,17 +891,12 @@ class SDKOrchestrationV1
      *
      * List registered workflows
      *
-     * @param  ?string  $serverURL
      * @return Operations\ListWorkflowsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function listWorkflows(?string $serverURL = null, ?Options $options = null): Operations\ListWorkflowsResponse
+    public function listWorkflows(?Options $options = null): Operations\ListWorkflowsResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::LIST_WORKFLOWS_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1095,17 +957,12 @@ class SDKOrchestrationV1
      * Read trigger
      *
      * @param  Operations\ReadTriggerRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\ReadTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function readTrigger(Operations\ReadTriggerRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\ReadTriggerResponse
+    public function readTrigger(Operations\ReadTriggerRequest $request, ?Options $options = null): Operations\ReadTriggerResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::READ_TRIGGER_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/triggers/{triggerID}', Operations\ReadTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1166,17 +1023,12 @@ class SDKOrchestrationV1
      * Run workflow
      *
      * @param  Operations\RunWorkflowRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\RunWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function runWorkflow(Operations\RunWorkflowRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\RunWorkflowResponse
+    public function runWorkflow(Operations\RunWorkflowRequest $request, ?Options $options = null): Operations\RunWorkflowResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::RUN_WORKFLOW_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/workflows/{workflowID}/instances', Operations\RunWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -1244,17 +1096,12 @@ class SDKOrchestrationV1
      * Send an event to a running workflow
      *
      * @param  Operations\SendEventRequest  $request
-     * @param  ?string  $serverURL
      * @return Operations\SendEventResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function sendEvent(Operations\SendEventRequest $request, ?string $serverURL = null, ?Options $options = null): Operations\SendEventResponse
+    public function sendEvent(Operations\SendEventRequest $request, ?Options $options = null): Operations\SendEventResponse
     {
-        $baseUrl = Utils\Utils::templateUrl(SDKOrchestrationV1::SEND_EVENT_SERVERS[0], [
-        ]);
-        if (! empty($serverURL)) {
-            $baseUrl = $serverURL;
-        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/instances/{instanceID}/events', Operations\SendEventRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];

@@ -45,12 +45,6 @@ if ($response->getVersionsResponse !== null) {
 }
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `$serverURL`                   | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[?Operations\GetVersionsResponse](../../Models/Operations/GetVersionsResponse.md)**
