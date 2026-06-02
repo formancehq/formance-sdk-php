@@ -13,14 +13,14 @@ class V2ListTriggersResponse
 {
     /**
      *
-     * @var V2ListTriggersResponseCursor $cursor
+     * @var \formance\stack\Models\Orchestration\V2ListTriggersResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListTriggersResponseCursor')]
     public V2ListTriggersResponseCursor $cursor;
 
     /**
-     * @param  V2ListTriggersResponseCursor  $cursor
+     * @param  \formance\stack\Models\Orchestration\V2ListTriggersResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2ListTriggersResponseCursor $cursor)

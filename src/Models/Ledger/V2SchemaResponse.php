@@ -14,18 +14,18 @@ class V2SchemaResponse
     /**
      * Complete schema structure with metadata
      *
-     * @var V2SchemaData $v2SchemaData
+     * @var \formance\stack\Models\Ledger\V2Schema $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2SchemaData')]
-    public V2SchemaData $v2SchemaData;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Schema')]
+    public V2Schema $data;
 
     /**
-     * @param  V2SchemaData  $v2SchemaData
+     * @param  \formance\stack\Models\Ledger\V2Schema  $data
      * @phpstan-pure
      */
-    public function __construct(V2SchemaData $v2SchemaData)
+    public function __construct(V2Schema $data)
     {
-        $this->v2SchemaData = $v2SchemaData;
+        $this->data = $data;
     }
 }

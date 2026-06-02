@@ -43,7 +43,7 @@ class Log
 
     /**
      *
-     * @var Type $type
+     * @var \formance\stack\Models\Ledger\Type $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Type')]
@@ -54,7 +54,7 @@ class Log
      * @param  \DateTime  $date
      * @param  string  $hash
      * @param  int  $id
-     * @param  Type  $type
+     * @param  \formance\stack\Models\Ledger\Type  $type
      * @phpstan-pure
      */
     public function __construct(array $data, \DateTime $date, string $hash, int $id, Type $type)

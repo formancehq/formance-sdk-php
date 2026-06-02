@@ -13,18 +13,18 @@ class StatsResponse
 {
     /**
      *
-     * @var Stats $stats
+     * @var \formance\stack\Models\Ledger\Stats $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Stats')]
-    public Stats $stats;
+    public Stats $data;
 
     /**
-     * @param  Stats  $stats
+     * @param  \formance\stack\Models\Ledger\Stats  $data
      * @phpstan-pure
      */
-    public function __construct(Stats $stats)
+    public function __construct(Stats $data)
     {
-        $this->stats = $stats;
+        $this->data = $data;
     }
 }

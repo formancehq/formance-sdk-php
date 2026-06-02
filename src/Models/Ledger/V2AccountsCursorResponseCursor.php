@@ -14,7 +14,7 @@ class V2AccountsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V2Account> $data
+     * @var array<\formance\stack\Models\Ledger\V2Account> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Account>')]
@@ -51,7 +51,7 @@ class V2AccountsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2Account>  $data
+     * @param  array<\formance\stack\Models\Ledger\V2Account>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

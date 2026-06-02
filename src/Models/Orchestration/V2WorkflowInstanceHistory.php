@@ -13,11 +13,11 @@ class V2WorkflowInstanceHistory
 {
     /**
      *
-     * @var V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $v2Stage
+     * @var \formance\stack\Models\Orchestration\V2StageSend|\formance\stack\Models\Orchestration\V2StageDelay|\formance\stack\Models\Orchestration\V2StageWaitEvent|\formance\stack\Models\Orchestration\V2Update $input
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2StageSend|\formance\stack\Models\Orchestration\V2StageDelay|\formance\stack\Models\Orchestration\V2StageWaitEvent|\formance\stack\Models\Orchestration\V2Update')]
-    public V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $v2Stage;
+    public V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $input;
 
     /**
      *
@@ -57,7 +57,7 @@ class V2WorkflowInstanceHistory
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update  $v2Stage
+     * @param  \formance\stack\Models\Orchestration\V2StageSend|\formance\stack\Models\Orchestration\V2StageDelay|\formance\stack\Models\Orchestration\V2StageWaitEvent|\formance\stack\Models\Orchestration\V2Update  $input
      * @param  string  $name
      * @param  \DateTime  $startedAt
      * @param  bool  $terminated
@@ -65,9 +65,9 @@ class V2WorkflowInstanceHistory
      * @param  ?\DateTime  $terminatedAt
      * @phpstan-pure
      */
-    public function __construct(V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $v2Stage, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null)
+    public function __construct(V2StageSend|V2StageDelay|V2StageWaitEvent|V2Update $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null)
     {
-        $this->v2Stage = $v2Stage;
+        $this->input = $input;
         $this->name = $name;
         $this->startedAt = $startedAt;
         $this->terminated = $terminated;

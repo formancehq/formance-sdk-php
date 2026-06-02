@@ -13,10 +13,10 @@ class V2UpdateExporterRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2ExporterConfiguration1 $v2ExporterConfiguration
+     * @var \formance\stack\Models\Ledger\V2ExporterConfiguration $v2ExporterConfiguration
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Ledger\V2ExporterConfiguration1 $v2ExporterConfiguration;
+    public \formance\stack\Models\Ledger\V2ExporterConfiguration $v2ExporterConfiguration;
 
     /**
      * The exporter id
@@ -27,11 +27,11 @@ class V2UpdateExporterRequest
     public string $exporterID;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2ExporterConfiguration1  $v2ExporterConfiguration
+     * @param  \formance\stack\Models\Ledger\V2ExporterConfiguration  $v2ExporterConfiguration
      * @param  string  $exporterID
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Ledger\V2ExporterConfiguration1 $v2ExporterConfiguration, string $exporterID)
+    public function __construct(\formance\stack\Models\Ledger\V2ExporterConfiguration $v2ExporterConfiguration, string $exporterID)
     {
         $this->v2ExporterConfiguration = $v2ExporterConfiguration;
         $this->exporterID = $exporterID;

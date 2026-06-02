@@ -13,7 +13,7 @@ class V2VolumesWithBalanceCursorResponse
 {
     /**
      *
-     * @var V2VolumesWithBalanceCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor')]
@@ -21,7 +21,7 @@ class V2VolumesWithBalanceCursorResponse
 
     /**
      *
-     * @var ?V2VolumesWithBalanceCursorResponseResource $resource
+     * @var ?\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource $resource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource|null')]
@@ -29,8 +29,8 @@ class V2VolumesWithBalanceCursorResponse
     public ?V2VolumesWithBalanceCursorResponseResource $resource = null;
 
     /**
-     * @param  V2VolumesWithBalanceCursorResponseCursor  $cursor
-     * @param  ?V2VolumesWithBalanceCursorResponseResource  $resource
+     * @param  \formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor  $cursor
+     * @param  ?\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource  $resource
      * @phpstan-pure
      */
     public function __construct(V2VolumesWithBalanceCursorResponseCursor $cursor, ?V2VolumesWithBalanceCursorResponseResource $resource = null)

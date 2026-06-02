@@ -13,7 +13,7 @@ class V2TransactionsCursorResponse
 {
     /**
      *
-     * @var V2TransactionsCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor')]
@@ -21,7 +21,7 @@ class V2TransactionsCursorResponse
 
     /**
      *
-     * @var ?V2TransactionsCursorResponseResource $resource
+     * @var ?\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource $resource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource|null')]
@@ -29,8 +29,8 @@ class V2TransactionsCursorResponse
     public ?V2TransactionsCursorResponseResource $resource = null;
 
     /**
-     * @param  V2TransactionsCursorResponseCursor  $cursor
-     * @param  ?V2TransactionsCursorResponseResource  $resource
+     * @param  \formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor  $cursor
+     * @param  ?\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource  $resource
      * @phpstan-pure
      */
     public function __construct(V2TransactionsCursorResponseCursor $cursor, ?V2TransactionsCursorResponseResource $resource = null)

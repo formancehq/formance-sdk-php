@@ -13,18 +13,18 @@ class V2CreateWorkflowResponse
 {
     /**
      *
-     * @var V2Workflow $v2Workflow
+     * @var \formance\stack\Models\Orchestration\V2Workflow $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Workflow')]
-    public V2Workflow $v2Workflow;
+    public V2Workflow $data;
 
     /**
-     * @param  V2Workflow  $v2Workflow
+     * @param  \formance\stack\Models\Orchestration\V2Workflow  $data
      * @phpstan-pure
      */
-    public function __construct(V2Workflow $v2Workflow)
+    public function __construct(V2Workflow $data)
     {
-        $this->v2Workflow = $v2Workflow;
+        $this->data = $data;
     }
 }

@@ -13,7 +13,7 @@ class Response
 {
     /**
      *
-     * @var ?Cursor $cursor
+     * @var ?\formance\stack\Models\Search\Cursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Search\Cursor|null')]
@@ -31,7 +31,7 @@ class Response
     public ?array $data = null;
 
     /**
-     * @param  ?Cursor  $cursor
+     * @param  ?\formance\stack\Models\Search\Cursor  $cursor
      * @param  ?array<string, mixed>  $data
      * @phpstan-pure
      */

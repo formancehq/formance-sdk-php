@@ -13,18 +13,18 @@ class AccountResponse
 {
     /**
      *
-     * @var Account $account
+     * @var \formance\stack\Models\Orchestration\Account $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Account')]
-    public Account $account;
+    public Account $data;
 
     /**
-     * @param  Account  $account
+     * @param  \formance\stack\Models\Orchestration\Account  $data
      * @phpstan-pure
      */
-    public function __construct(Account $account)
+    public function __construct(Account $data)
     {
-        $this->account = $account;
+        $this->data = $data;
     }
 }

@@ -14,14 +14,14 @@ class ListWorkflowsResponse
     /**
      * $data
      *
-     * @var array<Workflow> $data
+     * @var array<\formance\stack\Models\Orchestration\Workflow> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\Workflow>')]
     public array $data;
 
     /**
-     * @param  array<Workflow>  $data
+     * @param  array<\formance\stack\Models\Orchestration\Workflow>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

@@ -13,14 +13,14 @@ class V3UninstallConnectorResponse
 {
     /**
      *
-     * @var V3UninstallConnectorResponseData $data
+     * @var \formance\stack\Models\Payments\V3UninstallConnectorResponseData $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3UninstallConnectorResponseData')]
     public V3UninstallConnectorResponseData $data;
 
     /**
-     * @param  V3UninstallConnectorResponseData  $data
+     * @param  \formance\stack\Models\Payments\V3UninstallConnectorResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3UninstallConnectorResponseData $data)

@@ -13,14 +13,6 @@ class ConnectorsResponseData
 {
     /**
      *
-     * @var Connector $connector
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Connector')]
-    public Connector $connector;
-
-    /**
-     *
      * @var string $connectorID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
@@ -35,6 +27,14 @@ class ConnectorsResponseData
 
     /**
      *
+     * @var \formance\stack\Models\Payments\Connector $provider
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Connector')]
+    public Connector $provider;
+
+    /**
+     *
      * @var ?bool $enabled
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enabled')]
@@ -42,17 +42,17 @@ class ConnectorsResponseData
     public ?bool $enabled = null;
 
     /**
-     * @param  Connector  $connector
      * @param  string  $connectorID
      * @param  string  $name
+     * @param  \formance\stack\Models\Payments\Connector  $provider
      * @param  ?bool  $enabled
      * @phpstan-pure
      */
-    public function __construct(Connector $connector, string $connectorID, string $name, ?bool $enabled = null)
+    public function __construct(string $connectorID, string $name, Connector $provider, ?bool $enabled = null)
     {
-        $this->connector = $connector;
         $this->connectorID = $connectorID;
         $this->name = $name;
+        $this->provider = $provider;
         $this->enabled = $enabled;
     }
 }

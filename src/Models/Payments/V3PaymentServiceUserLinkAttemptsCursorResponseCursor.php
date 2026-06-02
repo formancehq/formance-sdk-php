@@ -14,7 +14,7 @@ class V3PaymentServiceUserLinkAttemptsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3PaymentServiceUserLinkAttempt> $data
+     * @var array<\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt>')]
@@ -51,7 +51,7 @@ class V3PaymentServiceUserLinkAttemptsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3PaymentServiceUserLinkAttempt>  $data
+     * @param  array<\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttempt>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

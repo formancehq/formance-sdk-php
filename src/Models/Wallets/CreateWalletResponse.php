@@ -13,18 +13,18 @@ class CreateWalletResponse
 {
     /**
      *
-     * @var Wallet $wallet
+     * @var \formance\stack\Models\Wallets\Wallet $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Wallet')]
-    public Wallet $wallet;
+    public Wallet $data;
 
     /**
-     * @param  Wallet  $wallet
+     * @param  \formance\stack\Models\Wallets\Wallet  $data
      * @phpstan-pure
      */
-    public function __construct(Wallet $wallet)
+    public function __construct(Wallet $data)
     {
-        $this->wallet = $wallet;
+        $this->data = $data;
     }
 }

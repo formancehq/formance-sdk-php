@@ -23,7 +23,7 @@ class PostTransaction
     /**
      * $postings
      *
-     * @var ?array<Posting> $postings
+     * @var ?array<\formance\stack\Models\Orchestration\Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\Posting>|null')]
@@ -40,7 +40,7 @@ class PostTransaction
 
     /**
      *
-     * @var ?Script $script
+     * @var ?\formance\stack\Models\Orchestration\Script $script
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Script|null')]
@@ -57,9 +57,9 @@ class PostTransaction
 
     /**
      * @param  array<string, string>  $metadata
-     * @param  ?array<Posting>  $postings
+     * @param  ?array<\formance\stack\Models\Orchestration\Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?Script  $script
+     * @param  ?\formance\stack\Models\Orchestration\Script  $script
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */

@@ -13,14 +13,6 @@ class V3CreateAccountRequest
 {
     /**
      *
-     * @var V3AccountTypeEnum $v3AccountTypeEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
-    public V3AccountTypeEnum $v3AccountTypeEnum;
-
-    /**
-     *
      * @var string $accountName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
@@ -48,14 +40,12 @@ class V3CreateAccountRequest
     public string $reference;
 
     /**
-     * $v3Metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var \formance\stack\Models\Payments\V3AccountTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
+    public V3AccountTypeEnum $type;
 
     /**
      *
@@ -66,23 +56,33 @@ class V3CreateAccountRequest
     public ?string $defaultAsset = null;
 
     /**
-     * @param  V3AccountTypeEnum  $v3AccountTypeEnum
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  string  $accountName
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $reference
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  \formance\stack\Models\Payments\V3AccountTypeEnum  $type
      * @param  ?string  $defaultAsset
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(V3AccountTypeEnum $v3AccountTypeEnum, string $accountName, string $connectorID, \DateTime $createdAt, string $reference, ?array $v3Metadata = null, ?string $defaultAsset = null)
+    public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $reference, V3AccountTypeEnum $type, ?string $defaultAsset = null, ?array $metadata = null)
     {
-        $this->v3AccountTypeEnum = $v3AccountTypeEnum;
         $this->accountName = $accountName;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->reference = $reference;
-        $this->v3Metadata = $v3Metadata;
+        $this->type = $type;
         $this->defaultAsset = $defaultAsset;
+        $this->metadata = $metadata;
     }
 }

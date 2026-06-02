@@ -13,7 +13,7 @@ class ConfigInfo
 {
     /**
      *
-     * @var Config $config
+     * @var \formance\stack\Models\Ledger\Config $config
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Config')]
@@ -44,7 +44,7 @@ class ConfigInfo
     public ?array $experimentalFeatures = null;
 
     /**
-     * @param  Config  $config
+     * @param  \formance\stack\Models\Ledger\Config  $config
      * @param  string  $server
      * @param  string  $version
      * @param  ?array<string>  $experimentalFeatures

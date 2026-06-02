@@ -13,24 +13,10 @@ class TriggerData
 {
     /**
      *
-     * @var \DateTime $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
-    public \DateTime $createdAt;
-
-    /**
-     *
      * @var string $event
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
     public string $event;
-
-    /**
-     *
-     * @var string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public string $id;
 
     /**
      *
@@ -74,9 +60,7 @@ class TriggerData
     public ?string $version = null;
 
     /**
-     * @param  \DateTime  $createdAt
      * @param  string  $event
-     * @param  string  $id
      * @param  string  $workflowID
      * @param  ?string  $filter
      * @param  ?string  $name
@@ -84,11 +68,9 @@ class TriggerData
      * @param  ?string  $version
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $event, string $id, string $workflowID, ?string $filter = null, ?string $name = null, ?array $vars = null, ?string $version = null)
+    public function __construct(string $event, string $workflowID, ?string $filter = null, ?string $name = null, ?array $vars = null, ?string $version = null)
     {
-        $this->createdAt = $createdAt;
         $this->event = $event;
-        $this->id = $id;
         $this->workflowID = $workflowID;
         $this->filter = $filter;
         $this->name = $name;

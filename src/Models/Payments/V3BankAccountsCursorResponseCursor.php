@@ -14,7 +14,7 @@ class V3BankAccountsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3BankAccount> $data
+     * @var array<\formance\stack\Models\Payments\V3BankAccount> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3BankAccount>')]
@@ -51,7 +51,7 @@ class V3BankAccountsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3BankAccount>  $data
+     * @param  array<\formance\stack\Models\Payments\V3BankAccount>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

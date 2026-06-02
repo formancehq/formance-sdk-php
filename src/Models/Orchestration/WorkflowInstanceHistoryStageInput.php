@@ -13,151 +13,151 @@ class WorkflowInstanceHistoryStageInput
 {
     /**
      *
-     * @var ?ActivityAddAccountMetadata $activityAddAccountMetadata
+     * @var ?\formance\stack\Models\Orchestration\ActivityAddAccountMetadata $addAccountMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('AddAccountMetadata')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityAddAccountMetadata|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityAddAccountMetadata $activityAddAccountMetadata = null;
+    public ?ActivityAddAccountMetadata $addAccountMetadata = null;
 
     /**
      *
-     * @var ?ActivityConfirmHold $activityConfirmHold
+     * @var ?\formance\stack\Models\Orchestration\ActivityConfirmHold $confirmHold
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('ConfirmHold')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityConfirmHold|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityConfirmHold $activityConfirmHold = null;
+    public ?ActivityConfirmHold $confirmHold = null;
 
     /**
      *
-     * @var ?ActivityCreateTransaction $activityCreateTransaction
+     * @var ?\formance\stack\Models\Orchestration\ActivityCreateTransaction $createTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityCreateTransaction|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityCreateTransaction $activityCreateTransaction = null;
+    public ?ActivityCreateTransaction $createTransaction = null;
 
     /**
      *
-     * @var ?ActivityCreditWallet $activityCreditWallet
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('CreditWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityCreditWallet|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityCreditWallet $activityCreditWallet = null;
-
-    /**
-     *
-     * @var ?ActivityDebitWallet $activityDebitWallet
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityDebitWallet|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityDebitWallet $activityDebitWallet = null;
-
-    /**
-     *
-     * @var ?ActivityGetAccount $activityGetAccount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityGetAccount|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityGetAccount $activityGetAccount = null;
-
-    /**
-     *
-     * @var ?ActivityGetPayment $activityGetPayment
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityGetPayment|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityGetPayment $activityGetPayment = null;
-
-    /**
-     *
-     * @var ?ActivityGetWallet $activityGetWallet
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityGetWallet|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityGetWallet $activityGetWallet = null;
-
-    /**
-     *
-     * @var ?ActivityListWallets $activityListWallets
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityListWallets|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityListWallets $activityListWallets = null;
-
-    /**
-     *
-     * @var ?ActivityRevertTransaction $activityRevertTransaction
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityRevertTransaction|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityRevertTransaction $activityRevertTransaction = null;
-
-    /**
-     *
-     * @var ?ActivityVoidHold $activityVoidHold
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('VoidHold')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityVoidHold|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ActivityVoidHold $activityVoidHold = null;
-
-    /**
-     *
-     * @var ?CreateTransferInitiationRequest $createTransferInitiationRequest
+     * @var ?\formance\stack\Models\Orchestration\CreateTransferInitiationRequest $createTransferInitiation
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransferInitiation')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\CreateTransferInitiationRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateTransferInitiationRequest $createTransferInitiationRequest = null;
+    public ?CreateTransferInitiationRequest $createTransferInitiation = null;
 
     /**
      *
-     * @var ?StripeTransferRequest $stripeTransferRequest
+     * @var ?\formance\stack\Models\Orchestration\ActivityCreditWallet $creditWallet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('CreditWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityCreditWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityCreditWallet $creditWallet = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityDebitWallet $debitWallet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityDebitWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityDebitWallet $debitWallet = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityGetAccount $getAccount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityGetAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityGetAccount $getAccount = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityGetPayment $getPayment
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityGetPayment|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityGetPayment $getPayment = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityGetWallet $getWallet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityGetWallet|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityGetWallet $getWallet = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityListWallets $listWallets
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityListWallets|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityListWallets $listWallets = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityRevertTransaction $revertTransaction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityRevertTransaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityRevertTransaction $revertTransaction = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\StripeTransferRequest $stripeTransfer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('StripeTransfer')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StripeTransferRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StripeTransferRequest $stripeTransferRequest = null;
+    public ?StripeTransferRequest $stripeTransfer = null;
 
     /**
-     * @param  ?ActivityAddAccountMetadata  $activityAddAccountMetadata
-     * @param  ?ActivityConfirmHold  $activityConfirmHold
-     * @param  ?ActivityCreateTransaction  $activityCreateTransaction
-     * @param  ?ActivityCreditWallet  $activityCreditWallet
-     * @param  ?ActivityDebitWallet  $activityDebitWallet
-     * @param  ?ActivityGetAccount  $activityGetAccount
-     * @param  ?ActivityGetPayment  $activityGetPayment
-     * @param  ?ActivityGetWallet  $activityGetWallet
-     * @param  ?ActivityListWallets  $activityListWallets
-     * @param  ?ActivityRevertTransaction  $activityRevertTransaction
-     * @param  ?ActivityVoidHold  $activityVoidHold
-     * @param  ?CreateTransferInitiationRequest  $createTransferInitiationRequest
-     * @param  ?StripeTransferRequest  $stripeTransferRequest
+     *
+     * @var ?\formance\stack\Models\Orchestration\ActivityVoidHold $voidHold
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('VoidHold')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ActivityVoidHold|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ActivityVoidHold $voidHold = null;
+
+    /**
+     * @param  ?\formance\stack\Models\Orchestration\ActivityAddAccountMetadata  $addAccountMetadata
+     * @param  ?\formance\stack\Models\Orchestration\ActivityConfirmHold  $confirmHold
+     * @param  ?\formance\stack\Models\Orchestration\ActivityCreateTransaction  $createTransaction
+     * @param  ?\formance\stack\Models\Orchestration\CreateTransferInitiationRequest  $createTransferInitiation
+     * @param  ?\formance\stack\Models\Orchestration\ActivityCreditWallet  $creditWallet
+     * @param  ?\formance\stack\Models\Orchestration\ActivityDebitWallet  $debitWallet
+     * @param  ?\formance\stack\Models\Orchestration\ActivityGetAccount  $getAccount
+     * @param  ?\formance\stack\Models\Orchestration\ActivityGetPayment  $getPayment
+     * @param  ?\formance\stack\Models\Orchestration\ActivityGetWallet  $getWallet
+     * @param  ?\formance\stack\Models\Orchestration\ActivityListWallets  $listWallets
+     * @param  ?\formance\stack\Models\Orchestration\ActivityRevertTransaction  $revertTransaction
+     * @param  ?\formance\stack\Models\Orchestration\StripeTransferRequest  $stripeTransfer
+     * @param  ?\formance\stack\Models\Orchestration\ActivityVoidHold  $voidHold
      * @phpstan-pure
      */
-    public function __construct(?ActivityAddAccountMetadata $activityAddAccountMetadata = null, ?ActivityConfirmHold $activityConfirmHold = null, ?ActivityCreateTransaction $activityCreateTransaction = null, ?ActivityCreditWallet $activityCreditWallet = null, ?ActivityDebitWallet $activityDebitWallet = null, ?ActivityGetAccount $activityGetAccount = null, ?ActivityGetPayment $activityGetPayment = null, ?ActivityGetWallet $activityGetWallet = null, ?ActivityListWallets $activityListWallets = null, ?ActivityRevertTransaction $activityRevertTransaction = null, ?ActivityVoidHold $activityVoidHold = null, ?CreateTransferInitiationRequest $createTransferInitiationRequest = null, ?StripeTransferRequest $stripeTransferRequest = null)
+    public function __construct(?ActivityAddAccountMetadata $addAccountMetadata = null, ?ActivityConfirmHold $confirmHold = null, ?ActivityCreateTransaction $createTransaction = null, ?CreateTransferInitiationRequest $createTransferInitiation = null, ?ActivityCreditWallet $creditWallet = null, ?ActivityDebitWallet $debitWallet = null, ?ActivityGetAccount $getAccount = null, ?ActivityGetPayment $getPayment = null, ?ActivityGetWallet $getWallet = null, ?ActivityListWallets $listWallets = null, ?ActivityRevertTransaction $revertTransaction = null, ?StripeTransferRequest $stripeTransfer = null, ?ActivityVoidHold $voidHold = null)
     {
-        $this->activityAddAccountMetadata = $activityAddAccountMetadata;
-        $this->activityConfirmHold = $activityConfirmHold;
-        $this->activityCreateTransaction = $activityCreateTransaction;
-        $this->activityCreditWallet = $activityCreditWallet;
-        $this->activityDebitWallet = $activityDebitWallet;
-        $this->activityGetAccount = $activityGetAccount;
-        $this->activityGetPayment = $activityGetPayment;
-        $this->activityGetWallet = $activityGetWallet;
-        $this->activityListWallets = $activityListWallets;
-        $this->activityRevertTransaction = $activityRevertTransaction;
-        $this->activityVoidHold = $activityVoidHold;
-        $this->createTransferInitiationRequest = $createTransferInitiationRequest;
-        $this->stripeTransferRequest = $stripeTransferRequest;
+        $this->addAccountMetadata = $addAccountMetadata;
+        $this->confirmHold = $confirmHold;
+        $this->createTransaction = $createTransaction;
+        $this->createTransferInitiation = $createTransferInitiation;
+        $this->creditWallet = $creditWallet;
+        $this->debitWallet = $debitWallet;
+        $this->getAccount = $getAccount;
+        $this->getPayment = $getPayment;
+        $this->getWallet = $getWallet;
+        $this->listWallets = $listWallets;
+        $this->revertTransaction = $revertTransaction;
+        $this->stripeTransfer = $stripeTransfer;
+        $this->voidHold = $voidHold;
     }
 }

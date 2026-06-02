@@ -36,20 +36,20 @@ class V2TriggerOccurrence
 
     /**
      *
-     * @var ?V2WorkflowInstance $v2WorkflowInstance
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstance')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstance|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2WorkflowInstance $v2WorkflowInstance = null;
-
-    /**
-     *
      * @var ?string $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\V2WorkflowInstance $workflowInstance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstance')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstance|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2WorkflowInstance $workflowInstance = null;
 
     /**
      *
@@ -63,18 +63,18 @@ class V2TriggerOccurrence
      * @param  \DateTime  $date
      * @param  array<string, mixed>  $event
      * @param  string  $triggerID
-     * @param  ?V2WorkflowInstance  $v2WorkflowInstance
      * @param  ?string  $error
+     * @param  ?\formance\stack\Models\Orchestration\V2WorkflowInstance  $workflowInstance
      * @param  ?string  $workflowInstanceID
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, array $event, string $triggerID, ?V2WorkflowInstance $v2WorkflowInstance = null, ?string $error = null, ?string $workflowInstanceID = null)
+    public function __construct(\DateTime $date, array $event, string $triggerID, ?string $error = null, ?V2WorkflowInstance $workflowInstance = null, ?string $workflowInstanceID = null)
     {
         $this->date = $date;
         $this->event = $event;
         $this->triggerID = $triggerID;
-        $this->v2WorkflowInstance = $v2WorkflowInstance;
         $this->error = $error;
+        $this->workflowInstance = $workflowInstance;
         $this->workflowInstanceID = $workflowInstanceID;
     }
 }

@@ -13,14 +13,6 @@ class V3CreatePaymentRequest
 {
     /**
      *
-     * @var V3PaymentTypeEnum $v3PaymentTypeEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentTypeEnum')]
-    public V3PaymentTypeEnum $v3PaymentTypeEnum;
-
-    /**
-     *
      * @var \Brick\Math\BigInteger $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
@@ -69,9 +61,17 @@ class V3CreatePaymentRequest
     public string $scheme;
 
     /**
+     *
+     * @var \formance\stack\Models\Payments\V3PaymentTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentTypeEnum')]
+    public V3PaymentTypeEnum $type;
+
+    /**
      * $adjustments
      *
-     * @var ?array<V3CreatePaymentAdjustmentRequest> $adjustments
+     * @var ?array<\formance\stack\Models\Payments\V3CreatePaymentAdjustmentRequest> $adjustments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3CreatePaymentAdjustmentRequest>|null')]
@@ -95,17 +95,16 @@ class V3CreatePaymentRequest
     public ?string $sourceAccountID = null;
 
     /**
-     * $v3Metadata
+     * $metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?array $metadata = null;
 
     /**
-     * @param  V3PaymentTypeEnum  $v3PaymentTypeEnum
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
@@ -113,15 +112,15 @@ class V3CreatePaymentRequest
      * @param  \Brick\Math\BigInteger  $initialAmount
      * @param  string  $reference
      * @param  string  $scheme
-     * @param  ?array<V3CreatePaymentAdjustmentRequest>  $adjustments
+     * @param  \formance\stack\Models\Payments\V3PaymentTypeEnum  $type
+     * @param  ?array<\formance\stack\Models\Payments\V3CreatePaymentAdjustmentRequest>  $adjustments
      * @param  ?string  $destinationAccountID
      * @param  ?string  $sourceAccountID
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(V3PaymentTypeEnum $v3PaymentTypeEnum, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, \Brick\Math\BigInteger $initialAmount, string $reference, string $scheme, ?array $adjustments = null, ?string $destinationAccountID = null, ?string $sourceAccountID = null, ?array $v3Metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, \Brick\Math\BigInteger $initialAmount, string $reference, string $scheme, V3PaymentTypeEnum $type, ?array $adjustments = null, ?string $destinationAccountID = null, ?string $sourceAccountID = null, ?array $metadata = null)
     {
-        $this->v3PaymentTypeEnum = $v3PaymentTypeEnum;
         $this->amount = $amount;
         $this->asset = $asset;
         $this->connectorID = $connectorID;
@@ -129,9 +128,10 @@ class V3CreatePaymentRequest
         $this->initialAmount = $initialAmount;
         $this->reference = $reference;
         $this->scheme = $scheme;
+        $this->type = $type;
         $this->adjustments = $adjustments;
         $this->destinationAccountID = $destinationAccountID;
         $this->sourceAccountID = $sourceAccountID;
-        $this->v3Metadata = $v3Metadata;
+        $this->metadata = $metadata;
     }
 }

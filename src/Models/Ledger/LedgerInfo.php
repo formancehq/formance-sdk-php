@@ -21,7 +21,7 @@ class LedgerInfo
 
     /**
      *
-     * @var ?Storage $storage
+     * @var ?\formance\stack\Models\Ledger\Storage $storage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Storage|null')]
@@ -30,7 +30,7 @@ class LedgerInfo
 
     /**
      * @param  ?string  $name
-     * @param  ?Storage  $storage
+     * @param  ?\formance\stack\Models\Ledger\Storage  $storage
      * @phpstan-pure
      */
     public function __construct(?string $name = null, ?Storage $storage = null)

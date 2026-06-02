@@ -14,7 +14,7 @@ class V2LedgerInfoStorage
     /**
      * $migrations
      *
-     * @var ?array<V2MigrationInfo> $migrations
+     * @var ?array<\formance\stack\Models\Ledger\V2MigrationInfo> $migrations
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('migrations')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2MigrationInfo>|null')]
@@ -22,7 +22,7 @@ class V2LedgerInfoStorage
     public ?array $migrations = null;
 
     /**
-     * @param  ?array<V2MigrationInfo>  $migrations
+     * @param  ?array<\formance\stack\Models\Ledger\V2MigrationInfo>  $migrations
      * @phpstan-pure
      */
     public function __construct(?array $migrations = null)

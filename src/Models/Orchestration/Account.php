@@ -28,9 +28,19 @@ class Account
     public array $metadata;
 
     /**
+     * $effectiveVolumes
+     *
+     * @var ?array<string, \formance\stack\Models\Orchestration\Volume> $effectiveVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $effectiveVolumes = null;
+
+    /**
      * $volumes
      *
-     * @var ?array<string, Volume> $volumes
+     * @var ?array<string, \formance\stack\Models\Orchestration\Volume> $volumes
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
@@ -38,27 +48,17 @@ class Account
     public ?array $volumes = null;
 
     /**
-     * $volumes1
-     *
-     * @var ?array<string, Volume> $volumes1
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $volumes1 = null;
-
-    /**
      * @param  string  $address
      * @param  array<string, string>  $metadata
-     * @param  ?array<string, Volume>  $volumes
-     * @param  ?array<string, Volume>  $volumes1
+     * @param  ?array<string, \formance\stack\Models\Orchestration\Volume>  $effectiveVolumes
+     * @param  ?array<string, \formance\stack\Models\Orchestration\Volume>  $volumes
      * @phpstan-pure
      */
-    public function __construct(string $address, array $metadata, ?array $volumes = null, ?array $volumes1 = null)
+    public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?array $volumes = null)
     {
         $this->address = $address;
         $this->metadata = $metadata;
+        $this->effectiveVolumes = $effectiveVolumes;
         $this->volumes = $volumes;
-        $this->volumes1 = $volumes1;
     }
 }

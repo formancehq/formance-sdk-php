@@ -13,18 +13,18 @@ class V2ListWalletsResponse
 {
     /**
      *
-     * @var V2Cursor $v2Cursor
+     * @var \formance\stack\Models\Orchestration\V2ListWalletsResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Cursor')]
-    public V2Cursor $v2Cursor;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListWalletsResponseCursor')]
+    public V2ListWalletsResponseCursor $cursor;
 
     /**
-     * @param  V2Cursor  $v2Cursor
+     * @param  \formance\stack\Models\Orchestration\V2ListWalletsResponseCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(V2Cursor $v2Cursor)
+    public function __construct(V2ListWalletsResponseCursor $cursor)
     {
-        $this->v2Cursor = $v2Cursor;
+        $this->cursor = $cursor;
     }
 }

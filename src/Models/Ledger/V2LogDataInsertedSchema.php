@@ -15,18 +15,18 @@ class V2LogDataInsertedSchema
     /**
      * Complete schema structure with metadata
      *
-     * @var V2SchemaData $v2SchemaData
+     * @var \formance\stack\Models\Ledger\V2Schema $schema
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('schema')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2SchemaData')]
-    public V2SchemaData $v2SchemaData;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Schema')]
+    public V2Schema $schema;
 
     /**
-     * @param  V2SchemaData  $v2SchemaData
+     * @param  \formance\stack\Models\Ledger\V2Schema  $schema
      * @phpstan-pure
      */
-    public function __construct(V2SchemaData $v2SchemaData)
+    public function __construct(V2Schema $schema)
     {
-        $this->v2SchemaData = $v2SchemaData;
+        $this->schema = $schema;
     }
 }

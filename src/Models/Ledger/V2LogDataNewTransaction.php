@@ -13,15 +13,6 @@ namespace formance\stack\Models\Ledger;
 class V2LogDataNewTransaction
 {
     /**
-     * Transaction structure as it appears in log payloads
-     *
-     * @var V2LogTransaction $v2LogTransaction
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
-    public V2LogTransaction $v2LogTransaction;
-
-    /**
      * Metadata applied to accounts involved in the transaction
      *
      * @var array<string, array<string, string>> $accountMetadata
@@ -31,13 +22,22 @@ class V2LogDataNewTransaction
     public array $accountMetadata;
 
     /**
-     * @param  V2LogTransaction  $v2LogTransaction
+     * Transaction structure as it appears in log payloads
+     *
+     * @var \formance\stack\Models\Ledger\V2LogTransaction $transaction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
+    public V2LogTransaction $transaction;
+
+    /**
      * @param  array<string, array<string, string>>  $accountMetadata
+     * @param  \formance\stack\Models\Ledger\V2LogTransaction  $transaction
      * @phpstan-pure
      */
-    public function __construct(V2LogTransaction $v2LogTransaction, array $accountMetadata)
+    public function __construct(array $accountMetadata, V2LogTransaction $transaction)
     {
-        $this->v2LogTransaction = $v2LogTransaction;
         $this->accountMetadata = $accountMetadata;
+        $this->transaction = $transaction;
     }
 }

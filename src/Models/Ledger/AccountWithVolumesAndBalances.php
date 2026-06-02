@@ -19,16 +19,6 @@ class AccountWithVolumesAndBalances
     public string $address;
 
     /**
-     * $volumes
-     *
-     * @var ?array<string, Volume> $volumes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $volumes = null;
-
-    /**
      * $balances
      *
      * @var ?array<string, \Brick\Math\BigInteger> $balances
@@ -57,19 +47,29 @@ class AccountWithVolumesAndBalances
     public ?string $type = null;
 
     /**
+     * $volumes
+     *
+     * @var ?array<string, \formance\stack\Models\Ledger\Volume> $volumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $volumes = null;
+
+    /**
      * @param  string  $address
-     * @param  ?array<string, Volume>  $volumes
      * @param  ?array<string, \Brick\Math\BigInteger>  $balances
      * @param  ?array<string, mixed>  $metadata
      * @param  ?string  $type
+     * @param  ?array<string, \formance\stack\Models\Ledger\Volume>  $volumes
      * @phpstan-pure
      */
-    public function __construct(string $address, ?array $volumes = null, ?array $balances = null, ?array $metadata = null, ?string $type = null)
+    public function __construct(string $address, ?array $balances = null, ?array $metadata = null, ?string $type = null, ?array $volumes = null)
     {
         $this->address = $address;
-        $this->volumes = $volumes;
         $this->balances = $balances;
         $this->metadata = $metadata;
         $this->type = $type;
+        $this->volumes = $volumes;
     }
 }

@@ -14,14 +14,14 @@ class V3ConnectorConfigsResponse
     /**
      * $data
      *
-     * @var array<string, array<string, V3ConnectorConfigsResponseData>> $data
+     * @var array<string, array<string, \formance\stack\Models\Payments\V3ConnectorConfigsResponseData>> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Payments\V3ConnectorConfigsResponseData>>')]
     public array $data;
 
     /**
-     * @param  array<string, array<string, V3ConnectorConfigsResponseData>>  $data
+     * @param  array<string, array<string, \formance\stack\Models\Payments\V3ConnectorConfigsResponseData>>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

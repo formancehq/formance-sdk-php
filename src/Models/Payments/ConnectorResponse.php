@@ -14,14 +14,14 @@ class ConnectorResponse
 {
     /**
      *
-     * @var Data $data
+     * @var \formance\stack\Models\Payments\Data $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Data')]
     public Data $data;
 
     /**
-     * @param  Data  $data
+     * @param  \formance\stack\Models\Payments\Data  $data
      * @phpstan-pure
      */
     public function __construct(Data $data)

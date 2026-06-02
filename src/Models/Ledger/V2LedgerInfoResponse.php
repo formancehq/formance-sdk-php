@@ -13,19 +13,19 @@ class V2LedgerInfoResponse
 {
     /**
      *
-     * @var ?V2LedgerInfo $v2LedgerInfo
+     * @var ?\formance\stack\Models\Ledger\V2LedgerInfo $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LedgerInfo|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2LedgerInfo $v2LedgerInfo = null;
+    public ?V2LedgerInfo $data = null;
 
     /**
-     * @param  ?V2LedgerInfo  $v2LedgerInfo
+     * @param  ?\formance\stack\Models\Ledger\V2LedgerInfo  $data
      * @phpstan-pure
      */
-    public function __construct(?V2LedgerInfo $v2LedgerInfo = null)
+    public function __construct(?V2LedgerInfo $data = null)
     {
-        $this->v2LedgerInfo = $v2LedgerInfo;
+        $this->data = $data;
     }
 }

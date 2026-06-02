@@ -13,36 +13,28 @@ class Descriptor
 {
     /**
      *
-     * @var string $account
+     * @var ?string $key
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
-    public string $account;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $key = null;
 
     /**
      *
-     * @var string $name
+     * @var ?string $name
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    public string $name;
-
-    /**
-     *
-     * @var ?bool $main
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $main = null;
+    public ?string $name = null;
 
     /**
-     * @param  string  $account
-     * @param  string  $name
-     * @param  ?bool  $main
+     * @param  ?string  $key
+     * @param  ?string  $name
      * @phpstan-pure
      */
-    public function __construct(string $account, string $name, ?bool $main = null)
+    public function __construct(?string $key = null, ?string $name = null)
     {
-        $this->account = $account;
+        $this->key = $key;
         $this->name = $name;
-        $this->main = $main;
     }
 }

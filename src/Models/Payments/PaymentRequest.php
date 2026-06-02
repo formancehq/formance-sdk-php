@@ -13,30 +13,6 @@ class PaymentRequest
 {
     /**
      *
-     * @var PaymentScheme $paymentScheme
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentScheme')]
-    public PaymentScheme $paymentScheme;
-
-    /**
-     *
-     * @var PaymentStatus $paymentStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
-    public PaymentStatus $paymentStatus;
-
-    /**
-     *
-     * @var PaymentType $paymentType
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentType')]
-    public PaymentType $paymentType;
-
-    /**
-     *
      * @var \Brick\Math\BigInteger $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
@@ -72,6 +48,30 @@ class PaymentRequest
 
     /**
      *
+     * @var \formance\stack\Models\Payments\PaymentScheme $scheme
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentScheme')]
+    public PaymentScheme $scheme;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\PaymentStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
+    public PaymentStatus $status;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\PaymentType $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentType')]
+    public PaymentType $type;
+
+    /**
+     *
      * @var ?string $destinationAccountID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
@@ -87,28 +87,28 @@ class PaymentRequest
     public ?string $sourceAccountID = null;
 
     /**
-     * @param  PaymentScheme  $paymentScheme
-     * @param  PaymentStatus  $paymentStatus
-     * @param  PaymentType  $paymentType
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $reference
+     * @param  \formance\stack\Models\Payments\PaymentScheme  $scheme
+     * @param  \formance\stack\Models\Payments\PaymentStatus  $status
+     * @param  \formance\stack\Models\Payments\PaymentType  $type
      * @param  ?string  $destinationAccountID
      * @param  ?string  $sourceAccountID
      * @phpstan-pure
      */
-    public function __construct(PaymentScheme $paymentScheme, PaymentStatus $paymentStatus, PaymentType $paymentType, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $reference, ?string $destinationAccountID = null, ?string $sourceAccountID = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $reference, PaymentScheme $scheme, PaymentStatus $status, PaymentType $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null)
     {
-        $this->paymentScheme = $paymentScheme;
-        $this->paymentStatus = $paymentStatus;
-        $this->paymentType = $paymentType;
         $this->amount = $amount;
         $this->asset = $asset;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->reference = $reference;
+        $this->scheme = $scheme;
+        $this->status = $status;
+        $this->type = $type;
         $this->destinationAccountID = $destinationAccountID;
         $this->sourceAccountID = $sourceAccountID;
     }

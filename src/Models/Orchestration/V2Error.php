@@ -14,7 +14,7 @@ class V2Error
 {
     /**
      *
-     * @var SchemasErrorCode $errorCode
+     * @var \formance\stack\Models\Orchestration\SchemasErrorCode $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\SchemasErrorCode')]
@@ -28,7 +28,7 @@ class V2Error
     public string $errorMessage;
 
     /**
-     * @param  SchemasErrorCode  $errorCode
+     * @param  \formance\stack\Models\Orchestration\SchemasErrorCode  $errorCode
      * @param  string  $errorMessage
      * @phpstan-pure
      */

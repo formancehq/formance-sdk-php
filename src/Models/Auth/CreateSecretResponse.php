@@ -13,19 +13,19 @@ class CreateSecretResponse
 {
     /**
      *
-     * @var ?SecretOptions1 $secretOptions
+     * @var ?\formance\stack\Models\Auth\Secret $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\SecretOptions1|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\Secret|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SecretOptions1 $secretOptions = null;
+    public ?Secret $data = null;
 
     /**
-     * @param  ?SecretOptions1  $secretOptions
+     * @param  ?\formance\stack\Models\Auth\Secret  $data
      * @phpstan-pure
      */
-    public function __construct(?SecretOptions1 $secretOptions = null)
+    public function __construct(?Secret $data = null)
     {
-        $this->secretOptions = $secretOptions;
+        $this->data = $data;
     }
 }

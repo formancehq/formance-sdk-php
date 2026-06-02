@@ -13,14 +13,14 @@ class GetHoldsResponse
 {
     /**
      *
-     * @var Cursor $cursor
+     * @var \formance\stack\Models\Wallets\Cursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Cursor')]
     public Cursor $cursor;
 
     /**
-     * @param  Cursor  $cursor
+     * @param  \formance\stack\Models\Wallets\Cursor  $cursor
      * @phpstan-pure
      */
     public function __construct(Cursor $cursor)

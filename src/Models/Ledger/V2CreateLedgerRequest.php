@@ -12,16 +12,6 @@ namespace formance\stack\Models\Ledger;
 class V2CreateLedgerRequest
 {
     /**
-     * $v2Metadata
-     *
-     * @var ?array<string, string> $v2Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2Metadata = null;
-
-    /**
      *
      * @var ?string $bucket
      */
@@ -40,15 +30,25 @@ class V2CreateLedgerRequest
     public ?array $features = null;
 
     /**
-     * @param  ?array<string, string>  $v2Metadata
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  ?string  $bucket
      * @param  ?array<string, string>  $features
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(?array $v2Metadata = null, ?string $bucket = null, ?array $features = null)
+    public function __construct(?string $bucket = null, ?array $features = null, ?array $metadata = null)
     {
-        $this->v2Metadata = $v2Metadata;
         $this->bucket = $bucket;
         $this->features = $features;
+        $this->metadata = $metadata;
     }
 }

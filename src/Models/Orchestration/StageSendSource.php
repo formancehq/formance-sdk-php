@@ -13,41 +13,41 @@ class StageSendSource
 {
     /**
      *
-     * @var ?StageSendSourceAccount $stageSendSourceAccount
+     * @var ?\formance\stack\Models\Orchestration\StageSendSourceAccount $account
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendSourceAccount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendSourceAccount $stageSendSourceAccount = null;
+    public ?StageSendSourceAccount $account = null;
 
     /**
      *
-     * @var ?StageSendSourcePayment $stageSendSourcePayment
+     * @var ?\formance\stack\Models\Orchestration\StageSendSourcePayment $payment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payment')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendSourcePayment|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendSourcePayment $stageSendSourcePayment = null;
+    public ?StageSendSourcePayment $payment = null;
 
     /**
      *
-     * @var ?StageSendSourceWallet $stageSendSourceWallet
+     * @var ?\formance\stack\Models\Orchestration\StageSendSourceWallet $wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('wallet')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendSourceWallet|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendSourceWallet $stageSendSourceWallet = null;
+    public ?StageSendSourceWallet $wallet = null;
 
     /**
-     * @param  ?StageSendSourceAccount  $stageSendSourceAccount
-     * @param  ?StageSendSourcePayment  $stageSendSourcePayment
-     * @param  ?StageSendSourceWallet  $stageSendSourceWallet
+     * @param  ?\formance\stack\Models\Orchestration\StageSendSourceAccount  $account
+     * @param  ?\formance\stack\Models\Orchestration\StageSendSourcePayment  $payment
+     * @param  ?\formance\stack\Models\Orchestration\StageSendSourceWallet  $wallet
      * @phpstan-pure
      */
-    public function __construct(?StageSendSourceAccount $stageSendSourceAccount = null, ?StageSendSourcePayment $stageSendSourcePayment = null, ?StageSendSourceWallet $stageSendSourceWallet = null)
+    public function __construct(?StageSendSourceAccount $account = null, ?StageSendSourcePayment $payment = null, ?StageSendSourceWallet $wallet = null)
     {
-        $this->stageSendSourceAccount = $stageSendSourceAccount;
-        $this->stageSendSourcePayment = $stageSendSourcePayment;
-        $this->stageSendSourceWallet = $stageSendSourceWallet;
+        $this->account = $account;
+        $this->payment = $payment;
+        $this->wallet = $wallet;
     }
 }

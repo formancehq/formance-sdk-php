@@ -13,12 +13,12 @@ class V2ActivityCreateTransaction
 {
     /**
      *
-     * @var ?V2PostTransaction $v2PostTransaction
+     * @var ?\formance\stack\Models\Orchestration\V2PostTransaction $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PostTransaction|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2PostTransaction $v2PostTransaction = null;
+    public ?V2PostTransaction $data = null;
 
     /**
      *
@@ -29,13 +29,13 @@ class V2ActivityCreateTransaction
     public ?string $ledger = null;
 
     /**
-     * @param  ?V2PostTransaction  $v2PostTransaction
+     * @param  ?\formance\stack\Models\Orchestration\V2PostTransaction  $data
      * @param  ?string  $ledger
      * @phpstan-pure
      */
-    public function __construct(?V2PostTransaction $v2PostTransaction = null, ?string $ledger = null)
+    public function __construct(?V2PostTransaction $data = null, ?string $ledger = null)
     {
-        $this->v2PostTransaction = $v2PostTransaction;
+        $this->data = $data;
         $this->ledger = $ledger;
     }
 }

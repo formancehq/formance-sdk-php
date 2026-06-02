@@ -13,7 +13,7 @@ class V3Connector
 {
     /**
      *
-     * @var Config $config
+     * @var \formance\stack\Models\Payments\Config $config
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Config')]
@@ -70,7 +70,7 @@ class V3Connector
     public ?\DateTime $updatedAt = null;
 
     /**
-     * @param  Config  $config
+     * @param  \formance\stack\Models\Payments\Config  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name

@@ -13,14 +13,14 @@ class V2LedgerListResponse
 {
     /**
      *
-     * @var V2LedgerListResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\V2LedgerListResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LedgerListResponseCursor')]
     public V2LedgerListResponseCursor $cursor;
 
     /**
-     * @param  V2LedgerListResponseCursor  $cursor
+     * @param  \formance\stack\Models\Ledger\V2LedgerListResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2LedgerListResponseCursor $cursor)

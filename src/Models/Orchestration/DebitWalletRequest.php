@@ -13,11 +13,11 @@ class DebitWalletRequest
 {
     /**
      *
-     * @var Monetary $monetary
+     * @var \formance\stack\Models\Orchestration\Monetary $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Monetary')]
-    public Monetary $monetary;
+    public Monetary $amount;
 
     /**
      * Metadata associated with the wallet.
@@ -27,15 +27,6 @@ class DebitWalletRequest
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
     public array $metadata;
-
-    /**
-     *
-     * @var LedgerAccountSubject|WalletSubject|null $subject
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public LedgerAccountSubject|WalletSubject|null $subject = null;
 
     /**
      * $balances
@@ -56,6 +47,15 @@ class DebitWalletRequest
     public ?string $description = null;
 
     /**
+     *
+     * @var \formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject|null $destination
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public LedgerAccountSubject|WalletSubject|null $destination = null;
+
+    /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      *
      * @var ?bool $pending
@@ -74,22 +74,22 @@ class DebitWalletRequest
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  Monetary  $monetary
+     * @param  \formance\stack\Models\Orchestration\Monetary  $amount
      * @param  array<string, string>  $metadata
-     * @param  LedgerAccountSubject|WalletSubject|null  $subject
      * @param  ?array<string>  $balances
      * @param  ?string  $description
+     * @param  \formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject|null  $destination
      * @param  ?bool  $pending
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(Monetary $monetary, array $metadata, LedgerAccountSubject|WalletSubject|null $subject = null, ?array $balances = null, ?string $description = null, ?bool $pending = null, ?\DateTime $timestamp = null)
+    public function __construct(Monetary $amount, array $metadata, ?array $balances = null, ?string $description = null, LedgerAccountSubject|WalletSubject|null $destination = null, ?bool $pending = null, ?\DateTime $timestamp = null)
     {
-        $this->monetary = $monetary;
+        $this->amount = $amount;
         $this->metadata = $metadata;
-        $this->subject = $subject;
         $this->balances = $balances;
         $this->description = $description;
+        $this->destination = $destination;
         $this->pending = $pending;
         $this->timestamp = $timestamp;
     }

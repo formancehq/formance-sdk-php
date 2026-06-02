@@ -13,18 +13,18 @@ class V2WorkflowInstanceHistoryStage
 {
     /**
      *
-     * @var V2WorkflowInstanceHistoryStageInput $v2WorkflowInstanceHistoryStageInput
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput')]
-    public V2WorkflowInstanceHistoryStageInput $v2WorkflowInstanceHistoryStageInput;
-
-    /**
-     *
      * @var int $attempt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempt')]
     public int $attempt;
+
+    /**
+     *
+     * @var \formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput $input
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput')]
+    public V2WorkflowInstanceHistoryStageInput $input;
 
     /**
      *
@@ -46,15 +46,6 @@ class V2WorkflowInstanceHistoryStage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
     public bool $terminated;
-
-    /**
-     *
-     * @var ?V2WorkflowInstanceHistoryStageOutput $v2WorkflowInstanceHistoryStageOutput
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2WorkflowInstanceHistoryStageOutput $v2WorkflowInstanceHistoryStageOutput = null;
 
     /**
      *
@@ -82,6 +73,15 @@ class V2WorkflowInstanceHistoryStage
 
     /**
      *
+     * @var ?\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput $output
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2WorkflowInstanceHistoryStageOutput $output = null;
+
+    /**
+     *
      * @var ?\DateTime $terminatedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
@@ -89,29 +89,29 @@ class V2WorkflowInstanceHistoryStage
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  V2WorkflowInstanceHistoryStageInput  $v2WorkflowInstanceHistoryStageInput
      * @param  int  $attempt
+     * @param  \formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput  $input
      * @param  string  $name
      * @param  \DateTime  $startedAt
      * @param  bool  $terminated
-     * @param  ?V2WorkflowInstanceHistoryStageOutput  $v2WorkflowInstanceHistoryStageOutput
      * @param  ?string  $error
      * @param  ?string  $lastFailure
      * @param  ?\DateTime  $nextExecution
+     * @param  ?\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput  $output
      * @param  ?\DateTime  $terminatedAt
      * @phpstan-pure
      */
-    public function __construct(V2WorkflowInstanceHistoryStageInput $v2WorkflowInstanceHistoryStageInput, int $attempt, string $name, \DateTime $startedAt, bool $terminated, ?V2WorkflowInstanceHistoryStageOutput $v2WorkflowInstanceHistoryStageOutput = null, ?string $error = null, ?string $lastFailure = null, ?\DateTime $nextExecution = null, ?\DateTime $terminatedAt = null)
+    public function __construct(int $attempt, V2WorkflowInstanceHistoryStageInput $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?string $lastFailure = null, ?\DateTime $nextExecution = null, ?V2WorkflowInstanceHistoryStageOutput $output = null, ?\DateTime $terminatedAt = null)
     {
-        $this->v2WorkflowInstanceHistoryStageInput = $v2WorkflowInstanceHistoryStageInput;
         $this->attempt = $attempt;
+        $this->input = $input;
         $this->name = $name;
         $this->startedAt = $startedAt;
         $this->terminated = $terminated;
-        $this->v2WorkflowInstanceHistoryStageOutput = $v2WorkflowInstanceHistoryStageOutput;
         $this->error = $error;
         $this->lastFailure = $lastFailure;
         $this->nextExecution = $nextExecution;
+        $this->output = $output;
         $this->terminatedAt = $terminatedAt;
     }
 }

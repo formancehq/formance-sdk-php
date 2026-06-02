@@ -20,61 +20,6 @@ namespace formance\stack\Models\Payments;
 class V3Order
 {
     /**
-     * Whether an order buys or sells the base asset.
-     *
-     * @var V3OrderDirectionEnum $v3OrderDirectionEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('direction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderDirectionEnum')]
-    public V3OrderDirectionEnum $v3OrderDirectionEnum;
-
-    /**
-     * Lifecycle of an order on the exchange.
-     *
-     * `PENDING` — accepted by the exchange, not yet working.
-     * `OPEN` — live on the book, no fills yet.
-     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-     * `FILLED` — fully filled, terminal.
-     * `CANCELLED` — cancelled by the user or system, terminal.
-     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-     *
-     *
-     * @var V3OrderStatusEnum $v3OrderStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
-    public V3OrderStatusEnum $v3OrderStatusEnum;
-
-    /**
-     * Exchange order type. Determines which price fields are meaningful on
-     *
-     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-     *
-     *
-     * @var V3OrderTypeEnum $v3OrderTypeEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderTypeEnum')]
-    public V3OrderTypeEnum $v3OrderTypeEnum;
-
-    /**
-     * How long an order is valid on the exchange.
-     *
-     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-     *
-     *
-     * @var V3TimeInForceEnum $v3TimeInForceEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timeInForce')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3TimeInForceEnum')]
-    public V3TimeInForceEnum $v3TimeInForceEnum;
-
-    /**
      * Amount of base asset the order was placed for, as an integer at the base asset's precision.
      *
      * @var \Brick\Math\BigInteger $baseQuantityOrdered
@@ -108,6 +53,15 @@ class V3Order
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAsset')]
     public string $destinationAsset;
+
+    /**
+     * Whether an order buys or sells the base asset.
+     *
+     * @var \formance\stack\Models\Payments\V3OrderDirectionEnum $direction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('direction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderDirectionEnum')]
+    public V3OrderDirectionEnum $direction;
 
     /**
      * Formance-assigned unique order ID (composed from the PSP reference and connector ID).
@@ -146,6 +100,52 @@ class V3Order
     public string $sourceAsset;
 
     /**
+     * Lifecycle of an order on the exchange.
+     *
+     * `PENDING` — accepted by the exchange, not yet working.
+     * `OPEN` — live on the book, no fills yet.
+     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+     * `FILLED` — fully filled, terminal.
+     * `CANCELLED` — cancelled by the user or system, terminal.
+     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+     *
+     *
+     * @var \formance\stack\Models\Payments\V3OrderStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
+    public V3OrderStatusEnum $status;
+
+    /**
+     * How long an order is valid on the exchange.
+     *
+     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+     *
+     *
+     * @var \formance\stack\Models\Payments\V3TimeInForceEnum $timeInForce
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timeInForce')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3TimeInForceEnum')]
+    public V3TimeInForceEnum $timeInForce;
+
+    /**
+     * Exchange order type. Determines which price fields are meaningful on
+     *
+     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+     *
+     *
+     * @var \formance\stack\Models\Payments\V3OrderTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderTypeEnum')]
+    public V3OrderTypeEnum $type;
+
+    /**
      * When Formance last observed a state change on the order. Equivalent to the latest adjustment's `createdAt`.
      *
      * @var \DateTime $updatedAt
@@ -154,19 +154,9 @@ class V3Order
     public \DateTime $updatedAt;
 
     /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
-
-    /**
      * Ordered history of state snapshots for this order. The most recent element reflects the current `status`.
      *
-     * @var ?array<V3OrderAdjustment> $adjustments
+     * @var ?array<\formance\stack\Models\Payments\V3OrderAdjustment> $adjustments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3OrderAdjustment>|null')]
@@ -260,6 +250,16 @@ class V3Order
     public ?\Brick\Math\BigInteger $limitPrice = null;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * Currency + precision under which `limitPrice`, `stopPrice`, and
      *
      * `averageFillPrice` should be interpreted. Separate from
@@ -318,21 +318,20 @@ class V3Order
     public ?\Brick\Math\BigInteger $stopPrice = null;
 
     /**
-     * @param  V3OrderDirectionEnum  $v3OrderDirectionEnum
-     * @param  V3OrderStatusEnum  $v3OrderStatusEnum
-     * @param  V3OrderTypeEnum  $v3OrderTypeEnum
-     * @param  V3TimeInForceEnum  $v3TimeInForceEnum
      * @param  \Brick\Math\BigInteger  $baseQuantityOrdered
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $destinationAsset
+     * @param  \formance\stack\Models\Payments\V3OrderDirectionEnum  $direction
      * @param  string  $id
      * @param  string  $provider
      * @param  string  $reference
      * @param  string  $sourceAsset
+     * @param  \formance\stack\Models\Payments\V3OrderStatusEnum  $status
+     * @param  \formance\stack\Models\Payments\V3TimeInForceEnum  $timeInForce
+     * @param  \formance\stack\Models\Payments\V3OrderTypeEnum  $type
      * @param  \DateTime  $updatedAt
-     * @param  ?array<string, string>  $v3Metadata
-     * @param  ?array<V3OrderAdjustment>  $adjustments
+     * @param  ?array<\formance\stack\Models\Payments\V3OrderAdjustment>  $adjustments
      * @param  ?\Brick\Math\BigInteger  $averageFillPrice
      * @param  ?\Brick\Math\BigInteger  $baseQuantityFilled
      * @param  ?string  $clientOrderID
@@ -342,6 +341,7 @@ class V3Order
      * @param  ?\Brick\Math\BigInteger  $fee
      * @param  ?string  $feeAsset
      * @param  ?\Brick\Math\BigInteger  $limitPrice
+     * @param  ?array<string, string>  $metadata
      * @param  ?string  $priceAsset
      * @param  ?\Brick\Math\BigInteger  $quoteAmount
      * @param  ?string  $quoteAsset
@@ -349,22 +349,21 @@ class V3Order
      * @param  ?\Brick\Math\BigInteger  $stopPrice
      * @phpstan-pure
      */
-    public function __construct(V3OrderDirectionEnum $v3OrderDirectionEnum, V3OrderStatusEnum $v3OrderStatusEnum, V3OrderTypeEnum $v3OrderTypeEnum, V3TimeInForceEnum $v3TimeInForceEnum, \Brick\Math\BigInteger $baseQuantityOrdered, string $connectorID, \DateTime $createdAt, string $destinationAsset, string $id, string $provider, string $reference, string $sourceAsset, \DateTime $updatedAt, ?array $v3Metadata = null, ?array $adjustments = null, ?\Brick\Math\BigInteger $averageFillPrice = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?string $clientOrderID = null, ?string $destinationAccountID = null, ?string $error = null, ?\DateTime $expiresAt = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?\Brick\Math\BigInteger $limitPrice = null, ?string $priceAsset = null, ?\Brick\Math\BigInteger $quoteAmount = null, ?string $quoteAsset = null, ?string $sourceAccountID = null, ?\Brick\Math\BigInteger $stopPrice = null)
+    public function __construct(\Brick\Math\BigInteger $baseQuantityOrdered, string $connectorID, \DateTime $createdAt, string $destinationAsset, V3OrderDirectionEnum $direction, string $id, string $provider, string $reference, string $sourceAsset, V3OrderStatusEnum $status, V3TimeInForceEnum $timeInForce, V3OrderTypeEnum $type, \DateTime $updatedAt, ?array $adjustments = null, ?\Brick\Math\BigInteger $averageFillPrice = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?string $clientOrderID = null, ?string $destinationAccountID = null, ?string $error = null, ?\DateTime $expiresAt = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?\Brick\Math\BigInteger $limitPrice = null, ?array $metadata = null, ?string $priceAsset = null, ?\Brick\Math\BigInteger $quoteAmount = null, ?string $quoteAsset = null, ?string $sourceAccountID = null, ?\Brick\Math\BigInteger $stopPrice = null)
     {
-        $this->v3OrderDirectionEnum = $v3OrderDirectionEnum;
-        $this->v3OrderStatusEnum = $v3OrderStatusEnum;
-        $this->v3OrderTypeEnum = $v3OrderTypeEnum;
-        $this->v3TimeInForceEnum = $v3TimeInForceEnum;
         $this->baseQuantityOrdered = $baseQuantityOrdered;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->destinationAsset = $destinationAsset;
+        $this->direction = $direction;
         $this->id = $id;
         $this->provider = $provider;
         $this->reference = $reference;
         $this->sourceAsset = $sourceAsset;
+        $this->status = $status;
+        $this->timeInForce = $timeInForce;
+        $this->type = $type;
         $this->updatedAt = $updatedAt;
-        $this->v3Metadata = $v3Metadata;
         $this->adjustments = $adjustments;
         $this->averageFillPrice = $averageFillPrice;
         $this->baseQuantityFilled = $baseQuantityFilled;
@@ -375,6 +374,7 @@ class V3Order
         $this->fee = $fee;
         $this->feeAsset = $feeAsset;
         $this->limitPrice = $limitPrice;
+        $this->metadata = $metadata;
         $this->priceAsset = $priceAsset;
         $this->quoteAmount = $quoteAmount;
         $this->quoteAsset = $quoteAsset;

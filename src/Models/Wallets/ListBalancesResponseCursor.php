@@ -14,7 +14,7 @@ class ListBalancesResponseCursor
     /**
      * $data
      *
-     * @var array<Balance> $data
+     * @var array<\formance\stack\Models\Wallets\Balance> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\Balance>')]
@@ -52,7 +52,7 @@ class ListBalancesResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Balance>  $data
+     * @param  array<\formance\stack\Models\Wallets\Balance>  $data
      * @param  int  $pageSize
      * @param  ?bool  $hasMore
      * @param  ?string  $next

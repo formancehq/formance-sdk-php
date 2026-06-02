@@ -13,18 +13,18 @@ class V3GetPaymentServiceUserResponse
 {
     /**
      *
-     * @var V3PaymentServiceUser $v3PaymentServiceUser
+     * @var \formance\stack\Models\Payments\V3PaymentServiceUser $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentServiceUser')]
-    public V3PaymentServiceUser $v3PaymentServiceUser;
+    public V3PaymentServiceUser $data;
 
     /**
-     * @param  V3PaymentServiceUser  $v3PaymentServiceUser
+     * @param  \formance\stack\Models\Payments\V3PaymentServiceUser  $data
      * @phpstan-pure
      */
-    public function __construct(V3PaymentServiceUser $v3PaymentServiceUser)
+    public function __construct(V3PaymentServiceUser $data)
     {
-        $this->v3PaymentServiceUser = $v3PaymentServiceUser;
+        $this->data = $data;
     }
 }

@@ -14,14 +14,14 @@ class ReconciliationsCursorResponse
 {
     /**
      *
-     * @var ReconciliationsCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor')]
     public ReconciliationsCursorResponseCursor $cursor;
 
     /**
-     * @param  ReconciliationsCursorResponseCursor  $cursor
+     * @param  \formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(ReconciliationsCursorResponseCursor $cursor)

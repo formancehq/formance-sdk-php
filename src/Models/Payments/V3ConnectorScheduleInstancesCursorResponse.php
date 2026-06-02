@@ -13,14 +13,14 @@ class V3ConnectorScheduleInstancesCursorResponse
 {
     /**
      *
-     * @var V3ConnectorScheduleInstancesCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Payments\V3ConnectorScheduleInstancesCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConnectorScheduleInstancesCursorResponseCursor')]
     public V3ConnectorScheduleInstancesCursorResponseCursor $cursor;
 
     /**
-     * @param  V3ConnectorScheduleInstancesCursorResponseCursor  $cursor
+     * @param  \formance\stack\Models\Payments\V3ConnectorScheduleInstancesCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V3ConnectorScheduleInstancesCursorResponseCursor $cursor)

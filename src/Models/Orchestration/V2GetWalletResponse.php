@@ -13,18 +13,18 @@ class V2GetWalletResponse
 {
     /**
      *
-     * @var V2WalletWithBalances $v2WalletWithBalances
+     * @var \formance\stack\Models\Orchestration\V2WalletWithBalances $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WalletWithBalances')]
-    public V2WalletWithBalances $v2WalletWithBalances;
+    public V2WalletWithBalances $data;
 
     /**
-     * @param  V2WalletWithBalances  $v2WalletWithBalances
+     * @param  \formance\stack\Models\Orchestration\V2WalletWithBalances  $data
      * @phpstan-pure
      */
-    public function __construct(V2WalletWithBalances $v2WalletWithBalances)
+    public function __construct(V2WalletWithBalances $data)
     {
-        $this->v2WalletWithBalances = $v2WalletWithBalances;
+        $this->data = $data;
     }
 }

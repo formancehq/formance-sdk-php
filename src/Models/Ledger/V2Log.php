@@ -28,7 +28,7 @@ class V2Log
      * - INSERTED_SCHEMA: V2LogDataInsertedSchema
      *
      *
-     * @var V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema $data
+     * @var \formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema')]
@@ -61,7 +61,7 @@ class V2Log
     /**
      * The type of operation this log represents
      *
-     * @var V2LogType $type
+     * @var \formance\stack\Models\Ledger\V2LogType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogType')]
@@ -77,11 +77,11 @@ class V2Log
     public ?string $schemaVersion = null;
 
     /**
-     * @param  V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema  $data
+     * @param  \formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema  $data
      * @param  \DateTime  $date
      * @param  string  $hash
      * @param  \Brick\Math\BigInteger  $id
-     * @param  V2LogType  $type
+     * @param  \formance\stack\Models\Ledger\V2LogType  $type
      * @param  ?string  $schemaVersion
      * @phpstan-pure
      */

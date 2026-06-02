@@ -14,7 +14,7 @@ class V2VolumesWithBalanceCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V2VolumesWithBalance> $data
+     * @var array<\formance\stack\Models\Ledger\V2VolumesWithBalance> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2VolumesWithBalance>')]
@@ -51,7 +51,7 @@ class V2VolumesWithBalanceCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2VolumesWithBalance>  $data
+     * @param  array<\formance\stack\Models\Ledger\V2VolumesWithBalance>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

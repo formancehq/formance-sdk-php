@@ -14,7 +14,7 @@ class V3OrdersCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3Order> $data
+     * @var array<\formance\stack\Models\Payments\V3Order> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3Order>')]
@@ -51,7 +51,7 @@ class V3OrdersCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3Order>  $data
+     * @param  array<\formance\stack\Models\Payments\V3Order>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

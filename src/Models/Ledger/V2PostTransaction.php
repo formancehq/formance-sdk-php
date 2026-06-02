@@ -12,23 +12,13 @@ namespace formance\stack\Models\Ledger;
 class V2PostTransaction
 {
     /**
-     * $v2Metadata
+     * $metadata
      *
-     * @var array<string, string> $v2Metadata
+     * @var array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
-    public array $v2Metadata;
-
-    /**
-     * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
-     *
-     * @var ?Runtime $runtime
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Runtime|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Runtime $runtime = null;
+    public array $metadata;
 
     /**
      * $accountMetadata
@@ -51,7 +41,7 @@ class V2PostTransaction
     /**
      * $postings
      *
-     * @var ?array<V2Posting> $postings
+     * @var ?array<\formance\stack\Models\Ledger\V2Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Posting>|null')]
@@ -67,8 +57,18 @@ class V2PostTransaction
     public ?string $reference = null;
 
     /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
      *
-     * @var ?V2PostTransactionScript $script
+     * @var ?\formance\stack\Models\Ledger\Runtime $runtime
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Runtime|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Runtime $runtime = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Ledger\V2PostTransactionScript $script
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2PostTransactionScript|null')]
@@ -84,24 +84,24 @@ class V2PostTransaction
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  array<string, string>  $v2Metadata
-     * @param  ?Runtime  $runtime
+     * @param  array<string, string>  $metadata
      * @param  ?array<string, array<string, string>>  $accountMetadata
      * @param  ?bool  $force
-     * @param  ?array<V2Posting>  $postings
+     * @param  ?array<\formance\stack\Models\Ledger\V2Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?V2PostTransactionScript  $script
+     * @param  ?\formance\stack\Models\Ledger\Runtime  $runtime
+     * @param  ?\formance\stack\Models\Ledger\V2PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(array $v2Metadata, ?Runtime $runtime = null, ?array $accountMetadata = null, ?bool $force = null, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
+    public function __construct(array $metadata, ?array $accountMetadata = null, ?bool $force = null, ?array $postings = null, ?string $reference = null, ?Runtime $runtime = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
     {
-        $this->v2Metadata = $v2Metadata;
-        $this->runtime = $runtime;
+        $this->metadata = $metadata;
         $this->accountMetadata = $accountMetadata;
         $this->force = $force;
         $this->postings = $postings;
         $this->reference = $reference;
+        $this->runtime = $runtime;
         $this->script = $script;
         $this->timestamp = $timestamp;
     }

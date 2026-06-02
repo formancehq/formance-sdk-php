@@ -13,18 +13,18 @@ class V3CreateAccountResponse
 {
     /**
      *
-     * @var V3Account $v3Account
+     * @var \formance\stack\Models\Payments\V3Account $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Account')]
-    public V3Account $v3Account;
+    public V3Account $data;
 
     /**
-     * @param  V3Account  $v3Account
+     * @param  \formance\stack\Models\Payments\V3Account  $data
      * @phpstan-pure
      */
-    public function __construct(V3Account $v3Account)
+    public function __construct(V3Account $data)
     {
-        $this->v3Account = $v3Account;
+        $this->data = $data;
     }
 }

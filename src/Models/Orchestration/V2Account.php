@@ -28,37 +28,37 @@ class V2Account
     public array $metadata;
 
     /**
-     * $v2Volumes
+     * $effectiveVolumes
      *
-     * @var ?array<string, V2Volume> $v2Volumes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\V2Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2Volumes = null;
-
-    /**
-     * $v2Volumes1
-     *
-     * @var ?array<string, V2Volume> $v2Volumes1
+     * @var ?array<string, \formance\stack\Models\Orchestration\V2Volume> $effectiveVolumes
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\V2Volume>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2Volumes1 = null;
+    public ?array $effectiveVolumes = null;
+
+    /**
+     * $volumes
+     *
+     * @var ?array<string, \formance\stack\Models\Orchestration\V2Volume> $volumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\V2Volume>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $volumes = null;
 
     /**
      * @param  string  $address
      * @param  array<string, string>  $metadata
-     * @param  ?array<string, V2Volume>  $v2Volumes
-     * @param  ?array<string, V2Volume>  $v2Volumes1
+     * @param  ?array<string, \formance\stack\Models\Orchestration\V2Volume>  $effectiveVolumes
+     * @param  ?array<string, \formance\stack\Models\Orchestration\V2Volume>  $volumes
      * @phpstan-pure
      */
-    public function __construct(string $address, array $metadata, ?array $v2Volumes = null, ?array $v2Volumes1 = null)
+    public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?array $volumes = null)
     {
         $this->address = $address;
         $this->metadata = $metadata;
-        $this->v2Volumes = $v2Volumes;
-        $this->v2Volumes1 = $v2Volumes1;
+        $this->effectiveVolumes = $effectiveVolumes;
+        $this->volumes = $volumes;
     }
 }

@@ -13,14 +13,6 @@ class V3PaymentServiceUserConnection
 {
     /**
      *
-     * @var V3ConnectionStatusEnum $v3ConnectionStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConnectionStatusEnum')]
-    public V3ConnectionStatusEnum $v3ConnectionStatusEnum;
-
-    /**
-     *
      * @var string $connectionID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('connectionID')]
@@ -48,14 +40,12 @@ class V3PaymentServiceUserConnection
     public \DateTime $dataUpdatedAt;
 
     /**
-     * $v3Metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var \formance\stack\Models\Payments\V3ConnectionStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConnectionStatusEnum')]
+    public V3ConnectionStatusEnum $status;
 
     /**
      *
@@ -66,23 +56,33 @@ class V3PaymentServiceUserConnection
     public ?string $error = null;
 
     /**
-     * @param  V3ConnectionStatusEnum  $v3ConnectionStatusEnum
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  string  $connectionID
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  \DateTime  $dataUpdatedAt
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  \formance\stack\Models\Payments\V3ConnectionStatusEnum  $status
      * @param  ?string  $error
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(V3ConnectionStatusEnum $v3ConnectionStatusEnum, string $connectionID, string $connectorID, \DateTime $createdAt, \DateTime $dataUpdatedAt, ?array $v3Metadata = null, ?string $error = null)
+    public function __construct(string $connectionID, string $connectorID, \DateTime $createdAt, \DateTime $dataUpdatedAt, V3ConnectionStatusEnum $status, ?string $error = null, ?array $metadata = null)
     {
-        $this->v3ConnectionStatusEnum = $v3ConnectionStatusEnum;
         $this->connectionID = $connectionID;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->dataUpdatedAt = $dataUpdatedAt;
-        $this->v3Metadata = $v3Metadata;
+        $this->status = $status;
         $this->error = $error;
+        $this->metadata = $metadata;
     }
 }

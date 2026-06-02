@@ -13,14 +13,14 @@ class LogsCursorResponse
 {
     /**
      *
-     * @var LogsCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\LogsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\LogsCursorResponseCursor')]
     public LogsCursorResponseCursor $cursor;
 
     /**
-     * @param  LogsCursorResponseCursor  $cursor
+     * @param  \formance\stack\Models\Ledger\LogsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(LogsCursorResponseCursor $cursor)

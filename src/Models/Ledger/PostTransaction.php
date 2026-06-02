@@ -14,7 +14,7 @@ class PostTransaction
     /**
      * $postings
      *
-     * @var ?array<Posting> $postings
+     * @var ?array<\formance\stack\Models\Ledger\Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Posting>|null')]
@@ -31,7 +31,7 @@ class PostTransaction
 
     /**
      *
-     * @var ?PostTransactionScript $script
+     * @var ?\formance\stack\Models\Ledger\PostTransactionScript $script
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\PostTransactionScript|null')]
@@ -57,9 +57,9 @@ class PostTransaction
     public ?array $metadata = null;
 
     /**
-     * @param  ?array<Posting>  $postings
+     * @param  ?array<\formance\stack\Models\Ledger\Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?PostTransactionScript  $script
+     * @param  ?\formance\stack\Models\Ledger\PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, mixed>  $metadata
      * @phpstan-pure

@@ -21,24 +21,6 @@ namespace formance\stack\Models\Payments;
 class V3OrderAdjustment
 {
     /**
-     * Lifecycle of an order on the exchange.
-     *
-     * `PENDING` — accepted by the exchange, not yet working.
-     * `OPEN` — live on the book, no fills yet.
-     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-     * `FILLED` — fully filled, terminal.
-     * `CANCELLED` — cancelled by the user or system, terminal.
-     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-     *
-     *
-     * @var V3OrderStatusEnum $v3OrderStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
-    public V3OrderStatusEnum $v3OrderStatusEnum;
-
-    /**
      * When Formance observed this state. Not the PSP's own timestamp — reflects ingestion time.
      *
      * @var \DateTime $createdAt
@@ -63,24 +45,32 @@ class V3OrderAdjustment
     public string $reference;
 
     /**
+     * Lifecycle of an order on the exchange.
+     *
+     * `PENDING` — accepted by the exchange, not yet working.
+     * `OPEN` — live on the book, no fills yet.
+     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+     * `FILLED` — fully filled, terminal.
+     * `CANCELLED` — cancelled by the user or system, terminal.
+     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+     *
+     *
+     * @var \formance\stack\Models\Payments\V3OrderStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
+    public V3OrderStatusEnum $status;
+
+    /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      *
-     * @var ?V3OrderAdjustmentRaw $raw
+     * @var ?\formance\stack\Models\Payments\V3OrderAdjustmentRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderAdjustmentRaw|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?V3OrderAdjustmentRaw $raw = null;
-
-    /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
 
     /**
      * Base asset filled at this observation, at the base asset's precision.
@@ -110,27 +100,37 @@ class V3OrderAdjustment
     public ?string $feeAsset = null;
 
     /**
-     * @param  V3OrderStatusEnum  $v3OrderStatusEnum
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $reference
-     * @param  ?V3OrderAdjustmentRaw  $raw
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  \formance\stack\Models\Payments\V3OrderStatusEnum  $status
+     * @param  ?\formance\stack\Models\Payments\V3OrderAdjustmentRaw  $raw
      * @param  ?\Brick\Math\BigInteger  $baseQuantityFilled
      * @param  ?\Brick\Math\BigInteger  $fee
      * @param  ?string  $feeAsset
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(V3OrderStatusEnum $v3OrderStatusEnum, \DateTime $createdAt, string $id, string $reference, ?V3OrderAdjustmentRaw $raw = null, ?array $v3Metadata = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null)
+    public function __construct(\DateTime $createdAt, string $id, string $reference, V3OrderStatusEnum $status, ?V3OrderAdjustmentRaw $raw = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null)
     {
-        $this->v3OrderStatusEnum = $v3OrderStatusEnum;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->reference = $reference;
+        $this->status = $status;
         $this->raw = $raw;
-        $this->v3Metadata = $v3Metadata;
         $this->baseQuantityFilled = $baseQuantityFilled;
         $this->fee = $fee;
         $this->feeAsset = $feeAsset;
+        $this->metadata = $metadata;
     }
 }

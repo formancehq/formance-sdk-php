@@ -14,18 +14,18 @@ class PoolResponse
 {
     /**
      *
-     * @var Pool $pool
+     * @var \formance\stack\Models\Payments\Pool $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Pool')]
-    public Pool $pool;
+    public Pool $data;
 
     /**
-     * @param  Pool  $pool
+     * @param  \formance\stack\Models\Payments\Pool  $data
      * @phpstan-pure
      */
-    public function __construct(Pool $pool)
+    public function __construct(Pool $data)
     {
-        $this->pool = $pool;
+        $this->data = $data;
     }
 }

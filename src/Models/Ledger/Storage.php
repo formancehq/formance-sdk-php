@@ -14,7 +14,7 @@ class Storage
     /**
      * $migrations
      *
-     * @var ?array<MigrationInfo> $migrations
+     * @var ?array<\formance\stack\Models\Ledger\MigrationInfo> $migrations
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('migrations')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\MigrationInfo>|null')]
@@ -22,7 +22,7 @@ class Storage
     public ?array $migrations = null;
 
     /**
-     * @param  ?array<MigrationInfo>  $migrations
+     * @param  ?array<\formance\stack\Models\Ledger\MigrationInfo>  $migrations
      * @phpstan-pure
      */
     public function __construct(?array $migrations = null)

@@ -23,10 +23,10 @@ class WalletSummary
     /**
      * $balances
      *
-     * @var array<AssetHolder1> $balances
+     * @var array<\formance\stack\Models\Wallets\BalanceWithAssets> $balances
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\AssetHolder1>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\BalanceWithAssets>')]
     public array $balances;
 
     /**
@@ -58,7 +58,7 @@ class WalletSummary
 
     /**
      * @param  array<string, \Brick\Math\BigInteger>  $availableFunds
-     * @param  array<AssetHolder1>  $balances
+     * @param  array<\formance\stack\Models\Wallets\BalanceWithAssets>  $balances
      * @param  array<string, \Brick\Math\BigInteger>  $expirableFunds
      * @param  array<string, \Brick\Math\BigInteger>  $expiredFunds
      * @param  array<string, \Brick\Math\BigInteger>  $holdFunds

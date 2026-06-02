@@ -13,12 +13,12 @@ class ActivityDebitWallet
 {
     /**
      *
-     * @var ?DebitWalletRequest $debitWalletRequest
+     * @var ?\formance\stack\Models\Orchestration\DebitWalletRequest $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\DebitWalletRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?DebitWalletRequest $debitWalletRequest = null;
+    public ?DebitWalletRequest $data = null;
 
     /**
      *
@@ -29,13 +29,13 @@ class ActivityDebitWallet
     public ?string $id = null;
 
     /**
-     * @param  ?DebitWalletRequest  $debitWalletRequest
+     * @param  ?\formance\stack\Models\Orchestration\DebitWalletRequest  $data
      * @param  ?string  $id
      * @phpstan-pure
      */
-    public function __construct(?DebitWalletRequest $debitWalletRequest = null, ?string $id = null)
+    public function __construct(?DebitWalletRequest $data = null, ?string $id = null)
     {
-        $this->debitWalletRequest = $debitWalletRequest;
+        $this->data = $data;
         $this->id = $id;
     }
 }

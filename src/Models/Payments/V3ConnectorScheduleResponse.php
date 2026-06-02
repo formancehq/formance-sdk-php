@@ -13,18 +13,18 @@ class V3ConnectorScheduleResponse
 {
     /**
      *
-     * @var V3Schedule $v3Schedule
+     * @var \formance\stack\Models\Payments\V3Schedule $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Schedule')]
-    public V3Schedule $v3Schedule;
+    public V3Schedule $data;
 
     /**
-     * @param  V3Schedule  $v3Schedule
+     * @param  \formance\stack\Models\Payments\V3Schedule  $data
      * @phpstan-pure
      */
-    public function __construct(V3Schedule $v3Schedule)
+    public function __construct(V3Schedule $data)
     {
-        $this->v3Schedule = $v3Schedule;
+        $this->data = $data;
     }
 }

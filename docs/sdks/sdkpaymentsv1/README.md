@@ -199,10 +199,10 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new \formance\stack\Models\Payments\AccountRequest(
-    accountType: \formance\stack\Models\Payments\AccountType::Unknown,
     connectorID: '<id>',
     createdAt: Utils\Utils::parseDateTime('2025-07-27T08:57:17.388Z'),
     reference: '<value>',
+    type: \formance\stack\Models\Payments\AccountType::Unknown,
 );
 
 $response = $sdk->payments->v1->createAccount(
@@ -315,14 +315,14 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new \formance\stack\Models\Payments\PaymentRequest(
-    paymentScheme: \formance\stack\Models\Payments\PaymentScheme::Rtp,
-    paymentStatus: \formance\stack\Models\Payments\PaymentStatus::RefundedFailure,
-    paymentType: \formance\stack\Models\Payments\PaymentType::Payout,
     amount: BigInteger::of('100'),
     asset: 'USD',
     connectorID: '<id>',
     createdAt: Utils\Utils::parseDateTime('2025-08-26T06:29:11.777Z'),
     reference: '<value>',
+    scheme: \formance\stack\Models\Payments\PaymentScheme::Rtp,
+    status: \formance\stack\Models\Payments\PaymentStatus::RefundedFailure,
+    type: \formance\stack\Models\Payments\PaymentType::Payout,
 );
 
 $response = $sdk->payments->v1->createPayment(
@@ -2378,7 +2378,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\UpdateBankAccountMetadataRequest(
     updateBankAccountMetadataRequest: new \formance\stack\Models\Payments\UpdateBankAccountMetadataRequest(
-        bankAccountMetadata: [
+        metadata: [
             'key' => '<value>',
             'key1' => '<value>',
             'key2' => '<value>',

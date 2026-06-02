@@ -13,19 +13,19 @@ class ReadUserResponse
 {
     /**
      *
-     * @var ?User $user
+     * @var ?\formance\stack\Models\Auth\User $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\User|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?User $user = null;
+    public ?User $data = null;
 
     /**
-     * @param  ?User  $user
+     * @param  ?\formance\stack\Models\Auth\User  $data
      * @phpstan-pure
      */
-    public function __construct(?User $user = null)
+    public function __construct(?User $data = null)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
 }

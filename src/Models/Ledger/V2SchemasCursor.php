@@ -14,10 +14,10 @@ class V2SchemasCursor
     /**
      * $data
      *
-     * @var array<V2SchemaData> $data
+     * @var array<\formance\stack\Models\Ledger\V2Schema> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2SchemaData>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Schema>')]
     public array $data;
 
     /**
@@ -51,7 +51,7 @@ class V2SchemasCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2SchemaData>  $data
+     * @param  array<\formance\stack\Models\Ledger\V2Schema>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

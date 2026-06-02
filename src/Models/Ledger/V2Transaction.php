@@ -12,15 +12,6 @@ namespace formance\stack\Models\Ledger;
 class V2Transaction
 {
     /**
-     * $v2Metadata
-     *
-     * @var array<string, string> $v2Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
-    public array $v2Metadata;
-
-    /**
      *
      * @var \Brick\Math\BigInteger $id
      */
@@ -28,9 +19,18 @@ class V2Transaction
     public \Brick\Math\BigInteger $id;
 
     /**
+     * $metadata
+     *
+     * @var array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    public array $metadata;
+
+    /**
      * $postings
      *
-     * @var array<V2Posting> $postings
+     * @var array<\formance\stack\Models\Ledger\V2Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Posting>')]
@@ -51,52 +51,52 @@ class V2Transaction
     public \DateTime $timestamp;
 
     /**
-     * $v2AggregatedVolumes
-     *
-     * @var ?array<string, array<string, V2Volume>> $v2AggregatedVolumes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2AggregatedVolumes = null;
-
-    /**
-     * $v2AggregatedVolumes1
-     *
-     * @var ?array<string, array<string, V2Volume>> $v2AggregatedVolumes1
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2AggregatedVolumes1 = null;
-
-    /**
-     * $v2AggregatedVolumes2
-     *
-     * @var ?array<string, array<string, V2Volume>> $v2AggregatedVolumes2
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitEffectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2AggregatedVolumes2 = null;
-
-    /**
-     * $v2AggregatedVolumes3
-     *
-     * @var ?array<string, array<string, V2Volume>> $v2AggregatedVolumes3
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitEffectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2AggregatedVolumes3 = null;
-
-    /**
      *
      * @var ?\DateTime $insertedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('insertedAt')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?\DateTime $insertedAt = null;
+
+    /**
+     * $postCommitEffectiveVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $postCommitEffectiveVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitEffectiveVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $postCommitEffectiveVolumes = null;
+
+    /**
+     * $postCommitVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $postCommitVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $postCommitVolumes = null;
+
+    /**
+     * $preCommitEffectiveVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $preCommitEffectiveVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitEffectiveVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $preCommitEffectiveVolumes = null;
+
+    /**
+     * $preCommitVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $preCommitVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $preCommitVolumes = null;
 
     /**
      *
@@ -131,34 +131,34 @@ class V2Transaction
     public ?\DateTime $updatedAt = null;
 
     /**
-     * @param  array<string, string>  $v2Metadata
      * @param  \Brick\Math\BigInteger  $id
-     * @param  array<V2Posting>  $postings
+     * @param  array<string, string>  $metadata
+     * @param  array<\formance\stack\Models\Ledger\V2Posting>  $postings
      * @param  bool  $reverted
      * @param  \DateTime  $timestamp
-     * @param  ?array<string, array<string, V2Volume>>  $v2AggregatedVolumes
-     * @param  ?array<string, array<string, V2Volume>>  $v2AggregatedVolumes1
-     * @param  ?array<string, array<string, V2Volume>>  $v2AggregatedVolumes2
-     * @param  ?array<string, array<string, V2Volume>>  $v2AggregatedVolumes3
      * @param  ?\DateTime  $insertedAt
+     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $postCommitEffectiveVolumes
+     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $preCommitEffectiveVolumes
+     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?\DateTime  $revertedAt
      * @param  ?string  $template
      * @param  ?\DateTime  $updatedAt
      * @phpstan-pure
      */
-    public function __construct(array $v2Metadata, \Brick\Math\BigInteger $id, array $postings, bool $reverted, \DateTime $timestamp, ?array $v2AggregatedVolumes = null, ?array $v2AggregatedVolumes1 = null, ?array $v2AggregatedVolumes2 = null, ?array $v2AggregatedVolumes3 = null, ?\DateTime $insertedAt = null, ?string $reference = null, ?\DateTime $revertedAt = null, ?string $template = null, ?\DateTime $updatedAt = null)
+    public function __construct(\Brick\Math\BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?\DateTime $insertedAt = null, ?array $postCommitEffectiveVolumes = null, ?array $postCommitVolumes = null, ?array $preCommitEffectiveVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?\DateTime $revertedAt = null, ?string $template = null, ?\DateTime $updatedAt = null)
     {
-        $this->v2Metadata = $v2Metadata;
         $this->id = $id;
+        $this->metadata = $metadata;
         $this->postings = $postings;
         $this->reverted = $reverted;
         $this->timestamp = $timestamp;
-        $this->v2AggregatedVolumes = $v2AggregatedVolumes;
-        $this->v2AggregatedVolumes1 = $v2AggregatedVolumes1;
-        $this->v2AggregatedVolumes2 = $v2AggregatedVolumes2;
-        $this->v2AggregatedVolumes3 = $v2AggregatedVolumes3;
         $this->insertedAt = $insertedAt;
+        $this->postCommitEffectiveVolumes = $postCommitEffectiveVolumes;
+        $this->postCommitVolumes = $postCommitVolumes;
+        $this->preCommitEffectiveVolumes = $preCommitEffectiveVolumes;
+        $this->preCommitVolumes = $preCommitVolumes;
         $this->reference = $reference;
         $this->revertedAt = $revertedAt;
         $this->template = $template;

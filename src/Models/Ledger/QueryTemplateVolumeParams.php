@@ -70,7 +70,7 @@ class QueryTemplateVolumeParams
 
     /**
      *
-     * @var ?V2QueryParamsSchemasTrueLedgerResource $resource
+     * @var ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueLedgerResource $resource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueLedgerResource|null')]
@@ -96,7 +96,7 @@ class QueryTemplateVolumeParams
      * @param  ?bool  $insertionDate
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
-     * @param  ?V2QueryParamsSchemasTrueLedgerResource  $resource
+     * @param  ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueLedgerResource  $resource
      * @param  ?string  $sort
      * @phpstan-pure
      */

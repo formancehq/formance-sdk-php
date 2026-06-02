@@ -3,48 +3,48 @@
 
 ## Supported Types
 
-### `\formance\stack\Models\Ledger\SchemasV2BaseBulkElementResult`
+### `\formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction`
 
 ```php
 /**
-* @var \formance\stack\Models\Ledger\SchemasV2BaseBulkElementResult
+* @var \formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction
 */
-\formance\stack\Models\Ledger\SchemasV2BaseBulkElementResult $value = /* values here */
+\formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction $value = /* values here */
 ```
 
-### `\formance\stack\Models\Ledger\V2BaseBulkElementResult`
+### `\formance\stack\Models\Ledger\V2BulkElementResultAddMetadata`
 
 ```php
 /**
-* @var \formance\stack\Models\Ledger\V2BaseBulkElementResult
+* @var \formance\stack\Models\Ledger\V2BulkElementResultAddMetadata
 */
-\formance\stack\Models\Ledger\V2BaseBulkElementResult $value = /* values here */
+\formance\stack\Models\Ledger\V2BulkElementResultAddMetadata $value = /* values here */
 ```
 
-### `\formance\stack\Models\Ledger\SchemasV2BulkElementResultRevertTransactionV2BaseBulkElementResult`
+### `\formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction`
 
 ```php
 /**
-* @var \formance\stack\Models\Ledger\SchemasV2BulkElementResultRevertTransactionV2BaseBulkElementResult
+* @var \formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction
 */
-\formance\stack\Models\Ledger\SchemasV2BulkElementResultRevertTransactionV2BaseBulkElementResult $value = /* values here */
+\formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction $value = /* values here */
 ```
 
-### `\formance\stack\Models\Ledger\SchemasV2BulkElementResultDeleteMetadataV2BaseBulkElementResult`
+### `\formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata`
 
 ```php
 /**
-* @var \formance\stack\Models\Ledger\SchemasV2BulkElementResultDeleteMetadataV2BaseBulkElementResult
+* @var \formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata
 */
-\formance\stack\Models\Ledger\SchemasV2BulkElementResultDeleteMetadataV2BaseBulkElementResult $value = /* values here */
+\formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata $value = /* values here */
 ```
 
-### `\formance\stack\Models\Ledger\SchemasV2BulkElementResultErrorV2BaseBulkElementResult`
+### `\formance\stack\Models\Ledger\V2BulkElementResultError`
 
 ```php
 /**
-* @var \formance\stack\Models\Ledger\SchemasV2BulkElementResultErrorV2BaseBulkElementResult
+* @var \formance\stack\Models\Ledger\V2BulkElementResultError
 */
-\formance\stack\Models\Ledger\SchemasV2BulkElementResultErrorV2BaseBulkElementResult $value = /* values here */
+\formance\stack\Models\Ledger\V2BulkElementResultError $value = /* values here */
 ```
 

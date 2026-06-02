@@ -14,18 +14,18 @@ class PolicyResponse
 {
     /**
      *
-     * @var Policy $policy
+     * @var \formance\stack\Models\Reconciliation\Policy $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\Policy')]
-    public Policy $policy;
+    public Policy $data;
 
     /**
-     * @param  Policy  $policy
+     * @param  \formance\stack\Models\Reconciliation\Policy  $data
      * @phpstan-pure
      */
-    public function __construct(Policy $policy)
+    public function __construct(Policy $data)
     {
-        $this->policy = $policy;
+        $this->data = $data;
     }
 }

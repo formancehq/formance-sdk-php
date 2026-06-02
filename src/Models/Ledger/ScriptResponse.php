@@ -13,29 +13,20 @@ class ScriptResponse
 {
     /**
      *
-     * @var ?ErrorsEnum $errorsEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\ErrorsEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ErrorsEnum $errorsEnum = null;
-
-    /**
-     *
-     * @var ?Transaction $transaction
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Transaction|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Transaction $transaction = null;
-
-    /**
-     *
      * @var ?string $details
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Ledger\ErrorsEnum $errorCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\ErrorsEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ErrorsEnum $errorCode = null;
 
     /**
      *
@@ -46,17 +37,26 @@ class ScriptResponse
     public ?string $errorMessage = null;
 
     /**
-     * @param  ?ErrorsEnum  $errorsEnum
-     * @param  ?Transaction  $transaction
+     *
+     * @var ?\formance\stack\Models\Ledger\Transaction $transaction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Transaction|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Transaction $transaction = null;
+
+    /**
      * @param  ?string  $details
+     * @param  ?\formance\stack\Models\Ledger\ErrorsEnum  $errorCode
      * @param  ?string  $errorMessage
+     * @param  ?\formance\stack\Models\Ledger\Transaction  $transaction
      * @phpstan-pure
      */
-    public function __construct(?ErrorsEnum $errorsEnum = null, ?Transaction $transaction = null, ?string $details = null, ?string $errorMessage = null)
+    public function __construct(?string $details = null, ?ErrorsEnum $errorCode = null, ?string $errorMessage = null, ?Transaction $transaction = null)
     {
-        $this->errorsEnum = $errorsEnum;
-        $this->transaction = $transaction;
         $this->details = $details;
+        $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
+        $this->transaction = $transaction;
     }
 }

@@ -13,18 +13,18 @@ class GetWorkflowInstanceResponse
 {
     /**
      *
-     * @var WorkflowInstance $workflowInstance
+     * @var \formance\stack\Models\Orchestration\WorkflowInstance $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\WorkflowInstance')]
-    public WorkflowInstance $workflowInstance;
+    public WorkflowInstance $data;
 
     /**
-     * @param  WorkflowInstance  $workflowInstance
+     * @param  \formance\stack\Models\Orchestration\WorkflowInstance  $data
      * @phpstan-pure
      */
-    public function __construct(WorkflowInstance $workflowInstance)
+    public function __construct(WorkflowInstance $data)
     {
-        $this->workflowInstance = $workflowInstance;
+        $this->data = $data;
     }
 }

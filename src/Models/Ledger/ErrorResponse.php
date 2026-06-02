@@ -13,11 +13,11 @@ class ErrorResponse
 {
     /**
      *
-     * @var ErrorsEnum $errorsEnum
+     * @var \formance\stack\Models\Ledger\ErrorsEnum $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\ErrorsEnum')]
-    public ErrorsEnum $errorsEnum;
+    public ErrorsEnum $errorCode;
 
     /**
      *
@@ -35,14 +35,14 @@ class ErrorResponse
     public ?string $details = null;
 
     /**
-     * @param  ErrorsEnum  $errorsEnum
+     * @param  \formance\stack\Models\Ledger\ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure
      */
-    public function __construct(ErrorsEnum $errorsEnum, string $errorMessage, ?string $details = null)
+    public function __construct(ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
-        $this->errorsEnum = $errorsEnum;
+        $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
         $this->details = $details;
     }

@@ -13,18 +13,18 @@ class V2PaymentResponse
 {
     /**
      *
-     * @var V2Payment $v2Payment
+     * @var \formance\stack\Models\Orchestration\V2Payment $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Payment')]
-    public V2Payment $v2Payment;
+    public V2Payment $data;
 
     /**
-     * @param  V2Payment  $v2Payment
+     * @param  \formance\stack\Models\Orchestration\V2Payment  $data
      * @phpstan-pure
      */
-    public function __construct(V2Payment $v2Payment)
+    public function __construct(V2Payment $data)
     {
-        $this->v2Payment = $v2Payment;
+        $this->data = $data;
     }
 }

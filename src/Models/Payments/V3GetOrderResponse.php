@@ -19,18 +19,18 @@ class V3GetOrderResponse
      * adjustment is a point-in-time snapshot from the PSP.
      *
      *
-     * @var V3Order $v3Order
+     * @var \formance\stack\Models\Payments\V3Order $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Order')]
-    public V3Order $v3Order;
+    public V3Order $data;
 
     /**
-     * @param  V3Order  $v3Order
+     * @param  \formance\stack\Models\Payments\V3Order  $data
      * @phpstan-pure
      */
-    public function __construct(V3Order $v3Order)
+    public function __construct(V3Order $data)
     {
-        $this->v3Order = $v3Order;
+        $this->data = $data;
     }
 }

@@ -13,7 +13,7 @@ class Contract
 {
     /**
      *
-     * @var Expr $expr
+     * @var \formance\stack\Models\Ledger\Expr $expr
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expr')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Expr')]
@@ -28,7 +28,7 @@ class Contract
     public ?string $account = null;
 
     /**
-     * @param  Expr  $expr
+     * @param  \formance\stack\Models\Ledger\Expr  $expr
      * @param  ?string  $account
      * @phpstan-pure
      */

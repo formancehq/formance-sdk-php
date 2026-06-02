@@ -14,14 +14,14 @@ class V2CreateTransactionResponse
     /**
      * $data
      *
-     * @var array<V2Transaction> $data
+     * @var array<\formance\stack\Models\Orchestration\V2Transaction> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Transaction>')]
     public array $data;
 
     /**
-     * @param  array<V2Transaction>  $data
+     * @param  array<\formance\stack\Models\Orchestration\V2Transaction>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

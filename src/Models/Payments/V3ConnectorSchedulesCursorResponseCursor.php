@@ -14,7 +14,7 @@ class V3ConnectorSchedulesCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3Schedule> $data
+     * @var array<\formance\stack\Models\Payments\V3Schedule> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3Schedule>')]
@@ -51,7 +51,7 @@ class V3ConnectorSchedulesCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3Schedule>  $data
+     * @param  array<\formance\stack\Models\Payments\V3Schedule>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

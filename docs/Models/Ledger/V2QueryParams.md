@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Ledger\QueryTemplateAccountParams
+* @var \formance\stack\Models\Ledger\QueryTemplateAccountParams
 */
 Ledger\QueryTemplateAccountParams $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Ledger\QueryTemplateAccountParams $value = /* values here */
 
 ```php
 /**
-* @var Ledger\QueryTemplateTransactionParams
+* @var \formance\stack\Models\Ledger\QueryTemplateTransactionParams
 */
 Ledger\QueryTemplateTransactionParams $value = /* values here */
 ```
@@ -25,7 +25,7 @@ Ledger\QueryTemplateTransactionParams $value = /* values here */
 
 ```php
 /**
-* @var Ledger\QueryTemplateLogParams
+* @var \formance\stack\Models\Ledger\QueryTemplateLogParams
 */
 Ledger\QueryTemplateLogParams $value = /* values here */
 ```
@@ -34,7 +34,7 @@ Ledger\QueryTemplateLogParams $value = /* values here */
 
 ```php
 /**
-* @var Ledger\QueryTemplateVolumeParams
+* @var \formance\stack\Models\Ledger\QueryTemplateVolumeParams
 */
 Ledger\QueryTemplateVolumeParams $value = /* values here */
 ```

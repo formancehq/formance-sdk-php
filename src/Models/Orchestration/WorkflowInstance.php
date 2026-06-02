@@ -48,15 +48,6 @@ class WorkflowInstance
 
     /**
      *
-     * @var ?Workflow $workflow
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflow')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Workflow|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Workflow $workflow = null;
-
-    /**
-     *
      * @var ?string $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
@@ -66,7 +57,7 @@ class WorkflowInstance
     /**
      * $status
      *
-     * @var ?array<StageStatus> $status
+     * @var ?array<\formance\stack\Models\Orchestration\StageStatus> $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\StageStatus>|null')]
@@ -82,27 +73,36 @@ class WorkflowInstance
     public ?\DateTime $terminatedAt = null;
 
     /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\Workflow $workflow
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflow')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Workflow|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Workflow $workflow = null;
+
+    /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  bool  $terminated
      * @param  \DateTime  $updatedAt
      * @param  string  $workflowID
-     * @param  ?Workflow  $workflow
      * @param  ?string  $error
-     * @param  ?array<StageStatus>  $status
+     * @param  ?array<\formance\stack\Models\Orchestration\StageStatus>  $status
      * @param  ?\DateTime  $terminatedAt
+     * @param  ?\formance\stack\Models\Orchestration\Workflow  $workflow
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, bool $terminated, \DateTime $updatedAt, string $workflowID, ?Workflow $workflow = null, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null)
+    public function __construct(\DateTime $createdAt, string $id, bool $terminated, \DateTime $updatedAt, string $workflowID, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null, ?Workflow $workflow = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->terminated = $terminated;
         $this->updatedAt = $updatedAt;
         $this->workflowID = $workflowID;
-        $this->workflow = $workflow;
         $this->error = $error;
         $this->status = $status;
         $this->terminatedAt = $terminatedAt;
+        $this->workflow = $workflow;
     }
 }

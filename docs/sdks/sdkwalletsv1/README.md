@@ -218,7 +218,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\CreditWalletRequest(
     creditWalletRequest: new \formance\stack\Models\Wallets\CreditWalletRequest(
-        monetary: new \formance\stack\Models\Wallets\Monetary(
+        amount: new \formance\stack\Models\Wallets\Monetary(
             amount: BigInteger::of('100'),
             asset: 'USD/2',
         ),
@@ -285,7 +285,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\DebitWalletRequest(
     debitWalletRequest: new \formance\stack\Models\Wallets\DebitWalletRequest(
-        monetary: new \formance\stack\Models\Wallets\Monetary(
+        amount: new \formance\stack\Models\Wallets\Monetary(
             amount: BigInteger::of('100'),
             asset: 'USD/2',
         ),

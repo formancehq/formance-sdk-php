@@ -13,14 +13,6 @@ class V3PaymentServiceUserLinkAttempt
 {
     /**
      *
-     * @var V3OpenBankingConnectionAttemptStatusEnum $v3OpenBankingConnectionAttemptStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum')]
-    public V3OpenBankingConnectionAttemptStatusEnum $v3OpenBankingConnectionAttemptStatusEnum;
-
-    /**
-     *
      * @var string $clientRedirectURL
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('clientRedirectURL')]
@@ -56,6 +48,14 @@ class V3PaymentServiceUserLinkAttempt
 
     /**
      *
+     * @var \formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum')]
+    public V3OpenBankingConnectionAttemptStatusEnum $status;
+
+    /**
+     *
      * @var ?string $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
@@ -63,23 +63,23 @@ class V3PaymentServiceUserLinkAttempt
     public ?string $error = null;
 
     /**
-     * @param  V3OpenBankingConnectionAttemptStatusEnum  $v3OpenBankingConnectionAttemptStatusEnum
      * @param  string  $clientRedirectURL
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $psuID
+     * @param  \formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum  $status
      * @param  ?string  $error
      * @phpstan-pure
      */
-    public function __construct(V3OpenBankingConnectionAttemptStatusEnum $v3OpenBankingConnectionAttemptStatusEnum, string $clientRedirectURL, string $connectorID, \DateTime $createdAt, string $id, string $psuID, ?string $error = null)
+    public function __construct(string $clientRedirectURL, string $connectorID, \DateTime $createdAt, string $id, string $psuID, V3OpenBankingConnectionAttemptStatusEnum $status, ?string $error = null)
     {
-        $this->v3OpenBankingConnectionAttemptStatusEnum = $v3OpenBankingConnectionAttemptStatusEnum;
         $this->clientRedirectURL = $clientRedirectURL;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->psuID = $psuID;
+        $this->status = $status;
         $this->error = $error;
     }
 }

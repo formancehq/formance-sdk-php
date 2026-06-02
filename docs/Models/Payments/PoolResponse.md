@@ -7,4 +7,4 @@ OK
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `pool`                                                                | [\formance\stack\Models\Payments\Pool](../../Models/payments/Pool.md) | :heavy_check_mark:                                                    | N/A                                                                   |
+| `data`                                                                | [\formance\stack\Models\Payments\Pool](../../Models/payments/Pool.md) | :heavy_check_mark:                                                    | N/A                                                                   |

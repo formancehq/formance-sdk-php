@@ -13,11 +13,11 @@ class WorkflowInstanceHistory
 {
     /**
      *
-     * @var StageSend|StageDelay|StageWaitEvent|Update $stage
+     * @var \formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update $input
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update')]
-    public StageSend|StageDelay|StageWaitEvent|Update $stage;
+    public StageSend|StageDelay|StageWaitEvent|Update $input;
 
     /**
      *
@@ -57,7 +57,7 @@ class WorkflowInstanceHistory
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  StageSend|StageDelay|StageWaitEvent|Update  $stage
+     * @param  \formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update  $input
      * @param  string  $name
      * @param  \DateTime  $startedAt
      * @param  bool  $terminated
@@ -65,9 +65,9 @@ class WorkflowInstanceHistory
      * @param  ?\DateTime  $terminatedAt
      * @phpstan-pure
      */
-    public function __construct(StageSend|StageDelay|StageWaitEvent|Update $stage, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null)
+    public function __construct(StageSend|StageDelay|StageWaitEvent|Update $input, string $name, \DateTime $startedAt, bool $terminated, ?string $error = null, ?\DateTime $terminatedAt = null)
     {
-        $this->stage = $stage;
+        $this->input = $input;
         $this->name = $name;
         $this->startedAt = $startedAt;
         $this->terminated = $terminated;

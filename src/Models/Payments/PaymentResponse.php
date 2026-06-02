@@ -14,18 +14,18 @@ class PaymentResponse
 {
     /**
      *
-     * @var Payment $payment
+     * @var \formance\stack\Models\Payments\Payment $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Payment')]
-    public Payment $payment;
+    public Payment $data;
 
     /**
-     * @param  Payment  $payment
+     * @param  \formance\stack\Models\Payments\Payment  $data
      * @phpstan-pure
      */
-    public function __construct(Payment $payment)
+    public function __construct(Payment $data)
     {
-        $this->payment = $payment;
+        $this->data = $data;
     }
 }

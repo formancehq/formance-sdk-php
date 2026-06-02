@@ -13,85 +13,85 @@ class WorkflowInstanceHistoryStageOutput
 {
     /**
      *
-     * @var ?AccountResponse $accountResponse
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\AccountResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AccountResponse $accountResponse = null;
-
-    /**
-     *
-     * @var ?CreateTransactionResponse $createTransactionResponse
+     * @var ?\formance\stack\Models\Orchestration\CreateTransactionResponse $createTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\CreateTransactionResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateTransactionResponse $createTransactionResponse = null;
+    public ?CreateTransactionResponse $createTransaction = null;
 
     /**
      *
-     * @var ?CreateTransactionResponse $createTransactionResponse1
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\CreateTransactionResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateTransactionResponse $createTransactionResponse1 = null;
-
-    /**
-     *
-     * @var ?DebitWalletResponse $debitWalletResponse
+     * @var ?\formance\stack\Models\Orchestration\DebitWalletResponse $debitWallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\DebitWalletResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?DebitWalletResponse $debitWalletResponse = null;
+    public ?DebitWalletResponse $debitWallet = null;
 
     /**
      *
-     * @var ?GetWalletResponse $getWalletResponse
+     * @var ?\formance\stack\Models\Orchestration\AccountResponse $getAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\GetWalletResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\AccountResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?GetWalletResponse $getWalletResponse = null;
+    public ?AccountResponse $getAccount = null;
 
     /**
      *
-     * @var ?ListWalletsResponse $listWalletsResponse
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ListWalletsResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ListWalletsResponse $listWalletsResponse = null;
-
-    /**
-     *
-     * @var ?PaymentResponse $paymentResponse
+     * @var ?\formance\stack\Models\Orchestration\PaymentResponse $getPayment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PaymentResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PaymentResponse $paymentResponse = null;
+    public ?PaymentResponse $getPayment = null;
 
     /**
-     * @param  ?AccountResponse  $accountResponse
-     * @param  ?CreateTransactionResponse  $createTransactionResponse
-     * @param  ?CreateTransactionResponse  $createTransactionResponse1
-     * @param  ?DebitWalletResponse  $debitWalletResponse
-     * @param  ?GetWalletResponse  $getWalletResponse
-     * @param  ?ListWalletsResponse  $listWalletsResponse
-     * @param  ?PaymentResponse  $paymentResponse
+     *
+     * @var ?\formance\stack\Models\Orchestration\GetWalletResponse $getWallet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\GetWalletResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?GetWalletResponse $getWallet = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\ListWalletsResponse $listWallets
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ListWalletsResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ListWalletsResponse $listWallets = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\CreateTransactionResponse $revertTransaction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('RevertTransaction')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\CreateTransactionResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CreateTransactionResponse $revertTransaction = null;
+
+    /**
+     * @param  ?\formance\stack\Models\Orchestration\CreateTransactionResponse  $createTransaction
+     * @param  ?\formance\stack\Models\Orchestration\DebitWalletResponse  $debitWallet
+     * @param  ?\formance\stack\Models\Orchestration\AccountResponse  $getAccount
+     * @param  ?\formance\stack\Models\Orchestration\PaymentResponse  $getPayment
+     * @param  ?\formance\stack\Models\Orchestration\GetWalletResponse  $getWallet
+     * @param  ?\formance\stack\Models\Orchestration\ListWalletsResponse  $listWallets
+     * @param  ?\formance\stack\Models\Orchestration\CreateTransactionResponse  $revertTransaction
      * @phpstan-pure
      */
-    public function __construct(?AccountResponse $accountResponse = null, ?CreateTransactionResponse $createTransactionResponse = null, ?CreateTransactionResponse $createTransactionResponse1 = null, ?DebitWalletResponse $debitWalletResponse = null, ?GetWalletResponse $getWalletResponse = null, ?ListWalletsResponse $listWalletsResponse = null, ?PaymentResponse $paymentResponse = null)
+    public function __construct(?CreateTransactionResponse $createTransaction = null, ?DebitWalletResponse $debitWallet = null, ?AccountResponse $getAccount = null, ?PaymentResponse $getPayment = null, ?GetWalletResponse $getWallet = null, ?ListWalletsResponse $listWallets = null, ?CreateTransactionResponse $revertTransaction = null)
     {
-        $this->accountResponse = $accountResponse;
-        $this->createTransactionResponse = $createTransactionResponse;
-        $this->createTransactionResponse1 = $createTransactionResponse1;
-        $this->debitWalletResponse = $debitWalletResponse;
-        $this->getWalletResponse = $getWalletResponse;
-        $this->listWalletsResponse = $listWalletsResponse;
-        $this->paymentResponse = $paymentResponse;
+        $this->createTransaction = $createTransaction;
+        $this->debitWallet = $debitWallet;
+        $this->getAccount = $getAccount;
+        $this->getPayment = $getPayment;
+        $this->getWallet = $getWallet;
+        $this->listWallets = $listWallets;
+        $this->revertTransaction = $revertTransaction;
     }
 }

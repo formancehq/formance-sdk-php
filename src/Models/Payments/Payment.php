@@ -12,33 +12,9 @@ namespace formance\stack\Models\Payments;
 class Payment
 {
     /**
-     *
-     * @var PaymentScheme $paymentScheme
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentScheme')]
-    public PaymentScheme $paymentScheme;
-
-    /**
-     *
-     * @var PaymentStatus $paymentStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
-    public PaymentStatus $paymentStatus;
-
-    /**
-     *
-     * @var PaymentType $paymentType
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentType')]
-    public PaymentType $paymentType;
-
-    /**
      * $adjustments
      *
-     * @var array<PaymentAdjustment> $adjustments
+     * @var array<\formance\stack\Models\Payments\PaymentAdjustment> $adjustments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\PaymentAdjustment>')]
@@ -102,6 +78,14 @@ class Payment
 
     /**
      *
+     * @var \formance\stack\Models\Payments\PaymentScheme $scheme
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentScheme')]
+    public PaymentScheme $scheme;
+
+    /**
+     *
      * @var string $sourceAccountID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
@@ -109,35 +93,48 @@ class Payment
 
     /**
      *
-     * @var ?Connector $connector
+     * @var \formance\stack\Models\Payments\PaymentStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
+    public PaymentStatus $status;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\PaymentType $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentType')]
+    public PaymentType $type;
+
+    /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    public ?array $metadata;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Payments\Connector $provider
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Connector|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Connector $connector = null;
-
-    /**
-     * $paymentMetadata
-     *
-     * @var ?array<string, string> $paymentMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    public ?array $paymentMetadata;
+    public ?Connector $provider = null;
 
     /**
      *
-     * @var ?PaymentRaw $raw
+     * @var ?\formance\stack\Models\Payments\PaymentRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentRaw|null')]
     public ?PaymentRaw $raw;
 
     /**
-     * @param  PaymentScheme  $paymentScheme
-     * @param  PaymentStatus  $paymentStatus
-     * @param  PaymentType  $paymentType
-     * @param  array<PaymentAdjustment>  $adjustments
+     * @param  array<\formance\stack\Models\Payments\PaymentAdjustment>  $adjustments
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
@@ -146,17 +143,17 @@ class Payment
      * @param  string  $id
      * @param  \Brick\Math\BigInteger  $initialAmount
      * @param  string  $reference
+     * @param  \formance\stack\Models\Payments\PaymentScheme  $scheme
      * @param  string  $sourceAccountID
-     * @param  ?Connector  $connector
-     * @param  ?array<string, string>  $paymentMetadata
-     * @param  ?PaymentRaw  $raw
+     * @param  \formance\stack\Models\Payments\PaymentStatus  $status
+     * @param  \formance\stack\Models\Payments\PaymentType  $type
+     * @param  ?array<string, string>  $metadata
+     * @param  ?\formance\stack\Models\Payments\Connector  $provider
+     * @param  ?\formance\stack\Models\Payments\PaymentRaw  $raw
      * @phpstan-pure
      */
-    public function __construct(PaymentScheme $paymentScheme, PaymentStatus $paymentStatus, PaymentType $paymentType, array $adjustments, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, string $sourceAccountID, ?Connector $connector = null, ?array $paymentMetadata = null, ?PaymentRaw $raw = null)
+    public function __construct(array $adjustments, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, PaymentScheme $scheme, string $sourceAccountID, PaymentStatus $status, PaymentType $type, ?array $metadata = null, ?Connector $provider = null, ?PaymentRaw $raw = null)
     {
-        $this->paymentScheme = $paymentScheme;
-        $this->paymentStatus = $paymentStatus;
-        $this->paymentType = $paymentType;
         $this->adjustments = $adjustments;
         $this->amount = $amount;
         $this->asset = $asset;
@@ -166,9 +163,12 @@ class Payment
         $this->id = $id;
         $this->initialAmount = $initialAmount;
         $this->reference = $reference;
+        $this->scheme = $scheme;
         $this->sourceAccountID = $sourceAccountID;
-        $this->connector = $connector;
-        $this->paymentMetadata = $paymentMetadata;
+        $this->status = $status;
+        $this->type = $type;
+        $this->metadata = $metadata;
+        $this->provider = $provider;
         $this->raw = $raw;
     }
 }

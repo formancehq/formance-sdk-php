@@ -13,14 +13,6 @@ class V3Account
 {
     /**
      *
-     * @var V3AccountTypeEnum $v3AccountTypeEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
-    public V3AccountTypeEnum $v3AccountTypeEnum;
-
-    /**
-     *
      * @var string $connectorID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
@@ -49,7 +41,7 @@ class V3Account
 
     /**
      *
-     * @var V3AccountRaw $raw
+     * @var \formance\stack\Models\Payments\V3AccountRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountRaw')]
@@ -64,22 +56,20 @@ class V3Account
 
     /**
      *
-     * @var ?V3ConnectorBase $v3ConnectorBase
+     * @var \formance\stack\Models\Payments\V3AccountTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
+    public V3AccountTypeEnum $type;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Payments\V3ConnectorBase $connector
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('connector')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConnectorBase|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V3ConnectorBase $v3ConnectorBase = null;
-
-    /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?V3ConnectorBase $connector = null;
 
     /**
      *
@@ -90,6 +80,16 @@ class V3Account
     public ?string $defaultAsset = null;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      *
      * @var ?string $name
      */
@@ -98,31 +98,31 @@ class V3Account
     public ?string $name = null;
 
     /**
-     * @param  V3AccountTypeEnum  $v3AccountTypeEnum
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $provider
-     * @param  V3AccountRaw  $raw
+     * @param  \formance\stack\Models\Payments\V3AccountRaw  $raw
      * @param  string  $reference
-     * @param  ?V3ConnectorBase  $v3ConnectorBase
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  \formance\stack\Models\Payments\V3AccountTypeEnum  $type
+     * @param  ?\formance\stack\Models\Payments\V3ConnectorBase  $connector
      * @param  ?string  $defaultAsset
+     * @param  ?array<string, string>  $metadata
      * @param  ?string  $name
      * @phpstan-pure
      */
-    public function __construct(V3AccountTypeEnum $v3AccountTypeEnum, string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, ?V3ConnectorBase $v3ConnectorBase = null, ?array $v3Metadata = null, ?string $defaultAsset = null, ?string $name = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, V3AccountTypeEnum $type, ?V3ConnectorBase $connector = null, ?string $defaultAsset = null, ?array $metadata = null, ?string $name = null)
     {
-        $this->v3AccountTypeEnum = $v3AccountTypeEnum;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->provider = $provider;
         $this->raw = $raw;
         $this->reference = $reference;
-        $this->v3ConnectorBase = $v3ConnectorBase;
-        $this->v3Metadata = $v3Metadata;
+        $this->type = $type;
+        $this->connector = $connector;
         $this->defaultAsset = $defaultAsset;
+        $this->metadata = $metadata;
         $this->name = $name;
     }
 }

@@ -53,9 +53,9 @@ if ($response->createClientResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `$request`                                                                        | [\formance\stack\Models\Auth\ClientOptions1](../../Models/auth/ClientOptions1.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `$request`                                                                      | [\formance\stack\Models\Auth\ClientOptions](../../Models/auth/ClientOptions.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 ### Response
 

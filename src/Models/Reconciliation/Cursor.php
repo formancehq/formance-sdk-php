@@ -14,7 +14,7 @@ class Cursor
     /**
      * $data
      *
-     * @var array<Policy> $data
+     * @var array<\formance\stack\Models\Reconciliation\Policy> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Reconciliation\Policy>')]
@@ -51,7 +51,7 @@ class Cursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Policy>  $data
+     * @param  array<\formance\stack\Models\Reconciliation\Policy>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

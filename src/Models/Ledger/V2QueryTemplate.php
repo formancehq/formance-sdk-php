@@ -12,24 +12,6 @@ namespace formance\stack\Models\Ledger;
 class V2QueryTemplate
 {
     /**
-     *
-     * @var QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $v2QueryParams
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('params')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $v2QueryParams = null;
-
-    /**
-     *
-     * @var ?V2QueryResource $v2QueryResource
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2QueryResource $v2QueryResource = null;
-
-    /**
      * $body
      *
      * @var ?array<string, mixed> $body
@@ -48,9 +30,27 @@ class V2QueryTemplate
     public ?string $description = null;
 
     /**
+     *
+     * @var \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null $params
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('params')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Ledger\V2QueryResource $resource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryResource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2QueryResource $resource = null;
+
+    /**
      * $vars
      *
-     * @var ?array<string, V2QueryTemplateVar> $vars
+     * @var ?array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar> $vars
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar>|null')]
@@ -58,19 +58,19 @@ class V2QueryTemplate
     public ?array $vars = null;
 
     /**
-     * @param  QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null  $v2QueryParams
-     * @param  ?V2QueryResource  $v2QueryResource
      * @param  ?array<string, mixed>  $body
      * @param  ?string  $description
-     * @param  ?array<string, V2QueryTemplateVar>  $vars
+     * @param  \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null  $params
+     * @param  ?\formance\stack\Models\Ledger\V2QueryResource  $resource
+     * @param  ?array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar>  $vars
      * @phpstan-pure
      */
-    public function __construct(QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $v2QueryParams = null, ?V2QueryResource $v2QueryResource = null, ?array $body = null, ?string $description = null, ?array $vars = null)
+    public function __construct(?array $body = null, ?string $description = null, QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params = null, ?V2QueryResource $resource = null, ?array $vars = null)
     {
-        $this->v2QueryParams = $v2QueryParams;
-        $this->v2QueryResource = $v2QueryResource;
         $this->body = $body;
         $this->description = $description;
+        $this->params = $params;
+        $this->resource = $resource;
         $this->vars = $vars;
     }
 }

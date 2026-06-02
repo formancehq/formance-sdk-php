@@ -13,14 +13,6 @@ class TransferInitiationAdjustments
 {
     /**
      *
-     * @var TransferInitiationStatus $transferInitiationStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
-    public TransferInitiationStatus $transferInitiationStatus;
-
-    /**
-     *
      * @var string $adjustmentID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('adjustmentID')]
@@ -32,6 +24,14 @@ class TransferInitiationAdjustments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
     public \DateTime $createdAt;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\TransferInitiationStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
+    public TransferInitiationStatus $status;
 
     /**
      *
@@ -52,18 +52,18 @@ class TransferInitiationAdjustments
     public ?array $metadata = null;
 
     /**
-     * @param  TransferInitiationStatus  $transferInitiationStatus
      * @param  string  $adjustmentID
      * @param  \DateTime  $createdAt
+     * @param  \formance\stack\Models\Payments\TransferInitiationStatus  $status
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(TransferInitiationStatus $transferInitiationStatus, string $adjustmentID, \DateTime $createdAt, ?string $error = null, ?array $metadata = null)
+    public function __construct(string $adjustmentID, \DateTime $createdAt, TransferInitiationStatus $status, ?string $error = null, ?array $metadata = null)
     {
-        $this->transferInitiationStatus = $transferInitiationStatus;
         $this->adjustmentID = $adjustmentID;
         $this->createdAt = $createdAt;
+        $this->status = $status;
         $this->error = $error;
         $this->metadata = $metadata;
     }

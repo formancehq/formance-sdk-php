@@ -13,74 +13,74 @@ class V2WorkflowInstanceHistoryStageOutput
 {
     /**
      *
-     * @var ?V2AccountResponse $v2AccountResponse
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2AccountResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2AccountResponse $v2AccountResponse = null;
-
-    /**
-     *
-     * @var ?V2CreateTransactionResponse $v2CreateTransactionResponse
+     * @var ?\formance\stack\Models\Orchestration\V2CreateTransactionResponse $createTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2CreateTransactionResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2CreateTransactionResponse $v2CreateTransactionResponse = null;
+    public ?V2CreateTransactionResponse $createTransaction = null;
 
     /**
      *
-     * @var ?V2DebitWalletResponse $v2DebitWalletResponse
+     * @var ?\formance\stack\Models\Orchestration\V2DebitWalletResponse $debitWallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2DebitWalletResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2DebitWalletResponse $v2DebitWalletResponse = null;
+    public ?V2DebitWalletResponse $debitWallet = null;
 
     /**
      *
-     * @var ?V2GetWalletResponse $v2GetWalletResponse
+     * @var ?\formance\stack\Models\Orchestration\V2AccountResponse $getAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2GetWalletResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2AccountResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2GetWalletResponse $v2GetWalletResponse = null;
+    public ?V2AccountResponse $getAccount = null;
 
     /**
      *
-     * @var ?V2ListWalletsResponse $v2ListWalletsResponse
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListWalletsResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2ListWalletsResponse $v2ListWalletsResponse = null;
-
-    /**
-     *
-     * @var ?V2PaymentResponse $v2PaymentResponse
+     * @var ?\formance\stack\Models\Orchestration\V2PaymentResponse $getPayment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2PaymentResponse $v2PaymentResponse = null;
+    public ?V2PaymentResponse $getPayment = null;
 
     /**
-     * @param  ?V2AccountResponse  $v2AccountResponse
-     * @param  ?V2CreateTransactionResponse  $v2CreateTransactionResponse
-     * @param  ?V2DebitWalletResponse  $v2DebitWalletResponse
-     * @param  ?V2GetWalletResponse  $v2GetWalletResponse
-     * @param  ?V2ListWalletsResponse  $v2ListWalletsResponse
-     * @param  ?V2PaymentResponse  $v2PaymentResponse
+     *
+     * @var ?\formance\stack\Models\Orchestration\V2GetWalletResponse $getWallet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2GetWalletResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2GetWalletResponse $getWallet = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\V2ListWalletsResponse $listWallets
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListWalletsResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2ListWalletsResponse $listWallets = null;
+
+    /**
+     * @param  ?\formance\stack\Models\Orchestration\V2CreateTransactionResponse  $createTransaction
+     * @param  ?\formance\stack\Models\Orchestration\V2DebitWalletResponse  $debitWallet
+     * @param  ?\formance\stack\Models\Orchestration\V2AccountResponse  $getAccount
+     * @param  ?\formance\stack\Models\Orchestration\V2PaymentResponse  $getPayment
+     * @param  ?\formance\stack\Models\Orchestration\V2GetWalletResponse  $getWallet
+     * @param  ?\formance\stack\Models\Orchestration\V2ListWalletsResponse  $listWallets
      * @phpstan-pure
      */
-    public function __construct(?V2AccountResponse $v2AccountResponse = null, ?V2CreateTransactionResponse $v2CreateTransactionResponse = null, ?V2DebitWalletResponse $v2DebitWalletResponse = null, ?V2GetWalletResponse $v2GetWalletResponse = null, ?V2ListWalletsResponse $v2ListWalletsResponse = null, ?V2PaymentResponse $v2PaymentResponse = null)
+    public function __construct(?V2CreateTransactionResponse $createTransaction = null, ?V2DebitWalletResponse $debitWallet = null, ?V2AccountResponse $getAccount = null, ?V2PaymentResponse $getPayment = null, ?V2GetWalletResponse $getWallet = null, ?V2ListWalletsResponse $listWallets = null)
     {
-        $this->v2AccountResponse = $v2AccountResponse;
-        $this->v2CreateTransactionResponse = $v2CreateTransactionResponse;
-        $this->v2DebitWalletResponse = $v2DebitWalletResponse;
-        $this->v2GetWalletResponse = $v2GetWalletResponse;
-        $this->v2ListWalletsResponse = $v2ListWalletsResponse;
-        $this->v2PaymentResponse = $v2PaymentResponse;
+        $this->createTransaction = $createTransaction;
+        $this->debitWallet = $debitWallet;
+        $this->getAccount = $getAccount;
+        $this->getPayment = $getPayment;
+        $this->getWallet = $getWallet;
+        $this->listWallets = $listWallets;
     }
 }

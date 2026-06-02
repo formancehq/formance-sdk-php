@@ -14,18 +14,18 @@ class TransferInitiationsCursor
 {
     /**
      *
-     * @var TransferInitiationsCursorCursorBase $cursorBase
+     * @var \formance\stack\Models\Payments\TransferInitiationsCursorCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationsCursorCursorBase')]
-    public TransferInitiationsCursorCursorBase $cursorBase;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationsCursorCursor')]
+    public TransferInitiationsCursorCursor $cursor;
 
     /**
-     * @param  TransferInitiationsCursorCursorBase  $cursorBase
+     * @param  \formance\stack\Models\Payments\TransferInitiationsCursorCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(TransferInitiationsCursorCursorBase $cursorBase)
+    public function __construct(TransferInitiationsCursorCursor $cursor)
     {
-        $this->cursorBase = $cursorBase;
+        $this->cursor = $cursor;
     }
 }

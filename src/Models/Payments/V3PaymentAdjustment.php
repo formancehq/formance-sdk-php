@@ -13,14 +13,6 @@ class V3PaymentAdjustment
 {
     /**
      *
-     * @var V3PaymentStatusEnum $v3PaymentStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentStatusEnum')]
-    public V3PaymentStatusEnum $v3PaymentStatusEnum;
-
-    /**
-     *
      * @var \DateTime $createdAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
@@ -35,7 +27,7 @@ class V3PaymentAdjustment
 
     /**
      *
-     * @var V3PaymentAdjustmentRaw $raw
+     * @var \formance\stack\Models\Payments\V3PaymentAdjustmentRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentAdjustmentRaw')]
@@ -47,6 +39,14 @@ class V3PaymentAdjustment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
     public string $reference;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\V3PaymentStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentStatusEnum')]
+    public V3PaymentStatusEnum $status;
 
     /**
      *
@@ -65,35 +65,35 @@ class V3PaymentAdjustment
     public ?string $asset = null;
 
     /**
-     * $v3Metadata
+     * $metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?array $metadata = null;
 
     /**
-     * @param  V3PaymentStatusEnum  $v3PaymentStatusEnum
      * @param  \DateTime  $createdAt
      * @param  string  $id
-     * @param  V3PaymentAdjustmentRaw  $raw
+     * @param  \formance\stack\Models\Payments\V3PaymentAdjustmentRaw  $raw
      * @param  string  $reference
+     * @param  \formance\stack\Models\Payments\V3PaymentStatusEnum  $status
      * @param  ?\Brick\Math\BigInteger  $amount
      * @param  ?string  $asset
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(V3PaymentStatusEnum $v3PaymentStatusEnum, \DateTime $createdAt, string $id, V3PaymentAdjustmentRaw $raw, string $reference, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?array $v3Metadata = null)
+    public function __construct(\DateTime $createdAt, string $id, V3PaymentAdjustmentRaw $raw, string $reference, V3PaymentStatusEnum $status, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?array $metadata = null)
     {
-        $this->v3PaymentStatusEnum = $v3PaymentStatusEnum;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->raw = $raw;
         $this->reference = $reference;
+        $this->status = $status;
         $this->amount = $amount;
         $this->asset = $asset;
-        $this->v3Metadata = $v3Metadata;
+        $this->metadata = $metadata;
     }
 }

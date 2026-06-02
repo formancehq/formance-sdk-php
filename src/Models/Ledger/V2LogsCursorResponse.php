@@ -13,7 +13,7 @@ class V2LogsCursorResponse
 {
     /**
      *
-     * @var V2LogsCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\V2LogsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogsCursorResponseCursor')]
@@ -21,7 +21,7 @@ class V2LogsCursorResponse
 
     /**
      *
-     * @var ?V2LogsCursorResponseResource $resource
+     * @var ?\formance\stack\Models\Ledger\V2LogsCursorResponseResource $resource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogsCursorResponseResource|null')]
@@ -29,8 +29,8 @@ class V2LogsCursorResponse
     public ?V2LogsCursorResponseResource $resource = null;
 
     /**
-     * @param  V2LogsCursorResponseCursor  $cursor
-     * @param  ?V2LogsCursorResponseResource  $resource
+     * @param  \formance\stack\Models\Ledger\V2LogsCursorResponseCursor  $cursor
+     * @param  ?\formance\stack\Models\Ledger\V2LogsCursorResponseResource  $resource
      * @phpstan-pure
      */
     public function __construct(V2LogsCursorResponseCursor $cursor, ?V2LogsCursorResponseResource $resource = null)

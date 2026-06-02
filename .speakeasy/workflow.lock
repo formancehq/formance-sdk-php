@@ -1,4 +1,4 @@
-speakeasyVersion: 1.755.1
+speakeasyVersion: 1.770.0
 sources:
     my-source:
         sourceNamespace: my-source
@@ -20,7 +20,7 @@ targets:
         sourceRevisionDigest: sha256:c85e21f1f000f0409f58d4ace7aaac0d708f4577a19b638347b41dd37e19f317
         sourceBlobDigest: sha256:24159a4c5e03fd9ebc0727cecb2bff5ed6695d519aeb3fe80346af6ce1fabcfa
         codeSamplesNamespace: stacks-source-php-code-samples
-        codeSamplesRevisionDigest: sha256:61d497293ec1691cfce7d1529a4d9614069f6dc35085c438c47fda33fd916211
+        codeSamplesRevisionDigest: sha256:9cb8021ed07c7d7c204c1b418104005386a3378117fbcc013f368f245057e7ef
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

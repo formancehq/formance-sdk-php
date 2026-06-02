@@ -20,18 +20,18 @@ class V3GetConversionResponse
      * Formance records the final state only.
      *
      *
-     * @var V3Conversion $v3Conversion
+     * @var \formance\stack\Models\Payments\V3Conversion $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Conversion')]
-    public V3Conversion $v3Conversion;
+    public V3Conversion $data;
 
     /**
-     * @param  V3Conversion  $v3Conversion
+     * @param  \formance\stack\Models\Payments\V3Conversion  $data
      * @phpstan-pure
      */
-    public function __construct(V3Conversion $v3Conversion)
+    public function __construct(V3Conversion $data)
     {
-        $this->v3Conversion = $v3Conversion;
+        $this->data = $data;
     }
 }

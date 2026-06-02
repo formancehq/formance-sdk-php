@@ -13,17 +13,17 @@ class V2ListRunsResponse
 {
     /**
      *
-     * @var Cursor $cursor
+     * @var \formance\stack\Models\Orchestration\V2ListRunsResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Cursor')]
-    public Cursor $cursor;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListRunsResponseCursor')]
+    public V2ListRunsResponseCursor $cursor;
 
     /**
-     * @param  Cursor  $cursor
+     * @param  \formance\stack\Models\Orchestration\V2ListRunsResponseCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(Cursor $cursor)
+    public function __construct(V2ListRunsResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

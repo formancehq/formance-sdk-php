@@ -13,18 +13,18 @@ class GetHoldResponse
 {
     /**
      *
-     * @var Hold1 $hold
+     * @var \formance\stack\Models\Wallets\ExpandedDebitHold $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Hold1')]
-    public Hold1 $hold;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\ExpandedDebitHold')]
+    public ExpandedDebitHold $data;
 
     /**
-     * @param  Hold1  $hold
+     * @param  \formance\stack\Models\Wallets\ExpandedDebitHold  $data
      * @phpstan-pure
      */
-    public function __construct(Hold1 $hold)
+    public function __construct(ExpandedDebitHold $data)
     {
-        $this->hold = $hold;
+        $this->data = $data;
     }
 }

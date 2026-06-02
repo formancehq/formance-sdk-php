@@ -14,18 +14,18 @@ class V2GetExporterStateV2GetExporterStateResponse
 {
     /**
      *
-     * @var V2ExporterConfiguration $v2ExporterConfiguration
+     * @var \formance\stack\Models\Ledger\V2Exporter $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ExporterConfiguration')]
-    public V2ExporterConfiguration $v2ExporterConfiguration;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Exporter')]
+    public V2Exporter $data;
 
     /**
-     * @param  V2ExporterConfiguration  $v2ExporterConfiguration
+     * @param  \formance\stack\Models\Ledger\V2Exporter  $data
      * @phpstan-pure
      */
-    public function __construct(V2ExporterConfiguration $v2ExporterConfiguration)
+    public function __construct(V2Exporter $data)
     {
-        $this->v2ExporterConfiguration = $v2ExporterConfiguration;
+        $this->data = $data;
     }
 }

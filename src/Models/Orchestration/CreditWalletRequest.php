@@ -13,11 +13,11 @@ class CreditWalletRequest
 {
     /**
      *
-     * @var Monetary $monetary
+     * @var \formance\stack\Models\Orchestration\Monetary $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Monetary')]
-    public Monetary $monetary;
+    public Monetary $amount;
 
     /**
      * Metadata associated with the wallet.
@@ -31,7 +31,7 @@ class CreditWalletRequest
     /**
      * $sources
      *
-     * @var array<LedgerAccountSubject|WalletSubject> $sources
+     * @var array<\formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject> $sources
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sources')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject>')]
@@ -63,17 +63,17 @@ class CreditWalletRequest
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  Monetary  $monetary
+     * @param  \formance\stack\Models\Orchestration\Monetary  $amount
      * @param  array<string, string>  $metadata
-     * @param  array<LedgerAccountSubject|WalletSubject>  $sources
+     * @param  array<\formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject>  $sources
      * @param  ?string  $balance
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(Monetary $monetary, array $metadata, array $sources, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
+    public function __construct(Monetary $amount, array $metadata, array $sources, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
     {
-        $this->monetary = $monetary;
+        $this->amount = $amount;
         $this->metadata = $metadata;
         $this->sources = $sources;
         $this->balance = $balance;

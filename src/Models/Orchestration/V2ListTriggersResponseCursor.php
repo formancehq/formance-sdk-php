@@ -14,10 +14,10 @@ class V2ListTriggersResponseCursor
     /**
      * $data
      *
-     * @var array<V2TriggerData> $data
+     * @var array<\formance\stack\Models\Orchestration\V2Trigger> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2TriggerData>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Trigger>')]
     public array $data;
 
     /**
@@ -51,7 +51,7 @@ class V2ListTriggersResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2TriggerData>  $data
+     * @param  array<\formance\stack\Models\Orchestration\V2Trigger>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

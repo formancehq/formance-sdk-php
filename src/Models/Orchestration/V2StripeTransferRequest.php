@@ -49,7 +49,7 @@ class V2StripeTransferRequest
      * It can be useful for storing additional information about the transfer in a structured format.
      *
      *
-     * @var ?V2StripeTransferRequestMetadata $metadata
+     * @var ?\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata|null')]
@@ -69,7 +69,7 @@ class V2StripeTransferRequest
      * @param  ?string  $asset
      * @param  ?string  $connectorID
      * @param  ?string  $destination
-     * @param  ?V2StripeTransferRequestMetadata  $metadata
+     * @param  ?\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata  $metadata
      * @param  ?bool  $waitingValidation
      * @phpstan-pure
      */

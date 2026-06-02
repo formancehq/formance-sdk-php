@@ -14,7 +14,7 @@ class V3PaymentServiceUserConnectionsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3PaymentServiceUserConnection> $data
+     * @var array<\formance\stack\Models\Payments\V3PaymentServiceUserConnection> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3PaymentServiceUserConnection>')]
@@ -51,7 +51,7 @@ class V3PaymentServiceUserConnectionsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3PaymentServiceUserConnection>  $data
+     * @param  array<\formance\stack\Models\Payments\V3PaymentServiceUserConnection>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

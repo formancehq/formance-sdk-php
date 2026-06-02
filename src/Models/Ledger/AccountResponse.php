@@ -13,18 +13,18 @@ class AccountResponse
 {
     /**
      *
-     * @var AccountWithVolumesAndBalances $accountWithVolumesAndBalances
+     * @var \formance\stack\Models\Ledger\AccountWithVolumesAndBalances $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\AccountWithVolumesAndBalances')]
-    public AccountWithVolumesAndBalances $accountWithVolumesAndBalances;
+    public AccountWithVolumesAndBalances $data;
 
     /**
-     * @param  AccountWithVolumesAndBalances  $accountWithVolumesAndBalances
+     * @param  \formance\stack\Models\Ledger\AccountWithVolumesAndBalances  $data
      * @phpstan-pure
      */
-    public function __construct(AccountWithVolumesAndBalances $accountWithVolumesAndBalances)
+    public function __construct(AccountWithVolumesAndBalances $data)
     {
-        $this->accountWithVolumesAndBalances = $accountWithVolumesAndBalances;
+        $this->data = $data;
     }
 }

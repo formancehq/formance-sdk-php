@@ -49,7 +49,7 @@ class CountTransactionsRequest
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      *
-     * @var ?Metadata $metadata
+     * @var ?\formance\stack\Models\Operations\Metadata $metadata
      */
     #[SpeakeasyMetadata('queryParam:style=deepObject,explode=true,name=metadata')]
     public ?Metadata $metadata = null;
@@ -86,7 +86,7 @@ class CountTransactionsRequest
      * @param  ?string  $account
      * @param  ?string  $destination
      * @param  ?\DateTime  $endTime
-     * @param  ?Metadata  $metadata
+     * @param  ?\formance\stack\Models\Operations\Metadata  $metadata
      * @param  ?string  $reference
      * @param  ?string  $source
      * @param  ?\DateTime  $startTime

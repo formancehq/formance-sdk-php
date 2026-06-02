@@ -9,68 +9,48 @@ declare(strict_types=1);
 namespace formance\stack\Models\Ledger;
 
 
-/** V2SchemaData - Complete schema structure with metadata */
+/** V2SchemaData - Schema data structure for ledger schemas */
 class V2SchemaData
 {
     /**
      * Chart of account
      *
-     * @var array<string, V2ChartSegment> $v2ChartOfAccounts
+     * @var array<string, \formance\stack\Models\Ledger\V2ChartSegment> $chart
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('chart')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2ChartSegment>')]
-    public array $v2ChartOfAccounts;
-
-    /**
-     * Schema creation timestamp
-     *
-     * @var \DateTime $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
-    public \DateTime $createdAt;
-
-    /**
-     * Schema version
-     *
-     * @var string $version
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
-    public string $version;
+    public array $chart;
 
     /**
      * Query templates
      *
-     * @var ?array<string, V2QueryTemplate> $v2QueryTemplates
+     * @var ?array<string, \formance\stack\Models\Ledger\V2QueryTemplate> $queries
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('queries')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2QueryTemplate>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2QueryTemplates = null;
+    public ?array $queries = null;
 
     /**
      * Transaction templates
      *
-     * @var ?array<string, V2TransactionTemplate> $v2TransactionTemplates
+     * @var ?array<string, \formance\stack\Models\Ledger\V2TransactionTemplate> $transactions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2TransactionTemplate>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v2TransactionTemplates = null;
+    public ?array $transactions = null;
 
     /**
-     * @param  array<string, V2ChartSegment>  $v2ChartOfAccounts
-     * @param  \DateTime  $createdAt
-     * @param  string  $version
-     * @param  ?array<string, V2QueryTemplate>  $v2QueryTemplates
-     * @param  ?array<string, V2TransactionTemplate>  $v2TransactionTemplates
+     * @param  array<string, \formance\stack\Models\Ledger\V2ChartSegment>  $chart
+     * @param  ?array<string, \formance\stack\Models\Ledger\V2QueryTemplate>  $queries
+     * @param  ?array<string, \formance\stack\Models\Ledger\V2TransactionTemplate>  $transactions
      * @phpstan-pure
      */
-    public function __construct(array $v2ChartOfAccounts, \DateTime $createdAt, string $version, ?array $v2QueryTemplates = null, ?array $v2TransactionTemplates = null)
+    public function __construct(array $chart, ?array $queries = null, ?array $transactions = null)
     {
-        $this->v2ChartOfAccounts = $v2ChartOfAccounts;
-        $this->createdAt = $createdAt;
-        $this->version = $version;
-        $this->v2QueryTemplates = $v2QueryTemplates;
-        $this->v2TransactionTemplates = $v2TransactionTemplates;
+        $this->chart = $chart;
+        $this->queries = $queries;
+        $this->transactions = $transactions;
     }
 }

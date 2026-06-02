@@ -40,29 +40,29 @@ class V3ReversePaymentInitiationRequest
     public string $reference;
 
     /**
-     * $v3Metadata
+     * $metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?array $metadata = null;
 
     /**
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $description
      * @param  string  $reference
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $reference, ?array $v3Metadata = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $reference, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;
         $this->description = $description;
         $this->reference = $reference;
-        $this->v3Metadata = $v3Metadata;
+        $this->metadata = $metadata;
     }
 }

@@ -14,14 +14,14 @@ class PoliciesCursorResponse
 {
     /**
      *
-     * @var Cursor $cursor
+     * @var \formance\stack\Models\Reconciliation\Cursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\Cursor')]
     public Cursor $cursor;
 
     /**
-     * @param  Cursor  $cursor
+     * @param  \formance\stack\Models\Reconciliation\Cursor  $cursor
      * @phpstan-pure
      */
     public function __construct(Cursor $cursor)

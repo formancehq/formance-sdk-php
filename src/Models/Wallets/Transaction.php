@@ -30,7 +30,7 @@ class Transaction
     /**
      * $postings
      *
-     * @var array<Posting> $postings
+     * @var array<\formance\stack\Models\Wallets\Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\Posting>')]
@@ -44,32 +44,32 @@ class Transaction
     public \DateTime $timestamp;
 
     /**
-     * $aggregatedVolumes
-     *
-     * @var ?array<string, array<string, Volume>> $aggregatedVolumes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $aggregatedVolumes = null;
-
-    /**
-     * $aggregatedVolumes1
-     *
-     * @var ?array<string, array<string, Volume>> $aggregatedVolumes1
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $aggregatedVolumes1 = null;
-
-    /**
      *
      * @var ?string $ledger
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $ledger = null;
+
+    /**
+     * $postCommitVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Wallets\Volume>> $postCommitVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $postCommitVolumes = null;
+
+    /**
+     * $preCommitVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Wallets\Volume>> $preCommitVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $preCommitVolumes = null;
 
     /**
      *
@@ -82,23 +82,23 @@ class Transaction
     /**
      * @param  int  $id
      * @param  array<string, string>  $metadata
-     * @param  array<Posting>  $postings
+     * @param  array<\formance\stack\Models\Wallets\Posting>  $postings
      * @param  \DateTime  $timestamp
-     * @param  ?array<string, array<string, Volume>>  $aggregatedVolumes
-     * @param  ?array<string, array<string, Volume>>  $aggregatedVolumes1
      * @param  ?string  $ledger
+     * @param  ?array<string, array<string, \formance\stack\Models\Wallets\Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, \formance\stack\Models\Wallets\Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @phpstan-pure
      */
-    public function __construct(int $id, array $metadata, array $postings, \DateTime $timestamp, ?array $aggregatedVolumes = null, ?array $aggregatedVolumes1 = null, ?string $ledger = null, ?string $reference = null)
+    public function __construct(int $id, array $metadata, array $postings, \DateTime $timestamp, ?string $ledger = null, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;
         $this->postings = $postings;
         $this->timestamp = $timestamp;
-        $this->aggregatedVolumes = $aggregatedVolumes;
-        $this->aggregatedVolumes1 = $aggregatedVolumes1;
         $this->ledger = $ledger;
+        $this->postCommitVolumes = $postCommitVolumes;
+        $this->preCommitVolumes = $preCommitVolumes;
         $this->reference = $reference;
     }
 }

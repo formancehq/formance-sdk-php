@@ -13,18 +13,18 @@ class V2GetTransactionResponse
 {
     /**
      *
-     * @var V2Transaction $v2Transaction
+     * @var \formance\stack\Models\Ledger\V2Transaction $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Transaction')]
-    public V2Transaction $v2Transaction;
+    public V2Transaction $data;
 
     /**
-     * @param  V2Transaction  $v2Transaction
+     * @param  \formance\stack\Models\Ledger\V2Transaction  $data
      * @phpstan-pure
      */
-    public function __construct(V2Transaction $v2Transaction)
+    public function __construct(V2Transaction $data)
     {
-        $this->v2Transaction = $v2Transaction;
+        $this->data = $data;
     }
 }

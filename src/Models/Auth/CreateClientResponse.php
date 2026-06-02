@@ -13,19 +13,19 @@ class CreateClientResponse
 {
     /**
      *
-     * @var ?ClientOptions $clientOptions
+     * @var ?\formance\stack\Models\Auth\Client $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\ClientOptions|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\Client|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ClientOptions $clientOptions = null;
+    public ?Client $data = null;
 
     /**
-     * @param  ?ClientOptions  $clientOptions
+     * @param  ?\formance\stack\Models\Auth\Client  $data
      * @phpstan-pure
      */
-    public function __construct(?ClientOptions $clientOptions = null)
+    public function __construct(?Client $data = null)
     {
-        $this->clientOptions = $clientOptions;
+        $this->data = $data;
     }
 }

@@ -14,18 +14,18 @@ class BankAccountsCursor
 {
     /**
      *
-     * @var BankAccountsCursorCursorBase $cursorBase
+     * @var \formance\stack\Models\Payments\BankAccountsCursorCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\BankAccountsCursorCursorBase')]
-    public BankAccountsCursorCursorBase $cursorBase;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\BankAccountsCursorCursor')]
+    public BankAccountsCursorCursor $cursor;
 
     /**
-     * @param  BankAccountsCursorCursorBase  $cursorBase
+     * @param  \formance\stack\Models\Payments\BankAccountsCursorCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(BankAccountsCursorCursorBase $cursorBase)
+    public function __construct(BankAccountsCursorCursor $cursor)
     {
-        $this->cursorBase = $cursorBase;
+        $this->cursor = $cursor;
     }
 }

@@ -13,14 +13,6 @@ class PaymentAdjustment
 {
     /**
      *
-     * @var PaymentStatus $paymentStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PaymentStatus')]
-    public PaymentStatus $paymentStatus;
-
-    /**
-     *
      * @var bool $absolute
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('absolute')]
@@ -42,26 +34,34 @@ class PaymentAdjustment
 
     /**
      *
-     * @var PaymentAdjustmentRaw $raw
+     * @var \formance\stack\Models\Orchestration\PaymentAdjustmentRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PaymentAdjustmentRaw')]
     public PaymentAdjustmentRaw $raw;
 
     /**
-     * @param  PaymentStatus  $paymentStatus
+     *
+     * @var \formance\stack\Models\Orchestration\PaymentStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PaymentStatus')]
+    public PaymentStatus $status;
+
+    /**
      * @param  bool  $absolute
      * @param  \Brick\Math\BigInteger  $amount
      * @param  \DateTime  $date
-     * @param  PaymentAdjustmentRaw  $raw
+     * @param  \formance\stack\Models\Orchestration\PaymentAdjustmentRaw  $raw
+     * @param  \formance\stack\Models\Orchestration\PaymentStatus  $status
      * @phpstan-pure
      */
-    public function __construct(PaymentStatus $paymentStatus, bool $absolute, \Brick\Math\BigInteger $amount, \DateTime $date, PaymentAdjustmentRaw $raw)
+    public function __construct(bool $absolute, \Brick\Math\BigInteger $amount, \DateTime $date, PaymentAdjustmentRaw $raw, PaymentStatus $status)
     {
-        $this->paymentStatus = $paymentStatus;
         $this->absolute = $absolute;
         $this->amount = $amount;
         $this->date = $date;
         $this->raw = $raw;
+        $this->status = $status;
     }
 }

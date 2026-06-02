@@ -30,7 +30,7 @@ class V2ListSchemasRequest
     /**
      * The sort order
      *
-     * @var ?Order $order
+     * @var ?\formance\stack\Models\Operations\Order $order
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order')]
     public ?Order $order = null;
@@ -46,7 +46,7 @@ class V2ListSchemasRequest
     /**
      * The field to sort by
      *
-     * @var ?Sort $sort
+     * @var ?\formance\stack\Models\Operations\Sort $sort
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sort')]
     public ?Sort $sort = null;
@@ -54,9 +54,9 @@ class V2ListSchemasRequest
     /**
      * @param  string  $ledger
      * @param  ?string  $cursor
-     * @param  ?Order  $order
+     * @param  ?\formance\stack\Models\Operations\Order  $order
      * @param  ?int  $pageSize
-     * @param  ?Sort  $sort
+     * @param  ?\formance\stack\Models\Operations\Sort  $sort
      * @phpstan-pure
      */
     public function __construct(string $ledger, ?string $cursor = null, ?Order $order = Order::Desc, ?int $pageSize = 15, ?Sort $sort = Sort::CreatedAt)

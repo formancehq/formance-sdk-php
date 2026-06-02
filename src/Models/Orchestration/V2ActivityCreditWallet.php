@@ -13,12 +13,12 @@ class V2ActivityCreditWallet
 {
     /**
      *
-     * @var ?V2CreditWalletRequest $v2CreditWalletRequest
+     * @var ?\formance\stack\Models\Orchestration\V2CreditWalletRequest $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2CreditWalletRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2CreditWalletRequest $v2CreditWalletRequest = null;
+    public ?V2CreditWalletRequest $data = null;
 
     /**
      *
@@ -29,13 +29,13 @@ class V2ActivityCreditWallet
     public ?string $id = null;
 
     /**
-     * @param  ?V2CreditWalletRequest  $v2CreditWalletRequest
+     * @param  ?\formance\stack\Models\Orchestration\V2CreditWalletRequest  $data
      * @param  ?string  $id
      * @phpstan-pure
      */
-    public function __construct(?V2CreditWalletRequest $v2CreditWalletRequest = null, ?string $id = null)
+    public function __construct(?V2CreditWalletRequest $data = null, ?string $id = null)
     {
-        $this->v2CreditWalletRequest = $v2CreditWalletRequest;
+        $this->data = $data;
         $this->id = $id;
     }
 }

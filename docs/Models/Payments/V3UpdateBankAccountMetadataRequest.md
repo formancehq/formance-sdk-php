@@ -5,4 +5,4 @@
 
 | Field                   | Type                    | Required                | Description             |
 | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| `v3Metadata`            | array<string, *string*> | :heavy_check_mark:      | N/A                     |
+| `metadata`              | array<string, *string*> | :heavy_check_mark:      | N/A                     |

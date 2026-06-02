@@ -12,20 +12,20 @@ namespace formance\stack\Models\Orchestration;
 class V2GetWorkflowInstanceHistoryStageResponse
 {
     /**
-     * $v2WorkflowInstanceHistoryStageList
+     * $data
      *
-     * @var array<V2WorkflowInstanceHistoryStage> $v2WorkflowInstanceHistoryStageList
+     * @var array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStage> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStage>')]
-    public array $v2WorkflowInstanceHistoryStageList;
+    public array $data;
 
     /**
-     * @param  array<V2WorkflowInstanceHistoryStage>  $v2WorkflowInstanceHistoryStageList
+     * @param  array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStage>  $data
      * @phpstan-pure
      */
-    public function __construct(array $v2WorkflowInstanceHistoryStageList)
+    public function __construct(array $data)
     {
-        $this->v2WorkflowInstanceHistoryStageList = $v2WorkflowInstanceHistoryStageList;
+        $this->data = $data;
     }
 }

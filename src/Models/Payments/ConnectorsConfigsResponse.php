@@ -15,14 +15,14 @@ class ConnectorsConfigsResponse
     /**
      * $data
      *
-     * @var array<string, array<string, ConnectorsConfigsResponseData>> $data
+     * @var array<string, array<string, \formance\stack\Models\Payments\ConnectorsConfigsResponseData>> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Payments\ConnectorsConfigsResponseData>>')]
     public array $data;
 
     /**
-     * @param  array<string, array<string, ConnectorsConfigsResponseData>>  $data
+     * @param  array<string, array<string, \formance\stack\Models\Payments\ConnectorsConfigsResponseData>>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

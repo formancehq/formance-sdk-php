@@ -13,11 +13,11 @@ class V2CreditWalletRequest
 {
     /**
      *
-     * @var V2Monetary $v2Monetary
+     * @var \formance\stack\Models\Orchestration\V2Monetary $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Monetary')]
-    public V2Monetary $v2Monetary;
+    public V2Monetary $amount;
 
     /**
      * Metadata associated with the wallet.
@@ -31,7 +31,7 @@ class V2CreditWalletRequest
     /**
      * $sources
      *
-     * @var array<V2LedgerAccountSubject|V2WalletSubject> $sources
+     * @var array<\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject> $sources
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sources')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject>')]
@@ -63,17 +63,17 @@ class V2CreditWalletRequest
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  V2Monetary  $v2Monetary
+     * @param  \formance\stack\Models\Orchestration\V2Monetary  $amount
      * @param  array<string, string>  $metadata
-     * @param  array<V2LedgerAccountSubject|V2WalletSubject>  $sources
+     * @param  array<\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject>  $sources
      * @param  ?string  $balance
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(V2Monetary $v2Monetary, array $metadata, array $sources, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
+    public function __construct(V2Monetary $amount, array $metadata, array $sources, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null)
     {
-        $this->v2Monetary = $v2Monetary;
+        $this->amount = $amount;
         $this->metadata = $metadata;
         $this->sources = $sources;
         $this->balance = $balance;

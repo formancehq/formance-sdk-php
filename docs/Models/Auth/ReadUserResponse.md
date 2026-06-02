@@ -5,4 +5,4 @@
 
 | Field                                                          | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `user`                                                         | [?\formance\stack\Models\Auth\User](../../Models/auth/User.md) | :heavy_minus_sign:                                             | N/A                                                            |
+| `data`                                                         | [?\formance\stack\Models\Auth\User](../../Models/auth/User.md) | :heavy_minus_sign:                                             | N/A                                                            |

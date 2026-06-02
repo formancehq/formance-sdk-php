@@ -57,7 +57,7 @@ class Query
 
     /**
      *
-     * @var ?Raw $raw
+     * @var ?\formance\stack\Models\Search\Raw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Search\Raw|null')]
@@ -96,7 +96,7 @@ class Query
      * @param  ?array<string>  $ledgers
      * @param  ?int  $pageSize
      * @param  ?string  $policy
-     * @param  ?Raw  $raw
+     * @param  ?\formance\stack\Models\Search\Raw  $raw
      * @param  ?string  $sort
      * @param  ?string  $target
      * @param  ?array<string>  $terms

@@ -13,18 +13,18 @@ class V2TestTriggerResponse
 {
     /**
      *
-     * @var V2TriggerTest $v2TriggerTest
+     * @var \formance\stack\Models\Orchestration\V2TriggerTest $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2TriggerTest')]
-    public V2TriggerTest $v2TriggerTest;
+    public V2TriggerTest $data;
 
     /**
-     * @param  V2TriggerTest  $v2TriggerTest
+     * @param  \formance\stack\Models\Orchestration\V2TriggerTest  $data
      * @phpstan-pure
      */
-    public function __construct(V2TriggerTest $v2TriggerTest)
+    public function __construct(V2TriggerTest $data)
     {
-        $this->v2TriggerTest = $v2TriggerTest;
+        $this->data = $data;
     }
 }

@@ -15,29 +15,29 @@ class V2LogDataRevertedTransaction
     /**
      * Transaction structure as it appears in log payloads
      *
-     * @var V2LogTransaction $v2LogTransaction
+     * @var \formance\stack\Models\Ledger\V2LogTransaction $revertedTransaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('revertedTransaction')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
-    public V2LogTransaction $v2LogTransaction;
+    public V2LogTransaction $revertedTransaction;
 
     /**
      * Transaction structure as it appears in log payloads
      *
-     * @var V2LogTransaction $v2LogTransaction1
+     * @var \formance\stack\Models\Ledger\V2LogTransaction $transaction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
-    public V2LogTransaction $v2LogTransaction1;
+    public V2LogTransaction $transaction;
 
     /**
-     * @param  V2LogTransaction  $v2LogTransaction
-     * @param  V2LogTransaction  $v2LogTransaction1
+     * @param  \formance\stack\Models\Ledger\V2LogTransaction  $revertedTransaction
+     * @param  \formance\stack\Models\Ledger\V2LogTransaction  $transaction
      * @phpstan-pure
      */
-    public function __construct(V2LogTransaction $v2LogTransaction, V2LogTransaction $v2LogTransaction1)
+    public function __construct(V2LogTransaction $revertedTransaction, V2LogTransaction $transaction)
     {
-        $this->v2LogTransaction = $v2LogTransaction;
-        $this->v2LogTransaction1 = $v2LogTransaction1;
+        $this->revertedTransaction = $revertedTransaction;
+        $this->transaction = $transaction;
     }
 }

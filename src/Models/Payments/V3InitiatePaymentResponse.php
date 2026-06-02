@@ -13,14 +13,14 @@ class V3InitiatePaymentResponse
 {
     /**
      *
-     * @var V3InitiatePaymentResponseData $data
+     * @var \formance\stack\Models\Payments\V3InitiatePaymentResponseData $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3InitiatePaymentResponseData')]
     public V3InitiatePaymentResponseData $data;
 
     /**
-     * @param  V3InitiatePaymentResponseData  $data
+     * @param  \formance\stack\Models\Payments\V3InitiatePaymentResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3InitiatePaymentResponseData $data)

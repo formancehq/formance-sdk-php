@@ -14,18 +14,18 @@ class ConnectorConfigResponse
 {
     /**
      *
-     * @var StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $connectorConfig
+     * @var \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig')]
-    public StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $connectorConfig;
+    public StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $data;
 
     /**
-     * @param  StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig  $connectorConfig
+     * @param  \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig  $data
      * @phpstan-pure
      */
-    public function __construct(StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $connectorConfig)
+    public function __construct(StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $data)
     {
-        $this->connectorConfig = $connectorConfig;
+        $this->data = $data;
     }
 }

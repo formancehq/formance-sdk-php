@@ -14,14 +14,14 @@ class V2PipelinesCursorResponse
 {
     /**
      *
-     * @var V2PipelinesCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor')]
     public V2PipelinesCursorResponseCursor $cursor;
 
     /**
-     * @param  V2PipelinesCursorResponseCursor  $cursor
+     * @param  \formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2PipelinesCursorResponseCursor $cursor)
