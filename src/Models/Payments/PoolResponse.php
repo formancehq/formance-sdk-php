@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** PoolResponse - OK */
@@ -14,14 +16,14 @@ class PoolResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\Pool $data
+     * @var Pool $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Pool')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\Pool')]
     public Pool $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\Pool  $data
+     * @param  Pool  $data
      * @phpstan-pure
      */
     public function __construct(Pool $data)

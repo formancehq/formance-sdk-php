@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Search\Response;
+use Psr\Http\Message\ResponseInterface;
 
 
 class SearchResponse
@@ -28,25 +30,25 @@ class SearchResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Success
      *
-     * @var ?\formance\stack\Models\Search\Response $response
+     * @var ?Response $response
      */
-    public ?\formance\stack\Models\Search\Response $response = null;
+    public ?Response $response = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Search\Response  $response
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?Response  $response
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Search\Response $response = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?Response $response = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

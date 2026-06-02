@@ -9,8 +9,41 @@ declare(strict_types=1);
 namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
-use formance\stack\Models\Operations;
+use formance\stack\Models\Errors\SDKException;
+use formance\stack\Models\Operations\ConfirmHoldRequest;
+use formance\stack\Models\Operations\ConfirmHoldResponse;
+use formance\stack\Models\Operations\CreateBalanceRequest;
+use formance\stack\Models\Operations\CreateBalanceResponse;
+use formance\stack\Models\Operations\CreateWalletRequest;
+use formance\stack\Models\Operations\CreateWalletResponse;
+use formance\stack\Models\Operations\CreditWalletRequest;
+use formance\stack\Models\Operations\CreditWalletResponse;
+use formance\stack\Models\Operations\DebitWalletRequest;
+use formance\stack\Models\Operations\DebitWalletResponse;
+use formance\stack\Models\Operations\GetBalanceRequest;
+use formance\stack\Models\Operations\GetBalanceResponse;
+use formance\stack\Models\Operations\GetHoldRequest;
+use formance\stack\Models\Operations\GetHoldResponse;
+use formance\stack\Models\Operations\GetHoldsRequest;
+use formance\stack\Models\Operations\GetHoldsResponse;
+use formance\stack\Models\Operations\GetServerInfoWalletsResponse;
+use formance\stack\Models\Operations\GetTransactionsRequest;
+use formance\stack\Models\Operations\GetTransactionsResponse;
+use formance\stack\Models\Operations\GetWalletRequest;
+use formance\stack\Models\Operations\GetWalletResponse;
+use formance\stack\Models\Operations\GetWalletSummaryRequest;
+use formance\stack\Models\Operations\GetWalletSummaryResponse;
+use formance\stack\Models\Operations\ListBalancesRequest;
+use formance\stack\Models\Operations\ListBalancesResponse;
+use formance\stack\Models\Operations\ListWalletsRequest;
+use formance\stack\Models\Operations\ListWalletsResponse;
+use formance\stack\Models\Operations\UpdateWalletRequest;
+use formance\stack\Models\Operations\UpdateWalletResponse;
+use formance\stack\Models\Operations\VoidHoldRequest;
+use formance\stack\Models\Operations\VoidHoldResponse;
 use formance\stack\Utils\Options;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use Speakeasy\Serializer\DeserializationContext;
 
 class SDKWalletsV1
@@ -49,14 +82,14 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\ConfirmHoldRequest  $request
-     * @return \formance\stack\Models\Operations\ConfirmHoldResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ConfirmHoldRequest  $request
+     * @return ConfirmHoldResponse
+     * @throws SDKException
      */
-    public function confirmHold(Operations\ConfirmHoldRequest $request, ?Options $options = null): Operations\ConfirmHoldResponse
+    public function confirmHold(ConfirmHoldRequest $request, ?Options $options = null): ConfirmHoldResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/confirm', Operations\ConfirmHoldRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/confirm', ConfirmHoldRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'confirmHoldRequest', 'json');
@@ -69,7 +102,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -79,7 +112,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -94,7 +127,7 @@ class SDKWalletsV1
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\ConfirmHoldResponse(
+            return new ConfirmHoldResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -108,7 +141,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -118,14 +151,14 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\CreateBalanceRequest  $request
-     * @return \formance\stack\Models\Operations\CreateBalanceResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  CreateBalanceRequest  $request
+     * @return CreateBalanceResponse
+     * @throws SDKException
      */
-    public function createBalance(Operations\CreateBalanceRequest $request, ?Options $options = null): Operations\CreateBalanceResponse
+    public function createBalance(CreateBalanceRequest $request, ?Options $options = null): CreateBalanceResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', Operations\CreateBalanceRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', CreateBalanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'balance', 'json');
@@ -138,7 +171,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -148,7 +181,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -167,7 +200,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\CreateBalanceResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\CreateBalanceResponse(
+                $response = new CreateBalanceResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -175,7 +208,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -186,7 +219,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -196,11 +229,11 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\CreateWalletRequest  $request
-     * @return \formance\stack\Models\Operations\CreateWalletResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?CreateWalletRequest  $request
+     * @return CreateWalletResponse
+     * @throws SDKException
      */
-    public function createWallet(?Operations\CreateWalletRequest $request = null, ?Options $options = null): Operations\CreateWalletResponse
+    public function createWallet(?CreateWalletRequest $request = null, ?Options $options = null): CreateWalletResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets');
@@ -216,7 +249,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -226,7 +259,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -245,7 +278,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\CreateWalletResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\CreateWalletResponse(
+                $response = new CreateWalletResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -253,7 +286,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -264,7 +297,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -274,14 +307,14 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\CreditWalletRequest  $request
-     * @return \formance\stack\Models\Operations\CreditWalletResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  CreditWalletRequest  $request
+     * @return CreditWalletResponse
+     * @throws SDKException
      */
-    public function creditWallet(Operations\CreditWalletRequest $request, ?Options $options = null): Operations\CreditWalletResponse
+    public function creditWallet(CreditWalletRequest $request, ?Options $options = null): CreditWalletResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/credit', Operations\CreditWalletRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/credit', CreditWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'creditWalletRequest', 'json');
@@ -294,7 +327,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -304,7 +337,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -319,7 +352,7 @@ class SDKWalletsV1
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\CreditWalletResponse(
+            return new CreditWalletResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -333,7 +366,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -343,14 +376,14 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\DebitWalletRequest  $request
-     * @return \formance\stack\Models\Operations\DebitWalletResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  DebitWalletRequest  $request
+     * @return DebitWalletResponse
+     * @throws SDKException
      */
-    public function debitWallet(Operations\DebitWalletRequest $request, ?Options $options = null): Operations\DebitWalletResponse
+    public function debitWallet(DebitWalletRequest $request, ?Options $options = null): DebitWalletResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/debit', Operations\DebitWalletRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/debit', DebitWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'debitWalletRequest', 'json');
@@ -363,7 +396,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -373,7 +406,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -392,7 +425,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\DebitWalletResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\DebitWalletResponse(
+                $response = new DebitWalletResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -400,12 +433,12 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\DebitWalletResponse(
+            return new DebitWalletResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -419,7 +452,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -429,19 +462,19 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\GetBalanceRequest  $request
-     * @return \formance\stack\Models\Operations\GetBalanceResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  GetBalanceRequest  $request
+     * @return GetBalanceResponse
+     * @throws SDKException
      */
-    public function getBalance(Operations\GetBalanceRequest $request, ?Options $options = null): Operations\GetBalanceResponse
+    public function getBalance(GetBalanceRequest $request, ?Options $options = null): GetBalanceResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances/{balanceName}', Operations\GetBalanceRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances/{balanceName}', GetBalanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -451,7 +484,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -470,7 +503,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\GetBalanceResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetBalanceResponse(
+                $response = new GetBalanceResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -478,7 +511,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -489,7 +522,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -499,19 +532,19 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\GetHoldRequest  $request
-     * @return \formance\stack\Models\Operations\GetHoldResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  GetHoldRequest  $request
+     * @return GetHoldResponse
+     * @throws SDKException
      */
-    public function getHold(Operations\GetHoldRequest $request, ?Options $options = null): Operations\GetHoldResponse
+    public function getHold(GetHoldRequest $request, ?Options $options = null): GetHoldResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{holdID}', Operations\GetHoldRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{holdID}', GetHoldRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -521,7 +554,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -540,7 +573,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\GetHoldResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetHoldResponse(
+                $response = new GetHoldResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -548,7 +581,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -559,7 +592,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -569,21 +602,21 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\GetHoldsRequest  $request
-     * @return \formance\stack\Models\Operations\GetHoldsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?GetHoldsRequest  $request
+     * @return GetHoldsResponse
+     * @throws SDKException
      */
-    public function getHolds(?Operations\GetHoldsRequest $request = null, ?Options $options = null): Operations\GetHoldsResponse
+    public function getHolds(?GetHoldsRequest $request = null, ?Options $options = null): GetHoldsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\GetHoldsRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(GetHoldsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -594,7 +627,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -613,7 +646,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\GetHoldsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetHoldsResponse(
+                $response = new GetHoldsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -621,7 +654,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -632,7 +665,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -642,10 +675,10 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\GetServerInfoWalletsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return GetServerInfoWalletsResponse
+     * @throws SDKException
      */
-    public function getServerInfoWallets(?Options $options = null): Operations\GetServerInfoWalletsResponse
+    public function getServerInfoWallets(?Options $options = null): GetServerInfoWalletsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/_info');
@@ -653,7 +686,7 @@ class SDKWalletsV1
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -663,7 +696,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -682,7 +715,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetServerInfoWalletsResponse(
+                $response = new GetServerInfoWalletsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -690,7 +723,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -701,7 +734,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -711,21 +744,21 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\GetTransactionsRequest  $request
-     * @return \formance\stack\Models\Operations\GetTransactionsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?GetTransactionsRequest  $request
+     * @return GetTransactionsResponse
+     * @throws SDKException
      */
-    public function getTransactions(?Operations\GetTransactionsRequest $request = null, ?Options $options = null): Operations\GetTransactionsResponse
+    public function getTransactions(?GetTransactionsRequest $request = null, ?Options $options = null): GetTransactionsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/transactions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\GetTransactionsRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(GetTransactionsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -736,7 +769,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -755,7 +788,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\GetTransactionsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetTransactionsResponse(
+                $response = new GetTransactionsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -763,7 +796,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -774,7 +807,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -784,19 +817,19 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\GetWalletRequest  $request
-     * @return \formance\stack\Models\Operations\GetWalletResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  GetWalletRequest  $request
+     * @return GetWalletResponse
+     * @throws SDKException
      */
-    public function getWallet(Operations\GetWalletRequest $request, ?Options $options = null): Operations\GetWalletResponse
+    public function getWallet(GetWalletRequest $request, ?Options $options = null): GetWalletResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', Operations\GetWalletRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', GetWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -806,7 +839,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -825,7 +858,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\GetWalletResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetWalletResponse(
+                $response = new GetWalletResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -833,12 +866,12 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\GetWalletResponse(
+            return new GetWalletResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -852,7 +885,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -862,19 +895,19 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\GetWalletSummaryRequest  $request
-     * @return \formance\stack\Models\Operations\GetWalletSummaryResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  GetWalletSummaryRequest  $request
+     * @return GetWalletSummaryResponse
+     * @throws SDKException
      */
-    public function getWalletSummary(Operations\GetWalletSummaryRequest $request, ?Options $options = null): Operations\GetWalletSummaryResponse
+    public function getWalletSummary(GetWalletSummaryRequest $request, ?Options $options = null): GetWalletSummaryResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/summary', Operations\GetWalletSummaryRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/summary', GetWalletSummaryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -884,7 +917,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -903,7 +936,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\GetWalletSummaryResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetWalletSummaryResponse(
+                $response = new GetWalletSummaryResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -911,12 +944,12 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\GetWalletSummaryResponse(
+            return new GetWalletSummaryResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -930,7 +963,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -940,19 +973,19 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\ListBalancesRequest  $request
-     * @return \formance\stack\Models\Operations\ListBalancesResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ListBalancesRequest  $request
+     * @return ListBalancesResponse
+     * @throws SDKException
      */
-    public function listBalances(Operations\ListBalancesRequest $request, ?Options $options = null): Operations\ListBalancesResponse
+    public function listBalances(ListBalancesRequest $request, ?Options $options = null): ListBalancesResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', Operations\ListBalancesRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}/balances', ListBalancesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -962,7 +995,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -981,7 +1014,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ListBalancesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ListBalancesResponse(
+                $response = new ListBalancesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -989,10 +1022,10 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -1001,21 +1034,21 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\ListWalletsRequest  $request
-     * @return \formance\stack\Models\Operations\ListWalletsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?ListWalletsRequest  $request
+     * @return ListWalletsResponse
+     * @throws SDKException
      */
-    public function listWallets(?Operations\ListWalletsRequest $request = null, ?Options $options = null): Operations\ListWalletsResponse
+    public function listWallets(?ListWalletsRequest $request = null, ?Options $options = null): ListWalletsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\ListWalletsRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(ListWalletsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1026,7 +1059,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1045,7 +1078,7 @@ class SDKWalletsV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ListWalletsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ListWalletsResponse(
+                $response = new ListWalletsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -1053,7 +1086,7 @@ class SDKWalletsV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -1064,7 +1097,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -1074,14 +1107,14 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\UpdateWalletRequest  $request
-     * @return \formance\stack\Models\Operations\UpdateWalletResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  UpdateWalletRequest  $request
+     * @return UpdateWalletResponse
+     * @throws SDKException
      */
-    public function updateWallet(Operations\UpdateWalletRequest $request, ?Options $options = null): Operations\UpdateWalletResponse
+    public function updateWallet(UpdateWalletRequest $request, ?Options $options = null): UpdateWalletResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', Operations\UpdateWalletRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/wallets/{id}', UpdateWalletRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -1094,7 +1127,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
+        $httpRequest = new Request('PATCH', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1104,7 +1137,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1119,7 +1152,7 @@ class SDKWalletsV1
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\UpdateWalletResponse(
+            return new UpdateWalletResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -1133,7 +1166,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -1143,14 +1176,14 @@ class SDKWalletsV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\VoidHoldRequest  $request
-     * @return \formance\stack\Models\Operations\VoidHoldResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  VoidHoldRequest  $request
+     * @return VoidHoldResponse
+     * @throws SDKException
      */
-    public function voidHold(Operations\VoidHoldRequest $request, ?Options $options = null): Operations\VoidHoldResponse
+    public function voidHold(VoidHoldRequest $request, ?Options $options = null): VoidHoldResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/void', Operations\VoidHoldRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/wallets/holds/{hold_id}/void', VoidHoldRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
@@ -1159,7 +1192,7 @@ class SDKWalletsV1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1169,7 +1202,7 @@ class SDKWalletsV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1184,7 +1217,7 @@ class SDKWalletsV1
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\VoidHoldResponse(
+            return new VoidHoldResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -1198,7 +1231,7 @@ class SDKWalletsV1
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Wallets\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }

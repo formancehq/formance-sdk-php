@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2AccountResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2Account $data
+     * @var V2Account $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Account')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\V2Account')]
     public V2Account $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2Account  $data
+     * @param  V2Account  $data
      * @phpstan-pure
      */
     public function __construct(V2Account $data)

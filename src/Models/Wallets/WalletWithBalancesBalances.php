@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class WalletWithBalancesBalances
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\AssetHolder $main
+     * @var AssetHolder $main
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\AssetHolder')]
+    #[SerializedName('main')]
+    #[Type('\formance\stack\Models\Wallets\AssetHolder')]
     public AssetHolder $main;
 
     /**
-     * @param  \formance\stack\Models\Wallets\AssetHolder  $main
+     * @param  AssetHolder  $main
      * @phpstan-pure
      */
     public function __construct(AssetHolder $main)

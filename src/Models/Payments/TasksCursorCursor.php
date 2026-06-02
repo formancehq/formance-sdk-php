@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TasksCursorCursor
@@ -14,44 +17,44 @@ class TasksCursorCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp> $data
+     * @var array<TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
+    #[SerializedName('hasMore')]
     public bool $hasMore;
 
     /**
      *
      * @var int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[SerializedName('pageSize')]
     public int $pageSize;
 
     /**
      *
      * @var ?string $next
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('next')]
+    #[SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('previous')]
+    #[SkipWhenNull]
     public ?string $previous = null;
 
     /**
-     * @param  array<\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp>  $data
+     * @param  array<TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

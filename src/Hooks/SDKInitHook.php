@@ -8,8 +8,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Hooks;
+use GuzzleHttp\ClientInterface;
 
 interface SDKInitHook
 {
-    public function sdkInit(string $baseUrl, \GuzzleHttp\ClientInterface $client): SDKRequestContext;
+    public function sdkInit(string $baseUrl, ClientInterface $client): SDKRequestContext;
 }

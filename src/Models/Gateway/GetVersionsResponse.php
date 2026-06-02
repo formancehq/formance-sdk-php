@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Gateway;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class GetVersionsResponse
@@ -15,29 +17,29 @@ class GetVersionsResponse
      *
      * @var string $env
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('env')]
+    #[SerializedName('env')]
     public string $env;
 
     /**
      *
      * @var string $region
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('region')]
+    #[SerializedName('region')]
     public string $region;
 
     /**
      * $versions
      *
-     * @var array<\formance\stack\Models\Gateway\Version> $versions
+     * @var array<Version> $versions
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('versions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Gateway\Version>')]
+    #[SerializedName('versions')]
+    #[Type('array<\formance\stack\Models\Gateway\Version>')]
     public array $versions;
 
     /**
      * @param  string  $env
      * @param  string  $region
-     * @param  array<\formance\stack\Models\Gateway\Version>  $versions
+     * @param  array<Version>  $versions
      * @phpstan-pure
      */
     public function __construct(string $env, string $region, array $versions)

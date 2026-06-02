@@ -9,6 +9,13 @@ declare(strict_types=1);
 namespace formance\stack\Utils;
 
 use phpDocumentor\Reflection\Type;
+use phpDocumentor\Reflection\TypeResolver;
+use phpDocumentor\Reflection\Types\AggregatedType;
+use phpDocumentor\Reflection\Types\Array_;
+use phpDocumentor\Reflection\Types\Integer;
+use phpDocumentor\Reflection\Types\Null_;
+use phpDocumentor\Reflection\Types\Object_;
+use phpDocumentor\Reflection\Types\String_;
 use Speakeasy\Serializer\Type\ParserInterface;
 
 /**
@@ -21,10 +28,10 @@ use Speakeasy\Serializer\Type\ParserInterface;
 class PhpDocTypeParser implements ParserInterface
 {
 
-    private \phpDocumentor\Reflection\TypeResolver $typeResolver;
+    private TypeResolver $typeResolver;
     public function __construct()
     {
-        $this->typeResolver = new \phpDocumentor\Reflection\TypeResolver();
+        $this->typeResolver = new TypeResolver();
     }
 
     /**
@@ -44,19 +51,19 @@ class PhpDocTypeParser implements ParserInterface
      */
     public function convertRecursive(Type $type): array
     {
-        if (\is_a($type, \phpDocumentor\Reflection\Types\AggregatedType::class)) {
+        if (\is_a($type, AggregatedType::class)) {
             return [
                 'name' => 'union',
                 'params' => \array_map(function ($type) {
                     return $this->convertRecursive($type);
                 }, iterator_to_array($type->getIterator())),
             ];
-        } elseif (\is_a($type, \phpDocumentor\Reflection\Types\Array_::class)) {
+        } elseif (\is_a($type, Array_::class)) {
             $params = [];
             $keyType = $type->getKeyType();
-            if (\is_a($keyType, \phpDocumentor\Reflection\Types\AggregatedType::class)) {
+            if (\is_a($keyType, AggregatedType::class)) {
                 // The Default key that the phpdoc type system returns for *maps* is string|int, so if we see that, exclude it (which is the JMS/Serializer default).
-                if (! ($keyType->getIterator()->count() == 2 && $keyType->contains(new \phpDocumentor\Reflection\Types\String_()) && $keyType->contains(new \phpDocumentor\Reflection\Types\Integer()))) {
+                if (! ($keyType->getIterator()->count() == 2 && $keyType->contains(new String_()) && $keyType->contains(new Integer()))) {
                     $params[] = $this->convertRecursive($keyType);
                 }
             } else {
@@ -69,7 +76,7 @@ class PhpDocTypeParser implements ParserInterface
                 'name' => 'array',
                 'params' => $params,
             ];
-        } elseif (\is_a($type, \phpDocumentor\Reflection\Types\Object_::class)) {
+        } elseif (\is_a($type, Object_::class)) {
             $className = $type->__toString();
             if (class_exists($className)) {
                 $objectClass = new \ReflectionClass($className);
@@ -85,7 +92,7 @@ class PhpDocTypeParser implements ParserInterface
                     ];
                 }
             }
-        } elseif (\is_a($type, \phpDocumentor\Reflection\Types\Null_::class)) {
+        } elseif (\is_a($type, Null_::class)) {
             return [
                 'name' => 'NULL',
                 'params' => [],

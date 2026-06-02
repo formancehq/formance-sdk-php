@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ScriptResponse
@@ -15,41 +18,41 @@ class ScriptResponse
      *
      * @var ?string $details
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('details')]
+    #[SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\ErrorsEnum $errorCode
+     * @var ?ErrorsEnum $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\ErrorsEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Ledger\ErrorsEnum|null')]
+    #[SkipWhenNull]
     public ?ErrorsEnum $errorCode = null;
 
     /**
      *
      * @var ?string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('errorMessage')]
+    #[SkipWhenNull]
     public ?string $errorMessage = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\Transaction $transaction
+     * @var ?Transaction $transaction
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Transaction|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('transaction')]
+    #[Type('\formance\stack\Models\Ledger\Transaction|null')]
+    #[SkipWhenNull]
     public ?Transaction $transaction = null;
 
     /**
      * @param  ?string  $details
-     * @param  ?\formance\stack\Models\Ledger\ErrorsEnum  $errorCode
+     * @param  ?ErrorsEnum  $errorCode
      * @param  ?string  $errorMessage
-     * @param  ?\formance\stack\Models\Ledger\Transaction  $transaction
+     * @param  ?Transaction  $transaction
      * @phpstan-pure
      */
     public function __construct(?string $details = null, ?ErrorsEnum $errorCode = null, ?string $errorMessage = null, ?Transaction $transaction = null)

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2PostTransaction
@@ -16,50 +19,50 @@ class V2PostTransaction
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * $postings
      *
-     * @var ?array<\formance\stack\Models\Orchestration\V2Posting> $postings
+     * @var ?array<V2Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Posting>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Orchestration\V2Posting>|null')]
+    #[SkipWhenNull]
     public ?array $postings = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2PostTransactionScript $script
+     * @var ?V2PostTransactionScript $script
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PostTransactionScript|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('script')]
+    #[Type('\formance\stack\Models\Orchestration\V2PostTransactionScript|null')]
+    #[SkipWhenNull]
     public ?V2PostTransactionScript $script = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
      * @param  array<string, string>  $metadata
-     * @param  ?array<\formance\stack\Models\Orchestration\V2Posting>  $postings
+     * @param  ?array<V2Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?\formance\stack\Models\Orchestration\V2PostTransactionScript  $script
+     * @param  ?V2PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */

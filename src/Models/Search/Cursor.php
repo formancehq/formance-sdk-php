@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Search;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Cursor
@@ -16,50 +19,50 @@ class Cursor
      *
      * @var ?array<array<string, mixed>> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<array<string, mixed>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('array<array<string, mixed>>|null')]
+    #[SkipWhenNull]
     public ?array $data = null;
 
     /**
      *
      * @var ?bool $hasMore
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('hasMore')]
+    #[SkipWhenNull]
     public ?bool $hasMore = null;
 
     /**
      *
      * @var ?string $next
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('next')]
+    #[SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var ?int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('previous')]
+    #[SkipWhenNull]
     public ?string $previous = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Search\Total $total
+     * @var ?Total $total
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Search\Total|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('total')]
+    #[Type('\formance\stack\Models\Search\Total|null')]
+    #[SkipWhenNull]
     public ?Total $total = null;
 
     /**
@@ -68,7 +71,7 @@ class Cursor
      * @param  ?string  $next
      * @param  ?int  $pageSize
      * @param  ?string  $previous
-     * @param  ?\formance\stack\Models\Search\Total  $total
+     * @param  ?Total  $total
      * @phpstan-pure
      */
     public function __construct(?array $data = null, ?bool $hasMore = null, ?string $next = null, ?int $pageSize = null, ?string $previous = null, ?Total $total = null)

@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 /** ServerInfo - Server information */
@@ -16,7 +17,7 @@ class ServerInfo
      *
      * @var string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[SerializedName('version')]
     public string $version;
 
     /**

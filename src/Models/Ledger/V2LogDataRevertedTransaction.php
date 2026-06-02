@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2LogDataRevertedTransaction - Payload for REVERTED_TRANSACTION log entries. Contains both the original reverted transaction and the new reverting transaction. */
@@ -15,24 +17,24 @@ class V2LogDataRevertedTransaction
     /**
      * Transaction structure as it appears in log payloads
      *
-     * @var \formance\stack\Models\Ledger\V2LogTransaction $revertedTransaction
+     * @var V2LogTransaction $revertedTransaction
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('revertedTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
+    #[SerializedName('revertedTransaction')]
+    #[Type('\formance\stack\Models\Ledger\V2LogTransaction')]
     public V2LogTransaction $revertedTransaction;
 
     /**
      * Transaction structure as it appears in log payloads
      *
-     * @var \formance\stack\Models\Ledger\V2LogTransaction $transaction
+     * @var V2LogTransaction $transaction
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
+    #[SerializedName('transaction')]
+    #[Type('\formance\stack\Models\Ledger\V2LogTransaction')]
     public V2LogTransaction $transaction;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2LogTransaction  $revertedTransaction
-     * @param  \formance\stack\Models\Ledger\V2LogTransaction  $transaction
+     * @param  V2LogTransaction  $revertedTransaction
+     * @param  V2LogTransaction  $transaction
      * @phpstan-pure
      */
     public function __construct(V2LogTransaction $revertedTransaction, V2LogTransaction $transaction)

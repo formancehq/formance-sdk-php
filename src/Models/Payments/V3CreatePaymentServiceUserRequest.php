@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3CreatePaymentServiceUserRequest
@@ -15,25 +18,25 @@ class V3CreatePaymentServiceUserRequest
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3AddressRequest $address
+     * @var ?V3AddressRequest $address
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AddressRequest|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('address')]
+    #[Type('\formance\stack\Models\Payments\V3AddressRequest|null')]
+    #[SkipWhenNull]
     public ?V3AddressRequest $address = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3ContactDetailsRequest $contactDetails
+     * @var ?V3ContactDetailsRequest $contactDetails
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('contactDetails')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ContactDetailsRequest|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('contactDetails')]
+    #[Type('\formance\stack\Models\Payments\V3ContactDetailsRequest|null')]
+    #[SkipWhenNull]
     public ?V3ContactDetailsRequest $contactDetails = null;
 
     /**
@@ -41,9 +44,9 @@ class V3CreatePaymentServiceUserRequest
      *
      * @var ?array<string> $bankAccountIDs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('bankAccountIDs')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('bankAccountIDs')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $bankAccountIDs = null;
 
     /**
@@ -51,15 +54,15 @@ class V3CreatePaymentServiceUserRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  string  $name
-     * @param  ?\formance\stack\Models\Payments\V3AddressRequest  $address
-     * @param  ?\formance\stack\Models\Payments\V3ContactDetailsRequest  $contactDetails
+     * @param  ?V3AddressRequest  $address
+     * @param  ?V3ContactDetailsRequest  $contactDetails
      * @param  ?array<string>  $bankAccountIDs
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3Task
@@ -15,59 +18,59 @@ class V3Task
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3TaskStatusEnum $status
+     * @var V3TaskStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3TaskStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3TaskStatusEnum')]
     public V3TaskStatusEnum $status;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('connectorID')]
+    #[SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
      *
      * @var ?string $createdObjectID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdObjectID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('createdObjectID')]
+    #[SkipWhenNull]
     public ?string $createdObjectID = null;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
-     * @param  \formance\stack\Models\Payments\V3TaskStatusEnum  $status
+     * @param  V3TaskStatusEnum  $status
      * @param  \DateTime  $updatedAt
      * @param  ?string  $connectorID
      * @param  ?string  $createdObjectID

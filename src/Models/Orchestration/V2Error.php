@@ -9,26 +9,28 @@ declare(strict_types=1);
 namespace formance\stack\Models\Orchestration;
 
 use formance\stack\Utils;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 /** V2Error - General error */
 class V2Error
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\SchemasErrorCode $errorCode
+     * @var SchemasErrorCode $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\SchemasErrorCode')]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Orchestration\SchemasErrorCode')]
     public SchemasErrorCode $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\SchemasErrorCode  $errorCode
+     * @param  SchemasErrorCode  $errorCode
      * @param  string  $errorMessage
      * @phpstan-pure
      */

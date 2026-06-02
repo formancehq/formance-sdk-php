@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2CreateLedgerRequest
@@ -15,8 +18,8 @@ class V2CreateLedgerRequest
      *
      * @var ?string $bucket
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('bucket')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('bucket')]
+    #[SkipWhenNull]
     public ?string $bucket = null;
 
     /**
@@ -24,9 +27,9 @@ class V2CreateLedgerRequest
      *
      * @var ?array<string, string> $features
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('features')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $features = null;
 
     /**
@@ -34,9 +37,9 @@ class V2CreateLedgerRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ExporterConfiguration
@@ -16,15 +18,15 @@ class V2ExporterConfiguration
      *
      * @var array<string, mixed> $config
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    #[SerializedName('config')]
+    #[Type('array<string, mixed>')]
     public array $config;
 
     /**
      *
      * @var string $driver
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('driver')]
+    #[SerializedName('driver')]
     public string $driver;
 
     /**

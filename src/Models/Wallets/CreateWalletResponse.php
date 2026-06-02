@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class CreateWalletResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\Wallet $data
+     * @var Wallet $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Wallet')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Wallets\Wallet')]
     public Wallet $data;
 
     /**
-     * @param  \formance\stack\Models\Wallets\Wallet  $data
+     * @param  Wallet  $data
      * @phpstan-pure
      */
     public function __construct(Wallet $data)

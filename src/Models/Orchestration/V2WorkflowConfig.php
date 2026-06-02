@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2WorkflowConfig
@@ -16,16 +19,16 @@ class V2WorkflowConfig
      *
      * @var array<array<string, mixed>> $stages
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('stages')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<array<string, mixed>>')]
+    #[SerializedName('stages')]
+    #[Type('array<array<string, mixed>>')]
     public array $stages;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**

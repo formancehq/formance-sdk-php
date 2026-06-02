@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3CreateAccountRequest
@@ -15,44 +18,44 @@ class V3CreateAccountRequest
      *
      * @var string $accountName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
+    #[SerializedName('accountName')]
     public string $accountName;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3AccountTypeEnum $type
+     * @var V3AccountTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
     public V3AccountTypeEnum $type;
 
     /**
      *
      * @var ?string $defaultAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('defaultAsset')]
+    #[SkipWhenNull]
     public ?string $defaultAsset = null;
 
     /**
@@ -60,9 +63,9 @@ class V3CreateAccountRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -70,7 +73,7 @@ class V3CreateAccountRequest
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\V3AccountTypeEnum  $type
+     * @param  V3AccountTypeEnum  $type
      * @param  ?string  $defaultAsset
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

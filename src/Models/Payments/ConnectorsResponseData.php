@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ConnectorsResponseData
@@ -15,36 +18,36 @@ class ConnectorsResponseData
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\Connector $provider
+     * @var Connector $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Connector')]
+    #[SerializedName('provider')]
+    #[Type('\formance\stack\Models\Payments\Connector')]
     public Connector $provider;
 
     /**
      *
      * @var ?bool $enabled
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('enabled')]
+    #[SkipWhenNull]
     public ?bool $enabled = null;
 
     /**
      * @param  string  $connectorID
      * @param  string  $name
-     * @param  \formance\stack\Models\Payments\Connector  $provider
+     * @param  Connector  $provider
      * @param  ?bool  $enabled
      * @phpstan-pure
      */

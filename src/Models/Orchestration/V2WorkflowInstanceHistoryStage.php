@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2WorkflowInstanceHistoryStage
@@ -15,89 +18,89 @@ class V2WorkflowInstanceHistoryStage
      *
      * @var int $attempt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attempt')]
+    #[SerializedName('attempt')]
     public int $attempt;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput $input
+     * @var V2WorkflowInstanceHistoryStageInput $input
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput')]
+    #[SerializedName('input')]
+    #[Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput')]
     public V2WorkflowInstanceHistoryStageInput $input;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
+    #[SerializedName('startedAt')]
     public \DateTime $startedAt;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
+    #[SerializedName('terminated')]
     public bool $terminated;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var ?string $lastFailure
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lastFailure')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('lastFailure')]
+    #[SkipWhenNull]
     public ?string $lastFailure = null;
 
     /**
      *
      * @var ?\DateTime $nextExecution
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('nextExecution')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('nextExecution')]
+    #[SkipWhenNull]
     public ?\DateTime $nextExecution = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput $output
+     * @var ?V2WorkflowInstanceHistoryStageOutput $output
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('output')]
+    #[Type('\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput|null')]
+    #[SkipWhenNull]
     public ?V2WorkflowInstanceHistoryStageOutput $output = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('terminatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
      * @param  int  $attempt
-     * @param  \formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageInput  $input
+     * @param  V2WorkflowInstanceHistoryStageInput  $input
      * @param  string  $name
      * @param  \DateTime  $startedAt
      * @param  bool  $terminated
      * @param  ?string  $error
      * @param  ?string  $lastFailure
      * @param  ?\DateTime  $nextExecution
-     * @param  ?\formance\stack\Models\Orchestration\V2WorkflowInstanceHistoryStageOutput  $output
+     * @param  ?V2WorkflowInstanceHistoryStageOutput  $output
      * @param  ?\DateTime  $terminatedAt
      * @phpstan-pure
      */

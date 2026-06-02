@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class LedgerStorage
@@ -15,7 +17,7 @@ class LedgerStorage
      *
      * @var string $driver
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('driver')]
+    #[SerializedName('driver')]
     public string $driver;
 
     /**
@@ -23,8 +25,8 @@ class LedgerStorage
      *
      * @var array<string> $ledgers
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgers')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    #[SerializedName('ledgers')]
+    #[Type('array<string>')]
     public array $ledgers;
 
     /**

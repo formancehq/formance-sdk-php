@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TriggerData
@@ -15,30 +18,30 @@ class TriggerData
      *
      * @var string $event
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
+    #[SerializedName('event')]
     public string $event;
 
     /**
      *
      * @var string $workflowID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowID')]
+    #[SerializedName('workflowID')]
     public string $workflowID;
 
     /**
      *
      * @var ?string $filter
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filter')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('filter')]
+    #[SkipWhenNull]
     public ?string $filter = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -46,17 +49,17 @@ class TriggerData
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('vars')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $vars = null;
 
     /**
      *
      * @var ?string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('version')]
+    #[SkipWhenNull]
     public ?string $version = null;
 
     /**

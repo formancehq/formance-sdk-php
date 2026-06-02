@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\TransactionsResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class CreateTransactionResponse
@@ -35,26 +37,26 @@ class CreateTransactionResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\TransactionsResponse $transactionsResponse
+     * @var ?TransactionsResponse $transactionsResponse
      */
-    public ?\formance\stack\Models\Ledger\TransactionsResponse $transactionsResponse = null;
+    public ?TransactionsResponse $transactionsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\TransactionsResponse  $transactionsResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?TransactionsResponse  $transactionsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\TransactionsResponse $transactionsResponse = null, ?array $headers = [])
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?TransactionsResponse $transactionsResponse = null, ?array $headers = [])
     {
         $this->contentType = $contentType;
         $this->headers = $headers;

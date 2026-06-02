@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use Brick\Math\BigInteger;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2RevertTransactionRequest
 {
     /**
      * Transaction ID.
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public \Brick\Math\BigInteger $id;
+    public BigInteger $id;
 
     /**
      * Name of the ledger.
@@ -75,7 +76,7 @@ class V2RevertTransactionRequest
     public ?string $schemaVersion = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?\formance\stack\Models\Ledger\V2RevertTransactionRequest  $v2RevertTransactionRequest
@@ -85,7 +86,7 @@ class V2RevertTransactionRequest
      * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?\formance\stack\Models\Ledger\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
+    public function __construct(BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?\formance\stack\Models\Ledger\V2RevertTransactionRequest $v2RevertTransactionRequest = null, ?bool $atEffectiveDate = null, ?bool $dryRun = null, ?bool $force = null, ?string $schemaVersion = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

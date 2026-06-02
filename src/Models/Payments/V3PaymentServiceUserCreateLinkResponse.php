@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V3PaymentServiceUserCreateLinkResponse
@@ -15,14 +16,14 @@ class V3PaymentServiceUserCreateLinkResponse
      *
      * @var string $attemptID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attemptID')]
+    #[SerializedName('attemptID')]
     public string $attemptID;
 
     /**
      *
      * @var string $link
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('link')]
+    #[SerializedName('link')]
     public string $link;
 
     /**

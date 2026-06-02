@@ -7,26 +7,29 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class StageSend
 {
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\Monetary $amount
+     * @var ?Monetary $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Monetary|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('amount')]
+    #[Type('\formance\stack\Models\Orchestration\Monetary|null')]
+    #[SkipWhenNull]
     public ?Monetary $amount = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\StageSendDestination $destination
+     * @var ?StageSendDestination $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendDestination|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[Type('\formance\stack\Models\Orchestration\StageSendDestination|null')]
+    #[SkipWhenNull]
     public ?StageSendDestination $destination = null;
 
     /**
@@ -34,33 +37,33 @@ class StageSend
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\StageSendSource $source
+     * @var ?StageSendSource $source
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendSource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('source')]
+    #[Type('\formance\stack\Models\Orchestration\StageSendSource|null')]
+    #[SkipWhenNull]
     public ?StageSendSource $source = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?\formance\stack\Models\Orchestration\Monetary  $amount
-     * @param  ?\formance\stack\Models\Orchestration\StageSendDestination  $destination
+     * @param  ?Monetary  $amount
+     * @param  ?StageSendDestination  $destination
      * @param  ?array<string, string>  $metadata
-     * @param  ?\formance\stack\Models\Orchestration\StageSendSource  $source
+     * @param  ?StageSendSource  $source
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */

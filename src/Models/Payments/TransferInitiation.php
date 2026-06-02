@@ -7,100 +7,103 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class TransferInitiation
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
      *
      * @var string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[SerializedName('destinationAccountID')]
     public string $destinationAccountID;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $initialAmount
+     * @var BigInteger $initialAmount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('initialAmount')]
-    public \Brick\Math\BigInteger $initialAmount;
+    #[SerializedName('initialAmount')]
+    public BigInteger $initialAmount;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var \DateTime $scheduledAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduledAt')]
+    #[SerializedName('scheduledAt')]
     public \DateTime $scheduledAt;
 
     /**
      *
      * @var string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[SerializedName('sourceAccountID')]
     public string $sourceAccountID;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\TransferInitiationStatus $status
+     * @var TransferInitiationStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
     public TransferInitiationStatus $status;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\Type $type
+     * @var Type $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Type')]
     public Type $type;
 
@@ -108,25 +111,25 @@ class TransferInitiation
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public ?string $provider;
 
     /**
      * $relatedAdjustments
      *
-     * @var ?array<\formance\stack\Models\Payments\TransferInitiationAdjustments> $relatedAdjustments
+     * @var ?array<TransferInitiationAdjustments> $relatedAdjustments
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAdjustments')]
+    #[SerializedName('relatedAdjustments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\TransferInitiationAdjustments>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SkipWhenNull]
     public ?array $relatedAdjustments = null;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -134,43 +137,43 @@ class TransferInitiation
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * $relatedPayments
      *
-     * @var ?array<\formance\stack\Models\Payments\TransferInitiationPayments> $relatedPayments
+     * @var ?array<TransferInitiationPayments> $relatedPayments
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedPayments')]
+    #[SerializedName('relatedPayments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\TransferInitiationPayments>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SkipWhenNull]
     public ?array $relatedPayments = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $description
      * @param  string  $destinationAccountID
      * @param  string  $id
-     * @param  \Brick\Math\BigInteger  $initialAmount
+     * @param  BigInteger  $initialAmount
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
      * @param  string  $sourceAccountID
-     * @param  \formance\stack\Models\Payments\TransferInitiationStatus  $status
-     * @param  \formance\stack\Models\Payments\Type  $type
+     * @param  TransferInitiationStatus  $status
+     * @param  Type  $type
      * @param  ?string  $provider
-     * @param  ?array<\formance\stack\Models\Payments\TransferInitiationAdjustments>  $relatedAdjustments
+     * @param  ?array<TransferInitiationAdjustments>  $relatedAdjustments
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
-     * @param  ?array<\formance\stack\Models\Payments\TransferInitiationPayments>  $relatedPayments
+     * @param  ?array<TransferInitiationPayments>  $relatedPayments
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, Type $type, ?string $provider = null, ?array $relatedAdjustments = null, ?string $error = null, ?array $metadata = null, ?array $relatedPayments = null)
+    public function __construct(BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $id, BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, Type $type, ?string $provider = null, ?array $relatedAdjustments = null, ?string $error = null, ?array $metadata = null, ?array $relatedPayments = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

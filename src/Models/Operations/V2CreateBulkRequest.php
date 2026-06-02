@@ -8,13 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Ledger\V2BulkElementAddMetadata;
+use formance\stack\Models\Ledger\V2BulkElementCreateTransaction;
+use formance\stack\Models\Ledger\V2BulkElementDeleteMetadata;
+use formance\stack\Models\Ledger\V2BulkElementRevertTransaction;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2CreateBulkRequest
 {
     /**
      * $requestBody
      *
-     * @var array<\formance\stack\Models\Ledger\V2BulkElementCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementAddMetadata|\formance\stack\Models\Ledger\V2BulkElementRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementDeleteMetadata> $requestBody
+     * @var array<V2BulkElementCreateTransaction|V2BulkElementAddMetadata|V2BulkElementRevertTransaction|V2BulkElementDeleteMetadata> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public array $requestBody;
@@ -60,7 +64,7 @@ class V2CreateBulkRequest
     public ?string $schemaVersion = null;
 
     /**
-     * @param  array<\formance\stack\Models\Ledger\V2BulkElementCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementAddMetadata|\formance\stack\Models\Ledger\V2BulkElementRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementDeleteMetadata>  $requestBody
+     * @param  array<V2BulkElementCreateTransaction|V2BulkElementAddMetadata|V2BulkElementRevertTransaction|V2BulkElementDeleteMetadata>  $requestBody
      * @param  string  $ledger
      * @param  ?bool  $atomic
      * @param  ?bool  $continueOnFailure

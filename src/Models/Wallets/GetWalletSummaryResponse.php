@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class GetWalletSummaryResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\WalletSummary $data
+     * @var WalletSummary $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\WalletSummary')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Wallets\WalletSummary')]
     public WalletSummary $data;
 
     /**
-     * @param  \formance\stack\Models\Wallets\WalletSummary  $data
+     * @param  WalletSummary  $data
      * @phpstan-pure
      */
     public function __construct(WalletSummary $data)

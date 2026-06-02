@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Hold
@@ -15,7 +18,7 @@ class V2Hold
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
@@ -23,7 +26,7 @@ class V2Hold
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -31,8 +34,8 @@ class V2Hold
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -40,16 +43,16 @@ class V2Hold
      *
      * @var string $walletID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('walletID')]
+    #[SerializedName('walletID')]
     public string $walletID;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null $destination
+     * @var V2LedgerAccountSubject|V2WalletSubject|null $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[Type('\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null')]
+    #[SkipWhenNull]
     public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 
     /**
@@ -57,7 +60,7 @@ class V2Hold
      * @param  string  $id
      * @param  array<string, string>  $metadata
      * @param  string  $walletID
-     * @param  \formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null  $destination
+     * @param  V2LedgerAccountSubject|V2WalletSubject|null  $destination
      * @phpstan-pure
      */
     public function __construct(string $description, string $id, array $metadata, string $walletID, V2LedgerAccountSubject|V2WalletSubject|null $destination = null)

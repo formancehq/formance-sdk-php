@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** TransferInitiationResponse - OK */
@@ -14,14 +16,14 @@ class TransferInitiationResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\TransferInitiation $data
+     * @var TransferInitiation $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiation')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\TransferInitiation')]
     public TransferInitiation $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\TransferInitiation  $data
+     * @param  TransferInitiation  $data
      * @phpstan-pure
      */
     public function __construct(TransferInitiation $data)

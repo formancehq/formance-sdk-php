@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkRequest;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3CreateLinkForPaymentServiceUserRequest
 {
@@ -29,18 +30,18 @@ class V3CreateLinkForPaymentServiceUserRequest
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkRequest $v3PaymentServiceUserCreateLinkRequest
+     * @var ?V3PaymentServiceUserCreateLinkRequest $v3PaymentServiceUserCreateLinkRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkRequest $v3PaymentServiceUserCreateLinkRequest = null;
+    public ?V3PaymentServiceUserCreateLinkRequest $v3PaymentServiceUserCreateLinkRequest = null;
 
     /**
      * @param  string  $connectorID
      * @param  string  $paymentServiceUserID
-     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkRequest  $v3PaymentServiceUserCreateLinkRequest
+     * @param  ?V3PaymentServiceUserCreateLinkRequest  $v3PaymentServiceUserCreateLinkRequest
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, string $paymentServiceUserID, ?\formance\stack\Models\Payments\V3PaymentServiceUserCreateLinkRequest $v3PaymentServiceUserCreateLinkRequest = null)
+    public function __construct(string $connectorID, string $paymentServiceUserID, ?V3PaymentServiceUserCreateLinkRequest $v3PaymentServiceUserCreateLinkRequest = null)
     {
         $this->connectorID = $connectorID;
         $this->paymentServiceUserID = $paymentServiceUserID;

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2Monetary
@@ -14,25 +16,25 @@ class V2Monetary
     /**
      * The amount of the monetary value.
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      * The asset of the monetary value.
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset)
+    public function __construct(BigInteger $amount, string $asset)
     {
         $this->amount = $amount;
         $this->asset = $asset;

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\V2ConfigInfo;
+use formance\stack\Models\Ledger\V2ErrorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2GetInfoResponse
@@ -28,33 +31,33 @@ class V2GetInfoResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\V2ConfigInfo $v2ConfigInfo
+     * @var ?V2ConfigInfo $v2ConfigInfo
      */
-    public ?\formance\stack\Models\Ledger\V2ConfigInfo $v2ConfigInfo = null;
+    public ?V2ConfigInfo $v2ConfigInfo = null;
 
     /**
      * Error
      *
-     * @var ?\formance\stack\Models\Ledger\V2ErrorResponse $v2ErrorResponse
+     * @var ?V2ErrorResponse $v2ErrorResponse
      */
-    public ?\formance\stack\Models\Ledger\V2ErrorResponse $v2ErrorResponse = null;
+    public ?V2ErrorResponse $v2ErrorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\V2ConfigInfo  $v2ConfigInfo
-     * @param  ?\formance\stack\Models\Ledger\V2ErrorResponse  $v2ErrorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2ConfigInfo  $v2ConfigInfo
+     * @param  ?V2ErrorResponse  $v2ErrorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2ConfigInfo $v2ConfigInfo = null, ?\formance\stack\Models\Ledger\V2ErrorResponse $v2ErrorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2ConfigInfo $v2ConfigInfo = null, ?V2ErrorResponse $v2ErrorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

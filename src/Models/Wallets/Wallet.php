@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Wallet
@@ -15,7 +18,7 @@ class Wallet
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -23,14 +26,14 @@ class Wallet
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
+    #[SerializedName('ledger')]
     public string $ledger;
 
     /**
@@ -38,24 +41,24 @@ class Wallet
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var ?\formance\stack\Models\Wallets\Balances $balances
+     * @var ?Balances $balances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Balances|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('balances')]
+    #[Type('\formance\stack\Models\Wallets\Balances|null')]
+    #[SkipWhenNull]
     public ?Balances $balances = null;
 
     /**
@@ -64,7 +67,7 @@ class Wallet
      * @param  string  $ledger
      * @param  array<string, string>  $metadata
      * @param  string  $name
-     * @param  ?\formance\stack\Models\Wallets\Balances  $balances
+     * @param  ?Balances  $balances
      * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $id, string $ledger, array $metadata, string $name, ?Balances $balances = null)

@@ -8,22 +8,23 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\Connector;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ReadConnectorConfigRequest
 {
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Payments\Connector $connector
+     * @var Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Payments\Connector $connector;
+    public Connector $connector;
 
     /**
-     * @param  \formance\stack\Models\Payments\Connector  $connector
+     * @param  Connector  $connector
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Payments\Connector $connector)
+    public function __construct(Connector $connector)
     {
         $this->connector = $connector;
     }

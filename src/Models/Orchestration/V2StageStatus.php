@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2StageStatus
@@ -15,37 +17,37 @@ class V2StageStatus
      *
      * @var string $instanceID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('instanceID')]
+    #[SerializedName('instanceID')]
     public string $instanceID;
 
     /**
      *
      * @var float $stage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('stage')]
+    #[SerializedName('stage')]
     public float $stage;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
+    #[SerializedName('startedAt')]
     public \DateTime $startedAt;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('terminatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**

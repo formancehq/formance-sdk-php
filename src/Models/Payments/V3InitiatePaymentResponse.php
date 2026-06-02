@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3InitiatePaymentResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3InitiatePaymentResponseData $data
+     * @var V3InitiatePaymentResponseData $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3InitiatePaymentResponseData')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3InitiatePaymentResponseData')]
     public V3InitiatePaymentResponseData $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3InitiatePaymentResponseData  $data
+     * @param  V3InitiatePaymentResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3InitiatePaymentResponseData $data)

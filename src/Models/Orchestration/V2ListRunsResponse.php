@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ListRunsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2ListRunsResponseCursor $cursor
+     * @var V2ListRunsResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListRunsResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Orchestration\V2ListRunsResponseCursor')]
     public V2ListRunsResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2ListRunsResponseCursor  $cursor
+     * @param  V2ListRunsResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2ListRunsResponseCursor $cursor)

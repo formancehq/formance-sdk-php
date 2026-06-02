@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace formance\stack;
 
 use formance\stack\Utils\Retry;
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 /**
  * SDKBuilder is used to configure and build an instance of the SDK.
@@ -23,10 +25,10 @@ class SDKBuilder
     /**
      * setClient allows setting a custom Guzzle client for the SDK to make requests with.
      *
-     * @param  \GuzzleHttp\ClientInterface  $client
+     * @param  ClientInterface  $client
      * @return SDKBuilder
      */
-    public function setClient(\GuzzleHttp\ClientInterface $client): SDKBuilder
+    public function setClient(ClientInterface $client): SDKBuilder
     {
         $this->sdkConfig->client = $client;
 
@@ -138,7 +140,7 @@ class SDKBuilder
     public function build(): SDK
     {
         if ($this->sdkConfig->client === null) {
-            $this->sdkConfig->client = new \GuzzleHttp\Client([
+            $this->sdkConfig->client = new Client([
                 'timeout' => 60,
             ]);
         }

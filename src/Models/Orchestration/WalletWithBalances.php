@@ -7,23 +7,25 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class WalletWithBalances
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\WalletWithBalancesBalances $balances
+     * @var WalletWithBalancesBalances $balances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\WalletWithBalancesBalances')]
+    #[SerializedName('balances')]
+    #[Type('\formance\stack\Models\Orchestration\WalletWithBalancesBalances')]
     public WalletWithBalancesBalances $balances;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -31,14 +33,14 @@ class WalletWithBalances
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
+    #[SerializedName('ledger')]
     public string $ledger;
 
     /**
@@ -46,19 +48,19 @@ class WalletWithBalances
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\WalletWithBalancesBalances  $balances
+     * @param  WalletWithBalancesBalances  $balances
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $ledger

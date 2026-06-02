@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class RunWorkflowResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\WorkflowInstance $data
+     * @var WorkflowInstance $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\WorkflowInstance')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\WorkflowInstance')]
     public WorkflowInstance $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\WorkflowInstance  $data
+     * @param  WorkflowInstance  $data
      * @phpstan-pure
      */
     public function __construct(WorkflowInstance $data)

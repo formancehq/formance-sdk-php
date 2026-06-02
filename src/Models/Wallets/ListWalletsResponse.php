@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ListWalletsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\ListWalletsResponseCursor $cursor
+     * @var ListWalletsResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\ListWalletsResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Wallets\ListWalletsResponseCursor')]
     public ListWalletsResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Wallets\ListWalletsResponseCursor  $cursor
+     * @param  ListWalletsResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(ListWalletsResponseCursor $cursor)

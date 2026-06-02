@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class ServerInfo
@@ -15,7 +16,7 @@ class ServerInfo
      *
      * @var string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[SerializedName('version')]
     public string $version;
 
     /**

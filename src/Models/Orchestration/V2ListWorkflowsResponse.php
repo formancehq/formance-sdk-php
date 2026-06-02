@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ListWorkflowsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2ListWorkflowsResponseCursor $cursor
+     * @var V2ListWorkflowsResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListWorkflowsResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Orchestration\V2ListWorkflowsResponseCursor')]
     public V2ListWorkflowsResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2ListWorkflowsResponseCursor  $cursor
+     * @param  V2ListWorkflowsResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2ListWorkflowsResponseCursor $cursor)

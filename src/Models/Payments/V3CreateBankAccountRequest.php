@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3CreateBankAccountRequest
@@ -15,39 +18,39 @@ class V3CreateBankAccountRequest
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?string $accountNumber
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountNumber')]
+    #[SkipWhenNull]
     public ?string $accountNumber = null;
 
     /**
      *
      * @var ?string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('country')]
+    #[SkipWhenNull]
     public ?string $country = null;
 
     /**
      *
      * @var ?string $iban
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('iban')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('iban')]
+    #[SkipWhenNull]
     public ?string $iban = null;
 
     /**
      *
      * @var ?string $swiftBicCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('swiftBicCode')]
+    #[SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**
@@ -55,9 +58,9 @@ class V3CreateBankAccountRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**

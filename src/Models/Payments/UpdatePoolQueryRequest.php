@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class UpdatePoolQueryRequest
@@ -16,8 +18,8 @@ class UpdatePoolQueryRequest
      *
      * @var array<string, mixed> $query
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    #[SerializedName('query')]
+    #[Type('array<string, mixed>')]
     public array $query;
 
     /**

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3Instance
@@ -15,58 +17,58 @@ class V3Instance
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $scheduleID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduleID')]
+    #[SerializedName('scheduleID')]
     public string $scheduleID;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
+    #[SerializedName('terminated')]
     public bool $terminated;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('terminatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**

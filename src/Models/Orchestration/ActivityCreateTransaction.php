@@ -7,29 +7,32 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ActivityCreateTransaction
 {
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\PostTransaction $data
+     * @var ?PostTransaction $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PostTransaction|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\PostTransaction|null')]
+    #[SkipWhenNull]
     public ?PostTransaction $data = null;
 
     /**
      *
      * @var ?string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ledger')]
+    #[SkipWhenNull]
     public ?string $ledger = null;
 
     /**
-     * @param  ?\formance\stack\Models\Orchestration\PostTransaction  $data
+     * @param  ?PostTransaction  $data
      * @param  ?string  $ledger
      * @phpstan-pure
      */

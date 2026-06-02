@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2GetExporterStateResponse
@@ -28,25 +30,25 @@ class V2GetExporterStateResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Exporter information
      *
-     * @var ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse
+     * @var ?V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse
      */
-    public ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse = null;
+    public ?V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse  $v2GetExporterStateResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2GetExporterStateV2GetExporterStateResponse  $v2GetExporterStateResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2GetExporterStateV2GetExporterStateResponse $v2GetExporterStateResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

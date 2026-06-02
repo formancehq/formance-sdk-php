@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2PipelinesCursorResponse - Pipelines list */
@@ -14,14 +16,14 @@ class V2PipelinesCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor $cursor
+     * @var V2PipelinesCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor')]
     public V2PipelinesCursorResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2PipelinesCursorResponseCursor  $cursor
+     * @param  V2PipelinesCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2PipelinesCursorResponseCursor $cursor)

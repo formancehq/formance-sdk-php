@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class AddAccountToPoolRequest
@@ -15,7 +16,7 @@ class AddAccountToPoolRequest
      *
      * @var string $accountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
+    #[SerializedName('accountID')]
     public string $accountID;
 
     /**

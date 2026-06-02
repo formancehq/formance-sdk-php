@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Pool
@@ -16,22 +19,22 @@ class Pool
      *
      * @var array<string> $accounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    #[SerializedName('accounts')]
+    #[Type('array<string>')]
     public array $accounts;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -39,18 +42,18 @@ class Pool
      *
      * @var ?array<string, mixed> $query
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('query')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $query = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\PoolTypeEnum $type
+     * @var ?PoolTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PoolTypeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\PoolTypeEnum|null')]
+    #[SkipWhenNull]
     public ?PoolTypeEnum $type = null;
 
     /**
@@ -58,7 +61,7 @@ class Pool
      * @param  string  $id
      * @param  string  $name
      * @param  ?array<string, mixed>  $query
-     * @param  ?\formance\stack\Models\Payments\PoolTypeEnum  $type
+     * @param  ?PoolTypeEnum  $type
      * @phpstan-pure
      */
     public function __construct(array $accounts, string $id, string $name, ?array $query = null, ?PoolTypeEnum $type = null)

@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2ServerInfo
@@ -15,7 +16,7 @@ class V2ServerInfo
      *
      * @var string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[SerializedName('version')]
     public string $version;
 
     /**

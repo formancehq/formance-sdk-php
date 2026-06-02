@@ -7,84 +7,87 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Attempt
 {
     /**
      *
-     * @var \formance\stack\Models\Webhooks\WebhooksConfig $config
+     * @var WebhooksConfig $config
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\WebhooksConfig')]
+    #[SerializedName('config')]
+    #[Type('\formance\stack\Models\Webhooks\WebhooksConfig')]
     public WebhooksConfig $config;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $payload
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('payload')]
+    #[SerializedName('payload')]
     public string $payload;
 
     /**
      *
      * @var int $retryAttempt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('retryAttempt')]
+    #[SerializedName('retryAttempt')]
     public int $retryAttempt;
 
     /**
      *
      * @var string $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[SerializedName('status')]
     public string $status;
 
     /**
      *
      * @var int $statusCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('statusCode')]
+    #[SerializedName('statusCode')]
     public int $statusCode;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var string $webhookID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('webhookID')]
+    #[SerializedName('webhookID')]
     public string $webhookID;
 
     /**
      *
      * @var ?\DateTime $nextRetryAfter
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('nextRetryAfter')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('nextRetryAfter')]
+    #[SkipWhenNull]
     public ?\DateTime $nextRetryAfter = null;
 
     /**
-     * @param  \formance\stack\Models\Webhooks\WebhooksConfig  $config
+     * @param  WebhooksConfig  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $payload

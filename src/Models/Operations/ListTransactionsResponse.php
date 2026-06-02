@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\TransactionsCursorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class ListTransactionsResponse
@@ -28,25 +30,25 @@ class ListTransactionsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\TransactionsCursorResponse $transactionsCursorResponse
+     * @var ?TransactionsCursorResponse $transactionsCursorResponse
      */
-    public ?\formance\stack\Models\Ledger\TransactionsCursorResponse $transactionsCursorResponse = null;
+    public ?TransactionsCursorResponse $transactionsCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\TransactionsCursorResponse  $transactionsCursorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?TransactionsCursorResponse  $transactionsCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\TransactionsCursorResponse $transactionsCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?TransactionsCursorResponse $transactionsCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

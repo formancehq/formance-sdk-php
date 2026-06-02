@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2CreateTransactionResponse
@@ -35,9 +36,9 @@ class V2CreateTransactionResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
@@ -50,11 +51,11 @@ class V2CreateTransactionResponse
      * @param  string  $contentType
      * @param  array<string, array<string>>  $headers
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ResponseInterface  $rawResponse
      * @param  ?\formance\stack\Models\Ledger\V2CreateTransactionResponse  $v2CreateTransactionResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2CreateTransactionResponse $v2CreateTransactionResponse = null, ?array $headers = [])
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2CreateTransactionResponse $v2CreateTransactionResponse = null, ?array $headers = [])
     {
         $this->contentType = $contentType;
         $this->headers = $headers;

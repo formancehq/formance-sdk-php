@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2VolumesWithBalance
@@ -15,46 +17,46 @@ class V2VolumesWithBalance
      *
      * @var string $account
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[SerializedName('account')]
     public string $account;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $balance
+     * @var BigInteger $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    public \Brick\Math\BigInteger $balance;
+    #[SerializedName('balance')]
+    public BigInteger $balance;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $input
+     * @var BigInteger $input
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
-    public \Brick\Math\BigInteger $input;
+    #[SerializedName('input')]
+    public BigInteger $input;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $output
+     * @var BigInteger $output
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
-    public \Brick\Math\BigInteger $output;
+    #[SerializedName('output')]
+    public BigInteger $output;
 
     /**
      * @param  string  $account
      * @param  string  $asset
-     * @param  \Brick\Math\BigInteger  $balance
-     * @param  \Brick\Math\BigInteger  $input
-     * @param  \Brick\Math\BigInteger  $output
+     * @param  BigInteger  $balance
+     * @param  BigInteger  $input
+     * @param  BigInteger  $output
      * @phpstan-pure
      */
-    public function __construct(string $account, string $asset, \Brick\Math\BigInteger $balance, \Brick\Math\BigInteger $input, \Brick\Math\BigInteger $output)
+    public function __construct(string $account, string $asset, BigInteger $balance, BigInteger $input, BigInteger $output)
     {
         $this->account = $account;
         $this->asset = $asset;

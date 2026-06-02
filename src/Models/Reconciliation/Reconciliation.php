@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Reconciliation
@@ -15,85 +19,85 @@ class Reconciliation
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      * $driftBalances
      *
-     * @var array<string, \Brick\Math\BigInteger> $driftBalances
+     * @var array<string, BigInteger> $driftBalances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('driftBalances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('driftBalances')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $driftBalances;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      * $ledgerBalances
      *
-     * @var array<string, \Brick\Math\BigInteger> $ledgerBalances
+     * @var array<string, BigInteger> $ledgerBalances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerBalances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('ledgerBalances')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $ledgerBalances;
 
     /**
      * $paymentsBalances
      *
-     * @var array<string, \Brick\Math\BigInteger> $paymentsBalances
+     * @var array<string, BigInteger> $paymentsBalances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentsBalances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('paymentsBalances')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $paymentsBalances;
 
     /**
      *
      * @var string $policyID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policyID')]
+    #[SerializedName('policyID')]
     public string $policyID;
 
     /**
      *
      * @var \DateTime $reconciledAtLedger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtLedger')]
+    #[SerializedName('reconciledAtLedger')]
     public \DateTime $reconciledAtLedger;
 
     /**
      *
      * @var \DateTime $reconciledAtPayments
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtPayments')]
+    #[SerializedName('reconciledAtPayments')]
     public \DateTime $reconciledAtPayments;
 
     /**
      *
      * @var string $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[SerializedName('status')]
     public string $status;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      * @param  \DateTime  $createdAt
-     * @param  array<string, \Brick\Math\BigInteger>  $driftBalances
+     * @param  array<string, BigInteger>  $driftBalances
      * @param  string  $id
-     * @param  array<string, \Brick\Math\BigInteger>  $ledgerBalances
-     * @param  array<string, \Brick\Math\BigInteger>  $paymentsBalances
+     * @param  array<string, BigInteger>  $ledgerBalances
+     * @param  array<string, BigInteger>  $paymentsBalances
      * @param  string  $policyID
      * @param  \DateTime  $reconciledAtLedger
      * @param  \DateTime  $reconciledAtPayments

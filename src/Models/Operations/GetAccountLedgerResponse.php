@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\AccountResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class GetAccountLedgerResponse
@@ -28,25 +30,25 @@ class GetAccountLedgerResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\AccountResponse $accountResponse
+     * @var ?AccountResponse $accountResponse
      */
-    public ?\formance\stack\Models\Ledger\AccountResponse $accountResponse = null;
+    public ?AccountResponse $accountResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\AccountResponse  $accountResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?AccountResponse  $accountResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\AccountResponse $accountResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?AccountResponse $accountResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

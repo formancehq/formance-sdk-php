@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3BankAccount
@@ -15,55 +18,55 @@ class V3BankAccount
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      * $relatedAccounts
      *
-     * @var ?array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount> $relatedAccounts
+     * @var ?array<V3BankAccountRelatedAccount> $relatedAccounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAccounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('relatedAccounts')]
+    #[Type('array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount>|null')]
+    #[SkipWhenNull]
     public ?array $relatedAccounts = null;
 
     /**
      *
      * @var ?string $accountNumber
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountNumber')]
+    #[SkipWhenNull]
     public ?string $accountNumber = null;
 
     /**
      *
      * @var ?string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('country')]
+    #[SkipWhenNull]
     public ?string $country = null;
 
     /**
      *
      * @var ?string $iban
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('iban')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('iban')]
+    #[SkipWhenNull]
     public ?string $iban = null;
 
     /**
@@ -71,24 +74,24 @@ class V3BankAccount
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $swiftBicCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('swiftBicCode')]
+    #[SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name
-     * @param  ?array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount>  $relatedAccounts
+     * @param  ?array<V3BankAccountRelatedAccount>  $relatedAccounts
      * @param  ?string  $accountNumber
      * @param  ?string  $country
      * @param  ?string  $iban

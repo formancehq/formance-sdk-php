@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Payment
@@ -14,136 +18,136 @@ class V2Payment
     /**
      * $adjustments
      *
-     * @var array<\formance\stack\Models\Orchestration\V2PaymentAdjustment> $adjustments
+     * @var array<V2PaymentAdjustment> $adjustments
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2PaymentAdjustment>')]
+    #[SerializedName('adjustments')]
+    #[Type('array<\formance\stack\Models\Orchestration\V2PaymentAdjustment>')]
     public array $adjustments;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[SerializedName('destinationAccountID')]
     public string $destinationAccountID;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $initialAmount
+     * @var BigInteger $initialAmount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('initialAmount')]
-    public \Brick\Math\BigInteger $initialAmount;
+    #[SerializedName('initialAmount')]
+    public BigInteger $initialAmount;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2PaymentScheme $scheme
+     * @var V2PaymentScheme $scheme
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheme')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentScheme')]
+    #[SerializedName('scheme')]
+    #[Type('\formance\stack\Models\Orchestration\V2PaymentScheme')]
     public V2PaymentScheme $scheme;
 
     /**
      *
      * @var string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[SerializedName('sourceAccountID')]
     public string $sourceAccountID;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2PaymentStatus $status
+     * @var V2PaymentStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentStatus')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Orchestration\V2PaymentStatus')]
     public V2PaymentStatus $status;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2PaymentType $type
+     * @var V2PaymentType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentType')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Orchestration\V2PaymentType')]
     public V2PaymentType $type;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2PaymentMetadata $metadata
+     * @var ?V2PaymentMetadata $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentMetadata|null')]
+    #[SerializedName('metadata')]
+    #[Type('\formance\stack\Models\Orchestration\V2PaymentMetadata|null')]
     public ?V2PaymentMetadata $metadata;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2Connector $provider
+     * @var ?V2Connector $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Connector|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[Type('\formance\stack\Models\Orchestration\V2Connector|null')]
+    #[SkipWhenNull]
     public ?V2Connector $provider = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2PaymentRaw $raw
+     * @var ?V2PaymentRaw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentRaw|null')]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Orchestration\V2PaymentRaw|null')]
     public ?V2PaymentRaw $raw;
 
     /**
-     * @param  array<\formance\stack\Models\Orchestration\V2PaymentAdjustment>  $adjustments
+     * @param  array<V2PaymentAdjustment>  $adjustments
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $destinationAccountID
      * @param  string  $id
-     * @param  \Brick\Math\BigInteger  $initialAmount
+     * @param  BigInteger  $initialAmount
      * @param  string  $reference
-     * @param  \formance\stack\Models\Orchestration\V2PaymentScheme  $scheme
+     * @param  V2PaymentScheme  $scheme
      * @param  string  $sourceAccountID
-     * @param  \formance\stack\Models\Orchestration\V2PaymentStatus  $status
-     * @param  \formance\stack\Models\Orchestration\V2PaymentType  $type
-     * @param  ?\formance\stack\Models\Orchestration\V2PaymentMetadata  $metadata
-     * @param  ?\formance\stack\Models\Orchestration\V2Connector  $provider
-     * @param  ?\formance\stack\Models\Orchestration\V2PaymentRaw  $raw
+     * @param  V2PaymentStatus  $status
+     * @param  V2PaymentType  $type
+     * @param  ?V2PaymentMetadata  $metadata
+     * @param  ?V2Connector  $provider
+     * @param  ?V2PaymentRaw  $raw
      * @phpstan-pure
      */
-    public function __construct(array $adjustments, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, V2PaymentScheme $scheme, string $sourceAccountID, V2PaymentStatus $status, V2PaymentType $type, ?V2PaymentMetadata $metadata = null, ?V2Connector $provider = null, ?V2PaymentRaw $raw = null)
+    public function __construct(array $adjustments, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, BigInteger $initialAmount, string $reference, V2PaymentScheme $scheme, string $sourceAccountID, V2PaymentStatus $status, V2PaymentType $type, ?V2PaymentMetadata $metadata = null, ?V2Connector $provider = null, ?V2PaymentRaw $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->asset = $asset;

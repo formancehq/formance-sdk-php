@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2GetWorkflowInstanceHistoryResponse
@@ -14,14 +16,14 @@ class V2GetWorkflowInstanceHistoryResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistory> $data
+     * @var array<V2WorkflowInstanceHistory> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistory>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistory>')]
     public array $data;
 
     /**
-     * @param  array<\formance\stack\Models\Orchestration\V2WorkflowInstanceHistory>  $data
+     * @param  array<V2WorkflowInstanceHistory>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3Schedule
@@ -15,37 +17,37 @@ class V3Schedule
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var ?\DateTime $pausedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pausedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pausedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $pausedAt = null;
 
     /**
      *
      * @var ?string $pausedReason
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pausedReason')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pausedReason')]
+    #[SkipWhenNull]
     public ?string $pausedReason = null;
 
     /**

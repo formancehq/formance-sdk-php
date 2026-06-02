@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** BankAccountsCursor - OK */
@@ -14,14 +16,14 @@ class BankAccountsCursor
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\BankAccountsCursorCursor $cursor
+     * @var BankAccountsCursorCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\BankAccountsCursorCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Payments\BankAccountsCursorCursor')]
     public BankAccountsCursorCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Payments\BankAccountsCursorCursor  $cursor
+     * @param  BankAccountsCursorCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(BankAccountsCursorCursor $cursor)

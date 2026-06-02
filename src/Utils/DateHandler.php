@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
+use Brick\DateTime\LocalDate;
 use Speakeasy\Serializer\Context;
 use Speakeasy\Serializer\GraphNavigator;
 use Speakeasy\Serializer\Handler\SubscribingHandlerInterface;
@@ -48,7 +49,7 @@ class DateHandler implements SubscribingHandlerInterface
     }
 
     /** @phpstan-ignore-next-line */
-    public function serializeDateTimeToJson(JsonSerializationVisitor $visitor, \Brick\DateTime\LocalDate $any, array $type, Context $context): string
+    public function serializeDateTimeToJson(JsonSerializationVisitor $visitor, LocalDate $any, array $type, Context $context): string
     {
         return $any->jsonSerialize();
     }
@@ -56,6 +57,6 @@ class DateHandler implements SubscribingHandlerInterface
     /** @phpstan-ignore-next-line */
     public function deserializeDateTimeToJson(JsonDeserializationVisitor $visitor, string $data, array $type, Context $context): mixed
     {
-        return \Brick\DateTime\LocalDate::parse($data);
+        return LocalDate::parse($data);
     }
 }

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** ReconciliationsCursorResponse - OK */
@@ -14,14 +16,14 @@ class ReconciliationsCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor $cursor
+     * @var ReconciliationsCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor')]
     public ReconciliationsCursorResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Reconciliation\ReconciliationsCursorResponseCursor  $cursor
+     * @param  ReconciliationsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(ReconciliationsCursorResponseCursor $cursor)

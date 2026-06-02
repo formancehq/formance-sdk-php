@@ -7,32 +7,35 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class CreateTransferInitiationRequest
 {
     /**
      *
-     * @var ?\Brick\Math\BigInteger $amount
+     * @var ?BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $amount = null;
+    #[SerializedName('amount')]
+    #[SkipWhenNull]
+    public ?BigInteger $amount = null;
 
     /**
      *
      * @var ?string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('asset')]
+    #[SkipWhenNull]
     public ?string $asset = null;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('connectorID')]
+    #[SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
@@ -40,8 +43,8 @@ class CreateTransferInitiationRequest
      *
      * @var ?string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('description')]
+    #[SkipWhenNull]
     public ?string $description = null;
 
     /**
@@ -49,8 +52,8 @@ class CreateTransferInitiationRequest
      *
      * @var ?string $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[SkipWhenNull]
     public ?string $destination = null;
 
     /**
@@ -58,11 +61,11 @@ class CreateTransferInitiationRequest
      *
      *
      *
-     * @var ?\formance\stack\Models\Orchestration\Metadata $metadata
+     * @var ?Metadata $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Metadata|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SkipWhenNull]
     public ?Metadata $metadata = null;
 
     /**
@@ -73,8 +76,8 @@ class CreateTransferInitiationRequest
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**
@@ -82,8 +85,8 @@ class CreateTransferInitiationRequest
      *
      * @var ?string $source
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('source')]
+    #[SkipWhenNull]
     public ?string $source = null;
 
     /**
@@ -93,35 +96,35 @@ class CreateTransferInitiationRequest
      * - PAYOUT: Internal to external account payout
      *
      *
-     * @var ?\formance\stack\Models\Orchestration\Type $type
+     * @var ?Type $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Type|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SkipWhenNull]
     public ?Type $type = null;
 
     /**
      *
      * @var ?bool $waitingValidation
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('waitingValidation')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('waitingValidation')]
+    #[SkipWhenNull]
     public ?bool $waitingValidation = null;
 
     /**
-     * @param  ?\Brick\Math\BigInteger  $amount
+     * @param  ?BigInteger  $amount
      * @param  ?string  $asset
      * @param  ?string  $connectorID
      * @param  ?string  $description
      * @param  ?string  $destination
-     * @param  ?\formance\stack\Models\Orchestration\Metadata  $metadata
+     * @param  ?Metadata  $metadata
      * @param  ?string  $provider
      * @param  ?string  $source
-     * @param  ?\formance\stack\Models\Orchestration\Type  $type
+     * @param  ?Type  $type
      * @param  ?bool  $waitingValidation
      * @phpstan-pure
      */
-    public function __construct(?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?string $connectorID = null, ?string $description = null, ?string $destination = null, ?Metadata $metadata = null, ?string $provider = null, ?string $source = null, ?Type $type = Type::Transfer, ?bool $waitingValidation = false)
+    public function __construct(?BigInteger $amount = null, ?string $asset = null, ?string $connectorID = null, ?string $description = null, ?string $destination = null, ?Metadata $metadata = null, ?string $provider = null, ?string $source = null, ?Type $type = Type::Transfer, ?bool $waitingValidation = false)
     {
         $this->amount = $amount;
         $this->asset = $asset;

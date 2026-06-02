@@ -9,26 +9,28 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 use formance\stack\Utils;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 /** PaymentsErrorResponse - Error */
 class PaymentsErrorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\PaymentsErrorsEnum $errorCode
+     * @var PaymentsErrorsEnum $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentsErrorsEnum')]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Payments\PaymentsErrorsEnum')]
     public PaymentsErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
-     * @param  \formance\stack\Models\Payments\PaymentsErrorsEnum  $errorCode
+     * @param  PaymentsErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @phpstan-pure
      */

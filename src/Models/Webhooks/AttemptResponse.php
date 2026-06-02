@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class AttemptResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Webhooks\Attempt $data
+     * @var Attempt $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\Attempt')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Webhooks\Attempt')]
     public Attempt $data;
 
     /**
-     * @param  \formance\stack\Models\Webhooks\Attempt  $data
+     * @param  Attempt  $data
      * @phpstan-pure
      */
     public function __construct(Attempt $data)

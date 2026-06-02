@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /**
@@ -22,17 +26,17 @@ class V3Order
     /**
      * Amount of base asset the order was placed for, as an integer at the base asset's precision.
      *
-     * @var \Brick\Math\BigInteger $baseQuantityOrdered
+     * @var BigInteger $baseQuantityOrdered
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('baseQuantityOrdered')]
-    public \Brick\Math\BigInteger $baseQuantityOrdered;
+    #[SerializedName('baseQuantityOrdered')]
+    public BigInteger $baseQuantityOrdered;
 
     /**
      * ID of the Formance connector this order was fetched from.
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
@@ -40,7 +44,7 @@ class V3Order
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -51,16 +55,16 @@ class V3Order
      *
      * @var string $destinationAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAsset')]
+    #[SerializedName('destinationAsset')]
     public string $destinationAsset;
 
     /**
      * Whether an order buys or sells the base asset.
      *
-     * @var \formance\stack\Models\Payments\V3OrderDirectionEnum $direction
+     * @var V3OrderDirectionEnum $direction
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('direction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderDirectionEnum')]
+    #[SerializedName('direction')]
+    #[Type('\formance\stack\Models\Payments\V3OrderDirectionEnum')]
     public V3OrderDirectionEnum $direction;
 
     /**
@@ -68,7 +72,7 @@ class V3Order
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -76,7 +80,7 @@ class V3Order
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public string $provider;
 
     /**
@@ -84,7 +88,7 @@ class V3Order
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
@@ -96,7 +100,7 @@ class V3Order
      *
      * @var string $sourceAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAsset')]
+    #[SerializedName('sourceAsset')]
     public string $sourceAsset;
 
     /**
@@ -111,10 +115,10 @@ class V3Order
      * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
      *
      *
-     * @var \formance\stack\Models\Payments\V3OrderStatusEnum $status
+     * @var V3OrderStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
     public V3OrderStatusEnum $status;
 
     /**
@@ -126,10 +130,10 @@ class V3Order
      * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
      *
      *
-     * @var \formance\stack\Models\Payments\V3TimeInForceEnum $timeInForce
+     * @var V3TimeInForceEnum $timeInForce
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timeInForce')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3TimeInForceEnum')]
+    #[SerializedName('timeInForce')]
+    #[Type('\formance\stack\Models\Payments\V3TimeInForceEnum')]
     public V3TimeInForceEnum $timeInForce;
 
     /**
@@ -139,10 +143,10 @@ class V3Order
      * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
      *
      *
-     * @var \formance\stack\Models\Payments\V3OrderTypeEnum $type
+     * @var V3OrderTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderTypeEnum')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\V3OrderTypeEnum')]
     public V3OrderTypeEnum $type;
 
     /**
@@ -150,36 +154,36 @@ class V3Order
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      * Ordered history of state snapshots for this order. The most recent element reflects the current `status`.
      *
-     * @var ?array<\formance\stack\Models\Payments\V3OrderAdjustment> $adjustments
+     * @var ?array<V3OrderAdjustment> $adjustments
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('adjustments')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3OrderAdjustment>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('adjustments')]
+    #[Type('array<\formance\stack\Models\Payments\V3OrderAdjustment>|null')]
+    #[SkipWhenNull]
     public ?array $adjustments = null;
 
     /**
      * Volume-weighted average price across all fills so far, in `priceAsset` precision. Analytics field — may be absent if the PSP does not report it.
      *
-     * @var ?\Brick\Math\BigInteger $averageFillPrice
+     * @var ?BigInteger $averageFillPrice
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('averageFillPrice')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $averageFillPrice = null;
+    #[SerializedName('averageFillPrice')]
+    #[SkipWhenNull]
+    public ?BigInteger $averageFillPrice = null;
 
     /**
      * Amount of base asset filled so far, as an integer at the base asset's precision. Null before any fill.
      *
-     * @var ?\Brick\Math\BigInteger $baseQuantityFilled
+     * @var ?BigInteger $baseQuantityFilled
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('baseQuantityFilled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $baseQuantityFilled = null;
+    #[SerializedName('baseQuantityFilled')]
+    #[SkipWhenNull]
+    public ?BigInteger $baseQuantityFilled = null;
 
     /**
      * Client-assigned ID supplied to the PSP for placement idempotency
@@ -191,8 +195,8 @@ class V3Order
      *
      * @var ?string $clientOrderID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('clientOrderID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('clientOrderID')]
+    #[SkipWhenNull]
     public ?string $clientOrderID = null;
 
     /**
@@ -200,8 +204,8 @@ class V3Order
      *
      * @var ?string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destinationAccountID')]
+    #[SkipWhenNull]
     public ?string $destinationAccountID = null;
 
     /**
@@ -209,8 +213,8 @@ class V3Order
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -218,45 +222,45 @@ class V3Order
      *
      * @var ?\DateTime $expiresAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('expiresAt')]
+    #[SkipWhenNull]
     public ?\DateTime $expiresAt = null;
 
     /**
      * Commission charged by the PSP for the order, as an integer in `feeAsset` precision.
      *
-     * @var ?\Brick\Math\BigInteger $fee
+     * @var ?BigInteger $fee
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $fee = null;
+    #[SerializedName('fee')]
+    #[SkipWhenNull]
+    public ?BigInteger $fee = null;
 
     /**
      * Currency the fee is denominated in, in `SYMBOL/precision` form. Typically the quote asset.
      *
      * @var ?string $feeAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('feeAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('feeAsset')]
+    #[SkipWhenNull]
     public ?string $feeAsset = null;
 
     /**
      * Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise.
      *
-     * @var ?\Brick\Math\BigInteger $limitPrice
+     * @var ?BigInteger $limitPrice
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('limitPrice')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $limitPrice = null;
+    #[SerializedName('limitPrice')]
+    #[SkipWhenNull]
+    public ?BigInteger $limitPrice = null;
 
     /**
      * $metadata
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -269,8 +273,8 @@ class V3Order
      *
      * @var ?string $priceAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('priceAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('priceAsset')]
+    #[SkipWhenNull]
     public ?string $priceAsset = null;
 
     /**
@@ -280,19 +284,19 @@ class V3Order
      * precision. For BUY: amount spent. For SELL: amount received.
      *
      *
-     * @var ?\Brick\Math\BigInteger $quoteAmount
+     * @var ?BigInteger $quoteAmount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('quoteAmount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $quoteAmount = null;
+    #[SerializedName('quoteAmount')]
+    #[SkipWhenNull]
+    public ?BigInteger $quoteAmount = null;
 
     /**
      * Quote currency with precision (e.g. `USD/2`). Null when the order has no quote-side amounts reported yet.
      *
      * @var ?string $quoteAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('quoteAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('quoteAsset')]
+    #[SkipWhenNull]
     public ?string $quoteAsset = null;
 
     /**
@@ -304,52 +308,52 @@ class V3Order
      *
      * @var ?string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sourceAccountID')]
+    #[SkipWhenNull]
     public ?string $sourceAccountID = null;
 
     /**
      * Trigger price at which a STOP / STOP_LIMIT order activates, in `priceAsset` precision. Null for non-stop order types.
      *
-     * @var ?\Brick\Math\BigInteger $stopPrice
+     * @var ?BigInteger $stopPrice
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('stopPrice')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $stopPrice = null;
+    #[SerializedName('stopPrice')]
+    #[SkipWhenNull]
+    public ?BigInteger $stopPrice = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $baseQuantityOrdered
+     * @param  BigInteger  $baseQuantityOrdered
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $destinationAsset
-     * @param  \formance\stack\Models\Payments\V3OrderDirectionEnum  $direction
+     * @param  V3OrderDirectionEnum  $direction
      * @param  string  $id
      * @param  string  $provider
      * @param  string  $reference
      * @param  string  $sourceAsset
-     * @param  \formance\stack\Models\Payments\V3OrderStatusEnum  $status
-     * @param  \formance\stack\Models\Payments\V3TimeInForceEnum  $timeInForce
-     * @param  \formance\stack\Models\Payments\V3OrderTypeEnum  $type
+     * @param  V3OrderStatusEnum  $status
+     * @param  V3TimeInForceEnum  $timeInForce
+     * @param  V3OrderTypeEnum  $type
      * @param  \DateTime  $updatedAt
-     * @param  ?array<\formance\stack\Models\Payments\V3OrderAdjustment>  $adjustments
-     * @param  ?\Brick\Math\BigInteger  $averageFillPrice
-     * @param  ?\Brick\Math\BigInteger  $baseQuantityFilled
+     * @param  ?array<V3OrderAdjustment>  $adjustments
+     * @param  ?BigInteger  $averageFillPrice
+     * @param  ?BigInteger  $baseQuantityFilled
      * @param  ?string  $clientOrderID
      * @param  ?string  $destinationAccountID
      * @param  ?string  $error
      * @param  ?\DateTime  $expiresAt
-     * @param  ?\Brick\Math\BigInteger  $fee
+     * @param  ?BigInteger  $fee
      * @param  ?string  $feeAsset
-     * @param  ?\Brick\Math\BigInteger  $limitPrice
+     * @param  ?BigInteger  $limitPrice
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $priceAsset
-     * @param  ?\Brick\Math\BigInteger  $quoteAmount
+     * @param  ?BigInteger  $quoteAmount
      * @param  ?string  $quoteAsset
      * @param  ?string  $sourceAccountID
-     * @param  ?\Brick\Math\BigInteger  $stopPrice
+     * @param  ?BigInteger  $stopPrice
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $baseQuantityOrdered, string $connectorID, \DateTime $createdAt, string $destinationAsset, V3OrderDirectionEnum $direction, string $id, string $provider, string $reference, string $sourceAsset, V3OrderStatusEnum $status, V3TimeInForceEnum $timeInForce, V3OrderTypeEnum $type, \DateTime $updatedAt, ?array $adjustments = null, ?\Brick\Math\BigInteger $averageFillPrice = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?string $clientOrderID = null, ?string $destinationAccountID = null, ?string $error = null, ?\DateTime $expiresAt = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?\Brick\Math\BigInteger $limitPrice = null, ?array $metadata = null, ?string $priceAsset = null, ?\Brick\Math\BigInteger $quoteAmount = null, ?string $quoteAsset = null, ?string $sourceAccountID = null, ?\Brick\Math\BigInteger $stopPrice = null)
+    public function __construct(BigInteger $baseQuantityOrdered, string $connectorID, \DateTime $createdAt, string $destinationAsset, V3OrderDirectionEnum $direction, string $id, string $provider, string $reference, string $sourceAsset, V3OrderStatusEnum $status, V3TimeInForceEnum $timeInForce, V3OrderTypeEnum $type, \DateTime $updatedAt, ?array $adjustments = null, ?BigInteger $averageFillPrice = null, ?BigInteger $baseQuantityFilled = null, ?string $clientOrderID = null, ?string $destinationAccountID = null, ?string $error = null, ?\DateTime $expiresAt = null, ?BigInteger $fee = null, ?string $feeAsset = null, ?BigInteger $limitPrice = null, ?array $metadata = null, ?string $priceAsset = null, ?BigInteger $quoteAmount = null, ?string $quoteAsset = null, ?string $sourceAccountID = null, ?BigInteger $stopPrice = null)
     {
         $this->baseQuantityOrdered = $baseQuantityOrdered;
         $this->connectorID = $connectorID;

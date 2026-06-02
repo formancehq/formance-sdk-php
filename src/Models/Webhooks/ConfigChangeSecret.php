@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class ConfigChangeSecret
@@ -15,7 +16,7 @@ class ConfigChangeSecret
      *
      * @var string $secret
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
+    #[SerializedName('secret')]
     public string $secret;
 
     /**

@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2BulkElementResultAddMetadata
@@ -15,14 +16,14 @@ class V2BulkElementResultAddMetadata
      *
      * @var int $logID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('logID')]
+    #[SerializedName('logID')]
     public int $logID;
 
     /**
      *
      * @var string $responseType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
+    #[SerializedName('responseType')]
     public string $responseType;
 
     /**

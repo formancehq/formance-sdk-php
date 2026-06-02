@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V3CreatePaymentServiceUserResponse
@@ -16,7 +17,7 @@ class V3CreatePaymentServiceUserResponse
      *
      * @var string $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[SerializedName('data')]
     public string $data;
 
     /**

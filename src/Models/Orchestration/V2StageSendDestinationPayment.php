@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2StageSendDestinationPayment
@@ -19,7 +22,7 @@ class V2StageSendDestinationPayment
      *
      * @var string $psp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('psp')]
+    #[SerializedName('psp')]
     public string $psp;
 
     /**
@@ -30,8 +33,8 @@ class V2StageSendDestinationPayment
      *
      * @var ?string $sourceAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sourceAccount')]
+    #[SkipWhenNull]
     public ?string $sourceAccount = null;
 
     /**
@@ -41,17 +44,17 @@ class V2StageSendDestinationPayment
      * - PAYOUT: Internal to external account payout
      *
      *
-     * @var ?\formance\stack\Models\Orchestration\V2StageSendDestinationPaymentType $type
+     * @var ?V2StageSendDestinationPaymentType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2StageSendDestinationPaymentType|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Orchestration\V2StageSendDestinationPaymentType|null')]
+    #[SkipWhenNull]
     public ?V2StageSendDestinationPaymentType $type = null;
 
     /**
      * @param  string  $psp
      * @param  ?string  $sourceAccount
-     * @param  ?\formance\stack\Models\Orchestration\V2StageSendDestinationPaymentType  $type
+     * @param  ?V2StageSendDestinationPaymentType  $type
      * @phpstan-pure
      */
     public function __construct(string $psp, ?string $sourceAccount = null, ?V2StageSendDestinationPaymentType $type = V2StageSendDestinationPaymentType::Transfer)

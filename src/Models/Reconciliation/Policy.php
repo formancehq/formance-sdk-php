@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Policy
@@ -15,21 +17,21 @@ class Policy
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledgerName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerName')]
+    #[SerializedName('ledgerName')]
     public string $ledgerName;
 
     /**
@@ -37,22 +39,22 @@ class Policy
      *
      * @var array<string, mixed> $ledgerQuery
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgerQuery')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    #[SerializedName('ledgerQuery')]
+    #[Type('array<string, mixed>')]
     public array $ledgerQuery;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $paymentsPoolID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentsPoolID')]
+    #[SerializedName('paymentsPoolID')]
     public string $paymentsPoolID;
 
     /**

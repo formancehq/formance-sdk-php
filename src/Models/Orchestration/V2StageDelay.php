@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2StageDelay
@@ -15,16 +17,16 @@ class V2StageDelay
      *
      * @var ?string $duration
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('duration')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('duration')]
+    #[SkipWhenNull]
     public ?string $duration = null;
 
     /**
      *
      * @var ?\DateTime $until
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('until')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('until')]
+    #[SkipWhenNull]
     public ?\DateTime $until = null;
 
     /**

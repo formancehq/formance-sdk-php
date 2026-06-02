@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class PostTransaction
@@ -14,36 +17,36 @@ class PostTransaction
     /**
      * $postings
      *
-     * @var ?array<\formance\stack\Models\Ledger\Posting> $postings
+     * @var ?array<Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Posting>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Ledger\Posting>|null')]
+    #[SkipWhenNull]
     public ?array $postings = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\PostTransactionScript $script
+     * @var ?PostTransactionScript $script
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\PostTransactionScript|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('script')]
+    #[Type('\formance\stack\Models\Ledger\PostTransactionScript|null')]
+    #[SkipWhenNull]
     public ?PostTransactionScript $script = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
@@ -51,15 +54,15 @@ class PostTransaction
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
-     * @param  ?array<\formance\stack\Models\Ledger\Posting>  $postings
+     * @param  ?array<Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?\formance\stack\Models\Ledger\PostTransactionScript  $script
+     * @param  ?PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, mixed>  $metadata
      * @phpstan-pure

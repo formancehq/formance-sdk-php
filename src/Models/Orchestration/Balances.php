@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Balances
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2AssetHolder $main
+     * @var V2AssetHolder $main
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2AssetHolder')]
+    #[SerializedName('main')]
+    #[Type('\formance\stack\Models\Orchestration\V2AssetHolder')]
     public V2AssetHolder $main;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2AssetHolder  $main
+     * @param  V2AssetHolder  $main
      * @phpstan-pure
      */
     public function __construct(V2AssetHolder $main)

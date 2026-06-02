@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Account
@@ -15,28 +18,28 @@ class Account
      *
      * @var string $accountName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
+    #[SerializedName('accountName')]
     public string $accountName;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $defaultAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
+    #[SerializedName('defaultAsset')]
     public string $defaultAsset;
 
     /**
@@ -44,29 +47,29 @@ class Account
      * @var string $defaultCurrency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultCurrency')]
+    #[SerializedName('defaultCurrency')]
     public string $defaultCurrency;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\AccountType $type
+     * @var AccountType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\AccountType')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\AccountType')]
     public AccountType $type;
 
     /**
@@ -74,8 +77,8 @@ class Account
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
     public ?array $metadata;
 
     /**
@@ -83,25 +86,25 @@ class Account
      *
      * @var ?array<string> $pools
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pools')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pools')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $pools = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\Raw $raw
+     * @var ?Raw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Raw|null')]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Payments\Raw|null')]
     public ?Raw $raw;
 
     /**
@@ -112,11 +115,11 @@ class Account
      * @param  string  $defaultCurrency
      * @param  string  $id
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\AccountType  $type
+     * @param  AccountType  $type
      * @param  ?array<string, string>  $metadata
      * @param  ?array<string>  $pools
      * @param  ?string  $provider
-     * @param  ?\formance\stack\Models\Payments\Raw  $raw
+     * @param  ?Raw  $raw
      * @phpstan-pure
      */
     public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, AccountType $type, ?array $metadata = null, ?array $pools = null, ?string $provider = null, ?Raw $raw = null)

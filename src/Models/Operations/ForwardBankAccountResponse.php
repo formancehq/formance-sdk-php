@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\BankAccountResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class ForwardBankAccountResponse
@@ -28,25 +30,25 @@ class ForwardBankAccountResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Payments\BankAccountResponse $bankAccountResponse
+     * @var ?BankAccountResponse $bankAccountResponse
      */
-    public ?\formance\stack\Models\Payments\BankAccountResponse $bankAccountResponse = null;
+    public ?BankAccountResponse $bankAccountResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\BankAccountResponse  $bankAccountResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?BankAccountResponse  $bankAccountResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\BankAccountResponse $bankAccountResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?BankAccountResponse $bankAccountResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

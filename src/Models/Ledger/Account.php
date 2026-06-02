@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Account
@@ -15,7 +18,7 @@ class Account
      *
      * @var string $address
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
+    #[SerializedName('address')]
     public string $address;
 
     /**
@@ -23,17 +26,17 @@ class Account
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('type')]
+    #[SkipWhenNull]
     public ?string $type = null;
 
     /**

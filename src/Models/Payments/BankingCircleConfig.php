@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class BankingCircleConfig
@@ -15,49 +17,49 @@ class BankingCircleConfig
      *
      * @var string $authorizationEndpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('authorizationEndpoint')]
+    #[SerializedName('authorizationEndpoint')]
     public string $authorizationEndpoint;
 
     /**
      *
      * @var string $endpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[SerializedName('endpoint')]
     public string $endpoint;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $password
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password')]
+    #[SerializedName('password')]
     public string $password;
 
     /**
      *
      * @var string $userCertificate
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('userCertificate')]
+    #[SerializedName('userCertificate')]
     public string $userCertificate;
 
     /**
      *
      * @var string $userCertificateKey
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('userCertificateKey')]
+    #[SerializedName('userCertificateKey')]
     public string $userCertificateKey;
 
     /**
      *
      * @var string $username
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
+    #[SerializedName('username')]
     public string $username;
 
     /**
@@ -67,16 +69,16 @@ class BankingCircleConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pollingPeriod')]
+    #[SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**

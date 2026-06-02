@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2CreatePipelineRequest
@@ -15,7 +16,7 @@ class V2CreatePipelineRequest
      *
      * @var string $exporterID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('exporterID')]
+    #[SerializedName('exporterID')]
     public string $exporterID;
 
     /**

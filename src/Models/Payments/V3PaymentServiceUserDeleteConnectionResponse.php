@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentServiceUserDeleteConnectionResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectionResponseData $data
+     * @var V3PaymentServiceUserDeleteConnectionResponseData $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectionResponseData')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectionResponseData')]
     public V3PaymentServiceUserDeleteConnectionResponseData $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectionResponseData  $data
+     * @param  V3PaymentServiceUserDeleteConnectionResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3PaymentServiceUserDeleteConnectionResponseData $data)

@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3GetTaskResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3Task $data
+     * @var V3Task $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Task')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3Task')]
     public V3Task $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3Task  $data
+     * @param  V3Task  $data
      * @phpstan-pure
      */
     public function __construct(V3Task $data)

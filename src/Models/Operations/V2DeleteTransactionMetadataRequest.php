@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use Brick\Math\BigInteger;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2DeleteTransactionMetadataRequest
 {
     /**
      * Transaction ID.
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public \Brick\Math\BigInteger $id;
+    public BigInteger $id;
 
     /**
      * The key to remove.
@@ -44,13 +45,13 @@ class V2DeleteTransactionMetadataRequest
     public ?string $idempotencyKey = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  string  $key
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $key, string $ledger, ?string $idempotencyKey = null)
+    public function __construct(BigInteger $id, string $key, string $ledger, ?string $idempotencyKey = null)
     {
         $this->id = $id;
         $this->key = $key;

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class Balance
@@ -15,32 +18,32 @@ class Balance
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var ?\Brick\Math\BigInteger $priority
+     * @var ?BigInteger $priority
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('priority')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $priority = null;
+    #[SerializedName('priority')]
+    #[SkipWhenNull]
+    public ?BigInteger $priority = null;
 
     /**
      *
      * @var ?\DateTime $expiresAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('expiresAt')]
+    #[SkipWhenNull]
     public ?\DateTime $expiresAt = null;
 
     /**
      * @param  string  $name
-     * @param  ?\Brick\Math\BigInteger  $priority
+     * @param  ?BigInteger  $priority
      * @param  ?\DateTime  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(string $name, ?\Brick\Math\BigInteger $priority = null, ?\DateTime $expiresAt = null)
+    public function __construct(string $name, ?BigInteger $priority = null, ?\DateTime $expiresAt = null)
     {
         $this->name = $name;
         $this->priority = $priority;

@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TransactionResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\Transaction $data
+     * @var Transaction $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Transaction')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\Transaction')]
     public Transaction $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\Transaction  $data
+     * @param  Transaction  $data
      * @phpstan-pure
      */
     public function __construct(Transaction $data)

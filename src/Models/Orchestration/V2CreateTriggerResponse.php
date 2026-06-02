@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2CreateTriggerResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2Trigger $data
+     * @var V2Trigger $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Trigger')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\V2Trigger')]
     public V2Trigger $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2Trigger  $data
+     * @param  V2Trigger  $data
      * @phpstan-pure
      */
     public function __construct(V2Trigger $data)

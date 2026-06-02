@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3AtlarConfig
@@ -15,28 +17,28 @@ class V3AtlarConfig
      *
      * @var string $accessKey
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accessKey')]
+    #[SerializedName('accessKey')]
     public string $accessKey;
 
     /**
      *
      * @var string $baseUrl
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('baseUrl')]
+    #[SerializedName('baseUrl')]
     public string $baseUrl;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $secret
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
+    #[SerializedName('secret')]
     public string $secret;
 
     /**
@@ -44,24 +46,24 @@ class V3AtlarConfig
      * @var ?int $pageSize
      * @deprecated  field: From v3.1, this parameter will be ignored.
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $pollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pollingPeriod')]
+    #[SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2LedgerInfoStorage
@@ -14,15 +17,15 @@ class V2LedgerInfoStorage
     /**
      * $migrations
      *
-     * @var ?array<\formance\stack\Models\Ledger\V2MigrationInfo> $migrations
+     * @var ?array<V2MigrationInfo> $migrations
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('migrations')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2MigrationInfo>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('migrations')]
+    #[Type('array<\formance\stack\Models\Ledger\V2MigrationInfo>|null')]
+    #[SkipWhenNull]
     public ?array $migrations = null;
 
     /**
-     * @param  ?array<\formance\stack\Models\Ledger\V2MigrationInfo>  $migrations
+     * @param  ?array<V2MigrationInfo>  $migrations
      * @phpstan-pure
      */
     public function __construct(?array $migrations = null)

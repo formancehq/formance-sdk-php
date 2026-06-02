@@ -7,57 +7,60 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class WorkflowInstanceHistory
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update $input
+     * @var StageSend|StageDelay|StageWaitEvent|Update $input
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update')]
+    #[SerializedName('input')]
+    #[Type('\formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update')]
     public StageSend|StageDelay|StageWaitEvent|Update $input;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var \DateTime $startedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('startedAt')]
+    #[SerializedName('startedAt')]
     public \DateTime $startedAt;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
+    #[SerializedName('terminated')]
     public bool $terminated;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('terminatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\StageSend|\formance\stack\Models\Orchestration\StageDelay|\formance\stack\Models\Orchestration\StageWaitEvent|\formance\stack\Models\Orchestration\Update  $input
+     * @param  StageSend|StageDelay|StageWaitEvent|Update  $input
      * @param  string  $name
      * @param  \DateTime  $startedAt
      * @param  bool  $terminated

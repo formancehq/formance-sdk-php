@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2AggregateBalancesResponse
@@ -14,14 +17,14 @@ class V2AggregateBalancesResponse
     /**
      * $data
      *
-     * @var array<string, \Brick\Math\BigInteger> $data
+     * @var array<string, BigInteger> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('data')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $data;
 
     /**
-     * @param  array<string, \Brick\Math\BigInteger>  $data
+     * @param  array<string, BigInteger>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3GetBankAccountResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3BankAccount $data
+     * @var V3BankAccount $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3BankAccount')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3BankAccount')]
     public V3BankAccount $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3BankAccount  $data
+     * @param  V3BankAccount  $data
      * @phpstan-pure
      */
     public function __construct(V3BankAccount $data)

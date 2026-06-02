@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2Pipeline
@@ -15,44 +17,44 @@ class V2Pipeline
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $exporterID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('exporterID')]
+    #[SerializedName('exporterID')]
     public string $exporterID;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
+    #[SerializedName('ledger')]
     public string $ledger;
 
     /**
      *
      * @var ?bool $enabled
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('enabled')]
+    #[SkipWhenNull]
     public ?bool $enabled = null;
 
     /**
      *
      * @var ?int $lastLogID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lastLogID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('lastLogID')]
+    #[SkipWhenNull]
     public ?int $lastLogID = null;
 
     /**

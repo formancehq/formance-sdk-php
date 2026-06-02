@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class CreateSecretResponse
 {
     /**
      *
-     * @var ?\formance\stack\Models\Auth\Secret $data
+     * @var ?Secret $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\Secret|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Auth\Secret|null')]
+    #[SkipWhenNull]
     public ?Secret $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Auth\Secret  $data
+     * @param  ?Secret  $data
      * @phpstan-pure
      */
     public function __construct(?Secret $data = null)

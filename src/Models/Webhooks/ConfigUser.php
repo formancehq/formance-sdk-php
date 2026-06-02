@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ConfigUser
@@ -15,7 +18,7 @@ class ConfigUser
      *
      * @var string $endpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[SerializedName('endpoint')]
     public string $endpoint;
 
     /**
@@ -23,24 +26,24 @@ class ConfigUser
      *
      * @var array<string> $eventTypes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('eventTypes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    #[SerializedName('eventTypes')]
+    #[Type('array<string>')]
     public array $eventTypes;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?string $secret
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('secret')]
+    #[SkipWhenNull]
     public ?string $secret = null;
 
     /**

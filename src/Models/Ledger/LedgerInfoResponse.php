@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class LedgerInfoResponse
 {
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\LedgerInfo $data
+     * @var ?LedgerInfo $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\LedgerInfo|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\LedgerInfo|null')]
+    #[SkipWhenNull]
     public ?LedgerInfo $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Ledger\LedgerInfo  $data
+     * @param  ?LedgerInfo  $data
      * @phpstan-pure
      */
     public function __construct(?LedgerInfo $data = null)

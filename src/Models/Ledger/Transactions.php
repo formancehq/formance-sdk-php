@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Transactions
@@ -14,14 +16,14 @@ class Transactions
     /**
      * $transactions
      *
-     * @var array<\formance\stack\Models\Ledger\TransactionData> $transactions
+     * @var array<TransactionData> $transactions
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\TransactionData>')]
+    #[SerializedName('transactions')]
+    #[Type('array<\formance\stack\Models\Ledger\TransactionData>')]
     public array $transactions;
 
     /**
-     * @param  array<\formance\stack\Models\Ledger\TransactionData>  $transactions
+     * @param  array<TransactionData>  $transactions
      * @phpstan-pure
      */
     public function __construct(array $transactions)

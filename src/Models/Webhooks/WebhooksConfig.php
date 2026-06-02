@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class WebhooksConfig
@@ -15,21 +17,21 @@ class WebhooksConfig
      *
      * @var bool $active
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('active')]
+    #[SerializedName('active')]
     public bool $active;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $endpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[SerializedName('endpoint')]
     public string $endpoint;
 
     /**
@@ -37,29 +39,29 @@ class WebhooksConfig
      *
      * @var array<string> $eventTypes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('eventTypes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    #[SerializedName('eventTypes')]
+    #[Type('array<string>')]
     public array $eventTypes;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $secret
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
+    #[SerializedName('secret')]
     public string $secret;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**

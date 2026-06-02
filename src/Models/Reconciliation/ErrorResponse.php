@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace formance\stack\Models\Reconciliation;
 
 use formance\stack\Utils;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 /** ErrorResponse - Error response */
 class ErrorResponse
 {
@@ -16,22 +18,22 @@ class ErrorResponse
      *
      * @var ?string $details
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('details')]
+    #[SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
      * @var string $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[SerializedName('errorCode')]
     public string $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**

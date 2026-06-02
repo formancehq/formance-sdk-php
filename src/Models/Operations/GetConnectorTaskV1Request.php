@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\Connector;
 use formance\stack\Utils\SpeakeasyMetadata;
 class GetConnectorTaskV1Request
 {
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Payments\Connector $connector
+     * @var Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Payments\Connector $connector;
+    public Connector $connector;
 
     /**
      * The connector ID.
@@ -36,12 +37,12 @@ class GetConnectorTaskV1Request
     public string $taskId;
 
     /**
-     * @param  \formance\stack\Models\Payments\Connector  $connector
+     * @param  Connector  $connector
      * @param  string  $connectorId
      * @param  string  $taskId
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Payments\Connector $connector, string $connectorId, string $taskId)
+    public function __construct(Connector $connector, string $connectorId, string $taskId)
     {
         $this->connector = $connector;
         $this->connectorId = $connectorId;

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Wallets\Balance;
 use formance\stack\Utils\SpeakeasyMetadata;
 class CreateBalanceRequest
 {
@@ -20,10 +21,10 @@ class CreateBalanceRequest
 
     /**
      *
-     * @var ?\formance\stack\Models\Wallets\Balance $balance
+     * @var ?Balance $balance
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Wallets\Balance $balance = null;
+    public ?Balance $balance = null;
 
     /**
      * Use an idempotency key
@@ -35,11 +36,11 @@ class CreateBalanceRequest
 
     /**
      * @param  string  $id
-     * @param  ?\formance\stack\Models\Wallets\Balance  $balance
+     * @param  ?Balance  $balance
      * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(string $id, ?\formance\stack\Models\Wallets\Balance $balance = null, ?string $idempotencyKey = null)
+    public function __construct(string $id, ?Balance $balance = null, ?string $idempotencyKey = null)
     {
         $this->id = $id;
         $this->balance = $balance;

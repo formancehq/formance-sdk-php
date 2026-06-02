@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3UpdateLinkForPaymentServiceUserOnConnectorResponse
@@ -28,25 +30,25 @@ class V3UpdateLinkForPaymentServiceUserOnConnectorResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Created
      *
-     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkResponse $v3PaymentServiceUserUpdateLinkResponse
+     * @var ?V3PaymentServiceUserUpdateLinkResponse $v3PaymentServiceUserUpdateLinkResponse
      */
-    public ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkResponse $v3PaymentServiceUserUpdateLinkResponse = null;
+    public ?V3PaymentServiceUserUpdateLinkResponse $v3PaymentServiceUserUpdateLinkResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkResponse  $v3PaymentServiceUserUpdateLinkResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3PaymentServiceUserUpdateLinkResponse  $v3PaymentServiceUserUpdateLinkResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkResponse $v3PaymentServiceUserUpdateLinkResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3PaymentServiceUserUpdateLinkResponse $v3PaymentServiceUserUpdateLinkResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

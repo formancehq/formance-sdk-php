@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2QueryTemplate
@@ -16,53 +19,53 @@ class V2QueryTemplate
      *
      * @var ?array<string, mixed> $body
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('body')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('body')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $body = null;
 
     /**
      *
      * @var ?string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('description')]
+    #[SkipWhenNull]
     public ?string $description = null;
 
     /**
      *
-     * @var \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null $params
+     * @var QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('params')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('params')]
+    #[Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
+    #[SkipWhenNull]
     public QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2QueryResource $resource
+     * @var ?V2QueryResource $resource
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('resource')]
+    #[Type('\formance\stack\Models\Ledger\V2QueryResource|null')]
+    #[SkipWhenNull]
     public ?V2QueryResource $resource = null;
 
     /**
      * $vars
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar> $vars
+     * @var ?array<string, V2QueryTemplateVar> $vars
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('vars')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar>|null')]
+    #[SkipWhenNull]
     public ?array $vars = null;
 
     /**
      * @param  ?array<string, mixed>  $body
      * @param  ?string  $description
-     * @param  \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null  $params
-     * @param  ?\formance\stack\Models\Ledger\V2QueryResource  $resource
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2QueryTemplateVar>  $vars
+     * @param  QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null  $params
+     * @param  ?V2QueryResource  $resource
+     * @param  ?array<string, V2QueryTemplateVar>  $vars
      * @phpstan-pure
      */
     public function __construct(?array $body = null, ?string $description = null, QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params = null, ?V2QueryResource $resource = null, ?array $vars = null)

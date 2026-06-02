@@ -7,31 +7,35 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2BulkElementRevertTransactionData
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public \Brick\Math\BigInteger $id;
+    #[SerializedName('id')]
+    public BigInteger $id;
 
     /**
      *
      * @var ?bool $atEffectiveDate
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('atEffectiveDate')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('atEffectiveDate')]
+    #[SkipWhenNull]
     public ?bool $atEffectiveDate = null;
 
     /**
      *
      * @var ?bool $force
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('force')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('force')]
+    #[SkipWhenNull]
     public ?bool $force = null;
 
     /**
@@ -39,19 +43,19 @@ class V2BulkElementRevertTransactionData
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  ?bool  $atEffectiveDate
      * @param  ?bool  $force
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, ?bool $atEffectiveDate = null, ?bool $force = null, ?array $metadata = null)
+    public function __construct(BigInteger $id, ?bool $atEffectiveDate = null, ?bool $force = null, ?array $metadata = null)
     {
         $this->id = $id;
         $this->atEffectiveDate = $atEffectiveDate;

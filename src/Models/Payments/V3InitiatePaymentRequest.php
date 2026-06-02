@@ -7,66 +7,70 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3InitiatePaymentRequest
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var \DateTime $scheduledAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduledAt')]
+    #[SerializedName('scheduledAt')]
     public \DateTime $scheduledAt;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum $type
+     * @var V3PaymentInitiationTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationTypeEnum')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentInitiationTypeEnum')]
     public V3PaymentInitiationTypeEnum $type;
 
     /**
      *
      * @var ?string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destinationAccountID')]
+    #[SkipWhenNull]
     public ?string $destinationAccountID = null;
 
     /**
@@ -74,33 +78,33 @@ class V3InitiatePaymentRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sourceAccountID')]
+    #[SkipWhenNull]
     public ?string $sourceAccountID = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  string  $description
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
-     * @param  \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum  $type
+     * @param  V3PaymentInitiationTypeEnum  $type
      * @param  ?string  $destinationAccountID
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $sourceAccountID
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, string $description, string $reference, \DateTime $scheduledAt, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?array $metadata = null, ?string $sourceAccountID = null)
+    public function __construct(BigInteger $amount, string $asset, string $connectorID, string $description, string $reference, \DateTime $scheduledAt, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?array $metadata = null, ?string $sourceAccountID = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

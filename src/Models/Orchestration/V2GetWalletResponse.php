@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2GetWalletResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2WalletWithBalances $data
+     * @var V2WalletWithBalances $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WalletWithBalances')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\V2WalletWithBalances')]
     public V2WalletWithBalances $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2WalletWithBalances  $data
+     * @param  V2WalletWithBalances  $data
      * @phpstan-pure
      */
     public function __construct(V2WalletWithBalances $data)

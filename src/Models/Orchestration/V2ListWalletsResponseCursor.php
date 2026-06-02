@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ListWalletsResponseCursor
@@ -14,45 +17,45 @@ class V2ListWalletsResponseCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Orchestration\V2Wallet> $data
+     * @var array<V2Wallet> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Wallet>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Orchestration\V2Wallet>')]
     public array $data;
 
     /**
      *
      * @var int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[SerializedName('pageSize')]
     public int $pageSize;
 
     /**
      *
      * @var ?bool $hasMore
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('hasMore')]
+    #[SkipWhenNull]
     public ?bool $hasMore = null;
 
     /**
      *
      * @var ?string $next
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('next')]
+    #[SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('previous')]
+    #[SkipWhenNull]
     public ?string $previous = null;
 
     /**
-     * @param  array<\formance\stack\Models\Orchestration\V2Wallet>  $data
+     * @param  array<V2Wallet>  $data
      * @param  int  $pageSize
      * @param  ?bool  $hasMore
      * @param  ?string  $next

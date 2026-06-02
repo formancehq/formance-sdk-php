@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3AdyenConfig
@@ -15,45 +17,45 @@ class V3AdyenConfig
      *
      * @var string $apiKey
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
+    #[SerializedName('apiKey')]
     public string $apiKey;
 
     /**
      *
      * @var string $companyID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('companyID')]
+    #[SerializedName('companyID')]
     public string $companyID;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?string $liveEndpointPrefix
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('liveEndpointPrefix')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('liveEndpointPrefix')]
+    #[SkipWhenNull]
     public ?string $liveEndpointPrefix = null;
 
     /**
      *
      * @var ?string $webhookPassword
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('webhookPassword')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('webhookPassword')]
+    #[SkipWhenNull]
     public ?string $webhookPassword = null;
 
     /**
      *
      * @var ?string $webhookUsername
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('webhookUsername')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('webhookUsername')]
+    #[SkipWhenNull]
     public ?string $webhookUsername = null;
 
     /**
@@ -61,24 +63,24 @@ class V3AdyenConfig
      * @var ?int $pageSize
      * @deprecated  field: From v3.1, this parameter will be ignored.
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $pollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pollingPeriod')]
+    #[SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ClientOptions
@@ -15,15 +18,15 @@ class ClientOptions
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('description')]
+    #[SkipWhenNull]
     public ?string $description = null;
 
     /**
@@ -31,17 +34,17 @@ class ClientOptions
      *
      * @var ?array<string> $postLogoutRedirectUris
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postLogoutRedirectUris')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $postLogoutRedirectUris = null;
 
     /**
      *
      * @var ?bool $public
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('public')]
+    #[SkipWhenNull]
     public ?bool $public = null;
 
     /**
@@ -49,9 +52,9 @@ class ClientOptions
      *
      * @var ?array<string> $redirectUris
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('redirectUris')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('redirectUris')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $redirectUris = null;
 
     /**
@@ -59,17 +62,17 @@ class ClientOptions
      *
      * @var ?array<string> $scopes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('scopes')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $scopes = null;
 
     /**
      *
      * @var ?bool $trusted
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('trusted')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('trusted')]
+    #[SkipWhenNull]
     public ?bool $trusted = null;
 
     /**
@@ -77,9 +80,9 @@ class ClientOptions
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**

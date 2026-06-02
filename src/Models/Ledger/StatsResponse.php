@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class StatsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\Stats $data
+     * @var Stats $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Stats')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\Stats')]
     public Stats $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\Stats  $data
+     * @param  Stats  $data
      * @phpstan-pure
      */
     public function __construct(Stats $data)

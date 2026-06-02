@@ -7,70 +7,73 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3Connector
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\Config $config
+     * @var Config $config
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Config')]
+    #[SerializedName('config')]
+    #[Type('\formance\stack\Models\Payments\Config')]
     public Config $config;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public string $provider;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var bool $scheduledForDeletion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduledForDeletion')]
+    #[SerializedName('scheduledForDeletion')]
     public bool $scheduledForDeletion;
 
     /**
      *
      * @var ?\DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('updatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $updatedAt = null;
 
     /**
-     * @param  \formance\stack\Models\Payments\Config  $config
+     * @param  Config  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name

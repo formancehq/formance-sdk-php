@@ -7,30 +7,33 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2TransactionsCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor $cursor
+     * @var V2TransactionsCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor')]
     public V2TransactionsCursorResponseCursor $cursor;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource $resource
+     * @var ?V2TransactionsCursorResponseResource $resource
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('resource')]
+    #[Type('\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource|null')]
+    #[SkipWhenNull]
     public ?V2TransactionsCursorResponseResource $resource = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2TransactionsCursorResponseCursor  $cursor
-     * @param  ?\formance\stack\Models\Ledger\V2TransactionsCursorResponseResource  $resource
+     * @param  V2TransactionsCursorResponseCursor  $cursor
+     * @param  ?V2TransactionsCursorResponseResource  $resource
      * @phpstan-pure
      */
     public function __construct(V2TransactionsCursorResponseCursor $cursor, ?V2TransactionsCursorResponseResource $resource = null)

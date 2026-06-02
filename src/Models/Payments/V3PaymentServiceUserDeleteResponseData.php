@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V3PaymentServiceUserDeleteResponseData
@@ -18,7 +19,7 @@ class V3PaymentServiceUserDeleteResponseData
      *
      * @var string $taskID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('taskID')]
+    #[SerializedName('taskID')]
     public string $taskID;
 
     /**

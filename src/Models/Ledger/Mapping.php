@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Mapping
@@ -14,14 +16,14 @@ class Mapping
     /**
      * $contracts
      *
-     * @var array<\formance\stack\Models\Ledger\Contract> $contracts
+     * @var array<Contract> $contracts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('contracts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Contract>')]
+    #[SerializedName('contracts')]
+    #[Type('array<\formance\stack\Models\Ledger\Contract>')]
     public array $contracts;
 
     /**
-     * @param  array<\formance\stack\Models\Ledger\Contract>  $contracts
+     * @param  array<Contract>  $contracts
      * @phpstan-pure
      */
     public function __construct(array $contracts)

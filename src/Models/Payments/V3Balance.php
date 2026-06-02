@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V3Balance
@@ -15,46 +17,46 @@ class V3Balance
      *
      * @var string $accountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
+    #[SerializedName('accountID')]
     public string $accountID;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $balance
+     * @var BigInteger $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    public \Brick\Math\BigInteger $balance;
+    #[SerializedName('balance')]
+    public BigInteger $balance;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var \DateTime $lastUpdatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lastUpdatedAt')]
+    #[SerializedName('lastUpdatedAt')]
     public \DateTime $lastUpdatedAt;
 
     /**
      * @param  string  $accountID
      * @param  string  $asset
-     * @param  \Brick\Math\BigInteger  $balance
+     * @param  BigInteger  $balance
      * @param  \DateTime  $createdAt
      * @param  \DateTime  $lastUpdatedAt
      * @phpstan-pure
      */
-    public function __construct(string $accountID, string $asset, \Brick\Math\BigInteger $balance, \DateTime $createdAt, \DateTime $lastUpdatedAt)
+    public function __construct(string $accountID, string $asset, BigInteger $balance, \DateTime $createdAt, \DateTime $lastUpdatedAt)
     {
         $this->accountID = $accountID;
         $this->asset = $asset;

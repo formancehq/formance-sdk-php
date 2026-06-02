@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class BankAccount
@@ -15,86 +18,86 @@ class BankAccount
      *
      * @var string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
+    #[SerializedName('country')]
     public string $country;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?string $accountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountID')]
+    #[SkipWhenNull]
     public ?string $accountID = null;
 
     /**
      *
      * @var ?string $accountNumber
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountNumber')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountNumber')]
+    #[SkipWhenNull]
     public ?string $accountNumber = null;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('connectorID')]
+    #[SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
      *
      * @var ?string $iban
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('iban')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('iban')]
+    #[SkipWhenNull]
     public ?string $iban = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**
      * $relatedAccounts
      *
-     * @var ?array<\formance\stack\Models\Payments\BankAccountRelatedAccounts> $relatedAccounts
+     * @var ?array<BankAccountRelatedAccounts> $relatedAccounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAccounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\BankAccountRelatedAccounts>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('relatedAccounts')]
+    #[Type('array<\formance\stack\Models\Payments\BankAccountRelatedAccounts>|null')]
+    #[SkipWhenNull]
     public ?array $relatedAccounts = null;
 
     /**
      *
      * @var ?string $swiftBicCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('swiftBicCode')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('swiftBicCode')]
+    #[SkipWhenNull]
     public ?string $swiftBicCode = null;
 
     /**
@@ -102,9 +105,9 @@ class BankAccount
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -117,7 +120,7 @@ class BankAccount
      * @param  ?string  $connectorID
      * @param  ?string  $iban
      * @param  ?string  $provider
-     * @param  ?array<\formance\stack\Models\Payments\BankAccountRelatedAccounts>  $relatedAccounts
+     * @param  ?array<BankAccountRelatedAccounts>  $relatedAccounts
      * @param  ?string  $swiftBicCode
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

@@ -7,38 +7,40 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class Volume
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $balance
+     * @var BigInteger $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    public \Brick\Math\BigInteger $balance;
+    #[SerializedName('balance')]
+    public BigInteger $balance;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $input
+     * @var BigInteger $input
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
-    public \Brick\Math\BigInteger $input;
+    #[SerializedName('input')]
+    public BigInteger $input;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $output
+     * @var BigInteger $output
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
-    public \Brick\Math\BigInteger $output;
+    #[SerializedName('output')]
+    public BigInteger $output;
 
     /**
-     * @param  \Brick\Math\BigInteger  $balance
-     * @param  \Brick\Math\BigInteger  $input
-     * @param  \Brick\Math\BigInteger  $output
+     * @param  BigInteger  $balance
+     * @param  BigInteger  $input
+     * @param  BigInteger  $output
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $balance, \Brick\Math\BigInteger $input, \Brick\Math\BigInteger $output)
+    public function __construct(BigInteger $balance, BigInteger $input, BigInteger $output)
     {
         $this->balance = $balance;
         $this->input = $input;

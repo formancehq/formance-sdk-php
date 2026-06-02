@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Client
@@ -15,22 +18,22 @@ class Client
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('description')]
+    #[SkipWhenNull]
     public ?string $description = null;
 
     /**
@@ -38,17 +41,17 @@ class Client
      *
      * @var ?array<string> $postLogoutRedirectUris
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postLogoutRedirectUris')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postLogoutRedirectUris')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $postLogoutRedirectUris = null;
 
     /**
      *
      * @var ?bool $public
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('public')]
+    #[SkipWhenNull]
     public ?bool $public = null;
 
     /**
@@ -56,9 +59,9 @@ class Client
      *
      * @var ?array<string> $redirectUris
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('redirectUris')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('redirectUris')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $redirectUris = null;
 
     /**
@@ -66,27 +69,27 @@ class Client
      *
      * @var ?array<string> $scopes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('scopes')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $scopes = null;
 
     /**
      * $secrets
      *
-     * @var ?array<\formance\stack\Models\Auth\ClientSecret> $secrets
+     * @var ?array<ClientSecret> $secrets
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secrets')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Auth\ClientSecret>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('secrets')]
+    #[Type('array<\formance\stack\Models\Auth\ClientSecret>|null')]
+    #[SkipWhenNull]
     public ?array $secrets = null;
 
     /**
      *
      * @var ?bool $trusted
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('trusted')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('trusted')]
+    #[SkipWhenNull]
     public ?bool $trusted = null;
 
     /**
@@ -94,9 +97,9 @@ class Client
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -107,7 +110,7 @@ class Client
      * @param  ?bool  $public
      * @param  ?array<string>  $redirectUris
      * @param  ?array<string>  $scopes
-     * @param  ?array<\formance\stack\Models\Auth\ClientSecret>  $secrets
+     * @param  ?array<ClientSecret>  $secrets
      * @param  ?bool  $trusted
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

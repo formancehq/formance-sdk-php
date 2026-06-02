@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3BankingbridgeConfig
@@ -15,35 +17,35 @@ class V3BankingbridgeConfig
      *
      * @var string $authEndpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('authEndpoint')]
+    #[SerializedName('authEndpoint')]
     public string $authEndpoint;
 
     /**
      *
      * @var string $clientID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('clientID')]
+    #[SerializedName('clientID')]
     public string $clientID;
 
     /**
      *
      * @var string $clientSecret
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('clientSecret')]
+    #[SerializedName('clientSecret')]
     public string $clientSecret;
 
     /**
      *
      * @var string $endpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
+    #[SerializedName('endpoint')]
     public string $endpoint;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -51,24 +53,24 @@ class V3BankingbridgeConfig
      * @var ?int $pageSize
      * @deprecated  field: From v3.1, this parameter will be ignored.
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $pollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pollingPeriod')]
+    #[SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**

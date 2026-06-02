@@ -9,33 +9,36 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 use formance\stack\Utils;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 class V3ErrorResponse
 {
     /**
      *
      * @var ?string $details
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('details')]
+    #[SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3ErrorsEnum $errorCode
+     * @var V3ErrorsEnum $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ErrorsEnum')]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Payments\V3ErrorsEnum')]
     public V3ErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3ErrorsEnum  $errorCode
+     * @param  V3ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure

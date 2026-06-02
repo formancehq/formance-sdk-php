@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use Brick\Math\BigInteger;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2GetTransactionRequest
 {
     /**
      * Transaction ID.
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public \Brick\Math\BigInteger $id;
+    public BigInteger $id;
 
     /**
      * Name of the ledger.
@@ -42,13 +43,13 @@ class V2GetTransactionRequest
     public ?\DateTime $pit = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $expand
      * @param  ?\DateTime  $pit
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
+    public function __construct(BigInteger $id, string $ledger, ?string $expand = null, ?\DateTime $pit = null)
     {
         $this->id = $id;
         $this->ledger = $ledger;

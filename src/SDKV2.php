@@ -9,8 +9,45 @@ declare(strict_types=1);
 namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
-use formance\stack\Models\Operations;
+use formance\stack\Models\Errors\SDKException;
+use formance\stack\Models\Operations\TestTriggerRequest;
+use formance\stack\Models\Operations\TestTriggerResponse;
+use formance\stack\Models\Operations\V2CancelEventRequest;
+use formance\stack\Models\Operations\V2CancelEventResponse;
+use formance\stack\Models\Operations\V2CreateTriggerResponse;
+use formance\stack\Models\Operations\V2CreateWorkflowResponse;
+use formance\stack\Models\Operations\V2DeleteTriggerRequest;
+use formance\stack\Models\Operations\V2DeleteTriggerResponse;
+use formance\stack\Models\Operations\V2DeleteWorkflowRequest;
+use formance\stack\Models\Operations\V2DeleteWorkflowResponse;
+use formance\stack\Models\Operations\V2GetInstanceHistoryRequest;
+use formance\stack\Models\Operations\V2GetInstanceHistoryResponse;
+use formance\stack\Models\Operations\V2GetInstanceRequest;
+use formance\stack\Models\Operations\V2GetInstanceResponse;
+use formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest;
+use formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse;
+use formance\stack\Models\Operations\V2GetServerInfoResponse;
+use formance\stack\Models\Operations\V2GetWorkflowRequest;
+use formance\stack\Models\Operations\V2GetWorkflowResponse;
+use formance\stack\Models\Operations\V2ListInstancesRequest;
+use formance\stack\Models\Operations\V2ListInstancesResponse;
+use formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest;
+use formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse;
+use formance\stack\Models\Operations\V2ListTriggersRequest;
+use formance\stack\Models\Operations\V2ListTriggersResponse;
+use formance\stack\Models\Operations\V2ListWorkflowsRequest;
+use formance\stack\Models\Operations\V2ListWorkflowsResponse;
+use formance\stack\Models\Operations\V2ReadTriggerRequest;
+use formance\stack\Models\Operations\V2ReadTriggerResponse;
+use formance\stack\Models\Operations\V2RunWorkflowRequest;
+use formance\stack\Models\Operations\V2RunWorkflowResponse;
+use formance\stack\Models\Operations\V2SendEventRequest;
+use formance\stack\Models\Operations\V2SendEventResponse;
+use formance\stack\Models\Orchestration\V2TriggerData;
+use formance\stack\Models\Orchestration\V2WorkflowConfig;
 use formance\stack\Utils\Options;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use Speakeasy\Serializer\DeserializationContext;
 
 class SDKV2
@@ -51,14 +88,14 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\TestTriggerRequest  $request
-     * @return \formance\stack\Models\Operations\TestTriggerResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  TestTriggerRequest  $request
+     * @return TestTriggerResponse
+     * @throws SDKException
      */
-    public function testTrigger(Operations\TestTriggerRequest $request, ?Options $options = null): Operations\TestTriggerResponse
+    public function testTrigger(TestTriggerRequest $request, ?Options $options = null): TestTriggerResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/test', Operations\TestTriggerRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/test', TestTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -67,7 +104,7 @@ class SDKV2
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -77,7 +114,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -96,7 +133,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2TestTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\TestTriggerResponse(
+                $response = new TestTriggerResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -104,7 +141,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -115,7 +152,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -127,19 +164,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2CancelEventRequest  $request
-     * @return \formance\stack\Models\Operations\V2CancelEventResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2CancelEventRequest  $request
+     * @return V2CancelEventResponse
+     * @throws SDKException
      */
-    public function cancelEvent(Operations\V2CancelEventRequest $request, ?Options $options = null): Operations\V2CancelEventResponse
+    public function cancelEvent(V2CancelEventRequest $request, ?Options $options = null): V2CancelEventResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/abort', Operations\V2CancelEventRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/abort', V2CancelEventRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $httpRequest = new Request('PUT', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -149,7 +186,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -164,7 +201,7 @@ class SDKV2
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\V2CancelEventResponse(
+            return new V2CancelEventResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -178,7 +215,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -190,11 +227,11 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Orchestration\V2TriggerData  $request
-     * @return \formance\stack\Models\Operations\V2CreateTriggerResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?V2TriggerData  $request
+     * @return V2CreateTriggerResponse
+     * @throws SDKException
      */
-    public function createTrigger(?\formance\stack\Models\Orchestration\V2TriggerData $request = null, ?Options $options = null): Operations\V2CreateTriggerResponse
+    public function createTrigger(?V2TriggerData $request = null, ?Options $options = null): V2CreateTriggerResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
@@ -206,7 +243,7 @@ class SDKV2
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -216,7 +253,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -235,7 +272,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2CreateTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2CreateTriggerResponse(
+                $response = new V2CreateTriggerResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -243,7 +280,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -254,7 +291,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -266,11 +303,11 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Orchestration\V2WorkflowConfig  $request
-     * @return \formance\stack\Models\Operations\V2CreateWorkflowResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?V2WorkflowConfig  $request
+     * @return V2CreateWorkflowResponse
+     * @throws SDKException
      */
-    public function createWorkflow(?\formance\stack\Models\Orchestration\V2WorkflowConfig $request = null, ?Options $options = null): Operations\V2CreateWorkflowResponse
+    public function createWorkflow(?V2WorkflowConfig $request = null, ?Options $options = null): V2CreateWorkflowResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
@@ -282,7 +319,7 @@ class SDKV2
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -292,7 +329,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -311,7 +348,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2CreateWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2CreateWorkflowResponse(
+                $response = new V2CreateWorkflowResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -319,7 +356,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -330,7 +367,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -342,19 +379,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2DeleteTriggerRequest  $request
-     * @return \formance\stack\Models\Operations\V2DeleteTriggerResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2DeleteTriggerRequest  $request
+     * @return V2DeleteTriggerResponse
+     * @throws SDKException
      */
-    public function deleteTrigger(Operations\V2DeleteTriggerRequest $request, ?Options $options = null): Operations\V2DeleteTriggerResponse
+    public function deleteTrigger(V2DeleteTriggerRequest $request, ?Options $options = null): V2DeleteTriggerResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', Operations\V2DeleteTriggerRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', V2DeleteTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $httpRequest = new Request('DELETE', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -364,7 +401,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -379,7 +416,7 @@ class SDKV2
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\V2DeleteTriggerResponse(
+            return new V2DeleteTriggerResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -393,7 +430,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -405,19 +442,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2DeleteWorkflowRequest  $request
-     * @return \formance\stack\Models\Operations\V2DeleteWorkflowResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2DeleteWorkflowRequest  $request
+     * @return V2DeleteWorkflowResponse
+     * @throws SDKException
      */
-    public function deleteWorkflow(Operations\V2DeleteWorkflowRequest $request, ?Options $options = null): Operations\V2DeleteWorkflowResponse
+    public function deleteWorkflow(V2DeleteWorkflowRequest $request, ?Options $options = null): V2DeleteWorkflowResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', Operations\V2DeleteWorkflowRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', V2DeleteWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $httpRequest = new Request('DELETE', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -427,7 +464,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -442,7 +479,7 @@ class SDKV2
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\V2DeleteWorkflowResponse(
+            return new V2DeleteWorkflowResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -456,7 +493,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -468,19 +505,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2GetInstanceRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetInstanceResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2GetInstanceRequest  $request
+     * @return V2GetInstanceResponse
+     * @throws SDKException
      */
-    public function getInstance(Operations\V2GetInstanceRequest $request, ?Options $options = null): Operations\V2GetInstanceResponse
+    public function getInstance(V2GetInstanceRequest $request, ?Options $options = null): V2GetInstanceResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}', Operations\V2GetInstanceRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}', V2GetInstanceRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -490,7 +527,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -509,7 +546,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2GetInstanceResponse(
+                $response = new V2GetInstanceResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -517,7 +554,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -528,7 +565,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -540,19 +577,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2GetInstanceHistoryRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetInstanceHistoryResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2GetInstanceHistoryRequest  $request
+     * @return V2GetInstanceHistoryResponse
+     * @throws SDKException
      */
-    public function getInstanceHistory(Operations\V2GetInstanceHistoryRequest $request, ?Options $options = null): Operations\V2GetInstanceHistoryResponse
+    public function getInstanceHistory(V2GetInstanceHistoryRequest $request, ?Options $options = null): V2GetInstanceHistoryResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/history', Operations\V2GetInstanceHistoryRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/history', V2GetInstanceHistoryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -562,7 +599,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -581,7 +618,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2GetInstanceHistoryResponse(
+                $response = new V2GetInstanceHistoryResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -589,7 +626,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -600,7 +637,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -612,19 +649,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2GetInstanceStageHistoryRequest  $request
+     * @return V2GetInstanceStageHistoryResponse
+     * @throws SDKException
      */
-    public function getInstanceStageHistory(Operations\V2GetInstanceStageHistoryRequest $request, ?Options $options = null): Operations\V2GetInstanceStageHistoryResponse
+    public function getInstanceStageHistory(V2GetInstanceStageHistoryRequest $request, ?Options $options = null): V2GetInstanceStageHistoryResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/stages/{number}/history', Operations\V2GetInstanceStageHistoryRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/stages/{number}/history', V2GetInstanceStageHistoryRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -634,7 +671,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -653,7 +690,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2GetInstanceStageHistoryResponse(
+                $response = new V2GetInstanceStageHistoryResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -661,7 +698,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -672,7 +709,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -682,10 +719,10 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\V2GetServerInfoResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return V2GetServerInfoResponse
+     * @throws SDKException
      */
-    public function getServerInfo(?Options $options = null): Operations\V2GetServerInfoResponse
+    public function getServerInfo(?Options $options = null): V2GetServerInfoResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/_info');
@@ -693,7 +730,7 @@ class SDKV2
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -703,7 +740,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -722,7 +759,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2GetServerInfoResponse(
+                $response = new V2GetServerInfoResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -730,7 +767,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -741,7 +778,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -753,19 +790,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2GetWorkflowRequest  $request
-     * @return \formance\stack\Models\Operations\V2GetWorkflowResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2GetWorkflowRequest  $request
+     * @return V2GetWorkflowResponse
+     * @throws SDKException
      */
-    public function getWorkflow(Operations\V2GetWorkflowRequest $request, ?Options $options = null): Operations\V2GetWorkflowResponse
+    public function getWorkflow(V2GetWorkflowRequest $request, ?Options $options = null): V2GetWorkflowResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', Operations\V2GetWorkflowRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{flowId}', V2GetWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -775,7 +812,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -794,7 +831,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2GetWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2GetWorkflowResponse(
+                $response = new V2GetWorkflowResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -802,7 +839,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -813,7 +850,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -825,21 +862,21 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\V2ListInstancesRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListInstancesResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?V2ListInstancesRequest  $request
+     * @return V2ListInstancesResponse
+     * @throws SDKException
      */
-    public function listInstances(?Operations\V2ListInstancesRequest $request = null, ?Options $options = null): Operations\V2ListInstancesResponse
+    public function listInstances(?V2ListInstancesRequest $request = null, ?Options $options = null): V2ListInstancesResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\V2ListInstancesRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(V2ListInstancesRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -850,7 +887,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -869,7 +906,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListRunsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2ListInstancesResponse(
+                $response = new V2ListInstancesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -877,7 +914,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -888,7 +925,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -900,21 +937,21 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\V2ListTriggersRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListTriggersResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?V2ListTriggersRequest  $request
+     * @return V2ListTriggersResponse
+     * @throws SDKException
      */
-    public function listTriggers(?Operations\V2ListTriggersRequest $request = null, ?Options $options = null): Operations\V2ListTriggersResponse
+    public function listTriggers(?V2ListTriggersRequest $request = null, ?Options $options = null): V2ListTriggersResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\V2ListTriggersRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(V2ListTriggersRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -925,7 +962,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -944,7 +981,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListTriggersResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2ListTriggersResponse(
+                $response = new V2ListTriggersResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -952,7 +989,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -963,7 +1000,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -975,21 +1012,21 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2ListTriggersOccurrencesRequest  $request
+     * @return V2ListTriggersOccurrencesResponse
+     * @throws SDKException
      */
-    public function listTriggersOccurrences(Operations\V2ListTriggersOccurrencesRequest $request, ?Options $options = null): Operations\V2ListTriggersOccurrencesResponse
+    public function listTriggersOccurrences(V2ListTriggersOccurrencesRequest $request, ?Options $options = null): V2ListTriggersOccurrencesResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/occurrences', Operations\V2ListTriggersOccurrencesRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}/occurrences', V2ListTriggersOccurrencesRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\V2ListTriggersOccurrencesRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(V2ListTriggersOccurrencesRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1000,7 +1037,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1019,7 +1056,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListTriggersOccurrencesResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2ListTriggersOccurrencesResponse(
+                $response = new V2ListTriggersOccurrencesResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -1027,7 +1064,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -1038,7 +1075,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -1050,21 +1087,21 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Operations\V2ListWorkflowsRequest  $request
-     * @return \formance\stack\Models\Operations\V2ListWorkflowsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?V2ListWorkflowsRequest  $request
+     * @return V2ListWorkflowsResponse
+     * @throws SDKException
      */
-    public function listWorkflows(?Operations\V2ListWorkflowsRequest $request = null, ?Options $options = null): Operations\V2ListWorkflowsResponse
+    public function listWorkflows(?V2ListWorkflowsRequest $request = null, ?Options $options = null): V2ListWorkflowsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\V2ListWorkflowsRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(V2ListWorkflowsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1075,7 +1112,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1094,7 +1131,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ListWorkflowsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2ListWorkflowsResponse(
+                $response = new V2ListWorkflowsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -1102,7 +1139,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -1113,7 +1150,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -1125,19 +1162,19 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2ReadTriggerRequest  $request
-     * @return \formance\stack\Models\Operations\V2ReadTriggerResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2ReadTriggerRequest  $request
+     * @return V2ReadTriggerResponse
+     * @throws SDKException
      */
-    public function readTrigger(Operations\V2ReadTriggerRequest $request, ?Options $options = null): Operations\V2ReadTriggerResponse
+    public function readTrigger(V2ReadTriggerRequest $request, ?Options $options = null): V2ReadTriggerResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', Operations\V2ReadTriggerRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers/{triggerID}', V2ReadTriggerRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1147,7 +1184,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1166,7 +1203,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2ReadTriggerResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2ReadTriggerResponse(
+                $response = new V2ReadTriggerResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -1174,7 +1211,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -1185,7 +1222,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -1197,14 +1234,14 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2RunWorkflowRequest  $request
-     * @return \formance\stack\Models\Operations\V2RunWorkflowResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2RunWorkflowRequest  $request
+     * @return V2RunWorkflowResponse
+     * @throws SDKException
      */
-    public function runWorkflow(Operations\V2RunWorkflowRequest $request, ?Options $options = null): Operations\V2RunWorkflowResponse
+    public function runWorkflow(V2RunWorkflowRequest $request, ?Options $options = null): V2RunWorkflowResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{workflowID}/instances', Operations\V2RunWorkflowRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/workflows/{workflowID}/instances', V2RunWorkflowRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -1212,10 +1249,10 @@ class SDKV2
             $httpOptions = array_merge_recursive($httpOptions, $body);
         }
 
-        $qp = Utils\Utils::getQueryParams(Operations\V2RunWorkflowRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(V2RunWorkflowRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1226,7 +1263,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1245,7 +1282,7 @@ class SDKV2
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2RunWorkflowResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\V2RunWorkflowResponse(
+                $response = new V2RunWorkflowResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -1253,7 +1290,7 @@ class SDKV2
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -1264,7 +1301,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }
@@ -1276,14 +1313,14 @@ class SDKV2
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\V2SendEventRequest  $request
-     * @return \formance\stack\Models\Operations\V2SendEventResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  V2SendEventRequest  $request
+     * @return V2SendEventResponse
+     * @throws SDKException
      */
-    public function sendEvent(Operations\V2SendEventRequest $request, ?Options $options = null): Operations\V2SendEventResponse
+    public function sendEvent(V2SendEventRequest $request, ?Options $options = null): V2SendEventResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/events', Operations\V2SendEventRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/instances/{instanceID}/events', V2SendEventRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -1292,7 +1329,7 @@ class SDKV2
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -1302,7 +1339,7 @@ class SDKV2
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -1317,7 +1354,7 @@ class SDKV2
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\V2SendEventResponse(
+            return new V2SendEventResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
@@ -1331,7 +1368,7 @@ class SDKV2
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Orchestration\V2Error', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         }
     }

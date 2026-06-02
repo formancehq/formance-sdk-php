@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2SchemaData - Schema data structure for ledger schemas */
@@ -15,36 +18,36 @@ class V2SchemaData
     /**
      * Chart of account
      *
-     * @var array<string, \formance\stack\Models\Ledger\V2ChartSegment> $chart
+     * @var array<string, V2ChartSegment> $chart
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('chart')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2ChartSegment>')]
+    #[SerializedName('chart')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2ChartSegment>')]
     public array $chart;
 
     /**
      * Query templates
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2QueryTemplate> $queries
+     * @var ?array<string, V2QueryTemplate> $queries
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('queries')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2QueryTemplate>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('queries')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2QueryTemplate>|null')]
+    #[SkipWhenNull]
     public ?array $queries = null;
 
     /**
      * Transaction templates
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2TransactionTemplate> $transactions
+     * @var ?array<string, V2TransactionTemplate> $transactions
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2TransactionTemplate>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('transactions')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2TransactionTemplate>|null')]
+    #[SkipWhenNull]
     public ?array $transactions = null;
 
     /**
-     * @param  array<string, \formance\stack\Models\Ledger\V2ChartSegment>  $chart
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2QueryTemplate>  $queries
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2TransactionTemplate>  $transactions
+     * @param  array<string, V2ChartSegment>  $chart
+     * @param  ?array<string, V2QueryTemplate>  $queries
+     * @param  ?array<string, V2TransactionTemplate>  $transactions
      * @phpstan-pure
      */
     public function __construct(array $chart, ?array $queries = null, ?array $transactions = null)

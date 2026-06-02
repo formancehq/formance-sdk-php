@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentInitiationsCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentInitiationsCursorResponseCursor $cursor
+     * @var V3PaymentInitiationsCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationsCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentInitiationsCursorResponseCursor')]
     public V3PaymentInitiationsCursorResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3PaymentInitiationsCursorResponseCursor  $cursor
+     * @param  V3PaymentInitiationsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V3PaymentInitiationsCursorResponseCursor $cursor)

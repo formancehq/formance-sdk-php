@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class AssetHolder
@@ -14,14 +17,14 @@ class AssetHolder
     /**
      * $assets
      *
-     * @var array<string, \Brick\Math\BigInteger> $assets
+     * @var array<string, BigInteger> $assets
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assets')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('assets')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $assets;
 
     /**
-     * @param  array<string, \Brick\Math\BigInteger>  $assets
+     * @param  array<string, BigInteger>  $assets
      * @phpstan-pure
      */
     public function __construct(array $assets)

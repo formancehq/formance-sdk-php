@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3GetConversionResponse
@@ -20,14 +22,14 @@ class V3GetConversionResponse
      * Formance records the final state only.
      *
      *
-     * @var \formance\stack\Models\Payments\V3Conversion $data
+     * @var V3Conversion $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Conversion')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3Conversion')]
     public V3Conversion $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3Conversion  $data
+     * @param  V3Conversion  $data
      * @phpstan-pure
      */
     public function __construct(V3Conversion $data)

@@ -8,13 +8,14 @@
 declare(strict_types=1);
 
 namespace formance\stack\Hooks;
+use GuzzleHttp\ClientInterface;
 
 class SDKRequestContext
 {
     public string $url;
-    public \GuzzleHttp\ClientInterface $client;
+    public ClientInterface $client;
 
-    public function __construct(string $url, \GuzzleHttp\ClientInterface $client)
+    public function __construct(string $url, ClientInterface $client)
     {
         $this->url = $url;
         $this->client = $client;

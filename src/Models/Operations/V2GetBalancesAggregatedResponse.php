@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\V2AggregateBalancesResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2GetBalancesAggregatedResponse
@@ -28,25 +30,25 @@ class V2GetBalancesAggregatedResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\V2AggregateBalancesResponse $v2AggregateBalancesResponse
+     * @var ?V2AggregateBalancesResponse $v2AggregateBalancesResponse
      */
-    public ?\formance\stack\Models\Ledger\V2AggregateBalancesResponse $v2AggregateBalancesResponse = null;
+    public ?V2AggregateBalancesResponse $v2AggregateBalancesResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\V2AggregateBalancesResponse  $v2AggregateBalancesResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2AggregateBalancesResponse  $v2AggregateBalancesResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2AggregateBalancesResponse $v2AggregateBalancesResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2AggregateBalancesResponse $v2AggregateBalancesResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

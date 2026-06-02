@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentServiceUserConnection
@@ -15,44 +18,44 @@ class V3PaymentServiceUserConnection
      *
      * @var string $connectionID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectionID')]
+    #[SerializedName('connectionID')]
     public string $connectionID;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var \DateTime $dataUpdatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('dataUpdatedAt')]
+    #[SerializedName('dataUpdatedAt')]
     public \DateTime $dataUpdatedAt;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3ConnectionStatusEnum $status
+     * @var V3ConnectionStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConnectionStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3ConnectionStatusEnum')]
     public V3ConnectionStatusEnum $status;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -60,9 +63,9 @@ class V3PaymentServiceUserConnection
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -70,7 +73,7 @@ class V3PaymentServiceUserConnection
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  \DateTime  $dataUpdatedAt
-     * @param  \formance\stack\Models\Payments\V3ConnectionStatusEnum  $status
+     * @param  V3ConnectionStatusEnum  $status
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

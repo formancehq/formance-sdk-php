@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class PoolBalances
@@ -14,14 +16,14 @@ class PoolBalances
     /**
      * $balances
      *
-     * @var array<\formance\stack\Models\Payments\PoolBalance> $balances
+     * @var array<PoolBalance> $balances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\PoolBalance>')]
+    #[SerializedName('balances')]
+    #[Type('array<\formance\stack\Models\Payments\PoolBalance>')]
     public array $balances;
 
     /**
-     * @param  array<\formance\stack\Models\Payments\PoolBalance>  $balances
+     * @param  array<PoolBalance>  $balances
      * @phpstan-pure
      */
     public function __construct(array $balances)

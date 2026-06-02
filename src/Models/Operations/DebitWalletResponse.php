@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use Psr\Http\Message\ResponseInterface;
 
 
 class DebitWalletResponse
@@ -28,9 +29,9 @@ class DebitWalletResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Wallet successfully debited as a pending hold
@@ -42,11 +43,11 @@ class DebitWalletResponse
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ResponseInterface  $rawResponse
      * @param  ?\formance\stack\Models\Wallets\DebitWalletResponse  $debitWalletResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Wallets\DebitWalletResponse $debitWalletResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?\formance\stack\Models\Wallets\DebitWalletResponse $debitWalletResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

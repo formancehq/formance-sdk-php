@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TaskMoneycorp
@@ -15,72 +18,72 @@ class TaskMoneycorp
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\TaskMoneycorpDescriptor $descriptor
+     * @var TaskMoneycorpDescriptor $descriptor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('descriptor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TaskMoneycorpDescriptor')]
+    #[SerializedName('descriptor')]
+    #[Type('\formance\stack\Models\Payments\TaskMoneycorpDescriptor')]
     public TaskMoneycorpDescriptor $descriptor;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\TaskStatus $status
+     * @var TaskStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TaskStatus')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\TaskStatus')]
     public TaskStatus $status;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\TaskMoneycorpState $state
+     * @var ?TaskMoneycorpState $state
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TaskMoneycorpState|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('state')]
+    #[Type('\formance\stack\Models\Payments\TaskMoneycorpState|null')]
+    #[SkipWhenNull]
     public ?TaskMoneycorpState $state = null;
 
     /**
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
-     * @param  \formance\stack\Models\Payments\TaskMoneycorpDescriptor  $descriptor
+     * @param  TaskMoneycorpDescriptor  $descriptor
      * @param  string  $id
-     * @param  \formance\stack\Models\Payments\TaskStatus  $status
+     * @param  TaskStatus  $status
      * @param  \DateTime  $updatedAt
      * @param  ?string  $error
-     * @param  ?\formance\stack\Models\Payments\TaskMoneycorpState  $state
+     * @param  ?TaskMoneycorpState  $state
      * @phpstan-pure
      */
     public function __construct(string $connectorID, \DateTime $createdAt, TaskMoneycorpDescriptor $descriptor, string $id, TaskStatus $status, \DateTime $updatedAt, ?string $error = null, ?TaskMoneycorpState $state = null)

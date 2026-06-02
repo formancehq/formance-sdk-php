@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Script
@@ -15,7 +18,7 @@ class Script
      *
      * @var string $plain
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('plain')]
+    #[SerializedName('plain')]
     public string $plain;
 
     /**
@@ -23,8 +26,8 @@ class Script
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -32,9 +35,9 @@ class Script
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('vars')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $vars = null;
 
     /**
@@ -42,9 +45,9 @@ class Script
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**

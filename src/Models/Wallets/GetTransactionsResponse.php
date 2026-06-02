@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class GetTransactionsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\GetTransactionsResponseCursor $cursor
+     * @var GetTransactionsResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\GetTransactionsResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Wallets\GetTransactionsResponseCursor')]
     public GetTransactionsResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Wallets\GetTransactionsResponseCursor  $cursor
+     * @param  GetTransactionsResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(GetTransactionsResponseCursor $cursor)

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class PaymentAdjustment
@@ -15,48 +18,48 @@ class PaymentAdjustment
      *
      * @var bool $absolute
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('absolute')]
+    #[SerializedName('absolute')]
     public bool $absolute;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var \DateTime $date
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
+    #[SerializedName('date')]
     public \DateTime $date;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\PaymentAdjustmentRaw $raw
+     * @var PaymentAdjustmentRaw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PaymentAdjustmentRaw')]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Orchestration\PaymentAdjustmentRaw')]
     public PaymentAdjustmentRaw $raw;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\PaymentStatus $status
+     * @var PaymentStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PaymentStatus')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Orchestration\PaymentStatus')]
     public PaymentStatus $status;
 
     /**
      * @param  bool  $absolute
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  \DateTime  $date
-     * @param  \formance\stack\Models\Orchestration\PaymentAdjustmentRaw  $raw
-     * @param  \formance\stack\Models\Orchestration\PaymentStatus  $status
+     * @param  PaymentAdjustmentRaw  $raw
+     * @param  PaymentStatus  $status
      * @phpstan-pure
      */
-    public function __construct(bool $absolute, \Brick\Math\BigInteger $amount, \DateTime $date, PaymentAdjustmentRaw $raw, PaymentStatus $status)
+    public function __construct(bool $absolute, BigInteger $amount, \DateTime $date, PaymentAdjustmentRaw $raw, PaymentStatus $status)
     {
         $this->absolute = $absolute;
         $this->amount = $amount;

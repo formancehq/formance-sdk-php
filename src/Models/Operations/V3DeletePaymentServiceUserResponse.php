@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3DeletePaymentServiceUserResponse
@@ -28,25 +30,25 @@ class V3DeletePaymentServiceUserResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Accepted
      *
-     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse
+     * @var ?V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse
      */
-    public ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null;
+    public ?V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse  $v3PaymentServiceUserDeleteResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3PaymentServiceUserDeleteResponse  $v3PaymentServiceUserDeleteResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3PaymentServiceUserDeleteResponse $v3PaymentServiceUserDeleteResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

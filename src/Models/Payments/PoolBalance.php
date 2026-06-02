@@ -7,22 +7,26 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class PoolBalance
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
@@ -30,18 +34,18 @@ class PoolBalance
      *
      * @var ?array<string> $relatedAccounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAccounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('relatedAccounts')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $relatedAccounts = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @param  ?array<string>  $relatedAccounts
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, ?array $relatedAccounts = null)
+    public function __construct(BigInteger $amount, string $asset, ?array $relatedAccounts = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

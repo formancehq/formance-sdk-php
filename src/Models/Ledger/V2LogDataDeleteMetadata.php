@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2LogDataDeleteMetadata - Payload for DELETE_METADATA log entries. Contains the target entity and the metadata key that was deleted. */
@@ -17,33 +20,33 @@ class V2LogDataDeleteMetadata
      *
      * @var string $key
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
+    #[SerializedName('key')]
     public string $key;
 
     /**
      *
-     * @var string|\Brick\Math\BigInteger $targetId
+     * @var string|BigInteger $targetId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('targetId')]
-    #[\Speakeasy\Serializer\Annotation\Type('string|\Brick\Math\BigInteger')]
-    public string|\Brick\Math\BigInteger $targetId;
+    #[SerializedName('targetId')]
+    #[Type('string|\Brick\Math\BigInteger')]
+    public string|BigInteger $targetId;
 
     /**
      * Type of the target entity
      *
-     * @var \formance\stack\Models\Ledger\TargetType $targetType
+     * @var TargetType $targetType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('targetType')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\TargetType')]
+    #[SerializedName('targetType')]
+    #[Type('\formance\stack\Models\Ledger\TargetType')]
     public TargetType $targetType;
 
     /**
      * @param  string  $key
-     * @param  string|\Brick\Math\BigInteger  $targetId
-     * @param  \formance\stack\Models\Ledger\TargetType  $targetType
+     * @param  string|BigInteger  $targetId
+     * @param  TargetType  $targetType
      * @phpstan-pure
      */
-    public function __construct(string $key, string|\Brick\Math\BigInteger $targetId, TargetType $targetType)
+    public function __construct(string $key, string|BigInteger $targetId, TargetType $targetType)
     {
         $this->key = $key;
         $this->targetId = $targetId;

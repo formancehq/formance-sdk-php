@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\ScriptResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class RunScriptResponse
@@ -28,9 +30,9 @@ class RunScriptResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.
@@ -45,18 +47,18 @@ class RunScriptResponse
      *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
      *
      *
-     * @var ?\formance\stack\Models\Ledger\ScriptResponse $scriptResponse
+     * @var ?ScriptResponse $scriptResponse
      */
-    public ?\formance\stack\Models\Ledger\ScriptResponse $scriptResponse = null;
+    public ?ScriptResponse $scriptResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\ScriptResponse  $scriptResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?ScriptResponse  $scriptResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\ScriptResponse $scriptResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?ScriptResponse $scriptResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

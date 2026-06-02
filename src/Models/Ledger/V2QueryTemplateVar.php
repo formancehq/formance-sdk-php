@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2QueryTemplateVar
@@ -15,16 +18,16 @@ class V2QueryTemplateVar
      *
      * @var string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[SerializedName('type')]
     public string $type;
 
     /**
      *
      * @var mixed $default
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('default')]
-    #[\Speakeasy\Serializer\Annotation\Type('mixed')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('default')]
+    #[Type('mixed')]
+    #[SkipWhenNull]
     public mixed $default = null;
 
     /**

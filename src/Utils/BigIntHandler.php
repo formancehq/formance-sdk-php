@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
+use Brick\Math\BigInteger;
 use Speakeasy\Serializer\Context;
 use Speakeasy\Serializer\GraphNavigator;
 use Speakeasy\Serializer\Handler\SubscribingHandlerInterface;
@@ -48,7 +49,7 @@ class BigIntHandler implements SubscribingHandlerInterface
     }
 
     /** @phpstan-ignore-next-line */
-    public function serialize(JsonSerializationVisitor $visitor, \Brick\Math\BigInteger|string $any, array $type, Context $context): string|int
+    public function serialize(JsonSerializationVisitor $visitor, BigInteger|string $any, array $type, Context $context): string|int
     {
         if (gettype($any) == 'string') {
             return $any;
@@ -60,6 +61,6 @@ class BigIntHandler implements SubscribingHandlerInterface
     /** @phpstan-ignore-next-line */
     public function deserialize(JsonDeserializationVisitor $visitor, string|int $data, array $type, Context $context): mixed
     {
-        return \Brick\Math\BigInteger::of((string) $data);
+        return BigInteger::of((string) $data);
     }
 }

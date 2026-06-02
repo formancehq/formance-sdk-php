@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Storage
@@ -14,15 +17,15 @@ class Storage
     /**
      * $migrations
      *
-     * @var ?array<\formance\stack\Models\Ledger\MigrationInfo> $migrations
+     * @var ?array<MigrationInfo> $migrations
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('migrations')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\MigrationInfo>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('migrations')]
+    #[Type('array<\formance\stack\Models\Ledger\MigrationInfo>|null')]
+    #[SkipWhenNull]
     public ?array $migrations = null;
 
     /**
-     * @param  ?array<\formance\stack\Models\Ledger\MigrationInfo>  $migrations
+     * @param  ?array<MigrationInfo>  $migrations
      * @phpstan-pure
      */
     public function __construct(?array $migrations = null)

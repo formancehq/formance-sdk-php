@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class StageSendSourcePayment
@@ -15,7 +17,7 @@ class StageSendSourcePayment
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -26,8 +28,8 @@ class StageSendSourcePayment
      *
      * @var ?string $holdingAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('holdingAccount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('holdingAccount')]
+    #[SkipWhenNull]
     public ?string $holdingAccount = null;
 
     /**
@@ -38,8 +40,8 @@ class StageSendSourcePayment
      *
      * @var ?string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ledger')]
+    #[SkipWhenNull]
     public ?string $ledger = null;
 
     /**
@@ -50,8 +52,8 @@ class StageSendSourcePayment
      *
      * @var ?bool $allowOverdraft
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('allowOverdraft')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('allowOverdraft')]
+    #[SkipWhenNull]
     public ?bool $allowOverdraft = null;
 
     /**
@@ -62,8 +64,8 @@ class StageSendSourcePayment
      *
      * @var ?string $throughAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('throughAccount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('throughAccount')]
+    #[SkipWhenNull]
     public ?string $throughAccount = null;
 
     /**

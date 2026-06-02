@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3PaymentServiceUserUpdateLinkRequest
@@ -15,7 +17,7 @@ class V3PaymentServiceUserUpdateLinkRequest
      *
      * @var string $clientRedirectURL
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('clientRedirectURL')]
+    #[SerializedName('clientRedirectURL')]
     public string $clientRedirectURL;
 
     /**
@@ -23,8 +25,8 @@ class V3PaymentServiceUserUpdateLinkRequest
      *
      * @var ?string $applicationName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('applicationName')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('applicationName')]
+    #[SkipWhenNull]
     public ?string $applicationName = null;
 
     /**

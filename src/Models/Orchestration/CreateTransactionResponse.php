@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class CreateTransactionResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\Transaction $data
+     * @var Transaction $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Transaction')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\Transaction')]
     public Transaction $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\Transaction  $data
+     * @param  Transaction  $data
      * @phpstan-pure
      */
     public function __construct(Transaction $data)

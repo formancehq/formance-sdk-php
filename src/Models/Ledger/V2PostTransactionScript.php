@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2PostTransactionScript
@@ -15,16 +18,16 @@ class V2PostTransactionScript
      *
      * @var ?string $plain
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('plain')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('plain')]
+    #[SkipWhenNull]
     public ?string $plain = null;
 
     /**
      *
      * @var ?string $template
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('template')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('template')]
+    #[SkipWhenNull]
     public ?string $template = null;
 
     /**
@@ -32,9 +35,9 @@ class V2PostTransactionScript
      *
      * @var ?array<string, string> $vars
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('vars')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $vars = null;
 
     /**
