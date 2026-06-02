@@ -13,18 +13,18 @@ class V2GetLedgerResponse
 {
     /**
      *
-     * @var V2Ledger $v2Ledger
+     * @var \formance\stack\Models\Ledger\V2Ledger $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Ledger')]
-    public V2Ledger $v2Ledger;
+    public V2Ledger $data;
 
     /**
-     * @param  V2Ledger  $v2Ledger
+     * @param  \formance\stack\Models\Ledger\V2Ledger  $data
      * @phpstan-pure
      */
-    public function __construct(V2Ledger $v2Ledger)
+    public function __construct(V2Ledger $data)
     {
-        $this->v2Ledger = $v2Ledger;
+        $this->data = $data;
     }
 }

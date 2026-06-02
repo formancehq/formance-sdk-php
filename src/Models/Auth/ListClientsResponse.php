@@ -14,15 +14,15 @@ class ListClientsResponse
     /**
      * $data
      *
-     * @var ?array<ClientOptions> $data
+     * @var ?array<\formance\stack\Models\Auth\Client> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Auth\ClientOptions>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Auth\Client>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $data = null;
 
     /**
-     * @param  ?array<ClientOptions>  $data
+     * @param  ?array<\formance\stack\Models\Auth\Client>  $data
      * @phpstan-pure
      */
     public function __construct(?array $data = null)

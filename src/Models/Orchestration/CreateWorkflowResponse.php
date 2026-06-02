@@ -13,18 +13,18 @@ class CreateWorkflowResponse
 {
     /**
      *
-     * @var Workflow $workflow
+     * @var \formance\stack\Models\Orchestration\Workflow $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Workflow')]
-    public Workflow $workflow;
+    public Workflow $data;
 
     /**
-     * @param  Workflow  $workflow
+     * @param  \formance\stack\Models\Orchestration\Workflow  $data
      * @phpstan-pure
      */
-    public function __construct(Workflow $workflow)
+    public function __construct(Workflow $data)
     {
-        $this->workflow = $workflow;
+        $this->data = $data;
     }
 }

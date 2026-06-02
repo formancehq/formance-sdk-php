@@ -13,17 +13,17 @@ class V3AccountsCursorResponse
 {
     /**
      *
-     * @var Cursor $cursor
+     * @var \formance\stack\Models\Payments\V3AccountsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Cursor')]
-    public Cursor $cursor;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountsCursorResponseCursor')]
+    public V3AccountsCursorResponseCursor $cursor;
 
     /**
-     * @param  Cursor  $cursor
+     * @param  \formance\stack\Models\Payments\V3AccountsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(Cursor $cursor)
+    public function __construct(V3AccountsCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

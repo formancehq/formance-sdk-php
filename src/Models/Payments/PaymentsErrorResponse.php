@@ -14,11 +14,11 @@ class PaymentsErrorResponse
 {
     /**
      *
-     * @var PaymentsErrorsEnum $paymentsErrorsEnum
+     * @var \formance\stack\Models\Payments\PaymentsErrorsEnum $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentsErrorsEnum')]
-    public PaymentsErrorsEnum $paymentsErrorsEnum;
+    public PaymentsErrorsEnum $errorCode;
 
     /**
      *
@@ -28,13 +28,13 @@ class PaymentsErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  PaymentsErrorsEnum  $paymentsErrorsEnum
+     * @param  \formance\stack\Models\Payments\PaymentsErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @phpstan-pure
      */
-    public function __construct(PaymentsErrorsEnum $paymentsErrorsEnum, string $errorMessage)
+    public function __construct(PaymentsErrorsEnum $errorCode, string $errorMessage)
     {
-        $this->paymentsErrorsEnum = $paymentsErrorsEnum;
+        $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
     }
 

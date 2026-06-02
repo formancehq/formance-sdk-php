@@ -19,16 +19,6 @@ class V2TransactionTemplate
     public string $script;
 
     /**
-     * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
-     *
-     * @var ?Runtime $runtime
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Runtime|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Runtime $runtime = null;
-
-    /**
      *
      * @var ?string $description
      */
@@ -37,15 +27,25 @@ class V2TransactionTemplate
     public ?string $description = null;
 
     /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
+     *
+     * @var ?\formance\stack\Models\Ledger\Runtime $runtime
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Runtime|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Runtime $runtime = null;
+
+    /**
      * @param  string  $script
-     * @param  ?Runtime  $runtime
      * @param  ?string  $description
+     * @param  ?\formance\stack\Models\Ledger\Runtime  $runtime
      * @phpstan-pure
      */
-    public function __construct(string $script, ?Runtime $runtime = null, ?string $description = null)
+    public function __construct(string $script, ?string $description = null, ?Runtime $runtime = null)
     {
         $this->script = $script;
-        $this->runtime = $runtime;
         $this->description = $description;
+        $this->runtime = $runtime;
     }
 }

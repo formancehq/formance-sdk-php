@@ -12,20 +12,20 @@ namespace formance\stack\Models\Payments;
 class UpdateBankAccountMetadataRequest
 {
     /**
-     * $bankAccountMetadata
+     * $metadata
      *
-     * @var ?array<string, string> $bankAccountMetadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    public ?array $bankAccountMetadata;
+    public ?array $metadata;
 
     /**
-     * @param  ?array<string, string>  $bankAccountMetadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(?array $bankAccountMetadata = null)
+    public function __construct(?array $metadata = null)
     {
-        $this->bankAccountMetadata = $bankAccountMetadata;
+        $this->metadata = $metadata;
     }
 }

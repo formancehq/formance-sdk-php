@@ -49,8 +49,10 @@ class SDKV2
      *
      * Test trigger
      *
-     * @param  Operations\TestTriggerRequest  $request
-     * @return Operations\TestTriggerResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\TestTriggerRequest  $request
+     * @return \formance\stack\Models\Operations\TestTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function testTrigger(Operations\TestTriggerRequest $request, ?Options $options = null): Operations\TestTriggerResponse
@@ -66,23 +68,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'testTrigger', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -119,8 +125,10 @@ class SDKV2
      *
      * Cancel a running workflow
      *
-     * @param  Operations\V2CancelEventRequest  $request
-     * @return Operations\V2CancelEventResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2CancelEventRequest  $request
+     * @return \formance\stack\Models\Operations\V2CancelEventResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function cancelEvent(Operations\V2CancelEventRequest $request, ?Options $options = null): Operations\V2CancelEventResponse
@@ -132,23 +140,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CancelEvent', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -176,11 +188,13 @@ class SDKV2
      *
      * Create trigger
      *
-     * @param  ?\formance\stack\Models\Orchestration\V2TriggerData1  $request
-     * @return Operations\V2CreateTriggerResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Orchestration\V2TriggerData  $request
+     * @return \formance\stack\Models\Operations\V2CreateTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
-    public function createTrigger(?\formance\stack\Models\Orchestration\V2TriggerData1 $request = null, ?Options $options = null): Operations\V2CreateTriggerResponse
+    public function createTrigger(?\formance\stack\Models\Orchestration\V2TriggerData $request = null, ?Options $options = null): Operations\V2CreateTriggerResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/orchestration/v2/triggers');
@@ -193,23 +207,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CreateTrigger', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -246,8 +264,10 @@ class SDKV2
      *
      * Create a workflow
      *
+     * If set, this operation will use `clientID` from the global security.
+     *
      * @param  ?\formance\stack\Models\Orchestration\V2WorkflowConfig  $request
-     * @return Operations\V2CreateWorkflowResponse
+     * @return \formance\stack\Models\Operations\V2CreateWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createWorkflow(?\formance\stack\Models\Orchestration\V2WorkflowConfig $request = null, ?Options $options = null): Operations\V2CreateWorkflowResponse
@@ -263,23 +283,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2CreateWorkflow', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -316,8 +340,10 @@ class SDKV2
      *
      * Read trigger
      *
-     * @param  Operations\V2DeleteTriggerRequest  $request
-     * @return Operations\V2DeleteTriggerResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2DeleteTriggerRequest  $request
+     * @return \formance\stack\Models\Operations\V2DeleteTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deleteTrigger(Operations\V2DeleteTriggerRequest $request, ?Options $options = null): Operations\V2DeleteTriggerResponse
@@ -329,23 +355,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2DeleteTrigger', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -373,8 +403,10 @@ class SDKV2
      *
      * Delete a flow by id
      *
-     * @param  Operations\V2DeleteWorkflowRequest  $request
-     * @return Operations\V2DeleteWorkflowResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2DeleteWorkflowRequest  $request
+     * @return \formance\stack\Models\Operations\V2DeleteWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deleteWorkflow(Operations\V2DeleteWorkflowRequest $request, ?Options $options = null): Operations\V2DeleteWorkflowResponse
@@ -386,23 +418,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2DeleteWorkflow', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -430,8 +466,10 @@ class SDKV2
      *
      * Get a workflow instance by id
      *
-     * @param  Operations\V2GetInstanceRequest  $request
-     * @return Operations\V2GetInstanceResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2GetInstanceRequest  $request
+     * @return \formance\stack\Models\Operations\V2GetInstanceResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getInstance(Operations\V2GetInstanceRequest $request, ?Options $options = null): Operations\V2GetInstanceResponse
@@ -443,23 +481,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetInstance', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -496,8 +538,10 @@ class SDKV2
      *
      * Get a workflow instance history by id
      *
-     * @param  Operations\V2GetInstanceHistoryRequest  $request
-     * @return Operations\V2GetInstanceHistoryResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2GetInstanceHistoryRequest  $request
+     * @return \formance\stack\Models\Operations\V2GetInstanceHistoryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getInstanceHistory(Operations\V2GetInstanceHistoryRequest $request, ?Options $options = null): Operations\V2GetInstanceHistoryResponse
@@ -509,23 +553,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetInstanceHistory', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -562,8 +610,10 @@ class SDKV2
      *
      * Get a workflow instance stage history
      *
-     * @param  Operations\V2GetInstanceStageHistoryRequest  $request
-     * @return Operations\V2GetInstanceStageHistoryResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2GetInstanceStageHistoryRequest  $request
+     * @return \formance\stack\Models\Operations\V2GetInstanceStageHistoryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getInstanceStageHistory(Operations\V2GetInstanceStageHistoryRequest $request, ?Options $options = null): Operations\V2GetInstanceStageHistoryResponse
@@ -575,23 +625,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetInstanceStageHistory', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -626,7 +680,9 @@ class SDKV2
     /**
      * Get server info
      *
-     * @return Operations\V2GetServerInfoResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @return \formance\stack\Models\Operations\V2GetServerInfoResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getServerInfo(?Options $options = null): Operations\V2GetServerInfoResponse
@@ -638,23 +694,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetServerInfo', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -691,8 +751,10 @@ class SDKV2
      *
      * Get a flow by id
      *
-     * @param  Operations\V2GetWorkflowRequest  $request
-     * @return Operations\V2GetWorkflowResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2GetWorkflowRequest  $request
+     * @return \formance\stack\Models\Operations\V2GetWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getWorkflow(Operations\V2GetWorkflowRequest $request, ?Options $options = null): Operations\V2GetWorkflowResponse
@@ -704,23 +766,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2GetWorkflow', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -757,8 +823,10 @@ class SDKV2
      *
      * List instances of a workflow
      *
-     * @param  ?Operations\V2ListInstancesRequest  $request
-     * @return Operations\V2ListInstancesResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V2ListInstancesRequest  $request
+     * @return \formance\stack\Models\Operations\V2ListInstancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listInstances(?Operations\V2ListInstancesRequest $request = null, ?Options $options = null): Operations\V2ListInstancesResponse
@@ -772,24 +840,28 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListInstances', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -826,8 +898,10 @@ class SDKV2
      *
      * List triggers
      *
-     * @param  ?Operations\V2ListTriggersRequest  $request
-     * @return Operations\V2ListTriggersResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V2ListTriggersRequest  $request
+     * @return \formance\stack\Models\Operations\V2ListTriggersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listTriggers(?Operations\V2ListTriggersRequest $request = null, ?Options $options = null): Operations\V2ListTriggersResponse
@@ -841,24 +915,28 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListTriggers', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -895,8 +973,10 @@ class SDKV2
      *
      * List triggers occurrences
      *
-     * @param  Operations\V2ListTriggersOccurrencesRequest  $request
-     * @return Operations\V2ListTriggersOccurrencesResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2ListTriggersOccurrencesRequest  $request
+     * @return \formance\stack\Models\Operations\V2ListTriggersOccurrencesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listTriggersOccurrences(Operations\V2ListTriggersOccurrencesRequest $request, ?Options $options = null): Operations\V2ListTriggersOccurrencesResponse
@@ -910,24 +990,28 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListTriggersOccurrences', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -964,8 +1048,10 @@ class SDKV2
      *
      * List registered workflows
      *
-     * @param  ?Operations\V2ListWorkflowsRequest  $request
-     * @return Operations\V2ListWorkflowsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V2ListWorkflowsRequest  $request
+     * @return \formance\stack\Models\Operations\V2ListWorkflowsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listWorkflows(?Operations\V2ListWorkflowsRequest $request = null, ?Options $options = null): Operations\V2ListWorkflowsResponse
@@ -979,24 +1065,28 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ListWorkflows', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1033,8 +1123,10 @@ class SDKV2
      *
      * Read trigger
      *
-     * @param  Operations\V2ReadTriggerRequest  $request
-     * @return Operations\V2ReadTriggerResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2ReadTriggerRequest  $request
+     * @return \formance\stack\Models\Operations\V2ReadTriggerResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function readTrigger(Operations\V2ReadTriggerRequest $request, ?Options $options = null): Operations\V2ReadTriggerResponse
@@ -1046,23 +1138,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2ReadTrigger', ['orchestration:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1099,8 +1195,10 @@ class SDKV2
      *
      * Run workflow
      *
-     * @param  Operations\V2RunWorkflowRequest  $request
-     * @return Operations\V2RunWorkflowResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2RunWorkflowRequest  $request
+     * @return \formance\stack\Models\Operations\V2RunWorkflowResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function runWorkflow(Operations\V2RunWorkflowRequest $request, ?Options $options = null): Operations\V2RunWorkflowResponse
@@ -1118,24 +1216,28 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2RunWorkflow', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1172,8 +1274,10 @@ class SDKV2
      *
      * Send an event to a running workflow
      *
-     * @param  Operations\V2SendEventRequest  $request
-     * @return Operations\V2SendEventResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V2SendEventRequest  $request
+     * @return \formance\stack\Models\Operations\V2SendEventResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function sendEvent(Operations\V2SendEventRequest $request, ?Options $options = null): Operations\V2SendEventResponse
@@ -1189,23 +1293,27 @@ class SDKV2
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v2SendEvent', ['orchestration:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

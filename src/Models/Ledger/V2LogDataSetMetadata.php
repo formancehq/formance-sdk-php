@@ -13,13 +13,13 @@ namespace formance\stack\Models\Ledger;
 class V2LogDataSetMetadata
 {
     /**
-     * $v2Metadata
+     * $metadata
      *
-     * @var array<string, string> $v2Metadata
+     * @var array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
-    public array $v2Metadata;
+    public array $metadata;
 
     /**
      *
@@ -32,21 +32,21 @@ class V2LogDataSetMetadata
     /**
      * Type of the target entity
      *
-     * @var V2LogDataSetMetadataTargetType $targetType
+     * @var \formance\stack\Models\Ledger\V2LogDataSetMetadataTargetType $targetType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('targetType')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogDataSetMetadataTargetType')]
     public V2LogDataSetMetadataTargetType $targetType;
 
     /**
-     * @param  array<string, string>  $v2Metadata
+     * @param  array<string, string>  $metadata
      * @param  string|\Brick\Math\BigInteger  $targetId
-     * @param  V2LogDataSetMetadataTargetType  $targetType
+     * @param  \formance\stack\Models\Ledger\V2LogDataSetMetadataTargetType  $targetType
      * @phpstan-pure
      */
-    public function __construct(array $v2Metadata, string|\Brick\Math\BigInteger $targetId, V2LogDataSetMetadataTargetType $targetType)
+    public function __construct(array $metadata, string|\Brick\Math\BigInteger $targetId, V2LogDataSetMetadataTargetType $targetType)
     {
-        $this->v2Metadata = $v2Metadata;
+        $this->metadata = $metadata;
         $this->targetId = $targetId;
         $this->targetType = $targetType;
     }

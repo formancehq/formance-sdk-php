@@ -13,13 +13,6 @@ class ClientOptions
 {
     /**
      *
-     * @var string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public string $id;
-
-    /**
-     *
      * @var string $name
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
@@ -72,16 +65,6 @@ class ClientOptions
     public ?array $scopes = null;
 
     /**
-     * $secrets
-     *
-     * @var ?array<ClientSecret> $secrets
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secrets')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Auth\ClientSecret>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $secrets = null;
-
-    /**
      *
      * @var ?bool $trusted
      */
@@ -100,28 +83,24 @@ class ClientOptions
     public ?array $metadata = null;
 
     /**
-     * @param  string  $id
      * @param  string  $name
      * @param  ?string  $description
      * @param  ?array<string>  $postLogoutRedirectUris
      * @param  ?bool  $public
      * @param  ?array<string>  $redirectUris
      * @param  ?array<string>  $scopes
-     * @param  ?array<ClientSecret>  $secrets
      * @param  ?bool  $trusted
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(string $id, string $name, ?string $description = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?array $secrets = null, ?bool $trusted = null, ?array $metadata = null)
+    public function __construct(string $name, ?string $description = null, ?array $postLogoutRedirectUris = null, ?bool $public = null, ?array $redirectUris = null, ?array $scopes = null, ?bool $trusted = null, ?array $metadata = null)
     {
-        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->postLogoutRedirectUris = $postLogoutRedirectUris;
         $this->public = $public;
         $this->redirectUris = $redirectUris;
         $this->scopes = $scopes;
-        $this->secrets = $secrets;
         $this->trusted = $trusted;
         $this->metadata = $metadata;
     }

@@ -13,12 +13,12 @@ class ActivityCreditWallet
 {
     /**
      *
-     * @var ?CreditWalletRequest $creditWalletRequest
+     * @var ?\formance\stack\Models\Orchestration\CreditWalletRequest $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\CreditWalletRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreditWalletRequest $creditWalletRequest = null;
+    public ?CreditWalletRequest $data = null;
 
     /**
      *
@@ -29,13 +29,13 @@ class ActivityCreditWallet
     public ?string $id = null;
 
     /**
-     * @param  ?CreditWalletRequest  $creditWalletRequest
+     * @param  ?\formance\stack\Models\Orchestration\CreditWalletRequest  $data
      * @param  ?string  $id
      * @phpstan-pure
      */
-    public function __construct(?CreditWalletRequest $creditWalletRequest = null, ?string $id = null)
+    public function __construct(?CreditWalletRequest $data = null, ?string $id = null)
     {
-        $this->creditWalletRequest = $creditWalletRequest;
+        $this->data = $data;
         $this->id = $id;
     }
 }

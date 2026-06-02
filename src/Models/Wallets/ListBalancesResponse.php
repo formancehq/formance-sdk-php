@@ -13,14 +13,14 @@ class ListBalancesResponse
 {
     /**
      *
-     * @var ListBalancesResponseCursor $cursor
+     * @var \formance\stack\Models\Wallets\ListBalancesResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\ListBalancesResponseCursor')]
     public ListBalancesResponseCursor $cursor;
 
     /**
-     * @param  ListBalancesResponseCursor  $cursor
+     * @param  \formance\stack\Models\Wallets\ListBalancesResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(ListBalancesResponseCursor $cursor)

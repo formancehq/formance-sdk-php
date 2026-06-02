@@ -22,37 +22,19 @@ class V2ExporterConfiguration
 
     /**
      *
-     * @var \DateTime $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
-    public \DateTime $createdAt;
-
-    /**
-     *
      * @var string $driver
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('driver')]
     public string $driver;
 
     /**
-     *
-     * @var string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public string $id;
-
-    /**
      * @param  array<string, mixed>  $config
-     * @param  \DateTime  $createdAt
      * @param  string  $driver
-     * @param  string  $id
      * @phpstan-pure
      */
-    public function __construct(array $config, \DateTime $createdAt, string $driver, string $id)
+    public function __construct(array $config, string $driver)
     {
         $this->config = $config;
-        $this->createdAt = $createdAt;
         $this->driver = $driver;
-        $this->id = $id;
     }
 }

@@ -58,7 +58,7 @@ class CreateTransferInitiationRequest
      *
      *
      *
-     * @var ?Metadata $metadata
+     * @var ?\formance\stack\Models\Orchestration\Metadata $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Metadata|null')]
@@ -93,7 +93,7 @@ class CreateTransferInitiationRequest
      * - PAYOUT: Internal to external account payout
      *
      *
-     * @var ?Type $type
+     * @var ?\formance\stack\Models\Orchestration\Type $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Type|null')]
@@ -114,10 +114,10 @@ class CreateTransferInitiationRequest
      * @param  ?string  $connectorID
      * @param  ?string  $description
      * @param  ?string  $destination
-     * @param  ?Metadata  $metadata
+     * @param  ?\formance\stack\Models\Orchestration\Metadata  $metadata
      * @param  ?string  $provider
      * @param  ?string  $source
-     * @param  ?Type  $type
+     * @param  ?\formance\stack\Models\Orchestration\Type  $type
      * @param  ?bool  $waitingValidation
      * @phpstan-pure
      */

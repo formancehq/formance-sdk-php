@@ -62,7 +62,7 @@ class TransferInitiationRequest
 
     /**
      *
-     * @var TransferInitiationRequestType $type
+     * @var \formance\stack\Models\Payments\TransferInitiationRequestType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationRequestType')]
@@ -101,7 +101,7 @@ class TransferInitiationRequest
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
      * @param  string  $sourceAccountID
-     * @param  TransferInitiationRequestType  $type
+     * @param  \formance\stack\Models\Payments\TransferInitiationRequestType  $type
      * @param  bool  $validated
      * @param  ?string  $connectorID
      * @param  ?array<string, string>  $metadata

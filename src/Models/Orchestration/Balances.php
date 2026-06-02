@@ -13,18 +13,18 @@ class Balances
 {
     /**
      *
-     * @var V2AssetHolder $v2AssetHolder
+     * @var \formance\stack\Models\Orchestration\V2AssetHolder $main
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2AssetHolder')]
-    public V2AssetHolder $v2AssetHolder;
+    public V2AssetHolder $main;
 
     /**
-     * @param  V2AssetHolder  $v2AssetHolder
+     * @param  \formance\stack\Models\Orchestration\V2AssetHolder  $main
      * @phpstan-pure
      */
-    public function __construct(V2AssetHolder $v2AssetHolder)
+    public function __construct(V2AssetHolder $main)
     {
-        $this->v2AssetHolder = $v2AssetHolder;
+        $this->main = $main;
     }
 }

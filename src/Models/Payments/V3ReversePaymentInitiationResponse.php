@@ -13,14 +13,14 @@ class V3ReversePaymentInitiationResponse
 {
     /**
      *
-     * @var V3ReversePaymentInitiationResponseData $data
+     * @var \formance\stack\Models\Payments\V3ReversePaymentInitiationResponseData $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ReversePaymentInitiationResponseData')]
     public V3ReversePaymentInitiationResponseData $data;
 
     /**
-     * @param  V3ReversePaymentInitiationResponseData  $data
+     * @param  \formance\stack\Models\Payments\V3ReversePaymentInitiationResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3ReversePaymentInitiationResponseData $data)

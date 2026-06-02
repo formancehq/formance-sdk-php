@@ -35,15 +35,6 @@ class Pool
     public string $name;
 
     /**
-     *
-     * @var ?PoolTypeEnum $poolTypeEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PoolTypeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PoolTypeEnum $poolTypeEnum = null;
-
-    /**
      * $query
      *
      * @var ?array<string, mixed> $query
@@ -54,19 +45,28 @@ class Pool
     public ?array $query = null;
 
     /**
+     *
+     * @var ?\formance\stack\Models\Payments\PoolTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PoolTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?PoolTypeEnum $type = null;
+
+    /**
      * @param  array<string>  $accounts
      * @param  string  $id
      * @param  string  $name
-     * @param  ?PoolTypeEnum  $poolTypeEnum
      * @param  ?array<string, mixed>  $query
+     * @param  ?\formance\stack\Models\Payments\PoolTypeEnum  $type
      * @phpstan-pure
      */
-    public function __construct(array $accounts, string $id, string $name, ?PoolTypeEnum $poolTypeEnum = null, ?array $query = null)
+    public function __construct(array $accounts, string $id, string $name, ?array $query = null, ?PoolTypeEnum $type = null)
     {
         $this->accounts = $accounts;
         $this->id = $id;
         $this->name = $name;
-        $this->poolTypeEnum = $poolTypeEnum;
         $this->query = $query;
+        $this->type = $type;
     }
 }

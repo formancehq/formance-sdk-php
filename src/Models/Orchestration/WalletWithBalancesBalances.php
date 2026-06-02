@@ -13,18 +13,18 @@ class WalletWithBalancesBalances
 {
     /**
      *
-     * @var AssetHolder $assetHolder
+     * @var \formance\stack\Models\Orchestration\AssetHolder $main
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\AssetHolder')]
-    public AssetHolder $assetHolder;
+    public AssetHolder $main;
 
     /**
-     * @param  AssetHolder  $assetHolder
+     * @param  \formance\stack\Models\Orchestration\AssetHolder  $main
      * @phpstan-pure
      */
-    public function __construct(AssetHolder $assetHolder)
+    public function __construct(AssetHolder $main)
     {
-        $this->assetHolder = $assetHolder;
+        $this->main = $main;
     }
 }

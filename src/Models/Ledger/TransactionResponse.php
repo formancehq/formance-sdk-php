@@ -13,18 +13,18 @@ class TransactionResponse
 {
     /**
      *
-     * @var Transaction $transaction
+     * @var \formance\stack\Models\Ledger\Transaction $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Transaction')]
-    public Transaction $transaction;
+    public Transaction $data;
 
     /**
-     * @param  Transaction  $transaction
+     * @param  \formance\stack\Models\Ledger\Transaction  $data
      * @phpstan-pure
      */
-    public function __construct(Transaction $transaction)
+    public function __construct(Transaction $data)
     {
-        $this->transaction = $transaction;
+        $this->data = $data;
     }
 }

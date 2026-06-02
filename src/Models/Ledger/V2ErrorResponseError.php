@@ -13,19 +13,19 @@ class V2ErrorResponseError
 {
     /**
      *
-     * @var V2ErrorsEnum $v2ErrorsEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ErrorsEnum')]
-    public V2ErrorsEnum $v2ErrorsEnum;
-
-    /**
-     *
      * @var ?string $details
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
+
+    /**
+     *
+     * @var \formance\stack\Models\Ledger\V2ErrorsEnum $errorCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ErrorsEnum')]
+    public V2ErrorsEnum $errorCode;
 
     /**
      *
@@ -35,15 +35,15 @@ class V2ErrorResponseError
     public string $errorMessage;
 
     /**
-     * @param  V2ErrorsEnum  $v2ErrorsEnum
+     * @param  \formance\stack\Models\Ledger\V2ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure
      */
-    public function __construct(V2ErrorsEnum $v2ErrorsEnum, string $errorMessage, ?string $details = null)
+    public function __construct(V2ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
-        $this->v2ErrorsEnum = $v2ErrorsEnum;
         $this->details = $details;
+        $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
     }
 

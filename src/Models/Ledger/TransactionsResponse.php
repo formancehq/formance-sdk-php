@@ -14,14 +14,14 @@ class TransactionsResponse
     /**
      * $data
      *
-     * @var array<Transaction> $data
+     * @var array<\formance\stack\Models\Ledger\Transaction> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Transaction>')]
     public array $data;
 
     /**
-     * @param  array<Transaction>  $data
+     * @param  array<\formance\stack\Models\Ledger\Transaction>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

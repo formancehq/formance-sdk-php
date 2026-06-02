@@ -13,18 +13,18 @@ class ConfigInfoResponse
 {
     /**
      *
-     * @var ConfigInfo $configInfo
+     * @var \formance\stack\Models\Ledger\ConfigInfo $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\ConfigInfo')]
-    public ConfigInfo $configInfo;
+    public ConfigInfo $data;
 
     /**
-     * @param  ConfigInfo  $configInfo
+     * @param  \formance\stack\Models\Ledger\ConfigInfo  $data
      * @phpstan-pure
      */
-    public function __construct(ConfigInfo $configInfo)
+    public function __construct(ConfigInfo $data)
     {
-        $this->configInfo = $configInfo;
+        $this->data = $data;
     }
 }

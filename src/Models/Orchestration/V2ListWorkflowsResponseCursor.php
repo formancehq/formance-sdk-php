@@ -14,7 +14,7 @@ class V2ListWorkflowsResponseCursor
     /**
      * $data
      *
-     * @var array<V2Workflow> $data
+     * @var array<\formance\stack\Models\Orchestration\V2Workflow> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Workflow>')]
@@ -51,7 +51,7 @@ class V2ListWorkflowsResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2Workflow>  $data
+     * @param  array<\formance\stack\Models\Orchestration\V2Workflow>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

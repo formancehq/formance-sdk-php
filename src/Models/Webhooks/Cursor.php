@@ -14,7 +14,7 @@ class Cursor
     /**
      * $data
      *
-     * @var array<WebhooksConfig> $data
+     * @var array<\formance\stack\Models\Webhooks\WebhooksConfig> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Webhooks\WebhooksConfig>')]
@@ -28,7 +28,7 @@ class Cursor
     public bool $hasMore;
 
     /**
-     * @param  array<WebhooksConfig>  $data
+     * @param  array<\formance\stack\Models\Webhooks\WebhooksConfig>  $data
      * @param  bool  $hasMore
      * @phpstan-pure
      */

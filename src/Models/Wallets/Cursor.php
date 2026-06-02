@@ -14,7 +14,7 @@ class Cursor
     /**
      * $data
      *
-     * @var array<Hold> $data
+     * @var array<\formance\stack\Models\Wallets\Hold> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\Hold>')]
@@ -52,7 +52,7 @@ class Cursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Hold>  $data
+     * @param  array<\formance\stack\Models\Wallets\Hold>  $data
      * @param  int  $pageSize
      * @param  ?bool  $hasMore
      * @param  ?string  $next

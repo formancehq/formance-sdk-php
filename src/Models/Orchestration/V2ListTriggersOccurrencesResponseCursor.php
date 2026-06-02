@@ -14,7 +14,7 @@ class V2ListTriggersOccurrencesResponseCursor
     /**
      * $data
      *
-     * @var array<V2TriggerOccurrence> $data
+     * @var array<\formance\stack\Models\Orchestration\V2TriggerOccurrence> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2TriggerOccurrence>')]
@@ -51,7 +51,7 @@ class V2ListTriggersOccurrencesResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2TriggerOccurrence>  $data
+     * @param  array<\formance\stack\Models\Orchestration\V2TriggerOccurrence>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

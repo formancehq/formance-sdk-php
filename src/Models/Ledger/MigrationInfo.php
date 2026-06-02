@@ -29,7 +29,7 @@ class MigrationInfo
 
     /**
      *
-     * @var ?State $state
+     * @var ?\formance\stack\Models\Ledger\State $state
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\State|null')]
@@ -47,7 +47,7 @@ class MigrationInfo
     /**
      * @param  ?\DateTime  $date
      * @param  ?string  $name
-     * @param  ?State  $state
+     * @param  ?\formance\stack\Models\Ledger\State  $state
      * @param  ?string  $version
      * @phpstan-pure
      */

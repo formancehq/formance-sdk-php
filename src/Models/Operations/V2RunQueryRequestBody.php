@@ -13,20 +13,20 @@ class V2RunQueryRequestBody
 {
     /**
      *
-     * @var Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $v2QueryParams
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('params')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $v2QueryParams = null;
-
-    /**
-     *
      * @var ?string $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $cursor = null;
+
+    /**
+     *
+     * @var \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null $params
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('params')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $params = null;
 
     /**
      * $vars
@@ -39,15 +39,15 @@ class V2RunQueryRequestBody
     public ?array $vars = null;
 
     /**
-     * @param  Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null  $v2QueryParams
      * @param  ?string  $cursor
+     * @param  \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null  $params
      * @param  ?array<string, string>  $vars
      * @phpstan-pure
      */
-    public function __construct(Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $v2QueryParams = null, ?string $cursor = null, ?array $vars = null)
+    public function __construct(?string $cursor = null, Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $params = null, ?array $vars = null)
     {
-        $this->v2QueryParams = $v2QueryParams;
         $this->cursor = $cursor;
+        $this->params = $params;
         $this->vars = $vars;
     }
 }

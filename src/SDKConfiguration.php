@@ -13,6 +13,8 @@ class SDKConfiguration
 {
     public ?\GuzzleHttp\ClientInterface $client = null;
 
+    public ?\GuzzleHttp\ClientInterface $defaultClient = null;
+
     public Hooks\SDKHooks $hooks;
     /** @var ?pure-Closure(): Models\Shared\Security */
     public ?\Closure $securitySource = null;
@@ -34,11 +36,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = 'SDK_VERSION';
 
-    public string $sdkVersion = '6.1.0';
+    public string $sdkVersion = '6.1.1';
 
-    public string $genVersion = '2.865.2';
+    public string $genVersion = '2.893.0';
 
-    public string $userAgent = 'speakeasy-sdk/php 6.1.0 2.865.2 SDK_VERSION formance/formance-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 6.1.1 2.893.0 SDK_VERSION formance/formance-sdk';
 
     public ?RetryConfig $retryConfig = null;
 

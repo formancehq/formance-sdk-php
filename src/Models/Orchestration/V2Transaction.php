@@ -12,18 +12,18 @@ namespace formance\stack\Models\Orchestration;
 class V2Transaction
 {
     /**
-     * $v2Metadata
+     * $metadata
      *
-     * @var array<string, string> $v2Metadata
+     * @var array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
-    public array $v2Metadata;
+    public array $metadata;
 
     /**
      * $postings
      *
-     * @var array<V2Posting> $postings
+     * @var array<\formance\stack\Models\Orchestration\V2Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Posting>')]
@@ -52,16 +52,16 @@ class V2Transaction
     public ?string $reference = null;
 
     /**
-     * @param  array<string, string>  $v2Metadata
-     * @param  array<V2Posting>  $postings
+     * @param  array<string, string>  $metadata
+     * @param  array<\formance\stack\Models\Orchestration\V2Posting>  $postings
      * @param  \DateTime  $timestamp
      * @param  \Brick\Math\BigInteger  $txid
      * @param  ?string  $reference
      * @phpstan-pure
      */
-    public function __construct(array $v2Metadata, array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?string $reference = null)
+    public function __construct(array $metadata, array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?string $reference = null)
     {
-        $this->v2Metadata = $v2Metadata;
+        $this->metadata = $metadata;
         $this->postings = $postings;
         $this->timestamp = $timestamp;
         $this->txid = $txid;

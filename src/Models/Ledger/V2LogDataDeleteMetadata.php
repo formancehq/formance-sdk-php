@@ -31,7 +31,7 @@ class V2LogDataDeleteMetadata
     /**
      * Type of the target entity
      *
-     * @var TargetType $targetType
+     * @var \formance\stack\Models\Ledger\TargetType $targetType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('targetType')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\TargetType')]
@@ -40,7 +40,7 @@ class V2LogDataDeleteMetadata
     /**
      * @param  string  $key
      * @param  string|\Brick\Math\BigInteger  $targetId
-     * @param  TargetType  $targetType
+     * @param  \formance\stack\Models\Ledger\TargetType  $targetType
      * @phpstan-pure
      */
     public function __construct(string $key, string|\Brick\Math\BigInteger $targetId, TargetType $targetType)

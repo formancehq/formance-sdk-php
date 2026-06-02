@@ -13,18 +13,18 @@ class ConfigResponse
 {
     /**
      *
-     * @var WebhooksConfig $webhooksConfig
+     * @var \formance\stack\Models\Webhooks\WebhooksConfig $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\WebhooksConfig')]
-    public WebhooksConfig $webhooksConfig;
+    public WebhooksConfig $data;
 
     /**
-     * @param  WebhooksConfig  $webhooksConfig
+     * @param  \formance\stack\Models\Webhooks\WebhooksConfig  $data
      * @phpstan-pure
      */
-    public function __construct(WebhooksConfig $webhooksConfig)
+    public function __construct(WebhooksConfig $data)
     {
-        $this->webhooksConfig = $webhooksConfig;
+        $this->data = $data;
     }
 }

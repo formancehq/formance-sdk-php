@@ -14,17 +14,17 @@ class TaskResponse
 {
     /**
      *
-     * @var mixed $data
+     * @var \formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('mixed')]
-    public mixed $data;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp')]
+    public TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data;
 
     /**
-     * @param  mixed  $data
+     * @param  \formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp  $data
      * @phpstan-pure
      */
-    public function __construct(mixed $data)
+    public function __construct(TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data)
     {
         $this->data = $data;
     }

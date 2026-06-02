@@ -15,14 +15,14 @@ class ConnectorsResponse
     /**
      * $data
      *
-     * @var array<ConnectorsResponseData> $data
+     * @var array<\formance\stack\Models\Payments\ConnectorsResponseData> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\ConnectorsResponseData>')]
     public array $data;
 
     /**
-     * @param  array<ConnectorsResponseData>  $data
+     * @param  array<\formance\stack\Models\Payments\ConnectorsResponseData>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

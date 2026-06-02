@@ -316,7 +316,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateBulkRequest(
     requestBody: [
-        new \formance\stack\Models\Ledger\V2BaseBulkElement(
+        new \formance\stack\Models\Ledger\V2BulkElementCreateTransaction(
             action: 'REVERT_TRANSACTION',
         ),
     ],
@@ -370,7 +370,7 @@ use formance\stack\Models\Ledger;
 
 $sdk = stack\SDK::builder()->build();
 
-$request = new \formance\stack\Models\Ledger\V2ExporterConfiguration1(
+$request = new \formance\stack\Models\Ledger\V2ExporterConfiguration(
     config: [
         'key' => '<value>',
     ],
@@ -388,9 +388,9 @@ if ($response->v2CreateExporterResponse !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                | [\formance\stack\Models\Ledger\V2ExporterConfiguration1](../../Models/ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                              | [\formance\stack\Models\Ledger\V2ExporterConfiguration](../../Models/ledger/V2ExporterConfiguration.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
 
 ### Response
 
@@ -431,7 +431,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateLedgerRequest(
     v2CreateLedgerRequest: new \formance\stack\Models\Ledger\V2CreateLedgerRequest(
-        v2Metadata: [
+        metadata: [
             'admin' => 'true',
         ],
     ),
@@ -540,9 +540,6 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateTransactionRequest(
     v2PostTransaction: new \formance\stack\Models\Ledger\V2PostTransaction(
-        v2Metadata: [
-            'admin' => 'true',
-        ],
         accountMetadata: [
             'key' => [
                 'admin' => 'true',
@@ -553,6 +550,9 @@ $request = new Operations\V2CreateTransactionRequest(
             'key2' => [
                 'admin' => 'true',
             ],
+        ],
+        metadata: [
+            'admin' => 'true',
         ],
         postings: [
             new \formance\stack\Models\Ledger\V2Posting(
@@ -1555,8 +1555,8 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2InsertSchemaRequest(
-    v2SchemaData: new \formance\stack\Models\Ledger\V2SchemaDataInput(
-        v2ChartOfAccounts: [
+    v2SchemaData: new \formance\stack\Models\Ledger\V2SchemaData(
+        chart: [
             'users' => new \formance\stack\Models\Ledger\V2ChartSegment(
                 additionalProperties: [
                     '$userID' => new \formance\stack\Models\Ledger\V2ChartSegment(
@@ -1565,9 +1565,9 @@ $request = new Operations\V2InsertSchemaRequest(
                 ],
             ),
         ],
-        v2QueryTemplates: [
+        queries: [
             'key' => new \formance\stack\Models\Ledger\V2QueryTemplate(
-                v2QueryParams: new Ledger\QueryTemplateAccountParams(
+                params: new Ledger\QueryTemplateAccountParams(
                     cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
                     pageSize: 100,
                     sort: 'id:desc',
@@ -2236,7 +2236,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2RunQueryRequest(
     requestBody: new Operations\V2RunQueryRequestBody(
-        v2QueryParams: new Ledger\QueryTemplateAccountParams(
+        params: new Ledger\QueryTemplateAccountParams(
             cursor: 'aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==',
             pageSize: 100,
             sort: 'id:desc',
@@ -2399,7 +2399,7 @@ $sdk = stack\SDK::builder()
     ->build();
 
 $request = new Operations\V2UpdateExporterRequest(
-    v2ExporterConfiguration: new \formance\stack\Models\Ledger\V2ExporterConfiguration1(
+    v2ExporterConfiguration: new \formance\stack\Models\Ledger\V2ExporterConfiguration(
         config: [
             'key' => '<value>',
             'key1' => '<value>',

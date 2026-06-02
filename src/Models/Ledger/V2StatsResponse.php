@@ -13,18 +13,18 @@ class V2StatsResponse
 {
     /**
      *
-     * @var V2Stats $v2Stats
+     * @var \formance\stack\Models\Ledger\V2Stats $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Stats')]
-    public V2Stats $v2Stats;
+    public V2Stats $data;
 
     /**
-     * @param  V2Stats  $v2Stats
+     * @param  \formance\stack\Models\Ledger\V2Stats  $data
      * @phpstan-pure
      */
-    public function __construct(V2Stats $v2Stats)
+    public function __construct(V2Stats $data)
     {
-        $this->v2Stats = $v2Stats;
+        $this->data = $data;
     }
 }

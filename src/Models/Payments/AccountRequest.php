@@ -13,14 +13,6 @@ class AccountRequest
 {
     /**
      *
-     * @var AccountType $accountType
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\AccountType')]
-    public AccountType $accountType;
-
-    /**
-     *
      * @var string $connectorID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
@@ -42,6 +34,14 @@ class AccountRequest
 
     /**
      *
+     * @var \formance\stack\Models\Payments\AccountType $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\AccountType')]
+    public AccountType $type;
+
+    /**
+     *
      * @var ?string $accountName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
@@ -57,33 +57,33 @@ class AccountRequest
     public ?string $defaultAsset = null;
 
     /**
-     * $accountMetadata
+     * $metadata
      *
-     * @var ?array<string, string> $accountMetadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $accountMetadata = null;
+    public ?array $metadata = null;
 
     /**
-     * @param  AccountType  $accountType
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $reference
+     * @param  \formance\stack\Models\Payments\AccountType  $type
      * @param  ?string  $accountName
      * @param  ?string  $defaultAsset
-     * @param  ?array<string, string>  $accountMetadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(AccountType $accountType, string $connectorID, \DateTime $createdAt, string $reference, ?string $accountName = null, ?string $defaultAsset = null, ?array $accountMetadata = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $reference, AccountType $type, ?string $accountName = null, ?string $defaultAsset = null, ?array $metadata = null)
     {
-        $this->accountType = $accountType;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->reference = $reference;
+        $this->type = $type;
         $this->accountName = $accountName;
         $this->defaultAsset = $defaultAsset;
-        $this->accountMetadata = $accountMetadata;
+        $this->metadata = $metadata;
     }
 }

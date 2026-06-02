@@ -13,18 +13,18 @@ class AttemptResponse
 {
     /**
      *
-     * @var Attempt $attempt
+     * @var \formance\stack\Models\Webhooks\Attempt $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\Attempt')]
-    public Attempt $attempt;
+    public Attempt $data;
 
     /**
-     * @param  Attempt  $attempt
+     * @param  \formance\stack\Models\Webhooks\Attempt  $data
      * @phpstan-pure
      */
-    public function __construct(Attempt $attempt)
+    public function __construct(Attempt $data)
     {
-        $this->attempt = $attempt;
+        $this->data = $data;
     }
 }

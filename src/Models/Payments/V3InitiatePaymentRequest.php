@@ -13,14 +13,6 @@ class V3InitiatePaymentRequest
 {
     /**
      *
-     * @var V3PaymentInitiationTypeEnum $v3PaymentInitiationTypeEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationTypeEnum')]
-    public V3PaymentInitiationTypeEnum $v3PaymentInitiationTypeEnum;
-
-    /**
-     *
      * @var \Brick\Math\BigInteger $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
@@ -63,6 +55,14 @@ class V3InitiatePaymentRequest
 
     /**
      *
+     * @var \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationTypeEnum')]
+    public V3PaymentInitiationTypeEnum $type;
+
+    /**
+     *
      * @var ?string $destinationAccountID
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
@@ -70,14 +70,14 @@ class V3InitiatePaymentRequest
     public ?string $destinationAccountID = null;
 
     /**
-     * $v3Metadata
+     * $metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?array $metadata = null;
 
     /**
      *
@@ -88,29 +88,29 @@ class V3InitiatePaymentRequest
     public ?string $sourceAccountID = null;
 
     /**
-     * @param  V3PaymentInitiationTypeEnum  $v3PaymentInitiationTypeEnum
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  string  $description
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
+     * @param  \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum  $type
      * @param  ?string  $destinationAccountID
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?array<string, string>  $metadata
      * @param  ?string  $sourceAccountID
      * @phpstan-pure
      */
-    public function __construct(V3PaymentInitiationTypeEnum $v3PaymentInitiationTypeEnum, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, string $description, string $reference, \DateTime $scheduledAt, ?string $destinationAccountID = null, ?array $v3Metadata = null, ?string $sourceAccountID = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, string $description, string $reference, \DateTime $scheduledAt, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?array $metadata = null, ?string $sourceAccountID = null)
     {
-        $this->v3PaymentInitiationTypeEnum = $v3PaymentInitiationTypeEnum;
         $this->amount = $amount;
         $this->asset = $asset;
         $this->connectorID = $connectorID;
         $this->description = $description;
         $this->reference = $reference;
         $this->scheduledAt = $scheduledAt;
+        $this->type = $type;
         $this->destinationAccountID = $destinationAccountID;
-        $this->v3Metadata = $v3Metadata;
+        $this->metadata = $metadata;
         $this->sourceAccountID = $sourceAccountID;
     }
 }

@@ -14,10 +14,10 @@ class Cursor
     /**
      * $data
      *
-     * @var array<V3Account> $data
+     * @var array<\formance\stack\Models\Payments\Account> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3Account>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\Account>')]
     public array $data;
 
     /**
@@ -51,7 +51,7 @@ class Cursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3Account>  $data
+     * @param  array<\formance\stack\Models\Payments\Account>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

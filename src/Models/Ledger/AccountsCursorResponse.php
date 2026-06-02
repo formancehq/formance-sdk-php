@@ -13,14 +13,14 @@ class AccountsCursorResponse
 {
     /**
      *
-     * @var Cursor $cursor
+     * @var \formance\stack\Models\Ledger\Cursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Cursor')]
     public Cursor $cursor;
 
     /**
-     * @param  Cursor  $cursor
+     * @param  \formance\stack\Models\Ledger\Cursor  $cursor
      * @phpstan-pure
      */
     public function __construct(Cursor $cursor)

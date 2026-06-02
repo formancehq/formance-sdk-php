@@ -13,14 +13,6 @@ class V2PaymentAdjustment
 {
     /**
      *
-     * @var V2PaymentStatus $v2PaymentStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentStatus')]
-    public V2PaymentStatus $v2PaymentStatus;
-
-    /**
-     *
      * @var bool $absolute
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('absolute')]
@@ -42,26 +34,34 @@ class V2PaymentAdjustment
 
     /**
      *
-     * @var V2PaymentAdjustmentRaw $raw
+     * @var \formance\stack\Models\Orchestration\V2PaymentAdjustmentRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentAdjustmentRaw')]
     public V2PaymentAdjustmentRaw $raw;
 
     /**
-     * @param  V2PaymentStatus  $v2PaymentStatus
+     *
+     * @var \formance\stack\Models\Orchestration\V2PaymentStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentStatus')]
+    public V2PaymentStatus $status;
+
+    /**
      * @param  bool  $absolute
      * @param  \Brick\Math\BigInteger  $amount
      * @param  \DateTime  $date
-     * @param  V2PaymentAdjustmentRaw  $raw
+     * @param  \formance\stack\Models\Orchestration\V2PaymentAdjustmentRaw  $raw
+     * @param  \formance\stack\Models\Orchestration\V2PaymentStatus  $status
      * @phpstan-pure
      */
-    public function __construct(V2PaymentStatus $v2PaymentStatus, bool $absolute, \Brick\Math\BigInteger $amount, \DateTime $date, V2PaymentAdjustmentRaw $raw)
+    public function __construct(bool $absolute, \Brick\Math\BigInteger $amount, \DateTime $date, V2PaymentAdjustmentRaw $raw, V2PaymentStatus $status)
     {
-        $this->v2PaymentStatus = $v2PaymentStatus;
         $this->absolute = $absolute;
         $this->amount = $amount;
         $this->date = $date;
         $this->raw = $raw;
+        $this->status = $status;
     }
 }

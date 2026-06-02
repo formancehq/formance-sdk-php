@@ -28,7 +28,7 @@ class GetVersionsResponse
     /**
      * $versions
      *
-     * @var array<Version> $versions
+     * @var array<\formance\stack\Models\Gateway\Version> $versions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('versions')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Gateway\Version>')]
@@ -37,7 +37,7 @@ class GetVersionsResponse
     /**
      * @param  string  $env
      * @param  string  $region
-     * @param  array<Version>  $versions
+     * @param  array<\formance\stack\Models\Gateway\Version>  $versions
      * @phpstan-pure
      */
     public function __construct(string $env, string $region, array $versions)

@@ -13,14 +13,6 @@ class V3PaymentInitiationAdjustment
 {
     /**
      *
-     * @var V3PaymentInitiationStatusEnum $v3PaymentInitiationStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationStatusEnum')]
-    public V3PaymentInitiationStatusEnum $v3PaymentInitiationStatusEnum;
-
-    /**
-     *
      * @var \DateTime $createdAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
@@ -32,6 +24,14 @@ class V3PaymentInitiationAdjustment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationStatusEnum')]
+    public V3PaymentInitiationStatusEnum $status;
 
     /**
      *
@@ -50,16 +50,6 @@ class V3PaymentInitiationAdjustment
     public ?string $asset = null;
 
     /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
-
-    /**
      *
      * @var ?string $error
      */
@@ -68,23 +58,33 @@ class V3PaymentInitiationAdjustment
     public ?string $error = null;
 
     /**
-     * @param  V3PaymentInitiationStatusEnum  $v3PaymentInitiationStatusEnum
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
+     * @param  \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum  $status
      * @param  ?\Brick\Math\BigInteger  $amount
      * @param  ?string  $asset
-     * @param  ?array<string, string>  $v3Metadata
      * @param  ?string  $error
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(V3PaymentInitiationStatusEnum $v3PaymentInitiationStatusEnum, \DateTime $createdAt, string $id, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?array $v3Metadata = null, ?string $error = null)
+    public function __construct(\DateTime $createdAt, string $id, V3PaymentInitiationStatusEnum $status, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?string $error = null, ?array $metadata = null)
     {
-        $this->v3PaymentInitiationStatusEnum = $v3PaymentInitiationStatusEnum;
         $this->createdAt = $createdAt;
         $this->id = $id;
+        $this->status = $status;
         $this->amount = $amount;
         $this->asset = $asset;
-        $this->v3Metadata = $v3Metadata;
         $this->error = $error;
+        $this->metadata = $metadata;
     }
 }

@@ -21,17 +21,17 @@ class UpdateClientRequest
 
     /**
      *
-     * @var ?\formance\stack\Models\Auth\ClientOptions1 $clientOptions
+     * @var ?\formance\stack\Models\Auth\ClientOptions $clientOptions
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Auth\ClientOptions1 $clientOptions = null;
+    public ?\formance\stack\Models\Auth\ClientOptions $clientOptions = null;
 
     /**
      * @param  string  $clientId
-     * @param  ?\formance\stack\Models\Auth\ClientOptions1  $clientOptions
+     * @param  ?\formance\stack\Models\Auth\ClientOptions  $clientOptions
      * @phpstan-pure
      */
-    public function __construct(string $clientId, ?\formance\stack\Models\Auth\ClientOptions1 $clientOptions = null)
+    public function __construct(string $clientId, ?\formance\stack\Models\Auth\ClientOptions $clientOptions = null)
     {
         $this->clientId = $clientId;
         $this->clientOptions = $clientOptions;

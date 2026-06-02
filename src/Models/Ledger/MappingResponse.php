@@ -13,19 +13,19 @@ class MappingResponse
 {
     /**
      *
-     * @var ?Mapping $mapping
+     * @var ?\formance\stack\Models\Ledger\Mapping $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Mapping|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Mapping $mapping = null;
+    public ?Mapping $data = null;
 
     /**
-     * @param  ?Mapping  $mapping
+     * @param  ?\formance\stack\Models\Ledger\Mapping  $data
      * @phpstan-pure
      */
-    public function __construct(?Mapping $mapping = null)
+    public function __construct(?Mapping $data = null)
     {
-        $this->mapping = $mapping;
+        $this->data = $data;
     }
 }

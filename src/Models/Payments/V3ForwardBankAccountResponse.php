@@ -13,14 +13,14 @@ class V3ForwardBankAccountResponse
 {
     /**
      *
-     * @var V3ForwardBankAccountResponseData $data
+     * @var \formance\stack\Models\Payments\V3ForwardBankAccountResponseData $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ForwardBankAccountResponseData')]
     public V3ForwardBankAccountResponseData $data;
 
     /**
-     * @param  V3ForwardBankAccountResponseData  $data
+     * @param  \formance\stack\Models\Payments\V3ForwardBankAccountResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3ForwardBankAccountResponseData $data)

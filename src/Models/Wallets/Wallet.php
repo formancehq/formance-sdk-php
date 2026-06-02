@@ -51,7 +51,7 @@ class Wallet
 
     /**
      *
-     * @var ?Balances $balances
+     * @var ?\formance\stack\Models\Wallets\Balances $balances
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Balances|null')]
@@ -64,7 +64,7 @@ class Wallet
      * @param  string  $ledger
      * @param  array<string, string>  $metadata
      * @param  string  $name
-     * @param  ?Balances  $balances
+     * @param  ?\formance\stack\Models\Wallets\Balances  $balances
      * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $id, string $ledger, array $metadata, string $name, ?Balances $balances = null)

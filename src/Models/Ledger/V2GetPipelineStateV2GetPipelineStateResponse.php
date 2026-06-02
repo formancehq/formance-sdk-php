@@ -14,18 +14,18 @@ class V2GetPipelineStateV2GetPipelineStateResponse
 {
     /**
      *
-     * @var V2PipelineConfiguration $v2PipelineConfiguration
+     * @var \formance\stack\Models\Ledger\V2Pipeline $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2PipelineConfiguration')]
-    public V2PipelineConfiguration $v2PipelineConfiguration;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Pipeline')]
+    public V2Pipeline $data;
 
     /**
-     * @param  V2PipelineConfiguration  $v2PipelineConfiguration
+     * @param  \formance\stack\Models\Ledger\V2Pipeline  $data
      * @phpstan-pure
      */
-    public function __construct(V2PipelineConfiguration $v2PipelineConfiguration)
+    public function __construct(V2Pipeline $data)
     {
-        $this->v2PipelineConfiguration = $v2PipelineConfiguration;
+        $this->data = $data;
     }
 }

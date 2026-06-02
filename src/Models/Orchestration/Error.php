@@ -14,7 +14,7 @@ class Error
 {
     /**
      *
-     * @var ErrorCode $errorCode
+     * @var \formance\stack\Models\Orchestration\ErrorCode $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\ErrorCode')]
@@ -28,7 +28,7 @@ class Error
     public string $errorMessage;
 
     /**
-     * @param  ErrorCode  $errorCode
+     * @param  \formance\stack\Models\Orchestration\ErrorCode  $errorCode
      * @param  string  $errorMessage
      * @phpstan-pure
      */

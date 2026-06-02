@@ -20,31 +20,21 @@ class V3CreatePaymentServiceUserRequest
 
     /**
      *
-     * @var ?V3AddressRequest $v3AddressRequest
+     * @var ?\formance\stack\Models\Payments\V3AddressRequest $address
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AddressRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V3AddressRequest $v3AddressRequest = null;
+    public ?V3AddressRequest $address = null;
 
     /**
      *
-     * @var ?V3ContactDetailsRequest $v3ContactDetailsRequest
+     * @var ?\formance\stack\Models\Payments\V3ContactDetailsRequest $contactDetails
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('contactDetails')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ContactDetailsRequest|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V3ContactDetailsRequest $v3ContactDetailsRequest = null;
-
-    /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?V3ContactDetailsRequest $contactDetails = null;
 
     /**
      * $bankAccountIDs
@@ -57,19 +47,29 @@ class V3CreatePaymentServiceUserRequest
     public ?array $bankAccountIDs = null;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * @param  string  $name
-     * @param  ?V3AddressRequest  $v3AddressRequest
-     * @param  ?V3ContactDetailsRequest  $v3ContactDetailsRequest
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?\formance\stack\Models\Payments\V3AddressRequest  $address
+     * @param  ?\formance\stack\Models\Payments\V3ContactDetailsRequest  $contactDetails
      * @param  ?array<string>  $bankAccountIDs
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(string $name, ?V3AddressRequest $v3AddressRequest = null, ?V3ContactDetailsRequest $v3ContactDetailsRequest = null, ?array $v3Metadata = null, ?array $bankAccountIDs = null)
+    public function __construct(string $name, ?V3AddressRequest $address = null, ?V3ContactDetailsRequest $contactDetails = null, ?array $bankAccountIDs = null, ?array $metadata = null)
     {
         $this->name = $name;
-        $this->v3AddressRequest = $v3AddressRequest;
-        $this->v3ContactDetailsRequest = $v3ContactDetailsRequest;
-        $this->v3Metadata = $v3Metadata;
+        $this->address = $address;
+        $this->contactDetails = $contactDetails;
         $this->bankAccountIDs = $bankAccountIDs;
+        $this->metadata = $metadata;
     }
 }

@@ -13,11 +13,11 @@ class V2Workflow
 {
     /**
      *
-     * @var V2WorkflowConfig $v2WorkflowConfig
+     * @var \formance\stack\Models\Orchestration\V2WorkflowConfig $config
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowConfig')]
-    public V2WorkflowConfig $v2WorkflowConfig;
+    public V2WorkflowConfig $config;
 
     /**
      *
@@ -41,15 +41,15 @@ class V2Workflow
     public \DateTime $updatedAt;
 
     /**
-     * @param  V2WorkflowConfig  $v2WorkflowConfig
+     * @param  \formance\stack\Models\Orchestration\V2WorkflowConfig  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  \DateTime  $updatedAt
      * @phpstan-pure
      */
-    public function __construct(V2WorkflowConfig $v2WorkflowConfig, \DateTime $createdAt, string $id, \DateTime $updatedAt)
+    public function __construct(V2WorkflowConfig $config, \DateTime $createdAt, string $id, \DateTime $updatedAt)
     {
-        $this->v2WorkflowConfig = $v2WorkflowConfig;
+        $this->config = $config;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->updatedAt = $updatedAt;

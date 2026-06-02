@@ -14,7 +14,7 @@ class Transaction
     /**
      * $postings
      *
-     * @var array<Posting> $postings
+     * @var array<\formance\stack\Models\Ledger\Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Posting>')]
@@ -35,24 +35,24 @@ class Transaction
     public \Brick\Math\BigInteger $txid;
 
     /**
-     * $aggregatedVolumes
+     * $postCommitVolumes
      *
-     * @var ?array<string, array<string, Volume>> $aggregatedVolumes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $aggregatedVolumes = null;
-
-    /**
-     * $aggregatedVolumes1
-     *
-     * @var ?array<string, array<string, Volume>> $aggregatedVolumes1
+     * @var ?array<string, array<string, \formance\stack\Models\Ledger\Volume>> $postCommitVolumes
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $aggregatedVolumes1 = null;
+    public ?array $postCommitVolumes = null;
+
+    /**
+     * $preCommitVolumes
+     *
+     * @var ?array<string, array<string, \formance\stack\Models\Ledger\Volume>> $preCommitVolumes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $preCommitVolumes = null;
 
     /**
      *
@@ -73,22 +73,22 @@ class Transaction
     public ?array $metadata = null;
 
     /**
-     * @param  array<Posting>  $postings
+     * @param  array<\formance\stack\Models\Ledger\Posting>  $postings
      * @param  \DateTime  $timestamp
      * @param  \Brick\Math\BigInteger  $txid
-     * @param  ?array<string, array<string, Volume>>  $aggregatedVolumes
-     * @param  ?array<string, array<string, Volume>>  $aggregatedVolumes1
+     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?array<string, mixed>  $metadata
      * @phpstan-pure
      */
-    public function __construct(array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?array $aggregatedVolumes = null, ?array $aggregatedVolumes1 = null, ?string $reference = null, ?array $metadata = null)
+    public function __construct(array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
     {
         $this->postings = $postings;
         $this->timestamp = $timestamp;
         $this->txid = $txid;
-        $this->aggregatedVolumes = $aggregatedVolumes;
-        $this->aggregatedVolumes1 = $aggregatedVolumes1;
+        $this->postCommitVolumes = $postCommitVolumes;
+        $this->preCommitVolumes = $preCommitVolumes;
         $this->reference = $reference;
         $this->metadata = $metadata;
     }

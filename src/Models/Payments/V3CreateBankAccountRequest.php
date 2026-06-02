@@ -51,14 +51,14 @@ class V3CreateBankAccountRequest
     public ?string $swiftBicCode = null;
 
     /**
-     * $v3Metadata
+     * $metadata
      *
-     * @var ?array<string, string> $v3Metadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
+    public ?array $metadata = null;
 
     /**
      * @param  string  $name
@@ -66,16 +66,16 @@ class V3CreateBankAccountRequest
      * @param  ?string  $country
      * @param  ?string  $iban
      * @param  ?string  $swiftBicCode
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(string $name, ?string $accountNumber = null, ?string $country = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $v3Metadata = null)
+    public function __construct(string $name, ?string $accountNumber = null, ?string $country = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $metadata = null)
     {
         $this->name = $name;
         $this->accountNumber = $accountNumber;
         $this->country = $country;
         $this->iban = $iban;
         $this->swiftBicCode = $swiftBicCode;
-        $this->v3Metadata = $v3Metadata;
+        $this->metadata = $metadata;
     }
 }

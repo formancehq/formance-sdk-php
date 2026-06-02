@@ -13,18 +13,18 @@ class V2SchemasCursorResponse
 {
     /**
      *
-     * @var V2SchemasCursor $v2SchemasCursor
+     * @var \formance\stack\Models\Ledger\V2SchemasCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2SchemasCursor')]
-    public V2SchemasCursor $v2SchemasCursor;
+    public V2SchemasCursor $cursor;
 
     /**
-     * @param  V2SchemasCursor  $v2SchemasCursor
+     * @param  \formance\stack\Models\Ledger\V2SchemasCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(V2SchemasCursor $v2SchemasCursor)
+    public function __construct(V2SchemasCursor $cursor)
     {
-        $this->v2SchemasCursor = $v2SchemasCursor;
+        $this->cursor = $cursor;
     }
 }

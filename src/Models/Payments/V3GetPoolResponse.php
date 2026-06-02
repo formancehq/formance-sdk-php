@@ -13,18 +13,18 @@ class V3GetPoolResponse
 {
     /**
      *
-     * @var V3Pool $v3Pool
+     * @var \formance\stack\Models\Payments\V3Pool $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Pool')]
-    public V3Pool $v3Pool;
+    public V3Pool $data;
 
     /**
-     * @param  V3Pool  $v3Pool
+     * @param  \formance\stack\Models\Payments\V3Pool  $data
      * @phpstan-pure
      */
-    public function __construct(V3Pool $v3Pool)
+    public function __construct(V3Pool $data)
     {
-        $this->v3Pool = $v3Pool;
+        $this->data = $data;
     }
 }

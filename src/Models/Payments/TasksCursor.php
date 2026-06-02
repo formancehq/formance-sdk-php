@@ -14,18 +14,18 @@ class TasksCursor
 {
     /**
      *
-     * @var TasksCursorCursorBase $cursorBase
+     * @var \formance\stack\Models\Payments\TasksCursorCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TasksCursorCursorBase')]
-    public TasksCursorCursorBase $cursorBase;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TasksCursorCursor')]
+    public TasksCursorCursor $cursor;
 
     /**
-     * @param  TasksCursorCursorBase  $cursorBase
+     * @param  \formance\stack\Models\Payments\TasksCursorCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(TasksCursorCursorBase $cursorBase)
+    public function __construct(TasksCursorCursor $cursor)
     {
-        $this->cursorBase = $cursorBase;
+        $this->cursor = $cursor;
     }
 }

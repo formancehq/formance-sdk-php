@@ -13,14 +13,6 @@ class PaymentAdjustment
 {
     /**
      *
-     * @var PaymentStatus $paymentStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
-    public PaymentStatus $paymentStatus;
-
-    /**
-     *
      * @var \Brick\Math\BigInteger $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
@@ -35,7 +27,7 @@ class PaymentAdjustment
 
     /**
      *
-     * @var PaymentAdjustmentRaw $raw
+     * @var \formance\stack\Models\Payments\PaymentAdjustmentRaw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentAdjustmentRaw')]
@@ -49,19 +41,27 @@ class PaymentAdjustment
     public string $reference;
 
     /**
-     * @param  PaymentStatus  $paymentStatus
+     *
+     * @var \formance\stack\Models\Payments\PaymentStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
+    public PaymentStatus $status;
+
+    /**
      * @param  \Brick\Math\BigInteger  $amount
      * @param  \DateTime  $createdAt
-     * @param  PaymentAdjustmentRaw  $raw
+     * @param  \formance\stack\Models\Payments\PaymentAdjustmentRaw  $raw
      * @param  string  $reference
+     * @param  \formance\stack\Models\Payments\PaymentStatus  $status
      * @phpstan-pure
      */
-    public function __construct(PaymentStatus $paymentStatus, \Brick\Math\BigInteger $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference)
+    public function __construct(\Brick\Math\BigInteger $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
     {
-        $this->paymentStatus = $paymentStatus;
         $this->amount = $amount;
         $this->createdAt = $createdAt;
         $this->raw = $raw;
         $this->reference = $reference;
+        $this->status = $status;
     }
 }

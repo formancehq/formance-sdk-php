@@ -14,10 +14,10 @@ class V2ExportersCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V2ExporterConfiguration> $data
+     * @var array<\formance\stack\Models\Ledger\V2Exporter> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2ExporterConfiguration>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Exporter>')]
     public array $data;
 
     /**
@@ -51,7 +51,7 @@ class V2ExportersCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2ExporterConfiguration>  $data
+     * @param  array<\formance\stack\Models\Ledger\V2Exporter>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

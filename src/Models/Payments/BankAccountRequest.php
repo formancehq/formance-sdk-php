@@ -58,14 +58,14 @@ class BankAccountRequest
     public ?string $swiftBicCode = null;
 
     /**
-     * $bankAccountMetadata
+     * $metadata
      *
-     * @var ?array<string, string> $bankAccountMetadata
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $bankAccountMetadata = null;
+    public ?array $metadata = null;
 
     /**
      * @param  string  $country
@@ -74,10 +74,10 @@ class BankAccountRequest
      * @param  ?string  $connectorID
      * @param  ?string  $iban
      * @param  ?string  $swiftBicCode
-     * @param  ?array<string, string>  $bankAccountMetadata
+     * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(string $country, string $name, ?string $accountNumber = null, ?string $connectorID = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $bankAccountMetadata = null)
+    public function __construct(string $country, string $name, ?string $accountNumber = null, ?string $connectorID = null, ?string $iban = null, ?string $swiftBicCode = null, ?array $metadata = null)
     {
         $this->country = $country;
         $this->name = $name;
@@ -85,6 +85,6 @@ class BankAccountRequest
         $this->connectorID = $connectorID;
         $this->iban = $iban;
         $this->swiftBicCode = $swiftBicCode;
-        $this->bankAccountMetadata = $bankAccountMetadata;
+        $this->metadata = $metadata;
     }
 }

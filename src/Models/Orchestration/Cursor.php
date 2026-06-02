@@ -14,18 +14,11 @@ class Cursor
     /**
      * $data
      *
-     * @var array<V2WorkflowInstance> $data
+     * @var array<\formance\stack\Models\Orchestration\Wallet> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2WorkflowInstance>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\Wallet>')]
     public array $data;
-
-    /**
-     *
-     * @var bool $hasMore
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
-    public bool $hasMore;
 
     /**
      *
@@ -33,6 +26,14 @@ class Cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
     public int $pageSize;
+
+    /**
+     *
+     * @var ?bool $hasMore
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $hasMore = null;
 
     /**
      *
@@ -51,18 +52,18 @@ class Cursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2WorkflowInstance>  $data
-     * @param  bool  $hasMore
+     * @param  array<\formance\stack\Models\Orchestration\Wallet>  $data
      * @param  int  $pageSize
+     * @param  ?bool  $hasMore
      * @param  ?string  $next
      * @param  ?string  $previous
      * @phpstan-pure
      */
-    public function __construct(array $data, bool $hasMore, int $pageSize, ?string $next = null, ?string $previous = null)
+    public function __construct(array $data, int $pageSize, ?bool $hasMore = null, ?string $next = null, ?string $previous = null)
     {
         $this->data = $data;
-        $this->hasMore = $hasMore;
         $this->pageSize = $pageSize;
+        $this->hasMore = $hasMore;
         $this->next = $next;
         $this->previous = $previous;
     }

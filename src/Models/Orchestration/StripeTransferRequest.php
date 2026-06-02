@@ -49,7 +49,7 @@ class StripeTransferRequest
      * It can be useful for storing additional information about the transfer in a structured format.
      *
      *
-     * @var ?StripeTransferRequestMetadata $metadata
+     * @var ?\formance\stack\Models\Orchestration\StripeTransferRequestMetadata $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StripeTransferRequestMetadata|null')]
@@ -69,7 +69,7 @@ class StripeTransferRequest
      * @param  ?string  $asset
      * @param  ?string  $connectorID
      * @param  ?string  $destination
-     * @param  ?StripeTransferRequestMetadata  $metadata
+     * @param  ?\formance\stack\Models\Orchestration\StripeTransferRequestMetadata  $metadata
      * @param  ?bool  $waitingValidation
      * @phpstan-pure
      */

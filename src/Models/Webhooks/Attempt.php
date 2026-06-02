@@ -13,11 +13,11 @@ class Attempt
 {
     /**
      *
-     * @var WebhooksConfig $webhooksConfig
+     * @var \formance\stack\Models\Webhooks\WebhooksConfig $config
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\WebhooksConfig')]
-    public WebhooksConfig $webhooksConfig;
+    public WebhooksConfig $config;
 
     /**
      *
@@ -84,7 +84,7 @@ class Attempt
     public ?\DateTime $nextRetryAfter = null;
 
     /**
-     * @param  WebhooksConfig  $webhooksConfig
+     * @param  \formance\stack\Models\Webhooks\WebhooksConfig  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $payload
@@ -96,9 +96,9 @@ class Attempt
      * @param  ?\DateTime  $nextRetryAfter
      * @phpstan-pure
      */
-    public function __construct(WebhooksConfig $webhooksConfig, \DateTime $createdAt, string $id, string $payload, int $retryAttempt, string $status, int $statusCode, \DateTime $updatedAt, string $webhookID, ?\DateTime $nextRetryAfter = null)
+    public function __construct(WebhooksConfig $config, \DateTime $createdAt, string $id, string $payload, int $retryAttempt, string $status, int $statusCode, \DateTime $updatedAt, string $webhookID, ?\DateTime $nextRetryAfter = null)
     {
-        $this->webhooksConfig = $webhooksConfig;
+        $this->config = $config;
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->payload = $payload;

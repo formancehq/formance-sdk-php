@@ -93,7 +93,7 @@ class SDK
     /**
      * Show stack version information
      *
-     * @return Operations\GetVersionsResponse
+     * @return \formance\stack\Models\Operations\GetVersionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getVersions(?Options $options = null): Operations\GetVersionsResponse
@@ -117,11 +117,12 @@ class SDK
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

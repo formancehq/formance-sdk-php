@@ -13,19 +13,19 @@ class LedgerInfoResponse
 {
     /**
      *
-     * @var ?LedgerInfo $ledgerInfo
+     * @var ?\formance\stack\Models\Ledger\LedgerInfo $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\LedgerInfo|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LedgerInfo $ledgerInfo = null;
+    public ?LedgerInfo $data = null;
 
     /**
-     * @param  ?LedgerInfo  $ledgerInfo
+     * @param  ?\formance\stack\Models\Ledger\LedgerInfo  $data
      * @phpstan-pure
      */
-    public function __construct(?LedgerInfo $ledgerInfo = null)
+    public function __construct(?LedgerInfo $data = null)
     {
-        $this->ledgerInfo = $ledgerInfo;
+        $this->data = $data;
     }
 }

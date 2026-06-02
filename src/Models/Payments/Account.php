@@ -13,14 +13,6 @@ class Account
 {
     /**
      *
-     * @var AccountType $accountType
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\AccountType')]
-    public AccountType $accountType;
-
-    /**
-     *
      * @var string $accountName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
@@ -70,13 +62,21 @@ class Account
     public string $reference;
 
     /**
-     * $accountMetadata
      *
-     * @var ?array<string, string> $accountMetadata
+     * @var \formance\stack\Models\Payments\AccountType $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\AccountType')]
+    public AccountType $type;
+
+    /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    public ?array $accountMetadata;
+    public ?array $metadata;
 
     /**
      * $pools
@@ -98,14 +98,13 @@ class Account
 
     /**
      *
-     * @var ?Raw $raw
+     * @var ?\formance\stack\Models\Payments\Raw $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Raw|null')]
     public ?Raw $raw;
 
     /**
-     * @param  AccountType  $accountType
      * @param  string  $accountName
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
@@ -113,15 +112,15 @@ class Account
      * @param  string  $defaultCurrency
      * @param  string  $id
      * @param  string  $reference
-     * @param  ?array<string, string>  $accountMetadata
+     * @param  \formance\stack\Models\Payments\AccountType  $type
+     * @param  ?array<string, string>  $metadata
      * @param  ?array<string>  $pools
      * @param  ?string  $provider
-     * @param  ?Raw  $raw
+     * @param  ?\formance\stack\Models\Payments\Raw  $raw
      * @phpstan-pure
      */
-    public function __construct(AccountType $accountType, string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, ?array $accountMetadata = null, ?array $pools = null, ?string $provider = null, ?Raw $raw = null)
+    public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, AccountType $type, ?array $metadata = null, ?array $pools = null, ?string $provider = null, ?Raw $raw = null)
     {
-        $this->accountType = $accountType;
         $this->accountName = $accountName;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
@@ -129,7 +128,8 @@ class Account
         $this->defaultCurrency = $defaultCurrency;
         $this->id = $id;
         $this->reference = $reference;
-        $this->accountMetadata = $accountMetadata;
+        $this->type = $type;
+        $this->metadata = $metadata;
         $this->pools = $pools;
         $this->provider = $provider;
         $this->raw = $raw;

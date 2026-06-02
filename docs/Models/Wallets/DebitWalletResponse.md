@@ -5,4 +5,4 @@
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `hold`                                                              | [\formance\stack\Models\Wallets\Hold](../../Models/wallets/Hold.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `data`                                                              | [\formance\stack\Models\Wallets\Hold](../../Models/wallets/Hold.md) | :heavy_check_mark:                                                  | N/A                                                                 |

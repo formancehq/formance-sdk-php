@@ -14,7 +14,7 @@ class ListUsersResponse
     /**
      * $data
      *
-     * @var ?array<User> $data
+     * @var ?array<\formance\stack\Models\Auth\User> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Auth\User>|null')]
@@ -22,7 +22,7 @@ class ListUsersResponse
     public ?array $data = null;
 
     /**
-     * @param  ?array<User>  $data
+     * @param  ?array<\formance\stack\Models\Auth\User>  $data
      * @phpstan-pure
      */
     public function __construct(?array $data = null)

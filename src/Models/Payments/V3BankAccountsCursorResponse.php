@@ -13,14 +13,14 @@ class V3BankAccountsCursorResponse
 {
     /**
      *
-     * @var V3BankAccountsCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Payments\V3BankAccountsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3BankAccountsCursorResponseCursor')]
     public V3BankAccountsCursorResponseCursor $cursor;
 
     /**
-     * @param  V3BankAccountsCursorResponseCursor  $cursor
+     * @param  \formance\stack\Models\Payments\V3BankAccountsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V3BankAccountsCursorResponseCursor $cursor)

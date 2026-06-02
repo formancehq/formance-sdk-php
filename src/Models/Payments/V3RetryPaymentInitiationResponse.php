@@ -13,14 +13,14 @@ class V3RetryPaymentInitiationResponse
 {
     /**
      *
-     * @var V3RetryPaymentInitiationResponseData $data
+     * @var \formance\stack\Models\Payments\V3RetryPaymentInitiationResponseData $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3RetryPaymentInitiationResponseData')]
     public V3RetryPaymentInitiationResponseData $data;
 
     /**
-     * @param  V3RetryPaymentInitiationResponseData  $data
+     * @param  \formance\stack\Models\Payments\V3RetryPaymentInitiationResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3RetryPaymentInitiationResponseData $data)

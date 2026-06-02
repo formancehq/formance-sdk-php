@@ -14,18 +14,18 @@ class ReconciliationResponse
 {
     /**
      *
-     * @var Reconciliation $reconciliation
+     * @var \formance\stack\Models\Reconciliation\Reconciliation $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\Reconciliation')]
-    public Reconciliation $reconciliation;
+    public Reconciliation $data;
 
     /**
-     * @param  Reconciliation  $reconciliation
+     * @param  \formance\stack\Models\Reconciliation\Reconciliation  $data
      * @phpstan-pure
      */
-    public function __construct(Reconciliation $reconciliation)
+    public function __construct(Reconciliation $data)
     {
-        $this->reconciliation = $reconciliation;
+        $this->data = $data;
     }
 }

@@ -14,18 +14,18 @@ class TransferInitiationResponse
 {
     /**
      *
-     * @var TransferInitiation $transferInitiation
+     * @var \formance\stack\Models\Payments\TransferInitiation $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiation')]
-    public TransferInitiation $transferInitiation;
+    public TransferInitiation $data;
 
     /**
-     * @param  TransferInitiation  $transferInitiation
+     * @param  \formance\stack\Models\Payments\TransferInitiation  $data
      * @phpstan-pure
      */
-    public function __construct(TransferInitiation $transferInitiation)
+    public function __construct(TransferInitiation $data)
     {
-        $this->transferInitiation = $transferInitiation;
+        $this->data = $data;
     }
 }

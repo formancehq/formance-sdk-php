@@ -13,18 +13,18 @@ class V3GetPaymentInitiationResponse
 {
     /**
      *
-     * @var V3PaymentInitiation $v3PaymentInitiation
+     * @var \formance\stack\Models\Payments\V3PaymentInitiation $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiation')]
-    public V3PaymentInitiation $v3PaymentInitiation;
+    public V3PaymentInitiation $data;
 
     /**
-     * @param  V3PaymentInitiation  $v3PaymentInitiation
+     * @param  \formance\stack\Models\Payments\V3PaymentInitiation  $data
      * @phpstan-pure
      */
-    public function __construct(V3PaymentInitiation $v3PaymentInitiation)
+    public function __construct(V3PaymentInitiation $data)
     {
-        $this->v3PaymentInitiation = $v3PaymentInitiation;
+        $this->data = $data;
     }
 }

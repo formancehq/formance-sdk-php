@@ -14,10 +14,10 @@ class V2PipelinesCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V2PipelineConfiguration> $data
+     * @var array<\formance\stack\Models\Ledger\V2Pipeline> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2PipelineConfiguration>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Pipeline>')]
     public array $data;
 
     /**
@@ -51,7 +51,7 @@ class V2PipelinesCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V2PipelineConfiguration>  $data
+     * @param  array<\formance\stack\Models\Ledger\V2Pipeline>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

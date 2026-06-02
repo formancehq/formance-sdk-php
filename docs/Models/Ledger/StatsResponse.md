@@ -5,4 +5,4 @@
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `stats`                                                             | [\formance\stack\Models\Ledger\Stats](../../Models/ledger/Stats.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `data`                                                              | [\formance\stack\Models\Ledger\Stats](../../Models/ledger/Stats.md) | :heavy_check_mark:                                                  | N/A                                                                 |

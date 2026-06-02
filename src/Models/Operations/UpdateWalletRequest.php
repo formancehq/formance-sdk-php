@@ -28,7 +28,7 @@ class UpdateWalletRequest
 
     /**
      *
-     * @var ?UpdateWalletRequestBody $requestBody
+     * @var ?\formance\stack\Models\Operations\UpdateWalletRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateWalletRequestBody $requestBody = null;
@@ -36,7 +36,7 @@ class UpdateWalletRequest
     /**
      * @param  string  $id
      * @param  ?string  $idempotencyKey
-     * @param  ?UpdateWalletRequestBody  $requestBody
+     * @param  ?\formance\stack\Models\Operations\UpdateWalletRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $id, ?string $idempotencyKey = null, ?UpdateWalletRequestBody $requestBody = null)

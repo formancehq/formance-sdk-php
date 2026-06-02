@@ -13,7 +13,7 @@ class V2TriggerTest
 {
     /**
      *
-     * @var ?Filter $filter
+     * @var ?\formance\stack\Models\Orchestration\Filter $filter
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('filter')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Filter|null')]
@@ -23,7 +23,7 @@ class V2TriggerTest
     /**
      * $variables
      *
-     * @var ?array<string, Variables> $variables
+     * @var ?array<string, \formance\stack\Models\Orchestration\Variables> $variables
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('variables')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Variables>|null')]
@@ -31,8 +31,8 @@ class V2TriggerTest
     public ?array $variables = null;
 
     /**
-     * @param  ?Filter  $filter
-     * @param  ?array<string, Variables>  $variables
+     * @param  ?\formance\stack\Models\Orchestration\Filter  $filter
+     * @param  ?array<string, \formance\stack\Models\Orchestration\Variables>  $variables
      * @phpstan-pure
      */
     public function __construct(?Filter $filter = null, ?array $variables = null)

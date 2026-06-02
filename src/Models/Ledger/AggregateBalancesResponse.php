@@ -12,20 +12,20 @@ namespace formance\stack\Models\Ledger;
 class AggregateBalancesResponse
 {
     /**
-     * $assetsBalances
+     * $data
      *
-     * @var array<string, int> $assetsBalances
+     * @var array<string, int> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, int>')]
-    public array $assetsBalances;
+    public array $data;
 
     /**
-     * @param  array<string, int>  $assetsBalances
+     * @param  array<string, int>  $data
      * @phpstan-pure
      */
-    public function __construct(array $assetsBalances)
+    public function __construct(array $data)
     {
-        $this->assetsBalances = $assetsBalances;
+        $this->data = $data;
     }
 }

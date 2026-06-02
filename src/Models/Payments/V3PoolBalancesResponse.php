@@ -12,20 +12,20 @@ namespace formance\stack\Models\Payments;
 class V3PoolBalancesResponse
 {
     /**
-     * $v3PoolBalances
+     * $data
      *
-     * @var array<V3PoolBalance> $v3PoolBalances
+     * @var array<\formance\stack\Models\Payments\V3PoolBalance> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3PoolBalance>')]
-    public array $v3PoolBalances;
+    public array $data;
 
     /**
-     * @param  array<V3PoolBalance>  $v3PoolBalances
+     * @param  array<\formance\stack\Models\Payments\V3PoolBalance>  $data
      * @phpstan-pure
      */
-    public function __construct(array $v3PoolBalances)
+    public function __construct(array $data)
     {
-        $this->v3PoolBalances = $v3PoolBalances;
+        $this->data = $data;
     }
 }

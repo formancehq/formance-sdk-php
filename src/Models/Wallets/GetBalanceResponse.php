@@ -13,18 +13,18 @@ class GetBalanceResponse
 {
     /**
      *
-     * @var AssetHolder1 $assetHolder
+     * @var \formance\stack\Models\Wallets\BalanceWithAssets $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\AssetHolder1')]
-    public AssetHolder1 $assetHolder;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\BalanceWithAssets')]
+    public BalanceWithAssets $data;
 
     /**
-     * @param  AssetHolder1  $assetHolder
+     * @param  \formance\stack\Models\Wallets\BalanceWithAssets  $data
      * @phpstan-pure
      */
-    public function __construct(AssetHolder1 $assetHolder)
+    public function __construct(BalanceWithAssets $data)
     {
-        $this->assetHolder = $assetHolder;
+        $this->data = $data;
     }
 }

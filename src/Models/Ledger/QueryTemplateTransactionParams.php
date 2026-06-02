@@ -54,7 +54,7 @@ class QueryTemplateTransactionParams
 
     /**
      *
-     * @var ?V2QueryParamsSchemasResource $resource
+     * @var ?\formance\stack\Models\Ledger\V2QueryParamsSchemasResource $resource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryParamsSchemasResource|null')]
@@ -78,7 +78,7 @@ class QueryTemplateTransactionParams
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
-     * @param  ?V2QueryParamsSchemasResource  $resource
+     * @param  ?\formance\stack\Models\Ledger\V2QueryParamsSchemasResource  $resource
      * @param  ?string  $sort
      * @phpstan-pure
      */

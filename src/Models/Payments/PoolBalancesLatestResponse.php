@@ -13,20 +13,20 @@ namespace formance\stack\Models\Payments;
 class PoolBalancesLatestResponse
 {
     /**
-     * $poolBalancesLatest
+     * $data
      *
-     * @var array<PoolBalance> $poolBalancesLatest
+     * @var array<\formance\stack\Models\Payments\PoolBalance> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\PoolBalance>')]
-    public array $poolBalancesLatest;
+    public array $data;
 
     /**
-     * @param  array<PoolBalance>  $poolBalancesLatest
+     * @param  array<\formance\stack\Models\Payments\PoolBalance>  $data
      * @phpstan-pure
      */
-    public function __construct(array $poolBalancesLatest)
+    public function __construct(array $data)
     {
-        $this->poolBalancesLatest = $poolBalancesLatest;
+        $this->data = $data;
     }
 }

@@ -14,7 +14,7 @@ class V3PoolsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3Pool> $data
+     * @var array<\formance\stack\Models\Payments\V3Pool> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3Pool>')]
@@ -51,7 +51,7 @@ class V3PoolsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3Pool>  $data
+     * @param  array<\formance\stack\Models\Payments\V3Pool>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

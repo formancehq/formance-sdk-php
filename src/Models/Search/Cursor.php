@@ -55,7 +55,7 @@ class Cursor
 
     /**
      *
-     * @var ?Total $total
+     * @var ?\formance\stack\Models\Search\Total $total
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Search\Total|null')]
@@ -68,7 +68,7 @@ class Cursor
      * @param  ?string  $next
      * @param  ?int  $pageSize
      * @param  ?string  $previous
-     * @param  ?Total  $total
+     * @param  ?\formance\stack\Models\Search\Total  $total
      * @phpstan-pure
      */
     public function __construct(?array $data = null, ?bool $hasMore = null, ?string $next = null, ?int $pageSize = null, ?string $previous = null, ?Total $total = null)

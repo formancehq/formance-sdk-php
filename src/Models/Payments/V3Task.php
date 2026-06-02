@@ -13,14 +13,6 @@ class V3Task
 {
     /**
      *
-     * @var V3TaskStatusEnum $v3TaskStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3TaskStatusEnum')]
-    public V3TaskStatusEnum $v3TaskStatusEnum;
-
-    /**
-     *
      * @var \DateTime $createdAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
@@ -32,6 +24,14 @@ class V3Task
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     public string $id;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\V3TaskStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3TaskStatusEnum')]
+    public V3TaskStatusEnum $status;
 
     /**
      *
@@ -65,20 +65,20 @@ class V3Task
     public ?string $error = null;
 
     /**
-     * @param  V3TaskStatusEnum  $v3TaskStatusEnum
      * @param  \DateTime  $createdAt
      * @param  string  $id
+     * @param  \formance\stack\Models\Payments\V3TaskStatusEnum  $status
      * @param  \DateTime  $updatedAt
      * @param  ?string  $connectorID
      * @param  ?string  $createdObjectID
      * @param  ?string  $error
      * @phpstan-pure
      */
-    public function __construct(V3TaskStatusEnum $v3TaskStatusEnum, \DateTime $createdAt, string $id, \DateTime $updatedAt, ?string $connectorID = null, ?string $createdObjectID = null, ?string $error = null)
+    public function __construct(\DateTime $createdAt, string $id, V3TaskStatusEnum $status, \DateTime $updatedAt, ?string $connectorID = null, ?string $createdObjectID = null, ?string $error = null)
     {
-        $this->v3TaskStatusEnum = $v3TaskStatusEnum;
         $this->createdAt = $createdAt;
         $this->id = $id;
+        $this->status = $status;
         $this->updatedAt = $updatedAt;
         $this->connectorID = $connectorID;
         $this->createdObjectID = $createdObjectID;

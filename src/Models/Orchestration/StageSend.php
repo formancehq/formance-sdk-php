@@ -13,30 +13,21 @@ class StageSend
 {
     /**
      *
-     * @var ?Monetary $monetary
+     * @var ?\formance\stack\Models\Orchestration\Monetary $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Monetary|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Monetary $monetary = null;
+    public ?Monetary $amount = null;
 
     /**
      *
-     * @var ?StageSendDestination $stageSendDestination
+     * @var ?\formance\stack\Models\Orchestration\StageSendDestination $destination
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendDestination|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendDestination $stageSendDestination = null;
-
-    /**
-     *
-     * @var ?StageSendSource $stageSendSource
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendSource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StageSendSource $stageSendSource = null;
+    public ?StageSendDestination $destination = null;
 
     /**
      * $metadata
@@ -50,6 +41,15 @@ class StageSend
 
     /**
      *
+     * @var ?\formance\stack\Models\Orchestration\StageSendSource $source
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendSource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?StageSendSource $source = null;
+
+    /**
+     *
      * @var ?\DateTime $timestamp
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
@@ -57,19 +57,19 @@ class StageSend
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  ?Monetary  $monetary
-     * @param  ?StageSendDestination  $stageSendDestination
-     * @param  ?StageSendSource  $stageSendSource
+     * @param  ?\formance\stack\Models\Orchestration\Monetary  $amount
+     * @param  ?\formance\stack\Models\Orchestration\StageSendDestination  $destination
      * @param  ?array<string, string>  $metadata
+     * @param  ?\formance\stack\Models\Orchestration\StageSendSource  $source
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(?Monetary $monetary = null, ?StageSendDestination $stageSendDestination = null, ?StageSendSource $stageSendSource = null, ?array $metadata = null, ?\DateTime $timestamp = null)
+    public function __construct(?Monetary $amount = null, ?StageSendDestination $destination = null, ?array $metadata = null, ?StageSendSource $source = null, ?\DateTime $timestamp = null)
     {
-        $this->monetary = $monetary;
-        $this->stageSendDestination = $stageSendDestination;
-        $this->stageSendSource = $stageSendSource;
+        $this->amount = $amount;
+        $this->destination = $destination;
         $this->metadata = $metadata;
+        $this->source = $source;
         $this->timestamp = $timestamp;
     }
 }

@@ -13,18 +13,18 @@ class CreateBalanceResponse
 {
     /**
      *
-     * @var Balance $balance
+     * @var \formance\stack\Models\Wallets\Balance $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Balance')]
-    public Balance $balance;
+    public Balance $data;
 
     /**
-     * @param  Balance  $balance
+     * @param  \formance\stack\Models\Wallets\Balance  $data
      * @phpstan-pure
      */
-    public function __construct(Balance $balance)
+    public function __construct(Balance $data)
     {
-        $this->balance = $balance;
+        $this->data = $data;
     }
 }

@@ -13,7 +13,7 @@ class ErrorResponse
 {
     /**
      *
-     * @var ErrorCode $errorCode
+     * @var \formance\stack\Models\Wallets\ErrorCode $errorCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\ErrorCode')]
@@ -27,7 +27,7 @@ class ErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  ErrorCode  $errorCode
+     * @param  \formance\stack\Models\Wallets\ErrorCode  $errorCode
      * @param  string  $errorMessage
      * @phpstan-pure
      */

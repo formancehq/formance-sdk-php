@@ -13,18 +13,18 @@ class ReadTriggerResponse
 {
     /**
      *
-     * @var TriggerData $triggerData
+     * @var \formance\stack\Models\Orchestration\Trigger $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\TriggerData')]
-    public TriggerData $triggerData;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Trigger')]
+    public Trigger $data;
 
     /**
-     * @param  TriggerData  $triggerData
+     * @param  \formance\stack\Models\Orchestration\Trigger  $data
      * @phpstan-pure
      */
-    public function __construct(TriggerData $triggerData)
+    public function __construct(Trigger $data)
     {
-        $this->triggerData = $triggerData;
+        $this->data = $data;
     }
 }

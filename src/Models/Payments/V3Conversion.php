@@ -21,20 +21,6 @@ namespace formance\stack\Models\Payments;
 class V3Conversion
 {
     /**
-     * Lifecycle of a conversion.
-     *
-     * `PENDING` — accepted by the PSP, not yet settled.
-     * `COMPLETED` — settled, terminal.
-     * `FAILED` — rejected or reverted, terminal. See `error`.
-     *
-     *
-     * @var V3ConversionStatusEnum $v3ConversionStatusEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConversionStatusEnum')]
-    public V3ConversionStatusEnum $v3ConversionStatusEnum;
-
-    /**
      * ID of the Formance connector this conversion was fetched from.
      *
      * @var string $connectorID
@@ -99,22 +85,26 @@ class V3Conversion
     public string $sourceAsset;
 
     /**
+     * Lifecycle of a conversion.
+     *
+     * `PENDING` — accepted by the PSP, not yet settled.
+     * `COMPLETED` — settled, terminal.
+     * `FAILED` — rejected or reverted, terminal. See `error`.
+     *
+     *
+     * @var \formance\stack\Models\Payments\V3ConversionStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConversionStatusEnum')]
+    public V3ConversionStatusEnum $status;
+
+    /**
      * When Formance last observed a state change on the conversion.
      *
      * @var \DateTime $updatedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
     public \DateTime $updatedAt;
-
-    /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
 
     /**
      * Formance account ID of the wallet the destination asset was credited to.
@@ -162,6 +152,16 @@ class V3Conversion
     public ?string $feeAsset = null;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      * Formance account ID of the wallet the source asset was debited from.
      *
      * @var ?string $sourceAccountID
@@ -171,7 +171,6 @@ class V3Conversion
     public ?string $sourceAccountID = null;
 
     /**
-     * @param  V3ConversionStatusEnum  $v3ConversionStatusEnum
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $destinationAsset
@@ -180,19 +179,19 @@ class V3Conversion
      * @param  string  $reference
      * @param  \Brick\Math\BigInteger  $sourceAmount
      * @param  string  $sourceAsset
+     * @param  \formance\stack\Models\Payments\V3ConversionStatusEnum  $status
      * @param  \DateTime  $updatedAt
-     * @param  ?array<string, string>  $v3Metadata
      * @param  ?string  $destinationAccountID
      * @param  ?\Brick\Math\BigInteger  $destinationAmount
      * @param  ?string  $error
      * @param  ?\Brick\Math\BigInteger  $fee
      * @param  ?string  $feeAsset
+     * @param  ?array<string, string>  $metadata
      * @param  ?string  $sourceAccountID
      * @phpstan-pure
      */
-    public function __construct(V3ConversionStatusEnum $v3ConversionStatusEnum, string $connectorID, \DateTime $createdAt, string $destinationAsset, string $id, string $provider, string $reference, \Brick\Math\BigInteger $sourceAmount, string $sourceAsset, \DateTime $updatedAt, ?array $v3Metadata = null, ?string $destinationAccountID = null, ?\Brick\Math\BigInteger $destinationAmount = null, ?string $error = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?string $sourceAccountID = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $destinationAsset, string $id, string $provider, string $reference, \Brick\Math\BigInteger $sourceAmount, string $sourceAsset, V3ConversionStatusEnum $status, \DateTime $updatedAt, ?string $destinationAccountID = null, ?\Brick\Math\BigInteger $destinationAmount = null, ?string $error = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null, ?string $sourceAccountID = null)
     {
-        $this->v3ConversionStatusEnum = $v3ConversionStatusEnum;
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;
         $this->destinationAsset = $destinationAsset;
@@ -201,13 +200,14 @@ class V3Conversion
         $this->reference = $reference;
         $this->sourceAmount = $sourceAmount;
         $this->sourceAsset = $sourceAsset;
+        $this->status = $status;
         $this->updatedAt = $updatedAt;
-        $this->v3Metadata = $v3Metadata;
         $this->destinationAccountID = $destinationAccountID;
         $this->destinationAmount = $destinationAmount;
         $this->error = $error;
         $this->fee = $fee;
         $this->feeAsset = $feeAsset;
+        $this->metadata = $metadata;
         $this->sourceAccountID = $sourceAccountID;
     }
 }

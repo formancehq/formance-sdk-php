@@ -12,18 +12,18 @@ namespace formance\stack\Models\Orchestration;
 class V2PostTransaction
 {
     /**
-     * $v2Metadata
+     * $metadata
      *
-     * @var array<string, string> $v2Metadata
+     * @var array<string, string> $metadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
-    public array $v2Metadata;
+    public array $metadata;
 
     /**
      * $postings
      *
-     * @var ?array<V2Posting> $postings
+     * @var ?array<\formance\stack\Models\Orchestration\V2Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\V2Posting>|null')]
@@ -40,7 +40,7 @@ class V2PostTransaction
 
     /**
      *
-     * @var ?V2PostTransactionScript $script
+     * @var ?\formance\stack\Models\Orchestration\V2PostTransactionScript $script
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PostTransactionScript|null')]
@@ -56,16 +56,16 @@ class V2PostTransaction
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  array<string, string>  $v2Metadata
-     * @param  ?array<V2Posting>  $postings
+     * @param  array<string, string>  $metadata
+     * @param  ?array<\formance\stack\Models\Orchestration\V2Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?V2PostTransactionScript  $script
+     * @param  ?\formance\stack\Models\Orchestration\V2PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */
-    public function __construct(array $v2Metadata, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
+    public function __construct(array $metadata, ?array $postings = null, ?string $reference = null, ?V2PostTransactionScript $script = null, ?\DateTime $timestamp = null)
     {
-        $this->v2Metadata = $v2Metadata;
+        $this->metadata = $metadata;
         $this->postings = $postings;
         $this->reference = $reference;
         $this->script = $script;

@@ -13,14 +13,14 @@ class V3PaymentServiceUserDeleteConnectorResponse
 {
     /**
      *
-     * @var V3PaymentServiceUserDeleteConnectorResponseData $data
+     * @var \formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponseData $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponseData')]
     public V3PaymentServiceUserDeleteConnectorResponseData $data;
 
     /**
-     * @param  V3PaymentServiceUserDeleteConnectorResponseData  $data
+     * @param  \formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponseData  $data
      * @phpstan-pure
      */
     public function __construct(V3PaymentServiceUserDeleteConnectorResponseData $data)

@@ -45,27 +45,27 @@ class V2Hold
 
     /**
      *
-     * @var V2LedgerAccountSubject|V2WalletSubject|null $v2Subject
+     * @var \formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null $destination
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public V2LedgerAccountSubject|V2WalletSubject|null $v2Subject = null;
+    public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 
     /**
      * @param  string  $description
      * @param  string  $id
      * @param  array<string, string>  $metadata
      * @param  string  $walletID
-     * @param  V2LedgerAccountSubject|V2WalletSubject|null  $v2Subject
+     * @param  \formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null  $destination
      * @phpstan-pure
      */
-    public function __construct(string $description, string $id, array $metadata, string $walletID, V2LedgerAccountSubject|V2WalletSubject|null $v2Subject = null)
+    public function __construct(string $description, string $id, array $metadata, string $walletID, V2LedgerAccountSubject|V2WalletSubject|null $destination = null)
     {
         $this->description = $description;
         $this->id = $id;
         $this->metadata = $metadata;
         $this->walletID = $walletID;
-        $this->v2Subject = $v2Subject;
+        $this->destination = $destination;
     }
 }

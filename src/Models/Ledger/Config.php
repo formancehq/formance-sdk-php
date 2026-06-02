@@ -13,18 +13,18 @@ class Config
 {
     /**
      *
-     * @var LedgerStorage $ledgerStorage
+     * @var \formance\stack\Models\Ledger\LedgerStorage $storage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\LedgerStorage')]
-    public LedgerStorage $ledgerStorage;
+    public LedgerStorage $storage;
 
     /**
-     * @param  LedgerStorage  $ledgerStorage
+     * @param  \formance\stack\Models\Ledger\LedgerStorage  $storage
      * @phpstan-pure
      */
-    public function __construct(LedgerStorage $ledgerStorage)
+    public function __construct(LedgerStorage $storage)
     {
-        $this->ledgerStorage = $ledgerStorage;
+        $this->storage = $storage;
     }
 }

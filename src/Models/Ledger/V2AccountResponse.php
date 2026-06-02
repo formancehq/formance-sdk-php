@@ -13,18 +13,18 @@ class V2AccountResponse
 {
     /**
      *
-     * @var V2Account $v2Account
+     * @var \formance\stack\Models\Ledger\V2Account $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Account')]
-    public V2Account $v2Account;
+    public V2Account $data;
 
     /**
-     * @param  V2Account  $v2Account
+     * @param  \formance\stack\Models\Ledger\V2Account  $data
      * @phpstan-pure
      */
-    public function __construct(V2Account $v2Account)
+    public function __construct(V2Account $data)
     {
-        $this->v2Account = $v2Account;
+        $this->data = $data;
     }
 }

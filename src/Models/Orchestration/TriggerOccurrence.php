@@ -36,20 +36,20 @@ class TriggerOccurrence
 
     /**
      *
-     * @var ?WorkflowInstance $workflowInstance
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstance')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\WorkflowInstance|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?WorkflowInstance $workflowInstance = null;
-
-    /**
-     *
      * @var ?string $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $error = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Orchestration\WorkflowInstance $workflowInstance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstance')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\WorkflowInstance|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?WorkflowInstance $workflowInstance = null;
 
     /**
      *
@@ -63,18 +63,18 @@ class TriggerOccurrence
      * @param  \DateTime  $date
      * @param  array<string, mixed>  $event
      * @param  string  $triggerID
-     * @param  ?WorkflowInstance  $workflowInstance
      * @param  ?string  $error
+     * @param  ?\formance\stack\Models\Orchestration\WorkflowInstance  $workflowInstance
      * @param  ?string  $workflowInstanceID
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, array $event, string $triggerID, ?WorkflowInstance $workflowInstance = null, ?string $error = null, ?string $workflowInstanceID = null)
+    public function __construct(\DateTime $date, array $event, string $triggerID, ?string $error = null, ?WorkflowInstance $workflowInstance = null, ?string $workflowInstanceID = null)
     {
         $this->date = $date;
         $this->event = $event;
         $this->triggerID = $triggerID;
-        $this->workflowInstance = $workflowInstance;
         $this->error = $error;
+        $this->workflowInstance = $workflowInstance;
         $this->workflowInstanceID = $workflowInstanceID;
     }
 }

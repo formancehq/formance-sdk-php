@@ -13,19 +13,19 @@ class ErrorResponse
 {
     /**
      *
-     * @var ErrorsEnum $errorsEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\ErrorsEnum')]
-    public ErrorsEnum $errorsEnum;
-
-    /**
-     *
      * @var ?string $details
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
+
+    /**
+     *
+     * @var \formance\stack\Models\Webhooks\ErrorsEnum $errorCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\ErrorsEnum')]
+    public ErrorsEnum $errorCode;
 
     /**
      *
@@ -35,15 +35,15 @@ class ErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  ErrorsEnum  $errorsEnum
+     * @param  \formance\stack\Models\Webhooks\ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure
      */
-    public function __construct(ErrorsEnum $errorsEnum, string $errorMessage, ?string $details = null)
+    public function __construct(ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
-        $this->errorsEnum = $errorsEnum;
         $this->details = $details;
+        $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
     }
 

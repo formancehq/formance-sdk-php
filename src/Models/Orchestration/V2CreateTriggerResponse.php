@@ -13,18 +13,18 @@ class V2CreateTriggerResponse
 {
     /**
      *
-     * @var V2TriggerData $v2TriggerData
+     * @var \formance\stack\Models\Orchestration\V2Trigger $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2TriggerData')]
-    public V2TriggerData $v2TriggerData;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Trigger')]
+    public V2Trigger $data;
 
     /**
-     * @param  V2TriggerData  $v2TriggerData
+     * @param  \formance\stack\Models\Orchestration\V2Trigger  $data
      * @phpstan-pure
      */
-    public function __construct(V2TriggerData $v2TriggerData)
+    public function __construct(V2Trigger $data)
     {
-        $this->v2TriggerData = $v2TriggerData;
+        $this->data = $data;
     }
 }

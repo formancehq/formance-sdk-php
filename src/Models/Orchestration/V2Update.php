@@ -13,19 +13,19 @@ class V2Update
 {
     /**
      *
-     * @var ?V2UpdateAccount $v2UpdateAccount
+     * @var ?\formance\stack\Models\Orchestration\V2UpdateAccount $account
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2UpdateAccount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2UpdateAccount $v2UpdateAccount = null;
+    public ?V2UpdateAccount $account = null;
 
     /**
-     * @param  ?V2UpdateAccount  $v2UpdateAccount
+     * @param  ?\formance\stack\Models\Orchestration\V2UpdateAccount  $account
      * @phpstan-pure
      */
-    public function __construct(?V2UpdateAccount $v2UpdateAccount = null)
+    public function __construct(?V2UpdateAccount $account = null)
     {
-        $this->v2UpdateAccount = $v2UpdateAccount;
+        $this->account = $account;
     }
 }

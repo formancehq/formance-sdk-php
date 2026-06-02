@@ -29,7 +29,7 @@ class V2MigrationInfo
 
     /**
      *
-     * @var ?V2MigrationInfoState $state
+     * @var ?\formance\stack\Models\Ledger\V2MigrationInfoState $state
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2MigrationInfoState|null')]
@@ -47,7 +47,7 @@ class V2MigrationInfo
     /**
      * @param  ?\DateTime  $date
      * @param  ?string  $name
-     * @param  ?V2MigrationInfoState  $state
+     * @param  ?\formance\stack\Models\Ledger\V2MigrationInfoState  $state
      * @param  ?string  $version
      * @phpstan-pure
      */

@@ -14,7 +14,7 @@ class LogsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<Log> $data
+     * @var array<\formance\stack\Models\Ledger\Log> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Log>')]
@@ -51,7 +51,7 @@ class LogsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Log>  $data
+     * @param  array<\formance\stack\Models\Ledger\Log>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

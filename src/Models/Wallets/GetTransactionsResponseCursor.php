@@ -14,7 +14,7 @@ class GetTransactionsResponseCursor
     /**
      * $data
      *
-     * @var array<Transaction> $data
+     * @var array<\formance\stack\Models\Wallets\Transaction> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\Transaction>')]
@@ -52,7 +52,7 @@ class GetTransactionsResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Transaction>  $data
+     * @param  array<\formance\stack\Models\Wallets\Transaction>  $data
      * @param  int  $pageSize
      * @param  ?bool  $hasMore
      * @param  ?string  $next

@@ -14,7 +14,7 @@ class TransactionData
     /**
      * $postings
      *
-     * @var array<Posting> $postings
+     * @var array<\formance\stack\Models\Ledger\Posting> $postings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Posting>')]
@@ -47,7 +47,7 @@ class TransactionData
     public ?array $metadata = null;
 
     /**
-     * @param  array<Posting>  $postings
+     * @param  array<\formance\stack\Models\Ledger\Posting>  $postings
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, mixed>  $metadata

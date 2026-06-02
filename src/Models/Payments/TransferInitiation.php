@@ -13,14 +13,6 @@ class TransferInitiation
 {
     /**
      *
-     * @var TransferInitiationStatus $transferInitiationStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
-    public TransferInitiationStatus $transferInitiationStatus;
-
-    /**
-     *
      * @var \Brick\Math\BigInteger $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
@@ -98,7 +90,15 @@ class TransferInitiation
 
     /**
      *
-     * @var Type $type
+     * @var \formance\stack\Models\Payments\TransferInitiationStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
+    public TransferInitiationStatus $status;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\Type $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Type')]
@@ -114,7 +114,7 @@ class TransferInitiation
     /**
      * $relatedAdjustments
      *
-     * @var ?array<TransferInitiationAdjustments> $relatedAdjustments
+     * @var ?array<\formance\stack\Models\Payments\TransferInitiationAdjustments> $relatedAdjustments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAdjustments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\TransferInitiationAdjustments>|null')]
@@ -142,7 +142,7 @@ class TransferInitiation
     /**
      * $relatedPayments
      *
-     * @var ?array<TransferInitiationPayments> $relatedPayments
+     * @var ?array<\formance\stack\Models\Payments\TransferInitiationPayments> $relatedPayments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('relatedPayments')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\TransferInitiationPayments>|null')]
@@ -150,7 +150,6 @@ class TransferInitiation
     public ?array $relatedPayments = null;
 
     /**
-     * @param  TransferInitiationStatus  $transferInitiationStatus
      * @param  \Brick\Math\BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
@@ -162,17 +161,17 @@ class TransferInitiation
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
      * @param  string  $sourceAccountID
-     * @param  Type  $type
+     * @param  \formance\stack\Models\Payments\TransferInitiationStatus  $status
+     * @param  \formance\stack\Models\Payments\Type  $type
      * @param  ?string  $provider
-     * @param  ?array<TransferInitiationAdjustments>  $relatedAdjustments
+     * @param  ?array<\formance\stack\Models\Payments\TransferInitiationAdjustments>  $relatedAdjustments
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
-     * @param  ?array<TransferInitiationPayments>  $relatedPayments
+     * @param  ?array<\formance\stack\Models\Payments\TransferInitiationPayments>  $relatedPayments
      * @phpstan-pure
      */
-    public function __construct(TransferInitiationStatus $transferInitiationStatus, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, Type $type, ?string $provider = null, ?array $relatedAdjustments = null, ?string $error = null, ?array $metadata = null, ?array $relatedPayments = null)
+    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationStatus $status, Type $type, ?string $provider = null, ?array $relatedAdjustments = null, ?string $error = null, ?array $metadata = null, ?array $relatedPayments = null)
     {
-        $this->transferInitiationStatus = $transferInitiationStatus;
         $this->amount = $amount;
         $this->asset = $asset;
         $this->connectorID = $connectorID;
@@ -184,6 +183,7 @@ class TransferInitiation
         $this->reference = $reference;
         $this->scheduledAt = $scheduledAt;
         $this->sourceAccountID = $sourceAccountID;
+        $this->status = $status;
         $this->type = $type;
         $this->provider = $provider;
         $this->relatedAdjustments = $relatedAdjustments;

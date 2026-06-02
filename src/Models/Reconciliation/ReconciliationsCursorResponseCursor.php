@@ -14,7 +14,7 @@ class ReconciliationsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<Reconciliation> $data
+     * @var array<\formance\stack\Models\Reconciliation\Reconciliation> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Reconciliation\Reconciliation>')]
@@ -51,7 +51,7 @@ class ReconciliationsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Reconciliation>  $data
+     * @param  array<\formance\stack\Models\Reconciliation\Reconciliation>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

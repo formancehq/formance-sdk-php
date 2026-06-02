@@ -41,7 +41,7 @@ class StageSendDestinationPayment
      * - PAYOUT: Internal to external account payout
      *
      *
-     * @var ?StageSendDestinationPaymentType $type
+     * @var ?\formance\stack\Models\Orchestration\StageSendDestinationPaymentType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\StageSendDestinationPaymentType|null')]
@@ -51,7 +51,7 @@ class StageSendDestinationPayment
     /**
      * @param  string  $psp
      * @param  ?string  $sourceAccount
-     * @param  ?StageSendDestinationPaymentType  $type
+     * @param  ?\formance\stack\Models\Orchestration\StageSendDestinationPaymentType  $type
      * @phpstan-pure
      */
     public function __construct(string $psp, ?string $sourceAccount = null, ?StageSendDestinationPaymentType $type = StageSendDestinationPaymentType::Transfer)

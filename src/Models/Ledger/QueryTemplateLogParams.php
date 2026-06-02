@@ -54,7 +54,7 @@ class QueryTemplateLogParams
 
     /**
      *
-     * @var ?V2QueryParamsSchemasTrueResource $resource
+     * @var ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource $resource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource|null')]
@@ -78,7 +78,7 @@ class QueryTemplateLogParams
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
-     * @param  ?V2QueryParamsSchemasTrueResource  $resource
+     * @param  ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource  $resource
      * @param  ?string  $sort
      * @phpstan-pure
      */

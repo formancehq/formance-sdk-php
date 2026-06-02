@@ -52,12 +52,12 @@ class Hold
 
     /**
      *
-     * @var LedgerAccountSubject|WalletSubject|null $subject
+     * @var \formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null $destination
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public LedgerAccountSubject|WalletSubject|null $subject = null;
+    public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
      * @param  string  $asset
@@ -65,16 +65,16 @@ class Hold
      * @param  string  $id
      * @param  array<string, string>  $metadata
      * @param  string  $walletID
-     * @param  LedgerAccountSubject|WalletSubject|null  $subject
+     * @param  \formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null  $destination
      * @phpstan-pure
      */
-    public function __construct(string $asset, string $description, string $id, array $metadata, string $walletID, LedgerAccountSubject|WalletSubject|null $subject = null)
+    public function __construct(string $asset, string $description, string $id, array $metadata, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
     {
         $this->asset = $asset;
         $this->description = $description;
         $this->id = $id;
         $this->metadata = $metadata;
         $this->walletID = $walletID;
-        $this->subject = $subject;
+        $this->destination = $destination;
     }
 }

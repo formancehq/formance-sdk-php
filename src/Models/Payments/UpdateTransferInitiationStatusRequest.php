@@ -13,14 +13,14 @@ class UpdateTransferInitiationStatusRequest
 {
     /**
      *
-     * @var Status $status
+     * @var \formance\stack\Models\Payments\Status $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Status')]
     public Status $status;
 
     /**
-     * @param  Status  $status
+     * @param  \formance\stack\Models\Payments\Status  $status
      * @phpstan-pure
      */
     public function __construct(Status $status)

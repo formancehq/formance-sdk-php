@@ -13,18 +13,18 @@ class DebitWalletResponse
 {
     /**
      *
-     * @var Hold $hold
+     * @var \formance\stack\Models\Wallets\Hold $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Hold')]
-    public Hold $hold;
+    public Hold $data;
 
     /**
-     * @param  Hold  $hold
+     * @param  \formance\stack\Models\Wallets\Hold  $data
      * @phpstan-pure
      */
-    public function __construct(Hold $hold)
+    public function __construct(Hold $data)
     {
-        $this->hold = $hold;
+        $this->data = $data;
     }
 }

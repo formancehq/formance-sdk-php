@@ -14,18 +14,18 @@ class PoolsCursor
 {
     /**
      *
-     * @var PoolsCursorCursorBase $cursorBase
+     * @var \formance\stack\Models\Payments\PoolsCursorCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PoolsCursorCursorBase')]
-    public PoolsCursorCursorBase $cursorBase;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PoolsCursorCursor')]
+    public PoolsCursorCursor $cursor;
 
     /**
-     * @param  PoolsCursorCursorBase  $cursorBase
+     * @param  \formance\stack\Models\Payments\PoolsCursorCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(PoolsCursorCursorBase $cursorBase)
+    public function __construct(PoolsCursorCursor $cursor)
     {
-        $this->cursorBase = $cursorBase;
+        $this->cursor = $cursor;
     }
 }

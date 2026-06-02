@@ -13,11 +13,11 @@ class CreditWalletRequest
 {
     /**
      *
-     * @var Monetary $monetary
+     * @var \formance\stack\Models\Wallets\Monetary $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Monetary')]
-    public Monetary $monetary;
+    public Monetary $amount;
 
     /**
      * The balance to credit
@@ -57,7 +57,7 @@ class CreditWalletRequest
     /**
      * $sources
      *
-     * @var ?array<LedgerAccountSubject|WalletSubject> $sources
+     * @var ?array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject> $sources
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sources')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject>|null')]
@@ -65,17 +65,17 @@ class CreditWalletRequest
     public ?array $sources = null;
 
     /**
-     * @param  Monetary  $monetary
+     * @param  \formance\stack\Models\Wallets\Monetary  $amount
      * @param  ?string  $balance
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, string>  $metadata
-     * @param  ?array<LedgerAccountSubject|WalletSubject>  $sources
+     * @param  ?array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject>  $sources
      * @phpstan-pure
      */
-    public function __construct(Monetary $monetary, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null, ?array $metadata = null, ?array $sources = null)
+    public function __construct(Monetary $amount, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null, ?array $metadata = null, ?array $sources = null)
     {
-        $this->monetary = $monetary;
+        $this->amount = $amount;
         $this->balance = $balance;
         $this->reference = $reference;
         $this->timestamp = $timestamp;

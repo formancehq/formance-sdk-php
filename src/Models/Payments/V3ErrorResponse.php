@@ -13,19 +13,19 @@ class V3ErrorResponse
 {
     /**
      *
-     * @var V3ErrorsEnum $v3ErrorsEnum
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ErrorsEnum')]
-    public V3ErrorsEnum $v3ErrorsEnum;
-
-    /**
-     *
      * @var ?string $details
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $details = null;
+
+    /**
+     *
+     * @var \formance\stack\Models\Payments\V3ErrorsEnum $errorCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ErrorsEnum')]
+    public V3ErrorsEnum $errorCode;
 
     /**
      *
@@ -35,15 +35,15 @@ class V3ErrorResponse
     public string $errorMessage;
 
     /**
-     * @param  V3ErrorsEnum  $v3ErrorsEnum
+     * @param  \formance\stack\Models\Payments\V3ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure
      */
-    public function __construct(V3ErrorsEnum $v3ErrorsEnum, string $errorMessage, ?string $details = null)
+    public function __construct(V3ErrorsEnum $errorCode, string $errorMessage, ?string $details = null)
     {
-        $this->v3ErrorsEnum = $v3ErrorsEnum;
         $this->details = $details;
+        $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
     }
 

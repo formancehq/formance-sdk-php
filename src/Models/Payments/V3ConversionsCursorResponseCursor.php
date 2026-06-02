@@ -14,7 +14,7 @@ class V3ConversionsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<V3Conversion> $data
+     * @var array<\formance\stack\Models\Payments\V3Conversion> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3Conversion>')]
@@ -51,7 +51,7 @@ class V3ConversionsCursorResponseCursor
     public ?string $previous = null;
 
     /**
-     * @param  array<V3Conversion>  $data
+     * @param  array<\formance\stack\Models\Payments\V3Conversion>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

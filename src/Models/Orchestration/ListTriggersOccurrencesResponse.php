@@ -14,14 +14,14 @@ class ListTriggersOccurrencesResponse
     /**
      * $data
      *
-     * @var array<TriggerOccurrence> $data
+     * @var array<\formance\stack\Models\Orchestration\TriggerOccurrence> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\TriggerOccurrence>')]
     public array $data;
 
     /**
-     * @param  array<TriggerOccurrence>  $data
+     * @param  array<\formance\stack\Models\Orchestration\TriggerOccurrence>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

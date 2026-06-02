@@ -35,22 +35,12 @@ class V3BankAccount
     /**
      * $relatedAccounts
      *
-     * @var ?array<V3BankAccountRelatedAccount> $relatedAccounts
+     * @var ?array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount> $relatedAccounts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('relatedAccounts')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $relatedAccounts = null;
-
-    /**
-     * $v3Metadata
-     *
-     * @var ?array<string, string> $v3Metadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $v3Metadata = null;
 
     /**
      *
@@ -77,6 +67,16 @@ class V3BankAccount
     public ?string $iban = null;
 
     /**
+     * $metadata
+     *
+     * @var ?array<string, string> $metadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $metadata = null;
+
+    /**
      *
      * @var ?string $swiftBicCode
      */
@@ -88,24 +88,24 @@ class V3BankAccount
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name
-     * @param  ?array<V3BankAccountRelatedAccount>  $relatedAccounts
-     * @param  ?array<string, string>  $v3Metadata
+     * @param  ?array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount>  $relatedAccounts
      * @param  ?string  $accountNumber
      * @param  ?string  $country
      * @param  ?string  $iban
+     * @param  ?array<string, string>  $metadata
      * @param  ?string  $swiftBicCode
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, string $name, ?array $relatedAccounts = null, ?array $v3Metadata = null, ?string $accountNumber = null, ?string $country = null, ?string $iban = null, ?string $swiftBicCode = null)
+    public function __construct(\DateTime $createdAt, string $id, string $name, ?array $relatedAccounts = null, ?string $accountNumber = null, ?string $country = null, ?string $iban = null, ?array $metadata = null, ?string $swiftBicCode = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;
         $this->name = $name;
         $this->relatedAccounts = $relatedAccounts;
-        $this->v3Metadata = $v3Metadata;
         $this->accountNumber = $accountNumber;
         $this->country = $country;
         $this->iban = $iban;
+        $this->metadata = $metadata;
         $this->swiftBicCode = $swiftBicCode;
     }
 }

@@ -14,7 +14,7 @@ class V2CreateBulkRequest
     /**
      * $requestBody
      *
-     * @var array<mixed> $requestBody
+     * @var array<\formance\stack\Models\Ledger\V2BulkElementCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementAddMetadata|\formance\stack\Models\Ledger\V2BulkElementRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementDeleteMetadata> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public array $requestBody;
@@ -60,7 +60,7 @@ class V2CreateBulkRequest
     public ?string $schemaVersion = null;
 
     /**
-     * @param  array<mixed>  $requestBody
+     * @param  array<\formance\stack\Models\Ledger\V2BulkElementCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementAddMetadata|\formance\stack\Models\Ledger\V2BulkElementRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementDeleteMetadata>  $requestBody
      * @param  string  $ledger
      * @param  ?bool  $atomic
      * @param  ?bool  $continueOnFailure

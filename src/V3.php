@@ -47,8 +47,10 @@ class V3
     /**
      * Add an account to a pool
      *
-     * @param  Operations\V3AddAccountToPoolRequest  $request
-     * @return Operations\V3AddAccountToPoolResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3AddAccountToPoolRequest  $request
+     * @return \formance\stack\Models\Operations\V3AddAccountToPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function addAccountToPool(Operations\V3AddAccountToPoolRequest $request, ?Options $options = null): Operations\V3AddAccountToPoolResponse
@@ -60,23 +62,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3AddAccountToPool', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -102,8 +108,10 @@ class V3
     /**
      * Add a bank account to a payment service user
      *
-     * @param  Operations\V3AddBankAccountToPaymentServiceUserRequest  $request
-     * @return Operations\V3AddBankAccountToPaymentServiceUserResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3AddBankAccountToPaymentServiceUserRequest  $request
+     * @return \formance\stack\Models\Operations\V3AddBankAccountToPaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function addBankAccountToPaymentServiceUser(Operations\V3AddBankAccountToPaymentServiceUserRequest $request, ?Options $options = null): Operations\V3AddBankAccountToPaymentServiceUserResponse
@@ -115,23 +123,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3AddBankAccountToPaymentServiceUser', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -157,8 +169,10 @@ class V3
     /**
      * Approve a payment initiation
      *
-     * @param  Operations\V3ApprovePaymentInitiationRequest  $request
-     * @return Operations\V3ApprovePaymentInitiationResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ApprovePaymentInitiationRequest  $request
+     * @return \formance\stack\Models\Operations\V3ApprovePaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function approvePaymentInitiation(Operations\V3ApprovePaymentInitiationRequest $request, ?Options $options = null): Operations\V3ApprovePaymentInitiationResponse
@@ -170,23 +184,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ApprovePaymentInitiation', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -222,8 +240,10 @@ class V3
      * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
      *
      *
+     * If set, this operation will use `clientID` from the global security.
+     *
      * @param  ?\formance\stack\Models\Payments\V3CreateAccountRequest  $request
-     * @return Operations\V3CreateAccountResponse
+     * @return \formance\stack\Models\Operations\V3CreateAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createAccount(?\formance\stack\Models\Payments\V3CreateAccountRequest $request = null, ?Options $options = null): Operations\V3CreateAccountResponse
@@ -239,23 +259,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3CreateAccount', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -291,8 +315,10 @@ class V3
      * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
      *
      *
+     * If set, this operation will use `clientID` from the global security.
+     *
      * @param  ?\formance\stack\Models\Payments\V3CreateBankAccountRequest  $request
-     * @return Operations\V3CreateBankAccountResponse
+     * @return \formance\stack\Models\Operations\V3CreateBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createBankAccount(?\formance\stack\Models\Payments\V3CreateBankAccountRequest $request = null, ?Options $options = null): Operations\V3CreateBankAccountResponse
@@ -308,23 +334,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3CreateBankAccount', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -359,8 +389,10 @@ class V3
     /**
      * Create an authentication link for a payment service user on a connector, for oauth flow
      *
-     * @param  Operations\V3CreateLinkForPaymentServiceUserRequest  $request
-     * @return Operations\V3CreateLinkForPaymentServiceUserResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3CreateLinkForPaymentServiceUserRequest  $request
+     * @return \formance\stack\Models\Operations\V3CreateLinkForPaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createLinkForPaymentServiceUser(Operations\V3CreateLinkForPaymentServiceUserRequest $request, ?Options $options = null): Operations\V3CreateLinkForPaymentServiceUserResponse
@@ -376,23 +408,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3CreateLinkForPaymentServiceUser', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -428,8 +464,10 @@ class V3
      * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
      *
      *
+     * If set, this operation will use `clientID` from the global security.
+     *
      * @param  ?\formance\stack\Models\Payments\V3CreatePaymentRequest  $request
-     * @return Operations\V3CreatePaymentResponse
+     * @return \formance\stack\Models\Operations\V3CreatePaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createPayment(?\formance\stack\Models\Payments\V3CreatePaymentRequest $request = null, ?Options $options = null): Operations\V3CreatePaymentResponse
@@ -445,23 +483,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3CreatePayment', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -496,8 +538,10 @@ class V3
     /**
      * Create a formance payment service user object
      *
+     * If set, this operation will use `clientID` from the global security.
+     *
      * @param  ?\formance\stack\Models\Payments\V3CreatePaymentServiceUserRequest  $request
-     * @return Operations\V3CreatePaymentServiceUserResponse
+     * @return \formance\stack\Models\Operations\V3CreatePaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createPaymentServiceUser(?\formance\stack\Models\Payments\V3CreatePaymentServiceUserRequest $request = null, ?Options $options = null): Operations\V3CreatePaymentServiceUserResponse
@@ -513,23 +557,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3CreatePaymentServiceUser', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -564,8 +612,10 @@ class V3
     /**
      * Create a formance pool object
      *
+     * If set, this operation will use `clientID` from the global security.
+     *
      * @param  ?\formance\stack\Models\Payments\V3CreatePoolRequest  $request
-     * @return Operations\V3CreatePoolResponse
+     * @return \formance\stack\Models\Operations\V3CreatePoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function createPool(?\formance\stack\Models\Payments\V3CreatePoolRequest $request = null, ?Options $options = null): Operations\V3CreatePoolResponse
@@ -581,23 +631,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3CreatePool', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -632,8 +686,10 @@ class V3
     /**
      * Delete a payment initiation by ID
      *
-     * @param  Operations\V3DeletePaymentInitiationRequest  $request
-     * @return Operations\V3DeletePaymentInitiationResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3DeletePaymentInitiationRequest  $request
+     * @return \formance\stack\Models\Operations\V3DeletePaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deletePaymentInitiation(Operations\V3DeletePaymentInitiationRequest $request, ?Options $options = null): Operations\V3DeletePaymentInitiationResponse
@@ -645,23 +701,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3DeletePaymentInitiation', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -687,8 +747,10 @@ class V3
     /**
      * Delete a payment service user by ID
      *
-     * @param  Operations\V3DeletePaymentServiceUserRequest  $request
-     * @return Operations\V3DeletePaymentServiceUserResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3DeletePaymentServiceUserRequest  $request
+     * @return \formance\stack\Models\Operations\V3DeletePaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deletePaymentServiceUser(Operations\V3DeletePaymentServiceUserRequest $request, ?Options $options = null): Operations\V3DeletePaymentServiceUserResponse
@@ -700,23 +762,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3DeletePaymentServiceUser', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -751,8 +817,10 @@ class V3
     /**
      * Delete a connection for a payment service user on a connector
      *
-     * @param  Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest  $request
-     * @return Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest  $request
+     * @return \formance\stack\Models\Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deletePaymentServiceUserConnectionFromConnectorID(Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDRequest $request, ?Options $options = null): Operations\V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
@@ -764,23 +832,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3DeletePaymentServiceUserConnectionFromConnectorID', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -815,8 +887,10 @@ class V3
     /**
      * Remove a payment service user from a connector, the PSU will still exist in Formance
      *
-     * @param  Operations\V3DeletePaymentServiceUserConnectorRequest  $request
-     * @return Operations\V3DeletePaymentServiceUserConnectorResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3DeletePaymentServiceUserConnectorRequest  $request
+     * @return \formance\stack\Models\Operations\V3DeletePaymentServiceUserConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deletePaymentServiceUserConnector(Operations\V3DeletePaymentServiceUserConnectorRequest $request, ?Options $options = null): Operations\V3DeletePaymentServiceUserConnectorResponse
@@ -828,23 +902,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3DeletePaymentServiceUserConnector', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -879,8 +957,10 @@ class V3
     /**
      * Delete a pool by ID
      *
-     * @param  Operations\V3DeletePoolRequest  $request
-     * @return Operations\V3DeletePoolResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3DeletePoolRequest  $request
+     * @return \formance\stack\Models\Operations\V3DeletePoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function deletePool(Operations\V3DeletePoolRequest $request, ?Options $options = null): Operations\V3DeletePoolResponse
@@ -892,23 +972,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3DeletePool', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -934,8 +1018,8 @@ class V3
     /**
      * Forward a Bank Account to a PSP for creation
      *
-     * @param  Operations\V3ForwardBankAccountRequest  $request
-     * @return Operations\V3ForwardBankAccountResponse
+     * @param  \formance\stack\Models\Operations\V3ForwardBankAccountRequest  $request
+     * @return \formance\stack\Models\Operations\V3ForwardBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function forwardBankAccount(Operations\V3ForwardBankAccountRequest $request, ?Options $options = null): Operations\V3ForwardBankAccountResponse
@@ -963,11 +1047,12 @@ class V3
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1002,8 +1087,10 @@ class V3
     /**
      * Forward a payment service user's bank account to a connector
      *
-     * @param  Operations\V3ForwardPaymentServiceUserBankAccountRequest  $request
-     * @return Operations\V3ForwardPaymentServiceUserBankAccountResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ForwardPaymentServiceUserBankAccountRequest  $request
+     * @return \formance\stack\Models\Operations\V3ForwardPaymentServiceUserBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function forwardPaymentServiceUserBankAccount(Operations\V3ForwardPaymentServiceUserBankAccountRequest $request, ?Options $options = null): Operations\V3ForwardPaymentServiceUserBankAccountResponse
@@ -1019,23 +1106,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ForwardPaymentServiceUserBankAccount', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1070,8 +1161,10 @@ class V3
     /**
      * Register/forward a payment service user on/to a connector
      *
-     * @param  Operations\V3ForwardPaymentServiceUserToProviderRequest  $request
-     * @return Operations\V3ForwardPaymentServiceUserToProviderResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ForwardPaymentServiceUserToProviderRequest  $request
+     * @return \formance\stack\Models\Operations\V3ForwardPaymentServiceUserToProviderResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function forwardPaymentServiceUserToProvider(Operations\V3ForwardPaymentServiceUserToProviderRequest $request, ?Options $options = null): Operations\V3ForwardPaymentServiceUserToProviderResponse
@@ -1083,23 +1176,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ForwardPaymentServiceUserToProvider', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -1125,8 +1222,10 @@ class V3
     /**
      * Get an account by ID
      *
-     * @param  Operations\V3GetAccountRequest  $request
-     * @return Operations\V3GetAccountResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetAccountRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getAccount(Operations\V3GetAccountRequest $request, ?Options $options = null): Operations\V3GetAccountResponse
@@ -1138,23 +1237,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetAccount', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1189,8 +1292,10 @@ class V3
     /**
      * Get account balances
      *
-     * @param  Operations\V3GetAccountBalancesRequest  $request
-     * @return Operations\V3GetAccountBalancesResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetAccountBalancesRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetAccountBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getAccountBalances(Operations\V3GetAccountBalancesRequest $request, ?Options $options = null): Operations\V3GetAccountBalancesResponse
@@ -1204,24 +1309,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetAccountBalances', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1256,8 +1365,8 @@ class V3
     /**
      * Get a Bank Account by ID
      *
-     * @param  Operations\V3GetBankAccountRequest  $request
-     * @return Operations\V3GetBankAccountResponse
+     * @param  \formance\stack\Models\Operations\V3GetBankAccountRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetBankAccountResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getBankAccount(Operations\V3GetBankAccountRequest $request, ?Options $options = null): Operations\V3GetBankAccountResponse
@@ -1281,11 +1390,12 @@ class V3
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1320,8 +1430,10 @@ class V3
     /**
      * Get a connector configuration by ID
      *
-     * @param  Operations\V3GetConnectorConfigRequest  $request
-     * @return Operations\V3GetConnectorConfigResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetConnectorConfigRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetConnectorConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getConnectorConfig(Operations\V3GetConnectorConfigRequest $request, ?Options $options = null): Operations\V3GetConnectorConfigResponse
@@ -1333,23 +1445,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetConnectorConfig', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1384,8 +1500,10 @@ class V3
     /**
      * Get a connector schedule by ID
      *
-     * @param  Operations\V3GetConnectorScheduleRequest  $request
-     * @return Operations\V3GetConnectorScheduleResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetConnectorScheduleRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetConnectorScheduleResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getConnectorSchedule(Operations\V3GetConnectorScheduleRequest $request, ?Options $options = null): Operations\V3GetConnectorScheduleResponse
@@ -1397,23 +1515,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetConnectorSchedule', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1458,8 +1580,10 @@ class V3
      * for the given ID.
      *
      *
-     * @param  Operations\V3GetConversionRequest  $request
-     * @return Operations\V3GetConversionResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetConversionRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetConversionResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getConversion(Operations\V3GetConversionRequest $request, ?Options $options = null): Operations\V3GetConversionResponse
@@ -1471,23 +1595,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetConversion', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1532,8 +1660,10 @@ class V3
      * given ID, or when the ID cannot be decoded.
      *
      *
-     * @param  Operations\V3GetOrderRequest  $request
-     * @return Operations\V3GetOrderResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetOrderRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetOrderResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getOrder(Operations\V3GetOrderRequest $request, ?Options $options = null): Operations\V3GetOrderResponse
@@ -1545,23 +1675,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetOrder', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1596,8 +1730,10 @@ class V3
     /**
      * Get a payment by ID
      *
-     * @param  Operations\V3GetPaymentRequest  $request
-     * @return Operations\V3GetPaymentResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPaymentRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPayment(Operations\V3GetPaymentRequest $request, ?Options $options = null): Operations\V3GetPaymentResponse
@@ -1609,23 +1745,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPayment', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1660,8 +1800,10 @@ class V3
     /**
      * Get a payment initiation by ID
      *
-     * @param  Operations\V3GetPaymentInitiationRequest  $request
-     * @return Operations\V3GetPaymentInitiationResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPaymentInitiationRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPaymentInitiation(Operations\V3GetPaymentInitiationRequest $request, ?Options $options = null): Operations\V3GetPaymentInitiationResponse
@@ -1673,23 +1815,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPaymentInitiation', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1724,8 +1870,10 @@ class V3
     /**
      * Get a payment service user by ID
      *
-     * @param  Operations\V3GetPaymentServiceUserRequest  $request
-     * @return Operations\V3GetPaymentServiceUserResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPaymentServiceUserRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPaymentServiceUserResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPaymentServiceUser(Operations\V3GetPaymentServiceUserRequest $request, ?Options $options = null): Operations\V3GetPaymentServiceUserResponse
@@ -1737,23 +1885,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPaymentServiceUser', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1788,8 +1940,10 @@ class V3
     /**
      * Get a link attempt for a payment service user on a connector
      *
-     * @param  Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest  $request
-     * @return Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPaymentServiceUserLinkAttemptFromConnectorID(Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest $request, ?Options $options = null): Operations\V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
@@ -1801,23 +1955,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPaymentServiceUserLinkAttemptFromConnectorID', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1852,8 +2010,10 @@ class V3
     /**
      * Get a pool by ID
      *
-     * @param  Operations\V3GetPoolRequest  $request
-     * @return Operations\V3GetPoolResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPoolRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPool(Operations\V3GetPoolRequest $request, ?Options $options = null): Operations\V3GetPoolResponse
@@ -1865,23 +2025,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPool', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1916,8 +2080,10 @@ class V3
     /**
      * Get historical pool balances from a particular point in time
      *
-     * @param  Operations\V3GetPoolBalancesRequest  $request
-     * @return Operations\V3GetPoolBalancesResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPoolBalancesRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPoolBalancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPoolBalances(Operations\V3GetPoolBalancesRequest $request, ?Options $options = null): Operations\V3GetPoolBalancesResponse
@@ -1931,24 +2097,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPoolBalances', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1983,8 +2153,10 @@ class V3
     /**
      * Get latest pool balances
      *
-     * @param  Operations\V3GetPoolBalancesLatestRequest  $request
-     * @return Operations\V3GetPoolBalancesLatestResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetPoolBalancesLatestRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetPoolBalancesLatestResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getPoolBalancesLatest(Operations\V3GetPoolBalancesLatestRequest $request, ?Options $options = null): Operations\V3GetPoolBalancesLatestResponse
@@ -1996,23 +2168,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetPoolBalancesLatest', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2047,8 +2223,10 @@ class V3
     /**
      * Get a task and its result by ID
      *
-     * @param  Operations\V3GetTaskRequest  $request
-     * @return Operations\V3GetTaskResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3GetTaskRequest  $request
+     * @return \formance\stack\Models\Operations\V3GetTaskResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function getTask(Operations\V3GetTaskRequest $request, ?Options $options = null): Operations\V3GetTaskResponse
@@ -2060,23 +2238,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3GetTask', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2111,8 +2293,10 @@ class V3
     /**
      * Initiate a payment
      *
-     * @param  ?Operations\V3InitiatePaymentRequest  $request
-     * @return Operations\V3InitiatePaymentResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3InitiatePaymentRequest  $request
+     * @return \formance\stack\Models\Operations\V3InitiatePaymentResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function initiatePayment(?Operations\V3InitiatePaymentRequest $request = null, ?Options $options = null): Operations\V3InitiatePaymentResponse
@@ -2130,24 +2314,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3InitiatePayment', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2182,8 +2370,10 @@ class V3
     /**
      * Install a connector
      *
-     * @param  Operations\V3InstallConnectorRequest  $request
-     * @return Operations\V3InstallConnectorResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3InstallConnectorRequest  $request
+     * @return \formance\stack\Models\Operations\V3InstallConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function installConnector(Operations\V3InstallConnectorRequest $request, ?Options $options = null): Operations\V3InstallConnectorResponse
@@ -2199,23 +2389,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3InstallConnector', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2250,8 +2444,10 @@ class V3
     /**
      * List all accounts
      *
-     * @param  ?Operations\V3ListAccountsRequest  $request
-     * @return Operations\V3ListAccountsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListAccountsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listAccounts(?Operations\V3ListAccountsRequest $request = null, ?Options $options = null): Operations\V3ListAccountsResponse
@@ -2269,24 +2465,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListAccounts', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2321,8 +2521,10 @@ class V3
     /**
      * List all bank accounts
      *
-     * @param  ?Operations\V3ListBankAccountsRequest  $request
-     * @return Operations\V3ListBankAccountsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListBankAccountsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListBankAccountsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listBankAccounts(?Operations\V3ListBankAccountsRequest $request = null, ?Options $options = null): Operations\V3ListBankAccountsResponse
@@ -2340,24 +2542,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListBankAccounts', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2392,7 +2598,9 @@ class V3
     /**
      * List all connector configurations
      *
-     * @return Operations\V3ListConnectorConfigsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @return \formance\stack\Models\Operations\V3ListConnectorConfigsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listConnectorConfigs(?Options $options = null): Operations\V3ListConnectorConfigsResponse
@@ -2404,23 +2612,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListConnectorConfigs', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2455,8 +2667,10 @@ class V3
     /**
      * List all connector schedule instances
      *
-     * @param  Operations\V3ListConnectorScheduleInstancesRequest  $request
-     * @return Operations\V3ListConnectorScheduleInstancesResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListConnectorScheduleInstancesRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListConnectorScheduleInstancesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listConnectorScheduleInstances(Operations\V3ListConnectorScheduleInstancesRequest $request, ?Options $options = null): Operations\V3ListConnectorScheduleInstancesResponse
@@ -2470,24 +2684,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListConnectorScheduleInstances', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2522,8 +2740,10 @@ class V3
     /**
      * List all connector schedules
      *
-     * @param  Operations\V3ListConnectorSchedulesRequest  $request
-     * @return Operations\V3ListConnectorSchedulesResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListConnectorSchedulesRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListConnectorSchedulesResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listConnectorSchedules(Operations\V3ListConnectorSchedulesRequest $request, ?Options $options = null): Operations\V3ListConnectorSchedulesResponse
@@ -2541,24 +2761,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListConnectorSchedules', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2593,8 +2817,10 @@ class V3
     /**
      * List all connectors
      *
-     * @param  ?Operations\V3ListConnectorsRequest  $request
-     * @return Operations\V3ListConnectorsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListConnectorsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListConnectorsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listConnectors(?Operations\V3ListConnectorsRequest $request = null, ?Options $options = null): Operations\V3ListConnectorsResponse
@@ -2612,24 +2838,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListConnectors', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2680,8 +2910,10 @@ class V3
      * `destinationAsset`, and `createdAt`.
      *
      *
-     * @param  ?Operations\V3ListConversionsRequest  $request
-     * @return Operations\V3ListConversionsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListConversionsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListConversionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listConversions(?Operations\V3ListConversionsRequest $request = null, ?Options $options = null): Operations\V3ListConversionsResponse
@@ -2699,24 +2931,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListConversions', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2767,8 +3003,10 @@ class V3
      * the exchange.
      *
      *
-     * @param  ?Operations\V3ListOrdersRequest  $request
-     * @return Operations\V3ListOrdersResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListOrdersRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListOrdersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listOrders(?Operations\V3ListOrdersRequest $request = null, ?Options $options = null): Operations\V3ListOrdersResponse
@@ -2786,24 +3024,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListOrders', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2838,8 +3080,10 @@ class V3
     /**
      * List all payment initiation adjustments
      *
-     * @param  Operations\V3ListPaymentInitiationAdjustmentsRequest  $request
-     * @return Operations\V3ListPaymentInitiationAdjustmentsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListPaymentInitiationAdjustmentsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentInitiationAdjustmentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentInitiationAdjustments(Operations\V3ListPaymentInitiationAdjustmentsRequest $request, ?Options $options = null): Operations\V3ListPaymentInitiationAdjustmentsResponse
@@ -2857,24 +3101,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentInitiationAdjustments', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2909,8 +3157,10 @@ class V3
     /**
      * List all payments related to a payment initiation
      *
-     * @param  Operations\V3ListPaymentInitiationRelatedPaymentsRequest  $request
-     * @return Operations\V3ListPaymentInitiationRelatedPaymentsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListPaymentInitiationRelatedPaymentsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentInitiationRelatedPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentInitiationRelatedPayments(Operations\V3ListPaymentInitiationRelatedPaymentsRequest $request, ?Options $options = null): Operations\V3ListPaymentInitiationRelatedPaymentsResponse
@@ -2928,24 +3178,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentInitiationRelatedPayments', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2980,8 +3234,10 @@ class V3
     /**
      * List all payment initiations
      *
-     * @param  ?Operations\V3ListPaymentInitiationsRequest  $request
-     * @return Operations\V3ListPaymentInitiationsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListPaymentInitiationsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentInitiationsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentInitiations(?Operations\V3ListPaymentInitiationsRequest $request = null, ?Options $options = null): Operations\V3ListPaymentInitiationsResponse
@@ -2999,24 +3255,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentInitiations', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3051,8 +3311,10 @@ class V3
     /**
      * List all connections for a payment service user
      *
-     * @param  Operations\V3ListPaymentServiceUserConnectionsRequest  $request
-     * @return Operations\V3ListPaymentServiceUserConnectionsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListPaymentServiceUserConnectionsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentServiceUserConnectionsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentServiceUserConnections(Operations\V3ListPaymentServiceUserConnectionsRequest $request, ?Options $options = null): Operations\V3ListPaymentServiceUserConnectionsResponse
@@ -3070,24 +3332,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentServiceUserConnections', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3122,8 +3388,10 @@ class V3
     /**
      * List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
      *
-     * @param  Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest  $request
-     * @return Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentServiceUserConnectionsFromConnectorID(Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDRequest $request, ?Options $options = null): Operations\V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
@@ -3141,24 +3409,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentServiceUserConnectionsFromConnectorID', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3195,8 +3467,10 @@ class V3
      * Allows to check if users used the link and completed the oauth flow.
      *
      *
-     * @param  Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest  $request
-     * @return Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentServiceUserLinkAttemptsFromConnectorID(Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest $request, ?Options $options = null): Operations\V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
@@ -3214,24 +3488,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentServiceUserLinkAttemptsFromConnectorID', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3266,8 +3544,10 @@ class V3
     /**
      * List all payment service users
      *
-     * @param  ?Operations\V3ListPaymentServiceUsersRequest  $request
-     * @return Operations\V3ListPaymentServiceUsersResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListPaymentServiceUsersRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentServiceUsersResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPaymentServiceUsers(?Operations\V3ListPaymentServiceUsersRequest $request = null, ?Options $options = null): Operations\V3ListPaymentServiceUsersResponse
@@ -3285,24 +3565,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPaymentServiceUsers', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3337,8 +3621,10 @@ class V3
     /**
      * List all payments
      *
-     * @param  ?Operations\V3ListPaymentsRequest  $request
-     * @return Operations\V3ListPaymentsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListPaymentsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPaymentsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPayments(?Operations\V3ListPaymentsRequest $request = null, ?Options $options = null): Operations\V3ListPaymentsResponse
@@ -3356,24 +3642,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPayments', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3408,8 +3698,10 @@ class V3
     /**
      * List all pools
      *
-     * @param  ?Operations\V3ListPoolsRequest  $request
-     * @return Operations\V3ListPoolsResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  ?\formance\stack\Models\Operations\V3ListPoolsRequest  $request
+     * @return \formance\stack\Models\Operations\V3ListPoolsResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function listPools(?Operations\V3ListPoolsRequest $request = null, ?Options $options = null): Operations\V3ListPoolsResponse
@@ -3427,24 +3719,28 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ListPools', ['payments:read'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['200'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3479,8 +3775,10 @@ class V3
     /**
      * Reject a payment initiation
      *
-     * @param  Operations\V3RejectPaymentInitiationRequest  $request
-     * @return Operations\V3RejectPaymentInitiationResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3RejectPaymentInitiationRequest  $request
+     * @return \formance\stack\Models\Operations\V3RejectPaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function rejectPaymentInitiation(Operations\V3RejectPaymentInitiationRequest $request, ?Options $options = null): Operations\V3RejectPaymentInitiationResponse
@@ -3492,23 +3790,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3RejectPaymentInitiation', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -3534,8 +3836,10 @@ class V3
     /**
      * Remove an account from a pool
      *
-     * @param  Operations\V3RemoveAccountFromPoolRequest  $request
-     * @return Operations\V3RemoveAccountFromPoolResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3RemoveAccountFromPoolRequest  $request
+     * @return \formance\stack\Models\Operations\V3RemoveAccountFromPoolResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function removeAccountFromPool(Operations\V3RemoveAccountFromPoolRequest $request, ?Options $options = null): Operations\V3RemoveAccountFromPoolResponse
@@ -3547,23 +3851,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3RemoveAccountFromPool', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -3589,8 +3897,10 @@ class V3
     /**
      * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
      *
-     * @param  Operations\V3ResetConnectorRequest  $request
-     * @return Operations\V3ResetConnectorResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ResetConnectorRequest  $request
+     * @return \formance\stack\Models\Operations\V3ResetConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function resetConnector(Operations\V3ResetConnectorRequest $request, ?Options $options = null): Operations\V3ResetConnectorResponse
@@ -3602,23 +3912,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ResetConnector', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3653,8 +3967,10 @@ class V3
     /**
      * Retry a payment initiation
      *
-     * @param  Operations\V3RetryPaymentInitiationRequest  $request
-     * @return Operations\V3RetryPaymentInitiationResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3RetryPaymentInitiationRequest  $request
+     * @return \formance\stack\Models\Operations\V3RetryPaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function retryPaymentInitiation(Operations\V3RetryPaymentInitiationRequest $request, ?Options $options = null): Operations\V3RetryPaymentInitiationResponse
@@ -3666,23 +3982,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3RetryPaymentInitiation', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3717,8 +4037,10 @@ class V3
     /**
      * Reverse a payment initiation
      *
-     * @param  Operations\V3ReversePaymentInitiationRequest  $request
-     * @return Operations\V3ReversePaymentInitiationResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3ReversePaymentInitiationRequest  $request
+     * @return \formance\stack\Models\Operations\V3ReversePaymentInitiationResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function reversePaymentInitiation(Operations\V3ReversePaymentInitiationRequest $request, ?Options $options = null): Operations\V3ReversePaymentInitiationResponse
@@ -3734,23 +4056,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3ReversePaymentInitiation', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3785,8 +4111,10 @@ class V3
     /**
      * Uninstall a connector
      *
-     * @param  Operations\V3UninstallConnectorRequest  $request
-     * @return Operations\V3UninstallConnectorResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3UninstallConnectorRequest  $request
+     * @return \formance\stack\Models\Operations\V3UninstallConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function uninstallConnector(Operations\V3UninstallConnectorRequest $request, ?Options $options = null): Operations\V3UninstallConnectorResponse
@@ -3798,23 +4126,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UninstallConnector', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['202'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3849,8 +4181,8 @@ class V3
     /**
      * Update a bank account's metadata
      *
-     * @param  Operations\V3UpdateBankAccountMetadataRequest  $request
-     * @return Operations\V3UpdateBankAccountMetadataResponse
+     * @param  \formance\stack\Models\Operations\V3UpdateBankAccountMetadataRequest  $request
+     * @return \formance\stack\Models\Operations\V3UpdateBankAccountMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function updateBankAccountMetadata(Operations\V3UpdateBankAccountMetadataRequest $request, ?Options $options = null): Operations\V3UpdateBankAccountMetadataResponse
@@ -3878,11 +4210,12 @@ class V3
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -3910,8 +4243,10 @@ class V3
      *
      * Update connector config
      *
-     * @param  Operations\V3UpdateConnectorConfigRequest  $request
-     * @return Operations\V3UpdateConnectorConfigResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3UpdateConnectorConfigRequest  $request
+     * @return \formance\stack\Models\Operations\V3UpdateConnectorConfigResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function v3UpdateConnectorConfig(Operations\V3UpdateConnectorConfigRequest $request, ?Options $options = null): Operations\V3UpdateConnectorConfigResponse
@@ -3927,23 +4262,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UpdateConnectorConfig', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -3969,8 +4308,10 @@ class V3
     /**
      * Update/Regenerate a link for a payment service user on a connector
      *
-     * @param  Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest  $request
-     * @return Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest  $request
+     * @return \formance\stack\Models\Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function updateLinkForPaymentServiceUserOnConnector(Operations\V3UpdateLinkForPaymentServiceUserOnConnectorRequest $request, ?Options $options = null): Operations\V3UpdateLinkForPaymentServiceUserOnConnectorResponse
@@ -3986,23 +4327,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UpdateLinkForPaymentServiceUserOnConnector', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['201'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -4037,8 +4382,10 @@ class V3
     /**
      * Update a payment's metadata
      *
-     * @param  Operations\V3UpdatePaymentMetadataRequest  $request
-     * @return Operations\V3UpdatePaymentMetadataResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3UpdatePaymentMetadataRequest  $request
+     * @return \formance\stack\Models\Operations\V3UpdatePaymentMetadataResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function updatePaymentMetadata(Operations\V3UpdatePaymentMetadataRequest $request, ?Options $options = null): Operations\V3UpdatePaymentMetadataResponse
@@ -4054,23 +4401,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UpdatePaymentMetadata', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -4096,8 +4447,10 @@ class V3
     /**
      * Update the query of a pool
      *
-     * @param  Operations\V3UpdatePoolQueryRequest  $request
-     * @return Operations\V3UpdatePoolQueryResponse
+     * If set, this operation will use `clientID` from the global security.
+     *
+     * @param  \formance\stack\Models\Operations\V3UpdatePoolQueryRequest  $request
+     * @return \formance\stack\Models\Operations\V3UpdatePoolQueryResponse
      * @throws \formance\stack\Models\Errors\SDKException
      */
     public function updatePoolQuery(Operations\V3UpdatePoolQueryRequest $request, ?Options $options = null): Operations\V3UpdatePoolQueryResponse
@@ -4113,23 +4466,27 @@ class V3
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
+        $client = $this->sdkConfiguration->securitySource !== null
+            ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
+            : $this->sdkConfiguration->defaultClient;
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'v3UpdatePoolQuery', ['payments:write'], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = $client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['default'])) {
+        if (! Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['204'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

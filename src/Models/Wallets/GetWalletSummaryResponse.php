@@ -13,18 +13,18 @@ class GetWalletSummaryResponse
 {
     /**
      *
-     * @var WalletSummary $walletSummary
+     * @var \formance\stack\Models\Wallets\WalletSummary $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\WalletSummary')]
-    public WalletSummary $walletSummary;
+    public WalletSummary $data;
 
     /**
-     * @param  WalletSummary  $walletSummary
+     * @param  \formance\stack\Models\Wallets\WalletSummary  $data
      * @phpstan-pure
      */
-    public function __construct(WalletSummary $walletSummary)
+    public function __construct(WalletSummary $data)
     {
-        $this->walletSummary = $walletSummary;
+        $this->data = $data;
     }
 }

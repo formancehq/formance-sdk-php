@@ -13,12 +13,12 @@ class ActivityCreateTransaction
 {
     /**
      *
-     * @var ?PostTransaction $postTransaction
+     * @var ?\formance\stack\Models\Orchestration\PostTransaction $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\PostTransaction|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PostTransaction $postTransaction = null;
+    public ?PostTransaction $data = null;
 
     /**
      *
@@ -29,13 +29,13 @@ class ActivityCreateTransaction
     public ?string $ledger = null;
 
     /**
-     * @param  ?PostTransaction  $postTransaction
+     * @param  ?\formance\stack\Models\Orchestration\PostTransaction  $data
      * @param  ?string  $ledger
      * @phpstan-pure
      */
-    public function __construct(?PostTransaction $postTransaction = null, ?string $ledger = null)
+    public function __construct(?PostTransaction $data = null, ?string $ledger = null)
     {
-        $this->postTransaction = $postTransaction;
+        $this->data = $data;
         $this->ledger = $ledger;
     }
 }

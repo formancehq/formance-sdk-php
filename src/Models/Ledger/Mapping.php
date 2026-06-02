@@ -14,14 +14,14 @@ class Mapping
     /**
      * $contracts
      *
-     * @var array<Contract> $contracts
+     * @var array<\formance\stack\Models\Ledger\Contract> $contracts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('contracts')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Contract>')]
     public array $contracts;
 
     /**
-     * @param  array<Contract>  $contracts
+     * @param  array<\formance\stack\Models\Ledger\Contract>  $contracts
      * @phpstan-pure
      */
     public function __construct(array $contracts)

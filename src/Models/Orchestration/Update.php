@@ -13,19 +13,19 @@ class Update
 {
     /**
      *
-     * @var ?UpdateAccount $updateAccount
+     * @var ?\formance\stack\Models\Orchestration\UpdateAccount $account
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\UpdateAccount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?UpdateAccount $updateAccount = null;
+    public ?UpdateAccount $account = null;
 
     /**
-     * @param  ?UpdateAccount  $updateAccount
+     * @param  ?\formance\stack\Models\Orchestration\UpdateAccount  $account
      * @phpstan-pure
      */
-    public function __construct(?UpdateAccount $updateAccount = null)
+    public function __construct(?UpdateAccount $account = null)
     {
-        $this->updateAccount = $updateAccount;
+        $this->account = $account;
     }
 }

@@ -14,7 +14,7 @@ class Cursor
     /**
      * $data
      *
-     * @var array<Account> $data
+     * @var array<\formance\stack\Models\Ledger\Account> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Account>')]
@@ -51,7 +51,7 @@ class Cursor
     public ?string $previous = null;
 
     /**
-     * @param  array<Account>  $data
+     * @param  array<\formance\stack\Models\Ledger\Account>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

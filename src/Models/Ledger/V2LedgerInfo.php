@@ -21,7 +21,7 @@ class V2LedgerInfo
 
     /**
      *
-     * @var ?V2LedgerInfoStorage $storage
+     * @var ?\formance\stack\Models\Ledger\V2LedgerInfoStorage $storage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LedgerInfoStorage|null')]
@@ -30,7 +30,7 @@ class V2LedgerInfo
 
     /**
      * @param  ?string  $name
-     * @param  ?V2LedgerInfoStorage  $storage
+     * @param  ?\formance\stack\Models\Ledger\V2LedgerInfoStorage  $storage
      * @phpstan-pure
      */
     public function __construct(?string $name = null, ?V2LedgerInfoStorage $storage = null)

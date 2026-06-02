@@ -13,7 +13,7 @@ class V2WalletWithBalances
 {
     /**
      *
-     * @var Balances $balances
+     * @var \formance\stack\Models\Orchestration\Balances $balances
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Balances')]
@@ -58,7 +58,7 @@ class V2WalletWithBalances
     public string $name;
 
     /**
-     * @param  Balances  $balances
+     * @param  \formance\stack\Models\Orchestration\Balances  $balances
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $ledger

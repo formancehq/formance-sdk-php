@@ -15,7 +15,7 @@ class V2ChartSegment
     /**
      * $dotMetadata
      *
-     * @var ?array<string, V2ChartAccountMetadata> $dotMetadata
+     * @var ?array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata> $dotMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('.metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata>|null')]
@@ -32,7 +32,16 @@ class V2ChartSegment
 
     /**
      *
-     * @var ?DotSelf $dotSelf
+     * @var ?\formance\stack\Models\Ledger\V2ChartAccountRules $dotRules
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('.rules')]
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ChartAccountRules|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?V2ChartAccountRules $dotRules = null;
+
+    /**
+     *
+     * @var ?\formance\stack\Models\Ledger\DotSelf $dotSelf
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('.self')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\DotSelf|null')]
@@ -42,7 +51,7 @@ class V2ChartSegment
     /**
      * $additionalProperties
      *
-     * @var ?array<string, V2ChartSegment> $additionalProperties
+     * @var ?array<string, \formance\stack\Models\Ledger\V2ChartSegment> $additionalProperties
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('additionalProperties')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2ChartSegment>|null')]
@@ -50,28 +59,19 @@ class V2ChartSegment
     public ?array $additionalProperties = null;
 
     /**
-     *
-     * @var ?V2ChartAccountRules $v2ChartAccountRules
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('.rules')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ChartAccountRules|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2ChartAccountRules $v2ChartAccountRules = null;
-
-    /**
-     * @param  ?array<string, V2ChartAccountMetadata>  $dotMetadata
+     * @param  ?array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata>  $dotMetadata
      * @param  ?string  $dotPattern
-     * @param  ?DotSelf  $dotSelf
-     * @param  ?array<string, V2ChartSegment>  $additionalProperties
-     * @param  ?V2ChartAccountRules  $v2ChartAccountRules
+     * @param  ?\formance\stack\Models\Ledger\V2ChartAccountRules  $dotRules
+     * @param  ?\formance\stack\Models\Ledger\DotSelf  $dotSelf
+     * @param  ?array<string, \formance\stack\Models\Ledger\V2ChartSegment>  $additionalProperties
      * @phpstan-pure
      */
-    public function __construct(?array $dotMetadata = null, ?string $dotPattern = null, ?DotSelf $dotSelf = null, ?array $additionalProperties = null, ?V2ChartAccountRules $v2ChartAccountRules = null)
+    public function __construct(?array $dotMetadata = null, ?string $dotPattern = null, ?V2ChartAccountRules $dotRules = null, ?DotSelf $dotSelf = null, ?array $additionalProperties = null)
     {
         $this->dotMetadata = $dotMetadata;
         $this->dotPattern = $dotPattern;
+        $this->dotRules = $dotRules;
         $this->dotSelf = $dotSelf;
         $this->additionalProperties = $additionalProperties;
-        $this->v2ChartAccountRules = $v2ChartAccountRules;
     }
 }

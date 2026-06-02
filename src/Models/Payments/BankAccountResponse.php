@@ -14,18 +14,18 @@ class BankAccountResponse
 {
     /**
      *
-     * @var BankAccount $bankAccount
+     * @var \formance\stack\Models\Payments\BankAccount $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\BankAccount')]
-    public BankAccount $bankAccount;
+    public BankAccount $data;
 
     /**
-     * @param  BankAccount  $bankAccount
+     * @param  \formance\stack\Models\Payments\BankAccount  $data
      * @phpstan-pure
      */
-    public function __construct(BankAccount $bankAccount)
+    public function __construct(BankAccount $data)
     {
-        $this->bankAccount = $bankAccount;
+        $this->data = $data;
     }
 }

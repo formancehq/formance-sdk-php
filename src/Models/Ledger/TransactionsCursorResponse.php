@@ -13,14 +13,14 @@ class TransactionsCursorResponse
 {
     /**
      *
-     * @var TransactionsCursorResponseCursor $cursor
+     * @var \formance\stack\Models\Ledger\TransactionsCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\TransactionsCursorResponseCursor')]
     public TransactionsCursorResponseCursor $cursor;
 
     /**
-     * @param  TransactionsCursorResponseCursor  $cursor
+     * @param  \formance\stack\Models\Ledger\TransactionsCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(TransactionsCursorResponseCursor $cursor)
