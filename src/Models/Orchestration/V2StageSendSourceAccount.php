@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2StageSendSourceAccount
@@ -15,15 +17,15 @@ class V2StageSendSourceAccount
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var ?string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ledger')]
+    #[SkipWhenNull]
     public ?string $ledger = null;
 
     /**
@@ -36,8 +38,8 @@ class V2StageSendSourceAccount
      *
      * @var ?bool $allowOverdraft
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('allowOverdraft')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('allowOverdraft')]
+    #[SkipWhenNull]
     public ?bool $allowOverdraft = null;
 
     /**
@@ -50,8 +52,8 @@ class V2StageSendSourceAccount
      *
      * @var ?string $throughAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('throughAccount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('throughAccount')]
+    #[SkipWhenNull]
     public ?string $throughAccount = null;
 
     /**

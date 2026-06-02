@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
+use Brick\Math\BigDecimal;
 use Speakeasy\Serializer\Context;
 use Speakeasy\Serializer\GraphNavigator;
 use Speakeasy\Serializer\Handler\SubscribingHandlerInterface;
@@ -48,7 +49,7 @@ class BigDecimalHandler implements SubscribingHandlerInterface
     }
 
     /** @phpstan-ignore-next-line */
-    public function serialize(JsonSerializationVisitor $visitor, \Brick\Math\BigDecimal|string $any, array $type, Context $context): string|float
+    public function serialize(JsonSerializationVisitor $visitor, BigDecimal|string $any, array $type, Context $context): string|float
     {
         if (gettype($any) == 'string') {
             return $any;
@@ -60,6 +61,6 @@ class BigDecimalHandler implements SubscribingHandlerInterface
     /** @phpstan-ignore-next-line */
     public function deserialize(JsonDeserializationVisitor $visitor, string|float $data, array $type, Context $context): mixed
     {
-        return \Brick\Math\BigDecimal::of(is_float($data) ? (string) $data : $data);
+        return BigDecimal::of(is_float($data) ? (string) $data : $data);
     }
 }

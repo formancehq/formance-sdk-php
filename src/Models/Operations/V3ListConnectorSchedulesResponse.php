@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3ListConnectorSchedulesResponse
@@ -28,25 +30,25 @@ class V3ListConnectorSchedulesResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse
+     * @var ?V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse
      */
-    public ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null;
+    public ?V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse  $v3ConnectorSchedulesCursorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3ConnectorSchedulesCursorResponse  $v3ConnectorSchedulesCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3ConnectorSchedulesCursorResponse $v3ConnectorSchedulesCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

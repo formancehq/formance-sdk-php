@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\Connector;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ListConnectorTasksRequest
 {
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Payments\Connector $connector
+     * @var Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Payments\Connector $connector;
+    public Connector $connector;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -43,12 +44,12 @@ class ListConnectorTasksRequest
     public ?int $pageSize = null;
 
     /**
-     * @param  \formance\stack\Models\Payments\Connector  $connector
+     * @param  Connector  $connector
      * @param  ?string  $cursor
      * @param  ?int  $pageSize
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Payments\Connector $connector, ?string $cursor = null, ?int $pageSize = 15)
+    public function __construct(Connector $connector, ?string $cursor = null, ?int $pageSize = 15)
     {
         $this->connector = $connector;
         $this->cursor = $cursor;

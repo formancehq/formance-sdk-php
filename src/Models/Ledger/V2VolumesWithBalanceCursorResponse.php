@@ -7,30 +7,33 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2VolumesWithBalanceCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor $cursor
+     * @var V2VolumesWithBalanceCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor')]
     public V2VolumesWithBalanceCursorResponseCursor $cursor;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource $resource
+     * @var ?V2VolumesWithBalanceCursorResponseResource $resource
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('resource')]
+    #[Type('\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource|null')]
+    #[SkipWhenNull]
     public ?V2VolumesWithBalanceCursorResponseResource $resource = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseCursor  $cursor
-     * @param  ?\formance\stack\Models\Ledger\V2VolumesWithBalanceCursorResponseResource  $resource
+     * @param  V2VolumesWithBalanceCursorResponseCursor  $cursor
+     * @param  ?V2VolumesWithBalanceCursorResponseResource  $resource
      * @phpstan-pure
      */
     public function __construct(V2VolumesWithBalanceCursorResponseCursor $cursor, ?V2VolumesWithBalanceCursorResponseResource $resource = null)

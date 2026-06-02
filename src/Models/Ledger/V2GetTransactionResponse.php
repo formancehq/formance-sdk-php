@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2GetTransactionResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2Transaction $data
+     * @var V2Transaction $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Transaction')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2Transaction')]
     public V2Transaction $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2Transaction  $data
+     * @param  V2Transaction  $data
      * @phpstan-pure
      */
     public function __construct(V2Transaction $data)

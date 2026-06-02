@@ -8,15 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Ledger\Script;
 use formance\stack\Utils\SpeakeasyMetadata;
 class RunScriptRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\Script $script
+     * @var Script $script
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Ledger\Script $script;
+    public Script $script;
 
     /**
      * Name of the ledger.
@@ -35,12 +36,12 @@ class RunScriptRequest
     public ?bool $preview = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\Script  $script
+     * @param  Script  $script
      * @param  string  $ledger
      * @param  ?bool  $preview
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Ledger\Script $script, string $ledger, ?bool $preview = null)
+    public function __construct(Script $script, string $ledger, ?bool $preview = null)
     {
         $this->script = $script;
         $this->ledger = $ledger;

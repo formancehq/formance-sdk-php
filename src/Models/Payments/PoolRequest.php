@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** PoolRequest - Query and dynamic pools are available from Connectivity v3.1 */
@@ -16,7 +19,7 @@ class PoolRequest
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -24,9 +27,9 @@ class PoolRequest
      *
      * @var ?array<string> $accountIDs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountIDs')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountIDs')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $accountIDs = null;
 
     /**
@@ -34,9 +37,9 @@ class PoolRequest
      *
      * @var ?array<string, mixed> $query
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('query')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $query = null;
 
     /**

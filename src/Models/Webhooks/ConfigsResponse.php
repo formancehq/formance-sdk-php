@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ConfigsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Webhooks\Cursor $cursor
+     * @var Cursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\Cursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Webhooks\Cursor')]
     public Cursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Webhooks\Cursor  $cursor
+     * @param  Cursor  $cursor
      * @phpstan-pure
      */
     public function __construct(Cursor $cursor)

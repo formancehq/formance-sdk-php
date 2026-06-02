@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class UpdateBankAccountMetadataRequest
@@ -16,8 +18,8 @@ class UpdateBankAccountMetadataRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
     public ?array $metadata;
 
     /**

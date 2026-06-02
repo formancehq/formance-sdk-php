@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Reconciliation\ReconciliationResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class ReconcileResponse
@@ -28,25 +30,25 @@ class ReconcileResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Reconciliation\ReconciliationResponse $reconciliationResponse
+     * @var ?ReconciliationResponse $reconciliationResponse
      */
-    public ?\formance\stack\Models\Reconciliation\ReconciliationResponse $reconciliationResponse = null;
+    public ?ReconciliationResponse $reconciliationResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Reconciliation\ReconciliationResponse  $reconciliationResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?ReconciliationResponse  $reconciliationResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Reconciliation\ReconciliationResponse $reconciliationResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?ReconciliationResponse $reconciliationResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class DummyPayConfig
@@ -15,38 +17,38 @@ class DummyPayConfig
      *
      * @var string $directory
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('directory')]
+    #[SerializedName('directory')]
     public string $directory;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?int $numberOfAccountsPreGenerated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('numberOfAccountsPreGenerated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('numberOfAccountsPreGenerated')]
+    #[SkipWhenNull]
     public ?int $numberOfAccountsPreGenerated = null;
 
     /**
      *
      * @var ?int $numberOfPaymentsPreGenerated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('numberOfPaymentsPreGenerated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('numberOfPaymentsPreGenerated')]
+    #[SkipWhenNull]
     public ?int $numberOfPaymentsPreGenerated = null;
 
     /**
      *
      * @var ?string $prefixFileToIngest
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('prefixFileToIngest')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('prefixFileToIngest')]
+    #[SkipWhenNull]
     public ?string $prefixFileToIngest = null;
 
     /**
@@ -54,16 +56,16 @@ class DummyPayConfig
      *
      * @var ?string $filePollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filePollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('filePollingPeriod')]
+    #[SkipWhenNull]
     public ?string $filePollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**

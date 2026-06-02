@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /**
@@ -25,7 +29,7 @@ class V3Conversion
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
@@ -33,7 +37,7 @@ class V3Conversion
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -41,7 +45,7 @@ class V3Conversion
      *
      * @var string $destinationAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAsset')]
+    #[SerializedName('destinationAsset')]
     public string $destinationAsset;
 
     /**
@@ -49,7 +53,7 @@ class V3Conversion
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -57,7 +61,7 @@ class V3Conversion
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public string $provider;
 
     /**
@@ -65,23 +69,23 @@ class V3Conversion
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      * Amount of source asset debited, as an integer at `sourceAsset` precision.
      *
-     * @var \Brick\Math\BigInteger $sourceAmount
+     * @var BigInteger $sourceAmount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAmount')]
-    public \Brick\Math\BigInteger $sourceAmount;
+    #[SerializedName('sourceAmount')]
+    public BigInteger $sourceAmount;
 
     /**
      * Asset being converted from, in `SYMBOL/precision` form (e.g. `USD/2`).
      *
      * @var string $sourceAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAsset')]
+    #[SerializedName('sourceAsset')]
     public string $sourceAsset;
 
     /**
@@ -92,10 +96,10 @@ class V3Conversion
      * `FAILED` — rejected or reverted, terminal. See `error`.
      *
      *
-     * @var \formance\stack\Models\Payments\V3ConversionStatusEnum $status
+     * @var V3ConversionStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConversionStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3ConversionStatusEnum')]
     public V3ConversionStatusEnum $status;
 
     /**
@@ -103,7 +107,7 @@ class V3Conversion
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
@@ -111,44 +115,44 @@ class V3Conversion
      *
      * @var ?string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destinationAccountID')]
+    #[SkipWhenNull]
     public ?string $destinationAccountID = null;
 
     /**
      * Amount of destination asset credited, at `destinationAsset` precision. Null until the conversion completes.
      *
-     * @var ?\Brick\Math\BigInteger $destinationAmount
+     * @var ?BigInteger $destinationAmount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAmount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $destinationAmount = null;
+    #[SerializedName('destinationAmount')]
+    #[SkipWhenNull]
+    public ?BigInteger $destinationAmount = null;
 
     /**
      * Human-readable error from the PSP when `status` is `FAILED`. Null otherwise.
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      * PSP fee for the conversion, at `feeAsset` precision.
      *
-     * @var ?\Brick\Math\BigInteger $fee
+     * @var ?BigInteger $fee
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $fee = null;
+    #[SerializedName('fee')]
+    #[SkipWhenNull]
+    public ?BigInteger $fee = null;
 
     /**
      * Currency the fee is denominated in, in `SYMBOL/precision` form.
      *
      * @var ?string $feeAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('feeAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('feeAsset')]
+    #[SkipWhenNull]
     public ?string $feeAsset = null;
 
     /**
@@ -156,9 +160,9 @@ class V3Conversion
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
@@ -166,8 +170,8 @@ class V3Conversion
      *
      * @var ?string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sourceAccountID')]
+    #[SkipWhenNull]
     public ?string $sourceAccountID = null;
 
     /**
@@ -177,20 +181,20 @@ class V3Conversion
      * @param  string  $id
      * @param  string  $provider
      * @param  string  $reference
-     * @param  \Brick\Math\BigInteger  $sourceAmount
+     * @param  BigInteger  $sourceAmount
      * @param  string  $sourceAsset
-     * @param  \formance\stack\Models\Payments\V3ConversionStatusEnum  $status
+     * @param  V3ConversionStatusEnum  $status
      * @param  \DateTime  $updatedAt
      * @param  ?string  $destinationAccountID
-     * @param  ?\Brick\Math\BigInteger  $destinationAmount
+     * @param  ?BigInteger  $destinationAmount
      * @param  ?string  $error
-     * @param  ?\Brick\Math\BigInteger  $fee
+     * @param  ?BigInteger  $fee
      * @param  ?string  $feeAsset
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $sourceAccountID
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, string $destinationAsset, string $id, string $provider, string $reference, \Brick\Math\BigInteger $sourceAmount, string $sourceAsset, V3ConversionStatusEnum $status, \DateTime $updatedAt, ?string $destinationAccountID = null, ?\Brick\Math\BigInteger $destinationAmount = null, ?string $error = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null, ?string $sourceAccountID = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $destinationAsset, string $id, string $provider, string $reference, BigInteger $sourceAmount, string $sourceAsset, V3ConversionStatusEnum $status, \DateTime $updatedAt, ?string $destinationAccountID = null, ?BigInteger $destinationAmount = null, ?string $error = null, ?BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null, ?string $sourceAccountID = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

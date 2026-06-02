@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Config
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\LedgerStorage $storage
+     * @var LedgerStorage $storage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\LedgerStorage')]
+    #[SerializedName('storage')]
+    #[Type('\formance\stack\Models\Ledger\LedgerStorage')]
     public LedgerStorage $storage;
 
     /**
-     * @param  \formance\stack\Models\Ledger\LedgerStorage  $storage
+     * @param  LedgerStorage  $storage
      * @phpstan-pure
      */
     public function __construct(LedgerStorage $storage)

@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use Psr\Http\Message\ResponseInterface;
 
 
 class ListClientsResponse
@@ -28,9 +29,9 @@ class ListClientsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * List of clients
@@ -42,11 +43,11 @@ class ListClientsResponse
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ResponseInterface  $rawResponse
      * @param  ?\formance\stack\Models\Auth\ListClientsResponse  $listClientsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Auth\ListClientsResponse $listClientsResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?\formance\stack\Models\Auth\ListClientsResponse $listClientsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

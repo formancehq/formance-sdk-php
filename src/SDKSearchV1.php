@@ -9,8 +9,13 @@ declare(strict_types=1);
 namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
-use formance\stack\Models\Operations;
+use formance\stack\Models\Errors\SDKException;
+use formance\stack\Models\Operations\GetServerInfoSearchResponse;
+use formance\stack\Models\Operations\SearchResponse;
+use formance\stack\Models\Search\Query;
 use formance\stack\Utils\Options;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use Speakeasy\Serializer\DeserializationContext;
 
 class SDKSearchV1
@@ -49,11 +54,11 @@ class SDKSearchV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\GetServerInfoSearchResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return GetServerInfoSearchResponse
+     * @throws SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function getServerInfoSearch(?Options $options = null): Operations\GetServerInfoSearchResponse
+    public function getServerInfoSearch(?Options $options = null): GetServerInfoSearchResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -62,7 +67,7 @@ class SDKSearchV1
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -72,7 +77,7 @@ class SDKSearchV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -91,7 +96,7 @@ class SDKSearchV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Search\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetServerInfoSearchResponse(
+                $response = new GetServerInfoSearchResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -99,10 +104,10 @@ class SDKSearchV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -113,12 +118,12 @@ class SDKSearchV1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Search\Query  $request
-     * @return \formance\stack\Models\Operations\SearchResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  Query  $request
+     * @return SearchResponse
+     * @throws SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function search(\formance\stack\Models\Search\Query $request, ?Options $options = null): Operations\SearchResponse
+    public function search(Query $request, ?Options $options = null): SearchResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -132,7 +137,7 @@ class SDKSearchV1
         $httpOptions = array_merge_recursive($httpOptions, $body);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -142,7 +147,7 @@ class SDKSearchV1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -161,7 +166,7 @@ class SDKSearchV1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Search\Response', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\SearchResponse(
+                $response = new SearchResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -169,10 +174,10 @@ class SDKSearchV1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 

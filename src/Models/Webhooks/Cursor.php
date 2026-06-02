@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Cursor
@@ -14,21 +16,21 @@ class Cursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Webhooks\WebhooksConfig> $data
+     * @var array<WebhooksConfig> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Webhooks\WebhooksConfig>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Webhooks\WebhooksConfig>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
+    #[SerializedName('hasMore')]
     public bool $hasMore;
 
     /**
-     * @param  array<\formance\stack\Models\Webhooks\WebhooksConfig>  $data
+     * @param  array<WebhooksConfig>  $data
      * @param  bool  $hasMore
      * @phpstan-pure
      */

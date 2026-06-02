@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class CreateTriggerResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\Trigger $data
+     * @var Trigger $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Trigger')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\Trigger')]
     public Trigger $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\Trigger  $data
+     * @param  Trigger  $data
      * @phpstan-pure
      */
     public function __construct(Trigger $data)

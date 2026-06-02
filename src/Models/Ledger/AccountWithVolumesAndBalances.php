@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class AccountWithVolumesAndBalances
@@ -15,17 +19,17 @@ class AccountWithVolumesAndBalances
      *
      * @var string $address
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
+    #[SerializedName('address')]
     public string $address;
 
     /**
      * $balances
      *
-     * @var ?array<string, \Brick\Math\BigInteger> $balances
+     * @var ?array<string, BigInteger> $balances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('balances')]
+    #[Type('array<string, \Brick\Math\BigInteger>|null')]
+    #[SkipWhenNull]
     public ?array $balances = null;
 
     /**
@@ -33,35 +37,35 @@ class AccountWithVolumesAndBalances
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('type')]
+    #[SkipWhenNull]
     public ?string $type = null;
 
     /**
      * $volumes
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\Volume> $volumes
+     * @var ?array<string, Volume> $volumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('volumes')]
+    #[Type('array<string, \formance\stack\Models\Ledger\Volume>|null')]
+    #[SkipWhenNull]
     public ?array $volumes = null;
 
     /**
      * @param  string  $address
-     * @param  ?array<string, \Brick\Math\BigInteger>  $balances
+     * @param  ?array<string, BigInteger>  $balances
      * @param  ?array<string, mixed>  $metadata
      * @param  ?string  $type
-     * @param  ?array<string, \formance\stack\Models\Ledger\Volume>  $volumes
+     * @param  ?array<string, Volume>  $volumes
      * @phpstan-pure
      */
     public function __construct(string $address, ?array $balances = null, ?array $metadata = null, ?string $type = null, ?array $volumes = null)

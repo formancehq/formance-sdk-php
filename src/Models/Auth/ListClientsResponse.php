@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ListClientsResponse
@@ -14,15 +17,15 @@ class ListClientsResponse
     /**
      * $data
      *
-     * @var ?array<\formance\stack\Models\Auth\Client> $data
+     * @var ?array<Client> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Auth\Client>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Auth\Client>|null')]
+    #[SkipWhenNull]
     public ?array $data = null;
 
     /**
-     * @param  ?array<\formance\stack\Models\Auth\Client>  $data
+     * @param  ?array<Client>  $data
      * @phpstan-pure
      */
     public function __construct(?array $data = null)

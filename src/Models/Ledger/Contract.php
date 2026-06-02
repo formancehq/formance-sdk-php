@@ -7,28 +7,31 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Contract
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\Expr $expr
+     * @var Expr $expr
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expr')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Expr')]
+    #[SerializedName('expr')]
+    #[Type('\formance\stack\Models\Ledger\Expr')]
     public Expr $expr;
 
     /**
      *
      * @var ?string $account
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('account')]
+    #[SkipWhenNull]
     public ?string $account = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\Expr  $expr
+     * @param  Expr  $expr
      * @param  ?string  $account
      * @phpstan-pure
      */

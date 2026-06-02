@@ -9,33 +9,36 @@ declare(strict_types=1);
 namespace formance\stack\Models\Ledger;
 
 use formance\stack\Utils;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 class ErrorResponseError
 {
     /**
      *
      * @var ?string $details
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('details')]
+    #[SkipWhenNull]
     public ?string $details = null;
 
     /**
      *
-     * @var \formance\stack\Models\Ledger\ErrorsEnum $errorCode
+     * @var ErrorsEnum $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\ErrorsEnum')]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Ledger\ErrorsEnum')]
     public ErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
-     * @param  \formance\stack\Models\Ledger\ErrorsEnum  $errorCode
+     * @param  ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure

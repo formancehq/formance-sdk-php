@@ -50,7 +50,7 @@ class V2ListTransactionsRequest
     /**
      * Deprecated: Use sort param
      *
-     * @var ?\formance\stack\Models\Operations\QueryParamOrder $order
+     * @var ?QueryParamOrder $order
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order')]
@@ -96,7 +96,7 @@ class V2ListTransactionsRequest
      * @param  string  $ledger
      * @param  ?string  $cursor
      * @param  ?string  $expand
-     * @param  ?\formance\stack\Models\Operations\QueryParamOrder  $order
+     * @param  ?QueryParamOrder  $order
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
      * @param  ?bool  $reverse

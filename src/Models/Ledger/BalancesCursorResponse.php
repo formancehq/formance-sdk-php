@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class BalancesCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\BalancesCursorResponseCursor $cursor
+     * @var BalancesCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\BalancesCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\BalancesCursorResponseCursor')]
     public BalancesCursorResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Ledger\BalancesCursorResponseCursor  $cursor
+     * @param  BalancesCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(BalancesCursorResponseCursor $cursor)

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class AggregateBalancesResponse
@@ -16,8 +18,8 @@ class AggregateBalancesResponse
      *
      * @var array<string, int> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, int>')]
+    #[SerializedName('data')]
+    #[Type('array<string, int>')]
     public array $data;
 
     /**

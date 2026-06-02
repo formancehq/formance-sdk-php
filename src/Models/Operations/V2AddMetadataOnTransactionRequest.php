@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use Brick\Math\BigInteger;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2AddMetadataOnTransactionRequest
 {
@@ -22,10 +23,10 @@ class V2AddMetadataOnTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=id')]
-    public \Brick\Math\BigInteger $id;
+    public BigInteger $id;
 
     /**
      * Name of the ledger.
@@ -61,14 +62,14 @@ class V2AddMetadataOnTransactionRequest
 
     /**
      * @param  array<string, string>  $requestBody
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  string  $ledger
      * @param  ?string  $idempotencyKey
      * @param  ?bool  $dryRun
      * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(array $requestBody, \Brick\Math\BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?string $schemaVersion = null)
+    public function __construct(array $requestBody, BigInteger $id, string $ledger, ?string $idempotencyKey = null, ?bool $dryRun = null, ?string $schemaVersion = null)
     {
         $this->requestBody = $requestBody;
         $this->id = $id;

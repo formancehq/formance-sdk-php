@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use Brick\Math\BigInteger;
 use formance\stack\Utils\SpeakeasyMetadata;
 class RevertTransactionRequest
 {
@@ -22,10 +23,10 @@ class RevertTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var \Brick\Math\BigInteger $txid
+     * @var BigInteger $txid
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
-    public \Brick\Math\BigInteger $txid;
+    public BigInteger $txid;
 
     /**
      * Allow to disable balances checks
@@ -37,11 +38,11 @@ class RevertTransactionRequest
 
     /**
      * @param  string  $ledger
-     * @param  \Brick\Math\BigInteger  $txid
+     * @param  BigInteger  $txid
      * @param  ?bool  $disableChecks
      * @phpstan-pure
      */
-    public function __construct(string $ledger, \Brick\Math\BigInteger $txid, ?bool $disableChecks = null)
+    public function __construct(string $ledger, BigInteger $txid, ?bool $disableChecks = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

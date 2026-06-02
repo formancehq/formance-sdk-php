@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentServiceUserLinkAttempt
@@ -15,51 +18,51 @@ class V3PaymentServiceUserLinkAttempt
      *
      * @var string $clientRedirectURL
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('clientRedirectURL')]
+    #[SerializedName('clientRedirectURL')]
     public string $clientRedirectURL;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $psuID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('psuID')]
+    #[SerializedName('psuID')]
     public string $psuID;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum $status
+     * @var V3OpenBankingConnectionAttemptStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum')]
     public V3OpenBankingConnectionAttemptStatusEnum $status;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -68,7 +71,7 @@ class V3PaymentServiceUserLinkAttempt
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $psuID
-     * @param  \formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum  $status
+     * @param  V3OpenBankingConnectionAttemptStatusEnum  $status
      * @param  ?string  $error
      * @phpstan-pure
      */

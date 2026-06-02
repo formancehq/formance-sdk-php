@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ListWalletsResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2ListWalletsResponseCursor $cursor
+     * @var V2ListWalletsResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListWalletsResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Orchestration\V2ListWalletsResponseCursor')]
     public V2ListWalletsResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2ListWalletsResponseCursor  $cursor
+     * @param  V2ListWalletsResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2ListWalletsResponseCursor $cursor)

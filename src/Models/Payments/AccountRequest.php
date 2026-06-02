@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class AccountRequest
@@ -15,45 +18,45 @@ class AccountRequest
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\AccountType $type
+     * @var AccountType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\AccountType')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\AccountType')]
     public AccountType $type;
 
     /**
      *
      * @var ?string $accountName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountName')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountName')]
+    #[SkipWhenNull]
     public ?string $accountName = null;
 
     /**
      *
      * @var ?string $defaultAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('defaultAsset')]
+    #[SkipWhenNull]
     public ?string $defaultAsset = null;
 
     /**
@@ -61,16 +64,16 @@ class AccountRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\AccountType  $type
+     * @param  AccountType  $type
      * @param  ?string  $accountName
      * @param  ?string  $defaultAsset
      * @param  ?array<string, string>  $metadata

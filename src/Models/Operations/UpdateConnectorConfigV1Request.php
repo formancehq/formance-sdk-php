@@ -8,23 +8,35 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\AdyenConfig;
+use formance\stack\Models\Payments\AtlarConfig;
+use formance\stack\Models\Payments\BankingCircleConfig;
+use formance\stack\Models\Payments\Connector;
+use formance\stack\Models\Payments\CurrencyCloudConfig;
+use formance\stack\Models\Payments\DummyPayConfig;
+use formance\stack\Models\Payments\GenericConfig;
+use formance\stack\Models\Payments\MangoPayConfig;
+use formance\stack\Models\Payments\ModulrConfig;
+use formance\stack\Models\Payments\MoneycorpConfig;
+use formance\stack\Models\Payments\StripeConfig;
+use formance\stack\Models\Payments\WiseConfig;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateConnectorConfigV1Request
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $connectorConfig
+     * @var StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $connectorConfig
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $connectorConfig;
+    public \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|GenericConfig $connectorConfig;
 
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Payments\Connector $connector
+     * @var Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Payments\Connector $connector;
+    public Connector $connector;
 
     /**
      * The connector ID.
@@ -35,12 +47,12 @@ class UpdateConnectorConfigV1Request
     public string $connectorId;
 
     /**
-     * @param  \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig  $connectorConfig
-     * @param  \formance\stack\Models\Payments\Connector  $connector
+     * @param  StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig  $connectorConfig
+     * @param  Connector  $connector
      * @param  string  $connectorId
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $connectorConfig, \formance\stack\Models\Payments\Connector $connector, string $connectorId)
+    public function __construct(StripeConfig|DummyPayConfig|WiseConfig|ModulrConfig|CurrencyCloudConfig|BankingCircleConfig|MangoPayConfig|MoneycorpConfig|AtlarConfig|AdyenConfig|GenericConfig $connectorConfig, Connector $connector, string $connectorId)
     {
         $this->connectorConfig = $connectorConfig;
         $this->connector = $connector;

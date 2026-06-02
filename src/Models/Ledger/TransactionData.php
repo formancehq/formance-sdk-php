@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TransactionData
@@ -14,26 +17,26 @@ class TransactionData
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Ledger\Posting> $postings
+     * @var array<Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Posting>')]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Ledger\Posting>')]
     public array $postings;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
@@ -41,13 +44,13 @@ class TransactionData
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
-     * @param  array<\formance\stack\Models\Ledger\Posting>  $postings
+     * @param  array<Posting>  $postings
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, mixed>  $metadata

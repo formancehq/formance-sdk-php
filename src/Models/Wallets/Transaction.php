@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Transaction
@@ -15,7 +18,7 @@ class Transaction
      *
      * @var int $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public int $id;
 
     /**
@@ -23,70 +26,70 @@ class Transaction
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Wallets\Posting> $postings
+     * @var array<Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\Posting>')]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Wallets\Posting>')]
     public array $postings;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
      *
      * @var ?string $ledger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledger')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ledger')]
+    #[SkipWhenNull]
     public ?string $ledger = null;
 
     /**
      * $postCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Wallets\Volume>> $postCommitVolumes
+     * @var ?array<string, array<string, Volume>> $postCommitVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postCommitVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
      * $preCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Wallets\Volume>> $preCommitVolumes
+     * @var ?array<string, array<string, Volume>> $preCommitVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('preCommitVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Wallets\Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      * @param  int  $id
      * @param  array<string, string>  $metadata
-     * @param  array<\formance\stack\Models\Wallets\Posting>  $postings
+     * @param  array<Posting>  $postings
      * @param  \DateTime  $timestamp
      * @param  ?string  $ledger
-     * @param  ?array<string, array<string, \formance\stack\Models\Wallets\Volume>>  $postCommitVolumes
-     * @param  ?array<string, array<string, \formance\stack\Models\Wallets\Volume>>  $preCommitVolumes
+     * @param  ?array<string, array<string, Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @phpstan-pure
      */

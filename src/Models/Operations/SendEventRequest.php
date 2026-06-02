@@ -21,14 +21,14 @@ class SendEventRequest
 
     /**
      *
-     * @var ?\formance\stack\Models\Operations\SendEventRequestBody $requestBody
+     * @var ?SendEventRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?SendEventRequestBody $requestBody = null;
 
     /**
      * @param  string  $instanceID
-     * @param  ?\formance\stack\Models\Operations\SendEventRequestBody  $requestBody
+     * @param  ?SendEventRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $instanceID, ?SendEventRequestBody $requestBody = null)

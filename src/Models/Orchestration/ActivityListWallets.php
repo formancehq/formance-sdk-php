@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class ActivityListWallets
@@ -15,8 +17,8 @@ class ActivityListWallets
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**

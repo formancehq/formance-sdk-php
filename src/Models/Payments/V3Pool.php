@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3Pool
@@ -15,21 +18,21 @@ class V3Pool
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -37,8 +40,8 @@ class V3Pool
      *
      * @var array<string> $poolAccounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('poolAccounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    #[SerializedName('poolAccounts')]
+    #[Type('array<string>')]
     public array $poolAccounts;
 
     /**
@@ -46,18 +49,18 @@ class V3Pool
      *
      * @var ?array<string, mixed> $query
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('query')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('query')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $query = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3PoolTypeEnum $type
+     * @var ?V3PoolTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PoolTypeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\V3PoolTypeEnum|null')]
+    #[SkipWhenNull]
     public ?V3PoolTypeEnum $type = null;
 
     /**
@@ -66,7 +69,7 @@ class V3Pool
      * @param  string  $name
      * @param  array<string>  $poolAccounts
      * @param  ?array<string, mixed>  $query
-     * @param  ?\formance\stack\Models\Payments\V3PoolTypeEnum  $type
+     * @param  ?V3PoolTypeEnum  $type
      * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $id, string $name, array $poolAccounts, ?array $query = null, ?V3PoolTypeEnum $type = null)

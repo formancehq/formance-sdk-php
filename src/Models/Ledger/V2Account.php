@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Account
@@ -15,7 +18,7 @@ class V2Account
      *
      * @var string $address
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
+    #[SerializedName('address')]
     public string $address;
 
     /**
@@ -23,62 +26,62 @@ class V2Account
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * $effectiveVolumes
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2Volume> $effectiveVolumes
+     * @var ?array<string, V2Volume> $effectiveVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('effectiveVolumes')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2Volume>|null')]
+    #[SkipWhenNull]
     public ?array $effectiveVolumes = null;
 
     /**
      *
      * @var ?\DateTime $firstUsage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('firstUsage')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('firstUsage')]
+    #[SkipWhenNull]
     public ?\DateTime $firstUsage = null;
 
     /**
      *
      * @var ?\DateTime $insertionDate
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('insertionDate')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('insertionDate')]
+    #[SkipWhenNull]
     public ?\DateTime $insertionDate = null;
 
     /**
      *
      * @var ?\DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('updatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $updatedAt = null;
 
     /**
      * $volumes
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2Volume> $volumes
+     * @var ?array<string, V2Volume> $volumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('volumes')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2Volume>|null')]
+    #[SkipWhenNull]
     public ?array $volumes = null;
 
     /**
      * @param  string  $address
      * @param  array<string, string>  $metadata
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2Volume>  $effectiveVolumes
+     * @param  ?array<string, V2Volume>  $effectiveVolumes
      * @param  ?\DateTime  $firstUsage
      * @param  ?\DateTime  $insertionDate
      * @param  ?\DateTime  $updatedAt
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2Volume>  $volumes
+     * @param  ?array<string, V2Volume>  $volumes
      * @phpstan-pure
      */
     public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?\DateTime $firstUsage = null, ?\DateTime $insertionDate = null, ?\DateTime $updatedAt = null, ?array $volumes = null)

@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class ActivityGetPayment
@@ -15,7 +16,7 @@ class ActivityGetPayment
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**

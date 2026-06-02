@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Webhooks;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ConfigResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Webhooks\WebhooksConfig $data
+     * @var WebhooksConfig $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Webhooks\WebhooksConfig')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Webhooks\WebhooksConfig')]
     public WebhooksConfig $data;
 
     /**
-     * @param  \formance\stack\Models\Webhooks\WebhooksConfig  $data
+     * @param  WebhooksConfig  $data
      * @phpstan-pure
      */
     public function __construct(WebhooksConfig $data)

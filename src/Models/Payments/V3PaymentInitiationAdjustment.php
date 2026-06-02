@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentInitiationAdjustment
@@ -15,46 +19,46 @@ class V3PaymentInitiationAdjustment
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum $status
+     * @var V3PaymentInitiationStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentInitiationStatusEnum')]
     public V3PaymentInitiationStatusEnum $status;
 
     /**
      *
-     * @var ?\Brick\Math\BigInteger $amount
+     * @var ?BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $amount = null;
+    #[SerializedName('amount')]
+    #[SkipWhenNull]
+    public ?BigInteger $amount = null;
 
     /**
      *
      * @var ?string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('asset')]
+    #[SkipWhenNull]
     public ?string $asset = null;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -62,22 +66,22 @@ class V3PaymentInitiationAdjustment
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
-     * @param  \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum  $status
-     * @param  ?\Brick\Math\BigInteger  $amount
+     * @param  V3PaymentInitiationStatusEnum  $status
+     * @param  ?BigInteger  $amount
      * @param  ?string  $asset
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, V3PaymentInitiationStatusEnum $status, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?string $error = null, ?array $metadata = null)
+    public function __construct(\DateTime $createdAt, string $id, V3PaymentInitiationStatusEnum $status, ?BigInteger $amount = null, ?string $asset = null, ?string $error = null, ?array $metadata = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

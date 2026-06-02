@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class WalletSubject
@@ -15,22 +17,22 @@ class WalletSubject
      *
      * @var string $identifier
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
+    #[SerializedName('identifier')]
     public string $identifier;
 
     /**
      *
      * @var string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[SerializedName('type')]
     public string $type;
 
     /**
      *
      * @var ?string $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('balance')]
+    #[SkipWhenNull]
     public ?string $balance = null;
 
     /**

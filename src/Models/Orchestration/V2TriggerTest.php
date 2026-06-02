@@ -7,32 +7,35 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2TriggerTest
 {
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\Filter $filter
+     * @var ?Filter $filter
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filter')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Filter|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('filter')]
+    #[Type('\formance\stack\Models\Orchestration\Filter|null')]
+    #[SkipWhenNull]
     public ?Filter $filter = null;
 
     /**
      * $variables
      *
-     * @var ?array<string, \formance\stack\Models\Orchestration\Variables> $variables
+     * @var ?array<string, Variables> $variables
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('variables')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Variables>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('variables')]
+    #[Type('array<string, \formance\stack\Models\Orchestration\Variables>|null')]
+    #[SkipWhenNull]
     public ?array $variables = null;
 
     /**
-     * @param  ?\formance\stack\Models\Orchestration\Filter  $filter
-     * @param  ?array<string, \formance\stack\Models\Orchestration\Variables>  $variables
+     * @param  ?Filter  $filter
+     * @param  ?array<string, Variables>  $variables
      * @phpstan-pure
      */
     public function __construct(?Filter $filter = null, ?array $variables = null)

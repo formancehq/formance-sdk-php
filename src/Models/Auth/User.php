@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class User
@@ -15,24 +17,24 @@ class User
      *
      * @var ?string $email
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('email')]
+    #[SkipWhenNull]
     public ?string $email = null;
 
     /**
      *
      * @var ?string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('id')]
+    #[SkipWhenNull]
     public ?string $id = null;
 
     /**
      *
      * @var ?string $subject
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('subject')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('subject')]
+    #[SkipWhenNull]
     public ?string $subject = null;
 
     /**

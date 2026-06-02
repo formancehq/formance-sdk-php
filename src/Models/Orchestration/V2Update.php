@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Update
 {
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2UpdateAccount $account
+     * @var ?V2UpdateAccount $account
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2UpdateAccount|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('account')]
+    #[Type('\formance\stack\Models\Orchestration\V2UpdateAccount|null')]
+    #[SkipWhenNull]
     public ?V2UpdateAccount $account = null;
 
     /**
-     * @param  ?\formance\stack\Models\Orchestration\V2UpdateAccount  $account
+     * @param  ?V2UpdateAccount  $account
      * @phpstan-pure
      */
     public function __construct(?V2UpdateAccount $account = null)

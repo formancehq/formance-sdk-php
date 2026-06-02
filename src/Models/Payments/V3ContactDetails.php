@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3ContactDetails
@@ -15,16 +17,16 @@ class V3ContactDetails
      *
      * @var ?string $email
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('email')]
+    #[SkipWhenNull]
     public ?string $email = null;
 
     /**
      *
      * @var ?string $phoneNumber
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phoneNumber')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('phoneNumber')]
+    #[SkipWhenNull]
     public ?string $phoneNumber = null;
 
     /**

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Ledger
@@ -15,21 +18,21 @@ class V2Ledger
      *
      * @var \DateTime $addedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('addedAt')]
+    #[SerializedName('addedAt')]
     public \DateTime $addedAt;
 
     /**
      *
      * @var string $bucket
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('bucket')]
+    #[SerializedName('bucket')]
     public string $bucket;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -37,17 +40,17 @@ class V2Ledger
      *
      * @var ?array<string, string> $features
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('features')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $features = null;
 
     /**
      *
      * @var ?int $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('id')]
+    #[SkipWhenNull]
     public ?int $id = null;
 
     /**
@@ -55,17 +58,17 @@ class V2Ledger
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?\DateTime $deletedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('deletedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('deletedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $deletedAt = null;
 
     /**

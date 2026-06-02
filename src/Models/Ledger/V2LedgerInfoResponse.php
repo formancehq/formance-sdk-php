@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2LedgerInfoResponse
 {
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2LedgerInfo $data
+     * @var ?V2LedgerInfo $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LedgerInfo|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2LedgerInfo|null')]
+    #[SkipWhenNull]
     public ?V2LedgerInfo $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Ledger\V2LedgerInfo  $data
+     * @param  ?V2LedgerInfo  $data
      * @phpstan-pure
      */
     public function __construct(?V2LedgerInfo $data = null)

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2CreateExporterV2CreateExporterResponse - Created exporter */
@@ -14,14 +16,14 @@ class V2CreateExporterV2CreateExporterResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2Exporter $data
+     * @var V2Exporter $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Exporter')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2Exporter')]
     public V2Exporter $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2Exporter  $data
+     * @param  V2Exporter  $data
      * @phpstan-pure
      */
     public function __construct(V2Exporter $data)

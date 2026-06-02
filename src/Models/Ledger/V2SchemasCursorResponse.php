@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2SchemasCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2SchemasCursor $cursor
+     * @var V2SchemasCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2SchemasCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\V2SchemasCursor')]
     public V2SchemasCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2SchemasCursor  $cursor
+     * @param  V2SchemasCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2SchemasCursor $cursor)

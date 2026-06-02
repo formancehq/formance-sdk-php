@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
+use Brick\DateTime\LocalDate;
+use Brick\Math\BigDecimal;
+use Brick\Math\BigInteger;
 use Psr\Http\Message\RequestInterface;
 use ReflectionProperty;
 
@@ -101,7 +104,7 @@ class QueryParameters
                 } else {
                     $prefix = $metadata->name;
                 }
-                if ($value instanceof \Brick\Math\BigDecimal || $value instanceof \Brick\Math\BigInteger || $value instanceof \Brick\DateTime\LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
+                if ($value instanceof BigDecimal || $value instanceof BigInteger || $value instanceof LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
                     $queryParams[$prefix] = valToString($value, $metadata->encodingArray());
                     break;
                 }
@@ -190,7 +193,7 @@ class QueryParameters
             case 'object':
                 $items = [];
 
-                if ($value instanceof \Brick\Math\BigDecimal || $value instanceof \Brick\Math\BigInteger || $value instanceof \Brick\DateTime\LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
+                if ($value instanceof BigDecimal || $value instanceof BigInteger || $value instanceof LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
                     $queryParams[$metadata->name] = valToString($value, $metadata->encodingArray());
                     break;
                 }

@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ExpandedDebitHold
@@ -15,14 +19,14 @@ class ExpandedDebitHold
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
@@ -30,7 +34,7 @@ class ExpandedDebitHold
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -38,41 +42,41 @@ class ExpandedDebitHold
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * Original amount on hold
      *
-     * @var \Brick\Math\BigInteger $originalAmount
+     * @var BigInteger $originalAmount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('originalAmount')]
-    public \Brick\Math\BigInteger $originalAmount;
+    #[SerializedName('originalAmount')]
+    public BigInteger $originalAmount;
 
     /**
      * Remaining amount on hold
      *
-     * @var \Brick\Math\BigInteger $remaining
+     * @var BigInteger $remaining
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('remaining')]
-    public \Brick\Math\BigInteger $remaining;
+    #[SerializedName('remaining')]
+    public BigInteger $remaining;
 
     /**
      * The ID of the wallet the hold is associated with.
      *
      * @var string $walletID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('walletID')]
+    #[SerializedName('walletID')]
     public string $walletID;
 
     /**
      *
-     * @var \formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null $destination
+     * @var LedgerAccountSubject|WalletSubject|null $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[Type('\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null')]
+    #[SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
@@ -80,13 +84,13 @@ class ExpandedDebitHold
      * @param  string  $description
      * @param  string  $id
      * @param  array<string, string>  $metadata
-     * @param  \Brick\Math\BigInteger  $originalAmount
-     * @param  \Brick\Math\BigInteger  $remaining
+     * @param  BigInteger  $originalAmount
+     * @param  BigInteger  $remaining
      * @param  string  $walletID
-     * @param  \formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null  $destination
+     * @param  LedgerAccountSubject|WalletSubject|null  $destination
      * @phpstan-pure
      */
-    public function __construct(string $asset, string $description, string $id, array $metadata, \Brick\Math\BigInteger $originalAmount, \Brick\Math\BigInteger $remaining, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
+    public function __construct(string $asset, string $description, string $id, array $metadata, BigInteger $originalAmount, BigInteger $remaining, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)
     {
         $this->asset = $asset;
         $this->description = $description;

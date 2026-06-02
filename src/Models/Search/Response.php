@@ -7,17 +7,20 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Search;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Response
 {
     /**
      *
-     * @var ?\formance\stack\Models\Search\Cursor $cursor
+     * @var ?Cursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Search\Cursor|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Search\Cursor|null')]
+    #[SkipWhenNull]
     public ?Cursor $cursor = null;
 
     /**
@@ -25,13 +28,13 @@ class Response
      *
      * @var ?array<string, mixed> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Search\Cursor  $cursor
+     * @param  ?Cursor  $cursor
      * @param  ?array<string, mixed>  $data
      * @phpstan-pure
      */

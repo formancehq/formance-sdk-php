@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class PostTransactionScript
@@ -15,7 +18,7 @@ class PostTransactionScript
      *
      * @var string $plain
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('plain')]
+    #[SerializedName('plain')]
     public string $plain;
 
     /**
@@ -23,9 +26,9 @@ class PostTransactionScript
      *
      * @var ?array<string, mixed> $vars
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('vars')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $vars = null;
 
     /**

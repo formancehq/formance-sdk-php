@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2GetInstanceResponse
@@ -28,25 +30,25 @@ class V2GetInstanceResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * The workflow instance
      *
-     * @var ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse
+     * @var ?V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse
      */
-    public ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse = null;
+    public ?V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse  $v2GetWorkflowInstanceResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2GetWorkflowInstanceResponse  $v2GetWorkflowInstanceResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2GetWorkflowInstanceResponse $v2GetWorkflowInstanceResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

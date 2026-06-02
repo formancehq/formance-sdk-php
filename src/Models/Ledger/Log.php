@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class Log
@@ -16,7 +17,7 @@ class Log
      *
      * @var array<string, mixed> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
+    #[SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $data;
 
@@ -24,28 +25,28 @@ class Log
      *
      * @var \DateTime $date
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
+    #[SerializedName('date')]
     public \DateTime $date;
 
     /**
      *
      * @var string $hash
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hash')]
+    #[SerializedName('hash')]
     public string $hash;
 
     /**
      *
      * @var int $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public int $id;
 
     /**
      *
-     * @var \formance\stack\Models\Ledger\Type $type
+     * @var Type $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Type')]
     public Type $type;
 
@@ -54,7 +55,7 @@ class Log
      * @param  \DateTime  $date
      * @param  string  $hash
      * @param  int  $id
-     * @param  \formance\stack\Models\Ledger\Type  $type
+     * @param  Type  $type
      * @phpstan-pure
      */
     public function __construct(array $data, \DateTime $date, string $hash, int $id, Type $type)

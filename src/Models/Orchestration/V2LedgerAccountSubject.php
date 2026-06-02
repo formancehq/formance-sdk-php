@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2LedgerAccountSubject
@@ -15,14 +16,14 @@ class V2LedgerAccountSubject
      *
      * @var string $identifier
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
+    #[SerializedName('identifier')]
     public string $identifier;
 
     /**
      *
      * @var string $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[SerializedName('type')]
     public string $type;
 
     /**

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ReconciliationsCursorResponseCursor
@@ -14,44 +17,44 @@ class ReconciliationsCursorResponseCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Reconciliation\Reconciliation> $data
+     * @var array<Reconciliation> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Reconciliation\Reconciliation>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Reconciliation\Reconciliation>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
+    #[SerializedName('hasMore')]
     public bool $hasMore;
 
     /**
      *
      * @var int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[SerializedName('pageSize')]
     public int $pageSize;
 
     /**
      *
      * @var ?string $next
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('next')]
+    #[SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('previous')]
+    #[SkipWhenNull]
     public ?string $previous = null;
 
     /**
-     * @param  array<\formance\stack\Models\Reconciliation\Reconciliation>  $data
+     * @param  array<Reconciliation>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Hold
@@ -15,14 +18,14 @@ class Hold
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
@@ -30,7 +33,7 @@ class Hold
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -38,8 +41,8 @@ class Hold
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -47,16 +50,16 @@ class Hold
      *
      * @var string $walletID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('walletID')]
+    #[SerializedName('walletID')]
     public string $walletID;
 
     /**
      *
-     * @var \formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null $destination
+     * @var LedgerAccountSubject|WalletSubject|null $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[Type('\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null')]
+    #[SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
     /**
@@ -65,7 +68,7 @@ class Hold
      * @param  string  $id
      * @param  array<string, string>  $metadata
      * @param  string  $walletID
-     * @param  \formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null  $destination
+     * @param  LedgerAccountSubject|WalletSubject|null  $destination
      * @phpstan-pure
      */
     public function __construct(string $asset, string $description, string $id, array $metadata, string $walletID, LedgerAccountSubject|WalletSubject|null $destination = null)

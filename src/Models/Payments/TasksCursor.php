@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** TasksCursor - OK */
@@ -14,14 +16,14 @@ class TasksCursor
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\TasksCursorCursor $cursor
+     * @var TasksCursorCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TasksCursorCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Payments\TasksCursorCursor')]
     public TasksCursorCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Payments\TasksCursorCursor  $cursor
+     * @param  TasksCursorCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(TasksCursorCursor $cursor)

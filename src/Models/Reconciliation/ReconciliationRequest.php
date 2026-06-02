@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class ReconciliationRequest
@@ -15,14 +16,14 @@ class ReconciliationRequest
      *
      * @var \DateTime $reconciledAtLedger
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtLedger')]
+    #[SerializedName('reconciledAtLedger')]
     public \DateTime $reconciledAtLedger;
 
     /**
      *
      * @var \DateTime $reconciledAtPayments
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reconciledAtPayments')]
+    #[SerializedName('reconciledAtPayments')]
     public \DateTime $reconciledAtPayments;
 
     /**

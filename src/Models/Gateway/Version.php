@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Gateway;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class Version
@@ -15,21 +16,21 @@ class Version
      *
      * @var bool $health
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('health')]
+    #[SerializedName('health')]
     public bool $health;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[SerializedName('version')]
     public string $version;
 
     /**

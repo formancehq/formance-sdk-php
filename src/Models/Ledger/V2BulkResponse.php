@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2BulkResponse
@@ -14,33 +17,33 @@ class V2BulkResponse
     /**
      * $data
      *
-     * @var ?array<\formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementResultAddMetadata|\formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata|\formance\stack\Models\Ledger\V2BulkElementResultError> $data
+     * @var ?array<V2BulkElementResultCreateTransaction|V2BulkElementResultAddMetadata|V2BulkElementResultRevertTransaction|V2BulkElementResultDeleteMetadata|V2BulkElementResultError> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementResultAddMetadata|\formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata|\formance\stack\Models\Ledger\V2BulkElementResultError>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementResultAddMetadata|\formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata|\formance\stack\Models\Ledger\V2BulkElementResultError>|null')]
+    #[SkipWhenNull]
     public ?array $data = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2ErrorsEnum $errorCode
+     * @var ?V2ErrorsEnum $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ErrorsEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Ledger\V2ErrorsEnum|null')]
+    #[SkipWhenNull]
     public ?V2ErrorsEnum $errorCode = null;
 
     /**
      *
      * @var ?string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('errorMessage')]
+    #[SkipWhenNull]
     public ?string $errorMessage = null;
 
     /**
-     * @param  ?array<\formance\stack\Models\Ledger\V2BulkElementResultCreateTransaction|\formance\stack\Models\Ledger\V2BulkElementResultAddMetadata|\formance\stack\Models\Ledger\V2BulkElementResultRevertTransaction|\formance\stack\Models\Ledger\V2BulkElementResultDeleteMetadata|\formance\stack\Models\Ledger\V2BulkElementResultError>  $data
-     * @param  ?\formance\stack\Models\Ledger\V2ErrorsEnum  $errorCode
+     * @param  ?array<V2BulkElementResultCreateTransaction|V2BulkElementResultAddMetadata|V2BulkElementResultRevertTransaction|V2BulkElementResultDeleteMetadata|V2BulkElementResultError>  $data
+     * @param  ?V2ErrorsEnum  $errorCode
      * @param  ?string  $errorMessage
      * @phpstan-pure
      */

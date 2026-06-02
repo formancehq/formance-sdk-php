@@ -8,6 +8,28 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\V3AdyenConfig;
+use formance\stack\Models\Payments\V3AtlarConfig;
+use formance\stack\Models\Payments\V3BankingbridgeConfig;
+use formance\stack\Models\Payments\V3BankingcircleConfig;
+use formance\stack\Models\Payments\V3BitstampConfig;
+use formance\stack\Models\Payments\V3CoinbaseprimeConfig;
+use formance\stack\Models\Payments\V3ColumnConfig;
+use formance\stack\Models\Payments\V3CurrencycloudConfig;
+use formance\stack\Models\Payments\V3DummypayConfig;
+use formance\stack\Models\Payments\V3FireblocksConfig;
+use formance\stack\Models\Payments\V3GenericConfig;
+use formance\stack\Models\Payments\V3IncreaseConfig;
+use formance\stack\Models\Payments\V3MangopayConfig;
+use formance\stack\Models\Payments\V3ModulrConfig;
+use formance\stack\Models\Payments\V3MoneycorpConfig;
+use formance\stack\Models\Payments\V3PlaidConfig;
+use formance\stack\Models\Payments\V3PowensConfig;
+use formance\stack\Models\Payments\V3QontoConfig;
+use formance\stack\Models\Payments\V3RoutableConfig;
+use formance\stack\Models\Payments\V3StripeConfig;
+use formance\stack\Models\Payments\V3TinkConfig;
+use formance\stack\Models\Payments\V3WiseConfig;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3UpdateConnectorConfigRequest
 {
@@ -21,17 +43,17 @@ class V3UpdateConnectorConfigRequest
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3BankingbridgeConfig|\formance\stack\Models\Payments\V3BitstampConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|\formance\stack\Models\Payments\V3RoutableConfig|null $v3ConnectorConfig
+     * @var V3AdyenConfig|V3AtlarConfig|V3BankingcircleConfig|V3ColumnConfig|V3CurrencycloudConfig|V3DummypayConfig|V3GenericConfig|V3IncreaseConfig|V3MangopayConfig|V3ModulrConfig|V3MoneycorpConfig|V3PlaidConfig|V3PowensConfig|V3QontoConfig|V3StripeConfig|V3TinkConfig|V3WiseConfig|V3BankingbridgeConfig|V3BitstampConfig|V3CoinbaseprimeConfig|V3FireblocksConfig|V3RoutableConfig|null $v3ConnectorConfig
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3BankingbridgeConfig|\formance\stack\Models\Payments\V3BitstampConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|\formance\stack\Models\Payments\V3RoutableConfig|null $v3ConnectorConfig = null;
 
     /**
      * @param  string  $connectorID
-     * @param  \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3BankingbridgeConfig|\formance\stack\Models\Payments\V3BitstampConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|\formance\stack\Models\Payments\V3RoutableConfig|null  $v3ConnectorConfig
+     * @param  V3AdyenConfig|V3AtlarConfig|V3BankingcircleConfig|V3ColumnConfig|V3CurrencycloudConfig|V3DummypayConfig|V3GenericConfig|V3IncreaseConfig|V3MangopayConfig|V3ModulrConfig|V3MoneycorpConfig|V3PlaidConfig|V3PowensConfig|V3QontoConfig|V3StripeConfig|V3TinkConfig|V3WiseConfig|V3BankingbridgeConfig|V3BitstampConfig|V3CoinbaseprimeConfig|V3FireblocksConfig|V3RoutableConfig|null  $v3ConnectorConfig
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, \formance\stack\Models\Payments\V3AdyenConfig|\formance\stack\Models\Payments\V3AtlarConfig|\formance\stack\Models\Payments\V3BankingcircleConfig|\formance\stack\Models\Payments\V3ColumnConfig|\formance\stack\Models\Payments\V3CurrencycloudConfig|\formance\stack\Models\Payments\V3DummypayConfig|\formance\stack\Models\Payments\V3GenericConfig|\formance\stack\Models\Payments\V3IncreaseConfig|\formance\stack\Models\Payments\V3MangopayConfig|\formance\stack\Models\Payments\V3ModulrConfig|\formance\stack\Models\Payments\V3MoneycorpConfig|\formance\stack\Models\Payments\V3PlaidConfig|\formance\stack\Models\Payments\V3PowensConfig|\formance\stack\Models\Payments\V3QontoConfig|\formance\stack\Models\Payments\V3StripeConfig|\formance\stack\Models\Payments\V3TinkConfig|\formance\stack\Models\Payments\V3WiseConfig|\formance\stack\Models\Payments\V3BankingbridgeConfig|\formance\stack\Models\Payments\V3BitstampConfig|\formance\stack\Models\Payments\V3CoinbaseprimeConfig|\formance\stack\Models\Payments\V3FireblocksConfig|\formance\stack\Models\Payments\V3RoutableConfig|null $v3ConnectorConfig = null)
+    public function __construct(string $connectorID, V3AdyenConfig|V3AtlarConfig|V3BankingcircleConfig|V3ColumnConfig|V3CurrencycloudConfig|V3DummypayConfig|V3GenericConfig|V3IncreaseConfig|V3MangopayConfig|V3ModulrConfig|V3MoneycorpConfig|V3PlaidConfig|V3PowensConfig|V3QontoConfig|V3StripeConfig|V3TinkConfig|V3WiseConfig|V3BankingbridgeConfig|V3BitstampConfig|V3CoinbaseprimeConfig|V3FireblocksConfig|V3RoutableConfig|null $v3ConnectorConfig = null)
     {
         $this->connectorID = $connectorID;
         $this->v3ConnectorConfig = $v3ConnectorConfig;

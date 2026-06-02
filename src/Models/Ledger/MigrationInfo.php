@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class MigrationInfo
@@ -15,39 +18,39 @@ class MigrationInfo
      *
      * @var ?\DateTime $date
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('date')]
+    #[SkipWhenNull]
     public ?\DateTime $date = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\State $state
+     * @var ?State $state
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('state')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\State|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('state')]
+    #[Type('\formance\stack\Models\Ledger\State|null')]
+    #[SkipWhenNull]
     public ?State $state = null;
 
     /**
      *
      * @var ?string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('version')]
+    #[SkipWhenNull]
     public ?string $version = null;
 
     /**
      * @param  ?\DateTime  $date
      * @param  ?string  $name
-     * @param  ?\formance\stack\Models\Ledger\State  $state
+     * @param  ?State  $state
      * @param  ?string  $version
      * @phpstan-pure
      */

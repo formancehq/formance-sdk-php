@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2GetInstanceStageHistoryResponse
@@ -28,25 +30,25 @@ class V2GetInstanceStageHistoryResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * The workflow instance stage history
      *
-     * @var ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse
+     * @var ?V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse
      */
-    public ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null;
+    public ?V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse  $v2GetWorkflowInstanceHistoryStageResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2GetWorkflowInstanceHistoryStageResponse  $v2GetWorkflowInstanceHistoryStageResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2GetWorkflowInstanceHistoryStageResponse $v2GetWorkflowInstanceHistoryStageResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

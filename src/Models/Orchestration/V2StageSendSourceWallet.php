@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2StageSendSourceWallet
@@ -15,15 +17,15 @@ class V2StageSendSourceWallet
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var ?string $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('balance')]
+    #[SkipWhenNull]
     public ?string $balance = null;
 
     /**

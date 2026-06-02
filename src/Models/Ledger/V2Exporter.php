@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Exporter
@@ -16,29 +18,29 @@ class V2Exporter
      *
      * @var array<string, mixed> $config
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    #[SerializedName('config')]
+    #[Type('array<string, mixed>')]
     public array $config;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $driver
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('driver')]
+    #[SerializedName('driver')]
     public string $driver;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**

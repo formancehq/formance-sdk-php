@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class GetBalanceResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\BalanceWithAssets $data
+     * @var BalanceWithAssets $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\BalanceWithAssets')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Wallets\BalanceWithAssets')]
     public BalanceWithAssets $data;
 
     /**
-     * @param  \formance\stack\Models\Wallets\BalanceWithAssets  $data
+     * @param  BalanceWithAssets  $data
      * @phpstan-pure
      */
     public function __construct(BalanceWithAssets $data)

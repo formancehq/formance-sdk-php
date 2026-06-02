@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Transaction
@@ -14,52 +18,52 @@ class Transaction
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Ledger\Posting> $postings
+     * @var array<Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\Posting>')]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Ledger\Posting>')]
     public array $postings;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $txid
+     * @var BigInteger $txid
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('txid')]
-    public \Brick\Math\BigInteger $txid;
+    #[SerializedName('txid')]
+    public BigInteger $txid;
 
     /**
      * $postCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Ledger\Volume>> $postCommitVolumes
+     * @var ?array<string, array<string, Volume>> $postCommitVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postCommitVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
      * $preCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Ledger\Volume>> $preCommitVolumes
+     * @var ?array<string, array<string, Volume>> $preCommitVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('preCommitVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Ledger\Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
@@ -67,22 +71,22 @@ class Transaction
      *
      * @var ?array<string, mixed> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, mixed>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
-     * @param  array<\formance\stack\Models\Ledger\Posting>  $postings
+     * @param  array<Posting>  $postings
      * @param  \DateTime  $timestamp
-     * @param  \Brick\Math\BigInteger  $txid
-     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\Volume>>  $postCommitVolumes
-     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\Volume>>  $preCommitVolumes
+     * @param  BigInteger  $txid
+     * @param  ?array<string, array<string, Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?array<string, mixed>  $metadata
      * @phpstan-pure
      */
-    public function __construct(array $postings, \DateTime $timestamp, \Brick\Math\BigInteger $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
+    public function __construct(array $postings, \DateTime $timestamp, BigInteger $txid, ?array $postCommitVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?array $metadata = null)
     {
         $this->postings = $postings;
         $this->timestamp = $timestamp;

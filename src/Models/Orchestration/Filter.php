@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class Filter
@@ -15,16 +17,16 @@ class Filter
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
      * @var ?bool $match
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('match')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('match')]
+    #[SkipWhenNull]
     public ?bool $match = null;
 
     /**

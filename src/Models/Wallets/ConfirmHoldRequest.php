@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class ConfirmHoldRequest
@@ -14,27 +17,27 @@ class ConfirmHoldRequest
     /**
      * Define the amount to transfer.
      *
-     * @var ?\Brick\Math\BigInteger $amount
+     * @var ?BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $amount = null;
+    #[SerializedName('amount')]
+    #[SkipWhenNull]
+    public ?BigInteger $amount = null;
 
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      *
      * @var ?bool $final
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('final')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('final')]
+    #[SkipWhenNull]
     public ?bool $final = null;
 
     /**
-     * @param  ?\Brick\Math\BigInteger  $amount
+     * @param  ?BigInteger  $amount
      * @param  ?bool  $final
      * @phpstan-pure
      */
-    public function __construct(?\Brick\Math\BigInteger $amount = null, ?bool $final = null)
+    public function __construct(?BigInteger $amount = null, ?bool $final = null)
     {
         $this->amount = $amount;
         $this->final = $final;

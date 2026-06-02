@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class WalletSummary
@@ -14,54 +17,54 @@ class WalletSummary
     /**
      * $availableFunds
      *
-     * @var array<string, \Brick\Math\BigInteger> $availableFunds
+     * @var array<string, BigInteger> $availableFunds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('availableFunds')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('availableFunds')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $availableFunds;
 
     /**
      * $balances
      *
-     * @var array<\formance\stack\Models\Wallets\BalanceWithAssets> $balances
+     * @var array<BalanceWithAssets> $balances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\BalanceWithAssets>')]
+    #[SerializedName('balances')]
+    #[Type('array<\formance\stack\Models\Wallets\BalanceWithAssets>')]
     public array $balances;
 
     /**
      * $expirableFunds
      *
-     * @var array<string, \Brick\Math\BigInteger> $expirableFunds
+     * @var array<string, BigInteger> $expirableFunds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expirableFunds')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('expirableFunds')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $expirableFunds;
 
     /**
      * $expiredFunds
      *
-     * @var array<string, \Brick\Math\BigInteger> $expiredFunds
+     * @var array<string, BigInteger> $expiredFunds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expiredFunds')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('expiredFunds')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $expiredFunds;
 
     /**
      * $holdFunds
      *
-     * @var array<string, \Brick\Math\BigInteger> $holdFunds
+     * @var array<string, BigInteger> $holdFunds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('holdFunds')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('holdFunds')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $holdFunds;
 
     /**
-     * @param  array<string, \Brick\Math\BigInteger>  $availableFunds
-     * @param  array<\formance\stack\Models\Wallets\BalanceWithAssets>  $balances
-     * @param  array<string, \Brick\Math\BigInteger>  $expirableFunds
-     * @param  array<string, \Brick\Math\BigInteger>  $expiredFunds
-     * @param  array<string, \Brick\Math\BigInteger>  $holdFunds
+     * @param  array<string, BigInteger>  $availableFunds
+     * @param  array<BalanceWithAssets>  $balances
+     * @param  array<string, BigInteger>  $expirableFunds
+     * @param  array<string, BigInteger>  $expiredFunds
+     * @param  array<string, BigInteger>  $holdFunds
      * @phpstan-pure
      */
     public function __construct(array $availableFunds, array $balances, array $expirableFunds, array $expiredFunds, array $holdFunds)

@@ -7,67 +7,71 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Transaction
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public \Brick\Math\BigInteger $id;
+    #[SerializedName('id')]
+    public BigInteger $id;
 
     /**
      * $metadata
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Orchestration\Posting> $postings
+     * @var array<Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\Posting>')]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Orchestration\Posting>')]
     public array $postings;
 
     /**
      *
      * @var bool $reverted
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reverted')]
+    #[SerializedName('reverted')]
     public bool $reverted;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  array<string, string>  $metadata
-     * @param  array<\formance\stack\Models\Orchestration\Posting>  $postings
+     * @param  array<Posting>  $postings
      * @param  bool  $reverted
      * @param  \DateTime  $timestamp
      * @param  ?string  $reference
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?string $reference = null)
+    public function __construct(BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?string $reference = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;

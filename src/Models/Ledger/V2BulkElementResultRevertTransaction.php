@@ -7,34 +7,36 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2BulkElementResultRevertTransaction
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2Transaction $data
+     * @var V2Transaction $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Transaction')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2Transaction')]
     public V2Transaction $data;
 
     /**
      *
      * @var int $logID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('logID')]
+    #[SerializedName('logID')]
     public int $logID;
 
     /**
      *
      * @var string $responseType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
+    #[SerializedName('responseType')]
     public string $responseType;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2Transaction  $data
+     * @param  V2Transaction  $data
      * @param  int  $logID
      * @param  string  $responseType
      * @phpstan-pure

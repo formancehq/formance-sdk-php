@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class TaskStripeDescriptor
@@ -15,22 +17,22 @@ class TaskStripeDescriptor
      *
      * @var string $account
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('account')]
+    #[SerializedName('account')]
     public string $account;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
      * @var ?bool $main
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('main')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('main')]
+    #[SkipWhenNull]
     public ?bool $main = null;
 
     /**

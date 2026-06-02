@@ -13,7 +13,7 @@ class V2RunQueryRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Operations\V2RunQueryRequestBody $requestBody
+     * @var V2RunQueryRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public V2RunQueryRequestBody $requestBody;
@@ -65,7 +65,7 @@ class V2RunQueryRequest
     /**
      * Deprecated: Use sort param
      *
-     * @var ?\formance\stack\Models\Operations\V2RunQueryQueryParamOrder $order
+     * @var ?V2RunQueryQueryParamOrder $order
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order')]
@@ -107,13 +107,13 @@ class V2RunQueryRequest
     public ?string $sort = null;
 
     /**
-     * @param  \formance\stack\Models\Operations\V2RunQueryRequestBody  $requestBody
+     * @param  V2RunQueryRequestBody  $requestBody
      * @param  string  $id
      * @param  string  $ledger
      * @param  string  $schemaVersion
      * @param  ?string  $cursor
      * @param  ?string  $expand
-     * @param  ?\formance\stack\Models\Operations\V2RunQueryQueryParamOrder  $order
+     * @param  ?V2RunQueryQueryParamOrder  $order
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
      * @param  ?bool  $reverse

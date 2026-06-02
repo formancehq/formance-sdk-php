@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Data
@@ -16,33 +19,33 @@ class Data
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      *
-     * @var string|\Brick\Math\BigInteger $targetId
+     * @var string|BigInteger $targetId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('targetId')]
-    #[\Speakeasy\Serializer\Annotation\Type('string|\Brick\Math\BigInteger')]
-    public string|\Brick\Math\BigInteger $targetId;
+    #[SerializedName('targetId')]
+    #[Type('string|\Brick\Math\BigInteger')]
+    public string|BigInteger $targetId;
 
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2TargetType $targetType
+     * @var V2TargetType $targetType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('targetType')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2TargetType')]
+    #[SerializedName('targetType')]
+    #[Type('\formance\stack\Models\Ledger\V2TargetType')]
     public V2TargetType $targetType;
 
     /**
      * @param  array<string, string>  $metadata
-     * @param  string|\Brick\Math\BigInteger  $targetId
-     * @param  \formance\stack\Models\Ledger\V2TargetType  $targetType
+     * @param  string|BigInteger  $targetId
+     * @param  V2TargetType  $targetType
      * @phpstan-pure
      */
-    public function __construct(array $metadata, string|\Brick\Math\BigInteger $targetId, V2TargetType $targetType)
+    public function __construct(array $metadata, string|BigInteger $targetId, V2TargetType $targetType)
     {
         $this->metadata = $metadata;
         $this->targetId = $targetId;

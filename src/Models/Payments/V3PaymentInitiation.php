@@ -7,111 +7,115 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentInitiation
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public string $provider;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var \DateTime $scheduledAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduledAt')]
+    #[SerializedName('scheduledAt')]
     public \DateTime $scheduledAt;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum $status
+     * @var V3PaymentInitiationStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentInitiationStatusEnum')]
     public V3PaymentInitiationStatusEnum $status;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum $type
+     * @var V3PaymentInitiationTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentInitiationTypeEnum')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentInitiationTypeEnum')]
     public V3PaymentInitiationTypeEnum $type;
 
     /**
      *
      * @var ?string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destinationAccountID')]
+    #[SkipWhenNull]
     public ?string $destinationAccountID = null;
 
     /**
      *
      * @var ?string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sourceAccountID')]
+    #[SkipWhenNull]
     public ?string $sourceAccountID = null;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -119,13 +123,13 @@ class V3PaymentInitiation
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @param  string  $connectorID
      * @param  \DateTime  $createdAt
@@ -134,15 +138,15 @@ class V3PaymentInitiation
      * @param  string  $provider
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
-     * @param  \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum  $status
-     * @param  \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum  $type
+     * @param  V3PaymentInitiationStatusEnum  $status
+     * @param  V3PaymentInitiationTypeEnum  $type
      * @param  ?string  $destinationAccountID
      * @param  ?string  $sourceAccountID
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $id, string $provider, string $reference, \DateTime $scheduledAt, V3PaymentInitiationStatusEnum $status, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null, ?string $error = null, ?array $metadata = null)
+    public function __construct(BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $description, string $id, string $provider, string $reference, \DateTime $scheduledAt, V3PaymentInitiationStatusEnum $status, V3PaymentInitiationTypeEnum $type, ?string $destinationAccountID = null, ?string $sourceAccountID = null, ?string $error = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

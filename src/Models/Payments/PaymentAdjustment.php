@@ -7,56 +7,59 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class PaymentAdjustment
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\PaymentAdjustmentRaw $raw
+     * @var PaymentAdjustmentRaw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentAdjustmentRaw')]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Payments\PaymentAdjustmentRaw')]
     public PaymentAdjustmentRaw $raw;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\PaymentStatus $status
+     * @var PaymentStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentStatus')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\PaymentStatus')]
     public PaymentStatus $status;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  \DateTime  $createdAt
-     * @param  \formance\stack\Models\Payments\PaymentAdjustmentRaw  $raw
+     * @param  PaymentAdjustmentRaw  $raw
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\PaymentStatus  $status
+     * @param  PaymentStatus  $status
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
+    public function __construct(BigInteger $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
     {
         $this->amount = $amount;
         $this->createdAt = $createdAt;

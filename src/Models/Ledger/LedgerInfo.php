@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class LedgerInfo
@@ -15,22 +18,22 @@ class LedgerInfo
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\Storage $storage
+     * @var ?Storage $storage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Storage|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('storage')]
+    #[Type('\formance\stack\Models\Ledger\Storage|null')]
+    #[SkipWhenNull]
     public ?Storage $storage = null;
 
     /**
      * @param  ?string  $name
-     * @param  ?\formance\stack\Models\Ledger\Storage  $storage
+     * @param  ?Storage  $storage
      * @phpstan-pure
      */
     public function __construct(?string $name = null, ?Storage $storage = null)

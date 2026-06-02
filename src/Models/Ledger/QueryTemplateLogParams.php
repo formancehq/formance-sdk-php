@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class QueryTemplateLogParams
@@ -21,16 +24,16 @@ class QueryTemplateLogParams
      *
      * @var ?string $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('cursor')]
+    #[SkipWhenNull]
     public ?string $cursor = null;
 
     /**
      *
      * @var ?string $expand
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expand')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('expand')]
+    #[SkipWhenNull]
     public ?string $expand = null;
 
     /**
@@ -40,25 +43,25 @@ class QueryTemplateLogParams
      *
      * @var ?int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?\DateTime $pit
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pit')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pit')]
+    #[SkipWhenNull]
     public ?\DateTime $pit = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource $resource
+     * @var ?V2QueryParamsSchemasTrueResource $resource
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('resource')]
+    #[Type('\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource|null')]
+    #[SkipWhenNull]
     public ?V2QueryParamsSchemasTrueResource $resource = null;
 
     /**
@@ -69,8 +72,8 @@ class QueryTemplateLogParams
      *
      * @var ?string $sort
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sort')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sort')]
+    #[SkipWhenNull]
     public ?string $sort = null;
 
     /**
@@ -78,7 +81,7 @@ class QueryTemplateLogParams
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
-     * @param  ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueResource  $resource
+     * @param  ?V2QueryParamsSchemasTrueResource  $resource
      * @param  ?string  $sort
      * @phpstan-pure
      */

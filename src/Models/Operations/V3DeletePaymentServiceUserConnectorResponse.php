@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3DeletePaymentServiceUserConnectorResponse
@@ -28,25 +30,25 @@ class V3DeletePaymentServiceUserConnectorResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Accepted
      *
-     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponse $v3PaymentServiceUserDeleteConnectorResponse
+     * @var ?V3PaymentServiceUserDeleteConnectorResponse $v3PaymentServiceUserDeleteConnectorResponse
      */
-    public ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponse $v3PaymentServiceUserDeleteConnectorResponse = null;
+    public ?V3PaymentServiceUserDeleteConnectorResponse $v3PaymentServiceUserDeleteConnectorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponse  $v3PaymentServiceUserDeleteConnectorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3PaymentServiceUserDeleteConnectorResponse  $v3PaymentServiceUserDeleteConnectorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponse $v3PaymentServiceUserDeleteConnectorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3PaymentServiceUserDeleteConnectorResponse $v3PaymentServiceUserDeleteConnectorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

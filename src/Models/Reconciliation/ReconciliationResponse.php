@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** ReconciliationResponse - OK */
@@ -14,14 +16,14 @@ class ReconciliationResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Reconciliation\Reconciliation $data
+     * @var Reconciliation $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\Reconciliation')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Reconciliation\Reconciliation')]
     public Reconciliation $data;
 
     /**
-     * @param  \formance\stack\Models\Reconciliation\Reconciliation  $data
+     * @param  Reconciliation  $data
      * @phpstan-pure
      */
     public function __construct(Reconciliation $data)

@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /**
@@ -28,10 +32,10 @@ class V2Log
      * - INSERTED_SCHEMA: V2LogDataInsertedSchema
      *
      *
-     * @var \formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema $data
+     * @var V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema')]
     public V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema $data;
 
     /**
@@ -39,7 +43,7 @@ class V2Log
      *
      * @var \DateTime $date
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
+    #[SerializedName('date')]
     public \DateTime $date;
 
     /**
@@ -47,24 +51,24 @@ class V2Log
      *
      * @var string $hash
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hash')]
+    #[SerializedName('hash')]
     public string $hash;
 
     /**
      * Unique sequential identifier for this log entry within the ledger
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public \Brick\Math\BigInteger $id;
+    #[SerializedName('id')]
+    public BigInteger $id;
 
     /**
      * The type of operation this log represents
      *
-     * @var \formance\stack\Models\Ledger\V2LogType $type
+     * @var V2LogType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogType')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Ledger\V2LogType')]
     public V2LogType $type;
 
     /**
@@ -72,20 +76,20 @@ class V2Log
      *
      * @var ?string $schemaVersion
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('schemaVersion')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('schemaVersion')]
+    #[SkipWhenNull]
     public ?string $schemaVersion = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2LogDataNewTransaction|\formance\stack\Models\Ledger\V2LogDataSetMetadata|\formance\stack\Models\Ledger\V2LogDataRevertedTransaction|\formance\stack\Models\Ledger\V2LogDataDeleteMetadata|\formance\stack\Models\Ledger\V2LogDataInsertedSchema  $data
+     * @param  V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema  $data
      * @param  \DateTime  $date
      * @param  string  $hash
-     * @param  \Brick\Math\BigInteger  $id
-     * @param  \formance\stack\Models\Ledger\V2LogType  $type
+     * @param  BigInteger  $id
+     * @param  V2LogType  $type
      * @param  ?string  $schemaVersion
      * @phpstan-pure
      */
-    public function __construct(V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema $data, \DateTime $date, string $hash, \Brick\Math\BigInteger $id, V2LogType $type, ?string $schemaVersion = null)
+    public function __construct(V2LogDataNewTransaction|V2LogDataSetMetadata|V2LogDataRevertedTransaction|V2LogDataDeleteMetadata|V2LogDataInsertedSchema $data, \DateTime $date, string $hash, BigInteger $id, V2LogType $type, ?string $schemaVersion = null)
     {
         $this->data = $data;
         $this->date = $date;

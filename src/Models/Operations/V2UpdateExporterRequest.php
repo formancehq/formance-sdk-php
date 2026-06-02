@@ -8,15 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Ledger\V2ExporterConfiguration;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2UpdateExporterRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2ExporterConfiguration $v2ExporterConfiguration
+     * @var V2ExporterConfiguration $v2ExporterConfiguration
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Ledger\V2ExporterConfiguration $v2ExporterConfiguration;
+    public V2ExporterConfiguration $v2ExporterConfiguration;
 
     /**
      * The exporter id
@@ -27,11 +28,11 @@ class V2UpdateExporterRequest
     public string $exporterID;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2ExporterConfiguration  $v2ExporterConfiguration
+     * @param  V2ExporterConfiguration  $v2ExporterConfiguration
      * @param  string  $exporterID
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Ledger\V2ExporterConfiguration $v2ExporterConfiguration, string $exporterID)
+    public function __construct(V2ExporterConfiguration $v2ExporterConfiguration, string $exporterID)
     {
         $this->v2ExporterConfiguration = $v2ExporterConfiguration;
         $this->exporterID = $exporterID;

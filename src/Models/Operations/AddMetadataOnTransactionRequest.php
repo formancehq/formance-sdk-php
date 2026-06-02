@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use Brick\Math\BigInteger;
 use formance\stack\Utils\SpeakeasyMetadata;
 class AddMetadataOnTransactionRequest
 {
@@ -22,10 +23,10 @@ class AddMetadataOnTransactionRequest
     /**
      * Transaction ID.
      *
-     * @var \Brick\Math\BigInteger $txid
+     * @var BigInteger $txid
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=txid')]
-    public \Brick\Math\BigInteger $txid;
+    public BigInteger $txid;
 
     /**
      * metadata
@@ -37,11 +38,11 @@ class AddMetadataOnTransactionRequest
 
     /**
      * @param  string  $ledger
-     * @param  \Brick\Math\BigInteger  $txid
+     * @param  BigInteger  $txid
      * @param  ?array<string, mixed>  $requestBody
      * @phpstan-pure
      */
-    public function __construct(string $ledger, \Brick\Math\BigInteger $txid, ?array $requestBody = null)
+    public function __construct(string $ledger, BigInteger $txid, ?array $requestBody = null)
     {
         $this->ledger = $ledger;
         $this->txid = $txid;

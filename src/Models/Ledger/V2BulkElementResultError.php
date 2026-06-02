@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2BulkElementResultError
@@ -15,36 +17,36 @@ class V2BulkElementResultError
      *
      * @var string $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
+    #[SerializedName('errorCode')]
     public string $errorCode;
 
     /**
      *
      * @var string $errorDescription
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorDescription')]
+    #[SerializedName('errorDescription')]
     public string $errorDescription;
 
     /**
      *
      * @var int $logID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('logID')]
+    #[SerializedName('logID')]
     public int $logID;
 
     /**
      *
      * @var string $responseType
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('responseType')]
+    #[SerializedName('responseType')]
     public string $responseType;
 
     /**
      *
      * @var ?string $errorDetails
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorDetails')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('errorDetails')]
+    #[SkipWhenNull]
     public ?string $errorDetails = null;
 
     /**

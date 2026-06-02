@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2LedgerListResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2LedgerListResponseCursor $cursor
+     * @var V2LedgerListResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LedgerListResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\V2LedgerListResponseCursor')]
     public V2LedgerListResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2LedgerListResponseCursor  $cursor
+     * @param  V2LedgerListResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2LedgerListResponseCursor $cursor)

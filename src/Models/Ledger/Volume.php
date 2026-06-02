@@ -7,39 +7,42 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class Volume
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $input
+     * @var BigInteger $input
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
-    public \Brick\Math\BigInteger $input;
+    #[SerializedName('input')]
+    public BigInteger $input;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $output
+     * @var BigInteger $output
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('output')]
-    public \Brick\Math\BigInteger $output;
+    #[SerializedName('output')]
+    public BigInteger $output;
 
     /**
      *
-     * @var ?\Brick\Math\BigInteger $balance
+     * @var ?BigInteger $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $balance = null;
+    #[SerializedName('balance')]
+    #[SkipWhenNull]
+    public ?BigInteger $balance = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $input
-     * @param  \Brick\Math\BigInteger  $output
-     * @param  ?\Brick\Math\BigInteger  $balance
+     * @param  BigInteger  $input
+     * @param  BigInteger  $output
+     * @param  ?BigInteger  $balance
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $input, \Brick\Math\BigInteger $output, ?\Brick\Math\BigInteger $balance = null)
+    public function __construct(BigInteger $input, BigInteger $output, ?BigInteger $balance = null)
     {
         $this->input = $input;
         $this->output = $output;

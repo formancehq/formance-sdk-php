@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ListTriggersResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2ListTriggersResponseCursor $cursor
+     * @var V2ListTriggersResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListTriggersResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Orchestration\V2ListTriggersResponseCursor')]
     public V2ListTriggersResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2ListTriggersResponseCursor  $cursor
+     * @param  V2ListTriggersResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2ListTriggersResponseCursor $cursor)

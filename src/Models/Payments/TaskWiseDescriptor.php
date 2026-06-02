@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class TaskWiseDescriptor
@@ -15,24 +17,24 @@ class TaskWiseDescriptor
      *
      * @var ?string $key
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('key')]
+    #[SkipWhenNull]
     public ?string $key = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
      * @var ?int $profileID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('profileID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('profileID')]
+    #[SkipWhenNull]
     public ?int $profileID = null;
 
     /**

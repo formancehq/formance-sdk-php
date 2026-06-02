@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2Stats
@@ -15,22 +17,22 @@ class V2Stats
      *
      * @var int $accounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts')]
+    #[SerializedName('accounts')]
     public int $accounts;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $transactions
+     * @var BigInteger $transactions
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
-    public \Brick\Math\BigInteger $transactions;
+    #[SerializedName('transactions')]
+    public BigInteger $transactions;
 
     /**
      * @param  int  $accounts
-     * @param  \Brick\Math\BigInteger  $transactions
+     * @param  BigInteger  $transactions
      * @phpstan-pure
      */
-    public function __construct(int $accounts, \Brick\Math\BigInteger $transactions)
+    public function __construct(int $accounts, BigInteger $transactions)
     {
         $this->accounts = $accounts;
         $this->transactions = $transactions;

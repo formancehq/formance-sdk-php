@@ -7,16 +7,19 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2DebitWalletRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2Monetary $amount
+     * @var V2Monetary $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2Monetary')]
+    #[SerializedName('amount')]
+    #[Type('\formance\stack\Models\Orchestration\V2Monetary')]
     public V2Monetary $amount;
 
     /**
@@ -24,8 +27,8 @@ class V2DebitWalletRequest
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -33,26 +36,26 @@ class V2DebitWalletRequest
      *
      * @var ?array<string> $balances
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balances')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('balances')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $balances = null;
 
     /**
      *
      * @var ?string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('description')]
+    #[SkipWhenNull]
     public ?string $description = null;
 
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null $destination
+     * @var V2LedgerAccountSubject|V2WalletSubject|null $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[Type('\formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null')]
+    #[SkipWhenNull]
     public V2LedgerAccountSubject|V2WalletSubject|null $destination = null;
 
     /**
@@ -60,8 +63,8 @@ class V2DebitWalletRequest
      *
      * @var ?bool $pending
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pending')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pending')]
+    #[SkipWhenNull]
     public ?bool $pending = null;
 
     /**
@@ -69,16 +72,16 @@ class V2DebitWalletRequest
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2Monetary  $amount
+     * @param  V2Monetary  $amount
      * @param  array<string, string>  $metadata
      * @param  ?array<string>  $balances
      * @param  ?string  $description
-     * @param  \formance\stack\Models\Orchestration\V2LedgerAccountSubject|\formance\stack\Models\Orchestration\V2WalletSubject|null  $destination
+     * @param  V2LedgerAccountSubject|V2WalletSubject|null  $destination
      * @param  ?bool  $pending
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure

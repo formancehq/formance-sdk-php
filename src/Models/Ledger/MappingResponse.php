@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class MappingResponse
 {
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\Mapping $data
+     * @var ?Mapping $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Mapping|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\Mapping|null')]
+    #[SkipWhenNull]
     public ?Mapping $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Ledger\Mapping  $data
+     * @param  ?Mapping  $data
      * @phpstan-pure
      */
     public function __construct(?Mapping $data = null)

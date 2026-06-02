@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3Account
@@ -15,68 +18,68 @@ class V3Account
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public string $provider;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3AccountRaw $raw
+     * @var V3AccountRaw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountRaw')]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Payments\V3AccountRaw')]
     public V3AccountRaw $raw;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3AccountTypeEnum $type
+     * @var V3AccountTypeEnum $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\V3AccountTypeEnum')]
     public V3AccountTypeEnum $type;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3ConnectorBase $connector
+     * @var ?V3ConnectorBase $connector
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connector')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ConnectorBase|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('connector')]
+    #[Type('\formance\stack\Models\Payments\V3ConnectorBase|null')]
+    #[SkipWhenNull]
     public ?V3ConnectorBase $connector = null;
 
     /**
      *
      * @var ?string $defaultAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('defaultAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('defaultAsset')]
+    #[SkipWhenNull]
     public ?string $defaultAsset = null;
 
     /**
@@ -84,17 +87,17 @@ class V3Account
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
@@ -102,10 +105,10 @@ class V3Account
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $provider
-     * @param  \formance\stack\Models\Payments\V3AccountRaw  $raw
+     * @param  V3AccountRaw  $raw
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\V3AccountTypeEnum  $type
-     * @param  ?\formance\stack\Models\Payments\V3ConnectorBase  $connector
+     * @param  V3AccountTypeEnum  $type
+     * @param  ?V3ConnectorBase  $connector
      * @param  ?string  $defaultAsset
      * @param  ?array<string, string>  $metadata
      * @param  ?string  $name

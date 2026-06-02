@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\AccountsCursorResponse;
+use formance\stack\Models\Ledger\ErrorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class ListAccountsLedgerResponse
@@ -28,33 +31,33 @@ class ListAccountsLedgerResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\AccountsCursorResponse $accountsCursorResponse
+     * @var ?AccountsCursorResponse $accountsCursorResponse
      */
-    public ?\formance\stack\Models\Ledger\AccountsCursorResponse $accountsCursorResponse = null;
+    public ?AccountsCursorResponse $accountsCursorResponse = null;
 
     /**
      * Not found
      *
-     * @var ?\formance\stack\Models\Ledger\ErrorResponse $errorResponse
+     * @var ?ErrorResponse $errorResponse
      */
-    public ?\formance\stack\Models\Ledger\ErrorResponse $errorResponse = null;
+    public ?ErrorResponse $errorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\AccountsCursorResponse  $accountsCursorResponse
-     * @param  ?\formance\stack\Models\Ledger\ErrorResponse  $errorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?AccountsCursorResponse  $accountsCursorResponse
+     * @param  ?ErrorResponse  $errorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\AccountsCursorResponse $accountsCursorResponse = null, ?\formance\stack\Models\Ledger\ErrorResponse $errorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?AccountsCursorResponse $accountsCursorResponse = null, ?ErrorResponse $errorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

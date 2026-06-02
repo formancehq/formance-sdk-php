@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V2ChartAccountMetadata
@@ -15,8 +17,8 @@ class V2ChartAccountMetadata
      *
      * @var ?string $default
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('default')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('default')]
+    #[SkipWhenNull]
     public ?string $default = null;
 
     /**

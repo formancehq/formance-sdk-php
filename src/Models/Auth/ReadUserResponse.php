@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ReadUserResponse
 {
     /**
      *
-     * @var ?\formance\stack\Models\Auth\User $data
+     * @var ?User $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\User|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Auth\User|null')]
+    #[SkipWhenNull]
     public ?User $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Auth\User  $data
+     * @param  ?User  $data
      * @phpstan-pure
      */
     public function __construct(?User $data = null)

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 /** ServerInfo - Server information */
@@ -16,16 +18,16 @@ class ServerInfo
      *
      * @var ?bool $debug
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('debug')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('debug')]
+    #[SkipWhenNull]
     public ?bool $debug = null;
 
     /**
      *
      * @var ?string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('version')]
+    #[SkipWhenNull]
     public ?string $version = null;
 
     /**

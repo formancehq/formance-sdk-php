@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3ReversePaymentInitiationResponseData
@@ -18,8 +20,8 @@ class V3ReversePaymentInitiationResponseData
      *
      * @var ?string $paymentInitiationReversalID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentInitiationReversalID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('paymentInitiationReversalID')]
+    #[SkipWhenNull]
     public ?string $paymentInitiationReversalID = null;
 
     /**
@@ -29,8 +31,8 @@ class V3ReversePaymentInitiationResponseData
      *
      * @var ?string $taskID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('taskID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('taskID')]
+    #[SkipWhenNull]
     public ?string $taskID = null;
 
     /**

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2TriggerOccurrence
@@ -15,7 +18,7 @@ class V2TriggerOccurrence
      *
      * @var \DateTime $date
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
+    #[SerializedName('date')]
     public \DateTime $date;
 
     /**
@@ -23,40 +26,40 @@ class V2TriggerOccurrence
      *
      * @var array<string, mixed> $event
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    #[SerializedName('event')]
+    #[Type('array<string, mixed>')]
     public array $event;
 
     /**
      *
      * @var string $triggerID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('triggerID')]
+    #[SerializedName('triggerID')]
     public string $triggerID;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2WorkflowInstance $workflowInstance
+     * @var ?V2WorkflowInstance $workflowInstance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstance')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowInstance|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('workflowInstance')]
+    #[Type('\formance\stack\Models\Orchestration\V2WorkflowInstance|null')]
+    #[SkipWhenNull]
     public ?V2WorkflowInstance $workflowInstance = null;
 
     /**
      *
      * @var ?string $workflowInstanceID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowInstanceID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('workflowInstanceID')]
+    #[SkipWhenNull]
     public ?string $workflowInstanceID = null;
 
     /**
@@ -64,7 +67,7 @@ class V2TriggerOccurrence
      * @param  array<string, mixed>  $event
      * @param  string  $triggerID
      * @param  ?string  $error
-     * @param  ?\formance\stack\Models\Orchestration\V2WorkflowInstance  $workflowInstance
+     * @param  ?V2WorkflowInstance  $workflowInstance
      * @param  ?string  $workflowInstanceID
      * @phpstan-pure
      */

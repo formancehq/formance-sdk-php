@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3ConnectorConfigsResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3ListConnectorConfigsResponse
@@ -28,25 +30,25 @@ class V3ListConnectorConfigsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Payments\V3ConnectorConfigsResponse $v3ConnectorConfigsResponse
+     * @var ?V3ConnectorConfigsResponse $v3ConnectorConfigsResponse
      */
-    public ?\formance\stack\Models\Payments\V3ConnectorConfigsResponse $v3ConnectorConfigsResponse = null;
+    public ?V3ConnectorConfigsResponse $v3ConnectorConfigsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3ConnectorConfigsResponse  $v3ConnectorConfigsResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3ConnectorConfigsResponse  $v3ConnectorConfigsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3ConnectorConfigsResponse $v3ConnectorConfigsResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3ConnectorConfigsResponse $v3ConnectorConfigsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

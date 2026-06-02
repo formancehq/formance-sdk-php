@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /**
@@ -25,7 +29,7 @@ class V3OrderAdjustment
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -33,7 +37,7 @@ class V3OrderAdjustment
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
@@ -41,7 +45,7 @@ class V3OrderAdjustment
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
@@ -56,47 +60,47 @@ class V3OrderAdjustment
      * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
      *
      *
-     * @var \formance\stack\Models\Payments\V3OrderStatusEnum $status
+     * @var V3OrderStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3OrderStatusEnum')]
     public V3OrderStatusEnum $status;
 
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      *
-     * @var ?\formance\stack\Models\Payments\V3OrderAdjustmentRaw $raw
+     * @var ?V3OrderAdjustmentRaw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderAdjustmentRaw|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Payments\V3OrderAdjustmentRaw|null')]
+    #[SkipWhenNull]
     public ?V3OrderAdjustmentRaw $raw = null;
 
     /**
      * Base asset filled at this observation, at the base asset's precision.
      *
-     * @var ?\Brick\Math\BigInteger $baseQuantityFilled
+     * @var ?BigInteger $baseQuantityFilled
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('baseQuantityFilled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $baseQuantityFilled = null;
+    #[SerializedName('baseQuantityFilled')]
+    #[SkipWhenNull]
+    public ?BigInteger $baseQuantityFilled = null;
 
     /**
      * Cumulative fee at this observation, at `feeAsset` precision.
      *
-     * @var ?\Brick\Math\BigInteger $fee
+     * @var ?BigInteger $fee
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $fee = null;
+    #[SerializedName('fee')]
+    #[SkipWhenNull]
+    public ?BigInteger $fee = null;
 
     /**
      * Currency the fee is denominated in, in `SYMBOL/precision` form.
      *
      * @var ?string $feeAsset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('feeAsset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('feeAsset')]
+    #[SkipWhenNull]
     public ?string $feeAsset = null;
 
     /**
@@ -104,24 +108,24 @@ class V3OrderAdjustment
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\V3OrderStatusEnum  $status
-     * @param  ?\formance\stack\Models\Payments\V3OrderAdjustmentRaw  $raw
-     * @param  ?\Brick\Math\BigInteger  $baseQuantityFilled
-     * @param  ?\Brick\Math\BigInteger  $fee
+     * @param  V3OrderStatusEnum  $status
+     * @param  ?V3OrderAdjustmentRaw  $raw
+     * @param  ?BigInteger  $baseQuantityFilled
+     * @param  ?BigInteger  $fee
      * @param  ?string  $feeAsset
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, string $reference, V3OrderStatusEnum $status, ?V3OrderAdjustmentRaw $raw = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null)
+    public function __construct(\DateTime $createdAt, string $id, string $reference, V3OrderStatusEnum $status, ?V3OrderAdjustmentRaw $raw = null, ?BigInteger $baseQuantityFilled = null, ?BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

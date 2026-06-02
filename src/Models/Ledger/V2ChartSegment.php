@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2ChartSegment - Segment within a chart of accounts */
@@ -15,55 +18,55 @@ class V2ChartSegment
     /**
      * $dotMetadata
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata> $dotMetadata
+     * @var ?array<string, V2ChartAccountMetadata> $dotMetadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('.metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('.metadata')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata>|null')]
+    #[SkipWhenNull]
     public ?array $dotMetadata = null;
 
     /**
      *
      * @var ?string $dotPattern
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('.pattern')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('.pattern')]
+    #[SkipWhenNull]
     public ?string $dotPattern = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2ChartAccountRules $dotRules
+     * @var ?V2ChartAccountRules $dotRules
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('.rules')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ChartAccountRules|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('.rules')]
+    #[Type('\formance\stack\Models\Ledger\V2ChartAccountRules|null')]
+    #[SkipWhenNull]
     public ?V2ChartAccountRules $dotRules = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\DotSelf $dotSelf
+     * @var ?DotSelf $dotSelf
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('.self')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\DotSelf|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('.self')]
+    #[Type('\formance\stack\Models\Ledger\DotSelf|null')]
+    #[SkipWhenNull]
     public ?DotSelf $dotSelf = null;
 
     /**
      * $additionalProperties
      *
-     * @var ?array<string, \formance\stack\Models\Ledger\V2ChartSegment> $additionalProperties
+     * @var ?array<string, V2ChartSegment> $additionalProperties
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('additionalProperties')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Ledger\V2ChartSegment>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('additionalProperties')]
+    #[Type('array<string, \formance\stack\Models\Ledger\V2ChartSegment>|null')]
+    #[SkipWhenNull]
     public ?array $additionalProperties = null;
 
     /**
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2ChartAccountMetadata>  $dotMetadata
+     * @param  ?array<string, V2ChartAccountMetadata>  $dotMetadata
      * @param  ?string  $dotPattern
-     * @param  ?\formance\stack\Models\Ledger\V2ChartAccountRules  $dotRules
-     * @param  ?\formance\stack\Models\Ledger\DotSelf  $dotSelf
-     * @param  ?array<string, \formance\stack\Models\Ledger\V2ChartSegment>  $additionalProperties
+     * @param  ?V2ChartAccountRules  $dotRules
+     * @param  ?DotSelf  $dotSelf
+     * @param  ?array<string, V2ChartSegment>  $additionalProperties
      * @phpstan-pure
      */
     public function __construct(?array $dotMetadata = null, ?string $dotPattern = null, ?V2ChartAccountRules $dotRules = null, ?DotSelf $dotSelf = null, ?array $additionalProperties = null)

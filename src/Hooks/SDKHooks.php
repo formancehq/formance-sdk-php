@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Hooks;
 
+use GuzzleHttp\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -64,7 +65,7 @@ class SDKHooks implements Hooks
         $this->afterErrorHooks[] = $hook;
     }
 
-    public function sdkInit(string $baseUrl, \GuzzleHttp\ClientInterface $client): SDKRequestContext
+    public function sdkInit(string $baseUrl, ClientInterface $client): SDKRequestContext
     {
         $rc = new SDKRequestContext($baseUrl, $client);
         foreach ($this->sdkInitHooks as $hook) {

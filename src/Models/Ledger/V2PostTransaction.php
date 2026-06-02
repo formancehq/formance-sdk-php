@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2PostTransaction
@@ -16,8 +19,8 @@ class V2PostTransaction
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
@@ -25,72 +28,72 @@ class V2PostTransaction
      *
      * @var ?array<string, array<string, string>> $accountMetadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountMetadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, string>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('accountMetadata')]
+    #[Type('array<string, array<string, string>>|null')]
+    #[SkipWhenNull]
     public ?array $accountMetadata = null;
 
     /**
      *
      * @var ?bool $force
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('force')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('force')]
+    #[SkipWhenNull]
     public ?bool $force = null;
 
     /**
      * $postings
      *
-     * @var ?array<\formance\stack\Models\Ledger\V2Posting> $postings
+     * @var ?array<V2Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Posting>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Ledger\V2Posting>|null')]
+    #[SkipWhenNull]
     public ?array $postings = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
      *
-     * @var ?\formance\stack\Models\Ledger\Runtime $runtime
+     * @var ?Runtime $runtime
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Runtime|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('runtime')]
+    #[Type('\formance\stack\Models\Ledger\Runtime|null')]
+    #[SkipWhenNull]
     public ?Runtime $runtime = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2PostTransactionScript $script
+     * @var ?V2PostTransactionScript $script
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2PostTransactionScript|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('script')]
+    #[Type('\formance\stack\Models\Ledger\V2PostTransactionScript|null')]
+    #[SkipWhenNull]
     public ?V2PostTransactionScript $script = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
      * @param  array<string, string>  $metadata
      * @param  ?array<string, array<string, string>>  $accountMetadata
      * @param  ?bool  $force
-     * @param  ?array<\formance\stack\Models\Ledger\V2Posting>  $postings
+     * @param  ?array<V2Posting>  $postings
      * @param  ?string  $reference
-     * @param  ?\formance\stack\Models\Ledger\Runtime  $runtime
-     * @param  ?\formance\stack\Models\Ledger\V2PostTransactionScript  $script
+     * @param  ?Runtime  $runtime
+     * @param  ?V2PostTransactionScript  $script
      * @param  ?\DateTime  $timestamp
      * @phpstan-pure
      */

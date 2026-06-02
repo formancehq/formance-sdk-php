@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ConfigInfo
@@ -15,14 +18,14 @@ class V2ConfigInfo
      *
      * @var string $server
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('server')]
+    #[SerializedName('server')]
     public string $server;
 
     /**
      *
      * @var string $version
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('version')]
+    #[SerializedName('version')]
     public string $version;
 
     /**
@@ -30,9 +33,9 @@ class V2ConfigInfo
      *
      * @var ?array<string> $experimentalFeatures
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('experimentalFeatures')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('experimentalFeatures')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $experimentalFeatures = null;
 
     /**

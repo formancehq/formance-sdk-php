@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2LogTransaction - Transaction structure as it appears in log payloads */
@@ -14,27 +18,27 @@ class V2LogTransaction
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $id
+     * @var BigInteger $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    public \Brick\Math\BigInteger $id;
+    #[SerializedName('id')]
+    public BigInteger $id;
 
     /**
      * $metadata
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * $postings
      *
-     * @var array<\formance\stack\Models\Ledger\V2Posting> $postings
+     * @var array<V2Posting> $postings
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postings')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2Posting>')]
+    #[SerializedName('postings')]
+    #[Type('array<\formance\stack\Models\Ledger\V2Posting>')]
     public array $postings;
 
     /**
@@ -42,78 +46,78 @@ class V2LogTransaction
      *
      * @var bool $reverted
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reverted')]
+    #[SerializedName('reverted')]
     public bool $reverted;
 
     /**
      *
      * @var \DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
+    #[SerializedName('timestamp')]
     public \DateTime $timestamp;
 
     /**
      *
      * @var ?\DateTime $insertedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('insertedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('insertedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $insertedAt = null;
 
     /**
      * $postCommitEffectiveVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $postCommitEffectiveVolumes
+     * @var ?array<string, array<string, V2Volume>> $postCommitEffectiveVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitEffectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postCommitEffectiveVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $postCommitEffectiveVolumes = null;
 
     /**
      * $postCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $postCommitVolumes
+     * @var ?array<string, array<string, V2Volume>> $postCommitVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postCommitVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $postCommitVolumes = null;
 
     /**
      * $preCommitEffectiveVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $preCommitEffectiveVolumes
+     * @var ?array<string, array<string, V2Volume>> $preCommitEffectiveVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitEffectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('preCommitEffectiveVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $preCommitEffectiveVolumes = null;
 
     /**
      * $preCommitVolumes
      *
-     * @var ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>> $preCommitVolumes
+     * @var ?array<string, array<string, V2Volume>> $preCommitVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('preCommitVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('preCommitVolumes')]
+    #[Type('array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>|null')]
+    #[SkipWhenNull]
     public ?array $preCommitVolumes = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
      * @var ?\DateTime $revertedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('revertedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('revertedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $revertedAt = null;
 
     /**
@@ -121,36 +125,36 @@ class V2LogTransaction
      *
      * @var ?string $template
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('template')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('template')]
+    #[SkipWhenNull]
     public ?string $template = null;
 
     /**
      *
      * @var ?\DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('updatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $updatedAt = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $id
+     * @param  BigInteger  $id
      * @param  array<string, string>  $metadata
-     * @param  array<\formance\stack\Models\Ledger\V2Posting>  $postings
+     * @param  array<V2Posting>  $postings
      * @param  bool  $reverted
      * @param  \DateTime  $timestamp
      * @param  ?\DateTime  $insertedAt
-     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $postCommitEffectiveVolumes
-     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $postCommitVolumes
-     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $preCommitEffectiveVolumes
-     * @param  ?array<string, array<string, \formance\stack\Models\Ledger\V2Volume>>  $preCommitVolumes
+     * @param  ?array<string, array<string, V2Volume>>  $postCommitEffectiveVolumes
+     * @param  ?array<string, array<string, V2Volume>>  $postCommitVolumes
+     * @param  ?array<string, array<string, V2Volume>>  $preCommitEffectiveVolumes
+     * @param  ?array<string, array<string, V2Volume>>  $preCommitVolumes
      * @param  ?string  $reference
      * @param  ?\DateTime  $revertedAt
      * @param  ?string  $template
      * @param  ?\DateTime  $updatedAt
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?\DateTime $insertedAt = null, ?array $postCommitEffectiveVolumes = null, ?array $postCommitVolumes = null, ?array $preCommitEffectiveVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?\DateTime $revertedAt = null, ?string $template = null, ?\DateTime $updatedAt = null)
+    public function __construct(BigInteger $id, array $metadata, array $postings, bool $reverted, \DateTime $timestamp, ?\DateTime $insertedAt = null, ?array $postCommitEffectiveVolumes = null, ?array $postCommitVolumes = null, ?array $preCommitEffectiveVolumes = null, ?array $preCommitVolumes = null, ?string $reference = null, ?\DateTime $revertedAt = null, ?string $template = null, ?\DateTime $updatedAt = null)
     {
         $this->id = $id;
         $this->metadata = $metadata;

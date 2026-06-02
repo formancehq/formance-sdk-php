@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2CreatePipelineV2CreatePipelineResponse - Created ipeline */
@@ -14,14 +16,14 @@ class V2CreatePipelineV2CreatePipelineResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2Pipeline $data
+     * @var V2Pipeline $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Pipeline')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2Pipeline')]
     public V2Pipeline $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2Pipeline  $data
+     * @param  V2Pipeline  $data
      * @phpstan-pure
      */
     public function __construct(V2Pipeline $data)

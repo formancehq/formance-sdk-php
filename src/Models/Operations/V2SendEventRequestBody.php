@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V2SendEventRequestBody
@@ -15,7 +16,7 @@ class V2SendEventRequestBody
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**

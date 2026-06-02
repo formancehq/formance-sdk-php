@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
@@ -28,25 +30,25 @@ class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse
+     * @var ?V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse
      */
-    public ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null;
+    public ?V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse  $v3PaymentServiceUserLinkAttemptsCursorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3PaymentServiceUserLinkAttemptsCursorResponse  $v3PaymentServiceUserLinkAttemptsCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3PaymentServiceUserLinkAttemptsCursorResponse $v3PaymentServiceUserLinkAttemptsCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

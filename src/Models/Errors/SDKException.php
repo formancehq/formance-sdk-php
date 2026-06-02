@@ -7,14 +7,15 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Errors;
+use Psr\Http\Message\ResponseInterface;
 
 class SDKException extends \Exception
 {
     public int $statusCode;
     public string $body;
-    public ?\Psr\Http\Message\ResponseInterface $rawResponse;
+    public ?ResponseInterface $rawResponse;
 
-    public function __construct(string $message, int $statusCode, string $body, ?\Psr\Http\Message\ResponseInterface $rawResponse)
+    public function __construct(string $message, int $statusCode, string $body, ?ResponseInterface $rawResponse)
     {
         $this->message = $message;
         $code = $statusCode;

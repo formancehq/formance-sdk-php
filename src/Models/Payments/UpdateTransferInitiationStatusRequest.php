@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class UpdateTransferInitiationStatusRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\Status $status
+     * @var Status $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Status')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\Status')]
     public Status $status;
 
     /**
-     * @param  \formance\stack\Models\Payments\Status  $status
+     * @param  Status  $status
      * @phpstan-pure
      */
     public function __construct(Status $status)

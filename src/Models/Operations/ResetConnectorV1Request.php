@@ -8,16 +8,17 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\Connector;
 use formance\stack\Utils\SpeakeasyMetadata;
 class ResetConnectorV1Request
 {
     /**
      * The name of the connector.
      *
-     * @var \formance\stack\Models\Payments\Connector $connector
+     * @var Connector $connector
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=connector')]
-    public \formance\stack\Models\Payments\Connector $connector;
+    public Connector $connector;
 
     /**
      * The connector ID.
@@ -28,11 +29,11 @@ class ResetConnectorV1Request
     public string $connectorId;
 
     /**
-     * @param  \formance\stack\Models\Payments\Connector  $connector
+     * @param  Connector  $connector
      * @param  string  $connectorId
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Payments\Connector $connector, string $connectorId)
+    public function __construct(Connector $connector, string $connectorId)
     {
         $this->connector = $connector;
         $this->connectorId = $connectorId;

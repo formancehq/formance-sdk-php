@@ -7,35 +7,38 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ErrorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2ErrorsEnum $errorCode
+     * @var V2ErrorsEnum $errorCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorCode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ErrorsEnum')]
+    #[SerializedName('errorCode')]
+    #[Type('\formance\stack\Models\Ledger\V2ErrorsEnum')]
     public V2ErrorsEnum $errorCode;
 
     /**
      *
      * @var string $errorMessage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('errorMessage')]
+    #[SerializedName('errorMessage')]
     public string $errorMessage;
 
     /**
      *
      * @var ?string $details
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('details')]
+    #[SkipWhenNull]
     public ?string $details = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2ErrorsEnum  $errorCode
+     * @param  V2ErrorsEnum  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
      * @phpstan-pure

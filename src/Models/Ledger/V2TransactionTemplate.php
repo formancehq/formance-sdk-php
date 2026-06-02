@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2TransactionTemplate
@@ -15,31 +18,31 @@ class V2TransactionTemplate
      *
      * @var string $script
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('script')]
+    #[SerializedName('script')]
     public string $script;
 
     /**
      *
      * @var ?string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('description')]
+    #[SkipWhenNull]
     public ?string $description = null;
 
     /**
      * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
      *
-     * @var ?\formance\stack\Models\Ledger\Runtime $runtime
+     * @var ?Runtime $runtime
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('runtime')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\Runtime|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('runtime')]
+    #[Type('\formance\stack\Models\Ledger\Runtime|null')]
+    #[SkipWhenNull]
     public ?Runtime $runtime = null;
 
     /**
      * @param  string  $script
      * @param  ?string  $description
-     * @param  ?\formance\stack\Models\Ledger\Runtime  $runtime
+     * @param  ?Runtime  $runtime
      * @phpstan-pure
      */
     public function __construct(string $script, ?string $description = null, ?Runtime $runtime = null)

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class WorkflowInstance
@@ -15,70 +18,70 @@ class WorkflowInstance
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var bool $terminated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminated')]
+    #[SerializedName('terminated')]
     public bool $terminated;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
      *
      * @var string $workflowID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflowID')]
+    #[SerializedName('workflowID')]
     public string $workflowID;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      * $status
      *
-     * @var ?array<\formance\stack\Models\Orchestration\StageStatus> $status
+     * @var ?array<StageStatus> $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\StageStatus>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('status')]
+    #[Type('array<\formance\stack\Models\Orchestration\StageStatus>|null')]
+    #[SkipWhenNull]
     public ?array $status = null;
 
     /**
      *
      * @var ?\DateTime $terminatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terminatedAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('terminatedAt')]
+    #[SkipWhenNull]
     public ?\DateTime $terminatedAt = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\Workflow $workflow
+     * @var ?Workflow $workflow
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('workflow')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Workflow|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('workflow')]
+    #[Type('\formance\stack\Models\Orchestration\Workflow|null')]
+    #[SkipWhenNull]
     public ?Workflow $workflow = null;
 
     /**
@@ -88,9 +91,9 @@ class WorkflowInstance
      * @param  \DateTime  $updatedAt
      * @param  string  $workflowID
      * @param  ?string  $error
-     * @param  ?array<\formance\stack\Models\Orchestration\StageStatus>  $status
+     * @param  ?array<StageStatus>  $status
      * @param  ?\DateTime  $terminatedAt
-     * @param  ?\formance\stack\Models\Orchestration\Workflow  $workflow
+     * @param  ?Workflow  $workflow
      * @phpstan-pure
      */
     public function __construct(\DateTime $createdAt, string $id, bool $terminated, \DateTime $updatedAt, string $workflowID, ?string $error = null, ?array $status = null, ?\DateTime $terminatedAt = null, ?Workflow $workflow = null)

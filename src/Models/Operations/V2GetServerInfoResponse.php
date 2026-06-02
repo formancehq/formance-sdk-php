@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Orchestration\V2ServerInfo;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2GetServerInfoResponse
@@ -28,25 +30,25 @@ class V2GetServerInfoResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Server information
      *
-     * @var ?\formance\stack\Models\Orchestration\V2ServerInfo $v2ServerInfo
+     * @var ?V2ServerInfo $v2ServerInfo
      */
-    public ?\formance\stack\Models\Orchestration\V2ServerInfo $v2ServerInfo = null;
+    public ?V2ServerInfo $v2ServerInfo = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Orchestration\V2ServerInfo  $v2ServerInfo
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2ServerInfo  $v2ServerInfo
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2ServerInfo $v2ServerInfo = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2ServerInfo $v2ServerInfo = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

@@ -8,12 +8,13 @@ declare(strict_types=1);
 
 namespace formance\stack;
 use formance\stack\Utils\Retry\RetryConfig;
+use GuzzleHttp\ClientInterface;
 
 class SDKConfiguration
 {
-    public ?\GuzzleHttp\ClientInterface $client = null;
+    public ?ClientInterface $client = null;
 
-    public ?\GuzzleHttp\ClientInterface $defaultClient = null;
+    public ?ClientInterface $defaultClient = null;
 
     public Hooks\SDKHooks $hooks;
     /** @var ?pure-Closure(): Models\Shared\Security */

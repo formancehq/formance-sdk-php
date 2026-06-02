@@ -7,80 +7,84 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TransferInitiationRequest
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $description
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[SerializedName('description')]
     public string $description;
 
     /**
      *
      * @var string $destinationAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destinationAccountID')]
+    #[SerializedName('destinationAccountID')]
     public string $destinationAccountID;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
      * @var \DateTime $scheduledAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduledAt')]
+    #[SerializedName('scheduledAt')]
     public \DateTime $scheduledAt;
 
     /**
      *
      * @var string $sourceAccountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sourceAccountID')]
+    #[SerializedName('sourceAccountID')]
     public string $sourceAccountID;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\TransferInitiationRequestType $type
+     * @var TransferInitiationRequestType $type
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationRequestType')]
+    #[SerializedName('type')]
+    #[Type('\formance\stack\Models\Payments\TransferInitiationRequestType')]
     public TransferInitiationRequestType $type;
 
     /**
      *
      * @var bool $validated
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('validated')]
+    #[SerializedName('validated')]
     public bool $validated;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('connectorID')]
+    #[SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
@@ -88,26 +92,26 @@ class TransferInitiationRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @param  string  $description
      * @param  string  $destinationAccountID
      * @param  string  $reference
      * @param  \DateTime  $scheduledAt
      * @param  string  $sourceAccountID
-     * @param  \formance\stack\Models\Payments\TransferInitiationRequestType  $type
+     * @param  TransferInitiationRequestType  $type
      * @param  bool  $validated
      * @param  ?string  $connectorID
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?array $metadata = null)
+    public function __construct(BigInteger $amount, string $asset, string $description, string $destinationAccountID, string $reference, \DateTime $scheduledAt, string $sourceAccountID, TransferInitiationRequestType $type, bool $validated, ?string $connectorID = null, ?array $metadata = null)
     {
         $this->amount = $amount;
         $this->asset = $asset;

@@ -7,71 +7,74 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2WorkflowInstanceHistoryStageOutput
 {
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2CreateTransactionResponse $createTransaction
+     * @var ?V2CreateTransactionResponse $createTransaction
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('CreateTransaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2CreateTransactionResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('CreateTransaction')]
+    #[Type('\formance\stack\Models\Orchestration\V2CreateTransactionResponse|null')]
+    #[SkipWhenNull]
     public ?V2CreateTransactionResponse $createTransaction = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2DebitWalletResponse $debitWallet
+     * @var ?V2DebitWalletResponse $debitWallet
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('DebitWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2DebitWalletResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('DebitWallet')]
+    #[Type('\formance\stack\Models\Orchestration\V2DebitWalletResponse|null')]
+    #[SkipWhenNull]
     public ?V2DebitWalletResponse $debitWallet = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2AccountResponse $getAccount
+     * @var ?V2AccountResponse $getAccount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetAccount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2AccountResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('GetAccount')]
+    #[Type('\formance\stack\Models\Orchestration\V2AccountResponse|null')]
+    #[SkipWhenNull]
     public ?V2AccountResponse $getAccount = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2PaymentResponse $getPayment
+     * @var ?V2PaymentResponse $getPayment
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetPayment')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2PaymentResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('GetPayment')]
+    #[Type('\formance\stack\Models\Orchestration\V2PaymentResponse|null')]
+    #[SkipWhenNull]
     public ?V2PaymentResponse $getPayment = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2GetWalletResponse $getWallet
+     * @var ?V2GetWalletResponse $getWallet
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('GetWallet')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2GetWalletResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('GetWallet')]
+    #[Type('\formance\stack\Models\Orchestration\V2GetWalletResponse|null')]
+    #[SkipWhenNull]
     public ?V2GetWalletResponse $getWallet = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2ListWalletsResponse $listWallets
+     * @var ?V2ListWalletsResponse $listWallets
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ListWallets')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2ListWalletsResponse|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ListWallets')]
+    #[Type('\formance\stack\Models\Orchestration\V2ListWalletsResponse|null')]
+    #[SkipWhenNull]
     public ?V2ListWalletsResponse $listWallets = null;
 
     /**
-     * @param  ?\formance\stack\Models\Orchestration\V2CreateTransactionResponse  $createTransaction
-     * @param  ?\formance\stack\Models\Orchestration\V2DebitWalletResponse  $debitWallet
-     * @param  ?\formance\stack\Models\Orchestration\V2AccountResponse  $getAccount
-     * @param  ?\formance\stack\Models\Orchestration\V2PaymentResponse  $getPayment
-     * @param  ?\formance\stack\Models\Orchestration\V2GetWalletResponse  $getWallet
-     * @param  ?\formance\stack\Models\Orchestration\V2ListWalletsResponse  $listWallets
+     * @param  ?V2CreateTransactionResponse  $createTransaction
+     * @param  ?V2DebitWalletResponse  $debitWallet
+     * @param  ?V2AccountResponse  $getAccount
+     * @param  ?V2PaymentResponse  $getPayment
+     * @param  ?V2GetWalletResponse  $getWallet
+     * @param  ?V2ListWalletsResponse  $listWallets
      * @phpstan-pure
      */
     public function __construct(?V2CreateTransactionResponse $createTransaction = null, ?V2DebitWalletResponse $debitWallet = null, ?V2AccountResponse $getAccount = null, ?V2PaymentResponse $getPayment = null, ?V2GetWalletResponse $getWallet = null, ?V2ListWalletsResponse $listWallets = null)

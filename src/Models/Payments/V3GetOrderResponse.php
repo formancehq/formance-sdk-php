@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3GetOrderResponse
@@ -19,14 +21,14 @@ class V3GetOrderResponse
      * adjustment is a point-in-time snapshot from the PSP.
      *
      *
-     * @var \formance\stack\Models\Payments\V3Order $data
+     * @var V3Order $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Order')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3Order')]
     public V3Order $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3Order  $data
+     * @param  V3Order  $data
      * @phpstan-pure
      */
     public function __construct(V3Order $data)

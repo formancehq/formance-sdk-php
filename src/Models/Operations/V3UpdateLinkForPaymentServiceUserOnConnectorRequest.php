@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkRequest;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V3UpdateLinkForPaymentServiceUserOnConnectorRequest
 {
@@ -37,19 +38,19 @@ class V3UpdateLinkForPaymentServiceUserOnConnectorRequest
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkRequest $v3PaymentServiceUserUpdateLinkRequest
+     * @var ?V3PaymentServiceUserUpdateLinkRequest $v3PaymentServiceUserUpdateLinkRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkRequest $v3PaymentServiceUserUpdateLinkRequest = null;
+    public ?V3PaymentServiceUserUpdateLinkRequest $v3PaymentServiceUserUpdateLinkRequest = null;
 
     /**
      * @param  string  $connectionID
      * @param  string  $connectorID
      * @param  string  $paymentServiceUserID
-     * @param  ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkRequest  $v3PaymentServiceUserUpdateLinkRequest
+     * @param  ?V3PaymentServiceUserUpdateLinkRequest  $v3PaymentServiceUserUpdateLinkRequest
      * @phpstan-pure
      */
-    public function __construct(string $connectionID, string $connectorID, string $paymentServiceUserID, ?\formance\stack\Models\Payments\V3PaymentServiceUserUpdateLinkRequest $v3PaymentServiceUserUpdateLinkRequest = null)
+    public function __construct(string $connectionID, string $connectorID, string $paymentServiceUserID, ?V3PaymentServiceUserUpdateLinkRequest $v3PaymentServiceUserUpdateLinkRequest = null)
     {
         $this->connectionID = $connectionID;
         $this->connectorID = $connectorID;

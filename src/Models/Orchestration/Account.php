@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Account
@@ -15,7 +18,7 @@ class Account
      *
      * @var string $address
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
+    #[SerializedName('address')]
     public string $address;
 
     /**
@@ -23,35 +26,35 @@ class Account
      *
      * @var array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>')]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>')]
     public array $metadata;
 
     /**
      * $effectiveVolumes
      *
-     * @var ?array<string, \formance\stack\Models\Orchestration\Volume> $effectiveVolumes
+     * @var ?array<string, Volume> $effectiveVolumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('effectiveVolumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('effectiveVolumes')]
+    #[Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
+    #[SkipWhenNull]
     public ?array $effectiveVolumes = null;
 
     /**
      * $volumes
      *
-     * @var ?array<string, \formance\stack\Models\Orchestration\Volume> $volumes
+     * @var ?array<string, Volume> $volumes
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('volumes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('volumes')]
+    #[Type('array<string, \formance\stack\Models\Orchestration\Volume>|null')]
+    #[SkipWhenNull]
     public ?array $volumes = null;
 
     /**
      * @param  string  $address
      * @param  array<string, string>  $metadata
-     * @param  ?array<string, \formance\stack\Models\Orchestration\Volume>  $effectiveVolumes
-     * @param  ?array<string, \formance\stack\Models\Orchestration\Volume>  $volumes
+     * @param  ?array<string, Volume>  $effectiveVolumes
+     * @param  ?array<string, Volume>  $volumes
      * @phpstan-pure
      */
     public function __construct(string $address, array $metadata, ?array $effectiveVolumes = null, ?array $volumes = null)

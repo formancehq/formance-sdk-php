@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class CurrencyCloudConfig
@@ -15,7 +17,7 @@ class CurrencyCloudConfig
      *
      * @var string $apiKey
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('apiKey')]
+    #[SerializedName('apiKey')]
     public string $apiKey;
 
     /**
@@ -23,14 +25,14 @@ class CurrencyCloudConfig
      *
      * @var string $loginID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('loginID')]
+    #[SerializedName('loginID')]
     public string $loginID;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -38,8 +40,8 @@ class CurrencyCloudConfig
      *
      * @var ?string $endpoint
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('endpoint')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('endpoint')]
+    #[SkipWhenNull]
     public ?string $endpoint = null;
 
     /**
@@ -47,16 +49,16 @@ class CurrencyCloudConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pollingPeriod')]
+    #[SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**

@@ -7,16 +7,19 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class CreditWalletRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Wallets\Monetary $amount
+     * @var Monetary $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\Monetary')]
+    #[SerializedName('amount')]
+    #[Type('\formance\stack\Models\Wallets\Monetary')]
     public Monetary $amount;
 
     /**
@@ -24,24 +27,24 @@ class CreditWalletRequest
      *
      * @var ?string $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('balance')]
+    #[SkipWhenNull]
     public ?string $balance = null;
 
     /**
      *
      * @var ?string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('reference')]
+    #[SkipWhenNull]
     public ?string $reference = null;
 
     /**
      *
      * @var ?\DateTime $timestamp
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('timestamp')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('timestamp')]
+    #[SkipWhenNull]
     public ?\DateTime $timestamp = null;
 
     /**
@@ -49,28 +52,28 @@ class CreditWalletRequest
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * $sources
      *
-     * @var ?array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject> $sources
+     * @var ?array<LedgerAccountSubject|WalletSubject> $sources
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sources')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sources')]
+    #[Type('array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject>|null')]
+    #[SkipWhenNull]
     public ?array $sources = null;
 
     /**
-     * @param  \formance\stack\Models\Wallets\Monetary  $amount
+     * @param  Monetary  $amount
      * @param  ?string  $balance
      * @param  ?string  $reference
      * @param  ?\DateTime  $timestamp
      * @param  ?array<string, string>  $metadata
-     * @param  ?array<\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject>  $sources
+     * @param  ?array<LedgerAccountSubject|WalletSubject>  $sources
      * @phpstan-pure
      */
     public function __construct(Monetary $amount, ?string $balance = null, ?string $reference = null, ?\DateTime $timestamp = null, ?array $metadata = null, ?array $sources = null)

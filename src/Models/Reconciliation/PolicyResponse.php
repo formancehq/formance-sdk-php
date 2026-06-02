@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** PolicyResponse - OK */
@@ -14,14 +16,14 @@ class PolicyResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Reconciliation\Policy $data
+     * @var Policy $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\Policy')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Reconciliation\Policy')]
     public Policy $data;
 
     /**
-     * @param  \formance\stack\Models\Reconciliation\Policy  $data
+     * @param  Policy  $data
      * @phpstan-pure
      */
     public function __construct(Policy $data)

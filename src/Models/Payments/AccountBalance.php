@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class AccountBalance
@@ -15,28 +17,28 @@ class AccountBalance
      *
      * @var string $accountId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountId')]
+    #[SerializedName('accountId')]
     public string $accountId;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
-     * @var \Brick\Math\BigInteger $balance
+     * @var BigInteger $balance
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
-    public \Brick\Math\BigInteger $balance;
+    #[SerializedName('balance')]
+    public BigInteger $balance;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
@@ -44,26 +46,26 @@ class AccountBalance
      * @var string $currency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
+    #[SerializedName('currency')]
     public string $currency;
 
     /**
      *
      * @var \DateTime $lastUpdatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lastUpdatedAt')]
+    #[SerializedName('lastUpdatedAt')]
     public \DateTime $lastUpdatedAt;
 
     /**
      * @param  string  $accountId
      * @param  string  $asset
-     * @param  \Brick\Math\BigInteger  $balance
+     * @param  BigInteger  $balance
      * @param  \DateTime  $createdAt
      * @param  string  $currency
      * @param  \DateTime  $lastUpdatedAt
      * @phpstan-pure
      */
-    public function __construct(string $accountId, string $asset, \Brick\Math\BigInteger $balance, \DateTime $createdAt, string $currency, \DateTime $lastUpdatedAt)
+    public function __construct(string $accountId, string $asset, BigInteger $balance, \DateTime $createdAt, string $currency, \DateTime $lastUpdatedAt)
     {
         $this->accountId = $accountId;
         $this->asset = $asset;

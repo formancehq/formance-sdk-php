@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentServiceUser
@@ -15,39 +18,39 @@ class V3PaymentServiceUser
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3Address $address
+     * @var ?V3Address $address
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Address|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('address')]
+    #[Type('\formance\stack\Models\Payments\V3Address|null')]
+    #[SkipWhenNull]
     public ?V3Address $address = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Payments\V3ContactDetails $contactDetails
+     * @var ?V3ContactDetails $contactDetails
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('contactDetails')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3ContactDetails|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('contactDetails')]
+    #[Type('\formance\stack\Models\Payments\V3ContactDetails|null')]
+    #[SkipWhenNull]
     public ?V3ContactDetails $contactDetails = null;
 
     /**
@@ -55,9 +58,9 @@ class V3PaymentServiceUser
      *
      * @var ?array<string> $bankAccountIDs
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('bankAccountIDs')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('bankAccountIDs')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $bankAccountIDs = null;
 
     /**
@@ -65,17 +68,17 @@ class V3PaymentServiceUser
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $name
-     * @param  ?\formance\stack\Models\Payments\V3Address  $address
-     * @param  ?\formance\stack\Models\Payments\V3ContactDetails  $contactDetails
+     * @param  ?V3Address  $address
+     * @param  ?V3ContactDetails  $contactDetails
      * @param  ?array<string>  $bankAccountIDs
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

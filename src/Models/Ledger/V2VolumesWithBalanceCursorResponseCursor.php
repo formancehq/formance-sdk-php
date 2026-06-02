@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2VolumesWithBalanceCursorResponseCursor
@@ -14,44 +17,44 @@ class V2VolumesWithBalanceCursorResponseCursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Ledger\V2VolumesWithBalance> $data
+     * @var array<V2VolumesWithBalance> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Ledger\V2VolumesWithBalance>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Ledger\V2VolumesWithBalance>')]
     public array $data;
 
     /**
      *
      * @var bool $hasMore
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('hasMore')]
+    #[SerializedName('hasMore')]
     public bool $hasMore;
 
     /**
      *
      * @var int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
+    #[SerializedName('pageSize')]
     public int $pageSize;
 
     /**
      *
      * @var ?string $next
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('next')]
+    #[SkipWhenNull]
     public ?string $next = null;
 
     /**
      *
      * @var ?string $previous
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('previous')]
+    #[SkipWhenNull]
     public ?string $previous = null;
 
     /**
-     * @param  array<\formance\stack\Models\Ledger\V2VolumesWithBalance>  $data
+     * @param  array<V2VolumesWithBalance>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

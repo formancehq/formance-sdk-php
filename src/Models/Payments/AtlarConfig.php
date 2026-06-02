@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class AtlarConfig
@@ -19,14 +21,14 @@ class AtlarConfig
      *
      * @var string $accessKey
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accessKey')]
+    #[SerializedName('accessKey')]
     public string $accessKey;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
@@ -37,7 +39,7 @@ class AtlarConfig
      *
      * @var string $secret
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
+    #[SerializedName('secret')]
     public string $secret;
 
     /**
@@ -47,8 +49,8 @@ class AtlarConfig
      *
      * @var ?string $baseUrl
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('baseUrl')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('baseUrl')]
+    #[SkipWhenNull]
     public ?string $baseUrl = null;
 
     /**
@@ -58,8 +60,8 @@ class AtlarConfig
      *
      * @var ?int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
@@ -69,16 +71,16 @@ class AtlarConfig
      *
      * @var ?string $pollingPeriod
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pollingPeriod')]
+    #[SkipWhenNull]
     public ?string $pollingPeriod = null;
 
     /**
      *
      * @var ?string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('provider')]
+    #[SkipWhenNull]
     public ?string $provider = null;
 
     /**
@@ -89,8 +91,8 @@ class AtlarConfig
      * @var ?string $transferInitiationStatusPollingPeriod
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transferInitiationStatusPollingPeriod')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('transferInitiationStatusPollingPeriod')]
+    #[SkipWhenNull]
     public ?string $transferInitiationStatusPollingPeriod = null;
 
     /**

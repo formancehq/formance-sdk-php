@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2LogDataInsertedSchema - Payload for INSERTED_SCHEMA log entries. Contains the schema that was inserted into the ledger. */
@@ -15,14 +17,14 @@ class V2LogDataInsertedSchema
     /**
      * Complete schema structure with metadata
      *
-     * @var \formance\stack\Models\Ledger\V2Schema $schema
+     * @var V2Schema $schema
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('schema')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Schema')]
+    #[SerializedName('schema')]
+    #[Type('\formance\stack\Models\Ledger\V2Schema')]
     public V2Schema $schema;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2Schema  $schema
+     * @param  V2Schema  $schema
      * @phpstan-pure
      */
     public function __construct(V2Schema $schema)

@@ -7,46 +7,48 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class Posting
 {
     /**
      *
-     * @var \Brick\Math\BigInteger $amount
+     * @var BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public \Brick\Math\BigInteger $amount;
+    #[SerializedName('amount')]
+    public BigInteger $amount;
 
     /**
      *
      * @var string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
+    #[SerializedName('asset')]
     public string $asset;
 
     /**
      *
      * @var string $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
+    #[SerializedName('destination')]
     public string $destination;
 
     /**
      *
      * @var string $source
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[SerializedName('source')]
     public string $source;
 
     /**
-     * @param  \Brick\Math\BigInteger  $amount
+     * @param  BigInteger  $amount
      * @param  string  $asset
      * @param  string  $destination
      * @param  string  $source
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, string $asset, string $destination, string $source)
+    public function __construct(BigInteger $amount, string $asset, string $destination, string $source)
     {
         $this->amount = $amount;
         $this->asset = $asset;

@@ -7,21 +7,24 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Auth;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class CreateClientResponse
 {
     /**
      *
-     * @var ?\formance\stack\Models\Auth\Client $data
+     * @var ?Client $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Auth\Client|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Auth\Client|null')]
+    #[SkipWhenNull]
     public ?Client $data = null;
 
     /**
-     * @param  ?\formance\stack\Models\Auth\Client  $data
+     * @param  ?Client  $data
      * @phpstan-pure
      */
     public function __construct(?Client $data = null)

@@ -9,8 +9,28 @@ declare(strict_types=1);
 namespace formance\stack;
 
 use formance\stack\Hooks\HookContext;
-use formance\stack\Models\Operations;
+use formance\stack\Models\Auth\ClientOptions;
+use formance\stack\Models\Errors\SDKException;
+use formance\stack\Models\Operations\CreateClientResponse;
+use formance\stack\Models\Operations\CreateSecretRequest;
+use formance\stack\Models\Operations\CreateSecretResponse;
+use formance\stack\Models\Operations\DeleteClientRequest;
+use formance\stack\Models\Operations\DeleteClientResponse;
+use formance\stack\Models\Operations\DeleteSecretRequest;
+use formance\stack\Models\Operations\DeleteSecretResponse;
+use formance\stack\Models\Operations\GetOIDCWellKnownsResponse;
+use formance\stack\Models\Operations\GetServerInfoAuthResponse;
+use formance\stack\Models\Operations\ListClientsResponse;
+use formance\stack\Models\Operations\ListUsersResponse;
+use formance\stack\Models\Operations\ReadClientRequest;
+use formance\stack\Models\Operations\ReadClientResponse;
+use formance\stack\Models\Operations\ReadUserRequest;
+use formance\stack\Models\Operations\ReadUserResponse;
+use formance\stack\Models\Operations\UpdateClientRequest;
+use formance\stack\Models\Operations\UpdateClientResponse;
 use formance\stack\Utils\Options;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use Speakeasy\Serializer\DeserializationContext;
 
 class V1
@@ -49,11 +69,11 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  ?\formance\stack\Models\Auth\ClientOptions  $request
-     * @return \formance\stack\Models\Operations\CreateClientResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ?ClientOptions  $request
+     * @return CreateClientResponse
+     * @throws SDKException
      */
-    public function createClient(?\formance\stack\Models\Auth\ClientOptions $request = null, ?Options $options = null): Operations\CreateClientResponse
+    public function createClient(?ClientOptions $request = null, ?Options $options = null): CreateClientResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
@@ -65,7 +85,7 @@ class V1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -75,7 +95,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -94,7 +114,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\CreateClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\CreateClientResponse(
+                $response = new CreateClientResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -102,10 +122,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -114,14 +134,14 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\CreateSecretRequest  $request
-     * @return \formance\stack\Models\Operations\CreateSecretResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  CreateSecretRequest  $request
+     * @return CreateSecretResponse
+     * @throws SDKException
      */
-    public function createSecret(Operations\CreateSecretRequest $request, ?Options $options = null): Operations\CreateSecretResponse
+    public function createSecret(CreateSecretRequest $request, ?Options $options = null): CreateSecretResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', Operations\CreateSecretRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets', CreateSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'secretOptions', 'json');
@@ -130,7 +150,7 @@ class V1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $httpRequest = new Request('POST', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -140,7 +160,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -159,7 +179,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\CreateSecretResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\CreateSecretResponse(
+                $response = new CreateSecretResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -167,10 +187,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -179,19 +199,19 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\DeleteClientRequest  $request
-     * @return \formance\stack\Models\Operations\DeleteClientResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  DeleteClientRequest  $request
+     * @return DeleteClientResponse
+     * @throws SDKException
      */
-    public function deleteClient(Operations\DeleteClientRequest $request, ?Options $options = null): Operations\DeleteClientResponse
+    public function deleteClient(DeleteClientRequest $request, ?Options $options = null): DeleteClientResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\DeleteClientRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', DeleteClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = '*/*';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $httpRequest = new Request('DELETE', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -201,7 +221,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -216,13 +236,13 @@ class V1
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\DeleteClientResponse(
+            return new DeleteClientResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
             );
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -231,19 +251,19 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\DeleteSecretRequest  $request
-     * @return \formance\stack\Models\Operations\DeleteSecretResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  DeleteSecretRequest  $request
+     * @return DeleteSecretResponse
+     * @throws SDKException
      */
-    public function deleteSecret(Operations\DeleteSecretRequest $request, ?Options $options = null): Operations\DeleteSecretResponse
+    public function deleteSecret(DeleteSecretRequest $request, ?Options $options = null): DeleteSecretResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', Operations\DeleteSecretRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}/secrets/{secretId}', DeleteSecretRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = '*/*';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
+        $httpRequest = new Request('DELETE', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -253,7 +273,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -268,13 +288,13 @@ class V1
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\DeleteSecretResponse(
+            return new DeleteSecretResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
             );
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -283,10 +303,10 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\GetOIDCWellKnownsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return GetOIDCWellKnownsResponse
+     * @throws SDKException
      */
-    public function getOIDCWellKnowns(?Options $options = null): Operations\GetOIDCWellKnownsResponse
+    public function getOIDCWellKnowns(?Options $options = null): GetOIDCWellKnownsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/.well-known/openid-configuration');
@@ -294,7 +314,7 @@ class V1
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = '*/*';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -304,7 +324,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -319,13 +339,13 @@ class V1
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
-            return new Operations\GetOIDCWellKnownsResponse(
+            return new GetOIDCWellKnownsResponse(
                 statusCode: $statusCode,
                 contentType: $contentType,
                 rawResponse: $httpResponse
             );
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -334,10 +354,10 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\GetServerInfoAuthResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return GetServerInfoAuthResponse
+     * @throws SDKException
      */
-    public function getServerInfoAuth(?Options $options = null): Operations\GetServerInfoAuthResponse
+    public function getServerInfoAuth(?Options $options = null): GetServerInfoAuthResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/_info');
@@ -345,7 +365,7 @@ class V1
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -355,7 +375,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -374,7 +394,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ServerInfo', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetServerInfoAuthResponse(
+                $response = new GetServerInfoAuthResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -382,10 +402,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -394,10 +414,10 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\ListClientsResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return ListClientsResponse
+     * @throws SDKException
      */
-    public function listClients(?Options $options = null): Operations\ListClientsResponse
+    public function listClients(?Options $options = null): ListClientsResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients');
@@ -405,7 +425,7 @@ class V1
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -415,7 +435,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -434,7 +454,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ListClientsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ListClientsResponse(
+                $response = new ListClientsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -442,10 +462,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -456,10 +476,10 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @return \formance\stack\Models\Operations\ListUsersResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @return ListUsersResponse
+     * @throws SDKException
      */
-    public function listUsers(?Options $options = null): Operations\ListUsersResponse
+    public function listUsers(?Options $options = null): ListUsersResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users');
@@ -467,7 +487,7 @@ class V1
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -477,7 +497,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -496,7 +516,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ListUsersResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ListUsersResponse(
+                $response = new ListUsersResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -504,10 +524,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -516,19 +536,19 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\ReadClientRequest  $request
-     * @return \formance\stack\Models\Operations\ReadClientResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ReadClientRequest  $request
+     * @return ReadClientResponse
+     * @throws SDKException
      */
-    public function readClient(Operations\ReadClientRequest $request, ?Options $options = null): Operations\ReadClientResponse
+    public function readClient(ReadClientRequest $request, ?Options $options = null): ReadClientResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\ReadClientRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', ReadClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -538,7 +558,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -557,7 +577,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ReadClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ReadClientResponse(
+                $response = new ReadClientResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -565,10 +585,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -579,19 +599,19 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\ReadUserRequest  $request
-     * @return \formance\stack\Models\Operations\ReadUserResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  ReadUserRequest  $request
+     * @return ReadUserResponse
+     * @throws SDKException
      */
-    public function readUser(Operations\ReadUserRequest $request, ?Options $options = null): Operations\ReadUserResponse
+    public function readUser(ReadUserRequest $request, ?Options $options = null): ReadUserResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', Operations\ReadUserRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/users/{userId}', ReadUserRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $httpRequest = new Request('GET', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -601,7 +621,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -620,7 +640,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\ReadUserResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ReadUserResponse(
+                $response = new ReadUserResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -628,10 +648,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 
@@ -640,14 +660,14 @@ class V1
      *
      * If set, this operation will use `clientID` from the global security.
      *
-     * @param  \formance\stack\Models\Operations\UpdateClientRequest  $request
-     * @return \formance\stack\Models\Operations\UpdateClientResponse
-     * @throws \formance\stack\Models\Errors\SDKException
+     * @param  UpdateClientRequest  $request
+     * @return UpdateClientResponse
+     * @throws SDKException
      */
-    public function updateClient(Operations\UpdateClientRequest $request, ?Options $options = null): Operations\UpdateClientResponse
+    public function updateClient(UpdateClientRequest $request, ?Options $options = null): UpdateClientResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', Operations\UpdateClientRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/api/auth/clients/{clientId}', UpdateClientRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'clientOptions', 'json');
@@ -656,7 +676,7 @@ class V1
         }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $httpRequest = new Request('PUT', $url);
         $client = $this->sdkConfiguration->securitySource !== null
             ? Utils\Utils::configureSecurityClient($this->sdkConfiguration->defaultClient, $this->sdkConfiguration->getSecurity(), ['clientID'])
             : $this->sdkConfiguration->defaultClient;
@@ -666,7 +686,7 @@ class V1
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
             $httpResponse = $client->send($httpRequest, $httpOptions);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+        } catch (GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
         }
@@ -685,7 +705,7 @@ class V1
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\formance\stack\Models\Auth\CreateClientResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\UpdateClientResponse(
+                $response = new UpdateClientResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -693,10 +713,10 @@ class V1
 
                 return $response;
             } else {
-                throw new \formance\stack\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } else {
-            throw new \formance\stack\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 

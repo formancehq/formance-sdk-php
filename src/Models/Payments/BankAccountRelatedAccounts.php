@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class BankAccountRelatedAccounts
@@ -15,35 +16,35 @@ class BankAccountRelatedAccounts
      *
      * @var string $accountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
+    #[SerializedName('accountID')]
     public string $accountID;
 
     /**
      *
      * @var string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
+    #[SerializedName('connectorID')]
     public string $connectorID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var string $provider
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
+    #[SerializedName('provider')]
     public string $provider;
 
     /**

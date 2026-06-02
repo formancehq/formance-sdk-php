@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TransferInitiationPayments
@@ -15,36 +18,36 @@ class TransferInitiationPayments
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $paymentID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('paymentID')]
+    #[SerializedName('paymentID')]
     public string $paymentID;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\LegacyPaymentStatus $status
+     * @var LegacyPaymentStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\LegacyPaymentStatus')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\LegacyPaymentStatus')]
     public LegacyPaymentStatus $status;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $paymentID
-     * @param  \formance\stack\Models\Payments\LegacyPaymentStatus  $status
+     * @param  LegacyPaymentStatus  $status
      * @param  ?string  $error
      * @phpstan-pure
      */

@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2LedgerInfo
@@ -15,22 +18,22 @@ class V2LedgerInfo
      *
      * @var ?string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('name')]
+    #[SkipWhenNull]
     public ?string $name = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2LedgerInfoStorage $storage
+     * @var ?V2LedgerInfoStorage $storage
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('storage')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LedgerInfoStorage|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('storage')]
+    #[Type('\formance\stack\Models\Ledger\V2LedgerInfoStorage|null')]
+    #[SkipWhenNull]
     public ?V2LedgerInfoStorage $storage = null;
 
     /**
      * @param  ?string  $name
-     * @param  ?\formance\stack\Models\Ledger\V2LedgerInfoStorage  $storage
+     * @param  ?V2LedgerInfoStorage  $storage
      * @phpstan-pure
      */
     public function __construct(?string $name = null, ?V2LedgerInfoStorage $storage = null)

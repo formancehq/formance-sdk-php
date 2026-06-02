@@ -8,15 +8,16 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Ledger\V2SchemaData;
 use formance\stack\Utils\SpeakeasyMetadata;
 class V2InsertSchemaRequest
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2SchemaData $v2SchemaData
+     * @var V2SchemaData $v2SchemaData
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public \formance\stack\Models\Ledger\V2SchemaData $v2SchemaData;
+    public V2SchemaData $v2SchemaData;
 
     /**
      * Name of the ledger.
@@ -43,13 +44,13 @@ class V2InsertSchemaRequest
     public ?string $idempotencyKey = null;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2SchemaData  $v2SchemaData
+     * @param  V2SchemaData  $v2SchemaData
      * @param  string  $ledger
      * @param  string  $version
      * @param  ?string  $idempotencyKey
      * @phpstan-pure
      */
-    public function __construct(\formance\stack\Models\Ledger\V2SchemaData $v2SchemaData, string $ledger, string $version, ?string $idempotencyKey = null)
+    public function __construct(V2SchemaData $v2SchemaData, string $ledger, string $version, ?string $idempotencyKey = null)
     {
         $this->v2SchemaData = $v2SchemaData;
         $this->ledger = $ledger;

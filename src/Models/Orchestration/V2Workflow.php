@@ -7,41 +7,43 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2Workflow
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2WorkflowConfig $config
+     * @var V2WorkflowConfig $config
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('config')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2WorkflowConfig')]
+    #[SerializedName('config')]
+    #[Type('\formance\stack\Models\Orchestration\V2WorkflowConfig')]
     public V2WorkflowConfig $config;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
      * @var \DateTime $updatedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updatedAt')]
+    #[SerializedName('updatedAt')]
     public \DateTime $updatedAt;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2WorkflowConfig  $config
+     * @param  V2WorkflowConfig  $config
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  \DateTime  $updatedAt

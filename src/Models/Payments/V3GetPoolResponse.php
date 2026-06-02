@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3GetPoolResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3Pool $data
+     * @var V3Pool $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Pool')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3Pool')]
     public V3Pool $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3Pool  $data
+     * @param  V3Pool  $data
      * @phpstan-pure
      */
     public function __construct(V3Pool $data)

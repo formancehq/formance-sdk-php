@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class DebitWalletResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\Hold $data
+     * @var Hold $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\Hold')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\Hold')]
     public Hold $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\Hold  $data
+     * @param  Hold  $data
      * @phpstan-pure
      */
     public function __construct(Hold $data)

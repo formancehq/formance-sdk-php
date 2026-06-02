@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\V2AccountsCursorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2ListAccountsResponse
@@ -28,25 +30,25 @@ class V2ListAccountsResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Ledger\V2AccountsCursorResponse $v2AccountsCursorResponse
+     * @var ?V2AccountsCursorResponse $v2AccountsCursorResponse
      */
-    public ?\formance\stack\Models\Ledger\V2AccountsCursorResponse $v2AccountsCursorResponse = null;
+    public ?V2AccountsCursorResponse $v2AccountsCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\V2AccountsCursorResponse  $v2AccountsCursorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2AccountsCursorResponse  $v2AccountsCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2AccountsCursorResponse $v2AccountsCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2AccountsCursorResponse $v2AccountsCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

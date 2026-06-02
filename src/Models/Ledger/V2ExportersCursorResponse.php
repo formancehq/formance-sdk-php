@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2ExportersCursorResponse - Exporters list */
@@ -14,14 +16,14 @@ class V2ExportersCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\V2ExportersCursorResponseCursor $cursor
+     * @var V2ExportersCursorResponseCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2ExportersCursorResponseCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Ledger\V2ExportersCursorResponseCursor')]
     public V2ExportersCursorResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2ExportersCursorResponseCursor  $cursor
+     * @param  V2ExportersCursorResponseCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(V2ExportersCursorResponseCursor $cursor)

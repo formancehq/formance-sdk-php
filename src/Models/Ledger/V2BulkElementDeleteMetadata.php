@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2BulkElementDeleteMetadata
@@ -15,29 +18,29 @@ class V2BulkElementDeleteMetadata
      *
      * @var string $action
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('action')]
+    #[SerializedName('action')]
     public string $action;
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\V2BulkElementDeleteMetadataData $data
+     * @var ?V2BulkElementDeleteMetadataData $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2BulkElementDeleteMetadataData|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2BulkElementDeleteMetadataData|null')]
+    #[SkipWhenNull]
     public ?V2BulkElementDeleteMetadataData $data = null;
 
     /**
      *
      * @var ?string $ik
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ik')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ik')]
+    #[SkipWhenNull]
     public ?string $ik = null;
 
     /**
      * @param  string  $action
-     * @param  ?\formance\stack\Models\Ledger\V2BulkElementDeleteMetadataData  $data
+     * @param  ?V2BulkElementDeleteMetadataData  $data
      * @param  ?string  $ik
      * @phpstan-pure
      */

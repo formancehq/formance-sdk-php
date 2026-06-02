@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace formance\stack\Utils;
 
+use Brick\DateTime\LocalDate;
+use Brick\Math\BigDecimal;
+use Brick\Math\BigInteger;
 use ReflectionProperty;
 
 class PathParameters
@@ -71,7 +74,7 @@ class PathParameters
             case 'object':
                 $vals = [];
 
-                if ($value instanceof \Brick\Math\BigDecimal || $value instanceof \Brick\Math\BigInteger || $value instanceof \Brick\DateTime\LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
+                if ($value instanceof BigDecimal || $value instanceof BigInteger || $value instanceof LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
                     $pathParams[$metadata->name] = valToString($value, $metadata->encodingArray());
                     break;
                 }

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Orchestration\V2TestTriggerResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class TestTriggerResponse
@@ -28,25 +30,25 @@ class TestTriggerResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Test a trigger
      *
-     * @var ?\formance\stack\Models\Orchestration\V2TestTriggerResponse $v2TestTriggerResponse
+     * @var ?V2TestTriggerResponse $v2TestTriggerResponse
      */
-    public ?\formance\stack\Models\Orchestration\V2TestTriggerResponse $v2TestTriggerResponse = null;
+    public ?V2TestTriggerResponse $v2TestTriggerResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Orchestration\V2TestTriggerResponse  $v2TestTriggerResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2TestTriggerResponse  $v2TestTriggerResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\V2TestTriggerResponse $v2TestTriggerResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2TestTriggerResponse $v2TestTriggerResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

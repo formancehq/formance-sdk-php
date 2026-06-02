@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Ledger\V2ExportersCursorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V2ListExportersResponse
@@ -28,25 +30,25 @@ class V2ListExportersResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * Exporters list
      *
-     * @var ?\formance\stack\Models\Ledger\V2ExportersCursorResponse $v2ExportersCursorResponse
+     * @var ?V2ExportersCursorResponse $v2ExportersCursorResponse
      */
-    public ?\formance\stack\Models\Ledger\V2ExportersCursorResponse $v2ExportersCursorResponse = null;
+    public ?V2ExportersCursorResponse $v2ExportersCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Ledger\V2ExportersCursorResponse  $v2ExportersCursorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V2ExportersCursorResponse  $v2ExportersCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Ledger\V2ExportersCursorResponse $v2ExportersCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V2ExportersCursorResponse $v2ExportersCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

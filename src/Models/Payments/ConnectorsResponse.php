@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** ConnectorsResponse - OK */
@@ -15,14 +17,14 @@ class ConnectorsResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Payments\ConnectorsResponseData> $data
+     * @var array<ConnectorsResponseData> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\ConnectorsResponseData>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Payments\ConnectorsResponseData>')]
     public array $data;
 
     /**
-     * @param  array<\formance\stack\Models\Payments\ConnectorsResponseData>  $data
+     * @param  array<ConnectorsResponseData>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

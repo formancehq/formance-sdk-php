@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class StageWaitEvent
@@ -15,7 +16,7 @@ class StageWaitEvent
      *
      * @var string $event
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('event')]
+    #[SerializedName('event')]
     public string $event;
 
     /**

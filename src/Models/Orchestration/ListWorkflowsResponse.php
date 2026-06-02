@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class ListWorkflowsResponse
@@ -14,14 +16,14 @@ class ListWorkflowsResponse
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Orchestration\Workflow> $data
+     * @var array<Workflow> $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Orchestration\Workflow>')]
+    #[SerializedName('data')]
+    #[Type('array<\formance\stack\Models\Orchestration\Workflow>')]
     public array $data;
 
     /**
-     * @param  array<\formance\stack\Models\Orchestration\Workflow>  $data
+     * @param  array<Workflow>  $data
      * @phpstan-pure
      */
     public function __construct(array $data)

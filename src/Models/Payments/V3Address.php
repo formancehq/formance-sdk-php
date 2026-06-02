@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class V3Address
@@ -15,48 +17,48 @@ class V3Address
      *
      * @var ?string $city
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('city')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('city')]
+    #[SkipWhenNull]
     public ?string $city = null;
 
     /**
      *
      * @var ?string $country
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('country')]
+    #[SkipWhenNull]
     public ?string $country = null;
 
     /**
      *
      * @var ?string $postalCode
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postalCode')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('postalCode')]
+    #[SkipWhenNull]
     public ?string $postalCode = null;
 
     /**
      *
      * @var ?string $region
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('region')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('region')]
+    #[SkipWhenNull]
     public ?string $region = null;
 
     /**
      *
      * @var ?string $streetName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('streetName')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('streetName')]
+    #[SkipWhenNull]
     public ?string $streetName = null;
 
     /**
      *
      * @var ?string $streetNumber
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('streetNumber')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('streetNumber')]
+    #[SkipWhenNull]
     public ?string $streetNumber = null;
 
     /**

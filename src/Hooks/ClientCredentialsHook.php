@@ -11,6 +11,7 @@ use Brick\DateTime\TimeZone;
 use formance\stack\Models\Shared;
 use formance\stack\Utils;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Speakeasy\Serializer\DeserializationContext;
@@ -178,7 +179,7 @@ class ClientCredentialsHook implements AfterErrorHook, BeforeRequestHook, SDKIni
             $options['query'] = Utils\Utils::proper_parse_str($urlParts[1]);
         }
 
-        $request = new \GuzzleHttp\Psr7\Request('POST', $urlParts[0]);
+        $request = new Request('POST', $urlParts[0]);
 
         $response = $this->client->send($request, $options);
         $responseBody = $response->getBody();

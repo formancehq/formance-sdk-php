@@ -9,23 +9,30 @@ declare(strict_types=1);
 namespace formance\stack\Models\Operations;
 
 use formance\stack\Models\Ledger;
+use formance\stack\Models\Ledger\QueryTemplateAccountParams;
+use formance\stack\Models\Ledger\QueryTemplateLogParams;
+use formance\stack\Models\Ledger\QueryTemplateTransactionParams;
+use formance\stack\Models\Ledger\QueryTemplateVolumeParams;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 class V2RunQueryRequestBody
 {
     /**
      *
      * @var ?string $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('cursor')]
+    #[SkipWhenNull]
     public ?string $cursor = null;
 
     /**
      *
-     * @var \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null $params
+     * @var QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('params')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('params')]
+    #[Type('\formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null')]
+    #[SkipWhenNull]
     public Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $params = null;
 
     /**
@@ -33,18 +40,18 @@ class V2RunQueryRequestBody
      *
      * @var ?array<string, string> $vars
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vars')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('vars')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $vars = null;
 
     /**
      * @param  ?string  $cursor
-     * @param  \formance\stack\Models\Ledger\QueryTemplateAccountParams|\formance\stack\Models\Ledger\QueryTemplateTransactionParams|\formance\stack\Models\Ledger\QueryTemplateLogParams|\formance\stack\Models\Ledger\QueryTemplateVolumeParams|null  $params
+     * @param  QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null  $params
      * @param  ?array<string, string>  $vars
      * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, Ledger\QueryTemplateAccountParams|Ledger\QueryTemplateTransactionParams|Ledger\QueryTemplateLogParams|Ledger\QueryTemplateVolumeParams|null $params = null, ?array $vars = null)
+    public function __construct(?string $cursor = null, QueryTemplateAccountParams|QueryTemplateTransactionParams|QueryTemplateLogParams|QueryTemplateVolumeParams|null $params = null, ?array $vars = null)
     {
         $this->cursor = $cursor;
         $this->params = $params;

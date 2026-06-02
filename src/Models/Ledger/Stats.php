@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class Stats
@@ -15,14 +16,14 @@ class Stats
      *
      * @var int $accounts
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accounts')]
+    #[SerializedName('accounts')]
     public int $accounts;
 
     /**
      *
      * @var int $transactions
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transactions')]
+    #[SerializedName('transactions')]
     public int $transactions;
 
     /**

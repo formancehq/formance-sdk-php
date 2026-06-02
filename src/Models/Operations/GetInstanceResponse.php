@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Orchestration\GetWorkflowInstanceResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class GetInstanceResponse
@@ -28,25 +30,25 @@ class GetInstanceResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * The workflow instance
      *
-     * @var ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse $getWorkflowInstanceResponse
+     * @var ?GetWorkflowInstanceResponse $getWorkflowInstanceResponse
      */
-    public ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null;
+    public ?GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse  $getWorkflowInstanceResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?GetWorkflowInstanceResponse  $getWorkflowInstanceResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Orchestration\GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?GetWorkflowInstanceResponse $getWorkflowInstanceResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

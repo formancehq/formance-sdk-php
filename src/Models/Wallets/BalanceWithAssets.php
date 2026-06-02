@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Wallets;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class BalanceWithAssets
@@ -14,43 +18,43 @@ class BalanceWithAssets
     /**
      * $assets
      *
-     * @var array<string, \Brick\Math\BigInteger> $assets
+     * @var array<string, BigInteger> $assets
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('assets')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, \Brick\Math\BigInteger>')]
+    #[SerializedName('assets')]
+    #[Type('array<string, \Brick\Math\BigInteger>')]
     public array $assets;
 
     /**
      *
      * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    #[SerializedName('name')]
     public string $name;
 
     /**
      *
-     * @var ?\Brick\Math\BigInteger $priority
+     * @var ?BigInteger $priority
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('priority')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $priority = null;
+    #[SerializedName('priority')]
+    #[SkipWhenNull]
+    public ?BigInteger $priority = null;
 
     /**
      *
      * @var ?\DateTime $expiresAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expiresAt')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('expiresAt')]
+    #[SkipWhenNull]
     public ?\DateTime $expiresAt = null;
 
     /**
-     * @param  array<string, \Brick\Math\BigInteger>  $assets
+     * @param  array<string, BigInteger>  $assets
      * @param  string  $name
-     * @param  ?\Brick\Math\BigInteger  $priority
+     * @param  ?BigInteger  $priority
      * @param  ?\DateTime  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(array $assets, string $name, ?\Brick\Math\BigInteger $priority = null, ?\DateTime $expiresAt = null)
+    public function __construct(array $assets, string $name, ?BigInteger $priority = null, ?\DateTime $expiresAt = null)
     {
         $this->assets = $assets;
         $this->name = $name;

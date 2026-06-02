@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2TestTriggerResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Orchestration\V2TriggerTest $data
+     * @var V2TriggerTest $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2TriggerTest')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\V2TriggerTest')]
     public V2TriggerTest $data;
 
     /**
-     * @param  \formance\stack\Models\Orchestration\V2TriggerTest  $data
+     * @param  V2TriggerTest  $data
      * @phpstan-pure
      */
     public function __construct(V2TriggerTest $data)

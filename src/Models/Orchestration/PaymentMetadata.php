@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
 
 
 class PaymentMetadata
@@ -15,8 +17,8 @@ class PaymentMetadata
      *
      * @var ?string $key
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('key')]
+    #[SkipWhenNull]
     public ?string $key = null;
 
     /**

@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
 
 
 class V3BankAccountRelatedAccount
@@ -15,14 +16,14 @@ class V3BankAccountRelatedAccount
      *
      * @var string $accountID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountID')]
+    #[SerializedName('accountID')]
     public string $accountID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**

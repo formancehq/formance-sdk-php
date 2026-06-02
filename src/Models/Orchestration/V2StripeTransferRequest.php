@@ -7,40 +7,44 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2StripeTransferRequest
 {
     /**
      *
-     * @var ?\Brick\Math\BigInteger $amount
+     * @var ?BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $amount = null;
+    #[SerializedName('amount')]
+    #[SkipWhenNull]
+    public ?BigInteger $amount = null;
 
     /**
      *
      * @var ?string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('asset')]
+    #[SkipWhenNull]
     public ?string $asset = null;
 
     /**
      *
      * @var ?string $connectorID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connectorID')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('connectorID')]
+    #[SkipWhenNull]
     public ?string $connectorID = null;
 
     /**
      *
      * @var ?string $destination
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('destination')]
+    #[SkipWhenNull]
     public ?string $destination = null;
 
     /**
@@ -49,31 +53,31 @@ class V2StripeTransferRequest
      * It can be useful for storing additional information about the transfer in a structured format.
      *
      *
-     * @var ?\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata $metadata
+     * @var ?V2StripeTransferRequestMetadata $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata|null')]
+    #[SkipWhenNull]
     public ?V2StripeTransferRequestMetadata $metadata = null;
 
     /**
      *
      * @var ?bool $waitingValidation
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('waitingValidation')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('waitingValidation')]
+    #[SkipWhenNull]
     public ?bool $waitingValidation = null;
 
     /**
-     * @param  ?\Brick\Math\BigInteger  $amount
+     * @param  ?BigInteger  $amount
      * @param  ?string  $asset
      * @param  ?string  $connectorID
      * @param  ?string  $destination
-     * @param  ?\formance\stack\Models\Orchestration\V2StripeTransferRequestMetadata  $metadata
+     * @param  ?V2StripeTransferRequestMetadata  $metadata
      * @param  ?bool  $waitingValidation
      * @phpstan-pure
      */
-    public function __construct(?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?string $connectorID = null, ?string $destination = null, ?V2StripeTransferRequestMetadata $metadata = null, ?bool $waitingValidation = false)
+    public function __construct(?BigInteger $amount = null, ?string $asset = null, ?string $connectorID = null, ?string $destination = null, ?V2StripeTransferRequestMetadata $metadata = null, ?bool $waitingValidation = false)
     {
         $this->amount = $amount;
         $this->asset = $asset;

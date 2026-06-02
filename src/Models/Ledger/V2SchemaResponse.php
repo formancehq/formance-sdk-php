@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2SchemaResponse
@@ -14,14 +16,14 @@ class V2SchemaResponse
     /**
      * Complete schema structure with metadata
      *
-     * @var \formance\stack\Models\Ledger\V2Schema $data
+     * @var V2Schema $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2Schema')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\V2Schema')]
     public V2Schema $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\V2Schema  $data
+     * @param  V2Schema  $data
      * @phpstan-pure
      */
     public function __construct(V2Schema $data)

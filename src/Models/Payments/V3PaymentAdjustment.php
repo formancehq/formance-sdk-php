@@ -7,6 +7,10 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Brick\Math\BigInteger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3PaymentAdjustment
@@ -15,53 +19,53 @@ class V3PaymentAdjustment
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
      * @var string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[SerializedName('id')]
     public string $id;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentAdjustmentRaw $raw
+     * @var V3PaymentAdjustmentRaw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentAdjustmentRaw')]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentAdjustmentRaw')]
     public V3PaymentAdjustmentRaw $raw;
 
     /**
      *
      * @var string $reference
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reference')]
+    #[SerializedName('reference')]
     public string $reference;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\V3PaymentStatusEnum $status
+     * @var V3PaymentStatusEnum $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentStatusEnum')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\V3PaymentStatusEnum')]
     public V3PaymentStatusEnum $status;
 
     /**
      *
-     * @var ?\Brick\Math\BigInteger $amount
+     * @var ?BigInteger $amount
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\Brick\Math\BigInteger $amount = null;
+    #[SerializedName('amount')]
+    #[SkipWhenNull]
+    public ?BigInteger $amount = null;
 
     /**
      *
      * @var ?string $asset
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('asset')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('asset')]
+    #[SkipWhenNull]
     public ?string $asset = null;
 
     /**
@@ -69,23 +73,23 @@ class V3PaymentAdjustment
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
-     * @param  \formance\stack\Models\Payments\V3PaymentAdjustmentRaw  $raw
+     * @param  V3PaymentAdjustmentRaw  $raw
      * @param  string  $reference
-     * @param  \formance\stack\Models\Payments\V3PaymentStatusEnum  $status
-     * @param  ?\Brick\Math\BigInteger  $amount
+     * @param  V3PaymentStatusEnum  $status
+     * @param  ?BigInteger  $amount
      * @param  ?string  $asset
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, V3PaymentAdjustmentRaw $raw, string $reference, V3PaymentStatusEnum $status, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?array $metadata = null)
+    public function __construct(\DateTime $createdAt, string $id, V3PaymentAdjustmentRaw $raw, string $reference, V3PaymentStatusEnum $status, ?BigInteger $amount = null, ?string $asset = null, ?array $metadata = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

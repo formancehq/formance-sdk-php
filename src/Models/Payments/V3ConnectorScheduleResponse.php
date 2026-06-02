@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V3ConnectorScheduleResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\V3Schedule $data
+     * @var V3Schedule $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3Schedule')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\V3Schedule')]
     public V3Schedule $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\V3Schedule  $data
+     * @param  V3Schedule  $data
      * @phpstan-pure
      */
     public function __construct(V3Schedule $data)

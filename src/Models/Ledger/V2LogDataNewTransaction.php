@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** V2LogDataNewTransaction - Payload for NEW_TRANSACTION log entries. Contains the created transaction and any account metadata set during creation. */
@@ -17,22 +19,22 @@ class V2LogDataNewTransaction
      *
      * @var array<string, array<string, string>> $accountMetadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('accountMetadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, array<string, string>>')]
+    #[SerializedName('accountMetadata')]
+    #[Type('array<string, array<string, string>>')]
     public array $accountMetadata;
 
     /**
      * Transaction structure as it appears in log payloads
      *
-     * @var \formance\stack\Models\Ledger\V2LogTransaction $transaction
+     * @var V2LogTransaction $transaction
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('transaction')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2LogTransaction')]
+    #[SerializedName('transaction')]
+    #[Type('\formance\stack\Models\Ledger\V2LogTransaction')]
     public V2LogTransaction $transaction;
 
     /**
      * @param  array<string, array<string, string>>  $accountMetadata
-     * @param  \formance\stack\Models\Ledger\V2LogTransaction  $transaction
+     * @param  V2LogTransaction  $transaction
      * @phpstan-pure
      */
     public function __construct(array $accountMetadata, V2LogTransaction $transaction)

@@ -7,20 +7,22 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Ledger;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class AccountResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Ledger\AccountWithVolumesAndBalances $data
+     * @var AccountWithVolumesAndBalances $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\AccountWithVolumesAndBalances')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Ledger\AccountWithVolumesAndBalances')]
     public AccountWithVolumesAndBalances $data;
 
     /**
-     * @param  \formance\stack\Models\Ledger\AccountWithVolumesAndBalances  $data
+     * @param  AccountWithVolumesAndBalances  $data
      * @phpstan-pure
      */
     public function __construct(AccountWithVolumesAndBalances $data)

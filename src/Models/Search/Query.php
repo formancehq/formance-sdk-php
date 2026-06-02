@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Search;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class Query
@@ -16,17 +19,17 @@ class Query
      *
      * @var ?array<string> $after
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('after')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('after')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $after = null;
 
     /**
      *
      * @var ?string $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('cursor')]
+    #[SkipWhenNull]
     public ?string $cursor = null;
 
     /**
@@ -34,50 +37,50 @@ class Query
      *
      * @var ?array<string> $ledgers
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ledgers')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('ledgers')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $ledgers = null;
 
     /**
      *
      * @var ?int $pageSize
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('pageSize')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('pageSize')]
+    #[SkipWhenNull]
     public ?int $pageSize = null;
 
     /**
      *
      * @var ?string $policy
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('policy')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('policy')]
+    #[SkipWhenNull]
     public ?string $policy = null;
 
     /**
      *
-     * @var ?\formance\stack\Models\Search\Raw $raw
+     * @var ?Raw $raw
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Search\Raw|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('raw')]
+    #[Type('\formance\stack\Models\Search\Raw|null')]
+    #[SkipWhenNull]
     public ?Raw $raw = null;
 
     /**
      *
      * @var ?string $sort
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sort')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('sort')]
+    #[SkipWhenNull]
     public ?string $sort = null;
 
     /**
      *
      * @var ?string $target
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('target')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('target')]
+    #[SkipWhenNull]
     public ?string $target = null;
 
     /**
@@ -85,9 +88,9 @@ class Query
      *
      * @var ?array<string> $terms
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('terms')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('terms')]
+    #[Type('array<string>|null')]
+    #[SkipWhenNull]
     public ?array $terms = null;
 
     /**
@@ -96,7 +99,7 @@ class Query
      * @param  ?array<string>  $ledgers
      * @param  ?int  $pageSize
      * @param  ?string  $policy
-     * @param  ?\formance\stack\Models\Search\Raw  $raw
+     * @param  ?Raw  $raw
      * @param  ?string  $sort
      * @param  ?string  $target
      * @param  ?array<string>  $terms

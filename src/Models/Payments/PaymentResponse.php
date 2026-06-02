@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** PaymentResponse - OK */
@@ -14,14 +16,14 @@ class PaymentResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\Payment $data
+     * @var Payment $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Payment')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\Payment')]
     public Payment $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\Payment  $data
+     * @param  Payment  $data
      * @phpstan-pure
      */
     public function __construct(Payment $data)

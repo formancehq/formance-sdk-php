@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
 
+use formance\stack\Models\Ledger\Mapping;
 use formance\stack\Utils\SpeakeasyMetadata;
 class UpdateMappingRequest
 {
@@ -21,17 +22,17 @@ class UpdateMappingRequest
 
     /**
      *
-     * @var ?\formance\stack\Models\Ledger\Mapping $mapping
+     * @var ?Mapping $mapping
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?\formance\stack\Models\Ledger\Mapping $mapping;
+    public ?Mapping $mapping;
 
     /**
      * @param  string  $ledger
-     * @param  ?\formance\stack\Models\Ledger\Mapping  $mapping
+     * @param  ?Mapping  $mapping
      * @phpstan-pure
      */
-    public function __construct(string $ledger, ?\formance\stack\Models\Ledger\Mapping $mapping = null)
+    public function __construct(string $ledger, ?Mapping $mapping = null)
     {
         $this->ledger = $ledger;
         $this->mapping = $mapping;

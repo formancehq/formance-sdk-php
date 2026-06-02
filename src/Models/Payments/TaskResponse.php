@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** TaskResponse - OK */
@@ -14,14 +16,14 @@ class TaskResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp $data
+     * @var TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp')]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp')]
     public TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data;
 
     /**
-     * @param  \formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp  $data
+     * @param  TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp  $data
      * @phpstan-pure
      */
     public function __construct(TaskStripe|TaskWise|TaskCurrencyCloud|TaskDummyPay|TaskModulr|TaskBankingCircle|TaskMangoPay|TaskMoneycorp $data)

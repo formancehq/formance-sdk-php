@@ -7,29 +7,32 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Orchestration;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class V2ActivityCreditWallet
 {
     /**
      *
-     * @var ?\formance\stack\Models\Orchestration\V2CreditWalletRequest $data
+     * @var ?V2CreditWalletRequest $data
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\V2CreditWalletRequest|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('data')]
+    #[Type('\formance\stack\Models\Orchestration\V2CreditWalletRequest|null')]
+    #[SkipWhenNull]
     public ?V2CreditWalletRequest $data = null;
 
     /**
      *
      * @var ?string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('id')]
+    #[SkipWhenNull]
     public ?string $id = null;
 
     /**
-     * @param  ?\formance\stack\Models\Orchestration\V2CreditWalletRequest  $data
+     * @param  ?V2CreditWalletRequest  $data
      * @param  ?string  $id
      * @phpstan-pure
      */

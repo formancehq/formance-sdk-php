@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Operations;
+use formance\stack\Models\Payments\V3BalancesCursorResponse;
+use Psr\Http\Message\ResponseInterface;
 
 
 class V3GetAccountBalancesResponse
@@ -28,25 +30,25 @@ class V3GetAccountBalancesResponse
     /**
      * Raw HTTP response; suitable for custom response parsing
      *
-     * @var \Psr\Http\Message\ResponseInterface $rawResponse
+     * @var ResponseInterface $rawResponse
      */
-    public \Psr\Http\Message\ResponseInterface $rawResponse;
+    public ResponseInterface $rawResponse;
 
     /**
      * OK
      *
-     * @var ?\formance\stack\Models\Payments\V3BalancesCursorResponse $v3BalancesCursorResponse
+     * @var ?V3BalancesCursorResponse $v3BalancesCursorResponse
      */
-    public ?\formance\stack\Models\Payments\V3BalancesCursorResponse $v3BalancesCursorResponse = null;
+    public ?V3BalancesCursorResponse $v3BalancesCursorResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
-     * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\formance\stack\Models\Payments\V3BalancesCursorResponse  $v3BalancesCursorResponse
+     * @param  ResponseInterface  $rawResponse
+     * @param  ?V3BalancesCursorResponse  $v3BalancesCursorResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?\formance\stack\Models\Payments\V3BalancesCursorResponse $v3BalancesCursorResponse = null)
+    public function __construct(string $contentType, int $statusCode, ResponseInterface $rawResponse, ?V3BalancesCursorResponse $v3BalancesCursorResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

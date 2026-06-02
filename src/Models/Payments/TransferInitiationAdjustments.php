@@ -7,6 +7,9 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\SkipWhenNull;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 class TransferInitiationAdjustments
@@ -15,30 +18,30 @@ class TransferInitiationAdjustments
      *
      * @var string $adjustmentID
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('adjustmentID')]
+    #[SerializedName('adjustmentID')]
     public string $adjustmentID;
 
     /**
      *
      * @var \DateTime $createdAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('createdAt')]
+    #[SerializedName('createdAt')]
     public \DateTime $createdAt;
 
     /**
      *
-     * @var \formance\stack\Models\Payments\TransferInitiationStatus $status
+     * @var TransferInitiationStatus $status
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
+    #[SerializedName('status')]
+    #[Type('\formance\stack\Models\Payments\TransferInitiationStatus')]
     public TransferInitiationStatus $status;
 
     /**
      *
      * @var ?string $error
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('error')]
+    #[SkipWhenNull]
     public ?string $error = null;
 
     /**
@@ -46,15 +49,15 @@ class TransferInitiationAdjustments
      *
      * @var ?array<string, string> $metadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    #[SerializedName('metadata')]
+    #[Type('array<string, string>|null')]
+    #[SkipWhenNull]
     public ?array $metadata = null;
 
     /**
      * @param  string  $adjustmentID
      * @param  \DateTime  $createdAt
-     * @param  \formance\stack\Models\Payments\TransferInitiationStatus  $status
+     * @param  TransferInitiationStatus  $status
      * @param  ?string  $error
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure

@@ -7,6 +7,8 @@
 declare(strict_types=1);
 
 namespace formance\stack\Models\Payments;
+use Speakeasy\Serializer\Annotation\SerializedName;
+use Speakeasy\Serializer\Annotation\Type;
 
 
 /** TransferInitiationsCursor - OK */
@@ -14,14 +16,14 @@ class TransferInitiationsCursor
 {
     /**
      *
-     * @var \formance\stack\Models\Payments\TransferInitiationsCursorCursor $cursor
+     * @var TransferInitiationsCursorCursor $cursor
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\TransferInitiationsCursorCursor')]
+    #[SerializedName('cursor')]
+    #[Type('\formance\stack\Models\Payments\TransferInitiationsCursorCursor')]
     public TransferInitiationsCursorCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Payments\TransferInitiationsCursorCursor  $cursor
+     * @param  TransferInitiationsCursorCursor  $cursor
      * @phpstan-pure
      */
     public function __construct(TransferInitiationsCursorCursor $cursor)
