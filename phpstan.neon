@@ -1,0 +1,10 @@
+parameters:
+
+    paths:
+        - src/
+
+    reportUnmatchedIgnoredErrors: false
+    
+    ignoreErrors:
+        - '#^Strict comparison using === between .*? will always evaluate to false\.$#'
+        - identifier: missingType.generics
