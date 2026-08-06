@@ -1,0 +1,12 @@
+# One
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `additionalProperties`                                                               | array<string, *mixed*>                                                               | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `evidence`                                                                           | array<string, *mixed*>                                                               | :heavy_minus_sign:                                                                   | Full breakdown. Present on FAIL entries.                                             |
+| `fingerprint`                                                                        | *?string*                                                                            | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `passed`                                                                             | *?bool*                                                                              | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `proof`                                                                              | array<string, *string*>                                                              | :heavy_minus_sign:                                                                   | Compact green-proof (observed balance integers as strings). Present on PASS entries. |

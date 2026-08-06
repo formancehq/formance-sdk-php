@@ -144,12 +144,7 @@ if ($response->getVersionsResponse !== null) {
 * [readUser](docs/sdks/v1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/v1/README.md#updateclient) - Update client
 
-### [Ledger](docs/sdks/ledger/README.md)
-
-* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
-* [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
-
-#### [Ledger.V1](docs/sdks/sdkv1/README.md)
+### [Ledger.V1](docs/sdks/sdkv1/README.md)
 
 * [createTransactions](docs/sdks/sdkv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/sdkv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -172,7 +167,7 @@ if ($response->getVersionsResponse !== null) {
 * [~~runScript~~](docs/sdks/sdkv1/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](docs/sdks/sdkv1/README.md#updatemapping) - Update the mapping of a ledger
 
-#### [Ledger.V2](docs/sdks/v2/README.md)
+### [Ledger.V2](docs/sdks/v2/README.md)
 
 * [addMetadataOnTransaction](docs/sdks/v2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](docs/sdks/v2/README.md#addmetadatatoaccount) - Add metadata to an account
@@ -193,8 +188,10 @@ if ($response->getVersionsResponse !== null) {
 * [getAccount](docs/sdks/v2/README.md#getaccount) - Get account by its address
 * [getBalancesAggregated](docs/sdks/v2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getExporterState](docs/sdks/v2/README.md#getexporterstate) - Get exporter state
+* [getInfo](docs/sdks/v2/README.md#getinfo) - Show server information
 * [getLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
+* [getMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 * [getPipelineState](docs/sdks/v2/README.md#getpipelinestate) - Get pipeline state
 * [getSchema](docs/sdks/v2/README.md#getschema) - Get a schema for a ledger by version
 * [getTransaction](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
@@ -332,6 +329,7 @@ if ($response->getVersionsResponse !== null) {
 * [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 * [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+* [getConnectorCapabilities](docs/sdks/v3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
 * [getConversion](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
@@ -348,6 +346,7 @@ if ($response->getVersionsResponse !== null) {
 * [installConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
 * [listAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
 * [listBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+* [listConnectorCapabilities](docs/sdks/v3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [listConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
 * [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
@@ -379,14 +378,30 @@ Allows to check if users used the link and completed the oauth flow.
 
 ### [Reconciliation.V1](docs/sdks/sdkreconciliationv1/README.md)
 
+* [acceptAlert](docs/sdks/sdkreconciliationv1/README.md#acceptalert) - Accept an alert (accepted_by_business)
+* [ackAlert](docs/sdks/sdkreconciliationv1/README.md#ackalert) - Acknowledge an alert
 * [createPolicy](docs/sdks/sdkreconciliationv1/README.md#createpolicy) - Create a policy
+* [createRule](docs/sdks/sdkreconciliationv1/README.md#createrule) - Create a rule
 * [deletePolicy](docs/sdks/sdkreconciliationv1/README.md#deletepolicy) - Delete a policy
+* [deleteRule](docs/sdks/sdkreconciliationv1/README.md#deleterule) - Delete a rule (cascades to evaluations + alerts + alert events)
+* [evaluateRule](docs/sdks/sdkreconciliationv1/README.md#evaluaterule) - Evaluate a rule now
+* [getAlert](docs/sdks/sdkreconciliationv1/README.md#getalert) - Get an alert
+* [getEvaluation](docs/sdks/sdkreconciliationv1/README.md#getevaluation) - Get an evaluation
 * [getPolicy](docs/sdks/sdkreconciliationv1/README.md#getpolicy) - Get a policy
 * [getReconciliation](docs/sdks/sdkreconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [getRule](docs/sdks/sdkreconciliationv1/README.md#getrule) - Get a rule
 * [getServerInfoReconciliation](docs/sdks/sdkreconciliationv1/README.md#getserverinforeconciliation) - Get server info
+* [listAlertEvents](docs/sdks/sdkreconciliationv1/README.md#listalertevents) - List alert events (append-only timeline)
+* [listAlerts](docs/sdks/sdkreconciliationv1/README.md#listalerts) - List alerts
+* [listEvaluations](docs/sdks/sdkreconciliationv1/README.md#listevaluations) - List evaluations
 * [listPolicies](docs/sdks/sdkreconciliationv1/README.md#listpolicies) - List policies
 * [listReconciliations](docs/sdks/sdkreconciliationv1/README.md#listreconciliations) - List reconciliations
+* [listRules](docs/sdks/sdkreconciliationv1/README.md#listrules) - List rules
+* [patchRule](docs/sdks/sdkreconciliationv1/README.md#patchrule) - Patch a rule (partial update)
 * [reconcile](docs/sdks/sdkreconciliationv1/README.md#reconcile) - Reconcile using a policy
+* [resolveAlert](docs/sdks/sdkreconciliationv1/README.md#resolvealert) - Resolve an alert (fixed_by_booking)
+* [snoozeAlert](docs/sdks/sdkreconciliationv1/README.md#snoozealert) - Snooze an alert's notifications until a future instant
+* [unsnoozeAlert](docs/sdks/sdkreconciliationv1/README.md#unsnoozealert) - Lift a snooze early
 
 ### [~~Search.V1~~](docs/sdks/sdksearchv1/README.md)
 
@@ -418,8 +433,13 @@ Allows to check if users used the link and completed the oauth flow.
 * [changeConfigSecret](docs/sdks/sdkwebhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
 * [deactivateConfig](docs/sdks/sdkwebhooksv1/README.md#deactivateconfig) - Deactivate one config
 * [deleteConfig](docs/sdks/sdkwebhooksv1/README.md#deleteconfig) - Delete one config
+* [getDeliveries](docs/sdks/sdkwebhooksv1/README.md#getdeliveries) - List webhook deliveries
+* [getDelivery](docs/sdks/sdkwebhooksv1/README.md#getdelivery) - Get a webhook delivery
+* [getDeliveryAttempts](docs/sdks/sdkwebhooksv1/README.md#getdeliveryattempts) - List attempts for a webhook delivery
 * [getManyConfigs](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/sdkwebhooksv1/README.md#insertconfig) - Insert a new config
+* [replayDeliveries](docs/sdks/sdkwebhooksv1/README.md#replaydeliveries) - Replay a page of failed or pending deliveries
+* [replayDelivery](docs/sdks/sdkwebhooksv1/README.md#replaydelivery) - Replay one failed or pending delivery
 * [testConfig](docs/sdks/sdkwebhooksv1/README.md#testconfig) - Test one config
 * [updateConfig](docs/sdks/sdkwebhooksv1/README.md#updateconfig) - Update one config
 
@@ -440,7 +460,7 @@ By default an API error will raise a `Errors\SDKException` exception, which has 
 | `$rawResponse` | *?\Psr\Http\Message\ResponseInterface*  | The raw HTTP response |
 | `$body`        | *string*                                | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `getInfo` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `addMetadataOnTransaction` method throws the following exceptions:
 
 | Error Type                                         | Status Code | Content Type     |
 | -------------------------------------------------- | ----------- | ---------------- |
@@ -454,7 +474,9 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\Math\BigInteger;
 use formance\stack;
+use formance\stack\Models\Operations;
 use formance\stack\Models\Shared;
 
 $sdk = stack\SDK::builder()
@@ -467,11 +489,21 @@ $sdk = stack\SDK::builder()
     ->build();
 
 try {
-    $response = $sdk->ledger->getInfo(
-
+    $request = new Operations\V2AddMetadataOnTransactionRequest(
+        requestBody: [
+            'admin' => 'true',
+        ],
+        dryRun: true,
+        id: BigInteger::of('1234'),
+        ledger: 'ledger001',
+        schemaVersion: 'v1.0.0',
     );
 
-    if ($response->v2ConfigInfo !== null) {
+    $response = $sdk->ledger->v2->addMetadataOnTransaction(
+        request: $request
+    );
+
+    if ($response->statusCode === 200) {
         // handle response
     }
 } catch (\formance\stack\Models\Ledger\V2ErrorResponseErrorThrowable $e) {

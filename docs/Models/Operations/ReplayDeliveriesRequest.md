@@ -1,0 +1,9 @@
+# ReplayDeliveriesRequest
+
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                            | *string*                                                                                                    | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `replayDeliveriesRequest`                                                                                   | [\formance\stack\Models\Webhooks\ReplayDeliveriesRequest](../../Models/webhooks/ReplayDeliveriesRequest.md) | :heavy_check_mark:                                                                                          | N/A                                                                                                         |

@@ -53,15 +53,6 @@ class QueryTemplateAccountParams
     public ?\DateTime $pit = null;
 
     /**
-     *
-     * @var ?\formance\stack\Models\Ledger\V2QueryParamsResource $resource
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryParamsResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2QueryParamsResource $resource = null;
-
-    /**
      * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -74,21 +65,28 @@ class QueryTemplateAccountParams
     public ?string $sort = null;
 
     /**
+     *
+     * @var string $resource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
+    public string $resource;
+
+    /**
+     * @param  string  $resource
      * @param  ?string  $cursor
      * @param  ?string  $expand
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
-     * @param  ?\formance\stack\Models\Ledger\V2QueryParamsResource  $resource
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null, ?V2QueryParamsResource $resource = null, ?string $sort = null)
+    public function __construct(?string $cursor = null, ?string $expand = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null, string $resource = 'accounts')
     {
         $this->cursor = $cursor;
         $this->expand = $expand;
         $this->pageSize = $pageSize;
         $this->pit = $pit;
-        $this->resource = $resource;
         $this->sort = $sort;
+        $this->resource = $resource;
     }
 }

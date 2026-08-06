@@ -8,8 +8,13 @@
 * [changeConfigSecret](#changeconfigsecret) - Change the signing secret of a config
 * [deactivateConfig](#deactivateconfig) - Deactivate one config
 * [deleteConfig](#deleteconfig) - Delete one config
+* [getDeliveries](#getdeliveries) - List webhook deliveries
+* [getDelivery](#getdelivery) - Get a webhook delivery
+* [getDeliveryAttempts](#getdeliveryattempts) - List attempts for a webhook delivery
 * [getManyConfigs](#getmanyconfigs) - Get many configs
 * [insertConfig](#insertconfig) - Insert a new config
+* [replayDeliveries](#replaydeliveries) - Replay a page of failed or pending deliveries
+* [replayDelivery](#replaydelivery) - Replay one failed or pending delivery
 * [testConfig](#testconfig) - Test one config
 * [updateConfig](#updateconfig) - Update one config
 
@@ -241,6 +246,169 @@ if ($response->statusCode === 200) {
 | \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
 | Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
 
+## getDeliveries
+
+List webhook deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getDeliveries" method="get" path="/api/webhooks/deliveries" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetDeliveriesRequest();
+
+$response = $sdk->webhooks->v1->getDeliveries(
+    request: $request
+);
+
+if ($response->deliveriesResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\GetDeliveriesRequest](../../Models/Operations/GetDeliveriesRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+
+### Response
+
+**[?Operations\GetDeliveriesResponse](../../Models/Operations/GetDeliveriesResponse.md)**
+
+### Errors
+
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
+
+## getDelivery
+
+Get a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getDelivery" method="get" path="/api/webhooks/deliveries/{id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetDeliveryRequest(
+    id: '01e5cac6-75f1-4720-81ca-5563ce22d2e0',
+);
+
+$response = $sdk->webhooks->v1->getDelivery(
+    request: $request
+);
+
+if ($response->deliveryResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\GetDeliveryRequest](../../Models/Operations/GetDeliveryRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+
+### Response
+
+**[?Operations\GetDeliveryResponse](../../Models/Operations/GetDeliveryResponse.md)**
+
+### Errors
+
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
+
+## getDeliveryAttempts
+
+List attempts for a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getDeliveryAttempts" method="get" path="/api/webhooks/deliveries/{id}/attempts" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\GetDeliveryAttemptsRequest(
+    id: '967e7a38-b11b-4809-92cf-6789e24dbe13',
+);
+
+$response = $sdk->webhooks->v1->getDeliveryAttempts(
+    request: $request
+);
+
+if ($response->deliveryAttemptsResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `$request`                                                                                     | [Operations\GetDeliveryAttemptsRequest](../../Models/Operations/GetDeliveryAttemptsRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+
+### Response
+
+**[?Operations\GetDeliveryAttemptsResponse](../../Models/Operations/GetDeliveryAttemptsResponse.md)**
+
+### Errors
+
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
+
 ## getManyConfigs
 
 Sorted by updated date descending
@@ -337,7 +505,6 @@ $request = new \formance\stack\Models\Webhooks\ConfigUser(
         'TYPE1',
         'TYPE2',
     ],
-    name: 'customer_payment',
     secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
 );
 
@@ -359,6 +526,122 @@ if ($response->configResponse !== null) {
 ### Response
 
 **[?Operations\InsertConfigResponse](../../Models/Operations/InsertConfigResponse.md)**
+
+### Errors
+
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
+
+## replayDeliveries
+
+Replay a page of failed or pending deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="replayDeliveries" method="post" path="/api/webhooks/deliveries/replay" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+use formance\stack\Models\Webhooks;
+use formance\stack\Utils;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReplayDeliveriesRequest(
+    idempotencyKey: '<value>',
+    replayDeliveriesRequest: new \formance\stack\Models\Webhooks\ReplayDeliveriesRequest(
+        createdAtFrom: Utils\Utils::parseDateTime('2026-10-16T11:02:44.647Z'),
+    ),
+);
+
+$response = $sdk->webhooks->v1->replayDeliveries(
+    request: $request
+);
+
+if ($response->replayDeliveriesResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `$request`                                                                               | [Operations\ReplayDeliveriesRequest](../../Models/Operations/ReplayDeliveriesRequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+### Response
+
+**[?Operations\ReplayDeliveriesResponse](../../Models/Operations/ReplayDeliveriesResponse.md)**
+
+### Errors
+
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| \formance\stack\Models\Webhooks\ErrorResponse | default                                       | application/json                              |
+| Errors\SDKException                           | 4XX, 5XX                                      | \*/\*                                         |
+
+## replayDelivery
+
+Replay one failed or pending delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="replayDelivery" method="post" path="/api/webhooks/deliveries/{id}/replay" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\ReplayDeliveryRequest(
+    idempotencyKey: '<value>',
+    id: '06a0d0bb-48de-45f0-b12f-6458a3a41bbe',
+);
+
+$response = $sdk->webhooks->v1->replayDelivery(
+    request: $request
+);
+
+if ($response->deliveryResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\ReplayDeliveryRequest](../../Models/Operations/ReplayDeliveryRequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+### Response
+
+**[?Operations\ReplayDeliveryResponse](../../Models/Operations/ReplayDeliveryResponse.md)**
 
 ### Errors
 
@@ -455,7 +738,6 @@ $request = new Operations\UpdateConfigRequest(
             'TYPE1',
             'TYPE2',
         ],
-        name: 'customer_payment',
         secret: 'V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3',
     ),
     id: '4997257d-dfb6-445b-929c-cbe2ab182818',

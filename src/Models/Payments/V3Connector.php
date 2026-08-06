@@ -62,6 +62,16 @@ class V3Connector
     public bool $scheduledForDeletion;
 
     /**
+     * Plugin capabilities advertised by the connector's provider.
+     *
+     * @var ?array<\formance\stack\Models\Payments\V3Capability> $capabilities
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('capabilities')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Payments\V3Capability>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $capabilities = null;
+
+    /**
      *
      * @var ?\DateTime $updatedAt
      */
@@ -77,10 +87,11 @@ class V3Connector
      * @param  string  $provider
      * @param  string  $reference
      * @param  bool  $scheduledForDeletion
+     * @param  ?array<\formance\stack\Models\Payments\V3Capability>  $capabilities
      * @param  ?\DateTime  $updatedAt
      * @phpstan-pure
      */
-    public function __construct(Config $config, \DateTime $createdAt, string $id, string $name, string $provider, string $reference, bool $scheduledForDeletion, ?\DateTime $updatedAt = null)
+    public function __construct(Config $config, \DateTime $createdAt, string $id, string $name, string $provider, string $reference, bool $scheduledForDeletion, ?array $capabilities = null, ?\DateTime $updatedAt = null)
     {
         $this->config = $config;
         $this->createdAt = $createdAt;
@@ -89,6 +100,7 @@ class V3Connector
         $this->provider = $provider;
         $this->reference = $reference;
         $this->scheduledForDeletion = $scheduledForDeletion;
+        $this->capabilities = $capabilities;
         $this->updatedAt = $updatedAt;
     }
 }

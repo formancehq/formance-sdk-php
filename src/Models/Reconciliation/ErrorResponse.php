@@ -8,18 +8,10 @@ declare(strict_types=1);
 
 namespace formance\stack\Models\Reconciliation;
 
-use formance\stack\Utils;
+
 /** ErrorResponse - Error response */
 class ErrorResponse
 {
-    /**
-     *
-     * @var ?string $details
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $details = null;
-
     /**
      *
      * @var string $errorCode
@@ -35,6 +27,14 @@ class ErrorResponse
     public string $errorMessage;
 
     /**
+     *
+     * @var ?string $details
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('details')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $details = null;
+
+    /**
      * @param  string  $errorCode
      * @param  string  $errorMessage
      * @param  ?string  $details
@@ -42,17 +42,8 @@ class ErrorResponse
      */
     public function __construct(string $errorCode, string $errorMessage, ?string $details = null)
     {
-        $this->details = $details;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;
-    }
-
-    public function toException(): ErrorResponseThrowable
-    {
-        $serializer = Utils\JSON::createSerializer();
-        $message = $serializer->serialize($this, 'json');
-        $code = -1;
-
-        return new ErrorResponseThrowable($message, (int) $code, $this);
+        $this->details = $details;
     }
 }

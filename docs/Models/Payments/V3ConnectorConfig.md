@@ -21,6 +21,15 @@
 \formance\stack\Models\Payments\V3AtlarConfig $value = /* values here */
 ```
 
+### `\formance\stack\Models\Payments\V3BankingbridgeConfig`
+
+```php
+/**
+* @var \formance\stack\Models\Payments\V3BankingbridgeConfig
+*/
+\formance\stack\Models\Payments\V3BankingbridgeConfig $value = /* values here */
+```
+
 ### `\formance\stack\Models\Payments\V3BankingcircleConfig`
 
 ```php
@@ -28,6 +37,24 @@
 * @var \formance\stack\Models\Payments\V3BankingcircleConfig
 */
 \formance\stack\Models\Payments\V3BankingcircleConfig $value = /* values here */
+```
+
+### `\formance\stack\Models\Payments\V3BitstampConfig`
+
+```php
+/**
+* @var \formance\stack\Models\Payments\V3BitstampConfig
+*/
+\formance\stack\Models\Payments\V3BitstampConfig $value = /* values here */
+```
+
+### `\formance\stack\Models\Payments\V3CoinbaseprimeConfig`
+
+```php
+/**
+* @var \formance\stack\Models\Payments\V3CoinbaseprimeConfig
+*/
+\formance\stack\Models\Payments\V3CoinbaseprimeConfig $value = /* values here */
 ```
 
 ### `\formance\stack\Models\Payments\V3ColumnConfig`
@@ -57,6 +84,15 @@
 \formance\stack\Models\Payments\V3DummypayConfig $value = /* values here */
 ```
 
+### `\formance\stack\Models\Payments\V3FireblocksConfig`
+
+```php
+/**
+* @var \formance\stack\Models\Payments\V3FireblocksConfig
+*/
+\formance\stack\Models\Payments\V3FireblocksConfig $value = /* values here */
+```
+
 ### `\formance\stack\Models\Payments\V3GenericConfig`
 
 ```php
@@ -73,6 +109,15 @@
 * @var \formance\stack\Models\Payments\V3IncreaseConfig
 */
 \formance\stack\Models\Payments\V3IncreaseConfig $value = /* values here */
+```
+
+### `\formance\stack\Models\Payments\V3KrakenproConfig`
+
+```php
+/**
+* @var \formance\stack\Models\Payments\V3KrakenproConfig
+*/
+\formance\stack\Models\Payments\V3KrakenproConfig $value = /* values here */
 ```
 
 ### `\formance\stack\Models\Payments\V3MangopayConfig`
@@ -129,6 +174,15 @@
 \formance\stack\Models\Payments\V3QontoConfig $value = /* values here */
 ```
 
+### `\formance\stack\Models\Payments\V3RoutableConfig`
+
+```php
+/**
+* @var \formance\stack\Models\Payments\V3RoutableConfig
+*/
+\formance\stack\Models\Payments\V3RoutableConfig $value = /* values here */
+```
+
 ### `\formance\stack\Models\Payments\V3StripeConfig`
 
 ```php
@@ -154,50 +208,5 @@
 * @var \formance\stack\Models\Payments\V3WiseConfig
 */
 \formance\stack\Models\Payments\V3WiseConfig $value = /* values here */
-```
-
-### `\formance\stack\Models\Payments\V3BankingbridgeConfig`
-
-```php
-/**
-* @var \formance\stack\Models\Payments\V3BankingbridgeConfig
-*/
-\formance\stack\Models\Payments\V3BankingbridgeConfig $value = /* values here */
-```
-
-### `\formance\stack\Models\Payments\V3BitstampConfig`
-
-```php
-/**
-* @var \formance\stack\Models\Payments\V3BitstampConfig
-*/
-\formance\stack\Models\Payments\V3BitstampConfig $value = /* values here */
-```
-
-### `\formance\stack\Models\Payments\V3CoinbaseprimeConfig`
-
-```php
-/**
-* @var \formance\stack\Models\Payments\V3CoinbaseprimeConfig
-*/
-\formance\stack\Models\Payments\V3CoinbaseprimeConfig $value = /* values here */
-```
-
-### `\formance\stack\Models\Payments\V3FireblocksConfig`
-
-```php
-/**
-* @var \formance\stack\Models\Payments\V3FireblocksConfig
-*/
-\formance\stack\Models\Payments\V3FireblocksConfig $value = /* values here */
-```
-
-### `\formance\stack\Models\Payments\V3RoutableConfig`
-
-```php
-/**
-* @var \formance\stack\Models\Payments\V3RoutableConfig
-*/
-\formance\stack\Models\Payments\V3RoutableConfig $value = /* values here */
 ```
 

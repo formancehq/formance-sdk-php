@@ -14,10 +14,10 @@ class Cursor
     /**
      * $data
      *
-     * @var array<\formance\stack\Models\Reconciliation\Policy> $data
+     * @var array<\formance\stack\Models\Reconciliation\AlertEvent> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Reconciliation\Policy>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\formance\stack\Models\Reconciliation\AlertEvent>')]
     public array $data;
 
     /**
@@ -51,7 +51,7 @@ class Cursor
     public ?string $previous = null;
 
     /**
-     * @param  array<\formance\stack\Models\Reconciliation\Policy>  $data
+     * @param  array<\formance\stack\Models\Reconciliation\AlertEvent>  $data
      * @param  bool  $hasMore
      * @param  int  $pageSize
      * @param  ?string  $next

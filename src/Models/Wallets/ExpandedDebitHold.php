@@ -72,6 +72,7 @@ class ExpandedDebitHold
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Wallets\LedgerAccountSubject|\formance\stack\Models\Wallets\WalletSubject|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['ACCOUNT' => '\formance\stack\Models\Wallets\LedgerAccountSubject', 'WALLET' => '\formance\stack\Models\Wallets\WalletSubject'])]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 
