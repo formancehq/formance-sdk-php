@@ -27,6 +27,7 @@
 * [getAccount](#getaccount) - Get an account by ID
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
+* [getConnectorCapabilities](#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [getConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
 * [getConversion](#getconversion) - Get a single conversion by its Formance ID
@@ -43,6 +44,7 @@
 * [installConnector](#installconnector) - Install a connector
 * [listAccounts](#listaccounts) - List all accounts
 * [listBankAccounts](#listbankaccounts) - List all bank accounts
+* [listConnectorCapabilities](#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [listConnectorConfigs](#listconnectorconfigs) - List all connector configurations
 * [listConnectorScheduleInstances](#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](#listconnectorschedules) - List all connector schedules
@@ -1154,6 +1156,62 @@ if ($response->v3GetBankAccountResponse !== null) {
 | \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
 | Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
 
+## getConnectorCapabilities
+
+Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3GetConnectorCapabilities" method="get" path="/api/payments/v3/connectors/{connectorID}/capabilities" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Operations;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Operations\V3GetConnectorCapabilitiesRequest(
+    connectorID: '<id>',
+);
+
+$response = $sdk->payments->v3->getConnectorCapabilities(
+    request: $request
+);
+
+if ($response->v3ConnectorCapabilityResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                   | [Operations\V3GetConnectorCapabilitiesRequest](../../Models/Operations/V3GetConnectorCapabilitiesRequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+
+### Response
+
+**[?Operations\V3GetConnectorCapabilitiesResponse](../../Models/Operations/V3GetConnectorCapabilitiesResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
+
 ## getConnectorConfig
 
 Get a connector configuration by ID
@@ -2045,6 +2103,59 @@ if ($response->v3BankAccountsCursorResponse !== null) {
 ### Response
 
 **[?Operations\V3ListBankAccountsResponse](../../Models/Operations/V3ListBankAccountsResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| \formance\stack\Models\Payments\V3ErrorResponse | default                                         | application/json                                |
+| Errors\SDKException                             | 4XX, 5XX                                        | \*/\*                                           |
+
+## listConnectorCapabilities
+
+Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v3ListConnectorCapabilities" method="get" path="/api/payments/v3/connectors/capabilities" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->payments->v3->listConnectorCapabilities(
+    request: $request
+);
+
+if ($response->v3ConnectorCapabilitiesResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                     | [Operations\V3ListConnectorCapabilitiesRequest](../../Models/Operations/V3ListConnectorCapabilitiesRequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+
+### Response
+
+**[?Operations\V3ListConnectorCapabilitiesResponse](../../Models/Operations/V3ListConnectorCapabilitiesResponse.md)**
 
 ### Errors
 

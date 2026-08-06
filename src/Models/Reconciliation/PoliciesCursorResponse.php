@@ -14,17 +14,17 @@ class PoliciesCursorResponse
 {
     /**
      *
-     * @var \formance\stack\Models\Reconciliation\Cursor $cursor
+     * @var \formance\stack\Models\Reconciliation\PoliciesCursorResponseCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\Cursor')]
-    public Cursor $cursor;
+    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Reconciliation\PoliciesCursorResponseCursor')]
+    public PoliciesCursorResponseCursor $cursor;
 
     /**
-     * @param  \formance\stack\Models\Reconciliation\Cursor  $cursor
+     * @param  \formance\stack\Models\Reconciliation\PoliciesCursorResponseCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(Cursor $cursor)
+    public function __construct(PoliciesCursorResponseCursor $cursor)
     {
         $this->cursor = $cursor;
     }

@@ -23,8 +23,10 @@
 * [getAccount](#getaccount) - Get account by its address
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getExporterState](#getexporterstate) - Get exporter state
+* [getInfo](#getinfo) - Show server information
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
+* [getMetrics](#getmetrics) - Read in memory metrics
 * [getPipelineState](#getpipelinestate) - Get pipeline state
 * [getSchema](#getschema) - Get a schema for a ledger by version
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
@@ -316,7 +318,7 @@ $sdk = stack\SDK::builder()
 
 $request = new Operations\V2CreateBulkRequest(
     requestBody: [
-        new \formance\stack\Models\Ledger\V2BulkElementCreateTransaction(
+        new \formance\stack\Models\Ledger\V2BulkElementRevertTransaction(
             action: 'REVERT_TRANSACTION',
         ),
     ],
@@ -1141,6 +1143,52 @@ if ($response->v2GetExporterStateResponse !== null) {
 | \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
 | Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
 
+## getInfo
+
+Show server information
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->ledger->v2->getInfo(
+
+);
+
+if ($response->v2ConfigInfo !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\V2GetInfoResponse](../../Models/Operations/V2GetInfoResponse.md)**
+
+### Errors
+
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
+
 ## getLedger
 
 Get a ledger
@@ -1243,6 +1291,52 @@ if ($response->v2LedgerInfoResponse !== null) {
 ### Response
 
 **[?Operations\V2GetLedgerInfoResponse](../../Models/Operations/V2GetLedgerInfoResponse.md)**
+
+### Errors
+
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| \formance\stack\Models\Ledger\V2ErrorResponseError | default                                            | application/json                                   |
+| Errors\SDKException                                | 4XX, 5XX                                           | \*/\*                                              |
+
+## getMetrics
+
+Read in memory metrics
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use formance\stack;
+use formance\stack\Models\Shared;
+
+$sdk = stack\SDK::builder()
+    ->setSecurity(
+        new Shared\Security(
+            clientID: '<YOUR_CLIENT_ID_HERE>',
+            clientSecret: '<YOUR_CLIENT_SECRET_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->ledger->v2->getMetrics(
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetMetricsResponse](../../Models/Operations/GetMetricsResponse.md)**
 
 ### Errors
 

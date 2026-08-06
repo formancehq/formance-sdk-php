@@ -49,6 +49,7 @@ class Hold
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination')]
     #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Orchestration\LedgerAccountSubject|\formance\stack\Models\Orchestration\WalletSubject|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'type', map: ['ACCOUNT' => '\formance\stack\Models\Orchestration\LedgerAccountSubject', 'WALLET' => '\formance\stack\Models\Orchestration\WalletSubject'])]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public LedgerAccountSubject|WalletSubject|null $destination = null;
 

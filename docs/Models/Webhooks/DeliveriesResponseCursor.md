@@ -1,0 +1,11 @@
+# DeliveriesResponseCursor
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `data`                                                                               | array<[\formance\stack\Models\Webhooks\Delivery](../../Models/webhooks/Delivery.md)> | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `hasMore`                                                                            | *bool*                                                                               | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `next`                                                                               | *?string*                                                                            | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `pageSize`                                                                           | *?int*                                                                               | :heavy_minus_sign:                                                                   | N/A                                                                                  |

@@ -26,12 +26,13 @@ class V3PaymentAdjustment
     public string $id;
 
     /**
+     * $raw
      *
-     * @var \formance\stack\Models\Payments\V3PaymentAdjustmentRaw $raw
+     * @var array<string, mixed> $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3PaymentAdjustmentRaw')]
-    public V3PaymentAdjustmentRaw $raw;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $raw;
 
     /**
      *
@@ -77,7 +78,7 @@ class V3PaymentAdjustment
     /**
      * @param  \DateTime  $createdAt
      * @param  string  $id
-     * @param  \formance\stack\Models\Payments\V3PaymentAdjustmentRaw  $raw
+     * @param  array<string, mixed>  $raw
      * @param  string  $reference
      * @param  \formance\stack\Models\Payments\V3PaymentStatusEnum  $status
      * @param  ?\Brick\Math\BigInteger  $amount
@@ -85,7 +86,7 @@ class V3PaymentAdjustment
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, V3PaymentAdjustmentRaw $raw, string $reference, V3PaymentStatusEnum $status, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?array $metadata = null)
+    public function __construct(\DateTime $createdAt, string $id, array $raw, string $reference, V3PaymentStatusEnum $status, ?\Brick\Math\BigInteger $amount = null, ?string $asset = null, ?array $metadata = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

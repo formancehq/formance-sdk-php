@@ -40,12 +40,13 @@ class V3Account
     public string $provider;
 
     /**
+     * $raw
      *
-     * @var \formance\stack\Models\Payments\V3AccountRaw $raw
+     * @var array<string, mixed> $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3AccountRaw')]
-    public V3AccountRaw $raw;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $raw;
 
     /**
      *
@@ -102,7 +103,7 @@ class V3Account
      * @param  \DateTime  $createdAt
      * @param  string  $id
      * @param  string  $provider
-     * @param  \formance\stack\Models\Payments\V3AccountRaw  $raw
+     * @param  array<string, mixed>  $raw
      * @param  string  $reference
      * @param  \formance\stack\Models\Payments\V3AccountTypeEnum  $type
      * @param  ?\formance\stack\Models\Payments\V3ConnectorBase  $connector
@@ -111,7 +112,7 @@ class V3Account
      * @param  ?string  $name
      * @phpstan-pure
      */
-    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, V3AccountRaw $raw, string $reference, V3AccountTypeEnum $type, ?V3ConnectorBase $connector = null, ?string $defaultAsset = null, ?array $metadata = null, ?string $name = null)
+    public function __construct(string $connectorID, \DateTime $createdAt, string $id, string $provider, array $raw, string $reference, V3AccountTypeEnum $type, ?V3ConnectorBase $connector = null, ?string $defaultAsset = null, ?array $metadata = null, ?string $name = null)
     {
         $this->connectorID = $connectorID;
         $this->createdAt = $createdAt;

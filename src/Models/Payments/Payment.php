@@ -126,12 +126,13 @@ class Payment
     public ?Connector $provider = null;
 
     /**
+     * $raw
      *
-     * @var ?\formance\stack\Models\Payments\PaymentRaw $raw
+     * @var ?array<string, mixed> $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentRaw|null')]
-    public ?PaymentRaw $raw;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    public ?array $raw;
 
     /**
      * @param  array<\formance\stack\Models\Payments\PaymentAdjustment>  $adjustments
@@ -149,10 +150,10 @@ class Payment
      * @param  \formance\stack\Models\Payments\PaymentType  $type
      * @param  ?array<string, string>  $metadata
      * @param  ?\formance\stack\Models\Payments\Connector  $provider
-     * @param  ?\formance\stack\Models\Payments\PaymentRaw  $raw
+     * @param  ?array<string, mixed>  $raw
      * @phpstan-pure
      */
-    public function __construct(array $adjustments, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, PaymentScheme $scheme, string $sourceAccountID, PaymentStatus $status, PaymentType $type, ?array $metadata = null, ?Connector $provider = null, ?PaymentRaw $raw = null)
+    public function __construct(array $adjustments, \Brick\Math\BigInteger $amount, string $asset, string $connectorID, \DateTime $createdAt, string $destinationAccountID, string $id, \Brick\Math\BigInteger $initialAmount, string $reference, PaymentScheme $scheme, string $sourceAccountID, PaymentStatus $status, PaymentType $type, ?array $metadata = null, ?Connector $provider = null, ?array $raw = null)
     {
         $this->adjustments = $adjustments;
         $this->amount = $amount;

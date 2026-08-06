@@ -14,4 +14,5 @@ enum ErrorsEnum: string
     case Internal = 'INTERNAL';
     case Validation = 'VALIDATION';
     case NotFound = 'NOT_FOUND';
+    case Conflict = 'CONFLICT';
 }

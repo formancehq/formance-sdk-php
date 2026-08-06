@@ -97,12 +97,13 @@ class Account
     public ?string $provider = null;
 
     /**
+     * $raw
      *
-     * @var ?\formance\stack\Models\Payments\Raw $raw
+     * @var ?array<string, mixed> $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\Raw|null')]
-    public ?Raw $raw;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    public ?array $raw;
 
     /**
      * @param  string  $accountName
@@ -116,10 +117,10 @@ class Account
      * @param  ?array<string, string>  $metadata
      * @param  ?array<string>  $pools
      * @param  ?string  $provider
-     * @param  ?\formance\stack\Models\Payments\Raw  $raw
+     * @param  ?array<string, mixed>  $raw
      * @phpstan-pure
      */
-    public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, AccountType $type, ?array $metadata = null, ?array $pools = null, ?string $provider = null, ?Raw $raw = null)
+    public function __construct(string $accountName, string $connectorID, \DateTime $createdAt, string $defaultAsset, string $defaultCurrency, string $id, string $reference, AccountType $type, ?array $metadata = null, ?array $pools = null, ?string $provider = null, ?array $raw = null)
     {
         $this->accountName = $accountName;
         $this->connectorID = $connectorID;

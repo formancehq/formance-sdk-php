@@ -9,21 +9,21 @@ sources:
             - main
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:c85e21f1f000f0409f58d4ace7aaac0d708f4577a19b638347b41dd37e19f317
-        sourceBlobDigest: sha256:24159a4c5e03fd9ebc0727cecb2bff5ed6695d519aeb3fe80346af6ce1fabcfa
+        sourceRevisionDigest: sha256:4762702223dc48cb4db66a1e7269e0393bedf4c45e094ee0b8b53f6506968f63
+        sourceBlobDigest: sha256:c736de177829b3ccb62d8f5bbcb9ca198618a14d29439958819066d27b48fb83
         tags:
             - latest
 targets:
     formance-sdk-php:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:c85e21f1f000f0409f58d4ace7aaac0d708f4577a19b638347b41dd37e19f317
-        sourceBlobDigest: sha256:24159a4c5e03fd9ebc0727cecb2bff5ed6695d519aeb3fe80346af6ce1fabcfa
+        sourceRevisionDigest: sha256:4762702223dc48cb4db66a1e7269e0393bedf4c45e094ee0b8b53f6506968f63
+        sourceBlobDigest: sha256:c736de177829b3ccb62d8f5bbcb9ca198618a14d29439958819066d27b48fb83
         codeSamplesNamespace: stacks-source-php-code-samples
-        codeSamplesRevisionDigest: sha256:9cb8021ed07c7d7c204c1b418104005386a3378117fbcc013f368f245057e7ef
+        codeSamplesRevisionDigest: sha256:03e9969a98b9952acab2ff64ad14602f2ac9d428c1d5bb33f88148680437f440
 workflow:
     workflowVersion: 1.0.0
-    speakeasyVersion: latest
+    speakeasyVersion: 1.770.0
     sources:
         stacks-source:
             inputs:

@@ -29,14 +29,6 @@ class ConfigUser
 
     /**
      *
-     * @var ?string $name
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $name = null;
-
-    /**
-     *
      * @var ?string $secret
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('secret')]
@@ -46,15 +38,13 @@ class ConfigUser
     /**
      * @param  string  $endpoint
      * @param  array<string>  $eventTypes
-     * @param  ?string  $name
      * @param  ?string  $secret
      * @phpstan-pure
      */
-    public function __construct(string $endpoint, array $eventTypes, ?string $name = null, ?string $secret = null)
+    public function __construct(string $endpoint, array $eventTypes, ?string $secret = null)
     {
         $this->endpoint = $endpoint;
         $this->eventTypes = $eventTypes;
-        $this->name = $name;
         $this->secret = $secret;
     }
 }

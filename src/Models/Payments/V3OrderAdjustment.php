@@ -65,12 +65,12 @@ class V3OrderAdjustment
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      *
-     * @var ?\formance\stack\Models\Payments\V3OrderAdjustmentRaw $raw
+     * @var ?array<string, mixed> $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\V3OrderAdjustmentRaw|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V3OrderAdjustmentRaw $raw = null;
+    public ?array $raw = null;
 
     /**
      * Base asset filled at this observation, at the base asset's precision.
@@ -114,14 +114,14 @@ class V3OrderAdjustment
      * @param  string  $id
      * @param  string  $reference
      * @param  \formance\stack\Models\Payments\V3OrderStatusEnum  $status
-     * @param  ?\formance\stack\Models\Payments\V3OrderAdjustmentRaw  $raw
+     * @param  ?array<string, mixed>  $raw
      * @param  ?\Brick\Math\BigInteger  $baseQuantityFilled
      * @param  ?\Brick\Math\BigInteger  $fee
      * @param  ?string  $feeAsset
      * @param  ?array<string, string>  $metadata
      * @phpstan-pure
      */
-    public function __construct(\DateTime $createdAt, string $id, string $reference, V3OrderStatusEnum $status, ?V3OrderAdjustmentRaw $raw = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null)
+    public function __construct(\DateTime $createdAt, string $id, string $reference, V3OrderStatusEnum $status, ?array $raw = null, ?\Brick\Math\BigInteger $baseQuantityFilled = null, ?\Brick\Math\BigInteger $fee = null, ?string $feeAsset = null, ?array $metadata = null)
     {
         $this->createdAt = $createdAt;
         $this->id = $id;

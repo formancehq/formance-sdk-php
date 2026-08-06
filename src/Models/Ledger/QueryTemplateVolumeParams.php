@@ -69,15 +69,6 @@ class QueryTemplateVolumeParams
     public ?\DateTime $pit = null;
 
     /**
-     *
-     * @var ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueLedgerResource $resource
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueLedgerResource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?V2QueryParamsSchemasTrueLedgerResource $resource = null;
-
-    /**
      * Sort results using a field name and order (ascending or descending).
      *
      * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
@@ -90,17 +81,24 @@ class QueryTemplateVolumeParams
     public ?string $sort = null;
 
     /**
+     *
+     * @var string $resource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('resource')]
+    public string $resource;
+
+    /**
+     * @param  string  $resource
      * @param  ?string  $cursor
      * @param  ?string  $expand
      * @param  ?int  $groupBy
      * @param  ?bool  $insertionDate
      * @param  ?int  $pageSize
      * @param  ?\DateTime  $pit
-     * @param  ?\formance\stack\Models\Ledger\V2QueryParamsSchemasTrueLedgerResource  $resource
      * @param  ?string  $sort
      * @phpstan-pure
      */
-    public function __construct(?string $cursor = null, ?string $expand = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $pit = null, ?V2QueryParamsSchemasTrueLedgerResource $resource = null, ?string $sort = null)
+    public function __construct(?string $cursor = null, ?string $expand = null, ?int $groupBy = null, ?bool $insertionDate = null, ?int $pageSize = null, ?\DateTime $pit = null, ?string $sort = null, string $resource = 'volumes')
     {
         $this->cursor = $cursor;
         $this->expand = $expand;
@@ -108,7 +106,7 @@ class QueryTemplateVolumeParams
         $this->insertionDate = $insertionDate;
         $this->pageSize = $pageSize;
         $this->pit = $pit;
-        $this->resource = $resource;
         $this->sort = $sort;
+        $this->resource = $resource;
     }
 }

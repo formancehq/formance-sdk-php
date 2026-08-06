@@ -26,12 +26,13 @@ class PaymentAdjustment
     public \DateTime $createdAt;
 
     /**
+     * $raw
      *
-     * @var \formance\stack\Models\Payments\PaymentAdjustmentRaw $raw
+     * @var array<string, mixed> $raw
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('raw')]
-    #[\Speakeasy\Serializer\Annotation\Type('\formance\stack\Models\Payments\PaymentAdjustmentRaw')]
-    public PaymentAdjustmentRaw $raw;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $raw;
 
     /**
      *
@@ -51,12 +52,12 @@ class PaymentAdjustment
     /**
      * @param  \Brick\Math\BigInteger  $amount
      * @param  \DateTime  $createdAt
-     * @param  \formance\stack\Models\Payments\PaymentAdjustmentRaw  $raw
+     * @param  array<string, mixed>  $raw
      * @param  string  $reference
      * @param  \formance\stack\Models\Payments\PaymentStatus  $status
      * @phpstan-pure
      */
-    public function __construct(\Brick\Math\BigInteger $amount, \DateTime $createdAt, PaymentAdjustmentRaw $raw, string $reference, PaymentStatus $status)
+    public function __construct(\Brick\Math\BigInteger $amount, \DateTime $createdAt, array $raw, string $reference, PaymentStatus $status)
     {
         $this->amount = $amount;
         $this->createdAt = $createdAt;
