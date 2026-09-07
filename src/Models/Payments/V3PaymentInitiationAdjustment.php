@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentInitiationAdjustment
 {
     /**
+     * When the adjustment was recorded
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +20,7 @@ class V3PaymentInitiationAdjustment
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the adjustment
      *
      * @var string $id
      */
@@ -26,6 +28,7 @@ class V3PaymentInitiationAdjustment
     public string $id;
 
     /**
+     * Where a payment initiation stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum $status
      */
@@ -34,6 +37,7 @@ class V3PaymentInitiationAdjustment
     public V3PaymentInitiationStatusEnum $status;
 
     /**
+     * Amount carried by this adjustment
      *
      * @var ?\Brick\Math\BigInteger $amount
      */
@@ -42,6 +46,7 @@ class V3PaymentInitiationAdjustment
     public ?\Brick\Math\BigInteger $amount = null;
 
     /**
+     * Asset the adjustment is denominated in
      *
      * @var ?string $asset
      */
@@ -50,6 +55,7 @@ class V3PaymentInitiationAdjustment
     public ?string $asset = null;
 
     /**
+     * Why this step failed, absent when it succeeded
      *
      * @var ?string $error
      */
@@ -58,7 +64,7 @@ class V3PaymentInitiationAdjustment
     public ?string $error = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

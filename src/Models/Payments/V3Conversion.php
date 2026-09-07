@@ -152,7 +152,7 @@ class V3Conversion
     public ?string $feeAsset = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

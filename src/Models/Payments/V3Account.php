@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3Account - An account held at a payment provider, surfaced through a connector */
 class V3Account
 {
     /**
+     * Identifier of the connector the account belongs to
      *
      * @var string $connectorID
      */
@@ -19,6 +21,7 @@ class V3Account
     public string $connectorID;
 
     /**
+     * When the account was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -26,6 +29,7 @@ class V3Account
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the account within Formance
      *
      * @var string $id
      */
@@ -33,6 +37,7 @@ class V3Account
     public string $id;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var string $provider
      */
@@ -40,7 +45,7 @@ class V3Account
     public string $provider;
 
     /**
-     * $raw
+     * The provider's original payload, passed through untouched
      *
      * @var array<string, mixed> $raw
      */
@@ -49,6 +54,7 @@ class V3Account
     public array $raw;
 
     /**
+     * Identifier the account carries at the provider
      *
      * @var string $reference
      */
@@ -56,6 +62,7 @@ class V3Account
     public string $reference;
 
     /**
+     * Whether an account is internal to the provider or belongs to an external party
      *
      * @var \formance\stack\Models\Payments\V3AccountTypeEnum $type
      */
@@ -64,6 +71,7 @@ class V3Account
     public V3AccountTypeEnum $type;
 
     /**
+     * Summary of a connector, without its configuration
      *
      * @var ?\formance\stack\Models\Payments\V3ConnectorBase $connector
      */
@@ -73,6 +81,7 @@ class V3Account
     public ?V3ConnectorBase $connector = null;
 
     /**
+     * Asset the account is denominated in by default
      *
      * @var ?string $defaultAsset
      */
@@ -81,7 +90,7 @@ class V3Account
     public ?string $defaultAsset = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */
@@ -91,6 +100,7 @@ class V3Account
     public ?array $metadata = null;
 
     /**
+     * Human-readable name of the account
      *
      * @var ?string $name
      */

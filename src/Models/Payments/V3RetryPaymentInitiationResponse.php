@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3RetryPaymentInitiationResponse
 {
     /**
+     * The task tracking the retry, which completes asynchronously
      *
      * @var \formance\stack\Models\Payments\V3RetryPaymentInitiationResponseData $data
      */

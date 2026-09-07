@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3PaymentServiceUserConnectionsCursorResponseCursor - Paginated cursor wrapping the user's open banking connections */
 class V3PaymentServiceUserConnectionsCursorResponseCursor
 {
     /**

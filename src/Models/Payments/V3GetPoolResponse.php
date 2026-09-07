@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3GetPoolResponse
 {
     /**
+     * A named group of accounts whose balances are aggregated together
      *
      * @var \formance\stack\Models\Payments\V3Pool $data
      */

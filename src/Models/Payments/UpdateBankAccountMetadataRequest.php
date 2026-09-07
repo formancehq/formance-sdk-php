@@ -12,7 +12,7 @@ namespace formance\stack\Models\Payments;
 class UpdateBankAccountMetadataRequest
 {
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the bank account
      *
      * @var ?array<string, string> $metadata
      */

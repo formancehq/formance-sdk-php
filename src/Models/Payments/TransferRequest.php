@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class TransferRequest
 {
     /**
+     * Amount to transfer, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class TransferRequest
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the transfer is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class TransferRequest
     public string $asset;
 
     /**
+     * Provider-side account receiving the funds
      *
      * @var string $destination
      */
@@ -33,6 +36,7 @@ class TransferRequest
     public string $destination;
 
     /**
+     * Provider-side account the funds leave. Defaults to the connector's main account
      *
      * @var ?string $source
      */

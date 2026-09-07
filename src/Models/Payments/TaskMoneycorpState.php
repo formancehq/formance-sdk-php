@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** TaskMoneycorpState - Internal progress state the task resumes from */
 class TaskMoneycorpState
 {
 

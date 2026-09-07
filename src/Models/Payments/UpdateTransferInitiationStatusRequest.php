@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class UpdateTransferInitiationStatusRequest
 {
     /**
+     * Whether to approve or reject the pending transfer
      *
      * @var \formance\stack\Models\Payments\Status $status
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3BankAccountRelatedAccount
 {
     /**
+     * Identifier of the provider-side account
      *
      * @var string $accountID
      */
@@ -19,6 +20,7 @@ class V3BankAccountRelatedAccount
     public string $accountID;
 
     /**
+     * When the bank account was forwarded to this provider
      *
      * @var \DateTime $createdAt
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserUpdateLinkRequest
 {
     /**
+     * URL to send the user back to once the provider's flow finishes
      *
      * @var string $clientRedirectURL
      */

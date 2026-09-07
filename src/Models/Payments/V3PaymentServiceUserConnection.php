@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserConnection
 {
     /**
+     * Identifier of the open banking connection at the provider
      *
      * @var string $connectionID
      */
@@ -19,6 +20,7 @@ class V3PaymentServiceUserConnection
     public string $connectionID;
 
     /**
+     * Identifier of the connector holding the connection
      *
      * @var string $connectorID
      */
@@ -26,6 +28,7 @@ class V3PaymentServiceUserConnection
     public string $connectorID;
 
     /**
+     * When the connection was established
      *
      * @var \DateTime $createdAt
      */
@@ -33,6 +36,7 @@ class V3PaymentServiceUserConnection
     public \DateTime $createdAt;
 
     /**
+     * When data was last refreshed over this connection
      *
      * @var \DateTime $dataUpdatedAt
      */
@@ -40,6 +44,7 @@ class V3PaymentServiceUserConnection
     public \DateTime $dataUpdatedAt;
 
     /**
+     * Whether an open banking connection is still usable or needs the user to reconnect
      *
      * @var \formance\stack\Models\Payments\V3ConnectionStatusEnum $status
      */
@@ -48,6 +53,7 @@ class V3PaymentServiceUserConnection
     public V3ConnectionStatusEnum $status;
 
     /**
+     * Why the connection is failing, absent while it is healthy
      *
      * @var ?string $error
      */
@@ -56,7 +62,7 @@ class V3PaymentServiceUserConnection
     public ?string $error = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

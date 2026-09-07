@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ConnectorSchedulesCursorResponseCursor - Paginated cursor wrapping the connector's schedules */
 class V3ConnectorSchedulesCursorResponseCursor
 {
     /**

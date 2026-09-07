@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Config - The connector's configuration, whose shape depends on the provider */
 class Config
 {
 

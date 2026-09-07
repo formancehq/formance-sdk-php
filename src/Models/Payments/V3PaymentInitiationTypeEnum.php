@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Kind of movement a payment initiation performs, such as a transfer or a payout */
 enum V3PaymentInitiationTypeEnum: string
 {
     case Unknown = 'UNKNOWN';

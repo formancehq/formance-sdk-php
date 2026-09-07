@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class WiseConfig
 {
     /**
+     * API key issued by Wise, used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -19,6 +20,7 @@ class WiseConfig
     public string $apiKey;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -37,6 +39,7 @@ class WiseConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

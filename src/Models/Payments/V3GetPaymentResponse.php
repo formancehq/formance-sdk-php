@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3GetPaymentResponse
 {
     /**
+     * A payment observed at a provider and surfaced through a connector
      *
      * @var \formance\stack\Models\Payments\V3Payment $data
      */

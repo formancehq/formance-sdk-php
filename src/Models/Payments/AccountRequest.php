@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class AccountRequest
 {
     /**
+     * Identifier of the connector the account belongs to
      *
      * @var string $connectorID
      */
@@ -19,6 +20,7 @@ class AccountRequest
     public string $connectorID;
 
     /**
+     * When the account was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -26,6 +28,7 @@ class AccountRequest
     public \DateTime $createdAt;
 
     /**
+     * Identifier the account carries at the provider
      *
      * @var string $reference
      */
@@ -33,6 +36,7 @@ class AccountRequest
     public string $reference;
 
     /**
+     * Whether an account is internal to the provider or belongs to an external party
      *
      * @var \formance\stack\Models\Payments\AccountType $type
      */
@@ -41,6 +45,7 @@ class AccountRequest
     public AccountType $type;
 
     /**
+     * Human-readable name of the account
      *
      * @var ?string $accountName
      */
@@ -49,6 +54,7 @@ class AccountRequest
     public ?string $accountName = null;
 
     /**
+     * Asset the account is denominated in by default
      *
      * @var ?string $defaultAsset
      */
@@ -57,7 +63,7 @@ class AccountRequest
     public ?string $defaultAsset = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the account
      *
      * @var ?array<string, string> $metadata
      */

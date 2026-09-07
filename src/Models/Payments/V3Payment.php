@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3Payment - A payment observed at a provider and surfaced through a connector */
 class V3Payment
 {
     /**
+     * Current amount of the payment after applying its adjustments
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +21,7 @@ class V3Payment
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the payment is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +29,7 @@ class V3Payment
     public string $asset;
 
     /**
+     * Identifier of the connector the payment belongs to
      *
      * @var string $connectorID
      */
@@ -33,6 +37,7 @@ class V3Payment
     public string $connectorID;
 
     /**
+     * When the payment was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +45,7 @@ class V3Payment
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the payment within Formance
      *
      * @var string $id
      */
@@ -47,6 +53,7 @@ class V3Payment
     public string $id;
 
     /**
+     * Amount the payment was created with, before any adjustment
      *
      * @var \Brick\Math\BigInteger $initialAmount
      */
@@ -54,6 +61,7 @@ class V3Payment
     public \Brick\Math\BigInteger $initialAmount;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var string $provider
      */
@@ -61,6 +69,7 @@ class V3Payment
     public string $provider;
 
     /**
+     * Identifier the payment carries at the provider
      *
      * @var string $reference
      */
@@ -68,6 +77,7 @@ class V3Payment
     public string $reference;
 
     /**
+     * Payment scheme or rail the payment travelled over
      *
      * @var string $scheme
      */
@@ -75,6 +85,7 @@ class V3Payment
     public string $scheme;
 
     /**
+     * Where a payment stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\V3PaymentStatusEnum $status
      */
@@ -83,6 +94,7 @@ class V3Payment
     public V3PaymentStatusEnum $status;
 
     /**
+     * Direction of a payment
      *
      * @var \formance\stack\Models\Payments\V3PaymentTypeEnum $type
      */
@@ -91,7 +103,7 @@ class V3Payment
     public V3PaymentTypeEnum $type;
 
     /**
-     * $adjustments
+     * Successive changes to the payment's amount and status, newest first
      *
      * @var ?array<\formance\stack\Models\Payments\V3PaymentAdjustment> $adjustments
      */
@@ -101,6 +113,7 @@ class V3Payment
     public ?array $adjustments = null;
 
     /**
+     * Identifier of the account the funds reached
      *
      * @var ?string $destinationAccountID
      */
@@ -109,7 +122,7 @@ class V3Payment
     public ?string $destinationAccountID = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */
@@ -119,6 +132,7 @@ class V3Payment
     public ?array $metadata = null;
 
     /**
+     * Identifier of the account the funds left
      *
      * @var ?string $sourceAccountID
      */

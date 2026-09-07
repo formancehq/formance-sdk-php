@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class AddAccountToPoolRequest
 {
     /**
+     * Identifier of the account to add to the pool
      *
      * @var string $accountID
      */

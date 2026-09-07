@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class TasksCursor
 {
     /**
+     * Paginated cursor wrapping the list of tasks
      *
      * @var \formance\stack\Models\Payments\TasksCursorCursor $cursor
      */

@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ConnectorBase - Summary of a connector, without its configuration */
 class V3ConnectorBase
 {
     /**
+     * When the connector was installed
      *
      * @var ?\DateTime $createdAt
      */
@@ -20,6 +22,7 @@ class V3ConnectorBase
     public ?\DateTime $createdAt = null;
 
     /**
+     * Unique identifier of the connector
      *
      * @var ?string $id
      */
@@ -28,6 +31,7 @@ class V3ConnectorBase
     public ?string $id = null;
 
     /**
+     * Human-readable name of the connector instance
      *
      * @var ?string $name
      */
@@ -36,6 +40,7 @@ class V3ConnectorBase
     public ?string $name = null;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var ?string $provider
      */
@@ -44,6 +49,7 @@ class V3ConnectorBase
     public ?string $provider = null;
 
     /**
+     * Stable reference identifying the connector
      *
      * @var ?string $reference
      */

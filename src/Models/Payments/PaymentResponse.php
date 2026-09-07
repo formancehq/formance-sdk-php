@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class PaymentResponse
 {
     /**
+     * A payment observed at a provider and surfaced through a connector
      *
      * @var \formance\stack\Models\Payments\Payment $data
      */

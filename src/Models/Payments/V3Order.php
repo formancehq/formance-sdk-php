@@ -250,7 +250,7 @@ class V3Order
     public ?\Brick\Math\BigInteger $limitPrice = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserDeleteConnectorResponse
 {
     /**
+     * The task tracking the deletion, which completes asynchronously
      *
      * @var \formance\stack\Models\Payments\V3PaymentServiceUserDeleteConnectorResponseData $data
      */

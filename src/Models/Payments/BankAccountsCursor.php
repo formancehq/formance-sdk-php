@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class BankAccountsCursor
 {
     /**
+     * Paginated cursor wrapping the list of bank accounts
      *
      * @var \formance\stack\Models\Payments\BankAccountsCursorCursor $cursor
      */

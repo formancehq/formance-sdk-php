@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserLinkAttempt
 {
     /**
+     * URL the user is sent back to once the provider's flow finishes
      *
      * @var string $clientRedirectURL
      */
@@ -19,6 +20,7 @@ class V3PaymentServiceUserLinkAttempt
     public string $clientRedirectURL;
 
     /**
+     * Identifier of the connector the user is linking to
      *
      * @var string $connectorID
      */
@@ -26,6 +28,7 @@ class V3PaymentServiceUserLinkAttempt
     public string $connectorID;
 
     /**
+     * When the attempt was started
      *
      * @var \DateTime $createdAt
      */
@@ -33,6 +36,7 @@ class V3PaymentServiceUserLinkAttempt
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the link attempt
      *
      * @var string $id
      */
@@ -40,6 +44,7 @@ class V3PaymentServiceUserLinkAttempt
     public string $id;
 
     /**
+     * Identifier of the payment service user the attempt belongs to
      *
      * @var string $psuID
      */
@@ -47,6 +52,7 @@ class V3PaymentServiceUserLinkAttempt
     public string $psuID;
 
     /**
+     * Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error
      *
      * @var \formance\stack\Models\Payments\V3OpenBankingConnectionAttemptStatusEnum $status
      */
@@ -55,6 +61,7 @@ class V3PaymentServiceUserLinkAttempt
     public V3OpenBankingConnectionAttemptStatusEnum $status;
 
     /**
+     * Why the attempt exited, absent when it completed
      *
      * @var ?string $error
      */

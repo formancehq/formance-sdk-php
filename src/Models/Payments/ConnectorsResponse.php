@@ -13,7 +13,7 @@ namespace formance\stack\Models\Payments;
 class ConnectorsResponse
 {
     /**
-     * $data
+     * The connectors installed on this stack
      *
      * @var array<\formance\stack\Models\Payments\ConnectorsResponseData> $data
      */

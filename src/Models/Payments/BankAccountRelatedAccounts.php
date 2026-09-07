@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class BankAccountRelatedAccounts
 {
     /**
+     * Identifier of the provider-side account
      *
      * @var string $accountID
      */
@@ -19,6 +20,7 @@ class BankAccountRelatedAccounts
     public string $accountID;
 
     /**
+     * Identifier of the connector holding the provider-side account
      *
      * @var string $connectorID
      */
@@ -26,6 +28,7 @@ class BankAccountRelatedAccounts
     public string $connectorID;
 
     /**
+     * When the bank account was forwarded to this provider
      *
      * @var \DateTime $createdAt
      */
@@ -33,6 +36,7 @@ class BankAccountRelatedAccounts
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the link between the bank account and the provider
      *
      * @var string $id
      */
@@ -40,6 +44,7 @@ class BankAccountRelatedAccounts
     public string $id;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var string $provider
      */

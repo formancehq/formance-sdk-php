@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** The payment provider behind a connector */
 enum Connector: string
 {
     case Stripe = 'STRIPE';

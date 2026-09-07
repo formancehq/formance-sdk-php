@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3GetPaymentInitiationResponse
 {
     /**
+     * A payment Formance asked a connector to execute
      *
      * @var \formance\stack\Models\Payments\V3PaymentInitiation $data
      */

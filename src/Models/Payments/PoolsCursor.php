@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class PoolsCursor
 {
     /**
+     * Paginated cursor wrapping the list of pools
      *
      * @var \formance\stack\Models\Payments\PoolsCursorCursor $cursor
      */

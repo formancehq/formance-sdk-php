@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ConnectorScheduleResponse
 {
     /**
+     * A recurring job a connector runs to fetch data from its provider
      *
      * @var \formance\stack\Models\Payments\V3Schedule $data
      */

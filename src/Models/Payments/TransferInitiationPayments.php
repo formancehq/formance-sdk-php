@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class TransferInitiationPayments
 {
     /**
+     * When the payment was produced
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +20,7 @@ class TransferInitiationPayments
     public \DateTime $createdAt;
 
     /**
+     * Identifier of the payment produced by the initiation
      *
      * @var string $paymentID
      */
@@ -26,6 +28,7 @@ class TransferInitiationPayments
     public string $paymentID;
 
     /**
+     * Status of a payment as reported by the legacy payments API
      *
      * @var \formance\stack\Models\Payments\LegacyPaymentStatus $status
      */
@@ -34,6 +37,7 @@ class TransferInitiationPayments
     public LegacyPaymentStatus $status;
 
     /**
+     * Why the payment failed, absent when it succeeded
      *
      * @var ?string $error
      */

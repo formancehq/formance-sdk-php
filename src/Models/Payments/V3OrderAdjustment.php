@@ -100,7 +100,7 @@ class V3OrderAdjustment
     public ?string $feeAsset = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

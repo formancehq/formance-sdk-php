@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Where a task stands, from processing through to succeeded or failed */
 enum V3TaskStatusEnum: string
 {
     case Processing = 'PROCESSING';

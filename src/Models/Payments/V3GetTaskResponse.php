@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3GetTaskResponse
 {
     /**
+     * An asynchronous unit of work, tracking an operation that completes in the background
      *
      * @var \formance\stack\Models\Payments\V3Task $data
      */

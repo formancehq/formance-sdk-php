@@ -26,6 +26,7 @@ class ConnectorsResponseData
     public string $name;
 
     /**
+     * The payment provider behind a connector
      *
      * @var \formance\stack\Models\Payments\Connector $provider
      */

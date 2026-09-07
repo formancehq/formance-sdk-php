@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class AccountResponse
 {
     /**
+     * An account held at a payment provider, surfaced through a connector
      *
      * @var \formance\stack\Models\Payments\Account $data
      */

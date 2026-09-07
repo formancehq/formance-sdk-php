@@ -9,9 +9,14 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Machine-readable error code identifying the failure */
 enum PaymentsErrorsEnum: string
 {
     case Internal = 'INTERNAL';
     case Validation = 'VALIDATION';
+    case InvalidId = 'INVALID_ID';
+    case MissingOrInvalidBody = 'MISSING_OR_INVALID_BODY';
+    case Conflict = 'CONFLICT';
+    case ConnectorCapabilityNotSupported = 'CONNECTOR_CAPABILITY_NOT_SUPPORTED';
     case NotFound = 'NOT_FOUND';
 }

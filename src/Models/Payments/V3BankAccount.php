@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3BankAccount - A bank account registered with Formance and forwardable to connectors */
 class V3BankAccount
 {
     /**
+     * When the bank account was registered
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +21,7 @@ class V3BankAccount
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the bank account within Formance
      *
      * @var string $id
      */
@@ -26,6 +29,7 @@ class V3BankAccount
     public string $id;
 
     /**
+     * Human-readable name of the bank account
      *
      * @var string $name
      */
@@ -33,7 +37,7 @@ class V3BankAccount
     public string $name;
 
     /**
-     * $relatedAccounts
+     * Provider-side accounts this bank account has been forwarded to
      *
      * @var ?array<\formance\stack\Models\Payments\V3BankAccountRelatedAccount> $relatedAccounts
      */
@@ -43,6 +47,7 @@ class V3BankAccount
     public ?array $relatedAccounts = null;
 
     /**
+     * Domestic account number, when the account is identified that way
      *
      * @var ?string $accountNumber
      */
@@ -51,6 +56,7 @@ class V3BankAccount
     public ?string $accountNumber = null;
 
     /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
      *
      * @var ?string $country
      */
@@ -59,6 +65,7 @@ class V3BankAccount
     public ?string $country = null;
 
     /**
+     * International bank account number, when the account is identified that way
      *
      * @var ?string $iban
      */
@@ -67,7 +74,7 @@ class V3BankAccount
     public ?string $iban = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */
@@ -77,6 +84,7 @@ class V3BankAccount
     public ?array $metadata = null;
 
     /**
+     * SWIFT/BIC code identifying the bank
      *
      * @var ?string $swiftBicCode
      */

@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class TransferResponse
 {
     /**
+     * Identifier of the transfer created at the provider
      *
      * @var ?string $id
      */

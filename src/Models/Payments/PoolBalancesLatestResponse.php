@@ -13,7 +13,7 @@ namespace formance\stack\Models\Payments;
 class PoolBalancesLatestResponse
 {
     /**
-     * $data
+     * Most recent aggregated balances across a pool's accounts
      *
      * @var array<\formance\stack\Models\Payments\PoolBalance> $data
      */

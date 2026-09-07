@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class ServerInfo
 {
     /**
+     * Whether the service is running in debug mode
      *
      * @var ?bool $debug
      */
@@ -21,6 +22,7 @@ class ServerInfo
     public ?bool $debug = null;
 
     /**
+     * Version of the payments service
      *
      * @var ?string $version
      */

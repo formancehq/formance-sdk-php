@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3InitiatePaymentResponse
 {
     /**
+     * The task tracking the initiation, which completes asynchronously
      *
      * @var \formance\stack\Models\Payments\V3InitiatePaymentResponseData $data
      */

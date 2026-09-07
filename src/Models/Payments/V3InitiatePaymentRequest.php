@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3InitiatePaymentRequest
 {
     /**
+     * Amount to move, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class V3InitiatePaymentRequest
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the payment is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class V3InitiatePaymentRequest
     public string $asset;
 
     /**
+     * Identifier of the connector to execute the payment through
      *
      * @var string $connectorID
      */
@@ -33,6 +36,7 @@ class V3InitiatePaymentRequest
     public string $connectorID;
 
     /**
+     * Human-readable description carried with the payment
      *
      * @var string $description
      */
@@ -40,6 +44,7 @@ class V3InitiatePaymentRequest
     public string $description;
 
     /**
+     * Caller-supplied identifier for the initiation, used to deduplicate retries
      *
      * @var string $reference
      */
@@ -47,6 +52,7 @@ class V3InitiatePaymentRequest
     public string $reference;
 
     /**
+     * When the payment should be executed
      *
      * @var \DateTime $scheduledAt
      */
@@ -54,6 +60,7 @@ class V3InitiatePaymentRequest
     public \DateTime $scheduledAt;
 
     /**
+     * Kind of movement a payment initiation performs, such as a transfer or a payout
      *
      * @var \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum $type
      */
@@ -62,6 +69,7 @@ class V3InitiatePaymentRequest
     public V3PaymentInitiationTypeEnum $type;
 
     /**
+     * Identifier of the account the funds reach
      *
      * @var ?string $destinationAccountID
      */
@@ -70,7 +78,7 @@ class V3InitiatePaymentRequest
     public ?string $destinationAccountID = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */
@@ -80,6 +88,7 @@ class V3InitiatePaymentRequest
     public ?array $metadata = null;
 
     /**
+     * Identifier of the account the funds leave
      *
      * @var ?string $sourceAccountID
      */

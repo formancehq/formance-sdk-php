@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3GetPaymentServiceUserResponse
 {
     /**
+     * An end user on whose behalf payments and open banking connections are made
      *
      * @var \formance\stack\Models\Payments\V3PaymentServiceUser $data
      */

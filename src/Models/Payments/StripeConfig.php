@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class StripeConfig
 {
     /**
+     * API key issued by Stripe, used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -19,6 +20,7 @@ class StripeConfig
     public string $apiKey;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -48,6 +50,7 @@ class StripeConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

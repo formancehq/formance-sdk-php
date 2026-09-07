@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Whether an account is internal to the provider or belongs to an external party */
 enum V3AccountTypeEnum: string
 {
     case Unknown = 'UNKNOWN';

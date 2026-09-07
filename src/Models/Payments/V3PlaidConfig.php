@@ -34,6 +34,14 @@ class V3PlaidConfig
 
     /**
      *
+     * @var ?string $baseURL
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('baseURL')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $baseURL = null;
+
+    /**
+     *
      * @var ?bool $isSandbox
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('isSandbox')]
@@ -69,17 +77,19 @@ class V3PlaidConfig
      * @param  string  $clientID
      * @param  string  $clientSecret
      * @param  string  $name
+     * @param  ?string  $baseURL
      * @param  ?bool  $isSandbox
      * @param  ?int  $pageSize
      * @param  ?string  $pollingPeriod
      * @param  ?string  $provider
      * @phpstan-pure
      */
-    public function __construct(string $clientID, string $clientSecret, string $name, ?bool $isSandbox = null, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Plaid')
+    public function __construct(string $clientID, string $clientSecret, string $name, ?string $baseURL = null, ?bool $isSandbox = null, ?int $pageSize = 25, ?string $pollingPeriod = '30m', ?string $provider = 'Plaid')
     {
         $this->clientID = $clientID;
         $this->clientSecret = $clientSecret;
         $this->name = $name;
+        $this->baseURL = $baseURL;
         $this->isSandbox = $isSandbox;
         $this->pageSize = $pageSize;
         $this->pollingPeriod = $pollingPeriod;

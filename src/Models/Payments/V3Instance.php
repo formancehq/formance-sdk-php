@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3Instance
 {
     /**
+     * Identifier of the connector this run belongs to
      *
      * @var string $connectorID
      */
@@ -19,6 +20,7 @@ class V3Instance
     public string $connectorID;
 
     /**
+     * When the run started
      *
      * @var \DateTime $createdAt
      */
@@ -26,6 +28,7 @@ class V3Instance
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the run
      *
      * @var string $id
      */
@@ -33,6 +36,7 @@ class V3Instance
     public string $id;
 
     /**
+     * Identifier of the schedule that started this run
      *
      * @var string $scheduleID
      */
@@ -40,6 +44,7 @@ class V3Instance
     public string $scheduleID;
 
     /**
+     * Whether the run has finished, successfully or not
      *
      * @var bool $terminated
      */
@@ -47,6 +52,7 @@ class V3Instance
     public bool $terminated;
 
     /**
+     * When the run was last updated
      *
      * @var \DateTime $updatedAt
      */
@@ -54,6 +60,7 @@ class V3Instance
     public \DateTime $updatedAt;
 
     /**
+     * When the run finished, absent while it is still running
      *
      * @var ?\DateTime $terminatedAt
      */
@@ -62,6 +69,7 @@ class V3Instance
     public ?\DateTime $terminatedAt = null;
 
     /**
+     * Why the run failed, absent when it succeeded
      *
      * @var ?string $error
      */

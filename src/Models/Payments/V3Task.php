@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3Task - An asynchronous unit of work, tracking an operation that completes in the background */
 class V3Task
 {
     /**
+     * When the task was created
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +21,7 @@ class V3Task
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the task
      *
      * @var string $id
      */
@@ -26,6 +29,7 @@ class V3Task
     public string $id;
 
     /**
+     * Where a task stands, from processing through to succeeded or failed
      *
      * @var \formance\stack\Models\Payments\V3TaskStatusEnum $status
      */
@@ -34,6 +38,7 @@ class V3Task
     public V3TaskStatusEnum $status;
 
     /**
+     * When the task was last updated
      *
      * @var \DateTime $updatedAt
      */
@@ -41,6 +46,7 @@ class V3Task
     public \DateTime $updatedAt;
 
     /**
+     * Identifier of the connector the task runs against
      *
      * @var ?string $connectorID
      */
@@ -49,6 +55,7 @@ class V3Task
     public ?string $connectorID = null;
 
     /**
+     * Identifier of the object the task created, once it has succeeded
      *
      * @var ?string $createdObjectID
      */
@@ -57,6 +64,7 @@ class V3Task
     public ?string $createdObjectID = null;
 
     /**
+     * Why the task failed, absent when it succeeded
      *
      * @var ?string $error
      */

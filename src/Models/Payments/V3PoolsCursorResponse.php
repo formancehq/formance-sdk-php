@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PoolsCursorResponse
 {
     /**
+     * Paginated cursor wrapping the list of pools
      *
      * @var \formance\stack\Models\Payments\V3PoolsCursorResponseCursor $cursor
      */

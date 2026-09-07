@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3PaymentServiceUserLinkAttemptsCursorResponseCursor - Paginated cursor wrapping the user's link attempts */
 class V3PaymentServiceUserLinkAttemptsCursorResponseCursor
 {
     /**

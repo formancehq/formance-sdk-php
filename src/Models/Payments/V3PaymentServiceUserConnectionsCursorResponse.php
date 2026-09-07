@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserConnectionsCursorResponse
 {
     /**
+     * Paginated cursor wrapping the user's open banking connections
      *
      * @var \formance\stack\Models\Payments\V3PaymentServiceUserConnectionsCursorResponseCursor $cursor
      */

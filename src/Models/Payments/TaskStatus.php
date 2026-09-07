@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Where a task stands, from pending or active through to stopped, terminated or failed */
 enum TaskStatus: string
 {
     case Pending = 'PENDING';

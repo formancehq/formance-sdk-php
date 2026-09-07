@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Status of a payment as reported by the legacy payments API */
 enum LegacyPaymentStatus: string
 {
     case Pending = 'PENDING';

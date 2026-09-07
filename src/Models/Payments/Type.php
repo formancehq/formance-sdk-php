@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Whether the funds move between your accounts or out to a third party */
 enum Type: string
 {
     case Transfer = 'TRANSFER';

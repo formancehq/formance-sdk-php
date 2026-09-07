@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class TransferInitiationResponse
 {
     /**
+     * A transfer Formance asked a connector to execute
      *
      * @var \formance\stack\Models\Payments\TransferInitiation $data
      */

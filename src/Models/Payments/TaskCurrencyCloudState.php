@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** TaskCurrencyCloudState - Internal progress state the task resumes from */
 class TaskCurrencyCloudState
 {
 

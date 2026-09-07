@@ -12,7 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ConnectorConfigsResponse
 {
     /**
-     * $data
+     * Configuration schema of every available connector, keyed by provider
      *
      * @var array<string, array<string, \formance\stack\Models\Payments\V3ConnectorConfigsResponseData>> $data
      */

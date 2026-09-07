@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class GenericConfig
 {
     /**
+     * API key used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -19,6 +20,7 @@ class GenericConfig
     public string $apiKey;
 
     /**
+     * Base URL of the API the connector calls
      *
      * @var string $endpoint
      */
@@ -26,6 +28,7 @@ class GenericConfig
     public string $endpoint;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -44,6 +47,7 @@ class GenericConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

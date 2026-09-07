@@ -9,10 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Payment - A payment observed at a provider and surfaced through a connector */
 class Payment
 {
     /**
-     * $adjustments
+     * Successive changes to the payment's amount and status
      *
      * @var array<\formance\stack\Models\Payments\PaymentAdjustment> $adjustments
      */
@@ -21,6 +22,7 @@ class Payment
     public array $adjustments;
 
     /**
+     * Current amount of the payment after applying its adjustments
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -28,6 +30,7 @@ class Payment
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the payment is denominated in
      *
      * @var string $asset
      */
@@ -35,6 +38,7 @@ class Payment
     public string $asset;
 
     /**
+     * Identifier of the connector the payment belongs to
      *
      * @var string $connectorID
      */
@@ -42,6 +46,7 @@ class Payment
     public string $connectorID;
 
     /**
+     * When the payment was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -49,6 +54,7 @@ class Payment
     public \DateTime $createdAt;
 
     /**
+     * Identifier of the account the funds reached
      *
      * @var string $destinationAccountID
      */
@@ -56,6 +62,7 @@ class Payment
     public string $destinationAccountID;
 
     /**
+     * Unique identifier of the payment within Formance
      *
      * @var string $id
      */
@@ -63,6 +70,7 @@ class Payment
     public string $id;
 
     /**
+     * Amount the payment was created with, before any adjustment
      *
      * @var \Brick\Math\BigInteger $initialAmount
      */
@@ -70,6 +78,7 @@ class Payment
     public \Brick\Math\BigInteger $initialAmount;
 
     /**
+     * Identifier the payment carries at the provider
      *
      * @var string $reference
      */
@@ -77,6 +86,7 @@ class Payment
     public string $reference;
 
     /**
+     * Payment scheme or rail a payment travels over
      *
      * @var \formance\stack\Models\Payments\PaymentScheme $scheme
      */
@@ -85,6 +95,7 @@ class Payment
     public PaymentScheme $scheme;
 
     /**
+     * Identifier of the account the funds left
      *
      * @var string $sourceAccountID
      */
@@ -92,6 +103,7 @@ class Payment
     public string $sourceAccountID;
 
     /**
+     * Where a payment stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\PaymentStatus $status
      */
@@ -100,6 +112,7 @@ class Payment
     public PaymentStatus $status;
 
     /**
+     * Direction of a payment
      *
      * @var \formance\stack\Models\Payments\PaymentType $type
      */
@@ -108,7 +121,7 @@ class Payment
     public PaymentType $type;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the payment
      *
      * @var ?array<string, string> $metadata
      */
@@ -117,6 +130,7 @@ class Payment
     public ?array $metadata;
 
     /**
+     * The payment provider behind a connector
      *
      * @var ?\formance\stack\Models\Payments\Connector $provider
      */
@@ -126,7 +140,7 @@ class Payment
     public ?Connector $provider = null;
 
     /**
-     * $raw
+     * The provider's original payload, passed through untouched
      *
      * @var ?array<string, mixed> $raw
      */

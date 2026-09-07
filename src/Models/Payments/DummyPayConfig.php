@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class DummyPayConfig
 {
     /**
+     * Filesystem directory the connector reads payment files from
      *
      * @var string $directory
      */
@@ -19,6 +20,7 @@ class DummyPayConfig
     public string $directory;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -26,6 +28,7 @@ class DummyPayConfig
     public string $name;
 
     /**
+     * How many synthetic accounts to create on startup
      *
      * @var ?int $numberOfAccountsPreGenerated
      */
@@ -34,6 +37,7 @@ class DummyPayConfig
     public ?int $numberOfAccountsPreGenerated = null;
 
     /**
+     * How many synthetic payments to create on startup
      *
      * @var ?int $numberOfPaymentsPreGenerated
      */
@@ -42,6 +46,7 @@ class DummyPayConfig
     public ?int $numberOfPaymentsPreGenerated = null;
 
     /**
+     * Only ingest files whose name starts with this prefix
      *
      * @var ?string $prefixFileToIngest
      */
@@ -59,6 +64,7 @@ class DummyPayConfig
     public ?string $filePollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

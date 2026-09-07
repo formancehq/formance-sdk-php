@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ReversePaymentInitiationResponseData - The task tracking the reversal, which completes asynchronously */
 class V3ReversePaymentInitiationResponseData
 {
     /**

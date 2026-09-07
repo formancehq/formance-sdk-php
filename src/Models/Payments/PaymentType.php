@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Direction of a payment */
 enum PaymentType: string
 {
     case PayIn = 'PAY-IN';

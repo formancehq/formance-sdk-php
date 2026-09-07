@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ForwardBankAccountRequest
 {
     /**
+     * Identifier of the connector to forward the bank account to
      *
      * @var string $connectorID
      */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ApprovePaymentInitiationResponseData - The task tracking the approval, which completes asynchronously */
 class V3ApprovePaymentInitiationResponseData
 {
     /**

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Direction of a payment */
 enum V3PaymentTypeEnum: string
 {
     case Unknown = 'UNKNOWN';

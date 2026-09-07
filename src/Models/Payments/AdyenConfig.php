@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class AdyenConfig
 {
     /**
+     * API key issued by Adyen, used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -19,6 +20,7 @@ class AdyenConfig
     public string $apiKey;
 
     /**
+     * HMAC key used to verify the signature on webhooks sent by Adyen
      *
      * @var string $hmacKey
      */
@@ -26,6 +28,7 @@ class AdyenConfig
     public string $hmacKey;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -33,6 +36,7 @@ class AdyenConfig
     public string $name;
 
     /**
+     * Prefix of your live Adyen endpoint. Required when the connector runs against production
      *
      * @var ?string $liveEndpointPrefix
      */
@@ -52,6 +56,7 @@ class AdyenConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */
