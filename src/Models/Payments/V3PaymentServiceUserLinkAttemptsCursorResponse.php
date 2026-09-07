@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserLinkAttemptsCursorResponse
 {
     /**
+     * Paginated cursor wrapping the user's link attempts
      *
      * @var \formance\stack\Models\Payments\V3PaymentServiceUserLinkAttemptsCursorResponseCursor $cursor
      */

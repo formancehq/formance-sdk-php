@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class BankAccountResponse
 {
     /**
+     * A bank account registered with Formance and forwardable to connectors
      *
      * @var \formance\stack\Models\Payments\BankAccount $data
      */

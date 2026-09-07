@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3CreatePaymentServiceUserRequest
 {
     /**
+     * Full name of the payment service user
      *
      * @var string $name
      */
@@ -19,6 +20,7 @@ class V3CreatePaymentServiceUserRequest
     public string $name;
 
     /**
+     * A postal address to record on the payment service user
      *
      * @var ?\formance\stack\Models\Payments\V3AddressRequest $address
      */
@@ -28,6 +30,7 @@ class V3CreatePaymentServiceUserRequest
     public ?V3AddressRequest $address = null;
 
     /**
+     * How to reach the payment service user
      *
      * @var ?\formance\stack\Models\Payments\V3ContactDetailsRequest $contactDetails
      */
@@ -37,7 +40,7 @@ class V3CreatePaymentServiceUserRequest
     public ?V3ContactDetailsRequest $contactDetails = null;
 
     /**
-     * $bankAccountIDs
+     * Bank accounts to associate with the user
      *
      * @var ?array<string> $bankAccountIDs
      */
@@ -47,7 +50,7 @@ class V3CreatePaymentServiceUserRequest
     public ?array $bankAccountIDs = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

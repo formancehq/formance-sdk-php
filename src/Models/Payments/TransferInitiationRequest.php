@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class TransferInitiationRequest
 {
     /**
+     * Amount to move, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class TransferInitiationRequest
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the transfer is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class TransferInitiationRequest
     public string $asset;
 
     /**
+     * Human-readable description carried with the transfer
      *
      * @var string $description
      */
@@ -33,6 +36,7 @@ class TransferInitiationRequest
     public string $description;
 
     /**
+     * Identifier of the account the funds reach
      *
      * @var string $destinationAccountID
      */
@@ -40,6 +44,7 @@ class TransferInitiationRequest
     public string $destinationAccountID;
 
     /**
+     * Caller-supplied identifier for the initiation, used to deduplicate retries
      *
      * @var string $reference
      */
@@ -47,6 +52,7 @@ class TransferInitiationRequest
     public string $reference;
 
     /**
+     * When the transfer should be executed
      *
      * @var \DateTime $scheduledAt
      */
@@ -54,6 +60,7 @@ class TransferInitiationRequest
     public \DateTime $scheduledAt;
 
     /**
+     * Identifier of the account the funds leave
      *
      * @var string $sourceAccountID
      */
@@ -61,6 +68,7 @@ class TransferInitiationRequest
     public string $sourceAccountID;
 
     /**
+     * Whether the funds move between your accounts or out to a third party
      *
      * @var \formance\stack\Models\Payments\TransferInitiationRequestType $type
      */
@@ -69,6 +77,7 @@ class TransferInitiationRequest
     public TransferInitiationRequestType $type;
 
     /**
+     * When true, the transfer executes immediately instead of waiting for approval
      *
      * @var bool $validated
      */
@@ -76,6 +85,7 @@ class TransferInitiationRequest
     public bool $validated;
 
     /**
+     * Identifier of the connector to execute the transfer through
      *
      * @var ?string $connectorID
      */
@@ -84,7 +94,7 @@ class TransferInitiationRequest
     public ?string $connectorID = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs to attach to the initiation
      *
      * @var ?array<string, string> $metadata
      */

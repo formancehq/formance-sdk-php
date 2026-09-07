@@ -23,6 +23,7 @@ class AtlarConfig
     public string $accessKey;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -74,6 +75,7 @@ class AtlarConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3CreateBankAccountRequest
 {
     /**
+     * Human-readable name for the bank account
      *
      * @var string $name
      */
@@ -19,6 +20,7 @@ class V3CreateBankAccountRequest
     public string $name;
 
     /**
+     * Domestic account number. Supply this or an IBAN
      *
      * @var ?string $accountNumber
      */
@@ -27,6 +29,7 @@ class V3CreateBankAccountRequest
     public ?string $accountNumber = null;
 
     /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
      *
      * @var ?string $country
      */
@@ -35,6 +38,7 @@ class V3CreateBankAccountRequest
     public ?string $country = null;
 
     /**
+     * International bank account number. Supply this or an account number
      *
      * @var ?string $iban
      */
@@ -43,6 +47,7 @@ class V3CreateBankAccountRequest
     public ?string $iban = null;
 
     /**
+     * SWIFT/BIC code identifying the bank
      *
      * @var ?string $swiftBicCode
      */
@@ -51,7 +56,7 @@ class V3CreateBankAccountRequest
     public ?string $swiftBicCode = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

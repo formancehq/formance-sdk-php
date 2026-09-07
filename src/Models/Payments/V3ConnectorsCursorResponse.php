@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ConnectorsCursorResponse
 {
     /**
+     * Paginated cursor wrapping the list of connectors
      *
      * @var \formance\stack\Models\Payments\V3ConnectorsCursorResponseCursor $cursor
      */

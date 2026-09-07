@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class AccountBalance
 {
     /**
+     * Identifier of the account this balance belongs to
      *
      * @var string $accountId
      */
@@ -19,6 +20,7 @@ class AccountBalance
     public string $accountId;
 
     /**
+     * Asset the balance is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class AccountBalance
     public string $asset;
 
     /**
+     * Amount held, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $balance
      */
@@ -33,6 +36,7 @@ class AccountBalance
     public \Brick\Math\BigInteger $balance;
 
     /**
+     * Start of the period this balance covers
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +44,7 @@ class AccountBalance
     public \DateTime $createdAt;
 
     /**
+     * Deprecated alias of asset, kept for backwards compatibility
      *
      * @var string $currency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -48,6 +53,7 @@ class AccountBalance
     public string $currency;
 
     /**
+     * When the balance was last refreshed from the provider
      *
      * @var \DateTime $lastUpdatedAt
      */

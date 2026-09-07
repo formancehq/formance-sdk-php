@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class PaymentRequest
 {
     /**
+     * Amount of the payment, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class PaymentRequest
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the payment is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class PaymentRequest
     public string $asset;
 
     /**
+     * Identifier of the connector the payment belongs to
      *
      * @var string $connectorID
      */
@@ -33,6 +36,7 @@ class PaymentRequest
     public string $connectorID;
 
     /**
+     * When the payment was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +44,7 @@ class PaymentRequest
     public \DateTime $createdAt;
 
     /**
+     * Identifier the payment carries at the provider
      *
      * @var string $reference
      */
@@ -47,6 +52,7 @@ class PaymentRequest
     public string $reference;
 
     /**
+     * Payment scheme or rail a payment travels over
      *
      * @var \formance\stack\Models\Payments\PaymentScheme $scheme
      */
@@ -55,6 +61,7 @@ class PaymentRequest
     public PaymentScheme $scheme;
 
     /**
+     * Where a payment stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\PaymentStatus $status
      */
@@ -63,6 +70,7 @@ class PaymentRequest
     public PaymentStatus $status;
 
     /**
+     * Direction of a payment
      *
      * @var \formance\stack\Models\Payments\PaymentType $type
      */
@@ -71,6 +79,7 @@ class PaymentRequest
     public PaymentType $type;
 
     /**
+     * Identifier of the account the funds reach
      *
      * @var ?string $destinationAccountID
      */
@@ -79,6 +88,7 @@ class PaymentRequest
     public ?string $destinationAccountID = null;
 
     /**
+     * Identifier of the account the funds leave
      *
      * @var ?string $sourceAccountID
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3CreatePaymentRequest
 {
     /**
+     * Current amount of the payment, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class V3CreatePaymentRequest
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the payment is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class V3CreatePaymentRequest
     public string $asset;
 
     /**
+     * Identifier of the connector the payment belongs to
      *
      * @var string $connectorID
      */
@@ -33,6 +36,7 @@ class V3CreatePaymentRequest
     public string $connectorID;
 
     /**
+     * When the payment was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +44,7 @@ class V3CreatePaymentRequest
     public \DateTime $createdAt;
 
     /**
+     * Amount the payment was created with, before any adjustment
      *
      * @var \Brick\Math\BigInteger $initialAmount
      */
@@ -47,6 +52,7 @@ class V3CreatePaymentRequest
     public \Brick\Math\BigInteger $initialAmount;
 
     /**
+     * Identifier the payment carries at the provider
      *
      * @var string $reference
      */
@@ -54,6 +60,7 @@ class V3CreatePaymentRequest
     public string $reference;
 
     /**
+     * Payment scheme or rail the payment travels over
      *
      * @var string $scheme
      */
@@ -61,6 +68,7 @@ class V3CreatePaymentRequest
     public string $scheme;
 
     /**
+     * Direction of a payment
      *
      * @var \formance\stack\Models\Payments\V3PaymentTypeEnum $type
      */
@@ -69,7 +77,7 @@ class V3CreatePaymentRequest
     public V3PaymentTypeEnum $type;
 
     /**
-     * $adjustments
+     * Status and amount changes to record alongside the payment
      *
      * @var ?array<\formance\stack\Models\Payments\V3CreatePaymentAdjustmentRequest> $adjustments
      */
@@ -79,6 +87,7 @@ class V3CreatePaymentRequest
     public ?array $adjustments = null;
 
     /**
+     * Identifier of the account the funds reach
      *
      * @var ?string $destinationAccountID
      */
@@ -87,6 +96,7 @@ class V3CreatePaymentRequest
     public ?string $destinationAccountID = null;
 
     /**
+     * Identifier of the account the funds leave
      *
      * @var ?string $sourceAccountID
      */
@@ -95,7 +105,7 @@ class V3CreatePaymentRequest
     public ?string $sourceAccountID = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

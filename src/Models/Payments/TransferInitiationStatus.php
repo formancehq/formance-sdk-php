@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Where a transfer initiation stands in its lifecycle */
 enum TransferInitiationStatus: string
 {
     case WaitingForValidation = 'WAITING_FOR_VALIDATION';

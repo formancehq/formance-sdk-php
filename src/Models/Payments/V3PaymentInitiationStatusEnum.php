@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Where a payment initiation stands in its lifecycle */
 enum V3PaymentInitiationStatusEnum: string
 {
     case Unknown = 'UNKNOWN';

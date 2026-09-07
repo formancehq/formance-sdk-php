@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Whether a pool holds a fixed account list or is driven by a query */
 enum PoolTypeEnum: string
 {
     case Static = 'STATIC';

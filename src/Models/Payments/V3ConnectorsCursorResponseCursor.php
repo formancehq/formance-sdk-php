@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ConnectorsCursorResponseCursor - Paginated cursor wrapping the list of connectors */
 class V3ConnectorsCursorResponseCursor
 {
     /**

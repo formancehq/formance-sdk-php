@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3Connector
 {
     /**
+     * The connector's configuration, whose shape depends on the provider
      *
      * @var \formance\stack\Models\Payments\Config $config
      */
@@ -20,6 +21,7 @@ class V3Connector
     public Config $config;
 
     /**
+     * When the connector was installed
      *
      * @var \DateTime $createdAt
      */
@@ -27,6 +29,7 @@ class V3Connector
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the connector
      *
      * @var string $id
      */
@@ -34,6 +37,7 @@ class V3Connector
     public string $id;
 
     /**
+     * Human-readable name of the connector instance
      *
      * @var string $name
      */
@@ -41,6 +45,7 @@ class V3Connector
     public string $name;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var string $provider
      */
@@ -48,6 +53,7 @@ class V3Connector
     public string $provider;
 
     /**
+     * Stable reference identifying the connector
      *
      * @var string $reference
      */
@@ -55,6 +61,7 @@ class V3Connector
     public string $reference;
 
     /**
+     * Whether the connector is being uninstalled
      *
      * @var bool $scheduledForDeletion
      */
@@ -72,6 +79,7 @@ class V3Connector
     public ?array $capabilities = null;
 
     /**
+     * When the connector's configuration was last changed
      *
      * @var ?\DateTime $updatedAt
      */

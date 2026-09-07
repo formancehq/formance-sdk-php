@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3RetryPaymentInitiationResponseData - The task tracking the retry, which completes asynchronously */
 class V3RetryPaymentInitiationResponseData
 {
     /**

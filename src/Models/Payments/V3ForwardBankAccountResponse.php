@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ForwardBankAccountResponse
 {
     /**
+     * The task tracking the forwarding, which completes asynchronously
      *
      * @var \formance\stack\Models\Payments\V3ForwardBankAccountResponseData $data
      */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error */
 enum V3OpenBankingConnectionAttemptStatusEnum: string
 {
     case Pending = 'pending';

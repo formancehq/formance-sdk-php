@@ -12,7 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ConnectorCapabilityResponse
 {
     /**
-     * $data
+     * Operations this connector supports
      *
      * @var array<\formance\stack\Models\Payments\V3Capability> $data
      */

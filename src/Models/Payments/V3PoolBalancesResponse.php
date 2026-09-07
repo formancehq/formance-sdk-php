@@ -12,7 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PoolBalancesResponse
 {
     /**
-     * $data
+     * Aggregated balances across a pool's accounts
      *
      * @var array<\formance\stack\Models\Payments\V3PoolBalance> $data
      */

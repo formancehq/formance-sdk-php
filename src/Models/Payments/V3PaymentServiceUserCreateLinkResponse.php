@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUserCreateLinkResponse
 {
     /**
+     * Identifier of the link attempt this URL belongs to
      *
      * @var string $attemptID
      */
@@ -19,6 +20,7 @@ class V3PaymentServiceUserCreateLinkResponse
     public string $attemptID;
 
     /**
+     * URL to send the user to so they can authorise the connection
      *
      * @var string $link
      */

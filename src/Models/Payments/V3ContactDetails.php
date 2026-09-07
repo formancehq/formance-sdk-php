@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ContactDetails - How to reach a payment service user */
 class V3ContactDetails
 {
     /**
+     * Email address of the user
      *
      * @var ?string $email
      */
@@ -20,6 +22,7 @@ class V3ContactDetails
     public ?string $email = null;
 
     /**
+     * Phone number of the user, in international format
      *
      * @var ?string $phoneNumber
      */

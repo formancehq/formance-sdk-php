@@ -9,10 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Pool - A named group of accounts whose balances are aggregated together */
 class Pool
 {
     /**
-     * $accounts
+     * Accounts currently in the pool
      *
      * @var array<string> $accounts
      */
@@ -21,6 +22,7 @@ class Pool
     public array $accounts;
 
     /**
+     * Unique identifier of the pool
      *
      * @var string $id
      */
@@ -28,6 +30,7 @@ class Pool
     public string $id;
 
     /**
+     * Human-readable name of the pool
      *
      * @var string $name
      */
@@ -35,7 +38,7 @@ class Pool
     public string $name;
 
     /**
-     * $query
+     * Filter selecting the accounts a dynamic pool contains
      *
      * @var ?array<string, mixed> $query
      */
@@ -45,6 +48,7 @@ class Pool
     public ?array $query = null;
 
     /**
+     * Whether a pool holds a fixed account list or is driven by a query
      *
      * @var ?\formance\stack\Models\Payments\PoolTypeEnum $type
      */

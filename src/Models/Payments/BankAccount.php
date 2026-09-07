@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** BankAccount - A bank account registered with Formance and forwardable to connectors */
 class BankAccount
 {
     /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
      *
      * @var string $country
      */
@@ -19,6 +21,7 @@ class BankAccount
     public string $country;
 
     /**
+     * When the bank account was registered
      *
      * @var \DateTime $createdAt
      */
@@ -26,6 +29,7 @@ class BankAccount
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the bank account within Formance
      *
      * @var string $id
      */
@@ -33,6 +37,7 @@ class BankAccount
     public string $id;
 
     /**
+     * Human-readable name of the bank account
      *
      * @var string $name
      */
@@ -40,6 +45,7 @@ class BankAccount
     public string $name;
 
     /**
+     * Identifier of the provider-side account created by forwarding
      *
      * @var ?string $accountID
      */
@@ -48,6 +54,7 @@ class BankAccount
     public ?string $accountID = null;
 
     /**
+     * Domestic account number, when the account is identified that way
      *
      * @var ?string $accountNumber
      */
@@ -56,6 +63,7 @@ class BankAccount
     public ?string $accountNumber = null;
 
     /**
+     * Identifier of the connector the account has been forwarded to
      *
      * @var ?string $connectorID
      */
@@ -64,6 +72,7 @@ class BankAccount
     public ?string $connectorID = null;
 
     /**
+     * International bank account number, when the account is identified that way
      *
      * @var ?string $iban
      */
@@ -72,6 +81,7 @@ class BankAccount
     public ?string $iban = null;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var ?string $provider
      */
@@ -80,7 +90,7 @@ class BankAccount
     public ?string $provider = null;
 
     /**
-     * $relatedAccounts
+     * Provider-side accounts this bank account has been forwarded to
      *
      * @var ?array<\formance\stack\Models\Payments\BankAccountRelatedAccounts> $relatedAccounts
      */
@@ -90,6 +100,7 @@ class BankAccount
     public ?array $relatedAccounts = null;
 
     /**
+     * SWIFT/BIC code identifying the bank
      *
      * @var ?string $swiftBicCode
      */
@@ -98,7 +109,7 @@ class BankAccount
     public ?string $swiftBicCode = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the bank account
      *
      * @var ?array<string, string> $metadata
      */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ConversionsCursorResponseCursor - Paginated cursor wrapping the list of conversions */
 class V3ConversionsCursorResponseCursor
 {
     /**

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class MangoPayConfig
 {
     /**
+     * API key issued by MangoPay, used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -19,6 +20,7 @@ class MangoPayConfig
     public string $apiKey;
 
     /**
+     * Client ID issued by MangoPay
      *
      * @var string $clientID
      */
@@ -26,6 +28,7 @@ class MangoPayConfig
     public string $clientID;
 
     /**
+     * Base URL of the MangoPay API the connector calls
      *
      * @var string $endpoint
      */
@@ -33,6 +36,7 @@ class MangoPayConfig
     public string $endpoint;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -51,6 +55,7 @@ class MangoPayConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

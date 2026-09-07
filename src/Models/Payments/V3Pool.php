@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3Pool - A named group of accounts whose balances are aggregated together */
 class V3Pool
 {
     /**
+     * When the pool was created
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +21,7 @@ class V3Pool
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the pool
      *
      * @var string $id
      */
@@ -26,6 +29,7 @@ class V3Pool
     public string $id;
 
     /**
+     * Human-readable name of the pool
      *
      * @var string $name
      */
@@ -33,7 +37,7 @@ class V3Pool
     public string $name;
 
     /**
-     * $poolAccounts
+     * Accounts currently in the pool
      *
      * @var array<string> $poolAccounts
      */
@@ -42,7 +46,7 @@ class V3Pool
     public array $poolAccounts;
 
     /**
-     * $query
+     * Filter selecting the accounts a dynamic pool contains
      *
      * @var ?array<string, mixed> $query
      */
@@ -52,6 +56,7 @@ class V3Pool
     public ?array $query = null;
 
     /**
+     * Whether a pool holds a fixed account list or is driven by a query
      *
      * @var ?\formance\stack\Models\Payments\V3PoolTypeEnum $type
      */

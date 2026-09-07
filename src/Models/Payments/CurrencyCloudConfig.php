@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class CurrencyCloudConfig
 {
     /**
+     * API key issued by Currencycloud, used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -27,6 +28,7 @@ class CurrencyCloudConfig
     public string $loginID;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -52,6 +54,7 @@ class CurrencyCloudConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

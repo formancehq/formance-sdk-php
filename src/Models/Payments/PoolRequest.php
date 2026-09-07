@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class PoolRequest
 {
     /**
+     * Human-readable name for the pool
      *
      * @var string $name
      */
@@ -20,7 +21,7 @@ class PoolRequest
     public string $name;
 
     /**
-     * $accountIDs
+     * Accounts to place in the pool. Omit when the pool is driven by a query
      *
      * @var ?array<string> $accountIDs
      */
@@ -30,7 +31,7 @@ class PoolRequest
     public ?array $accountIDs = null;
 
     /**
-     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
+     * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
      *
      * @var ?array<string, mixed> $query
      */

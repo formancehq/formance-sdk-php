@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class PoolResponse
 {
     /**
+     * A named group of accounts whose balances are aggregated together
      *
      * @var \formance\stack\Models\Payments\Pool $data
      */

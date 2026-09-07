@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class TaskMangoPay
 {
     /**
+     * Identifier of the connector the task runs against
      *
      * @var string $connectorID
      */
@@ -19,6 +20,7 @@ class TaskMangoPay
     public string $connectorID;
 
     /**
+     * When the task was created
      *
      * @var \DateTime $createdAt
      */
@@ -34,6 +36,7 @@ class TaskMangoPay
     public TaskMangoPayDescriptor $descriptor;
 
     /**
+     * Unique identifier of the task
      *
      * @var string $id
      */
@@ -41,6 +44,7 @@ class TaskMangoPay
     public string $id;
 
     /**
+     * Where a task stands, from pending or active through to stopped, terminated or failed
      *
      * @var \formance\stack\Models\Payments\TaskStatus $status
      */
@@ -49,6 +53,7 @@ class TaskMangoPay
     public TaskStatus $status;
 
     /**
+     * When the task was last updated
      *
      * @var \DateTime $updatedAt
      */
@@ -56,6 +61,7 @@ class TaskMangoPay
     public \DateTime $updatedAt;
 
     /**
+     * Why the task failed, absent when it succeeded
      *
      * @var ?string $error
      */
@@ -64,6 +70,7 @@ class TaskMangoPay
     public ?string $error = null;
 
     /**
+     * Internal progress state the task resumes from
      *
      * @var ?\formance\stack\Models\Payments\TaskMangoPayState $state
      */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** TransferInitiationsCursorCursor - Paginated cursor wrapping the list of transfer initiations */
 class TransferInitiationsCursorCursor
 {
     /**
@@ -21,6 +22,7 @@ class TransferInitiationsCursorCursor
     public array $data;
 
     /**
+     * Whether further pages are available
      *
      * @var bool $hasMore
      */
@@ -28,6 +30,7 @@ class TransferInitiationsCursorCursor
     public bool $hasMore;
 
     /**
+     * Number of items requested per page
      *
      * @var int $pageSize
      */
@@ -35,6 +38,7 @@ class TransferInitiationsCursorCursor
     public int $pageSize;
 
     /**
+     * Cursor for the next page, absent on the last page
      *
      * @var ?string $next
      */
@@ -43,6 +47,7 @@ class TransferInitiationsCursorCursor
     public ?string $next = null;
 
     /**
+     * Cursor for the previous page, absent on the first page
      *
      * @var ?string $previous
      */

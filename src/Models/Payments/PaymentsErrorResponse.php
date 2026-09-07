@@ -13,6 +13,7 @@ use formance\stack\Utils;
 class PaymentsErrorResponse
 {
     /**
+     * Machine-readable error code identifying the failure
      *
      * @var \formance\stack\Models\Payments\PaymentsErrorsEnum $errorCode
      */
@@ -21,6 +22,7 @@ class PaymentsErrorResponse
     public PaymentsErrorsEnum $errorCode;
 
     /**
+     * Human-readable description of the error
      *
      * @var string $errorMessage
      */

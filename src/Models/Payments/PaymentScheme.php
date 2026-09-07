@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Payment scheme or rail a payment travels over */
 enum PaymentScheme: string
 {
     case Unknown = 'unknown';

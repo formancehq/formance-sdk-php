@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3CreatePaymentAdjustmentRequest
 {
     /**
+     * When the adjustment occurred at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +20,7 @@ class V3CreatePaymentAdjustmentRequest
     public \DateTime $createdAt;
 
     /**
+     * Identifier the adjustment carries at the provider
      *
      * @var string $reference
      */
@@ -26,6 +28,7 @@ class V3CreatePaymentAdjustmentRequest
     public string $reference;
 
     /**
+     * Where a payment stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\V3PaymentStatusEnum $status
      */
@@ -34,6 +37,7 @@ class V3CreatePaymentAdjustmentRequest
     public V3PaymentStatusEnum $status;
 
     /**
+     * Amount carried by this adjustment
      *
      * @var ?\Brick\Math\BigInteger $amount
      */
@@ -42,6 +46,7 @@ class V3CreatePaymentAdjustmentRequest
     public ?\Brick\Math\BigInteger $amount = null;
 
     /**
+     * Asset the adjustment is denominated in
      *
      * @var ?string $asset
      */
@@ -50,7 +55,7 @@ class V3CreatePaymentAdjustmentRequest
     public ?string $asset = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

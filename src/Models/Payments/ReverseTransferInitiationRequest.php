@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class ReverseTransferInitiationRequest
 {
     /**
+     * Amount to reverse, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class ReverseTransferInitiationRequest
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the reversal is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class ReverseTransferInitiationRequest
     public string $asset;
 
     /**
+     * Human-readable reason for the reversal
      *
      * @var string $description
      */
@@ -33,6 +36,7 @@ class ReverseTransferInitiationRequest
     public string $description;
 
     /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
      *
      * @var string $reference
      */
@@ -40,7 +44,7 @@ class ReverseTransferInitiationRequest
     public string $reference;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs to attach to the reversal
      *
      * @var ?array<string, string> $metadata
      */

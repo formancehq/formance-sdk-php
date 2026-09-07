@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class TransferInitiationsCursor
 {
     /**
+     * Paginated cursor wrapping the list of transfer initiations
      *
      * @var \formance\stack\Models\Payments\TransferInitiationsCursorCursor $cursor
      */

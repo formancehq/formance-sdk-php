@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentServiceUsersCursorResponse
 {
     /**
+     * Paginated cursor wrapping the list of payment service users
      *
      * @var \formance\stack\Models\Payments\V3PaymentServiceUsersCursorResponseCursor $cursor
      */

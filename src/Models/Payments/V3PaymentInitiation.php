@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3PaymentInitiation - A payment Formance asked a connector to execute */
 class V3PaymentInitiation
 {
     /**
+     * Amount to move, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +21,7 @@ class V3PaymentInitiation
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the payment is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +29,7 @@ class V3PaymentInitiation
     public string $asset;
 
     /**
+     * Identifier of the connector executing the payment
      *
      * @var string $connectorID
      */
@@ -33,6 +37,7 @@ class V3PaymentInitiation
     public string $connectorID;
 
     /**
+     * When the initiation was created
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +45,7 @@ class V3PaymentInitiation
     public \DateTime $createdAt;
 
     /**
+     * Human-readable description carried with the payment
      *
      * @var string $description
      */
@@ -47,6 +53,7 @@ class V3PaymentInitiation
     public string $description;
 
     /**
+     * Unique identifier of the payment initiation
      *
      * @var string $id
      */
@@ -54,6 +61,7 @@ class V3PaymentInitiation
     public string $id;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var string $provider
      */
@@ -61,6 +69,7 @@ class V3PaymentInitiation
     public string $provider;
 
     /**
+     * Caller-supplied identifier for the initiation
      *
      * @var string $reference
      */
@@ -68,6 +77,7 @@ class V3PaymentInitiation
     public string $reference;
 
     /**
+     * When the payment is scheduled to execute
      *
      * @var \DateTime $scheduledAt
      */
@@ -75,6 +85,7 @@ class V3PaymentInitiation
     public \DateTime $scheduledAt;
 
     /**
+     * Where a payment initiation stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\V3PaymentInitiationStatusEnum $status
      */
@@ -83,6 +94,7 @@ class V3PaymentInitiation
     public V3PaymentInitiationStatusEnum $status;
 
     /**
+     * Kind of movement a payment initiation performs, such as a transfer or a payout
      *
      * @var \formance\stack\Models\Payments\V3PaymentInitiationTypeEnum $type
      */
@@ -91,6 +103,7 @@ class V3PaymentInitiation
     public V3PaymentInitiationTypeEnum $type;
 
     /**
+     * Identifier of the account the funds reach
      *
      * @var ?string $destinationAccountID
      */
@@ -99,6 +112,7 @@ class V3PaymentInitiation
     public ?string $destinationAccountID = null;
 
     /**
+     * Identifier of the account the funds leave
      *
      * @var ?string $sourceAccountID
      */
@@ -107,6 +121,7 @@ class V3PaymentInitiation
     public ?string $sourceAccountID = null;
 
     /**
+     * Why the initiation failed, absent when it succeeded
      *
      * @var ?string $error
      */
@@ -115,7 +130,7 @@ class V3PaymentInitiation
     public ?string $error = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

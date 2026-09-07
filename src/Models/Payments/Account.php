@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Account - An account held at a payment provider, surfaced through a connector */
 class Account
 {
     /**
+     * Human-readable name of the account
      *
      * @var string $accountName
      */
@@ -19,6 +21,7 @@ class Account
     public string $accountName;
 
     /**
+     * Identifier of the connector the account belongs to
      *
      * @var string $connectorID
      */
@@ -26,6 +29,7 @@ class Account
     public string $connectorID;
 
     /**
+     * When the account was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -33,6 +37,7 @@ class Account
     public \DateTime $createdAt;
 
     /**
+     * Asset the account is denominated in by default
      *
      * @var string $defaultAsset
      */
@@ -40,6 +45,7 @@ class Account
     public string $defaultAsset;
 
     /**
+     * Deprecated alias of defaultAsset, kept for backwards compatibility
      *
      * @var string $defaultCurrency
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -48,6 +54,7 @@ class Account
     public string $defaultCurrency;
 
     /**
+     * Unique identifier of the account within Formance
      *
      * @var string $id
      */
@@ -55,6 +62,7 @@ class Account
     public string $id;
 
     /**
+     * Identifier the account carries at the provider
      *
      * @var string $reference
      */
@@ -62,6 +70,7 @@ class Account
     public string $reference;
 
     /**
+     * Whether an account is internal to the provider or belongs to an external party
      *
      * @var \formance\stack\Models\Payments\AccountType $type
      */
@@ -70,7 +79,7 @@ class Account
     public AccountType $type;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the account
      *
      * @var ?array<string, string> $metadata
      */
@@ -79,7 +88,7 @@ class Account
     public ?array $metadata;
 
     /**
-     * $pools
+     * Pools this account belongs to
      *
      * @var ?array<string> $pools
      */
@@ -89,6 +98,7 @@ class Account
     public ?array $pools = null;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var ?string $provider
      */
@@ -97,7 +107,7 @@ class Account
     public ?string $provider = null;
 
     /**
-     * $raw
+     * The provider's original payload, passed through untouched
      *
      * @var ?array<string, mixed> $raw
      */

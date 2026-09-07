@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class BankingCircleConfig
 {
     /**
+     * URL the connector calls to obtain an access token
      *
      * @var string $authorizationEndpoint
      */
@@ -19,6 +20,7 @@ class BankingCircleConfig
     public string $authorizationEndpoint;
 
     /**
+     * Base URL of the Banking Circle API the connector calls
      *
      * @var string $endpoint
      */
@@ -26,6 +28,7 @@ class BankingCircleConfig
     public string $endpoint;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -33,6 +36,7 @@ class BankingCircleConfig
     public string $name;
 
     /**
+     * Password issued by Banking Circle, used to authenticate the connector
      *
      * @var string $password
      */
@@ -40,6 +44,7 @@ class BankingCircleConfig
     public string $password;
 
     /**
+     * Client certificate presented on the mutual-TLS connection to Banking Circle
      *
      * @var string $userCertificate
      */
@@ -47,6 +52,7 @@ class BankingCircleConfig
     public string $userCertificate;
 
     /**
+     * Private key matching the client certificate
      *
      * @var string $userCertificateKey
      */
@@ -54,6 +60,7 @@ class BankingCircleConfig
     public string $userCertificateKey;
 
     /**
+     * Username issued by Banking Circle, used to authenticate the connector
      *
      * @var string $username
      */
@@ -72,6 +79,7 @@ class BankingCircleConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

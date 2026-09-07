@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3Schedule - A recurring job a connector runs to fetch data from its provider */
 class V3Schedule
 {
     /**
+     * Identifier of the connector this schedule belongs to
      *
      * @var string $connectorID
      */
@@ -19,6 +21,7 @@ class V3Schedule
     public string $connectorID;
 
     /**
+     * When the schedule was created
      *
      * @var \DateTime $createdAt
      */
@@ -26,6 +29,7 @@ class V3Schedule
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the schedule
      *
      * @var string $id
      */
@@ -33,6 +37,7 @@ class V3Schedule
     public string $id;
 
     /**
+     * When the schedule was paused, absent while it is running
      *
      * @var ?\DateTime $pausedAt
      */
@@ -41,6 +46,7 @@ class V3Schedule
     public ?\DateTime $pausedAt = null;
 
     /**
+     * Why the schedule was paused
      *
      * @var ?string $pausedReason
      */

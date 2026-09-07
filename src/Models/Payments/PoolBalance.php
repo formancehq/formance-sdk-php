@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class PoolBalance
 {
     /**
+     * Total held across the pool for this asset, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class PoolBalance
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the balance is denominated in
      *
      * @var string $asset
      */
@@ -26,7 +28,7 @@ class PoolBalance
     public string $asset;
 
     /**
-     * $relatedAccounts
+     * Accounts contributing to this balance
      *
      * @var ?array<string> $relatedAccounts
      */

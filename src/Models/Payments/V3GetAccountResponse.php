@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3GetAccountResponse
 {
     /**
+     * An account held at a payment provider, surfaced through a connector
      *
      * @var \formance\stack\Models\Payments\V3Account $data
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3Balance
 {
     /**
+     * Identifier of the account this balance belongs to
      *
      * @var string $accountID
      */
@@ -19,6 +20,7 @@ class V3Balance
     public string $accountID;
 
     /**
+     * Asset the balance is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +28,7 @@ class V3Balance
     public string $asset;
 
     /**
+     * Amount held, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $balance
      */
@@ -33,6 +36,7 @@ class V3Balance
     public \Brick\Math\BigInteger $balance;
 
     /**
+     * Start of the period this balance covers
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +44,7 @@ class V3Balance
     public \DateTime $createdAt;
 
     /**
+     * When the balance was last refreshed from the provider
      *
      * @var \DateTime $lastUpdatedAt
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3CreateAccountRequest
 {
     /**
+     * Human-readable name of the account
      *
      * @var string $accountName
      */
@@ -19,6 +20,7 @@ class V3CreateAccountRequest
     public string $accountName;
 
     /**
+     * Identifier of the connector the account belongs to
      *
      * @var string $connectorID
      */
@@ -26,6 +28,7 @@ class V3CreateAccountRequest
     public string $connectorID;
 
     /**
+     * When the account was created at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -33,6 +36,7 @@ class V3CreateAccountRequest
     public \DateTime $createdAt;
 
     /**
+     * Identifier the account carries at the provider
      *
      * @var string $reference
      */
@@ -40,6 +44,7 @@ class V3CreateAccountRequest
     public string $reference;
 
     /**
+     * Whether an account is internal to the provider or belongs to an external party
      *
      * @var \formance\stack\Models\Payments\V3AccountTypeEnum $type
      */
@@ -48,6 +53,7 @@ class V3CreateAccountRequest
     public V3AccountTypeEnum $type;
 
     /**
+     * Asset the account is denominated in by default
      *
      * @var ?string $defaultAsset
      */
@@ -56,7 +62,7 @@ class V3CreateAccountRequest
     public ?string $defaultAsset = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

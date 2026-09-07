@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** TransferInitiation - A transfer Formance asked a connector to execute */
 class TransferInitiation
 {
     /**
+     * Amount to move, in the asset's smallest unit
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +21,7 @@ class TransferInitiation
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * Asset the transfer is denominated in
      *
      * @var string $asset
      */
@@ -26,6 +29,7 @@ class TransferInitiation
     public string $asset;
 
     /**
+     * Identifier of the connector executing the transfer
      *
      * @var string $connectorID
      */
@@ -33,6 +37,7 @@ class TransferInitiation
     public string $connectorID;
 
     /**
+     * When the initiation was created
      *
      * @var \DateTime $createdAt
      */
@@ -40,6 +45,7 @@ class TransferInitiation
     public \DateTime $createdAt;
 
     /**
+     * Human-readable description carried with the transfer
      *
      * @var string $description
      */
@@ -47,6 +53,7 @@ class TransferInitiation
     public string $description;
 
     /**
+     * Identifier of the account the funds reach
      *
      * @var string $destinationAccountID
      */
@@ -54,6 +61,7 @@ class TransferInitiation
     public string $destinationAccountID;
 
     /**
+     * Unique identifier of the transfer initiation
      *
      * @var string $id
      */
@@ -61,6 +69,7 @@ class TransferInitiation
     public string $id;
 
     /**
+     * Amount the initiation was created with, before any adjustment
      *
      * @var \Brick\Math\BigInteger $initialAmount
      */
@@ -68,6 +77,7 @@ class TransferInitiation
     public \Brick\Math\BigInteger $initialAmount;
 
     /**
+     * Caller-supplied identifier for the initiation
      *
      * @var string $reference
      */
@@ -75,6 +85,7 @@ class TransferInitiation
     public string $reference;
 
     /**
+     * When the transfer is scheduled to execute
      *
      * @var \DateTime $scheduledAt
      */
@@ -82,6 +93,7 @@ class TransferInitiation
     public \DateTime $scheduledAt;
 
     /**
+     * Identifier of the account the funds leave
      *
      * @var string $sourceAccountID
      */
@@ -89,6 +101,7 @@ class TransferInitiation
     public string $sourceAccountID;
 
     /**
+     * Where a transfer initiation stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\TransferInitiationStatus $status
      */
@@ -97,6 +110,7 @@ class TransferInitiation
     public TransferInitiationStatus $status;
 
     /**
+     * Whether the funds move between your accounts or out to a third party
      *
      * @var \formance\stack\Models\Payments\Type $type
      */
@@ -105,6 +119,7 @@ class TransferInitiation
     public Type $type;
 
     /**
+     * Name of the payment provider behind the connector
      *
      * @var ?string $provider
      */
@@ -112,7 +127,7 @@ class TransferInitiation
     public ?string $provider;
 
     /**
-     * $relatedAdjustments
+     * Successive status changes recorded against the initiation
      *
      * @var ?array<\formance\stack\Models\Payments\TransferInitiationAdjustments> $relatedAdjustments
      */
@@ -122,6 +137,7 @@ class TransferInitiation
     public ?array $relatedAdjustments = null;
 
     /**
+     * Why the initiation failed, absent when it succeeded
      *
      * @var ?string $error
      */
@@ -130,7 +146,7 @@ class TransferInitiation
     public ?string $error = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the initiation
      *
      * @var ?array<string, string> $metadata
      */
@@ -140,7 +156,7 @@ class TransferInitiation
     public ?array $metadata = null;
 
     /**
-     * $relatedPayments
+     * Payments produced by this initiation
      *
      * @var ?array<\formance\stack\Models\Payments\TransferInitiationPayments> $relatedPayments
      */

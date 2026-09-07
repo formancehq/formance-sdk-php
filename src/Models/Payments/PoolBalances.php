@@ -9,10 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** PoolBalances - Aggregated balances across a pool's accounts */
 class PoolBalances
 {
     /**
-     * $balances
+     * Aggregated balance per asset across the pool's accounts
      *
      * @var array<\formance\stack\Models\Payments\PoolBalance> $balances
      */

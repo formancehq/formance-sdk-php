@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3UninstallConnectorResponse
 {
     /**
+     * The task tracking the uninstall, which completes asynchronously
      *
      * @var \formance\stack\Models\Payments\V3UninstallConnectorResponseData $data
      */

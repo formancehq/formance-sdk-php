@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3PaymentInitiationRelatedPaymentsCursorResponse
 {
     /**
+     * Paginated cursor wrapping the payments produced by the initiation
      *
      * @var \formance\stack\Models\Payments\V3PaymentInitiationRelatedPaymentsCursorResponseCursor $cursor
      */

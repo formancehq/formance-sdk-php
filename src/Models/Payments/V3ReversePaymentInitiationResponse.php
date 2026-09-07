@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ReversePaymentInitiationResponse
 {
     /**
+     * The task tracking the reversal, which completes asynchronously
      *
      * @var \formance\stack\Models\Payments\V3ReversePaymentInitiationResponseData $data
      */

@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ConnectorSchedulesCursorResponse
 {
     /**
+     * Paginated cursor wrapping the connector's schedules
      *
      * @var \formance\stack\Models\Payments\V3ConnectorSchedulesCursorResponseCursor $cursor
      */

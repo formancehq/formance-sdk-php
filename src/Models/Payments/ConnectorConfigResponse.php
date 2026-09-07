@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class ConnectorConfigResponse
 {
     /**
+     * A connector's configuration, whose shape depends on the provider
      *
      * @var \formance\stack\Models\Payments\StripeConfig|\formance\stack\Models\Payments\DummyPayConfig|\formance\stack\Models\Payments\WiseConfig|\formance\stack\Models\Payments\ModulrConfig|\formance\stack\Models\Payments\CurrencyCloudConfig|\formance\stack\Models\Payments\BankingCircleConfig|\formance\stack\Models\Payments\MangoPayConfig|\formance\stack\Models\Payments\MoneycorpConfig|\formance\stack\Models\Payments\AtlarConfig|\formance\stack\Models\Payments\AdyenConfig|\formance\stack\Models\Payments\GenericConfig $data
      */

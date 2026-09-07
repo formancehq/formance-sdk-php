@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3PaymentServiceUser - An end user on whose behalf payments and open banking connections are made */
 class V3PaymentServiceUser
 {
     /**
+     * When the user was registered
      *
      * @var \DateTime $createdAt
      */
@@ -19,6 +21,7 @@ class V3PaymentServiceUser
     public \DateTime $createdAt;
 
     /**
+     * Unique identifier of the payment service user
      *
      * @var string $id
      */
@@ -26,6 +29,7 @@ class V3PaymentServiceUser
     public string $id;
 
     /**
+     * Full name of the payment service user
      *
      * @var string $name
      */
@@ -33,6 +37,7 @@ class V3PaymentServiceUser
     public string $name;
 
     /**
+     * A postal address
      *
      * @var ?\formance\stack\Models\Payments\V3Address $address
      */
@@ -42,6 +47,7 @@ class V3PaymentServiceUser
     public ?V3Address $address = null;
 
     /**
+     * How to reach a payment service user
      *
      * @var ?\formance\stack\Models\Payments\V3ContactDetails $contactDetails
      */
@@ -51,7 +57,7 @@ class V3PaymentServiceUser
     public ?V3ContactDetails $contactDetails = null;
 
     /**
-     * $bankAccountIDs
+     * Bank accounts associated with the user
      *
      * @var ?array<string> $bankAccountIDs
      */
@@ -61,7 +67,7 @@ class V3PaymentServiceUser
     public ?array $bankAccountIDs = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the resource
      *
      * @var ?array<string, string> $metadata
      */

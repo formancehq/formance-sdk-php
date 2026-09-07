@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class TransferInitiationAdjustments
 {
     /**
+     * Unique identifier of the adjustment
      *
      * @var string $adjustmentID
      */
@@ -19,6 +20,7 @@ class TransferInitiationAdjustments
     public string $adjustmentID;
 
     /**
+     * When the adjustment was recorded
      *
      * @var \DateTime $createdAt
      */
@@ -26,6 +28,7 @@ class TransferInitiationAdjustments
     public \DateTime $createdAt;
 
     /**
+     * Where a transfer initiation stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\TransferInitiationStatus $status
      */
@@ -34,6 +37,7 @@ class TransferInitiationAdjustments
     public TransferInitiationStatus $status;
 
     /**
+     * Why this step failed, absent when it succeeded
      *
      * @var ?string $error
      */
@@ -42,7 +46,7 @@ class TransferInitiationAdjustments
     public ?string $error = null;
 
     /**
-     * $metadata
+     * Arbitrary key/value pairs attached to the adjustment
      *
      * @var ?array<string, string> $metadata
      */

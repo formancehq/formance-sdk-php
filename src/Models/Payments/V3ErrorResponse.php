@@ -12,6 +12,7 @@ use formance\stack\Utils;
 class V3ErrorResponse
 {
     /**
+     * Optional link carrying additional context about the error
      *
      * @var ?string $details
      */
@@ -20,6 +21,7 @@ class V3ErrorResponse
     public ?string $details = null;
 
     /**
+     * Machine-readable error code identifying the failure
      *
      * @var \formance\stack\Models\Payments\V3ErrorsEnum $errorCode
      */
@@ -28,6 +30,7 @@ class V3ErrorResponse
     public V3ErrorsEnum $errorCode;
 
     /**
+     * Human-readable description of the error
      *
      * @var string $errorMessage
      */

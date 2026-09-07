@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3PaymentServiceUserDeleteResponseData - The task tracking the deletion, which completes asynchronously */
 class V3PaymentServiceUserDeleteResponseData
 {
     /**

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3ForwardPaymentServiceUserBankAccountResponseData - The task tracking the forwarding, which completes asynchronously */
 class V3ForwardPaymentServiceUserBankAccountResponseData
 {
     /**

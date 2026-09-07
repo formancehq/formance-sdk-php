@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class PaymentAdjustment
 {
     /**
+     * Amount carried by this adjustment
      *
      * @var \Brick\Math\BigInteger $amount
      */
@@ -19,6 +20,7 @@ class PaymentAdjustment
     public \Brick\Math\BigInteger $amount;
 
     /**
+     * When the adjustment occurred at the provider
      *
      * @var \DateTime $createdAt
      */
@@ -26,7 +28,7 @@ class PaymentAdjustment
     public \DateTime $createdAt;
 
     /**
-     * $raw
+     * The provider's original payload for this adjustment
      *
      * @var array<string, mixed> $raw
      */
@@ -35,6 +37,7 @@ class PaymentAdjustment
     public array $raw;
 
     /**
+     * Identifier the adjustment carries at the provider
      *
      * @var string $reference
      */
@@ -42,6 +45,7 @@ class PaymentAdjustment
     public string $reference;
 
     /**
+     * Where a payment stands in its lifecycle
      *
      * @var \formance\stack\Models\Payments\PaymentStatus $status
      */

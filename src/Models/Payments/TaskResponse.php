@@ -13,6 +13,7 @@ namespace formance\stack\Models\Payments;
 class TaskResponse
 {
     /**
+     * The requested task
      *
      * @var \formance\stack\Models\Payments\TaskStripe|\formance\stack\Models\Payments\TaskWise|\formance\stack\Models\Payments\TaskCurrencyCloud|\formance\stack\Models\Payments\TaskDummyPay|\formance\stack\Models\Payments\TaskModulr|\formance\stack\Models\Payments\TaskBankingCircle|\formance\stack\Models\Payments\TaskMangoPay|\formance\stack\Models\Payments\TaskMoneycorp $data
      */

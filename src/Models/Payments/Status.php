@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Whether to approve or reject the pending transfer */
 enum Status: string
 {
     case Rejected = 'REJECTED';

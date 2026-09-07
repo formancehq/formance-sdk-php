@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** Whether an open banking connection is still usable or needs the user to reconnect */
 enum V3ConnectionStatusEnum: string
 {
     case Active = 'ACTIVE';

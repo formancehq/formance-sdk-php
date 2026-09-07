@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class ModulrConfig
 {
     /**
+     * API key issued by Modulr, used to authenticate the connector's requests
      *
      * @var string $apiKey
      */
@@ -19,6 +20,7 @@ class ModulrConfig
     public string $apiKey;
 
     /**
+     * API secret issued by Modulr, paired with the API key to sign requests
      *
      * @var string $apiSecret
      */
@@ -26,6 +28,7 @@ class ModulrConfig
     public string $apiSecret;
 
     /**
+     * Human-readable name identifying this connector instance
      *
      * @var string $name
      */
@@ -33,6 +36,7 @@ class ModulrConfig
     public string $name;
 
     /**
+     * Base URL of the Modulr API the connector calls
      *
      * @var ?string $endpoint
      */
@@ -52,6 +56,7 @@ class ModulrConfig
     public ?string $pollingPeriod = null;
 
     /**
+     * Identifies the payment provider this configuration targets
      *
      * @var ?string $provider
      */

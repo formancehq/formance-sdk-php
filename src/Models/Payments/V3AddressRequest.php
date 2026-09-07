@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3AddressRequest - A postal address to record on the payment service user */
 class V3AddressRequest
 {
     /**
+     * City of the address
      *
      * @var ?string $city
      */
@@ -20,6 +22,7 @@ class V3AddressRequest
     public ?string $city = null;
 
     /**
+     * Country of the address, as an ISO 3166-1 alpha-2 code
      *
      * @var ?string $country
      */
@@ -28,6 +31,7 @@ class V3AddressRequest
     public ?string $country = null;
 
     /**
+     * Postal or ZIP code of the address
      *
      * @var ?string $postalCode
      */
@@ -36,6 +40,7 @@ class V3AddressRequest
     public ?string $postalCode = null;
 
     /**
+     * Region, state or province of the address
      *
      * @var ?string $region
      */
@@ -44,6 +49,7 @@ class V3AddressRequest
     public ?string $region = null;
 
     /**
+     * Street name of the address
      *
      * @var ?string $streetName
      */
@@ -52,6 +58,7 @@ class V3AddressRequest
     public ?string $streetName = null;
 
     /**
+     * Street number of the address
      *
      * @var ?string $streetNumber
      */

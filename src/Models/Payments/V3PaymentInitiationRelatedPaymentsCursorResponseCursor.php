@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace formance\stack\Models\Payments;
 
 
+/** V3PaymentInitiationRelatedPaymentsCursorResponseCursor - Paginated cursor wrapping the payments produced by the initiation */
 class V3PaymentInitiationRelatedPaymentsCursorResponseCursor
 {
     /**

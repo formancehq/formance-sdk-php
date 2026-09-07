@@ -12,6 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3ConversionsCursorResponse
 {
     /**
+     * Paginated cursor wrapping the list of conversions
      *
      * @var \formance\stack\Models\Payments\V3ConversionsCursorResponseCursor $cursor
      */

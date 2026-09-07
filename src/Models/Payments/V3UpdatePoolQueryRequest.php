@@ -12,7 +12,7 @@ namespace formance\stack\Models\Payments;
 class V3UpdatePoolQueryRequest
 {
     /**
-     * $query
+     * Filter selecting the accounts a dynamic pool contains
      *
      * @var array<string, mixed> $query
      */
